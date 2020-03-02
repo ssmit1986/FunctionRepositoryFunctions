@@ -5,7 +5,7 @@ BeginPackage["FunctionRepo`tukeyMedianPolish`", {"FunctionRepo`"}]
 tukeyMedianPolish::usage = "tukeyMedianPolish[mat] performs the Tukey median polish algorithm to find row and column effects in a data matrix.";
 
 
-Begin["`tukeyMedianPolish`Private`"] (* Begin Private Context *)
+Begin["`Private`"] (* Begin Private Context *)
 
 Options[tukeyMedianPolish] = {
     MaxIterations -> 100,
