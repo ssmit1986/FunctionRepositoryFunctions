@@ -1,0 +1,715 @@
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PacletDirectoryAdd", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "FunctionRepo`"}]}], "Input",
+ InitializationCell->True,
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+
+Cell[CellGroupData[{
+
+Cell["tukeyMedianPolish", \
+"Subsection",ExpressionUUID->"e9e75c8c-5552-4968-99ba-f046fd15b3b5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "tukeyMedianPolish"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"5da7d7b8-e171-4eca-a0c1-852ad28cf372"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"tukeyMedianPolish[mat] performs the Tukey median \
+polish algorithm to find row and column effects in a data matrix.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    
+                    StyleBox["\<\" DownValue Definitions\"\>", 
+                    "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"DownValues\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "DownValues", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"tukeyMedianPolish", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+mat_List", ",", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+outputType", ":", 
+                    
+                    RowBox[{"\<\"Matrix\"\>", 
+                    "|", "\<\"PropertyAssociation\"\>"}], 
+                    ":", "\<\"Matrix\"\>"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+opts", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+try", "=", 
+                    RowBox[{
+                    RowBox[{
+                    "tukeyMedianPolish", "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+opts", "]"}], "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+mat", "]"}]}], "}"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+try", ",", 
+                    RowBox[{
+                    "_", "?", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+validOutputQ"}]}], "]"}], ",", 
+                    RowBox[{"Switch", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+outputType", ",", "\[IndentingNewLine]", "\<\"PropertyAssociation\"\>", ",", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+propAssoc", "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+try", "]"}], ",", "\[IndentingNewLine]", "_", ",", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+try"}], "]"}], ",", "$Failed"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"tukeyMedianPolish", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+opts", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+compilationOpts", "=", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"OptionValue", "[", "Compiled", "]"}], "}"}], 
+                    "]"}]}], ",", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+cf"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+fun", "=", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish", "[", 
+                    RowBox[{"Sequence", "@@", 
+                    RowBox[{"FilterRules", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "{", "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`\
+Private`opts", "}"}], ",", 
+                    RowBox[{
+                    "Options", "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish", "]"}]}], "]"}]}], "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+cf", "=", 
+                    RowBox[{"Compile", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+m", ",", "_Real", ",", "2"}], "}"}], "}"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+fun", "[", "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`m", 
+                    "]"}], ",", 
+                    RowBox[{"Evaluate", "[", 
+                    RowBox[{"Sequence", "@@", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+compilationOpts", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}]}], "]"}]}], 
+                    "]"}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"MatrixQ", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+cf", "[", 
+                    RowBox[{"RandomReal", "[", 
+                    RowBox[{"1", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"3", ",", "3"}], "}"}]}], "]"}], "]"}], ",", 
+                    "NumericQ"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "tukeyMedianPolish", "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+opts", "]"}], "=", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+cf"}], ",", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    StyleBox[
+                    RowBox[{"tukeyMedianPolish", "::", "compileFail"}], 
+                    "MessageName"], "]"}], ";", "$Failed"}]}], "]"}]}]}], 
+                    "]"}], "/;", 
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+compilationOpts", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"True", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "}"}]}], 
+                    "]"}]}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    
+                    StyleBox["\<\" SubValue Definitions\"\>", 
+                    "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"SubValues\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "SubValues", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"tukeyMedianPolish", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+opts", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+mat_", "?", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"MatrixQ", "[", 
+                    RowBox[{"#1", ",", "NumericQ"}], "]"}], "&"}], ")"}]}], 
+                    "]"}], "/;", 
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "Dimensions", "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+mat", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"_Integer", "?", "Positive"}], ",", 
+                    RowBox[{"_Integer", "?", "Positive"}]}], "}"}]}], "]"}]}],
+                     ":=", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish", "[", 
+                    RowBox[{"Sequence", "@@", 
+                    RowBox[{"FilterRules", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "{", "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`\
+Private`opts", "}"}], ",", 
+                    RowBox[{
+                    "Options", "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish", "]"}]}], "]"}]}], "]"}], "[", 
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+mat", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"tukeyMedianPolish", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+opts", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], "[", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], "|", 
+                    RowBox[{"_", "?", "MatrixQ"}]}], "]"}], ":=", 
+                    RowBox[{"{", 
+                    RowBox[{"{", "}"}], "}"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"tukeyMedianPolish", "[", 
+                    RowBox[{
+                    "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+opts", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], "[", "_", 
+                    "]"}], ":=", "$Failed"}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   PaneSelectorBox[{True->
+                    ButtonBox[
+                    PaneSelectorBox[{False->
+                    
+                    TemplateBox[{
+                    "\[ThickSpace]","\"\[ThickSpace]\"",StyleBox[
+                    "\"Options\"", "InformationRowLabel", StripOnInput -> 
+                    False],DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEBitmaps", "DownPointerOpener"]]},
+                    "RowWithSeparators"], True->
+                    
+                    TemplateBox[{
+                    "\[ThickSpace]","\"\[ThickSpace]\"",StyleBox[
+                    "\"Options\"", "InformationRowLabel", StripOnInput -> 
+                    False],DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEBitmaps", "DownPointerOpenerHot"]]},
+                    "RowWithSeparators"]}, Dynamic[
+                    CurrentValue["MouseOver"]],
+                    FrameMargins->0,
+                    ImageSize->Automatic],
+                    Appearance->None,
+                    BaseStyle->None,
+                    
+                    ButtonFunction:>(Part[System`InformationDump`open$$, 9] = 
+                    False),
+                    Evaluator->Automatic,
+                    FrameMargins->0,
+                    ImageMargins->0,
+                    Method->"Preemptive"], False->
+                    ButtonBox[
+                    PaneSelectorBox[{False->
+                    
+                    TemplateBox[{
+                    "\[ThickSpace]","\"\[ThickSpace]\"",StyleBox[
+                    "\"Options\"", "InformationRowLabel", StripOnInput -> 
+                    False],DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEBitmaps", "RightPointerOpener"]]},
+                    "RowWithSeparators"], True->
+                    TemplateBox[{
+                    "\[ThickSpace]","\"\[ThickSpace]\"",StyleBox[
+                    "\"Options\"", "InformationRowLabel", StripOnInput -> 
+                    False],DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEBitmaps", "RightPointerOpenerHot"]]},
+                    "RowWithSeparators"]}, Dynamic[
+                    CurrentValue["MouseOver"]],
+                    FrameMargins->0,
+                    ImageSize->Automatic],
+                    Appearance->None,
+                    BaseStyle->None,
+                    
+                    ButtonFunction:>(Part[System`InformationDump`open$$, 9] = 
+                    True),
+                    Evaluator->Automatic,
+                    FrameMargins->0,
+                    ImageMargins->0,
+                    Method->"Preemptive"]}, Dynamic[
+                    FEPrivate`Part[System`InformationDump`open$$, 9]]], 
+                   PaneSelectorBox[{True->GridBox[{
+                    {
+                    RowBox[{"MaxIterations", "\[Rule]", "100"}]},
+                    {
+                    
+                    RowBox[{"\<\"ConvergenceTest\"\>", "\[Rule]", 
+                    "Automatic"}]},
+                    {
+                    RowBox[{"Tolerance", "\[Rule]", 
+                    RowBox[{"Scaled", "[", "0.0001`", "]"}]}]},
+                    {
+                    
+                    RowBox[{"\<\"LocationEstimator\"\>", "\[Rule]", 
+                    "Median"}]},
+                    {
+                    RowBox[{"Compiled", "\[Rule]", "False"}]},
+                    {
+                    StyleBox[
+                    
+                    TemplateBox[{
+                    "\"(\"","\"\[InvisibleSpace]\"","5","\" total)\""},
+                    "RowDefault"], "InformationRowOpener",
+                    StripOnInput->False]}
+                    },
+                    BaselinePosition->{Baseline, {1, 1}},
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{1.}}}], False->
+                    RowBox[{
+                    RowBox[{"MaxIterations", "\[Rule]", "100"}], 
+                    "\[ThinSpace]", 
+                    StyleBox["\<\"\[Ellipsis]\"\>", "InformationRowOpener",
+                    StripOnInput->False], "\[ThinSpace]", 
+                    StyleBox[
+                    
+                    TemplateBox[{
+                    "\"(\"","\"\[InvisibleSpace]\"","5","\" total)\""},
+                    "RowDefault"], "InformationRowOpener",
+                    StripOnInput->False]}]}, Dynamic[
+                    FEPrivate`Part[System`InformationDump`open$$, 9]],
+                    BaselinePosition->Baseline,
+                    ImageSize->Automatic]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`tukeyMedianPolish\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"tukeyMedianPolish[mat] performs the Tukey median \
+polish algorithm to find row and column effects in a data matrix.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{13., {3., 10.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{13., {3., 10.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "tukeyMedianPolish[mat] performs the Tukey median polish algorithm to \
+find row and column effects in a data matrix.", "Documentation" -> None, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`tukeyMedianPolish, {
+      FunctionRepo`tukeyMedianPolish[
+         Pattern[FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`mat, 
+          Blank[List]], 
+         Optional[
+          Pattern[
+          FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`outputType, 
+           Alternatives["Matrix", "PropertyAssociation"]], "Matrix"], 
+         Pattern[
+         FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts, 
+          OptionsPattern[]]] :> 
+       With[{
+         FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`try = 
+          FunctionRepo`tukeyMedianPolish[
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts][
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`mat]}, 
+         If[
+          MatchQ[FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`try, 
+           PatternTest[
+            Blank[], 
+            FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+validOutputQ]], 
+          Switch[
+          FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`outputType,
+            "PropertyAssociation", 
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`propAssoc[
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`try], 
+           Blank[], 
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`try], \
+$Failed]], FunctionRepo`tukeyMedianPolish[
+         Pattern[
+         FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts, 
+          OptionsPattern[]]] :> 
+       Module[{FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+compilationOpts = Flatten[{
+             OptionValue[Compiled]}], 
+          FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`cf}, 
+         Condition[
+          
+          With[{FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`fun = 
+            FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish[
+              Apply[Sequence, 
+               
+               FilterRules[{
+                FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts}\
+, 
+                Options[
+                FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish]]]]}, 
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`cf = 
+            Compile[{{
+               FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`m, 
+                Blank[Real], 2}}, 
+              FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`fun[
+              FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`m], 
+              Evaluate[
+               Apply[Sequence, 
+                Cases[
+                FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+compilationOpts, 
+                 OptionsPattern[]]]]]; If[
+             MatrixQ[
+              FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`cf[
+               RandomReal[1, {3, 3}]], NumericQ], 
+             FunctionRepo`tukeyMedianPolish[
+              FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts] = 
+             FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`cf, 
+             Message[
+               MessageName[
+               FunctionRepo`tukeyMedianPolish, "compileFail"]]; $Failed]], 
+          MatchQ[
+          FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+compilationOpts, {True, 
+            OptionsPattern[]}]]]}], "SubValues" -> 
+    Information`InformationValueForm[
+     SubValues, FunctionRepo`tukeyMedianPolish, {Condition[
+         FunctionRepo`tukeyMedianPolish[
+          Pattern[
+          FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts, 
+           OptionsPattern[]]][
+          PatternTest[
+           Pattern[
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`mat, 
+            Blank[]], MatrixQ[#, NumericQ]& ]], 
+         MatchQ[
+          Dimensions[
+          FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`mat], {
+           PatternTest[
+            Blank[Integer], Positive], 
+           PatternTest[
+            Blank[Integer], Positive]}]] :> 
+       FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish[
+         Apply[Sequence, 
+          
+          FilterRules[{
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts}, 
+           Options[
+           FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
+itukeyMedianPolish]]]][
+        FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`mat], 
+       FunctionRepo`tukeyMedianPolish[
+         Pattern[
+         FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts, 
+          OptionsPattern[]]][
+         Alternatives[{}, 
+          PatternTest[
+           Blank[], MatrixQ]]] :> {{}}, FunctionRepo`tukeyMedianPolish[
+         Pattern[
+         FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`opts, 
+          OptionsPattern[]]][
+         Blank[]] :> $Failed}], "DefaultValues" -> None, "NValues" -> None, 
+    "FormatValues" -> None, 
+    "Options" -> {
+     MaxIterations -> 100, "ConvergenceTest" -> Automatic, Tolerance -> 
+      Scaled[0.0001], "LocationEstimator" -> Median, Compiled -> False}, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`tukeyMedianPolish"], 
+   False]]], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"6c76b9ec-7c94-4ecd-8345-4ccc5db21da1"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1810, 888},
+WindowMargins->{{Automatic, 44}, {31, Automatic}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+ShowGroupOpener->True,
+TrackCellChangeTimes->False,
+Magnification:>1.3 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+
