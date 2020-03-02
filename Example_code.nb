@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[17]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1243,8 +1243,73 @@ rules] < FunctionRepo`conditionedMultinormalDistribution`Private`dim,
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "FunctionRepo`conditionedMultinormalDistribution"], False]]], "Output",
  CellLabel->"Out[8]=",ExpressionUUID->"3f070ae8-aabb-4d22-a028-8ce0035ffc7f"]
-}, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dist", "=", 
+   RowBox[{"MultinormalDistribution", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\[CapitalSigma]11", ",", "\[CapitalSigma]12"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\[CapitalSigma]12", ",", "\[CapitalSigma]22"}], "}"}]}], 
+      "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"conditionedMultinormalDistribution", "[", 
+  RowBox[{"dist", ",", 
+   RowBox[{"2", "\[Rule]", "x2"}]}], "]"}]}], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"60977677-8764-4ab8-b907-4aa8c97ceadb"],
+
+Cell[BoxData[
+ RowBox[{"MultinormalDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\[Mu]1", "+", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"x2", "-", "\[Mu]2"}], ")"}], " ", "\[CapitalSigma]12"}], 
+      "\[CapitalSigma]22"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\[CapitalSigma]11", "-", 
+      FractionBox[
+       SuperscriptBox["\[CapitalSigma]12", "2"], "\[CapitalSigma]22"]}], 
+     "}"}], "}"}]}], "]"}]], "Output",
+ CellLabel->"Out[31]=",ExpressionUUID->"91334517-8dfc-4fbc-a1af-ed7d5c92e6cc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"conditionedMultinormalDistribution", "[", 
+  RowBox[{"dist", ",", 
+   RowBox[{"2", "\[Rule]", "x2"}], ",", "1"}], "]"}]], "Input",
+ CellLabel->"In[33]:=",ExpressionUUID->"9f2fdb92-19fe-40ec-8bd4-e9ba6c55a6f9"],
+
+Cell[BoxData[
+ RowBox[{"NormalDistribution", "[", 
+  RowBox[{
+   RowBox[{"\[Mu]1", "+", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"x2", "-", "\[Mu]2"}], ")"}], " ", "\[CapitalSigma]12"}], 
+     "\[CapitalSigma]22"]}], ",", 
+   SqrtBox[
+    RowBox[{"\[CapitalSigma]11", "-", 
+     FractionBox[
+      SuperscriptBox["\[CapitalSigma]12", "2"], "\[CapitalSigma]22"]}]]}], 
+  "]"}]], "Output",
+ CellLabel->"Out[33]=",ExpressionUUID->"2b4cb879-5a6a-4df0-8041-2257d09aac88"]
+}, Open  ]]
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -1791,7 +1856,7 @@ to a different format to make it easier to switch out fitting methods.",
    False]]], "Output",
  CellLabel->"Out[11]=",ExpressionUUID->"74421e74-d4ae-4a42-84d9-cea0c5ece203"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -1914,7 +1979,8 @@ set.\"\>", "InformationUsageText",
                     "FunctionRepo`crossValidateModel`Private`dist", ",", 
                     RowBox[{
                     RowBox[{"EstimatedDistribution", "[", 
-                    RowBox[{"#1", ",", 
+                    RowBox[{
+                    "#1", ",", 
                     "FunctionRepo`crossValidateModel`Private`dist"}], "]"}], 
                     "&"}]}], "]"}], ",", 
                     "FunctionRepo`crossValidateModel`Private`dists"}], "]"}], 
@@ -2479,8 +2545,263 @@ defaultValidationFunction[]]]]];
       False}, "Attributes" -> {}, "FullName" -> 
     "FunctionRepo`crossValidateModel"], False]]], "Output",
  CellLabel->"Out[12]=",ExpressionUUID->"88661fef-2937-4720-beb7-6d5df1da73c8"]
-}, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{"RandomVariate", "[", 
+    RowBox[{
+     RowBox[{"PoissonDistribution", "[", "2", "]"}], ",", "100"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Histogram", "[", 
+  RowBox[{"data", ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.781610902284114*^9, 3.7816109277192287`*^9}, {
+  3.781611173709198*^9, 3.781611180206622*^9}, {3.7816116711764913`*^9, 
+  3.781611675183671*^9}, {3.7816117183975105`*^9, 3.781611728390929*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"8528c3aa-c63e-44f6-8859-92cd72a89101"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {RGBColor[0.987148, 0.8073604000000001, 0.49470040000000004`], EdgeForm[{
+    Opacity[0.616], Thickness[Small]}], {}, 
+    {RGBColor[0.987148, 0.8073604000000001, 0.49470040000000004`], EdgeForm[{
+     Opacity[0.616], Thickness[Small]}], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{-0.5, 0}, {0.5, 18.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{26.19213370696557, 
+           62.746857485988784`}, {-56.4328997310255, 122.80666073838329`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 18]& ,
+        TagBoxNote->"18"],
+       StyleBox["18", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[18, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{0.5, 0}, {1.5, 26.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{62.096857485988785`, 
+           98.651581265012}, {-135.80603771742938`, 122.80666073838323`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 26]& ,
+        TagBoxNote->"26"],
+       StyleBox["26", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[26, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{1.5, 0}, {2.5, 24.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{98.001581265012, 
+           134.55630504403524`}, {-115.96275322082845`, 122.80666073838329`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 24]& ,
+        TagBoxNote->"24"],
+       StyleBox["24", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[24, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{2.5, 0}, {3.5, 21.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{133.9063050440352, 
+           170.46102882305846`}, {-86.19782647592696, 122.80666073838329`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 21]& ,
+        TagBoxNote->"21"],
+       StyleBox["21", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[21, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{3.5, 0}, {4.5, 9.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{169.81102882305845`, 206.3657526020817}, {
+           32.86188050367889, 122.80666073838329`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 9]& ,
+        TagBoxNote->"9"],
+       StyleBox["9", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[9, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{4.5, 0}, {5.5, 1.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{205.71575260208164`, 242.27047638110486`}, {
+           112.2350184900828, 122.80666073838329`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 1]& ,
+        TagBoxNote->"1"],
+       StyleBox["1", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[1, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{10.5, 0}, {11.5, 1.}, "RoundingRadius" -> 0]},
+          ImageSizeCache->{{421.144095276221, 457.69881905524414`}, {
+           112.2350184900828, 122.80666073838329`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 1]& ,
+        TagBoxNote->"1"],
+       StyleBox["1", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[1, {}], "Tooltip"]& ]}, {}, {}}, {{}, {}, {}, {}, {}, {}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{-0.74, 0},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  PlotRange->{{-0.5, 11.5}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellLabel->"Out[4]=",ExpressionUUID->"612537d6-f985-4550-8541-e271cd8ce15a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"val", "=", 
+   RowBox[{"crossValidateModel", "[", 
+    RowBox[{"data", ",", 
+     RowBox[{"PoissonDistribution", "[", "\[Lambda]", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"val", "//", "TableForm"}]}], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"c7566495-73d8-4323-bcb1-fa905a691565"],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
+         RowBox[{"PoissonDistribution", "[", "1.85`", "]"}]}], ",", 
+        RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
+         "1.6031053551856296`"}]}], "\[RightAssociation]"}]},
+     {
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
+         RowBox[{"PoissonDistribution", "[", "1.9375`", "]"}]}], ",", 
+        RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
+         "1.766538729287263`"}]}], "\[RightAssociation]"}]},
+     {
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
+         RowBox[{"PoissonDistribution", "[", "1.8875`", "]"}]}], ",", 
+        RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
+         "1.4953056289244135`"}]}], "\[RightAssociation]"}]},
+     {
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
+         RowBox[{"PoissonDistribution", "[", "1.9`", "]"}]}], ",", 
+        RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
+         "2.0990511364549533`"}]}], "\[RightAssociation]"}]},
+     {
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
+         RowBox[{"PoissonDistribution", "[", "1.875`", "]"}]}], ",", 
+        RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
+         "1.7380317732858646`"}]}], "\[RightAssociation]"}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellLabel->
+  "Out[6]//TableForm=",ExpressionUUID->"346ab19b-1257-4f32-8a4a-6b62f11a78e8"]
+}, Open  ]]
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -2584,6 +2905,7 @@ Preserves ordering.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -2709,7 +3031,7 @@ substring of at least one other string in the list. Preserves ordering.",
    False]]], "Output",
  CellLabel->"Out[13]=",ExpressionUUID->"84fb8ff9-a95f-441e-9057-4da2aad98987"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -3189,19 +3511,822 @@ a result matching the pattern.", "Documentation" -> None, "OwnValues" -> None,
     "Options" -> {Heads -> False}, "Attributes" -> {HoldAll}, "FullName" -> 
     "FunctionRepo`firstMatchingValue"], False]]], "Output",
  CellLabel->"Out[16]=",ExpressionUUID->"43b72268-6591-42c5-ad86-3399c06878cc"]
-}, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"firstMatchingValue", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Print", "[", "\"\<before\>\"", "]"}], ",", "10", ",", 
+     RowBox[{"Print", "[", "\"\<after\>\"", "]"}]}], "}"}], ",", "_Integer"}],
+   "]"}]], "Input",
+ CellLabel->"In[44]:=",ExpressionUUID->"f41e503d-739e-4e0b-af4a-51a8b40b9b1b"],
+
+Cell[BoxData["\<\"before\"\>"], "Print",
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"6454f7f4-8528-4e08-9be3-b8b696ad487c"],
+
+Cell[BoxData["10"], "Output",
+ CellLabel->"Out[44]=",ExpressionUUID->"3ed8ad3f-4d9b-42f9-a0d0-6524af6da330"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"x", "=", "2"}], ";"}], "\n", 
+ RowBox[{"{", 
+  RowBox[{"x", ",", "\[IndentingNewLine]", 
+   RowBox[{"firstMatchingValue", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "2", ",", 
+       RowBox[{"++", "x"}], ",", 
+       RowBox[{"1", "+", "3"}], ",", "5"}], "}"}], ",", 
+     RowBox[{"_Integer", "?", "OddQ"}]}], "]"}], ",", "\[IndentingNewLine]", 
+   "x"}], "}"}]}], "Input",
+ CellLabel->"In[45]:=",ExpressionUUID->"29421cbc-f709-476c-b19c-f1a36aa67e57"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"2", ",", "3", ",", "3"}], "}"}]], "Output",
+ CellLabel->"Out[46]=",ExpressionUUID->"eb2b5138-56d5-4d3b-95e7-b58003171614"]
+}, Open  ]]
+}, Closed]],
 
 Cell[CellGroupData[{
 
 Cell["kullbackLeiblerDivergence", \
 "Subsection",ExpressionUUID->"e2779f55-4ae5-4ebd-b5b6-3be2e30b7a6c"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"?", 
-  "kullbackLeiblerDivergence"}]], \
-"Input",ExpressionUUID->"18686fd2-517c-4c38-b65b-acb472f6cf45"]
+ RowBox[{"?", "kullbackLeiblerDivergence"}]], "Input",
+ CellLabel->"In[48]:=",ExpressionUUID->"18686fd2-517c-4c38-b65b-acb472f6cf45"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"kullbackLeiblerDivergence[P, Q] computes the \
+Kullback-Leibler divergence from distribution Q to P\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"kullbackLeiblerDivergence", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p_", ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p_", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    "0"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"kullbackLeiblerDivergence", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p_", "?", 
+                    "DistributionParameterQ"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q_", "?", 
+                    "DistributionParameterQ"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`opts", 
+                    ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"$Assumptions", "=", 
+                    RowBox[{"OptionValue", "[", "Assumptions", "]"}]}], "}"}],
+                     ",", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+methodSpec", "=", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{
+                    RowBox[{"OptionValue", "[", "Method", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`sym", ":", 
+                    RowBox[{"Except", "[", "_List", "]"}]}], "\[RuleDelayed]", 
+                    RowBox[{
+                    "{", "FunctionRepo`kullbackLeiblerDivergence`Private`sym",
+                     "}"}]}]}], "]"}]}], ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
+methodOpts", ",", "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
+domainq", ",", "FunctionRepo`kullbackLeiblerDivergence`Private`assumptions", 
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`rv", 
+                    ",", "x"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"FreeQ", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q"}], 
+                    "}"}], ",", "\[FormalX]"}], "]"}], ",", 
+                    RowBox[{"x", "=", "\[FormalX]"}]}], "]"}], ";", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
+methodOpts"}], "}"}], "=", 
+                    RowBox[{"TakeDrop", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+methodSpec", ",", "1"}], "]"}]}], ";", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
+                    "=", 
+                    RowBox[{
+                    "First", "[", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
+                    "]"}]}], ";", 
+                    RowBox[{"Switch", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
+                    ",", "\[IndentingNewLine]", "Expectation", ",", "Null", 
+                    ",", "\[IndentingNewLine]", "NExpectation", ",", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`rand", 
+                    "=", 
+                    RowBox[{"Quiet", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"RandomVariate", "[", 
+                    RowBox[{"#1", ",", "5"}], "]"}], "&"}], ")"}], "/@", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q"}], 
+                    "}"}]}], "]"}]}], "}"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", 
+                    RowBox[{"AllTrue", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`rand", 
+                    ",", "ArrayQ"}], "]"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{
+                    "kullbackLeiblerDivergence", "::", "randomSample"}], 
+                    "MessageName"], ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q"}], 
+                    "]"}], ";", 
+                    RowBox[{"Return", "[", "$Failed", "]"}]}]}], "]"}]}], 
+                    "]"}], ",", "\[IndentingNewLine]", "_", ",", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"kullbackLeiblerDivergence", "::", "method"}], 
+                    "MessageName"], ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`method"}],
+                     "]"}], ";", 
+                    RowBox[{"Return", "[", "$Failed", "]"}]}]}], "]"}], ";", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
+                    "=", 
+                    RowBox[{
+                    "DistributionDomain", "[", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", 
+                    "]"}]}], ";", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`domainq", 
+                    "=", 
+                    RowBox[{
+                    "DistributionDomain", "[", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q", 
+                    "]"}]}], ";", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+assumptions", "=", 
+                    RowBox[{"And", "@@", 
+                    RowBox[{"DistributionParameterAssumptions", "/@", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q"}], 
+                    "}"}]}]}]}], ";", 
+                    RowBox[{"Switch", "[", 
+                    RowBox[{
+                    RowBox[{"Assuming", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+assumptions", ",", 
+                    RowBox[{"Simplify", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+supportSubSetQ", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
+domainq"}], "]"}], "]"}]}], "]"}], ",", "\[IndentingNewLine]", "True", ",", 
+                    "Null", ",", "\[IndentingNewLine]", "False", ",", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"kullbackLeiblerDivergence", "::", "supportPQ"}], 
+                    "MessageName"], ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q"}], 
+                    "]"}], ";", 
+                    RowBox[{"Return", "[", "Undefined", "]"}]}], ",", 
+                    "\[IndentingNewLine]", "_", ",", 
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{
+                    "kullbackLeiblerDivergence", "::", 
+                    "supportValidationFail"}], "MessageName"], ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q"}], 
+                    "]"}]}], "]"}], ";", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`rv", "=", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`l", ":", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+domainPattern", ".."}], "}"}]}], "\[RuleDelayed]", 
+                    RowBox[{"Array", "[", 
+                    RowBox[{"x", ",", 
+                    RowBox[{
+                    "Length", "[", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`l", 
+                    "]"}]}], "]"}]}], ",", 
+                    RowBox[{"_", "\[Rule]", "x"}]}], "}"}]}], "]"}]}], ";", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+assumptions", "=", 
+                    RowBox[{"Simplify", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+assumptions", "&&", 
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"Statistics`Library`RealIntegerQ", "=", 
+                    RowBox[{
+                    RowBox[{"#1", "\[Element]", 
+                    TemplateBox[{},
+                    "Integers"]}], "&"}]}], "}"}], ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "ListQ", "[", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`rv", 
+                    "]"}], ",", 
+                    RowBox[{"And", "@@", 
+                    RowBox[{"MapThread", "[", 
+                    RowBox[{
+                    "Statistics`DistributionsCommonDump`DomainMemberQ", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`rv"}]\
+, "}"}]}], "]"}]}], ",", 
+                    RowBox[{
+                    "Statistics`DistributionsCommonDump`DomainMemberQ", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`rv"}]\
+, "]"}]}], "]"}]}], "]"}]}], "]"}]}], ";", 
+                    RowBox[{"Assuming", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+assumptions", ",", 
+                    RowBox[{"Simplify", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
+                    "[", 
+                    RowBox[{
+                    RowBox[{"Refine", "[", 
+                    RowBox[{
+                    RowBox[{"LogLikelihood", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
+                    RowBox[{
+                    "{", "FunctionRepo`kullbackLeiblerDivergence`Private`rv", 
+                    "}"}]}], "]"}], "-", 
+                    RowBox[{"LogLikelihood", "[", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`q", ",", 
+                    RowBox[{
+                    "{", "FunctionRepo`kullbackLeiblerDivergence`Private`rv", 
+                    "}"}]}], "]"}]}], "]"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`rv", 
+                    "\[Distributed]", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`p"}], ",", 
+                    RowBox[{
+                    "Sequence", "@@", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+methodOpts"}]}], "]"}], ",", 
+                    RowBox[{"TimeConstraint", "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "10"}], "}"}]}]}], "]"}]}], "]"}]}]}], 
+                    "]"}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Options\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Options", "Tooltip"]& ], 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Method", "\[Rule]", "Expectation"}], ",", 
+                    RowBox[{
+                    "Assumptions", "\[RuleDelayed]", "$Assumptions"}]}], 
+                    "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], \
+"\<\"FunctionRepo`kullbackLeiblerDivergence\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"kullbackLeiblerDivergence[P, Q] computes the \
+Kullback-Leibler divergence from distribution Q to P\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{13., {3., 10.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{13., {3., 10.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "kullbackLeiblerDivergence[P, Q] computes the Kullback-Leibler divergence \
+from distribution Q to P", "Documentation" -> None, "OwnValues" -> None, 
+    "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`kullbackLeiblerDivergence, {
+      FunctionRepo`kullbackLeiblerDivergence[
+         Pattern[FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+          Blank[]], 
+         Pattern[FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+          Blank[]], 
+         OptionsPattern[]] :> 0, FunctionRepo`kullbackLeiblerDivergence[
+         PatternTest[
+          Pattern[FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+           Blank[]], DistributionParameterQ], 
+         PatternTest[
+          Pattern[FunctionRepo`kullbackLeiblerDivergence`Private`q, 
+           Blank[]], DistributionParameterQ], 
+         Pattern[FunctionRepo`kullbackLeiblerDivergence`Private`opts, 
+          OptionsPattern[]]] :> 
+       Block[{$Assumptions = OptionValue[Assumptions]}, 
+         Module[{
+          FunctionRepo`kullbackLeiblerDivergence`Private`methodSpec = Replace[
+             OptionValue[Method], 
+             Pattern[FunctionRepo`kullbackLeiblerDivergence`Private`sym, 
+               Except[
+                Blank[List]]] :> {
+              FunctionRepo`kullbackLeiblerDivergence`Private`sym}], 
+           FunctionRepo`kullbackLeiblerDivergence`Private`method, 
+           FunctionRepo`kullbackLeiblerDivergence`Private`methodOpts, 
+           FunctionRepo`kullbackLeiblerDivergence`Private`domainp, 
+           FunctionRepo`kullbackLeiblerDivergence`Private`domainq, 
+           FunctionRepo`kullbackLeiblerDivergence`Private`assumptions, 
+           FunctionRepo`kullbackLeiblerDivergence`Private`rv, $CellContext`x},
+           If[
+            
+            FreeQ[{FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+              FunctionRepo`kullbackLeiblerDivergence`Private`q}, \[FormalX]], \
+$CellContext`x = \[FormalX]]; {
+            FunctionRepo`kullbackLeiblerDivergence`Private`method, 
+             FunctionRepo`kullbackLeiblerDivergence`Private`methodOpts} = 
+           TakeDrop[
+            FunctionRepo`kullbackLeiblerDivergence`Private`methodSpec, 1]; 
+          FunctionRepo`kullbackLeiblerDivergence`Private`method = 
+           First[FunctionRepo`kullbackLeiblerDivergence`Private`method]; 
+          Switch[FunctionRepo`kullbackLeiblerDivergence`Private`method, 
+            Expectation, Null, NExpectation, 
+            With[{FunctionRepo`kullbackLeiblerDivergence`Private`rand = Quiet[
+                Map[
+                RandomVariate[#, 5]& , {
+                 FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+                  FunctionRepo`kullbackLeiblerDivergence`Private`q}]]}, 
+             If[
+              Not[
+               AllTrue[
+               FunctionRepo`kullbackLeiblerDivergence`Private`rand, ArrayQ]], 
+              Message[
+                MessageName[
+                FunctionRepo`kullbackLeiblerDivergence, "randomSample"], 
+                FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+                FunctionRepo`kullbackLeiblerDivergence`Private`q]; 
+              Return[$Failed]]], 
+            Blank[], Message[
+              MessageName[FunctionRepo`kullbackLeiblerDivergence, "method"], 
+              FunctionRepo`kullbackLeiblerDivergence`Private`method]; 
+            Return[$Failed]]; 
+          FunctionRepo`kullbackLeiblerDivergence`Private`domainp = 
+           DistributionDomain[
+            FunctionRepo`kullbackLeiblerDivergence`Private`p]; 
+          FunctionRepo`kullbackLeiblerDivergence`Private`domainq = 
+           DistributionDomain[
+            FunctionRepo`kullbackLeiblerDivergence`Private`q]; 
+          FunctionRepo`kullbackLeiblerDivergence`Private`assumptions = 
+           Apply[And, 
+             Map[
+             DistributionParameterAssumptions, {
+              FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+               FunctionRepo`kullbackLeiblerDivergence`Private`q}]]; Switch[
+            Assuming[
+            FunctionRepo`kullbackLeiblerDivergence`Private`assumptions, 
+             Simplify[
+              FunctionRepo`kullbackLeiblerDivergence`Private`supportSubSetQ[
+              FunctionRepo`kullbackLeiblerDivergence`Private`domainp, 
+               FunctionRepo`kullbackLeiblerDivergence`Private`domainq]]], 
+            True, Null, False, Message[
+              MessageName[
+              FunctionRepo`kullbackLeiblerDivergence, "supportPQ"], 
+              FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+              FunctionRepo`kullbackLeiblerDivergence`Private`q]; 
+            Return[Undefined], 
+            Blank[], 
+            Message[
+             MessageName[
+             FunctionRepo`kullbackLeiblerDivergence, "supportValidationFail"],
+              FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+             FunctionRepo`kullbackLeiblerDivergence`Private`q]]; 
+          FunctionRepo`kullbackLeiblerDivergence`Private`rv = 
+           Replace[FunctionRepo`kullbackLeiblerDivergence`Private`domainp, {
+             Pattern[FunctionRepo`kullbackLeiblerDivergence`Private`l, {
+                 Repeated[
+                 FunctionRepo`kullbackLeiblerDivergence`Private`domainPattern]\
+}] :> Array[$CellContext`x, 
+                Length[FunctionRepo`kullbackLeiblerDivergence`Private`l]], 
+              Blank[] -> $CellContext`x}]; 
+          FunctionRepo`kullbackLeiblerDivergence`Private`assumptions = 
+           Simplify[
+             And[FunctionRepo`kullbackLeiblerDivergence`Private`assumptions, 
+              
+              Block[{Statistics`Library`RealIntegerQ = 
+                Element[#, Integers]& }, 
+               If[
+                ListQ[FunctionRepo`kullbackLeiblerDivergence`Private`rv], 
+                Apply[And, 
+                 MapThread[
+                 Statistics`DistributionsCommonDump`DomainMemberQ, {
+                  FunctionRepo`kullbackLeiblerDivergence`Private`domainp, 
+                   FunctionRepo`kullbackLeiblerDivergence`Private`rv}]], 
+                Statistics`DistributionsCommonDump`DomainMemberQ[
+                FunctionRepo`kullbackLeiblerDivergence`Private`domainp, 
+                 FunctionRepo`kullbackLeiblerDivergence`Private`rv]]]]]; 
+          Assuming[FunctionRepo`kullbackLeiblerDivergence`Private`assumptions, 
+            Simplify[
+             FunctionRepo`kullbackLeiblerDivergence`Private`method[
+              Refine[
+              LogLikelihood[
+                FunctionRepo`kullbackLeiblerDivergence`Private`p, {
+                 FunctionRepo`kullbackLeiblerDivergence`Private`rv}] - 
+               LogLikelihood[
+               FunctionRepo`kullbackLeiblerDivergence`Private`q, {
+                FunctionRepo`kullbackLeiblerDivergence`Private`rv}]], 
+              Distributed[
+              FunctionRepo`kullbackLeiblerDivergence`Private`rv, 
+               FunctionRepo`kullbackLeiblerDivergence`Private`p], 
+              Apply[
+              Sequence, 
+               FunctionRepo`kullbackLeiblerDivergence`Private`methodOpts]], 
+             TimeConstraint -> {2, 10}]]]]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> {Method -> Expectation, Assumptions :> $Assumptions}, 
+    "Attributes" -> {}, "FullName" -> 
+    "FunctionRepo`kullbackLeiblerDivergence"], False]]], "Output",
+ CellLabel->"Out[48]=",ExpressionUUID->"13e6d6c2-6863-4ff0-86e7-b90f4d5e7d2a"]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"kullbackLeiblerDivergence", "[", 
+  RowBox[{
+   RowBox[{"BinormalDistribution", "[", "\[Rho]1", "]"}], ",", 
+   RowBox[{"BinormalDistribution", "[", "\[Rho]2", "]"}]}], "]"}]], "Input",
+ CellLabel->"In[47]:=",ExpressionUUID->"5ec8fba7-2cf3-462f-ac44-3aa8b53c644c"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"2", " ", "\[Rho]1", " ", "\[Rho]2"}], "-", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["\[Rho]2", "2"]}], "-", 
+   RowBox[{
+    SuperscriptBox["\[Rho]2", "2"], " ", 
+    RowBox[{"Log", "[", 
+     RowBox[{"1", "-", 
+      SuperscriptBox["\[Rho]1", "2"]}], "]"}]}], "+", 
+   RowBox[{
+    SuperscriptBox["\[Rho]2", "2"], " ", 
+    RowBox[{"Log", "[", 
+     RowBox[{"1", "-", 
+      SuperscriptBox["\[Rho]2", "2"]}], "]"}]}], "+", 
+   RowBox[{"Log", "[", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      SuperscriptBox["\[Rho]1", "2"]}], 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      SuperscriptBox["\[Rho]2", "2"]}]], "]"}]}], 
+  RowBox[{"2", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     SuperscriptBox["\[Rho]2", "2"]}], ")"}]}]]], "Output",
+ CellLabel->"Out[47]=",ExpressionUUID->"9a65e7a3-f586-4d8a-90d7-f919148c636f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"kullbackLeiblerDivergence", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"EmpiricalDistribution", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<b\>\""}], "}"}], "]"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"EmpiricalDistribution", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\""}], "}"}], 
+    "]"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[49]:=",ExpressionUUID->"bca30795-b9dc-4999-ac8a-93a48394a5fe"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"2", " ", 
+   RowBox[{"Log", "[", "2", "]"}]}], "3"]], "Output",
+ CellLabel->"Out[49]=",ExpressionUUID->"514a7d22-4c07-4f62-a371-f792a04dab87"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"kullbackLeiblerDivergence", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"BernoulliDistribution", "[", "p", "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"EmpiricalDistribution", "[", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0", ",", "1"}], "}"}], "]"}]}], "\[IndentingNewLine]",
+   "]"}]], "Input",
+ CellLabel->"In[50]:=",ExpressionUUID->"200811e0-9976-442e-8d63-800751e9f445"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "p"}], ")"}]}], " ", 
+   RowBox[{"Log", "[", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["3", "2"]}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", "p"}], ")"}]}], "]"}]}], "+", 
+  RowBox[{"p", " ", 
+   RowBox[{"Log", "[", 
+    RowBox[{"3", " ", "p"}], "]"}]}]}]], "Output",
+ CellLabel->"Out[50]=",ExpressionUUID->"8c3e048f-6af6-4f8b-b56f-0a1dd23cdd27"]
+}, Open  ]]
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -3380,7 +4505,6 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
                    PaneSelectorBox[{True->
                     ButtonBox[
                     PaneSelectorBox[{False->
-                    
                     TemplateBox[{
                     "\[ThickSpace]","\"\[ThickSpace]\"",StyleBox[
                     "\"Options\"", "InformationRowLabel", StripOnInput -> 
@@ -3530,6 +4654,7 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -3707,7 +4832,7 @@ $Failed]]}], "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None,
     "FunctionRepo`maximumSpacingEstimation"], False]]], "Output",
  CellLabel->"Out[19]=",ExpressionUUID->"e3b51bc5-9fc8-42b2-9be1-88de7668ce81"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -3862,7 +4987,8 @@ List", ",",
                     "FunctionRepo`tukeyMedianPolish`Private`weights", ",", 
                     RowBox[{
                     "FunctionRepo`tukeyMedianPolish`Private`numSets", "=", 
-                    RowBox[{"Length", "[", 
+                    RowBox[{
+                    "Length", "[", 
                     "FunctionRepo`tukeyMedianPolish`Private`expressions", 
                     "]"}]}], ",", 
                     RowBox[{
@@ -4144,7 +5270,6 @@ List", ",",
                     StyleBox["\<\"\[Ellipsis]\"\>", "InformationRowOpener",
                     StripOnInput->False], "\[ThinSpace]", 
                     StyleBox[
-                    
                     TemplateBox[{
                     "\"(\"","\"\[InvisibleSpace]\"","13","\" total)\""},
                     "RowDefault"], "InformationRowOpener",
@@ -4197,6 +5322,7 @@ List", ",",
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -4390,8 +5516,8 @@ vars] fits fun_i to data_i simultaneously.", "Documentation" -> None,
           OptionValue["DatasetIndexSymbol"]}, 
          Condition[
          FunctionRepo`tukeyMedianPolish`Private`fitfun = 
-           With[{
-             FunctionRepo`tukeyMedianPolish`Private`conditions = Apply[Join, 
+           With[{FunctionRepo`tukeyMedianPolish`Private`conditions = 
+              Apply[Join, 
                 Map[{#, 
                   Part[
                   FunctionRepo`tukeyMedianPolish`Private`expressions, #]}& , 
@@ -4429,6 +5555,7 @@ vars] fits fun_i to data_i simultaneously.", "Documentation" -> None,
              FunctionRepo`tukeyMedianPolish`Private`fitfun, 
               FunctionRepo`tukeyMedianPolish`Private`constraints}], 
             FunctionRepo`tukeyMedianPolish`Private`fitParams, 
+            
             Flatten[{
              FunctionRepo`tukeyMedianPolish`Private`indexSymbol, 
               FunctionRepo`tukeyMedianPolish`Private`independents}], Weights -> 
@@ -4449,8 +5576,367 @@ vars] fits fun_i to data_i simultaneously.", "Documentation" -> None,
       "DatasetIndexSymbol" -> \[FormalN]}, "Attributes" -> {}, "FullName" -> 
     "FunctionRepo`multiNonlinearModelFit"], False]]], "Output",
  CellLabel->"Out[21]=",ExpressionUUID->"c21d3af5-b9e8-4267-853a-381bdebe462b"]
-}, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"RandomVariate", "[", 
+    RowBox[{
+     RowBox[{"BinormalDistribution", "[", "0.7", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "100"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"data", "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "All", ",", "2"}], "]"}], "]"}], "+=", "2."}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"model", "=", 
+  RowBox[{"multiNonlinearModelFit", "[", "\[IndentingNewLine]", 
+   RowBox[{"data", ",", "\[IndentingNewLine]", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"a", " ", "\[FormalX]"}], "+", " ", "b1"}], ",", 
+      RowBox[{
+       RowBox[{"a", " ", "\[FormalX]"}], " ", "+", " ", "b2"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "b1", ",", "b2"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", "\[FormalX]", "}"}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ TaggingRules->{},
+ CellLabel->"In[66]:=",
+ CellID->161500924,ExpressionUUID->"c39143e0-8df7-4e59-b0a1-a501fd5ada30"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"FittedModel", "[", 
+   TagBox[
+    PanelBox[
+     TagBox[
+      RowBox[{"Switch", "[", 
+       RowBox[{
+        RowBox[{"Round", "[", "\[FormalN]", "]"}], ",", "\[IndentingNewLine]",
+         "1", ",", 
+        RowBox[{
+         RowBox[{"\[FormalX]", " ", "0.668726288392487`"}], "-", 
+         "0.012503599068944604`"}], ",", "\[IndentingNewLine]", "2", ",", 
+        RowBox[{
+         RowBox[{"\[FormalX]", " ", "0.668726288392487`"}], "+", 
+         "1.997093249062876`"}]}], "]"}],
+      Short[#, 2]& ],
+     FrameMargins->5],
+    Editable -> False], "]"}],
+  InterpretTemplate[
+  FittedModel[{
+    "Nonlinear", {$CellContext`a -> 
+      0.668726288392487, $CellContext`b1 -> -0.012503599068944604`, \
+$CellContext`b2 -> 1.997093249062876}, {{\[FormalN], \[FormalX]}, 
+      Switch[
+       Round[\[FormalN]], 1, \[FormalX] $CellContext`a + $CellContext`b1, 
+       2, \[FormalX] $CellContext`a + $CellContext`b2]}}, {1}, CompressedData["
+1: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
+    "], 
+    Function[Null, 
+     Internal`LocalizedBlock[{\[FormalN], \[FormalX], $CellContext`a, \
+$CellContext`b1, $CellContext`b2}, #], {HoldAll}]]& ],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->True]], "Output",
+ CellLabel->"Out[68]=",ExpressionUUID->"5a7d581d-d0c9-4a5e-8970-f4fda01608e3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ListPlot", "[", "data", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Normal", "[", "model", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"\[FormalN]", ",", 
+          RowBox[{"Length", "[", "data", "]"}]}], "}"}]}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\[FormalX]", ",", 
+       RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "]"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ TaggingRules->{},
+ CellLabel->"In[69]:=",
+ CellID->671103164,ExpressionUUID->"2c3b7c6e-944b-4770-9eb2-ff95dc74ee9e"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{
+      {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+       0.009166666666666668], AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJwV0/0/FAYcwPFDaOlxNqUUI2w9bJ2FFL63dUmLFE2ktVQny4bkqWixkjzU
+q9b0QHk8eeZ2jpiH73kIhe5Yng7hzj3snHN3Hu88bfvh83r/BZ/Pzge4UtQJ
+BMLF//rfj8SFXRdaO7Dn2COuKUmIj6c4iqIJAXo4NO6qGxyFj+8pd8denYXj
+Q8xyu8eL0Ea8pdmibMRzCdVd9vk9MLXanNodqc6MStqsaVzCwxXaiZNGSgUs
+PJlSpCrb8Y3XPkUjvwXnvGz6k+52oIA+sOymNQrRvh1hBdMipBX95MhKb0Q7
++wyrshE57iUaz4hWzkHLDe6ZX1azQOc062Bfjwqve6TrJjGleKnTlhw6NohH
+XoZkKYs/4DzB2s9mDx/dv2zwz3CToPUZibemggWXP/BbTK6qwJ94OYL7Uys6
+CrfEZtl0op1TmneIiQBtybWC3TF/Qdiriq/WB7zCWBfJ4MSZSdil533XJZsP
+21PodTtev4LKsL0adzLFsD/35I34awNwPXAo5IDuE1yZNnk+LZMGHYmE2+5W
+sxDarYhOy5ZCOvhMyEoGkJR/QRjhyoM3ahmrY/JHwanBbQ2B0oKGpdenYpNl
+qJPZIw09MIUxNn+tYScUYeB4R3iQhwj83ZgEurgNQ8ljjR6fN2E1y17eG/ge
+PCyEkvJfxzDcdrHz6D8cZGev013IEWBT9eHaeKNF3L6129zuVwnqfR9RMnNn
+EnReFWh07lQAq+uRZ2OBEJtRh1ecPgrrIuHUno2z4D9X9Qd1gguim7GOVX4q
+cAw53+JhycbMHTbZi2PD6H/FgBloNYREYlWUxoEFmPA/s955aQ7G8x0irdcM
+4XhW8LWHCi42R67SpJ9VIrGikGxlKsWwUTZnOkkGFyni3IBzfVgRxK3g7x1B
+I5v69iBfAS4VGO7yOM6Bc6e0+brmXPCgaFwhpxBI75d/aHHyXADd557xgi4p
+2raRU593D2B8fE3HwxI5zuQ2+ohOCLGyv6/KNWAWAt86mGdtoMPGkdRP7tYp
+8JCXyW52sRxnIx2j5KQRiM7z05cgF81CU8MSDnOQQZlvnVCUgU6GZ916Ch83
+xTU8NeHJ0EB/f0aTsBcqsbB200seUPN8C+X7JHhbtDZC/fJb3PGmdkv1tnEM
+ljMe8Eu7MeXvtACzIB7ml42fOqYmxZtON8rLjQRg7F7YfIHPgeOPUjT4p4fw
+0yeDlFU5Q1hgvkKkzhDg0yuB7ta8DtR7JqL7RL2HHx840Nt0G4FZb/dIk1QD
+zfeDPg/e3AgNH+eN7jvIA/WPpKqc8xOoLnTtnd49gqumUzb52DNBvPNwT4W1
+HH7X2zn57a1xIKdV2y7/IkWjk5YVlNcKZAy71f9ZwwMzOTeGZKwCCyvU7D4S
+is1jQmZDkArniUIGy7cLci99b28X/wbanBO2bT37MzgaRvfTRmXI4MDtL45O
+gPHXovoXPBnUcH582SnvhnB1ttnm33jYuyFzHXNBgb6BPd/kCOiY6cKz0Q9u
+gfnmWTJdfxjvD7OGz5ZI8XZbBXFD9CTe2t7n8rtWFy58YpKr9ZqBll7h+bH/
+TCPTSmpj+O0ItOoHu9Kyk7FBOW6QbS6Cg2alhuMrG2BV/CW3FQeF4JqURV7r
+I4PR2ofP2kEJhYt3Eo+oDUD/nxl+OSEfcLVWlrPkGyU+P+F70mBbLzRxl9+V
+9fQDScOtvf5GOuC45nVCwjyqymjiJy1L+FnyMYurnu+BnUCNoPwwDYVPi9TY
+wzLw+vTa6bS3cvj7SzuSed8QVlT6nW1OHkHCoe2Bxx7QwP0PicVpNTbwuAyN
+oh3z+Ew5N9nrIcOctVxn0ysifEBV55vO1eNv7V/FhV8UYau71s2eKh7mPUzR
+Ka0fgGRFqQbxYh1SXXk19C29yGzWXnYyHYZ83asWsv+/an53xyVOBpYbac+/
+biCQhrJfpN3XXgJSlN6po/v6gUZQtR6mTmDtzD0OlSEGtcT570xsu2CQUMxd
+/kIB1JhQ4dCyBBpaN77rkI6CqujQzPHyJViui4tOeSdHlln+yXMOYrR87K72
+wluMDkW0iMoTMtyaqm2Ut1YFvs6gukxtwtxWIDslqpFaN1sv3PNeAINgWmRc
+tBBIbL3sLnc27tkPCZ0HBjDYIOOtbXEP/AsQqXhi
+        "]]}, 
+      {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+       0.009166666666666668], AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJwV0/8/E/oewPHZbJxc03B266QjeqhJdSuSg9v7o+NG+ZJQD9w4Ch1TRNzE
+lK9RFtGJW0qULzmOsxPLl1vxEQ2hyUE5eZAYZvNlNrLZxj3nh9fj+Re8TM5c
+8AwhEgiE4D/7y50qkfqg5gS26Kb2TEcQUUZARWJZ2gpmJ499U4XVkO0U7f87
+U4XrNI2NmplzwCT8IW/6UoOz8pm7HUJXINgtyMC76CPgHxujXt8kILqu0cUB
++jMoGHdwrm8iIQ+O2OjKERX2eLViY1nSDc8jH5ekxpZC7tPSVwY5JBTBolLc
+OwiIG7c5q6WZjL7bunKgVTECMX3dDxaTSOj7kT/G/KRiHLElXqOq5TNQm+w2
+DWYsYdbeqtB3bCl8PFJRaqBYxNbjOiKWSg1BXhxX+cIUDtC0q9jn9wVexrgq
+7a1l2DW3wgSbDwJdYHXzeN8wdsi+5T5FJyA/KftdK0UK27Bnf6ZACS3cm5rm
+0wLsQzsuLz0gASX3uveWFznwU2Gx3p0iCsrZ3M+8bPIc775l45IiXIKXZZ8c
+O7nTcNKIHc0blsMjHt1zd/gUDta2MMiflYH7eSOiOLYNzkOQaYOWEsbmGD1+
+PyyCnEz2OQar4PyGFlTzWQI7JPn73flaKClLcFJpLoblc+XmVXQtxL43VVw2
+Tmy2sW0INLghhdr4U79wSrOxkskffTslgai2f70ouCvClbeimMctFWCZvjkw
+VTmCLwcHvXs2Q0K9Kheyy6YFLCHf19fznwOP/zAvhf/9Pq6I9khOvKuN5n6L
+2u7u24tpzm6qzs5VMBEEJT/jvgGvpseVJnUU9IgYEIj6eiFjQS/h1yfL4CAz
+bSx3EEJD4KhnYZo2Or5x6HJqoQQLhw5nuvJfQ5YV360nmQv0XOtPxjq6SGp4
+Wd/VgYiOMZZDPn9PQ5f2ll19LpiED3zktpu6Ho1cufqT4gyxmRGvF/8J90BW
+75um+AEJ/DM8LYit+Aot+4ctN9aX47uxbyN7ligohJfqFZRKRJ1s4699PNah
+eeoqV+zLhzDv0g9HhzWRqj8uVFI9CAI4MmN2iISyu8IynhcvYR/6vW20fR9g
+qUHDyVQhxVU9CpbKWwY874D6/U3DwNSdTG79loimWFqJdoky+HJBa5ItIqH+
+H3WSGFQeHG3aXntJn4CSqgrGvmXN4e1q4YK2jIiiGUbO239px5S5mBT5Rk3E
+O8x/5B2lwCt+Q576zDHQnthLeDBTB8E1CWndvUT0nsF8+/DkLCSG4P9Wp1EQ
+5SJvrPLmKJjU5x180UdEVwMvtO0cncbzM5q7FOIvoGaUJWnZDkMKL+sIC2RQ
+svHA/Gz1MthmciyjrLRRVbVcN6dkCgi/DryMP0dCWcSlf2y6JsdJ9Dhxo2oC
+tlId15K8V8B2Vl+56+h6pFa4jKf4tuOS/IsFqkISetivbSdqnsbo9v7VQwoZ
+vN/wtWkBaxLnG95wml3VQJEJH665/JwB4+tqPMJfEtFcROjta2tS6LJwW3v1
+TgN5caqXqT8sgFueugOerIJ0gyquolyJCRsGDsa0JeLcdP757MUp7Hm7i/nz
+6T//4gyaQeQ8CFfmpbWGNFTkqRdG6ZqGgphE+xkNTfS3h03vm2lSLDzrU+px
+aAwS1vFNM3+fx8ZvG/u4znJQi6JTB9onwDFhLW/HGRJK793pyA2sB317RlRs
+twDmtz6ubTizAvfsN9brDuoj/k6NZEKbGO5Z7hMyamlorbz11WAFD0rJlCgL
+cx0UMCOguRVyIafbmlNqJYfKVN+a3A4l3E24btxa9xUyS+roEB4U4ENzI2v0
+MDU4B0wY+auGoNosQGPPAyk8BaLvMuc9nuw8TRKdloLPv7e06Bar4b6dhc2p
+c+vRHlVjhDmnD/oTbpX5uk3DCS8zRcprMWyrHzzGsZFDppOu9V4gNef4b6Ff
+QyuYrPScMemYANUOZeSGMTL635P2S8+uC/CkrJmi6TgOm+2KWAsFn4AacNjG
+/RQJ5a0vjuGbiiB+FBu+ZpERqess8URDC+beOLurkK2GoVNxer0DS3CnsOhY
+IVDRNzqxZWYVEnBpT9vnfGIRwq8bVV55I4EgV/uPYdVaqPbj5OTTvM9w4rvH
+vlbpJLRnLM72yblR/FuIlmF66AJQW6eFTqI7eNA0zqOuTwb/ByugKkA=
+        "]]}}, {
+      {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+       0.009166666666666668], AbsoluteThickness[1.6]}, 
+      {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+       0.009166666666666668], AbsoluteThickness[1.6]}, {}, {}, {}}, {
+      {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+       0.009166666666666668], AbsoluteThickness[1.6]}, 
+      {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+       0.009166666666666668], AbsoluteThickness[
+       1.6]}, {}, {}, {}}}, {{}, {}}}, {{{}, {}, 
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], 
+       Opacity[1.], LineBox[CompressedData["
+1:eJwt1Ps/1XccwPFzjnMc50NuHyrSTZtKO4VWSrbvG9nRquPSqAdzmcumKKYe
+xUjkOEKPClEdVA6dyJrWlpD6fkKXoYNyK1MKh4ricOogbHs89sPr8fwPXksD
+IzxCWAwGY/u//efhge3K2VlMHAXEwfcpIorYuaquT5hExUtVK9sQEeq/+Hhz
+ApOLN0QlH5oRWbIxcjpiDJOZZVsMTj1EpCYtU6tHgUk543FPzU1EtFZ3LCKP
+MLGs6j2yIgeR0wcCtibkYmLE594Z80CklLm/iGGLSZ+h0C6tkUc4IQIbE19D
+0tpdkGRaokVw571waYYBuegeNjx5lks8aiVBK+v1iWm6abf1CU0S+/6r8FO9
+eqSn9uTCxnAOqTgk2VPmqktEl36JL/djE2Gm55KZczrkgHiVFdtOgwjybwtd
+hhAx5Nf8VGzKIrIHMe37fXjkeJycztNlEj/RaeOmYi6R5Ti0DHbM0vEBGr9p
+Y03yPrklaEPlNM3gL6adktkkg8Fnrbs0RT9LP5dS2sYi8hgjR3XQBG2GQkvG
+HZmkbvNAjc+Wj3TYOktOl9ks7an7TX8yU0UH2T4vrq2doiEoEvvWKWnLaLvZ
+fUVqupcnPtp6dYQu6N5RF+Ogop38XC0+bx2iBxKN7QXzlbTNtt1/vTw3SFdl
+r3Ae9Bqmd9rmlq3i9NFWr5+Or8lX0P5RD70vaL+gN1d18aa9euixaq536OV2
+OrKkTG2An9CDGu/unDFroL1+XFbwOK6SDrQVSu9+/Sf9oPFp2todFZTi/pyJ
+8qVXKDv+3etuZ55Q3yKhA1fykGIdNP472KSHSkNH/FxvtVJcHbfEwHcKKtF4
+eU7C824qqafdKapwmEqNcWuKD+ulruWK3eKVo1RPXXlLnGSAipAG6/d5qSgm
+5mQMLxui/PZIFqYkqqlOv68HdK1GqFT3gxvX5k1R7cWrJ2OclBTbKFtxZHKG
+2jCeGbZINE51NCSPiPSY8HJYO8/8/AfKMzZwvaSWBSODasuAfjUVrv3WXO7N
+BkHmZPQ0Z4paXHo/R/MNBxyvWd0aXjBNxVY47dDL5UJh0zOfef6zVKQsvHz9
+Gh7I5I2+zbcZoMOyDVzdj+CL9Yrq318xwXnvd9mWWTqg2WmSY8/SgPmVCyOc
+P9MFdkuH8JAuGzKjjmVYdejB9fqmcqE1BzzErvz8cn0QL/CYaQNNsPQReRYd
+NoBfZe9oza1caFfwpFmehiCyuWfVGqYF8sB+B8PFGBKMLRLdY3jwkn1ZnW2O
+QbnBqZUdz4NxWWiZiQWGwO8Dllcc5YHJ27dmS/kYHAsljxYd50HwfuXHNZsw
+sK31TIfO82Ayafbq9p0YxNvU18V1PLC4ZGKaehLDiaT6vlt6CDYKupp1sjDM
+yAZsI4wQbHudl3IqB0NkPTvd3ATBz/wlqjP5GNwMKOtUcwTVNyyaZaUYDC/8
+cdhrHQKP+2vFdQ8wnK7KmzvqjSAkVGXv0oBB83nl7iJ/BNHo5liDHMNBZkf1
+zmAE+UK7H560YfByMQi6sxfBYDvYv+rFML89uSw9AcFkNGssZADDsQkpi0pG
+MGdBXcnrNxjUZsRTmYrAxl8wb3QUQ2fQ5NSuLATOTJ78gAqDS8o8V52zCHYV
+1ovUagxVV76U0nkI9jgf3xT3CcMKubsqqgDB//8Cyeg+FwsZgn8A+75CqQ==
+
+        "]]},
+      Annotation[#, "Charting`Private`Tag$36481#1"]& ], 
+     TagBox[
+      {RGBColor[0.880722, 0.611041, 0.142051], AbsoluteThickness[1.6], 
+       Opacity[1.], LineBox[CompressedData["
+1:eJwt1Ps31GkcwPExkdswM575ymzTSus4pVCcSGZ7PpFlF6Pc6tQmTSMTitJW
+cklhLNWp3AqpXBKrstueaiTn+Ya0B5EuarLbEkYuyW2YkNndc/aH93n9B28L
+cZRfKJPBYPj8238m9PuMazSIll21T4g4rSLKOFNV5xyie42me7WTVUTE+Xv6
+/mdEQ3yN95XjKrLUOfpL1ASi57ZtErTvU5G6jEy9LiWiI02Cahw9VUTP9vXX
+9FNEB6XGftbSUZHswyFeSQWIXh5B/3QpcZJUasWUMpwQ3eQoOvD44ATRCfWw
+5+80oX9pUTGU1mMEvXkcWXyBS6dIuRU+1Ajxq8/fs6KJQ0tFrWErBgdI3Kdv
+I8/3sOmUNSX7MiV9RH40P7zK15jmyEUfXVZ1E1Fm4NL5PBZdftRS2mevIB6F
+tSLPYQP60k2Fpe66Z6TsSWxHzA59OqloNPtGMCHBKdlUW7kuDaambmcVWTgx
+ZMFtQ7SQTvLsQXej6zHDxpy4pWrT8upkjlTvOX57Oi+t8hWTbnjZx9lh1IkF
+BtKKSVct+kjAU5myphtHrLXW6RRoSMAjtmumlxLvcXpXXl8/SxIX1fT1PB7E
+1sfWaw6Uqsm6pnO6qvERXPSXf0PsRhV5h61ihLVjuP8kJfQwGydKzzyL4LcT
++EHOcvcPQR9JgH+SbbXlFF49oJi0K1SSsOcFdmESNd70oFP/S1AXqdM0fzqc
+MIOjK6rUXPSCnLKNNn5YP4eD9n5T9Dy+mqQbrhgW98zjJy2KDAd/OS6wNdxl
+G8+A9TaP7my++AJbvnGZ9ijUAuYR6k8Jvwu3v5k6wK1kgi5r80nxiBKvfjuU
+c7RtASR3dbgdKvmI31Ozjmkj2vBrgWxz4vgYlpdn3/9uRgeiiiWc3iAVBqG0
+v1igC8Hh+UvSTqrxsFXj1O2VepC+5Yizw+VZPOi1IUmyVh+0eTnKEzPz+PLB
+Ufm9QAN43Zw6msLWguiRVe1ysSEExokd8+uZoI4oubRVxoJIw6Flrdu1oQRK
+cVmuEZhXNuYuHNSBa74k5EqRMcTJ3fzZBbqwZRdvjUM9G6LLIu852ukD6okd
+rZFygMV0Etv2GUBH7sJrq2Y54L4/IMc6iwV1YddY4xlcMKteEuVuaQyuEo2U
+zTWBzEM/X1j9mg383bOCuGIT8JP52hTe48Cp9If0BmsE1jtSAksTuGDalmGx
+tQpBh1K/OCvQBJjUlKIW86BV3LfRxBxBkszqVHwjD7q1b6hzliFYZ3Z3Zccf
+PJgsk1bxrRCMVri9smvmAX9oSGBhgyDkacjynjYeSGLGp+1cELjyClq/V/Bg
+Jllzy2crggXF7MWLhnlgdZ3/Vfo5BLJa9e+/cSlw9uh8xspCgH3TdhryKPAe
+uJx2PheBuovSDTWl4KDNUtXFQgRSbYftZospeHjX6llZJQJPr/2ME5YU+DU6
+yBqeIDBQdHt7O1EQKlUJPZsR1IVHT113puCYwf2J5lYEx+fmr2pcKCgUrd/9
+4hWCIXPBxB2g4EMHCN/3IGjZG5TH/4GCmWPMidB+BCnqXtcYbwqMFjdUDAwi
+EGbEDLeIKLDf5bFobAzBzVvncZI/Be5a+q2HVQgk2HxAEUjBtpKmFLUagaD9
+VqbDNgrC3c+4xM8heCkWCs9up+D/f8GZyaY+5Y8U/APG2j1h
+        "]]},
+      Annotation[#, "Charting`Private`Tag$36481#2"]& ]}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{-2.405855581550843, 2.314154293497881}, {-1.9239730041111884`, 
+   4.710989819445921}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellLabel->"Out[69]=",ExpressionUUID->"1c591215-03dc-45ce-a025-2b06f107ad7e"]
+}, Open  ]]
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -4669,8 +6155,7 @@ isparseAssociation", "[",
                     RowBox[{"Except", "[", 
                     RowBox[{"{", "__List", "}"}], "]"}]}], "\[RuleDelayed]", 
                     RowBox[{"ConstantArray", "[", 
-                    RowBox[{
-                    "FunctionRepo`sparseAssociation`Private`l", ",", 
+                    RowBox[{"FunctionRepo`sparseAssociation`Private`l", ",", 
                     "FunctionRepo`sparseAssociation`Private`level"}], 
                     "]"}]}]}], "]"}]}], ";", 
                     RowBox[{
@@ -4926,7 +6411,6 @@ isparseAssociation", "[",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -5097,8 +6581,8 @@ isparseAssociation", "[",
             FunctionRepo`sparseAssociation`Private`isparseAssociation[
              Append[
               Normal[FunctionRepo`sparseAssociation`Private`assoc], {
-                Blank[]} -> 
-              FunctionRepo`sparseAssociation`Private`default]], $Failed], 
+                Blank[]} -> FunctionRepo`sparseAssociation`Private`default]], 
+            $Failed], 
           IntegerQ[FunctionRepo`sparseAssociation`Private`level]]]}], 
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> {"Level" -> Automatic}, 
@@ -5106,7 +6590,7 @@ isparseAssociation", "[",
    False]]], "Output",
  CellLabel->"Out[20]=",ExpressionUUID->"451b139f-1f00-42b2-816c-6c8b74835882"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -5299,8 +6783,7 @@ cf", "[",
                     RowBox[{"3", ",", "3"}], "}"}]}], "]"}], "]"}], ",", 
                     "NumericQ"}], "]"}], ",", 
                     RowBox[{
-                    RowBox[{
-                    "tukeyMedianPolish", "[", 
+                    RowBox[{"tukeyMedianPolish", "[", 
                     "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
 opts", "]"}], "=", 
                     "FunctionRepo`tukeyMedianPolish`tukeyMedianPolish`Private`\
@@ -5805,14 +7288,90 @@ itukeyMedianPolish]]]][
 
 Cell[CellGroupData[{
 
-Cell[BoxData["1*^-4"], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"c192ab1d-e421-475c-a1a5-81ce1a9a1263"],
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"matrix", "=", 
+   RowBox[{"N", "@", 
+    RowBox[{"RandomInteger", "[", 
+     RowBox[{"10", ",", 
+      RowBox[{"{", 
+       RowBox[{"4", ",", "6"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Grid", "[", "matrix", "]"}]}], "Input",
+ CellChangeTimes->{{3.791273680562056*^9, 3.791273714049474*^9}, {
+  3.7912737784727316`*^9, 3.791273778660079*^9}, {3.7912739431915703`*^9, 
+  3.7912739436836433`*^9}, {3.7912745920644417`*^9, 3.791274592298622*^9}},
+ CellLabel->"In[7]:=",
+ CellID->443871870,ExpressionUUID->"ddd76005-0bdf-4eef-a2b1-e27c86ce4923"],
 
 Cell[BoxData[
- FractionBox["1", "10000"]], "Output",
- CellLabel->"Out[5]=",ExpressionUUID->"8cee5416-ffa0-40b9-abac-a50175acedda"]
+ TagBox[GridBox[{
+    {"1.`", "10.`", "4.`", "2.`", "8.`", "0.`"},
+    {"4.`", "5.`", "8.`", "9.`", "5.`", "2.`"},
+    {"5.`", "1.`", "2.`", "4.`", "3.`", "7.`"},
+    {"2.`", "5.`", "3.`", "8.`", "4.`", "1.`"}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellLabel->"Out[8]=",ExpressionUUID->"bd5aa2e0-6763-436c-981a-d63800b35ed2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"polish", " ", "=", " ", 
+   RowBox[{"tukeyMedianPolish", "[", "matrix", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Grid", "[", 
+  RowBox[{"polish", ",", 
+   RowBox[{"Dividers", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], "\[Rule]", "True"}], ",", 
+      RowBox[{
+       RowBox[{"-", "2"}], "\[Rule]", "True"}]}], "}"}]}]}], "]"}]}], "Input",
+ CellLabel->"In[11]:=",
+ CellID->19768148,ExpressionUUID->"9dfa27c0-9231-488f-a277-9ddedc89e8f9"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     RowBox[{"-", "0.8506323350593448`"}], "6.149367664940655`", 
+     "0.35063233505934477`", 
+     RowBox[{"-", "4.19985072594136`"}], "4.05014927405864`", 
+     RowBox[{"-", "0.35063233505934477`"}], 
+     RowBox[{"-", "0.19985072594136`"}]},
+    {"0.25`", 
+     RowBox[{"-", "0.75`"}], "2.4512646701186895`", "0.9007816091179848`", 
+     RowBox[{"-", "0.8492183908820152`"}], 
+     RowBox[{"-", "0.25`"}], "1.6995169389992952`"},
+    {"4.448976860381663`", 
+     RowBox[{"-", "1.5510231396183372`"}], 
+     RowBox[{"-", "0.3497584694996476`"}], 
+     RowBox[{"-", "0.9002415305003524`"}], "0.3497584694996476`", 
+     "7.948976860381663`", 
+     RowBox[{"-", "1.4994599213823676`"}]},
+    {
+     RowBox[{"-", "0.25`"}], "0.75`", 
+     RowBox[{"-", "1.0487353298813105`"}], "1.4007816091179848`", 
+     RowBox[{"-", "0.34921839088201523`"}], "0.25`", "0.19951693899929523`"},
+    {
+     RowBox[{"-", "1.8993676649406552`"}], "0.10063233505934477`", 
+     RowBox[{"-", "0.10063233505934477`"}], "2.44985072594136`", 
+     "0.19985072594136`", 
+     RowBox[{"-", "3.3993676649406552`"}], "3.94985072594136`"}
+   },
+   AutoDelete->False,
+   GridBoxDividers->{
+    "ColumnsIndexed" -> {-2 -> True}, "RowsIndexed" -> {-2 -> True}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellLabel->"Out[12]=",ExpressionUUID->"51011608-bb14-4776-9fb4-d2b7eed15c52"]
 }, Open  ]]
-}, Open  ]]
+}, Closed]]
 },
 WindowSize->{1810, 888},
 WindowMargins->{{Automatic, 44}, {31, Automatic}},
