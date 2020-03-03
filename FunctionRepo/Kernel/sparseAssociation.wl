@@ -14,8 +14,8 @@ constructedDataQ = Function[
         AssociationQ[#],
         MatchQ[#,
             KeyValuePattern[{
-                "Array" -> _SparseArray,
-                "Keys" -> {__?AssociationQ},
+                "Array" -> _SparseArray | {},
+                "Keys" -> {___?AssociationQ},
                 "ConstructedQ" -> True
             }]
         ]
@@ -26,21 +26,60 @@ verifyDataStructure[data_?constructedDataQ] := With[{
     dims = Dimensions[data["Array"]],
     keys = data["Keys"]
 },
-    And[
+    TrueQ @ And[
         AllTrue[keys, 
             And[
                 AllTrue[Keys[#], StringQ],
                 AllTrue[Values[#], IntegerQ[#] && Positive[#]&]
             ]&
         ],
-        Max /@ keys === dims
+        And @@ Thread[Max /@ keys <= dims]
     ]
 ];
 verifyDataStructure[_] := False;
 
 keySpec = _String;
-accesskeySpec = keySpec | {keySpec..} | All;
 
+(* constructors *)
+sparseAssociation[{}, ___] := sparseAssociation[
+    <|
+        "Array" -> {},
+        "Keys" -> {},
+        "ConstructedQ" -> True
+    |>
+];
+
+sparseAssociation[array_?ArrayQ, keys : {keySpec..}, rest___] :=
+    sparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
+
+sparseAssociation[
+    array_?ArrayQ,
+    keys : {{keySpec..}..},
+    default : _ : Automatic
+] /; AllTrue[keys, DuplicateFreeQ] := Module[{
+    dims = Dimensions[array],
+    assoc
+},
+    Condition[
+        assoc = <|
+            "Array" -> SparseArray[array, Automatic, default],
+            "Keys" -> Map[
+                AssociationThread[#, Range @ Length[#]]&,
+                MapThread[
+                    Take[#1, UpTo[#2]]&,
+                    {keys, dims}
+                ]
+            ],
+            "ConstructedQ" -> True
+        |>;
+        
+        sparseAssociation[assoc] /; verifyDataStructure[assoc]
+        ,
+        Length[keys] === Length[dims]
+    ]
+];
+
+(* accessors *)
 Normal[sparseAssociation[data_?constructedDataQ]] ^:= data["Array"];
 Keys[sparseAssociation[data_?constructedDataQ]] ^:= Keys @ data["Keys"];
 
@@ -61,15 +100,14 @@ ArrayRules[sparseAssociation[data_?constructedDataQ]] ^:= With[{
     ]
 ];
 
-Part[sparseAssociation[data_?constructedDataQ], keys : (accesskeySpec..)] ^:= Module[{
+accesskeySpec = keySpec | {keySpec..} | _Integer | {__Integer} | All;
+
+Part[sparseAssociation[data_?constructedDataQ], keys : (accesskeySpec..)] /; Length[{keys}] <= Length[data["Keys"]] ^:= Module[{
     dataKeys = TakeDrop[data["Keys"], UpTo[Length[{keys}]]],
     positions
 },
     positions = MapThread[
-        If[ #2 === All,
-            Values[#1],
-            Lookup[#1, #2]
-        ]&,
+        Replace[#2, s : _String | {__String} :> Lookup[#1, s]]&,
         {dataKeys[[1]], {keys}}
     ];
     Replace[
@@ -87,50 +125,42 @@ Part[sparseAssociation[data_?constructedDataQ], keys : (accesskeySpec..)] ^:= Mo
                 "ConstructedQ" -> True
             |>
         ]
-    ] /; MatchQ[positions, {({__Integer} | _Integer) ..}]
+    ] /; MatchQ[positions, {({__Integer} | _Integer | All) ..}]
 ];
 
-Part[sparseAssociation[_?constructedDataQ], other__] /; (Message[sparseAssociation::part, {other}]; False) ^:= $Failed;
-Part[sparseAssociation[___], __] /; (Message[sparseAssociation::badData]; False) ^:= $Failed;
+Part[sparseAssociation[_?constructedDataQ], other__] ^:= (Message[sparseAssociation::part, {other}]; $Failed);
+Part[sparseAssociation[Except[_?constructedDataQ], ___], __] ^:= (Message[sparseAssociation::badData]; $Failed);
 
 sparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[sparseAssociation[data], keys];
 
-sparseAssociation[{}, ___] := <||>;
-
-sparseAssociation[array_?ArrayQ, keys : {keySpec..}, rest___] :=
-    sparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
-
-sparseAssociation[
-    array_?ArrayQ,
-    keys : {{keySpec..}..},
-    default : _ : Automatic
-] /; AllTrue[keys, DuplicateFreeQ] := With[{
-    assoc = <|
-        "Array" -> SparseArray[array, Automatic, default],
-        "Keys" -> Map[Map[First] @* PositionIndex, keys],
-        "ConstructedQ" -> True
-    |>
-},
-    sparseAssociation[assoc] /; verifyDataStructure[assoc]
-];
-
-sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_] := With[{
+sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_] /; Head[assoc["Array"]] === SparseArray := Module[{
     sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
         Catch[ToBoxes[assoc["Array"], form], "boxes"]
-    ]
+    ],
+    sparseItems
 },
+    sparseItems = Join @@ sparseArrayArg[[{4, 5}]];
     BoxForm`ArrangeSummaryBox[
         "sparseAssociation",
         sparseAssociation[assoc],
         sparseArrayArg[[3]],
-        sparseArrayArg[[4]],
+        Take[sparseItems, 3],
         Join[
-            sparseArrayArg[[5, ;; 2]],
-            MapIndexed[
-                BoxForm`SummaryItem[{Row[{"Level ", #2[[1]], ": "}], Row[#, ","]}] &,
+            Part[sparseItems, {4}],
+            {BoxForm`SummaryItem[{"Keys:", ""}]},
+            KeyValueMap[
+                BoxForm`SummaryItem[
+                    If[ MissingQ[#2],
+                        {"\[Ellipsis]"},
+                        {Row[{"Level ", Row[#2, ","], ": "}], Row[#1, ","]}
+                    ]
+                ]&,
                 Join @@ MapAt[
-                    Replace[{__} :> {{"\[Ellipsis]"}}],
-                    TakeDrop[Keys[assoc["Keys"]], UpTo[3]],
+                    Replace[Except[<||>] :> <|Rest -> Missing[]|>],
+                    TakeDrop[
+                        PositionIndex[Keys[assoc["Keys"]]],
+                        UpTo[3]
+                    ],
                     2
                 ]
             ]
