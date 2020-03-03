@@ -9,18 +9,20 @@ Begin["`Private`"] (* Begin Private Context *)
 sparseAssociation::part = "Part `1` of sparseAssociation doesn't exist.";
 sparseAssociation::badData = "Illegal sparseAssociation encountered.";
 
-constructedDataQ = And[
-    AssociationQ[#],
-    TrueQ[#["ConstructedQ"]]
-]&;
+constructedDataQ = Function[
+    And[
+        AssociationQ[#],
+        MatchQ[#,
+            KeyValuePattern[{
+                "Array" -> _SparseArray,
+                "Keys" -> {__?AssociationQ},
+                "ConstructedQ" -> True
+            }]
+        ]
+    ]
+];
 
-verifyDataStructure[data_?constructedDataQ] /; MatchQ[
-    data,
-    KeyValuePattern[{
-        "Array" -> _SparseArray,
-        "Keys" -> {__?AssociationQ}
-    }]
-] := With[{
+verifyDataStructure[data_?constructedDataQ] := With[{
     dims = Dimensions[data["Array"]],
     keys = data["Keys"]
 },
@@ -112,25 +114,29 @@ sparseAssociation[
     sparseAssociation[assoc] /; verifyDataStructure[assoc]
 ];
 
-sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_] := BoxForm`ArrangeSummaryBox[
-    "sparseAssociation",
-    sparseAssociation[assoc],
-    BoxForm`GenericIcon[SparseArray],
-    {
-        BoxForm`SummaryItem[
-            {Row[{"Dimensions", ": "}], 
-            Row[Dimensions[assoc["Array"]], "\[Times]"]}
-        ]
-    },
-    MapIndexed[
-        BoxForm`SummaryItem[{Row[{"Level ", #2[[1]], ": "}], Row[#, ","]}] &,
-        Join @@ MapAt[
-            Replace[{__} :> {{"\[Ellipsis]"}}],
-            TakeDrop[Keys[assoc["Keys"]], UpTo[3]],
-            2
-        ]
-    ],
-    form
+sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_] := With[{
+    sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
+        Catch[ToBoxes[assoc["Array"], form], "boxes"]
+    ]
+},
+    BoxForm`ArrangeSummaryBox[
+        "sparseAssociation",
+        sparseAssociation[assoc],
+        sparseArrayArg[[3]],
+        sparseArrayArg[[4]],
+        Join[
+            sparseArrayArg[[5, ;; 2]],
+            MapIndexed[
+                BoxForm`SummaryItem[{Row[{"Level ", #2[[1]], ": "}], Row[#, ","]}] &,
+                Join @@ MapAt[
+                    Replace[{__} :> {{"\[Ellipsis]"}}],
+                    TakeDrop[Keys[assoc["Keys"]], UpTo[3]],
+                    2
+                ]
+            ]
+        ],
+        form
+    ]
 ];
 
 End[] (* End Private Context *)
