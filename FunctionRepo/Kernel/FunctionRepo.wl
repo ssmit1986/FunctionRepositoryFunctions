@@ -32,7 +32,7 @@ Get["FunctionRepo`maximumSpacingEstimation`"];
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
 
-importAGSData
+importAGSData;
 Get["FunctionRepo`importAGSData`"];
 
 EndPackage[]
