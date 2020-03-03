@@ -1,131 +1,136 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`sparseAssociation`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`sparseAssociation`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
 sparseAssociation::usage = "";
 
 Begin["`Private`"] (* Begin Private Context *)
 
-Options[sparseAssociation] = {"Level" -> Automatic};
+sparseAssociation::part = "Part `1` of sparseAssociation doesn't exist.";
+sparseAssociation::badData = "Illegal sparseAssociation encountered.";
+
+constructedDataQ = And[
+    AssociationQ[#],
+    TrueQ[#["ConstructedQ"]]
+]&;
+
+verifyDataStructure[data_?constructedDataQ] /; MatchQ[
+    data,
+    KeyValuePattern[{
+        "Array" -> _SparseArray,
+        "Keys" -> {__?AssociationQ}
+    }]
+] := With[{
+    dims = Dimensions[data["Array"]],
+    keys = data["Keys"]
+},
+    And[
+        AllTrue[keys, 
+            And[
+                AllTrue[Keys[#], StringQ],
+                AllTrue[Values[#], IntegerQ[#] && Positive[#]&]
+            ]&
+        ],
+        Max /@ keys === dims
+    ]
+];
+verifyDataStructure[_] := False;
+
+keySpec = _String;
+accesskeySpec = keySpec | {keySpec..} | All;
+
+Normal[sparseAssociation[data_?constructedDataQ]] ^:= data["Array"];
+Keys[sparseAssociation[data_?constructedDataQ]] ^:= Keys @ data["Keys"];
+
+Scan[
+    Function[
+        #[sparseAssociation[data_?constructedDataQ]] ^:= # @ data["Array"]
+    ],
+    {Length, Dimensions, ArrayDepth}
+];
+
+ArrayRules[sparseAssociation[data_?constructedDataQ]] ^:= With[{
+    keysIndices = AssociationInvert /@ data["Keys"]
+},
+    Replace[
+        ArrayRules[data["Array"]],
+        Verbatim[Rule][ind : {__Integer}, el_] :> MapThread[Lookup, {keysIndices, ind}] -> el,
+        {1}
+    ]
+];
+
+Part[sparseAssociation[data_?constructedDataQ], keys : (accesskeySpec..)] ^:= Module[{
+    dataKeys = TakeDrop[data["Keys"], UpTo[Length[{keys}]]],
+    positions
+},
+    positions = MapThread[
+        If[ #2 === All,
+            Values[#1],
+            Lookup[#1, #2]
+        ]&,
+        {dataKeys[[1]], {keys}}
+    ];
+    Replace[
+        data[["Array", Sequence @@ positions]],
+        arr_?ArrayQ :> sparseAssociation[
+            <|
+                "Array" -> arr,
+                "Keys" -> Join[
+                    Map[
+                        AssociationThread[Keys[#], Range @ Length[#]]&,
+                        Select[AssociationQ] @ MapThread[Part, {dataKeys[[1]], {keys}}]
+                    ],
+                    dataKeys[[2]]
+                ],
+                "ConstructedQ" -> True
+            |>
+        ]
+    ] /; MatchQ[positions, {({__Integer} | _Integer) ..}]
+];
+
+Part[sparseAssociation[_?constructedDataQ], other__] /; (Message[sparseAssociation::part, {other}]; False) ^:= $Failed;
+Part[sparseAssociation[___], __] /; (Message[sparseAssociation::badData]; False) ^:= $Failed;
+
+sparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[sparseAssociation[data], keys];
 
 sparseAssociation[{}, ___] := <||>;
 
-sparseAssociation[array_?ArrayQ, keys : Except[{__List}, _List], default : Except[_List | _Rule] : 0, opts : OptionsPattern[]] :=
-    sparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], default, opts];
+sparseAssociation[array_?ArrayQ, keys : {keySpec..}, rest___] :=
+    sparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
 
 sparseAssociation[
     array_?ArrayQ,
-    keys : {__List},
-    default : Except[_List | _Rule] : 0,
-    opts : OptionsPattern[]
-] := With[{
-    dims = Dimensions[array],
-    lvl = OptionValue["Level"]
+    keys : {{keySpec..}..},
+    default : _ : Automatic
+] /; AllTrue[keys, DuplicateFreeQ] := With[{
+    assoc = <|
+        "Array" -> SparseArray[array, Automatic, default],
+        "Keys" -> Map[Map[First] @* PositionIndex, keys],
+        "ConstructedQ" -> True
+    |>
 },
-    Condition[
-        isparseAssociation[
-            ArrayRules[array, default],
-            keys
+    sparseAssociation[assoc] /; verifyDataStructure[assoc]
+];
+
+sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_] := BoxForm`ArrangeSummaryBox[
+    "sparseAssociation",
+    sparseAssociation[assoc],
+    BoxForm`GenericIcon[SparseArray],
+    {
+        BoxForm`SummaryItem[
+            {Row[{"Dimensions", ": "}], 
+            Row[Dimensions[assoc["Array"]], "\[Times]"]}
         ]
-        ,
-        lvl === Automatic && checkKeyDims[dims, Length /@ keys]
-    ]
-];
-
-sparseAssociation[array_?ArrayQ, default : _ : 0, opts : OptionsPattern[]] := With[{
-    lvl = OptionValue["Level"]
-},
-    isparseAssociation[ArrayRules[array, default]] /; lvl === Automatic
-];
-
-sparseAssociation[expr_, keys_List, default : _ : 0, opts : OptionsPattern[]] := Module[{
-    level = OptionValue["Level"],
-    assoc, keyList
-},
-    Condition[
-        keyList = Replace[keys, l : Except[{__List}] :> ConstantArray[l, level]];
-        assoc = positionAssociation[expr, Except[default], {level}];
-        If[ And[
-                AssociationQ[assoc],
-                checkKeyDims[
-                    Activate[Thread[Inactive[Max] @@ Keys[assoc]]],
-                    Length /@ keyList
-                ]
-            ],
-            isparseAssociation[
-                Append[Normal[assoc], {_} -> default],
-                keyList
-            ],
-            $Failed
+    },
+    MapIndexed[
+        BoxForm`SummaryItem[{Row[{"Level ", #2[[1]], ": "}], Row[#, ","]}] &,
+        Join @@ MapAt[
+            Replace[{__} :> {{"\[Ellipsis]"}}],
+            TakeDrop[Keys[assoc["Keys"]], UpTo[3]],
+            2
         ]
-        ,
-        IntegerQ[level]
-    ] 
-];
-sparseAssociation[expr_, default : _ : 0, opts : OptionsPattern[]] := Module[{
-    level = OptionValue["Level"],
-    assoc
-},
-    Condition[
-        assoc = positionAssociation[expr, Except[default], {level}];
-        If[ AssociationQ[assoc],
-            isparseAssociation[Append[Normal[assoc], {_} -> default]],
-            $Failed
-        ],
-        IntegerQ[level]
-    ]
-];
-
-checkKeyDims[arrayDims_List, keyDims_List] := TrueQ @ And[
-    Length[arrayDims] === Length[keyDims],
-    And @@ Thread[keyDims >= arrayDims]
-];
-checkKeyDims[___] := False;
-
-isparseAssociation[{{Verbatim[_]..} -> default_}, ___] := <|"Data" -> <||>, "Default" -> default|>;
-
-isparseAssociation[rules_List] := Module[{
-    depth = Length[rules[[1, 1]]],
-    assoc
-},
-    Condition[
-        assoc = GroupBy[
-            Most @ rules,
-            Map[ (* generate list of grouping rules *)
-                Function[ind,
-                    Function[#[[1, ind]]]
-                ],
-                Range[depth]
-            ],
-            #[[1, 2]]& (* extract the element at the given position *)
-        ];
-        <|
-            "Data"-> assoc,
-            "Default" -> rules[[-1, 2]]
-        |>
-        ,
-        depth > 0
-    ]
-];
-
-isparseAssociation[rules_, keys : {__List}] := isparseAssociation[indexRulesToKeys[rules, keys]];
-
-indexRulesToKeys[list_, keys_] := Module[{
-    rules = list
-},
-    rules[[;; -2, 1]] = MapIndexed[
-        keys[[#2[[2]], #1]] &,
-        rules[[;; -2, 1]],
-        {2}
-    ];
-    rules
-];
-
-Options[positionAssociation] = {Heads -> False};
-positionAssociation[expr_, args__, opts : OptionsPattern[]] := With[{
-    pos = Position[expr, args, Heads -> OptionValue[Heads]]
-},
-    AssociationThread[pos, Extract[expr, pos]] /; ListQ[pos]
+    ],
+    form
 ];
 
 End[] (* End Private Context *)

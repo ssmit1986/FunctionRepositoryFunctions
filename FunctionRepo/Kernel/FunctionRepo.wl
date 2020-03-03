@@ -1,6 +1,6 @@
 ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
-BeginPackage["FunctionRepo`"]
+BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 
 crossValidateModel;
 Get["FunctionRepo`crossValidateModel`"];
