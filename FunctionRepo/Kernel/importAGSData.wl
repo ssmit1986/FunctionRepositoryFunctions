@@ -1,7 +1,7 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`importAGSData`"]
-(* Exported symbols added here with SymbolName::usage *)  
+BeginPackage["FunctionRepo`importAGSData`", {"FunctionRepo`", "GeneralUtilities`"}]
+(* Exported symbols added here with SymbolName::usage *)
 importAGSData::usage = "importAGSData[file] imports data in AGS format and converts it to a Wolfram Association.";
 
 Begin["`Private`"] (* Begin Private Context *) 
@@ -47,7 +47,7 @@ importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", Ign
                         Select[KeyDrop[assoc, "HEADING"], VectorQ]
                     ],
                     Map[AssociationThread[assoc["HEADING"], #]&,
-                        GeneralUtilities`AssociationTranspose[Cases[#, KeyValuePattern["DATA" -> _]]],
+                        AssociationTranspose[Cases[#, KeyValuePattern["DATA" -> _]]],
                         {2}
                     ]
                 ]
@@ -73,7 +73,7 @@ ImportExport`RegisterImport["AGS",
         ], 
         "Data" :> Function[
             {
-                "Data" -> ResourceFunction["ImportAGSData"][#]
+                "Data" -> importAGSData[#]
             }
         ]
     },
