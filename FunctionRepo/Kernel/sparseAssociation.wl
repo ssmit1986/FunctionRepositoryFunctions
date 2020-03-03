@@ -2,7 +2,7 @@
 
 BeginPackage["FunctionRepo`sparseAssociation`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-sparseAssociation::usage = "";
+sparseAssociation::usage = "sparseAssociation[array, {{key_11, key_12, ...}, {key_21, key_22, ...}, ...}] creates a datastructure that can be used like a SparseArray, but with string indices.";
 
 Begin["`Private`"] (* Begin Private Context *)
 

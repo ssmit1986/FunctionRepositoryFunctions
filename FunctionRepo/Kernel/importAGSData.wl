@@ -43,10 +43,12 @@ importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", Ign
                     ]
                 },
                 Join[assoc,
-                    Map[AssociationThread[assoc["HEADING"], #]&,
+                    Map[
+                        AssociationThread[assoc["HEADING"], #]&,
                         Select[KeyDrop[assoc, "HEADING"], VectorQ]
                     ],
-                    Map[AssociationThread[assoc["HEADING"], #]&,
+                    Map[
+                        AssociationThread[assoc["HEADING"], #]&,
                         AssociationTranspose[Cases[#, KeyValuePattern["DATA" -> _]]],
                         {2}
                     ]
