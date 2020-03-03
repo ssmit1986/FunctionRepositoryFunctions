@@ -8,6 +8,7 @@ Begin["`Private`"] (* Begin Private Context *)
 
 sparseAssociation::part = "Part `1` of sparseAssociation doesn't exist.";
 sparseAssociation::badData = "Illegal sparseAssociation encountered.";
+sparseAssociation::construct = "Cannot construct sparseAssociation from the given input.";
 
 constructedDataQ = Function[
     And[
@@ -91,7 +92,7 @@ Scan[
 ];
 
 sparseAssociation /: ArrayRules[sparseAssociation[data_?constructedDataQ]] := With[{
-    keysIndices = AssociationInvert /@ data["Keys"]
+    keysIndices = GeneralUtilities`AssociationInvert /@ data["Keys"]
 },
     Replace[
         ArrayRules[data["Array"]],
@@ -174,6 +175,8 @@ sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_
         form
     ]
 ];
+
+sparseAssociation[_, __] := (Message[sparseAssociation::construct]; $Failed);
 
 End[] (* End Private Context *)
 
