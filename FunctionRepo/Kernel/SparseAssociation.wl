@@ -48,7 +48,7 @@ SparseAssociation[rule : _List -> _List, rest___] := With[{rules = Thread[rule, 
 
 (* Parse the default rule returned by ArrayRules *)
 SparseAssociation[{rules___Rule, {Verbatim[_]..} -> default_}] := SparseAssociation[{rules}, Automatic, default];
-SparseAssociation[{rules___Rule, {Verbatim[_]..} -> default_}, keys_, Automatic] := SparseAssociation[{rules}, Automatic, default];
+SparseAssociation[{rules___Rule, {Verbatim[_]..} -> default_}, keys_, Repeated[Automatic, {0, 1}]] := SparseAssociation[{rules}, keys, default];
 SparseAssociation[{rules___Rule, {Verbatim[_]..} -> _}, rest___] := SparseAssociation[{rules}, rest];
 
 SparseAssociation[rules : {(_String -> _)..}, rest___] := SparseAssociation[
