@@ -9,52 +9,104 @@ Begin["`Private`"] (* Begin Private Context *)
 SparseAssociation::part = "Part `1` of SparseAssociation doesn't exist.";
 SparseAssociation::badData = "Illegal SparseAssociation encountered.";
 SparseAssociation::construct = "Cannot construct SparseAssociation from the given input.";
-SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-preserving maps are allowed.";
+SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-preserving maps are currently allowed.";
 
-constructedDataQ = Function[
-    And[
-        AssociationQ[#],
-        MatchQ[#,
-            KeyValuePattern[{
-                "Array" -> _SparseArray?ArrayQ | {},
-                "Keys" -> {___?AssociationQ},
-                "ConstructedQ" -> True
-            }]
-        ]
-    ]
+constructedDataQ[SparseAssociation[data_?AssociationQ] | data_?AssociationQ] := MatchQ[data,
+    KeyValuePattern["ValidatedQ" -> True]
 ];
+constructedDataQ[_] := False;
 
-verifyDataStructure[SparseAssociation[data_]] := verifyDataStructure[data];
-verifyDataStructure[data_?constructedDataQ] := With[{
+validAssocPattern = _Association?(MatchQ[KeyValuePattern[{"Array" -> _SparseArray?ArrayQ | {}, "Keys" -> {___?AssociationQ}}]])
+
+verifyDataStructure[SparseAssociation[data_?AssociationQ]] := SparseAssociation[verifyDataStructure @ data]
+verifyDataStructure[data : validAssocPattern] := With[{
     dims = Dimensions[data["Array"]],
     keys = data["Keys"]
 },
-    TrueQ @ And[
-        AllTrue[keys, 
-            And[
-                AllTrue[Keys[#], StringQ],
-                AllTrue[Values[#], IntegerQ[#] && Positive[#]&]
-            ]&
-        ],
-        And @@ Thread[Max /@ keys <= dims]
+    Append[data, "ValidatedQ" -> 
+        TrueQ @ And[
+            Length[keys] === Length[dims],
+            AllTrue[keys, 
+                And[
+                    AllTrue[Keys[#], StringQ],
+                    AllTrue[Values[#], IntegerQ[#] && Positive[#]&]
+                ]&
+            ],
+            And @@ Thread[Max /@ keys <= dims]
+        ]
     ]
 ];
-verifyDataStructure[_] := False;
+verifyDataStructure[assoc_?AssociationQ] := Append[assoc, "ValidatedQ" -> False];
+verifyDataStructure[_] := $Failed;
 
 keySpec = _String;
 
-(* constructors *)
-SparseAssociation[{}, ___] := SparseAssociation[
-    <|
-        "Array" -> {},
-        "Keys" -> {},
-        "ConstructedQ" -> True
-    |>
-];
-
-SparseAssociation[array_?ArrayQ, keys : {keySpec..}, rest___] :=
+(* Normalize key argument *)
+SparseAssociation[array_, keys : {keySpec..}, rest___] :=
     SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
 
+(* Parsing list of rules / rule of lists specs *)
+SparseAssociation[rule : _List -> _List, rest___] := With[{rules = Thread[rule, Rule]},
+    SparseAssociation[rules, rest] /; MatchQ[rules, {___Rule}]
+];
+
+(* Parse the default rule returned by ArrayRules *)
+SparseAssociation[{rules___Rule, {Verbatim[_]..} -> default_}] := SparseAssociation[{rules}, Automatic, default];
+SparseAssociation[{rules___Rule, {Verbatim[_]..} -> default_}, keys_, Automatic] := SparseAssociation[{rules}, Automatic, default];
+SparseAssociation[{rules___Rule, {Verbatim[_]..} -> _}, rest___] := SparseAssociation[{rules}, rest];
+
+SparseAssociation[rules : {(_String -> _)..}, rest___] := SparseAssociation[
+    MapAt[List, rules, {All, 1}],
+    rest
+];
+
+SparseAssociation[rules : {({__String} -> _)..}] := SparseAssociation[rules, Automatic];
+
+SparseAssociation[rules : {({__String} -> _)..}, Automatic, default : _ : Automatic] := With[{
+    allKeys = rules[[All, 1]]
+},
+    SparseAssociation[
+        rules,
+        DeleteDuplicates /@ Transpose[allKeys],
+        default
+    ] /; MatrixQ[allKeys]
+];
+
+(* Constructor for list-of-rules spec *)
+SparseAssociation[
+    rules : {({__String} -> _)...},
+    keys : {{keySpec..}..},
+    default : _ : Automatic
+] /; AllTrue[keys, DuplicateFreeQ] := Module[{
+    pos = AssociationThread[#, Range[Length[#]]]& /@ keys,
+    assoc,
+    ruleKeys = rules[[All, 1]],
+    dims
+},
+    dims = Dimensions[ruleKeys];
+    Condition[
+        assoc = <|
+            "Array" -> SparseArray[
+                Rule[
+                    Map[
+                        MapThread[Lookup, {pos, #}]&,
+                        ruleKeys
+                    ],
+                    rules[[All, 2]]
+                ],
+                Length /@ keys,
+                default
+            ],
+            "Keys" -> pos
+        |>;
+        
+        SparseAssociation[verifyDataStructure @ assoc]
+        ,
+        rules === {} || (MatrixQ[ruleKeys] && dims[[2]] === Length[keys])
+    ]
+]
+
+(* Constructor for array specs *)
 SparseAssociation[
     array_?ArrayQ,
     keys : {{keySpec..}..},
@@ -72,11 +124,10 @@ SparseAssociation[
                     Take[#1, UpTo[#2]]&,
                     {keys, dims}
                 ]
-            ],
-            "ConstructedQ" -> True
+            ]
         |>;
         
-        SparseAssociation[assoc] /; verifyDataStructure[assoc]
+        SparseAssociation[verifyDataStructure @ assoc]
         ,
         Length[keys] === Length[dims]
     ]
@@ -93,13 +144,15 @@ Scan[
     {Length, Dimensions, ArrayDepth, MatrixQ, VectorQ, ArrayQ}
 ];
 
+SparseAssociation /: Map[fun_][spAssoc : SparseAssociation[_?constructedDataQ]] := Map[fun, spAssoc];
+
 SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[_?constructedDataQ], rest___] := With[{
     result = SparseAssociation[
         Map[fun, Normal[spAssoc], rest],
         Keys[spAssoc]
     ]
 },
-    result /; verifyDataStructure[result]
+    result /; constructedDataQ[result]
 ];
 SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[_?constructedDataQ], ___] := (
     Message[SparseAssociation::map, fun];
@@ -123,38 +176,28 @@ SparseAssociation /: Part[
     keys : (accesskeySpec..)
 ] /; Length[{keys}] <= Length[data["Keys"]] := Module[{
     dataKeys = TakeDrop[data["Keys"], UpTo[Length[{keys}]]],
-    positions,
-    result, resultVerified = True
+    positions
 },
     positions = MapThread[
         Replace[#2, s : _String | {__String} :> Lookup[#1, s]]&,
         {dataKeys[[1]], {keys}}
     ];
     Condition[
-        result = Replace[
+        Replace[
             data[["Array", Sequence @@ positions]],
-            arr_SparseArray?ArrayQ :> With[{
-                spAssoc = SparseAssociation[
-                    <|
-                        "Array" -> arr,
-                        "Keys" -> Join[
-                            Map[
-                                AssociationThread[Keys[#], Range @ Length[#]]&,
-                                Select[AssociationQ] @ MapThread[Part, {dataKeys[[1]], {keys}}]
-                            ],
-                            dataKeys[[2]]
+            arr_SparseArray?ArrayQ :> SparseAssociation[
+                verifyDataStructure @ <|
+                    "Array" -> arr,
+                    "Keys" -> Join[
+                        Map[
+                            AssociationThread[Keys[#], Range @ Length[#]]&,
+                            Select[AssociationQ] @ MapThread[Part, {dataKeys[[1]], {keys}}]
                         ],
-                        "ConstructedQ" -> True
-                    |>
-                ]
-            },
-                If[ TrueQ @ verifyDataStructure[spAssoc],
-                    spAssoc,
-                    resultVerified = False
-                ]
+                        dataKeys[[2]]
+                    ]
+                |>
             ]
-        ];
-        result /; resultVerified
+        ]
         ,
         MatchQ[positions, {({__Integer} | _Integer | All) ..}]
     ]
@@ -168,7 +211,7 @@ SparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[SparseAsso
 (* Make sure the summary boxes are loaded *)
 ToBoxes[SparseArray[{0, 1}]];
 
-SparseAssociation /: MakeBoxes[SparseAssociation[assoc_?constructedDataQ], form_] /; Head[assoc["Array"]] === SparseArray := Module[{
+SparseAssociation /: MakeBoxes[SparseAssociation[assoc_?constructedDataQ], form_] := Module[{
     sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
         Catch[ToBoxes[assoc["Array"], form], "boxes"]
     ],
