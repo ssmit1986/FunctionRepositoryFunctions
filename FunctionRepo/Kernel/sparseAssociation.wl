@@ -15,7 +15,7 @@ constructedDataQ = Function[
         AssociationQ[#],
         MatchQ[#,
             KeyValuePattern[{
-                "Array" -> _SparseArray | {},
+                "Array" -> _SparseArray?ArrayQ | {},
                 "Keys" -> {___?AssociationQ},
                 "ConstructedQ" -> True
             }]
@@ -23,6 +23,7 @@ constructedDataQ = Function[
     ]
 ];
 
+verifyDataStructure[sparseAssociation[data_]] := verifyDataStructure[data];
 verifyDataStructure[data_?constructedDataQ] := With[{
     dims = Dimensions[data["Array"]],
     keys = data["Keys"]
@@ -88,7 +89,11 @@ Scan[
     Function[
         sparseAssociation /: #[sparseAssociation[data_?constructedDataQ]] := # @ data["Array"]
     ],
-    {Length, Dimensions, ArrayDepth}
+    {Length, Dimensions, ArrayDepth, MatrixQ, VectorQ, ArrayQ}
+];
+
+sparseAssociation /: Map[fun_, sparseAssociation[data_?constructedDataQ], rest___] := sparseAssociation[
+    MapAt[fun, data, Key["Array"]]
 ];
 
 sparseAssociation /: ArrayRules[sparseAssociation[data_?constructedDataQ]] := With[{
@@ -108,28 +113,41 @@ sparseAssociation /: Part[
     keys : (accesskeySpec..)
 ] /; Length[{keys}] <= Length[data["Keys"]] := Module[{
     dataKeys = TakeDrop[data["Keys"], UpTo[Length[{keys}]]],
-    positions
+    positions,
+    result, resultVerified = True
 },
     positions = MapThread[
         Replace[#2, s : _String | {__String} :> Lookup[#1, s]]&,
         {dataKeys[[1]], {keys}}
     ];
-    Replace[
-        data[["Array", Sequence @@ positions]],
-        arr_?ArrayQ :> sparseAssociation[
-            <|
-                "Array" -> arr,
-                "Keys" -> Join[
-                    Map[
-                        AssociationThread[Keys[#], Range @ Length[#]]&,
-                        Select[AssociationQ] @ MapThread[Part, {dataKeys[[1]], {keys}}]
-                    ],
-                    dataKeys[[2]]
-                ],
-                "ConstructedQ" -> True
-            |>
-        ]
-    ] /; MatchQ[positions, {({__Integer} | _Integer | All) ..}]
+    Condition[
+        result = Replace[
+            data[["Array", Sequence @@ positions]],
+            arr_SparseArray?ArrayQ :> With[{
+                spAssoc = sparseAssociation[
+                    <|
+                        "Array" -> arr,
+                        "Keys" -> Join[
+                            Map[
+                                AssociationThread[Keys[#], Range @ Length[#]]&,
+                                Select[AssociationQ] @ MapThread[Part, {dataKeys[[1]], {keys}}]
+                            ],
+                            dataKeys[[2]]
+                        ],
+                        "ConstructedQ" -> True
+                    |>
+                ]
+            },
+                If[ TrueQ @ verifyDataStructure[spAssoc],
+                    spAssoc,
+                    resultVerified = False
+                ]
+            ]
+        ];
+        result /; resultVerified
+        ,
+        MatchQ[positions, {({__Integer} | _Integer | All) ..}]
+    ]
 ];
 
 sparseAssociation /: Part[sparseAssociation[_?constructedDataQ], other__] := (Message[sparseAssociation::part, {other}]; $Failed);
