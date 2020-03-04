@@ -66,7 +66,7 @@ SparseAssociation[rules : {({__String} -> _)..}, keys : {keySpec..}, rest___] :=
 SparseAssociation[{}, keys : {keySpec..}, rest___] := SparseAssociation[{}, {keys}, rest];
 
 (* Further parsing of rules *)
-SparseAssociation[rules : {({__String} -> _)..}] := SparseAssociation[rules, Automatic];
+(*SparseAssociation[rules : {({__String} -> _)..}] := SparseAssociation[rules, Automatic];*)
 
 SparseAssociation[rules : {({__String} -> _)..}, Automatic, default : _ : Automatic] := With[{
     allKeys = rules[[All, 1]]
@@ -76,6 +76,27 @@ SparseAssociation[rules : {({__String} -> _)..}, Automatic, default : _ : Automa
         DeleteDuplicates /@ Transpose[allKeys],
         default
     ] /; MatrixQ[allKeys]
+];
+
+SparseAssociation[assoc_?AssociationQ, Automatic, default : _ : Automatic] := With[{
+    allKeys = Module[{
+        lvl = 0,
+        elements
+    },
+        elements = Level[assoc, {lvl}];
+        Reap[
+            While[ MatchQ[elements, {__?AssociationQ}],
+                Sow[DeleteDuplicates @ Flatten @ Keys[elements]];
+                elements = Level[assoc, {++lvl}]
+            ]
+        ][[2, 1]]
+    ]
+},
+    SparseAssociation[
+        assoc,
+        allKeys,
+        default
+    ] /; MatchQ[allKeys, {{keySpec..}..}]
 ];
 
 (* Constructor for list-of-rules spec *)
@@ -221,6 +242,7 @@ SparseAssociation /: Part[SparseAssociation[Except[_?constructedDataQ], ___], __
 
 SparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
 
+(* Converting SparseAssociation to Association *)
 SparseAssociation /: Dataset[
     SparseAssociation[data_?constructedDataQ],
     Repeated["IncludeDefaultValues" -> True, {0, 1}]
@@ -255,6 +277,7 @@ SparseAssociation /: Dataset[
     ]
 ];
 
+(* Typesetting *)
 (* Make sure the summary boxes are loaded *)
 ToBoxes[SparseArray[{0, 1}]];
 
