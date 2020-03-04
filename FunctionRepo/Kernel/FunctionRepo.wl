@@ -14,8 +14,8 @@ Get["FunctionRepo`kullbackLeiblerDivergence`"];
 multiNonlinearModelFit;
 Get["FunctionRepo`multiNonlinearModelFit`"];
 
-sparseAssociation;
-Get["FunctionRepo`sparseAssociation`"];
+SparseAssociation;
+Get["FunctionRepo`SparseAssociation`"];
 
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];

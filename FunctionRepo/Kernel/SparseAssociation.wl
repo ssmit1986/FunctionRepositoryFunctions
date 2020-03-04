@@ -1,14 +1,15 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`sparseAssociation`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`SparseAssociation`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-sparseAssociation::usage = "sparseAssociation[array, {{key_11, key_12, ...}, {key_21, key_22, ...}, ...}] creates a datastructure that can be used like a SparseArray, but with string indices.";
+SparseAssociation::usage = "SparseAssociation[array, {{key_11, key_12, ...}, {key_21, key_22, ...}, ...}] creates a datastructure that can be used like a SparseArray, but with string indices.";
 
 Begin["`Private`"] (* Begin Private Context *)
 
-sparseAssociation::part = "Part `1` of sparseAssociation doesn't exist.";
-sparseAssociation::badData = "Illegal sparseAssociation encountered.";
-sparseAssociation::construct = "Cannot construct sparseAssociation from the given input.";
+SparseAssociation::part = "Part `1` of SparseAssociation doesn't exist.";
+SparseAssociation::badData = "Illegal SparseAssociation encountered.";
+SparseAssociation::construct = "Cannot construct SparseAssociation from the given input.";
+SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-preserving maps are allowed.";
 
 constructedDataQ = Function[
     And[
@@ -23,7 +24,7 @@ constructedDataQ = Function[
     ]
 ];
 
-verifyDataStructure[sparseAssociation[data_]] := verifyDataStructure[data];
+verifyDataStructure[SparseAssociation[data_]] := verifyDataStructure[data];
 verifyDataStructure[data_?constructedDataQ] := With[{
     dims = Dimensions[data["Array"]],
     keys = data["Keys"]
@@ -43,7 +44,7 @@ verifyDataStructure[_] := False;
 keySpec = _String;
 
 (* constructors *)
-sparseAssociation[{}, ___] := sparseAssociation[
+SparseAssociation[{}, ___] := SparseAssociation[
     <|
         "Array" -> {},
         "Keys" -> {},
@@ -51,10 +52,10 @@ sparseAssociation[{}, ___] := sparseAssociation[
     |>
 ];
 
-sparseAssociation[array_?ArrayQ, keys : {keySpec..}, rest___] :=
-    sparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
+SparseAssociation[array_?ArrayQ, keys : {keySpec..}, rest___] :=
+    SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
 
-sparseAssociation[
+SparseAssociation[
     array_?ArrayQ,
     keys : {{keySpec..}..},
     default : _ : Automatic
@@ -75,28 +76,37 @@ sparseAssociation[
             "ConstructedQ" -> True
         |>;
         
-        sparseAssociation[assoc] /; verifyDataStructure[assoc]
+        SparseAssociation[assoc] /; verifyDataStructure[assoc]
         ,
         Length[keys] === Length[dims]
     ]
 ];
 
 (* accessors *)
-sparseAssociation /: Normal[sparseAssociation[data_?constructedDataQ]] := data["Array"];
-sparseAssociation /: Keys[sparseAssociation[data_?constructedDataQ]] := Keys @ data["Keys"];
+SparseAssociation /: Normal[SparseAssociation[data_?constructedDataQ]] := data["Array"];
+SparseAssociation /: Keys[SparseAssociation[data_?constructedDataQ]] := Keys @ data["Keys"];
 
 Scan[
     Function[
-        sparseAssociation /: #[sparseAssociation[data_?constructedDataQ]] := # @ data["Array"]
+        SparseAssociation /: #[SparseAssociation[data_?constructedDataQ]] := # @ data["Array"]
     ],
     {Length, Dimensions, ArrayDepth, MatrixQ, VectorQ, ArrayQ}
 ];
 
-sparseAssociation /: Map[fun_, sparseAssociation[data_?constructedDataQ], rest___] := sparseAssociation[
-    MapAt[fun, data, Key["Array"]]
+SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[_?constructedDataQ], rest___] := With[{
+    result = SparseAssociation[
+        Map[fun, Normal[spAssoc], rest],
+        Keys[spAssoc]
+    ]
+},
+    result /; verifyDataStructure[result]
 ];
+SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[_?constructedDataQ], ___] := (
+    Message[SparseAssociation::map, fun];
+    $Failed
+);
 
-sparseAssociation /: ArrayRules[sparseAssociation[data_?constructedDataQ]] := With[{
+SparseAssociation /: ArrayRules[SparseAssociation[data_?constructedDataQ]] := With[{
     keysIndices = GeneralUtilities`AssociationInvert /@ data["Keys"]
 },
     Replace[
@@ -108,8 +118,8 @@ sparseAssociation /: ArrayRules[sparseAssociation[data_?constructedDataQ]] := Wi
 
 accesskeySpec = keySpec | {keySpec..} | _Integer | {__Integer} | All;
 
-sparseAssociation /: Part[
-    sparseAssociation[data_?constructedDataQ],
+SparseAssociation /: Part[
+    SparseAssociation[data_?constructedDataQ],
     keys : (accesskeySpec..)
 ] /; Length[{keys}] <= Length[data["Keys"]] := Module[{
     dataKeys = TakeDrop[data["Keys"], UpTo[Length[{keys}]]],
@@ -124,7 +134,7 @@ sparseAssociation /: Part[
         result = Replace[
             data[["Array", Sequence @@ positions]],
             arr_SparseArray?ArrayQ :> With[{
-                spAssoc = sparseAssociation[
+                spAssoc = SparseAssociation[
                     <|
                         "Array" -> arr,
                         "Keys" -> Join[
@@ -150,15 +160,15 @@ sparseAssociation /: Part[
     ]
 ];
 
-sparseAssociation /: Part[sparseAssociation[_?constructedDataQ], other__] := (Message[sparseAssociation::part, {other}]; $Failed);
-sparseAssociation /: Part[sparseAssociation[Except[_?constructedDataQ], ___], __] := (Message[sparseAssociation::badData]; $Failed);
+SparseAssociation /: Part[SparseAssociation[_?constructedDataQ], other__] := (Message[SparseAssociation::part, {other}]; $Failed);
+SparseAssociation /: Part[SparseAssociation[Except[_?constructedDataQ], ___], __] := (Message[SparseAssociation::badData]; $Failed);
 
-sparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[sparseAssociation[data], keys];
+SparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
 
 (* Make sure the summary boxes are loaded *)
 ToBoxes[SparseArray[{0, 1}]];
 
-sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_] /; Head[assoc["Array"]] === SparseArray := Module[{
+SparseAssociation /: MakeBoxes[SparseAssociation[assoc_?constructedDataQ], form_] /; Head[assoc["Array"]] === SparseArray := Module[{
     sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
         Catch[ToBoxes[assoc["Array"], form], "boxes"]
     ],
@@ -166,8 +176,8 @@ sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_
 },
     sparseItems = Join @@ sparseArrayArg[[{4, 5}]];
     BoxForm`ArrangeSummaryBox[
-        "sparseAssociation",
-        sparseAssociation[assoc],
+        "SparseAssociation",
+        SparseAssociation[assoc],
         sparseArrayArg[[3]],
         Take[sparseItems, 3],
         Join[
@@ -194,7 +204,7 @@ sparseAssociation /: MakeBoxes[sparseAssociation[assoc_?constructedDataQ], form_
     ]
 ];
 
-sparseAssociation[_, __] := (Message[sparseAssociation::construct]; $Failed);
+SparseAssociation[_, __] := (Message[SparseAssociation::construct]; $Failed);
 
 End[] (* End Private Context *)
 
