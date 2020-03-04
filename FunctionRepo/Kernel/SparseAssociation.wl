@@ -221,6 +221,40 @@ SparseAssociation /: Part[SparseAssociation[Except[_?constructedDataQ], ___], __
 
 SparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
 
+SparseAssociation /: Dataset[
+    SparseAssociation[data_?constructedDataQ],
+    Repeated["IncludeDefaultValues" -> True, {0, 1}]
+] := With[{
+    array = Normal @ Normal @ data["Array"],
+    query = Query @@ data["Keys"]
+},
+    Dataset[query @ array]
+];
+
+SparseAssociation /: Dataset[
+    SparseAssociation[data_?constructedDataQ],
+    "IncludeDefaultValues" -> False
+] := With[{
+    rules = MapAt[
+        Replace[Verbatim[Rule][{Verbatim[_]..}, _] -> Nothing],
+        ArrayRules[SparseAssociation[data]],
+        -1
+    ],
+    depth = ArrayDepth[SparseAssociation[data]]
+},
+    Dataset @ GroupBy[
+        rules,
+        Append[
+            Map[
+                Function[lvl, Function[#[[1, lvl]]]],
+                Range[depth - 1]
+            ],
+            Function[#[[1, -1]]] -> Function[#[[2]]]
+        ],
+        #[[1]]&
+    ]
+];
+
 (* Make sure the summary boxes are loaded *)
 ToBoxes[SparseArray[{0, 1}]];
 
