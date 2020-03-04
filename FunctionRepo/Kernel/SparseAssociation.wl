@@ -147,7 +147,14 @@ Scan[
     Function[
         SparseAssociation /: #[SparseAssociation[data_?constructedDataQ]] := # @ data["Array"]
     ],
-    {Length, Dimensions, ArrayDepth, MatrixQ, VectorQ, ArrayQ}
+    {Length, Dimensions, ArrayDepth}
+];
+
+Scan[
+    Function[
+        SparseAssociation /: #[SparseAssociation[data_?constructedDataQ], rest___] := #[data["Array"], rest]
+    ],
+    {MatrixQ, VectorQ, ArrayQ}
 ];
 
 SparseAssociation /: Map[fun_][spAssoc : SparseAssociation[_?constructedDataQ]] := Map[fun, spAssoc];
