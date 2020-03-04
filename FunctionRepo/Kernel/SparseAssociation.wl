@@ -41,10 +41,6 @@ verifyDataStructure[_] := $Failed;
 
 keySpec = _String;
 
-(* Normalize key argument *)
-SparseAssociation[array_, keys : {keySpec..}, rest___] :=
-    SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
-
 (* Parsing list of rules / rule of lists specs *)
 SparseAssociation[rule : _List -> _List, rest___] := With[{rules = Thread[rule, Rule]},
     SparseAssociation[rules, rest] /; MatchQ[rules, {___Rule}]
@@ -60,6 +56,16 @@ SparseAssociation[rules : {(_String -> _)..}, rest___] := SparseAssociation[
     rest
 ];
 
+(* Normalize key argument *)
+SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : {keySpec..}, rest___] :=
+    SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
+
+SparseAssociation[rules : {({__String} -> _)..}, keys : {keySpec..}, rest___] :=
+    SparseAssociation[rules, ConstantArray[keys, Length[rules[[1, 1]]]], rest]
+
+SparseAssociation[{}, keys : {keySpec..}, rest___] := SparseAssociation[{}, {keys}, rest];
+
+(* Further parsing of rules *)
 SparseAssociation[rules : {({__String} -> _)..}] := SparseAssociation[rules, Automatic];
 
 SparseAssociation[rules : {({__String} -> _)..}, Automatic, default : _ : Automatic] := With[{
@@ -211,6 +217,9 @@ SparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[SparseAsso
 (* Make sure the summary boxes are loaded *)
 ToBoxes[SparseArray[{0, 1}]];
 
+cutoffList[list_List, n_Integer, ___] /; Length[list] <= n := list;
+cutoffList[list_List, n_Integer, placeHolder : _ : "\[Ellipsis]"] := Append[Take[list, UpTo[n]], placeHolder];
+
 SparseAssociation /: MakeBoxes[SparseAssociation[assoc_?constructedDataQ], form_] := Module[{
     sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
         Catch[ToBoxes[assoc["Array"], form], "boxes"]
@@ -230,7 +239,7 @@ SparseAssociation /: MakeBoxes[SparseAssociation[assoc_?constructedDataQ], form_
                 BoxForm`SummaryItem[
                     If[ MissingQ[#2],
                         {"\[Ellipsis]"},
-                        {Row[{"Level ", Row[#2, ","], ": "}], Row[#1, ","]}
+                        {Row[{"Level ", Row[cutoffList[#2, 4], ","], ": "}], Row[cutoffList[#1, 4], ","]}
                     ]
                 ]&,
                 Join @@ MapAt[
