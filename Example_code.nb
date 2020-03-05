@@ -6,7 +6,8 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[63]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->
+  "In[446]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -6068,12 +6069,13 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"SparseAssociation", "::", "usage"}]], "Input",
- CellLabel->"In[66]:=",ExpressionUUID->"2d8ddbf0-decb-4a5e-b02b-e61a020df293"],
+ CellLabel->
+  "In[448]:=",ExpressionUUID->"2d8ddbf0-decb-4a5e-b02b-e61a020df293"],
 
 Cell[BoxData["\<\"SparseAssociation[array, {{key_11, key_12, ...}, {key_21, \
 key_22, ...}, ...}] creates a datastructure that can be used like a \
 SparseArray, but with string indices.\"\>"], "Output",
- CellLabel->"Out[66]=",ExpressionUUID->"2f81897a-2267-4d5a-9a8b-84f85946c1d2"]
+ CellLabel->"Out[448]=",ExpressionUUID->"93b079ea-bd83-4593-aab5-56d87cfae7e3"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6084,7 +6086,8 @@ Cell[BoxData[
    RowBox[{"2", ",", 
     RowBox[{"{", 
      RowBox[{"4", ",", "2", ",", "3"}], "}"}]}], "]"}]}]], "Input",
- CellLabel->"In[67]:=",ExpressionUUID->"3064bfcf-43b0-4386-b469-451a894acc6b"],
+ CellLabel->
+  "In[449]:=",ExpressionUUID->"3064bfcf-43b0-4386-b469-451a894acc6b"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -6092,28 +6095,28 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"2", ",", "0", ",", "2"}], "}"}], ",", 
+      RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "2", ",", "2"}], "}"}]}], "}"}], ",", 
+      RowBox[{"2", ",", "2", ",", "2"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
+      RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"2", ",", "0", ",", "2"}], "}"}], ",", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"1", ",", "2", ",", "2"}], "}"}]}], "}"}], ",", 
+      RowBox[{"2", ",", "1", ",", "0"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"2", ",", "2", ",", "2"}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "2"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"2", ",", "2", ",", "0"}], "}"}]}], "}"}]}], "}"}]], "Output",
- CellLabel->"Out[67]=",ExpressionUUID->"580b004f-fc15-43ca-93fa-3910e5969979"]
+      RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[449]=",ExpressionUUID->"ce5d9423-cad5-4726-abd2-4dc9303d7591"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6128,7 +6131,8 @@ Cell[BoxData[
      RowBox[{
      "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
      "}"}], ",", "0"}], "]"}]}]], "Input",
- CellLabel->"In[68]:=",ExpressionUUID->"7e7bb879-2ac4-452d-aa51-91875a3c72e3"],
+ CellLabel->
+  "In[450]:=",ExpressionUUID->"7e7bb879-2ac4-452d-aa51-91875a3c72e3"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6170,7 +6174,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["15", "SummaryItem"]}]}, {
+                 TagBox["16", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6227,7 +6231,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["15", "SummaryItem"]}]}, {
+                 TagBox["16", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6242,7 +6246,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Density: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["0.625`", "SummaryItem"]}]}, {
+                 TagBox["0.6666666666666666`", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Keys:\"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6297,16 +6301,17 @@ Cell[BoxData[
    Association[
    "Array" -> SparseArray[
      Automatic, {4, 2, 3}, 0, {
-      1, {{0, 4, 5, 10, 15}, {{1, 1}, {1, 3}, {2, 2}, {2, 3}, {1, 3}, {1, 
-        1}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {1, 1}, {1, 2}, {1, 3}, {2, 1}, {
-        2, 2}}}, {2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2}}], "Keys" -> {
+      1, {{0, 5, 10, 12, 16}, {{1, 1}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {1, 
+        1}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {2, 1}, {2, 2}, {1, 1}, {1, 2}, {
+        1, 3}, {2, 3}}}, {1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1}}], 
+    "Keys" -> {
       Association["a" -> 1, "b" -> 2, "c" -> 3, "d" -> 4], 
       Association["a" -> 1, "b" -> 2], 
-      Association["a" -> 1, "b" -> 2, "c" -> 3]}, "ConstructedQ" -> True]],
+      Association["a" -> 1, "b" -> 2, "c" -> 3]}, "ValidatedQ" -> True]],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[68]=",ExpressionUUID->"9edeaa99-1b0e-46e2-8fff-cce23cdc0ef1"]
+ CellLabel->"Out[450]=",ExpressionUUID->"fac2f676-db53-4a47-bfd3-86cf29b3d541"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6317,93 +6322,19 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"Normal", "[", "sparseAssoc", "]"}], ",", 
     RowBox[{"Keys", "[", "sparseAssoc", "]"}]}], "]"}]}]], "Input",
- CellLabel->"In[70]:=",ExpressionUUID->"a566945a-32dd-4de4-b72c-dffd2df5938b"],
+ CellLabel->
+  "In[451]:=",ExpressionUUID->"a566945a-32dd-4de4-b72c-dffd2df5938b"],
 
 Cell[BoxData["True"], "Output",
- CellLabel->"Out[70]=",ExpressionUUID->"a7252180-b68c-4834-a647-5b6eceb1233f"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"SameQ", "@@", 
-  RowBox[{"Map", "[", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"Normal", "@", 
-      RowBox[{"Normal", "[", "#", "]"}]}], "&"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"{", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{"array", ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{"array", ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}], ",", "1"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{"array", ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}], ",", "0"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{
-        RowBox[{"SparseArray", "[", 
-         RowBox[{"array", ",", "Automatic", ",", "1"}], "]"}], ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}], ",", "0"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{
-        RowBox[{"SparseArray", "[", 
-         RowBox[{"array", ",", "Automatic", ",", "1"}], "]"}], ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}], ",", "1"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{
-        RowBox[{"SparseArray", "[", 
-         RowBox[{"array", ",", "Automatic", ",", "1"}], "]"}], ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{
-        RowBox[{"SparseArray", "[", 
-         RowBox[{"array", ",", "Automatic", ",", "0"}], "]"}], ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}], ",", "0"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"SparseAssociation", "[", 
-       RowBox[{
-        RowBox[{"SparseArray", "[", 
-         RowBox[{"array", ",", "Automatic", ",", "0"}], "]"}], ",", 
-        RowBox[{"{", 
-         RowBox[{
-         "\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\"", ",", "\"\<d\>\""}], 
-         "}"}], ",", "1"}], "]"}]}], "\[IndentingNewLine]", "}"}]}], 
-   "\[IndentingNewLine]", "]"}]}]], "Input",
- CellLabel->"In[71]:=",ExpressionUUID->"ced0d558-87c3-4840-9297-218f8146d4dc"],
-
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[71]=",ExpressionUUID->"73a3369b-503d-4cf2-9061-841e12fbcbbb"]
+ CellLabel->"Out[451]=",ExpressionUUID->"4a2b80f1-fff4-4ceb-a181-d1901596b2b8"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Normal", "[", "sparseAssoc", "]"}]], "Input",
- CellLabel->"In[72]:=",ExpressionUUID->"05f23729-58f7-4b7e-ac90-017ef67c3b7b"],
+ CellLabel->
+  "In[453]:=",ExpressionUUID->"05f23729-58f7-4b7e-ac90-017ef67c3b7b"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6445,7 +6376,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["15", "SummaryItem"]}]}, {
+                 TagBox["16", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6498,7 +6429,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["15", "SummaryItem"]}]}, {
+                 TagBox["16", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6513,7 +6444,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Density: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["0.625`", "SummaryItem"]}]}, {
+                 TagBox["0.6666666666666666`", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Elements:\"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6526,13 +6457,22 @@ Cell[BoxData[
                     RowBox[{"1", ",", "1", ",", "1"}], "}"}], "\[Rule]", 
                     StyleBox[
                     PaneBox[
-                    "2", ContentPadding -> False, FrameMargins -> 0, 
+                    "1", ContentPadding -> False, FrameMargins -> 0, 
                     StripOnInput -> True, BaselinePosition -> Baseline, 
                     ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
                     False]}]}, {
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{"1", ",", "1", ",", "3"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    "1", ContentPadding -> False, FrameMargins -> 0, 
+                    StripOnInput -> True, BaselinePosition -> Baseline, 
+                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
+                    False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "2", ",", "1"}], "}"}], "\[Rule]", 
                     StyleBox[
                     PaneBox[
                     "2", ContentPadding -> False, FrameMargins -> 0, 
@@ -6542,15 +6482,6 @@ Cell[BoxData[
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{"1", ",", "2", ",", "2"}], "}"}], "\[Rule]", 
-                    StyleBox[
-                    PaneBox[
-                    "2", ContentPadding -> False, FrameMargins -> 0, 
-                    StripOnInput -> True, BaselinePosition -> Baseline, 
-                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
-                    False]}]}, {
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "2", ",", "3"}], "}"}], "\[Rule]", 
                     StyleBox[
                     PaneBox[
                     "2", ContentPadding -> False, FrameMargins -> 0, 
@@ -6582,13 +6513,13 @@ Cell[BoxData[
     DynamicModuleValues:>{}], "]"}],
   SparseArray[
   Automatic, {4, 2, 3}, 0, {
-   1, {{0, 4, 5, 10, 15}, {{1, 1}, {1, 3}, {2, 2}, {2, 3}, {1, 3}, {1, 1}, {1,
-      3}, {2, 1}, {2, 2}, {2, 3}, {1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 2}}}, {
-    2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2}}],
+   1, {{0, 5, 10, 12, 16}, {{1, 1}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {1, 1}, {
+     1, 3}, {2, 1}, {2, 2}, {2, 3}, {2, 1}, {2, 2}, {1, 1}, {1, 2}, {1, 3}, {
+     2, 3}}}, {1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1}}],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[72]=",ExpressionUUID->"529746cd-8e9f-4d83-bcae-c48c90c26c2a"]
+ CellLabel->"Out[453]=",ExpressionUUID->"27fb23eb-6981-4028-98b4-dd3ae4a03455"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6597,10 +6528,11 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"Normal", "@", 
    RowBox[{"Normal", "@", "sparseAssoc"}]}], "===", "array"}]], "Input",
- CellLabel->"In[73]:=",ExpressionUUID->"cfeb5275-c868-45be-ad86-25c773bb2e6e"],
+ CellLabel->
+  "In[454]:=",ExpressionUUID->"cfeb5275-c868-45be-ad86-25c773bb2e6e"],
 
 Cell[BoxData["True"], "Output",
- CellLabel->"Out[73]=",ExpressionUUID->"f262bae6-3d47-4d9d-9834-bd58388db0dc"]
+ CellLabel->"Out[454]=",ExpressionUUID->"f4df0557-9861-4b3f-bf20-9628e8fc59cf"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6610,18 +6542,22 @@ Cell[BoxData[{
  RowBox[{"ArrayDepth", "[", "sparseAssoc", "]"}], "\[IndentingNewLine]", 
  RowBox[{"Dimensions", "[", "sparseAssoc", "]"}], "\[IndentingNewLine]", 
  RowBox[{"Keys", "[", "sparseAssoc", "]"}]}], "Input",
- CellLabel->"In[74]:=",ExpressionUUID->"0fbc06dc-8cf1-43d0-8249-71c3a9f068d5"],
+ CellLabel->
+  "In[455]:=",ExpressionUUID->"0fbc06dc-8cf1-43d0-8249-71c3a9f068d5"],
 
 Cell[BoxData["4"], "Output",
- CellLabel->"Out[74]=",ExpressionUUID->"e3a88d8e-1da9-4dd2-83bb-02fd9c68cc60"],
+ CellLabel->
+  "Out[455]=",ExpressionUUID->"a367d6cd-5523-4f36-b21b-c3ef5c22da80"],
 
 Cell[BoxData["3"], "Output",
- CellLabel->"Out[75]=",ExpressionUUID->"f22f1965-f976-4902-ab7d-6e579d99cb3e"],
+ CellLabel->
+  "Out[456]=",ExpressionUUID->"3147e69c-b035-4f5e-9052-65bdf5b3a164"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"4", ",", "2", ",", "3"}], "}"}]], "Output",
- CellLabel->"Out[76]=",ExpressionUUID->"e0f43bec-dce9-49bb-84dc-0d29b4ad0878"],
+ CellLabel->
+  "Out[457]=",ExpressionUUID->"61e0910e-077f-4f1c-94d9-5463029eceb3"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -6634,7 +6570,7 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>"}], "}"}]}], 
   "}"}]], "Output",
- CellLabel->"Out[77]=",ExpressionUUID->"dabddb20-c2cc-4d89-b3af-a6a9f3c9b663"]
+ CellLabel->"Out[458]=",ExpressionUUID->"859126ce-0f1c-4b73-915f-03e777371a7a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6647,13 +6583,15 @@ Cell[BoxData[{
   RowBox[{"array", "[", 
    RowBox[{"[", 
     RowBox[{"1", ",", "2", ",", "3"}], "]"}], "]"}]}]}], "Input",
- CellLabel->"In[78]:=",ExpressionUUID->"b1a99917-9445-4765-818a-41e8a6e278e7"],
+ CellLabel->
+  "In[459]:=",ExpressionUUID->"b1a99917-9445-4765-818a-41e8a6e278e7"],
 
 Cell[BoxData["2"], "Output",
- CellLabel->"Out[78]=",ExpressionUUID->"2119ec17-e129-499b-aef0-276dd5dedcaa"],
+ CellLabel->
+  "Out[459]=",ExpressionUUID->"9f325cf1-7695-4630-af28-6b351b480a99"],
 
 Cell[BoxData["True"], "Output",
- CellLabel->"Out[79]=",ExpressionUUID->"446e6a13-902b-4c85-9c90-b3b7d1d6f307"]
+ CellLabel->"Out[460]=",ExpressionUUID->"e9fed724-0824-4334-86a9-ca61ed8b63d9"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6671,10 +6609,11 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{"\"\<a\>\"", ",", "\"\<c\>\""}], "}"}]}], "]"}], 
    "]"}]}]], "Input",
- CellLabel->"In[80]:=",ExpressionUUID->"e166c204-1b98-4bff-a434-031965edb61d"],
+ CellLabel->
+  "In[461]:=",ExpressionUUID->"e166c204-1b98-4bff-a434-031965edb61d"],
 
 Cell[BoxData["True"], "Output",
- CellLabel->"Out[80]=",ExpressionUUID->"03fd2408-f8b3-494e-866c-ce246e93238b"]
+ CellLabel->"Out[461]=",ExpressionUUID->"58105afb-9f07-4f22-bf8b-a430e8e8b1b2"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6694,7 +6633,8 @@ Cell[BoxData[{
     RowBox[{"2", ",", "All", ",", 
      RowBox[{"{", 
       RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}]}], "Input",
- CellLabel->"In[81]:=",ExpressionUUID->"cfe8df5f-8a15-4b21-9c97-dfce33fd9651"],
+ CellLabel->
+  "In[462]:=",ExpressionUUID->"cfe8df5f-8a15-4b21-9c97-dfce33fd9651"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6716,8 +6656,8 @@ Cell[BoxData[
                 AbsoluteCurrentValue[Magnification]}]], 
             GraphicsBox[
              
-             RasterBox[{{{0.235431, 0.32765, 0.833291}, {0.235431, 0.32765, 
-              0.833291}}, {{0.235431, 0.32765, 0.833291}, {0.772061, 0.92462, 
+             RasterBox[{{{0.772061, 0.92462, 0.998703}, {0.772061, 0.92462, 
+              0.998703}}, {{0.772061, 0.92462, 0.998703}, {0.772061, 0.92462, 
               0.998703}}}, {{0, 0}, {2, 2}}, {0, 1}], AspectRatio -> 1, Axes -> 
              False, Frame -> False, FrameLabel -> {None, None}, FrameStyle -> 
              Directive[
@@ -6747,7 +6687,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["1", "SummaryItem"]}]}, {
+                 TagBox["4", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6783,8 +6723,8 @@ Cell[BoxData[
                 AbsoluteCurrentValue[Magnification]}]], 
             GraphicsBox[
              
-             RasterBox[{{{0.235431, 0.32765, 0.833291}, {0.235431, 0.32765, 
-              0.833291}}, {{0.235431, 0.32765, 0.833291}, {0.772061, 0.92462, 
+             RasterBox[{{{0.772061, 0.92462, 0.998703}, {0.772061, 0.92462, 
+              0.998703}}, {{0.772061, 0.92462, 0.998703}, {0.772061, 0.92462, 
               0.998703}}}, {{0, 0}, {2, 2}}, {0, 1}], AspectRatio -> 1, Axes -> 
              False, Frame -> False, FrameLabel -> {None, None}, FrameStyle -> 
              Directive[
@@ -6814,7 +6754,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["1", "SummaryItem"]}]}, {
+                 TagBox["4", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6828,7 +6768,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Density: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["0.25`", "SummaryItem"]}]}, {
+                 TagBox["1.`", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Keys:\"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6870,17 +6810,19 @@ Cell[BoxData[
     DynamicModuleValues:>{}], "]"}],
   FunctionRepo`SparseAssociation[
    Association[
-   "Array" -> SparseArray[Automatic, {2, 2}, 0, {1, {{0, 1, 1}, {{2}}}, {1}}],
-     "Keys" -> {
+   "Array" -> SparseArray[
+     Automatic, {2, 2}, 0, {
+      1, {{0, 2, 4}, {{1}, {2}, {1}, {2}}}, {1, 1, 1, 1}}], "Keys" -> {
       Association["a" -> 1, "b" -> 2], 
-      Association["a" -> 1, "c" -> 2]}, "ConstructedQ" -> True]],
+      Association["a" -> 1, "c" -> 2]}, "ValidatedQ" -> True]],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[81]=",ExpressionUUID->"c3147a2b-5339-40e0-a4f0-007d80de5953"],
+ CellLabel->
+  "Out[462]=",ExpressionUUID->"6118583b-78dc-4f66-93d6-fdfe3dcad561"],
 
 Cell[BoxData["True"], "Output",
- CellLabel->"Out[82]=",ExpressionUUID->"0e51a298-4779-4dd7-bebb-1626eeec5d16"]
+ CellLabel->"Out[463]=",ExpressionUUID->"59c3aafa-1fa3-426d-8302-d6b8c971853f"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6893,7 +6835,8 @@ Cell[BoxData[{
    RowBox[{"{", "3", "}"}]}], "]"}], "\[IndentingNewLine]", 
  RowBox[{"Normal", "@", 
   RowBox[{"Normal", "[", "%", "]"}]}]}], "Input",
- CellLabel->"In[95]:=",ExpressionUUID->"b83be3f5-d129-4839-b189-f7b0fa6b4903"],
+ CellLabel->
+  "In[464]:=",ExpressionUUID->"b83be3f5-d129-4839-b189-f7b0fa6b4903"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6935,7 +6878,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["15", "SummaryItem"]}]}, {
+                 TagBox["16", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -6992,7 +6935,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["15", "SummaryItem"]}]}, {
+                 TagBox["16", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -7007,7 +6950,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Density: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["0.625`", "SummaryItem"]}]}, {
+                 TagBox["0.6666666666666666`", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Keys:\"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -7062,16 +7005,18 @@ Cell[BoxData[
    Association[
    "Array" -> SparseArray[
      Automatic, {4, 2, 3}, 0, {
-      1, {{0, 4, 5, 10, 15}, {{1, 1}, {1, 3}, {2, 2}, {2, 3}, {1, 3}, {1, 
-        1}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {1, 1}, {1, 2}, {1, 3}, {2, 1}, {
-        2, 2}}}, {4, 4, 4, 4, 1, 4, 4, 1, 4, 4, 4, 4, 4, 4, 4}}], "Keys" -> {
+      1, {{0, 5, 10, 12, 16}, {{1, 1}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {1, 
+        1}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {2, 1}, {2, 2}, {1, 1}, {1, 2}, {
+        1, 3}, {2, 3}}}, {1, 1, 4, 4, 4, 1, 1, 1, 1, 1, 4, 1, 1, 1, 4, 1}}], 
+    "Keys" -> {
       Association["a" -> 1, "b" -> 2, "c" -> 3, "d" -> 4], 
       Association["a" -> 1, "b" -> 2], 
-      Association["a" -> 1, "b" -> 2, "c" -> 3]}, "ConstructedQ" -> True]],
+      Association["a" -> 1, "b" -> 2, "c" -> 3]}, "ValidatedQ" -> True]],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[95]=",ExpressionUUID->"04179829-308e-429d-90e0-4be0aed6b28b"],
+ CellLabel->
+  "Out[464]=",ExpressionUUID->"1e7d8efd-6524-496e-8b0c-01bfdb98ba61"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -7079,35 +7024,36 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"4", ",", "0", ",", "4"}], "}"}], ",", 
+      RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "4", ",", "4"}], "}"}]}], "}"}], ",", 
+      RowBox[{"4", ",", "4", ",", "4"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
+      RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"4", ",", "0", ",", "4"}], "}"}], ",", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"1", ",", "4", ",", "4"}], "}"}]}], "}"}], ",", 
+      RowBox[{"4", ",", "1", ",", "0"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"4", ",", "4", ",", "4"}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "4"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"4", ",", "4", ",", "0"}], "}"}]}], "}"}]}], "}"}]], "Output",
- CellLabel->"Out[96]=",ExpressionUUID->"f33b36de-c3e3-4599-b567-27affefe9af0"]
+      RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[465]=",ExpressionUUID->"442f3b57-457d-46f8-842a-793487f353ef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"ArrayRules", "@", "sparseAssoc"}]], "Input",
- CellLabel->"In[83]:=",ExpressionUUID->"d0f379ae-0db3-4388-82ab-1d58591bb2bd"],
+ CellLabel->
+  "In[466]:=",ExpressionUUID->"d0f379ae-0db3-4388-82ab-1d58591bb2bd"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -7115,10 +7061,14 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"a\"\>", ",", "\<\"a\"\>", ",", "\<\"a\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"a\"\>", ",", "\<\"a\"\>", ",", "\<\"c\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"a\"\>"}], "}"}], 
     "\[Rule]", "2"}], ",", 
    RowBox[{
     RowBox[{"{", 
@@ -7130,53 +7080,53 @@ Cell[BoxData[
     "\[Rule]", "2"}], ",", 
    RowBox[{
     RowBox[{"{", 
+     RowBox[{"\<\"b\"\>", ",", "\<\"a\"\>", ",", "\<\"a\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
      RowBox[{"\<\"b\"\>", ",", "\<\"a\"\>", ",", "\<\"c\"\>"}], "}"}], 
     "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"c\"\>", ",", "\<\"a\"\>", ",", "\<\"a\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\<\"c\"\>", ",", "\<\"a\"\>", ",", "\<\"c\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\<\"c\"\>", ",", "\<\"b\"\>", ",", "\<\"a\"\>"}], "}"}], 
+     RowBox[{"\<\"b\"\>", ",", "\<\"b\"\>", ",", "\<\"a\"\>"}], "}"}], 
     "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"c\"\>", ",", "\<\"b\"\>", ",", "\<\"b\"\>"}], "}"}], 
+     RowBox[{"\<\"b\"\>", ",", "\<\"b\"\>", ",", "\<\"b\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"b\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"c\"\>", ",", "\<\"b\"\>", ",", "\<\"a\"\>"}], "}"}], 
     "\[Rule]", "2"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"c\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+     RowBox[{"\<\"c\"\>", ",", "\<\"b\"\>", ",", "\<\"b\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"d\"\>", ",", "\<\"a\"\>", ",", "\<\"a\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"d\"\>", ",", "\<\"a\"\>", ",", "\<\"b\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"d\"\>", ",", "\<\"a\"\>", ",", "\<\"c\"\>"}], "}"}], 
     "\[Rule]", "2"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"d\"\>", ",", "\<\"b\"\>", ",", "\<\"a\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\<\"d\"\>", ",", "\<\"b\"\>", ",", "\<\"b\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+     RowBox[{"\<\"d\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"_", ",", "_", ",", "_"}], "}"}], "\[Rule]", "0"}]}], 
   "}"}]], "Output",
- CellLabel->"Out[83]=",ExpressionUUID->"a759343a-b345-494d-8ce3-d5c84c471f66"]
+ CellLabel->"Out[466]=",ExpressionUUID->"955a015b-bfb1-4e76-b1dc-0350eeb7e4ee"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7195,7 +7145,8 @@ Cell[BoxData[{
        RowBox[{"Alphabet", "[", "]"}], ",", "9"}], "]"}], ",", "3"}], "]"}]}],
    "]"}], "\[IndentingNewLine]", 
  RowBox[{"ArrayRules", "[", "%", "]"}]}], "Input",
- CellLabel->"In[84]:=",ExpressionUUID->"972cbd88-2090-4ee0-8252-afba106a0a8b"],
+ CellLabel->
+  "In[467]:=",ExpressionUUID->"972cbd88-2090-4ee0-8252-afba106a0a8b"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -7237,7 +7188,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["20", "SummaryItem"]}]}, {
+                 TagBox["19", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -7294,7 +7245,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["20", "SummaryItem"]}]}, {
+                 TagBox["19", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -7309,7 +7260,7 @@ Cell[BoxData[
                RowBox[{
                  TagBox["\"Density: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox["0.7407407407407407`", "SummaryItem"]}]}, {
+                 TagBox["0.7037037037037037`", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Keys:\"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -7363,48 +7314,41 @@ Cell[BoxData[
    Association[
    "Array" -> SparseArray[
      Automatic, {3, 3, 3}, 0, {
-      1, {{0, 5, 13, 20}, {{1, 2}, {2, 1}, {2, 2}, {3, 2}, {3, 3}, {1, 1}, {1,
-         2}, {1, 3}, {2, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}, {1, 1}, {1, 2}, {
-        2, 1}, {2, 3}, {3, 1}, {3, 2}, {3, 3}}}, {2, 2, 2, 1, 2, 1, 2, 2, 2, 
-       2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 1}}], "Keys" -> {
+      1, {{0, 5, 12, 19}, {{1, 1}, {1, 3}, {2, 1}, {3, 1}, {3, 2}, {1, 3}, {2,
+         1}, {2, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}, {1, 1}, {1, 2}, {2, 2}, {
+        2, 3}, {3, 1}, {3, 2}, {3, 3}}}, {1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 
+       1, 1, 1, 1, 2, 1, 1}}], "Keys" -> {
       Association["a" -> 1, "b" -> 2, "c" -> 3], 
       Association["d" -> 1, "e" -> 2, "f" -> 3], 
-      Association["g" -> 1, "h" -> 2, "i" -> 3]}, "ConstructedQ" -> True]],
+      Association["g" -> 1, "h" -> 2, "i" -> 3]}, "ValidatedQ" -> True]],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[84]=",ExpressionUUID->"ba6e972f-0a38-474f-9fe0-773e3b835ae2"],
+ CellLabel->
+  "Out[467]=",ExpressionUUID->"d49df56a-e5b3-414f-8329-fd5a2f07f4d3"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"a\"\>", ",", "\<\"d\"\>", ",", "\<\"h\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+     RowBox[{"\<\"a\"\>", ",", "\<\"d\"\>", ",", "\<\"g\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"a\"\>", ",", "\<\"d\"\>", ",", "\<\"i\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"a\"\>", ",", "\<\"e\"\>", ",", "\<\"g\"\>"}], "}"}], 
     "\[Rule]", "2"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"a\"\>", ",", "\<\"e\"\>", ",", "\<\"h\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+     RowBox[{"\<\"a\"\>", ",", "\<\"f\"\>", ",", "\<\"g\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"a\"\>", ",", "\<\"f\"\>", ",", "\<\"h\"\>"}], "}"}], 
-    "\[Rule]", "1"}], ",", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\<\"a\"\>", ",", "\<\"f\"\>", ",", "\<\"i\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\<\"b\"\>", ",", "\<\"d\"\>", ",", "\<\"g\"\>"}], "}"}], 
-    "\[Rule]", "1"}], ",", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\<\"b\"\>", ",", "\<\"d\"\>", ",", "\<\"h\"\>"}], "}"}], 
     "\[Rule]", "2"}], ",", 
    RowBox[{
     RowBox[{"{", 
@@ -7412,8 +7356,12 @@ Cell[BoxData[
     "\[Rule]", "2"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"b\"\>", ",", "\<\"e\"\>", ",", "\<\"h\"\>"}], "}"}], 
+     RowBox[{"\<\"b\"\>", ",", "\<\"e\"\>", ",", "\<\"g\"\>"}], "}"}], 
     "\[Rule]", "2"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"b\"\>", ",", "\<\"e\"\>", ",", "\<\"h\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"b\"\>", ",", "\<\"e\"\>", ",", "\<\"i\"\>"}], "}"}], 
@@ -7425,27 +7373,27 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"b\"\>", ",", "\<\"f\"\>", ",", "\<\"h\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"\<\"b\"\>", ",", "\<\"f\"\>", ",", "\<\"i\"\>"}], "}"}], 
     "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"c\"\>", ",", "\<\"d\"\>", ",", "\<\"g\"\>"}], "}"}], 
+     RowBox[{"\<\"b\"\>", ",", "\<\"f\"\>", ",", "\<\"i\"\>"}], "}"}], 
     "\[Rule]", "2"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"c\"\>", ",", "\<\"d\"\>", ",", "\<\"g\"\>"}], "}"}], 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"c\"\>", ",", "\<\"d\"\>", ",", "\<\"h\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"\<\"c\"\>", ",", "\<\"e\"\>", ",", "\<\"g\"\>"}], "}"}], 
+     RowBox[{"\<\"c\"\>", ",", "\<\"e\"\>", ",", "\<\"h\"\>"}], "}"}], 
     "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"c\"\>", ",", "\<\"e\"\>", ",", "\<\"i\"\>"}], "}"}], 
-    "\[Rule]", "2"}], ",", 
+    "\[Rule]", "1"}], ",", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"\<\"c\"\>", ",", "\<\"f\"\>", ",", "\<\"g\"\>"}], "}"}], 
@@ -7462,61 +7410,9 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{"_", ",", "_", ",", "_"}], "}"}], "\[Rule]", "0"}]}], 
   "}"}]], "Output",
- CellLabel->"Out[85]=",ExpressionUUID->"53a79812-4228-4e2d-934a-99c2320c40be"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"empty", "=", 
-  RowBox[{"SparseAssociation", "[", 
-   RowBox[{
-    RowBox[{"{", "}"}], ",", 
-    RowBox[{"{", "}"}]}], "]"}]}]], "Input",
- CellLabel->"In[88]:=",ExpressionUUID->"7ac39071-d85d-466c-a161-0b5e5dc19b80"],
-
-Cell[BoxData[
- RowBox[{"SparseAssociation", "[", 
-  RowBox[{"\[LeftAssociation]", 
-   RowBox[{
-    RowBox[{"\<\"Array\"\>", "\[Rule]", 
-     RowBox[{"{", "}"}]}], ",", 
-    RowBox[{"\<\"Keys\"\>", "\[Rule]", 
-     RowBox[{"{", "}"}]}], ",", 
-    RowBox[{"\<\"ConstructedQ\"\>", "\[Rule]", "True"}]}], 
-   "\[RightAssociation]"}], "]"}]], "Output",
- CellLabel->"Out[88]=",ExpressionUUID->"2ca052bd-4952-4d26-b25d-81bbb3140d88"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[{
- RowBox[{"Length", "[", "empty", "]"}], "\[IndentingNewLine]", 
- RowBox[{"ArrayDepth", "[", "empty", "]"}], "\[IndentingNewLine]", 
- RowBox[{"Dimensions", "[", "empty", "]"}], "\[IndentingNewLine]", 
- RowBox[{"Keys", "[", "empty", "]"}], "\[IndentingNewLine]", 
- RowBox[{"Normal", "[", "empty", "]"}]}], "Input",
- CellLabel->"In[89]:=",ExpressionUUID->"89ea66c1-50af-4aa2-adc9-00256c9943bb"],
-
-Cell[BoxData["0"], "Output",
- CellLabel->"Out[89]=",ExpressionUUID->"4f6d3769-aa6a-4b1e-855a-7ed59ddb9ffb"],
-
-Cell[BoxData["1"], "Output",
- CellLabel->"Out[90]=",ExpressionUUID->"073a684c-c7c0-4510-a7e9-0c38cb131af0"],
-
-Cell[BoxData[
- RowBox[{"{", "0", "}"}]], "Output",
- CellLabel->"Out[91]=",ExpressionUUID->"8de9aed8-f35f-46ac-90b2-e9eb676da1ba"],
-
-Cell[BoxData[
- RowBox[{"{", "}"}]], "Output",
- CellLabel->"Out[92]=",ExpressionUUID->"a0f78788-4f1e-486f-a2a1-3ebfa370bedf"],
-
-Cell[BoxData[
- RowBox[{"{", "}"}]], "Output",
- CellLabel->"Out[93]=",ExpressionUUID->"b3173537-206c-4f15-99eb-351cc95bf256"]
+ CellLabel->"Out[468]=",ExpressionUUID->"bdb7c762-482b-40af-b236-74811580fc73"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -7590,6 +7486,7 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
                     "FunctionRepo`tukeyMedianPolish`Private`mat_List", ",", 
                     RowBox[{
                     "FunctionRepo`tukeyMedianPolish`Private`outputType", ":", 
+                    
                     RowBox[{"\<\"Matrix\"\>", 
                     "|", "\<\"PropertyAssociation\"\>"}], 
                     ":", "\<\"Matrix\"\>"}], ",", 
