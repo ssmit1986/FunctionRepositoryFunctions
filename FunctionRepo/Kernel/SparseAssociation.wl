@@ -16,7 +16,7 @@ constructedDataQ[SparseAssociation[data_?AssociationQ] | data_?AssociationQ] := 
 ];
 constructedDataQ[_] := False;
 
-validAssocPattern = _Association?(MatchQ[KeyValuePattern[{"Array" -> _SparseArray?ArrayQ | {}, "Keys" -> {___?AssociationQ}}]])
+validAssocPattern = _Association?(MatchQ[KeyValuePattern[{"Array" -> _SparseArray?ArrayQ | {}, "Keys" -> {___?AssociationQ}}]]);
 
 verifyDataStructure[SparseAssociation[data_?AssociationQ]] := SparseAssociation[verifyDataStructure @ data]
 verifyDataStructure[data : validAssocPattern] := With[{
