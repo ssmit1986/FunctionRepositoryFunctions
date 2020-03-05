@@ -39,8 +39,13 @@ verifyDataStructure[data : validAssocPattern] := With[{
 verifyDataStructure[assoc_?AssociationQ] := Append[assoc, "ValidatedQ" -> False];
 verifyDataStructure[_] := $Failed;
 
-associationDepth[assoc_?AssociationQ] := Module[{i = 1},
-    While[ MatchQ[Level[assoc, {i}], {__?AssociationQ}],
+associationDepth[assoc_?AssociationQ] := Module[{
+    vals = Values[assoc],
+    i = 1
+},
+    While[ MatchQ[vals, {(_?AssociationQ | _Missing) ..}]
+        ,
+        vals = Flatten @ Values[DeleteCases[vals, _Missing]];
         i++
     ];
     i
@@ -74,20 +79,18 @@ SparseAssociation[rules : {({__String} -> _)..}, Automatic, default : _ : Automa
     ] /; MatrixQ[allKeys]
 ];
 
-SparseAssociation[assoc_?AssociationQ, Automatic, default : _ : Automatic] := With[{
-    allKeys = Module[{
-        lvl = 0,
-        elements
-    },
-        elements = Level[assoc, {lvl}];
-        Reap[
-            While[ MatchQ[elements, {__?AssociationQ}],
-                Sow[DeleteDuplicates @ Flatten @ Keys[elements]];
-                elements = Level[assoc, {++lvl}]
-            ]
-        ][[2, 1]]
-    ]
+SparseAssociation[assoc_?AssociationQ, Automatic, default : _ : Automatic] := Module[{
+    allKeys,
+    elements
 },
+    elements = {assoc};
+    allKeys = Reap[
+        While[ MatchQ[elements, {(_?AssociationQ | _Missing)..}],
+            elements = DeleteCases[elements, _Missing];
+            Sow[DeleteDuplicates @ Flatten @ Keys[elements]];
+            elements = Flatten @ Values[elements]
+        ]
+    ][[2, 1]];
     SparseAssociation[
         assoc,
         allKeys,
@@ -178,7 +181,13 @@ SparseAssociation[
     rules
 },
     rules = ReplaceAll[
-        Flatten @ Last @ Reap[MapIndexed[Sow[#2 -> #1] &, assoc, {depth}];],
+        Flatten @ Last @ Reap[
+            MapIndexed[
+                Sow[#2 -> #1]&,
+                DeleteMissing[assoc, depth],
+                {depth}
+            ];
+        ],
         k : {Key[_String]..} :> k[[All, 1]]
     ];
     SparseAssociation[rules, keys, default] /; MatchQ[rules, {({__String} -> _)..}]
