@@ -1,6 +1,6 @@
 ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
-BeginPackage["FunctionRepo`"]
+BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 
 crossValidateModel;
 Get["FunctionRepo`crossValidateModel`"];
@@ -14,8 +14,8 @@ Get["FunctionRepo`kullbackLeiblerDivergence`"];
 multiNonlinearModelFit;
 Get["FunctionRepo`multiNonlinearModelFit`"];
 
-sparseAssociation;
-Get["FunctionRepo`sparseAssociation`"];
+SparseAssociation;
+Get["FunctionRepo`SparseAssociation`"];
 
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
@@ -31,5 +31,8 @@ Get["FunctionRepo`maximumSpacingEstimation`"];
 
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
+
+importAGSData;
+Get["FunctionRepo`importAGSData`"];
 
 EndPackage[]
