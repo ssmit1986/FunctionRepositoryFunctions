@@ -39,6 +39,13 @@ verifyDataStructure[data : validAssocPattern] := With[{
 verifyDataStructure[assoc_?AssociationQ] := Append[assoc, "ValidatedQ" -> False];
 verifyDataStructure[_] := $Failed;
 
+associationDepth[assoc_?AssociationQ] := Module[{i = 1},
+    While[ MatchQ[Level[assoc, {i}], {__?AssociationQ}],
+        i++
+    ];
+    i
+];
+
 keySpec = _String;
 
 (* Parsing list of rules / rule of lists specs *)
@@ -56,16 +63,7 @@ SparseAssociation[rules : {(_String -> _)..}, rest___] := SparseAssociation[
     rest
 ];
 
-(* Normalize key argument *)
-SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : {keySpec..}, rest___] :=
-    SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
-
-SparseAssociation[rules : {({__String} -> _)..}, keys : {keySpec..}, rest___] :=
-    SparseAssociation[rules, ConstantArray[keys, Length[rules[[1, 1]]]], rest]
-
-SparseAssociation[{}, keys : {keySpec..}, rest___] := SparseAssociation[{}, {keys}, rest];
-
-(* Further parsing of rules *)
+(* Finding keys automatically for array rules and association constructors *)
 SparseAssociation[rules : {({__String} -> _)..}, Automatic, default : _ : Automatic] := With[{
     allKeys = rules[[All, 1]]
 },
@@ -96,6 +94,18 @@ SparseAssociation[assoc_?AssociationQ, Automatic, default : _ : Automatic] := Wi
         default
     ] /; MatchQ[allKeys, {{keySpec..}..}]
 ];
+
+(* Normalize key argument *)
+SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : {keySpec..}, rest___] :=
+    SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
+
+SparseAssociation[rules : {({__String} -> _)..}, keys : {keySpec..}, rest___] :=
+    SparseAssociation[rules, ConstantArray[keys, Length[rules[[1, 1]]]], rest]
+
+SparseAssociation[assoc_?AssociationQ, keys : {keySpec..}, rest___] :=
+    SparseAssociation[assoc, ConstantArray[keys, associationDepth[assoc]], rest]
+
+SparseAssociation[{}, keys : {keySpec..}, rest___] := SparseAssociation[{}, {keys}, rest];
 
 (* Constructor for list-of-rules spec *)
 SparseAssociation[
