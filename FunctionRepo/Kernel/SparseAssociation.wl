@@ -66,8 +66,6 @@ SparseAssociation[rules : {({__String} -> _)..}, keys : {keySpec..}, rest___] :=
 SparseAssociation[{}, keys : {keySpec..}, rest___] := SparseAssociation[{}, {keys}, rest];
 
 (* Further parsing of rules *)
-(*SparseAssociation[rules : {({__String} -> _)..}] := SparseAssociation[rules, Automatic];*)
-
 SparseAssociation[rules : {({__String} -> _)..}, Automatic, default : _ : Automatic] := With[{
     allKeys = rules[[All, 1]]
 },
@@ -131,7 +129,7 @@ SparseAssociation[
         ,
         rules === {} || (MatrixQ[ruleKeys] && dims[[2]] === Length[keys])
     ]
-]
+];
 
 (* Constructor for array specs *)
 SparseAssociation[
@@ -158,6 +156,22 @@ SparseAssociation[
         ,
         Length[keys] === Length[dims]
     ]
+];
+
+(* Constructor for nested Association spec *)
+SparseAssociation[
+    assoc_?AssociationQ,
+    keys : {{keySpec..}..},
+    default : _ : Automatic
+] /; AllTrue[keys, DuplicateFreeQ] := Module[{
+    depth = Length[keys],
+    rules
+},
+    rules = ReplaceAll[
+        Flatten @ Last @ Reap[MapIndexed[Sow[#2 -> #1] &, assoc, {depth}];],
+        k : {Key[_String]..} :> k[[All, 1]]
+    ];
+    SparseAssociation[rules, keys, default] /; MatchQ[rules, {({__String} -> _)..}]
 ];
 
 (* accessors *)
