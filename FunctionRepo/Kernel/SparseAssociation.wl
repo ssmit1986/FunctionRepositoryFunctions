@@ -11,9 +11,7 @@ SparseAssociation::badData = "Illegal SparseAssociation encountered.";
 SparseAssociation::construct = "Cannot construct SparseAssociation from the given input.";
 SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-preserving maps are currently allowed.";
 
-constructedDataQ[SparseAssociation[data_?AssociationQ] | data_?AssociationQ] := MatchQ[data,
-    KeyValuePattern["ValidatedQ" -> True]
-];
+constructedDataQ[SparseAssociation[data_?AssociationQ] | data_?AssociationQ] := TrueQ[data["ValidatedQ"]];
 constructedDataQ[_] := False;
 
 validAssocPattern = _Association?(MatchQ[KeyValuePattern[{"Array" -> _SparseArray?ArrayQ | {}, "Keys" -> {___?AssociationQ}}]]);
