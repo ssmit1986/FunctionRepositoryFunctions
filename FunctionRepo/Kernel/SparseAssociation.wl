@@ -2,7 +2,7 @@
 
 BeginPackage["FunctionRepo`SparseAssociation`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-SparseAssociation::usage = "SparseAssociation[array, {{key_11, key_12, ...}, {key_21, key_22, ...}, ...}] creates a datastructure that can be used like a SparseArray, but with string indices.";
+GeneralUtilities`SetUsage[SparseAssociation, "SparseAssociation[array$, {{key$(1,1), key$(1,2), $$}, {key$(2,1), key$(2,2), $$}, $$}, default$] creates a datastructure that can be used like a SparseArray, but with string indices."];
 
 Begin["`Private`"] (* Begin Private Context *)
 
@@ -11,9 +11,7 @@ SparseAssociation::badData = "Illegal SparseAssociation encountered.";
 SparseAssociation::construct = "Cannot construct SparseAssociation from the given input.";
 SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-preserving maps are currently allowed.";
 
-constructedDataQ[SparseAssociation[data_?AssociationQ] | data_?AssociationQ] := MatchQ[data,
-    KeyValuePattern["ValidatedQ" -> True]
-];
+constructedDataQ[SparseAssociation[data_?AssociationQ] | data_?AssociationQ] := TrueQ[data["ValidatedQ"]];
 constructedDataQ[_] := False;
 
 validAssocPattern = _Association?(MatchQ[KeyValuePattern[{"Array" -> _SparseArray?ArrayQ | {}, "Keys" -> {___?AssociationQ}}]]);
@@ -180,15 +178,12 @@ SparseAssociation[
     depth = Length[keys],
     rules
 },
-    rules = ReplaceAll[
-        Flatten @ Last @ Reap[
-            MapIndexed[
-                Sow[#2 -> #1]&,
-                DeleteMissing[assoc, depth],
-                {depth}
-            ];
-        ],
-        k : {Key[_String]..} :> k[[All, 1]]
+    rules = Flatten @ Last @ Reap[
+        MapIndexed[
+            Sow[Replace[#2, Key[s_String] :> s, {1}] -> #1]&,
+            DeleteMissing[assoc, depth],
+            {depth}
+        ];
     ];
     SparseAssociation[rules, keys, default] /; MatchQ[rules, {({__String} -> _)..}]
 ];
