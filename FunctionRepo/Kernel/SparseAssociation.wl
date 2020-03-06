@@ -74,6 +74,8 @@ associationDepth[assoc_?AssociationQ] := Module[{
     i
 ];
 
+keyRange[l_List] := AssociationThread[l, Range[Length[l]]];
+
 (* Parsing list of rules / rule of lists specs *)
 SparseAssociation[rule : _List -> _List, rest___] := With[{rules = Thread[rule, Rule]},
     SparseAssociation[rules, rest] /; MatchQ[rules, {___Rule}]
@@ -137,7 +139,7 @@ SparseAssociation[
     keys : {{keySpec..}..},
     default : _ : Automatic
 ] /; AllTrue[keys, DuplicateFreeQ] := Module[{
-    pos = AssociationThread[#, Range[Length[#]]]& /@ keys,
+    pos = keyRange /@ keys,
     assoc,
     ruleKeys = rules[[All, 1]],
     dims
@@ -177,12 +179,9 @@ SparseAssociation[
     Condition[
         assoc = <|
             "Array" -> SparseArray[array, Automatic, default],
-            "Keys" -> Map[
-                AssociationThread[#, Range @ Length[#]]&,
-                MapThread[
-                    Take[#1, UpTo[#2]]&,
-                    {keys, dims}
-                ]
+            "Keys" -> keyRange /@ MapThread[
+                Take[#1, UpTo[#2]]&,
+                {keys, dims}
             ]
         |>;
         
@@ -276,8 +275,11 @@ SparseAssociation /: Part[
                     "Array" -> arr,
                     "Keys" -> Join[
                         Map[
-                            AssociationThread[Keys[#], Range @ Length[#]]&,
-                            Select[AssociationQ] @ MapThread[Part, {dataKeys[[1]], {keys}}]
+                            keyRange,
+                            Keys @ Select[
+                                MapThread[Part, {dataKeys[[1]], {keys}}],
+                                AssociationQ
+                            ]
                         ],
                         dataKeys[[2]]
                     ]
