@@ -210,8 +210,9 @@ SparseAssociation[
 ];
 
 (* accessors *)
-SparseAssociation /: Normal[SparseAssociation[data_?constructedDataQ]] := data["Array"];
+SparseAssociation /: Values[SparseAssociation[data_?constructedDataQ]] := data["Array"];
 SparseAssociation /: Keys[SparseAssociation[data_?constructedDataQ]] := Keys @ data["Keys"];
+SparseAssociation /: Normal[SparseAssociation[data_?constructedDataQ]] := data;
 
 Scan[
     Function[
@@ -231,7 +232,7 @@ SparseAssociation /: Map[fun_][spAssoc : SparseAssociation[_?constructedDataQ]] 
 
 SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[_?constructedDataQ], rest___] := With[{
     result = SparseAssociation[
-        Map[fun, Normal[spAssoc], rest],
+        Map[fun, Values[spAssoc], rest],
         Keys[spAssoc]
     ]
 },
@@ -300,7 +301,7 @@ SparseAssociation /: Dataset[
     SparseAssociation[data_?constructedDataQ],
     Repeated["IncludeDefaultValues" -> True, {0, 1}]
 ] := With[{
-    array = Normal @ Normal @ data["Array"],
+    array = Normal @ data["Array"],
     query = Query @@ data["Keys"]
 },
     Dataset[query @ array]
