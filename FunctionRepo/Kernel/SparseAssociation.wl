@@ -212,7 +212,43 @@ SparseAssociation[
 (* accessors *)
 SparseAssociation /: Values[SparseAssociation[data_?constructedDataQ]] := data["Array"];
 SparseAssociation /: Keys[SparseAssociation[data_?constructedDataQ]] := Keys @ data["Keys"];
-SparseAssociation /: Normal[SparseAssociation[data_?constructedDataQ]] := data;
+
+(* Converting SparseAssociation to Association *)
+SparseAssociation /: Normal[
+    SparseAssociation[data_?constructedDataQ],
+    Repeated["IncludeDefaultValues" -> True, {0, 1}]
+] := With[{
+    array = Normal @ data["Array"],
+    query = Query @@ data["Keys"]
+},
+    query @ array
+];
+
+SparseAssociation /: Normal[
+    SparseAssociation[data_?constructedDataQ],
+    "IncludeDefaultValues" -> False
+] := With[{
+    rules = MapAt[
+        Replace[Verbatim[Rule][{Verbatim[_]..}, _] -> Nothing],
+        ArrayRules[SparseAssociation[data]],
+        -1
+    ],
+    depth = ArrayDepth[SparseAssociation[data]]
+},
+    GroupBy[
+        rules,
+        Append[
+            Map[
+                Function[lvl, Function[#[[1, lvl]]]],
+                Range[depth - 1]
+            ],
+            Function[#[[1, -1]]] -> Function[#[[2]]]
+        ],
+        First
+    ]
+];
+
+SparseAssociation /: Dataset[spAssoc : SparseAssociation[_?constructedDataQ], args___] := Dataset @ Normal[spAssoc, args];
 
 Scan[
     Function[
@@ -295,41 +331,6 @@ SparseAssociation /: Part[SparseAssociation[_?constructedDataQ], other__] := (Me
 SparseAssociation /: Part[SparseAssociation[Except[_?constructedDataQ], ___], __] := (Message[SparseAssociation::badData]; $Failed);
 
 SparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
-
-(* Converting SparseAssociation to Association *)
-SparseAssociation /: Dataset[
-    SparseAssociation[data_?constructedDataQ],
-    Repeated["IncludeDefaultValues" -> True, {0, 1}]
-] := With[{
-    array = Normal @ data["Array"],
-    query = Query @@ data["Keys"]
-},
-    Dataset[query @ array]
-];
-
-SparseAssociation /: Dataset[
-    SparseAssociation[data_?constructedDataQ],
-    "IncludeDefaultValues" -> False
-] := With[{
-    rules = MapAt[
-        Replace[Verbatim[Rule][{Verbatim[_]..}, _] -> Nothing],
-        ArrayRules[SparseAssociation[data]],
-        -1
-    ],
-    depth = ArrayDepth[SparseAssociation[data]]
-},
-    Dataset @ GroupBy[
-        rules,
-        Append[
-            Map[
-                Function[lvl, Function[#[[1, lvl]]]],
-                Range[depth - 1]
-            ],
-            Function[#[[1, -1]]] -> Function[#[[2]]]
-        ],
-        #[[1]]&
-    ]
-];
 
 (* Typesetting *)
 (* Make sure the summary boxes are loaded *)
