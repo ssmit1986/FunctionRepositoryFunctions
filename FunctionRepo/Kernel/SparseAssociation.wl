@@ -340,41 +340,41 @@ cutoffList[list_List, n_Integer, ___] /; Length[list] <= n := list;
 cutoffList[list_List, n_Integer, placeHolder : _ : "\[Ellipsis]"] := Append[Take[list, UpTo[n]], placeHolder];
 
 With[{patt = constructedAssocPattern},
-SparseAssociation /: MakeBoxes[SparseAssociation[assoc : patt], form_] := Module[{
-    sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
-        Catch[ToBoxes[assoc["Array"], form], "boxes"]
-    ],
-    sparseItems
-},
-    sparseItems = Join @@ sparseArrayArg[[{4, 5}]];
-    BoxForm`ArrangeSummaryBox[
-        "SparseAssociation",
-        SparseAssociation[assoc],
-        sparseArrayArg[[3]],
-        Take[sparseItems, 3],
-        Join[
-            Part[sparseItems, {4}],
-            {BoxForm`SummaryItem[{"Keys:", ""}]},
-            KeyValueMap[
-                BoxForm`SummaryItem[
-                    If[ MissingQ[#2],
-                        {"\[Ellipsis]"},
-                        {Row[{"Level ", Row[cutoffList[#2, 4], ","], ": "}], Row[cutoffList[#1, 4], ","]}
-                    ]
-                ]&,
-                Join @@ MapAt[
-                    Replace[Except[<||>] :> <|Rest -> Missing[]|>],
-                    TakeDrop[
-                        PositionIndex[Keys[assoc["Keys"]]],
-                        UpTo[3]
-                    ],
-                    2
-                ]
-            ]
+    SparseAssociation /: MakeBoxes[SparseAssociation[assoc : patt], form_] := Module[{
+        sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
+            Catch[ToBoxes[assoc["Array"], form], "boxes"]
         ],
-        form
+        sparseItems
+    },
+        sparseItems = Join @@ sparseArrayArg[[{4, 5}]];
+        BoxForm`ArrangeSummaryBox[
+            "SparseAssociation",
+            SparseAssociation[assoc],
+            sparseArrayArg[[3]],
+            Take[sparseItems, 3],
+            Join[
+                Part[sparseItems, {4}],
+                {BoxForm`SummaryItem[{"Keys:", ""}]},
+                KeyValueMap[
+                    BoxForm`SummaryItem[
+                        If[ MissingQ[#2],
+                            {"\[Ellipsis]"},
+                            {Row[{"Level ", Row[cutoffList[#2, 4], ","], ": "}], Row[cutoffList[#1, 4], ","]}
+                        ]
+                    ]&,
+                    Join @@ MapAt[
+                        Replace[Except[<||>] :> <|Rest -> Missing[]|>],
+                        TakeDrop[
+                            PositionIndex[Keys[assoc["Keys"]]],
+                            UpTo[3]
+                        ],
+                        2
+                    ]
+                ]
+            ],
+            form
+        ]
     ]
-]
 ];
 
 SparseAssociation[_, __] := (Message[SparseAssociation::construct]; $Failed);
