@@ -12,7 +12,7 @@ SparseAssociation::construct = "Cannot construct SparseAssociation from the give
 SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-preserving maps are currently allowed.";
 
 constructedAssocPattern = _Association?(#["ValidatedQ"]&);
-constructedDataQ = MatchQ[constructedAssocPattern | SparseAssociation[constructedAssocPattern]];
+SparseAssociationQ = MatchQ[SparseAssociation[constructedAssocPattern]];
 
 keySpec = _String;
 
@@ -210,12 +210,12 @@ SparseAssociation[
 ];
 
 (* accessors *)
-SparseAssociation /: Values[SparseAssociation[data_?constructedDataQ]] := data["Array"];
-SparseAssociation /: Keys[SparseAssociation[data_?constructedDataQ]] := Keys @ data["Keys"];
+SparseAssociation /: Values[SparseAssociation[data : constructedAssocPattern]] := data["Array"];
+SparseAssociation /: Keys[SparseAssociation[data : constructedAssocPattern]] := Keys @ data["Keys"];
 
 (* Converting SparseAssociation to Association *)
 SparseAssociation /: Normal[
-    SparseAssociation[data_?constructedDataQ],
+    SparseAssociation[data : constructedAssocPattern],
     Repeated["IncludeDefaultValues" -> True, {0, 1}]
 ] := With[{
     array = Normal @ data["Array"],
@@ -225,7 +225,7 @@ SparseAssociation /: Normal[
 ];
 
 SparseAssociation /: Normal[
-    SparseAssociation[data_?constructedDataQ],
+    SparseAssociation[data : constructedAssocPattern],
     "IncludeDefaultValues" -> False
 ] := With[{
     rules = MapAt[
@@ -248,38 +248,38 @@ SparseAssociation /: Normal[
     ]
 ];
 
-SparseAssociation /: Dataset[spAssoc : SparseAssociation[_?constructedDataQ], args___] := Dataset @ Normal[spAssoc, args];
+SparseAssociation /: Dataset[spAssoc : SparseAssociation[constructedAssocPattern], args___] := Dataset @ Normal[spAssoc, args];
 
 Scan[
     Function[
-        SparseAssociation /: #[SparseAssociation[data_?constructedDataQ]] := # @ data["Array"]
+        SparseAssociation /: #[SparseAssociation[data : constructedAssocPattern]] := # @ data["Array"]
     ],
     {Length, Dimensions, ArrayDepth}
 ];
 
 Scan[
     Function[
-        SparseAssociation /: #[SparseAssociation[data_?constructedDataQ], rest___] := #[data["Array"], rest]
+        SparseAssociation /: #[SparseAssociation[data : constructedAssocPattern], rest___] := #[data["Array"], rest]
     ],
     {MatrixQ, VectorQ, ArrayQ}
 ];
 
-SparseAssociation /: Map[fun_][spAssoc : SparseAssociation[_?constructedDataQ]] := Map[fun, spAssoc];
+SparseAssociation /: Map[fun_][spAssoc : SparseAssociation[constructedAssocPattern]] := Map[fun, spAssoc];
 
-SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[_?constructedDataQ], rest___] := With[{
+SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[constructedAssocPattern], rest___] := With[{
     result = SparseAssociation[
         Map[fun, Values[spAssoc], rest],
         Keys[spAssoc]
     ]
 },
-    result /; constructedDataQ[result]
+    result /; SparseAssociationQ[result]
 ];
-SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[_?constructedDataQ], ___] := (
+SparseAssociation /: Map[fun_, spAssoc : SparseAssociation[constructedAssocPattern], ___] := (
     Message[SparseAssociation::map, fun];
     $Failed
 );
 
-SparseAssociation /: ArrayRules[SparseAssociation[data_?constructedDataQ]] := With[{
+SparseAssociation /: ArrayRules[SparseAssociation[data : constructedAssocPattern]] := With[{
     keysIndices = GeneralUtilities`AssociationInvert /@ data["Keys"]
 },
     Replace[
@@ -293,7 +293,7 @@ partSpec = ({__Integer} | _Integer | All | _Span);
 accesskeySpec = Flatten[keySpec | {keySpec..} | partSpec];
 
 SparseAssociation /: Part[
-    SparseAssociation[data_?constructedDataQ],
+    SparseAssociation[data : constructedAssocPattern],
     keys : (accesskeySpec..)
 ] /; Length[{keys}] <= Length[data["Keys"]] := Module[{
     dataKeys = TakeDrop[data["Keys"], UpTo[Length[{keys}]]],
@@ -327,10 +327,10 @@ SparseAssociation /: Part[
     ]
 ];
 
-SparseAssociation /: Part[SparseAssociation[_?constructedDataQ], other__] := (Message[SparseAssociation::part, {other}]; $Failed);
-SparseAssociation /: Part[SparseAssociation[Except[_?constructedDataQ], ___], __] := (Message[SparseAssociation::badData]; $Failed);
+SparseAssociation /: Part[SparseAssociation[constructedAssocPattern], other__] := (Message[SparseAssociation::part, {other}]; $Failed);
+SparseAssociation /: Part[SparseAssociation[Except[constructedAssocPattern], ___], __] := (Message[SparseAssociation::badData]; $Failed);
 
-SparseAssociation[data_?constructedDataQ][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
+SparseAssociation[data : constructedAssocPattern][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
 
 (* Typesetting *)
 (* Make sure the summary boxes are loaded *)
@@ -339,7 +339,8 @@ ToBoxes[SparseArray[{0, 1}]];
 cutoffList[list_List, n_Integer, ___] /; Length[list] <= n := list;
 cutoffList[list_List, n_Integer, placeHolder : _ : "\[Ellipsis]"] := Append[Take[list, UpTo[n]], placeHolder];
 
-SparseAssociation /: MakeBoxes[SparseAssociation[assoc_?constructedDataQ], form_] := Module[{
+With[{patt = constructedAssocPattern},
+SparseAssociation /: MakeBoxes[SparseAssociation[assoc : patt], form_] := Module[{
     sparseArrayArg = Block[{BoxForm`ArrangeSummaryBox = Throw[{##}, "boxes"]&},
         Catch[ToBoxes[assoc["Array"], form], "boxes"]
     ],
@@ -373,6 +374,7 @@ SparseAssociation /: MakeBoxes[SparseAssociation[assoc_?constructedDataQ], form_
         ],
         form
     ]
+]
 ];
 
 SparseAssociation[_, __] := (Message[SparseAssociation::construct]; $Failed);
