@@ -8,17 +8,20 @@ Begin["`Private`"] (* Begin Private Context *)
 
 importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", IgnoreCase -> True] := importAGSData[Import[file, "Text"]]
 
-importAGSData[importString_String] := Module[
-    {strings, data},
+importAGSData[importString_String] := Module[{
+    strings, data
+},
     strings = Map[
         Function[
-            Map[Function[Join @@ ImportString[#, "CSV"]],
+            Map[
+                Function[Join @@ ImportString[#, "CSV"]],
                 StringTrim @ StringSplit[#, EndOfLine]
             ]
         ],
         StringTrim[
             StringCases[importString,
-                StringExpression[StartOfLine,
+                StringExpression[
+                    StartOfLine,
                     s : StringExpression["\"GROUP\"", Shortest[___]],
                     "\"GROUP\"" | EndOfString
                 ] :> s,
@@ -32,13 +35,14 @@ importAGSData[importString_String] := Module[
                 #[[1]] -> Replace[#[[2 ;;]], "" -> Missing["NoData"], {1}]
             |>
         ],
-        strings, {2}
+        strings,
+        {2}
     ];
     data = Map[
         Function[
             With[{
                 assoc = Replace[
-                    Apply[Join, Cases[#, Except[KeyValuePattern["DATA" -> _]]]],
+                    Join @@ Cases[#, Except[KeyValuePattern["DATA" -> _]]],
                     {el_} :> el,
                     {1}
                 ]
@@ -50,7 +54,7 @@ importAGSData[importString_String] := Module[
                     ],
                     Map[
                         AssociationThread[assoc["HEADING"], #]&,
-                        AssociationTranspose[Cases[#, KeyValuePattern["DATA" -> _]]],
+                        GeneralUtilities`AssociationTranspose[Cases[#, KeyValuePattern["DATA" -> _]]],
                         {2}
                     ]
                 ]
