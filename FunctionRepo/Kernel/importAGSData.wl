@@ -6,8 +6,10 @@ importAGSData::usage = "importAGSData[file] imports data in AGS format and conve
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", IgnoreCase -> True] := Module[
-    {strings = Import[file, "Text"], data},
+importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", IgnoreCase -> True] := importAGSData[Import[file, "Text"]]
+
+importAGSData[importString_String] := Module[
+    {strings, data},
     strings = Map[
         Function[
             Map[Function[Join @@ ImportString[#, "CSV"]],
@@ -15,7 +17,7 @@ importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", Ign
             ]
         ],
         StringTrim[
-            StringCases[strings,
+            StringCases[importString,
                 StringExpression[StartOfLine,
                     s : StringExpression["\"GROUP\"", Shortest[___]],
                     "\"GROUP\"" | EndOfString
@@ -34,14 +36,13 @@ importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", Ign
     ];
     data = Map[
         Function[
-            With[
-                {
-                    assoc = Replace[
-                        Apply[Join, Cases[#, Except[KeyValuePattern["DATA" -> _]]]],
-                        {el_} :> el,
-                        {1}
-                    ]
-                },
+            With[{
+                assoc = Replace[
+                    Apply[Join, Cases[#, Except[KeyValuePattern["DATA" -> _]]]],
+                    {el_} :> el,
+                    {1}
+                ]
+            },
                 Join[assoc,
                     Map[
                         AssociationThread[assoc["HEADING"], #]&,
