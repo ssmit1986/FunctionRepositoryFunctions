@@ -2,80 +2,92 @@
 
 BeginPackage["FunctionRepo`importAGSData`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-importAGSData::usage = "importAGSData[file] imports data in AGS format and converts it to a Wolfram Association.";
+GeneralUtilities`SetUsage[importAGSData, "importAGSData[file$] imports data in AGS format and converts it to a Wolfram Association."];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
 importAGSData[file_?FileExistsQ] /; StringMatchQ[FileExtension[file], "AGS", IgnoreCase -> True] := importAGSData[Import[file, "Text"]]
 
 importAGSData[importString_String] := Module[{
-    strings, data
+    groupStrings, groupBlockData
 },
-    strings = Map[
-        Function[
-            Map[
-                Function[Join @@ ImportString[#, "CSV"]],
-                StringTrim @ StringSplit[#, EndOfLine]
-            ]
-        ],
-        StringTrim[
-            StringCases[importString,
-                StringExpression[
-                    StartOfLine,
-                    s : StringExpression["\"GROUP\"", Shortest[___]],
-                    "\"GROUP\"" | EndOfString
-                ] :> s,
-                Overlaps -> True
-            ]
-        ]
+    groupStrings = extractGroupBlocks[importString];
+    If[ groupStrings === {},
+        Return[$Failed]
     ];
-    data = Map[
-        Function[
-            <|
-                #[[1]] -> Replace[#[[2 ;;]], "" -> Missing["NoData"], {1}]
-            |>
+    
+    groupBlockData = ImportString[#, "CSV"]& /@ groupStrings;
+    
+    Replace[
+        Apply[Join] @ Select[AssociationQ] @ Map[
+            processGroupBlock,
+            groupBlockData
         ],
-        strings,
-        {2}
-    ];
-    data = Map[
-        Function[
-            With[{
-                assoc = Replace[
-                    Join @@ Cases[#, Except[KeyValuePattern["DATA" -> _]]],
-                    {el_} :> el,
-                    {1}
-                ]
-            },
-                Join[assoc,
-                    Map[
-                        AssociationThread[assoc["HEADING"], #]&,
-                        Select[KeyDrop[assoc, "HEADING"], VectorQ]
-                    ],
-                    Map[
-                        AssociationThread[assoc["HEADING"], #]&,
-                        GeneralUtilities`AssociationTranspose[Cases[#, KeyValuePattern["DATA" -> _]]],
-                        {2}
-                    ]
-                ]
-            ]
-        ],
-        data
-    ];
-    AssociationThread[Lookup[data, "GROUP"], KeyDrop[data,"GROUP"]]
+        {
+            <||> -> $Failed,
+            Except[_?AssociationQ] -> $Failed
+        }
+    ]
 ];
 importAGSData[___] := $Failed;
+
+$groupLabel = "\"GROUP\"";
+
+findGroupNames[string_String] := StringCases[
+    string,
+    str : (StartOfLine ~~ $groupLabel ~~ Shortest[___] ~~ EndOfLine) :> 
+        Last[Flatten[ImportString[str, "CSV"]], Missing[]]
+];
+
+extractGroupBlocks[string_String] := StringTrim[
+    StringCases[string,
+        StringExpression[
+            StartOfLine,
+            s : StringExpression[$groupLabel, Shortest[___]],
+            $groupLabel | EndOfString
+        ] :> s,
+        Overlaps -> True
+    ]
+];
+
+processGroupBlock[{{"GROUP", groupName_String}, rest__List}] := Module[{
+    data = Replace[{rest}, "" -> Missing["NoData"], {2}],
+    headers,
+    headingLabel = "HEADING",
+    dataLabel = "DATA",
+    assoc
+},
+    If[ !(MatrixQ[data] && MatchQ[data, {{_String, __}..}]),
+        Return[$Failed]
+    ];
+    
+    headers = FirstCase[data, {headingLabel, s__String} :> {s}];
+    If[ MissingQ[headers], Return[$Failed]];
+    
+    assoc = GroupBy[
+        DeleteCases[data, {headingLabel, __}],
+        First -> Rest,
+        Query[All, AssociationThread[headers, Range @ Length[headers]]]
+    ];
+    <|
+        groupName -> Prepend[
+            MapAt[ (* Only the DATA label can have multiple rows *)
+                First,
+                assoc,
+                {Key[#]}& /@ DeleteCases[Keys[assoc], dataLabel]
+            ],
+            headingLabel -> headers
+        ]
+    |>
+];
+processGroupBlock[_] := $Failed;
 
 ImportExport`RegisterImport["AGS",
     {
         "Elements" :> Function[{"Elements" -> {"Data", "Groups"}}],
         "Groups" :> Function[
             {
-                "Groups" -> StringCases[
-                    Import[#, "Text"],
-                    str : (StartOfLine ~~ "\"GROUP\"" ~~ Shortest[___] ~~ EndOfLine) :> 
-                        Last[Flatten[ImportString[str, "CSV"]], Missing[]]
-                ]
+                "Groups" -> findGroupNames[Import[#, "Text"]]
             }
         ], 
         "Data" :> Function[
