@@ -2,7 +2,9 @@
 
 BeginPackage["FunctionRepo`conditionedMultinormalDistribution`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-conditionedMultinormalDistribution::usage = "conditionedMultinormalDistribution[dist, {i1 -> val1, ...}, {j1, j2, ...}] gives the {j1, j2, ...} marginal of dist when the indices {i1, ...} are conditioned to values {val1, ...}";
+GeneralUtilities`SetUsage[conditionedMultinormalDistribution,
+    "conditionedMultinormalDistribution[dist$, {i$1 -> val$1, $$}, {j$1, j$2, $$}] gives the {j$1, j$2, $$} marginal of dist when the indices {i$1, $$} are conditioned to values {val$1, $$}"
+];
 
 Begin["`Private`"] (* Begin Private Context *)
 
