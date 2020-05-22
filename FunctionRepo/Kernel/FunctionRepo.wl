@@ -35,4 +35,7 @@ Get["FunctionRepo`tukeyMedianPolish`"];
 importAGSData;
 Get["FunctionRepo`importAGSData`"];
 
+multiSet;
+Get["FunctionRepo`multiSet`"];
+
 EndPackage[]
