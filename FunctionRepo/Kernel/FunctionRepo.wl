@@ -35,4 +35,9 @@ Get["FunctionRepo`tukeyMedianPolish`"];
 importAGSData;
 Get["FunctionRepo`importAGSData`"];
 
+multiSet;
+Get["FunctionRepo`multiSet`"];
+
+checkboxLegended;
+Get["FunctionRepo`checkboxLegended`"];
 EndPackage[]
