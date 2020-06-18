@@ -40,4 +40,7 @@ Get["FunctionRepo`multiSet`"];
 
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
+
+expressionToFunction;
+Get["FunctionRepo`expressionToFunction`"];
 EndPackage[]
