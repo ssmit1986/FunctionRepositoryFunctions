@@ -73,18 +73,32 @@ parameterMixtureVectorDistribution /: Graph[parameterMixtureVectorDistribution[p
     Graph[params, edges, rest, VertexLabels -> Automatic]
 ];
 
-parameterMixtureVectorDistribution /: PDF[
-    parameterMixtureVectorDistribution[params_List, dists__Distributed],
-    coords_List
-] /; Length[params] === Length[coords] := Module[{
-    factors = Map[
-        Replace[{
-            #
-        }],
-        {dists}
-    ]
-},
-    Times @@ factors
+MapThread[
+    Function[{fun, accessor, aggregator},
+        parameterMixtureVectorDistribution /: fun[
+            parameterMixtureVectorDistribution[params_List, dists__Distributed],
+            coords_List
+        ] := Module[{
+            factors = Map[
+                With[{
+                    pos = Flatten @ Position[params, Alternatives @@ Flatten[{#[[1]]}], {1}, Heads -> False]
+                },
+                    fun[
+                        #[[2]],
+                        accessor[coords, If[ListQ[#[[1]]], pos, First[pos]]]
+                    ]
+                ]&,
+                {dists}
+            ]
+        },
+            aggregator @ factors
+        ]
+    ],
+    {
+        {PDF,           Likelihood,     LogLikelihood},
+        {#1[[#2]]&,     #1[[All, #2]]&, #1[[All, #2]]&},
+        {Apply[Times],  Apply[Times],   Total}
+    }
 ];
 
 parameterMixtureVectorDistribution[Except[_List], ___] := $Failed;

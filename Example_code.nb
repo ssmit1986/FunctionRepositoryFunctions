@@ -10757,7 +10757,7 @@ Cell["parameterMixtureVectorDistribution", \
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
  CellLabel->
-  "In[147]:=",ExpressionUUID->"22cd74e8-ea41-416f-93b7-796c9c571e4e"],
+  "In[184]:=",ExpressionUUID->"22cd74e8-ea41-416f-93b7-796c9c571e4e"],
 
 Cell[CellGroupData[{
 
@@ -10846,6 +10846,12 @@ Cell[BoxData[{
    RowBox[{"{", "k", "}"}], ",", 
    RowBox[{"k", "\[Distributed]", 
     RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"k", ",", "p"}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "k", "}"}], ",", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
      RowBox[{"n", ",", "p"}], "]"}]}], ",", " ", 
    RowBox[{"p", " ", "\[Distributed]", " ", 
     RowBox[{"BetaDistribution", "[", 
@@ -10900,22 +10906,37 @@ Cell[BoxData[{
     RowBox[{"GeometricDistribution", "[", 
      RowBox[{"p", "/", "k"}], "]"}]}]}], "]"}]}], "Input",
  CellLabel->
-  "In[164]:=",ExpressionUUID->"37e5d386-f5c7-4c7b-97ca-cc148d2a00d3"],
+  "In[170]:=",ExpressionUUID->"37e5d386-f5c7-4c7b-97ca-cc148d2a00d3"],
 
 Cell[BoxData[
  TemplateBox[{
   "parameterMixtureVectorDistribution", "depend", 
    "\"Dependency of distributions is circular or not ordered correctly.\"", 2,
-    164, 48, 16873449550428725567, "Local", 
+    170, 49, 16873449550428725567, "Local", 
    "FunctionRepo`parameterMixtureVectorDistribution"},
   "MessageTemplate2"]], "Message", "MSG",
  CellLabel->
   "During evaluation of \
-In[164]:=",ExpressionUUID->"8cf38e41-f0c6-42a5-9f32-94ffaabdc442"],
+In[170]:=",ExpressionUUID->"bc16711f-03ce-489c-ba50-4988491e4b5b"],
 
 Cell[BoxData["$Failed"], "Output",
  CellLabel->
-  "Out[164]=",ExpressionUUID->"b1e76458-7c7c-4d24-9b57-76e6ed4536fb"],
+  "Out[170]=",ExpressionUUID->"4edf419c-a649-4831-b080-f4d4c4826f93"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "parameterMixtureVectorDistribution", "depend", 
+   "\"Dependency of distributions is circular or not ordered correctly.\"", 2,
+    171, 50, 16873449550428725567, "Local", 
+   "FunctionRepo`parameterMixtureVectorDistribution"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[170]:=",ExpressionUUID->"4c3aff14-7b8f-4c46-b6c7-dcc7deb71b05"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellLabel->
+  "Out[171]=",ExpressionUUID->"7eb8f23d-2861-48ac-a031-977aeb8d4c49"],
 
 Cell[BoxData[
  RowBox[{"parameterMixtureVectorDistribution", "[", 
@@ -10929,7 +10950,7 @@ Cell[BoxData[
     RowBox[{"BinomialDistribution", "[", 
      RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
  CellLabel->
-  "Out[165]=",ExpressionUUID->"578284fc-bca0-4fd0-a03b-036ede296db7"],
+  "Out[172]=",ExpressionUUID->"72a6fd60-436c-4289-8a49-7c409c6986ee"],
 
 Cell[BoxData[
  RowBox[{"parameterMixtureVectorDistribution", "[", 
@@ -10943,7 +10964,7 @@ Cell[BoxData[
     RowBox[{"BinomialDistribution", "[", 
      RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
  CellLabel->
-  "Out[166]=",ExpressionUUID->"e77f3e1c-78ff-41f2-bc7a-4c5e0e87af0d"],
+  "Out[173]=",ExpressionUUID->"8a0c12eb-25cf-49c4-af9b-62e6667c55cf"],
 
 Cell[BoxData[
  RowBox[{"parameterMixtureVectorDistribution", "[", 
@@ -10957,7 +10978,7 @@ Cell[BoxData[
     RowBox[{"BinomialDistribution", "[", 
      RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
  CellLabel->
-  "Out[167]=",ExpressionUUID->"d8ec62d8-596c-487e-9baf-3f699544c7e6"],
+  "Out[174]=",ExpressionUUID->"26736b83-c5e9-4714-89f0-38cb395c09e4"],
 
 Cell[BoxData[
  RowBox[{"parameterMixtureVectorDistribution", "[", 
@@ -10971,7 +10992,7 @@ Cell[BoxData[
     RowBox[{"BinomialDistribution", "[", 
      RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
  CellLabel->
-  "Out[168]=",ExpressionUUID->"3f16efdc-70bf-47e6-93d6-7c9690ba0046"],
+  "Out[175]=",ExpressionUUID->"12759ed6-7652-48da-885f-859a93f9cef0"],
 
 Cell[BoxData[
  RowBox[{"parameterMixtureVectorDistribution", "[", 
@@ -10987,7 +11008,291 @@ Cell[BoxData[
    RowBox[{"l", "\[Distributed]", 
     RowBox[{"GeometricDistribution", "[", 
      FractionBox["p", "k"], "]"}]}]}], "]"}]], "Output",
- CellLabel->"Out[169]=",ExpressionUUID->"efcbfbb1-6982-4a17-bf62-15fd3d7f944a"]
+ CellLabel->"Out[176]=",ExpressionUUID->"f84f28dc-22e3-4a03-858b-f286a9c1a0fd"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->
+  "In[195]:=",ExpressionUUID->"75a35202-1d48-443c-95b5-d908ca04bbcb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PDF", "[", 
+  RowBox[{
+   RowBox[{"parameterMixtureVectorDistribution", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k", ",", "p"}], "}"}], ",", " ", 
+     RowBox[{"p", " ", "\[Distributed]", " ", 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+     RowBox[{"k", "\[Distributed]", 
+      RowBox[{"BinomialDistribution", "[", 
+       RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"k", ",", "p"}], "}"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[196]:=",ExpressionUUID->"aeac9368-b8df-47a4-8a4e-53cf07214dcf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {
+          FractionBox[
+           RowBox[{
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"1", "-", "p"}], ")"}], 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "\[Beta]"}]], " ", 
+            SuperscriptBox["p", 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "\[Alpha]"}]]}], 
+           RowBox[{"Beta", "[", 
+            RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]], 
+          RowBox[{"0", "<", "p", "<", "1"}]},
+         {"0", 
+          TagBox["True",
+           "PiecewiseDefault",
+           AutoDelete->True]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False,
+    StripWrapperBoxes->True], ")"}], " ", 
+  RowBox[{"(", 
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"1", "-", "p"}], ")"}], 
+            RowBox[{
+             RowBox[{"-", "k"}], "+", "n"}]], " ", 
+           SuperscriptBox["p", "k"], " ", 
+           RowBox[{"Binomial", "[", 
+            RowBox[{"n", ",", "k"}], "]"}]}], 
+          RowBox[{"0", "\[LessEqual]", "k", "\[LessEqual]", "n"}]},
+         {"0", 
+          TagBox["True",
+           "PiecewiseDefault",
+           AutoDelete->True]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False,
+    StripWrapperBoxes->True], ")"}]}]], "Output",
+ CellLabel->"Out[196]=",ExpressionUUID->"902f660f-0978-4446-9d16-bb2806f46665"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LogLikelihood", "[", 
+  RowBox[{
+   RowBox[{"parameterMixtureVectorDistribution", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k", ",", "p"}], "}"}], ",", " ", 
+     RowBox[{"p", " ", "\[Distributed]", " ", 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+     RowBox[{"k", "\[Distributed]", 
+      RowBox[{"BinomialDistribution", "[", 
+       RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k", ",", "p"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", 
+       RowBox[{"1", "/", "2"}]}], "}"}]}], "}"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[202]:=",ExpressionUUID->"574d73e5-f0f3-40c6-b93d-b2464feffb41"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "\[Beta]"}], ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"Log", "[", "2", "]"}]}], "+", 
+              RowBox[{"Log", "[", 
+               RowBox[{"1", "-", "p"}], "]"}]}], ")"}]}], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "\[Alpha]"}], ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"Log", "[", "2", "]"}]}], "+", 
+              RowBox[{"Log", "[", "p", "]"}]}], ")"}]}], "-", 
+           RowBox[{"2", " ", 
+            RowBox[{"Log", "[", 
+             RowBox[{"Beta", "[", 
+              RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}], "]"}]}]}], 
+          RowBox[{"0", "<", "p", "<", "1"}]},
+         {
+          RowBox[{"-", "\[Infinity]"}], 
+          TagBox["True",
+           "PiecewiseDefault",
+           AutoDelete->True]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False,
+    StripWrapperBoxes->True], ")"}], "+", 
+  RowBox[{"(", 
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "3"}], "-", "k", "+", 
+              RowBox[{"2", " ", "n"}]}], ")"}], " ", 
+            RowBox[{"Log", "[", 
+             RowBox[{"1", "-", "p"}], "]"}]}], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"3", "+", "k"}], ")"}], " ", 
+            RowBox[{"Log", "[", "p", "]"}]}], "+", 
+           RowBox[{"Log", "[", 
+            RowBox[{
+             FractionBox["1", "6"], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "2"}], "+", "n"}], ")"}], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "+", "n"}], ")"}], " ", "n", " ", 
+             RowBox[{"Binomial", "[", 
+              RowBox[{"n", ",", "k"}], "]"}]}], "]"}]}], 
+          RowBox[{
+           RowBox[{"3", "\[LessEqual]", "n"}], "&&", 
+           RowBox[{"0", "\[LessEqual]", "k", "\[LessEqual]", "n"}]}]},
+         {
+          RowBox[{"-", "\[Infinity]"}], 
+          TagBox["True",
+           "PiecewiseDefault",
+           AutoDelete->True]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False,
+    StripWrapperBoxes->True], ")"}]}]], "Output",
+ CellLabel->"Out[202]=",ExpressionUUID->"8d00156f-0038-4ed9-9044-4093a1f500ac"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -11004,21 +11309,21 @@ Cell[BoxData[
     RowBox[{"BinomialDistribution", "[", 
      RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Input",
  CellLabel->
-  "In[162]:=",ExpressionUUID->"f376b63f-fe2f-4eb7-be5d-ebeeef50d839"],
+  "In[203]:=",ExpressionUUID->"f376b63f-fe2f-4eb7-be5d-ebeeef50d839"],
 
 Cell[BoxData[
  TemplateBox[{
   "parameterMixtureVectorDistribution", "nonDef", 
    "\"Parameters \\!\\(\\*RowBox[{\\\"{\\\", \\\"n\\\", \\\"}\\\"}]\\) remain \
-undefined.\"", 2, 162, 47, 16873449550428725567, "Local", 
+undefined.\"", 2, 203, 53, 16873449550428725567, "Local", 
    "FunctionRepo`parameterMixtureVectorDistribution"},
   "MessageTemplate2"]], "Message", "MSG",
  CellLabel->
   "During evaluation of \
-In[162]:=",ExpressionUUID->"009c3f58-dbb2-4afa-8183-e3327abd8b3d"],
+In[203]:=",ExpressionUUID->"206e54a4-7c08-4bea-b829-8757f07b7133"],
 
 Cell[BoxData["$Failed"], "Output",
- CellLabel->"Out[162]=",ExpressionUUID->"c0703171-4534-4ce2-952f-19bec146aab9"]
+ CellLabel->"Out[203]=",ExpressionUUID->"9b6ce857-6192-4fb0-b329-b52b9aebdad9"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -11050,10 +11355,9 @@ Cell[BoxData[{
       RowBox[{"n", ",", "p"}], "]"}]}], ",", " ", 
     RowBox[{"l", "\[Distributed]", 
      RowBox[{"GeometricDistribution", "[", 
-      RowBox[{"p", "/", "k"}], "]"}]}]}], 
-   "]"}]}], "\[IndentingNewLine]"}], "Input",
+      RowBox[{"p", "/", "k"}], "]"}]}]}], "]"}]}]}], "Input",
  CellLabel->
-  "In[160]:=",ExpressionUUID->"09ea3563-f2e2-49b2-a901-9975525e26ed"],
+  "In[204]:=",ExpressionUUID->"09ea3563-f2e2-49b2-a901-9975525e26ed"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -11079,7 +11383,7 @@ Cell[BoxData[
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
  CellLabel->
-  "Out[160]=",ExpressionUUID->"c61db397-5649-4ea2-8af8-994654a6cb61"],
+  "Out[204]=",ExpressionUUID->"b9e30270-3f73-4a7d-a373-729b05b7a7b1"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -11124,7 +11428,7 @@ OF+yYpepvc4lOH9F+ptHX8+fhvOn2IEceBjOf/Dy2p8NHjvh/H9aZzr5WFfA
    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
- CellLabel->"Out[161]=",ExpressionUUID->"93b5c6b4-b160-406f-b17f-3f5664011d44"]
+ CellLabel->"Out[205]=",ExpressionUUID->"f0734fd8-bad7-4fc9-8e02-7faf9a5921b7"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -11157,7 +11461,7 @@ Cell[BoxData[
         RowBox[{"\[Sigma]1", ",", "\[Sigma]2"}], "}"}], ",", "\[Rho]"}], 
       "]"}]}]}], "]"}]}]], "Input",
  CellLabel->
-  "In[163]:=",ExpressionUUID->"3a0181b0-1786-4c30-a883-3044a4d0c921"],
+  "In[206]:=",ExpressionUUID->"3a0181b0-1786-4c30-a883-3044a4d0c921"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -11202,7 +11506,7 @@ $CellContext`\[Sigma]2, $CellContext`\[Rho]}, {{{3, 1}, {3, 2}, {4, 1}, {4,
    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
- CellLabel->"Out[163]=",ExpressionUUID->"dcb8aba0-8c00-464e-abaa-8f20d6a69819"]
+ CellLabel->"Out[206]=",ExpressionUUID->"83edcf79-cc31-46a8-9552-e5af9b246ff4"]
 }, Open  ]]
 }, Open  ]]
 },
