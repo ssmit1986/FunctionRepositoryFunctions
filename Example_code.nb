@@ -8836,7 +8836,7 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"expressionToFunction", "::", "usage"}]], "Input",
- CellLabel->"In[13]:=",ExpressionUUID->"44f058fe-a8b7-4ad4-85ba-d2f2d8327336"],
+ CellLabel->"In[7]:=",ExpressionUUID->"44f058fe-a8b7-4ad4-85ba-d2f2d8327336"],
 
 Cell[BoxData["\<\"\\!\\(\\*RowBox[{\\\"expressionToFunction\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  \
@@ -8846,7 +8846,7 @@ StyleBox[SubscriptBox[\\\"var\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\
 \"]}], \\\"]\\\"}]\\) returns a function that takes \
 \\!\\(\\*StyleBox[SubscriptBox[\\\"var\\\", StyleBox[\\\"i\\\", \\\"TI\\\"]], \
 \\\"TI\\\"]\\) as arguments\"\>"], "Output",
- CellLabel->"Out[13]=",ExpressionUUID->"401cc7d9-2f2c-48f1-8372-731feb3b03b8"]
+ CellLabel->"Out[7]=",ExpressionUUID->"a32fd485-ab87-41d3-925b-701b8a6c494f"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -10747,7 +10747,464 @@ sZIbeSTu///AP9pFjP8=
   Ticks->{Automatic, Automatic}]], "Output",
  CellLabel->"Out[36]=",ExpressionUUID->"7c301a8b-b6d7-47ca-b744-eb385f2cdac6"]
 }, Open  ]]
-}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["parameterMixtureVectorDistribution", \
+"Subsection",ExpressionUUID->"f93f82ec-dfa4-418c-b6ce-a6d804bc2cd7"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->
+  "In[147]:=",ExpressionUUID->"22cd74e8-ea41-416f-93b7-796c9c571e4e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "::", "usage"}]], "Input",
+ CellLabel->
+  "In[126]:=",ExpressionUUID->"ed4f465a-2a3e-4879-a611-628c68f7d3e3"],
+
+Cell[BoxData["\<\"\\!\\(\\*RowBox[{\\\"parameterMixtureVectorDistribution\\\",\
+ \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"var\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"var\\\", \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\",\\\",  \
+RowBox[{\\\"Distributed\\\", \\\"[\\\", RowBox[{StyleBox[SubscriptBox[\\\"var\
+\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  \
+StyleBox[SubscriptBox[\\\"dist\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"]}], \\\"]\\\"}], \\\",\\\",  RowBox[{\\\"Distributed\\\", \
+\\\"[\\\", RowBox[{StyleBox[SubscriptBox[\\\"var\\\", StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"dist\\\", \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"]}], \\\"]\\\"}], \\\",\\\",  \
+StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"]\\\"}]\\) represents a \
+vector distribution where each \\!\\(\\*StyleBox[SubscriptBox[\\\"dist\\\", \
+StyleBox[\\\"i\\\", \\\"TI\\\"]], \\\"TI\\\"]\\) can dependend on \
+\\!\\(\\*StyleBox[SubscriptBox[\\\"var\\\", StyleBox[\\\"j\\\", \\\"TI\\\"]], \
+\\\"TI\\\"]\\) for all \\!\\(\\*StyleBox[\\\"j\\\", \\\"TI\\\"]\\) < \
+\\!\\(\\*StyleBox[\\\"i\\\", \\\"TI\\\"]\\)\"\>"], "Output",
+ CellLabel->"Out[126]=",ExpressionUUID->"ac54322c-fc17-45b6-8702-9461679cc39f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"parameterMixtureVectorDistribution", "[", "x", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{"x", ",", " ", 
+   RowBox[{"x", "\[Distributed]", 
+    RowBox[{"NormalDistribution", "[", "]"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"x", "\[Distributed]", 
+    RowBox[{"NormalDistribution", "[", "]"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{"x", "\[Distributed]", 
+   RowBox[{"NormalDistribution", "[", "]"}]}], "]"}]}], "Input",
+ CellLabel->
+  "In[134]:=",ExpressionUUID->"d70c8ac9-7d38-44f6-b61c-ad21c59a510c"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellLabel->
+  "Out[134]=",ExpressionUUID->"4e1b2cea-2fad-411e-a45a-2027950d3851"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellLabel->
+  "Out[135]=",ExpressionUUID->"58f25b47-3fc0-4dbf-b982-8a5a2576a4a9"],
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "x", "}"}], ",", 
+   RowBox[{"x", "\[Distributed]", 
+    RowBox[{"NormalDistribution", "[", 
+     RowBox[{"0", ",", "1"}], "]"}]}]}], "]"}]], "Output",
+ CellLabel->
+  "Out[136]=",ExpressionUUID->"9ba2acd9-670e-4ea7-bdd5-b467d41851d7"],
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "x", "}"}], ",", 
+   RowBox[{"x", "\[Distributed]", 
+    RowBox[{"NormalDistribution", "[", 
+     RowBox[{"0", ",", "1"}], "]"}]}]}], "]"}]], "Output",
+ CellLabel->"Out[137]=",ExpressionUUID->"ff114490-6a53-474c-8cd0-14feb490bf9a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "k", "}"}], ",", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}], ",", " ", 
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", " ", 
+  RowBox[{
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "k", "}"}], ",", " ", 
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "p", "}"}], ",", " ", 
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"p", ",", " ", "k"}], "}"}], ",", " ", 
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", "k", "}"}], ",", " ", 
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}], ",", " ", 
+   RowBox[{"l", "\[Distributed]", 
+    RowBox[{"GeometricDistribution", "[", 
+     RowBox[{"p", "/", "k"}], "]"}]}]}], "]"}]}], "Input",
+ CellLabel->
+  "In[164]:=",ExpressionUUID->"37e5d386-f5c7-4c7b-97ca-cc148d2a00d3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "parameterMixtureVectorDistribution", "depend", 
+   "\"Dependency of distributions is circular or not ordered correctly.\"", 2,
+    164, 48, 16873449550428725567, "Local", 
+   "FunctionRepo`parameterMixtureVectorDistribution"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[164]:=",ExpressionUUID->"8cf38e41-f0c6-42a5-9f32-94ffaabdc442"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellLabel->
+  "Out[164]=",ExpressionUUID->"b1e76458-7c7c-4d24-9b57-76e6ed4536fb"],
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"p", ",", "k"}], "}"}], ",", 
+   RowBox[{"p", "\[Distributed]", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
+ CellLabel->
+  "Out[165]=",ExpressionUUID->"578284fc-bca0-4fd0-a03b-036ede296db7"],
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"k", ",", "p"}], "}"}], ",", 
+   RowBox[{"p", "\[Distributed]", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
+ CellLabel->
+  "Out[166]=",ExpressionUUID->"e77f3e1c-78ff-41f2-bc7a-4c5e0e87af0d"],
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"p", ",", "k"}], "}"}], ",", 
+   RowBox[{"p", "\[Distributed]", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
+ CellLabel->
+  "Out[167]=",ExpressionUUID->"d8ec62d8-596c-487e-9baf-3f699544c7e6"],
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"p", ",", "k"}], "}"}], ",", 
+   RowBox[{"p", "\[Distributed]", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Output",
+ CellLabel->
+  "Out[168]=",ExpressionUUID->"3f16efdc-70bf-47e6-93d6-7c9690ba0046"],
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"k", ",", "p", ",", "l"}], "}"}], ",", 
+   RowBox[{"p", "\[Distributed]", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}], ",", 
+   RowBox[{"l", "\[Distributed]", 
+    RowBox[{"GeometricDistribution", "[", 
+     FractionBox["p", "k"], "]"}]}]}], "]"}]], "Output",
+ CellLabel->"Out[169]=",ExpressionUUID->"efcbfbb1-6982-4a17-bf62-15fd3d7f944a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"parameterMixtureVectorDistribution", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"k", ",", "n"}], "}"}], ",", " ", 
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]], "Input",
+ CellLabel->
+  "In[162]:=",ExpressionUUID->"f376b63f-fe2f-4eb7-be5d-ebeeef50d839"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "parameterMixtureVectorDistribution", "nonDef", 
+   "\"Parameters \\!\\(\\*RowBox[{\\\"{\\\", \\\"n\\\", \\\"}\\\"}]\\) remain \
+undefined.\"", 2, 162, 47, 16873449550428725567, "Local", 
+   "FunctionRepo`parameterMixtureVectorDistribution"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[162]:=",ExpressionUUID->"009c3f58-dbb2-4afa-8183-e3327abd8b3d"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellLabel->"Out[162]=",ExpressionUUID->"c0703171-4534-4ce2-952f-19bec146aab9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Graph", "@", 
+  RowBox[{"parameterMixtureVectorDistribution", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"p", ",", " ", "k"}], "}"}], ",", " ", 
+    RowBox[{"p", " ", "\[Distributed]", " ", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+    RowBox[{"k", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Graph", "@", 
+  RowBox[{"parameterMixtureVectorDistribution", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"p", ",", "k", ",", "l", ",", "n"}], "}"}], ",", 
+    RowBox[{"n", "\[Distributed]", 
+     RowBox[{"NormalDistribution", "[", "]"}]}], ",", " ", 
+    RowBox[{"p", " ", "\[Distributed]", " ", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+    RowBox[{"k", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"n", ",", "p"}], "]"}]}], ",", " ", 
+    RowBox[{"l", "\[Distributed]", 
+     RowBox[{"GeometricDistribution", "[", 
+      RowBox[{"p", "/", "k"}], "]"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]"}], "Input",
+ CellLabel->
+  "In[160]:=",ExpressionUUID->"09ea3563-f2e2-49b2-a901-9975525e26ed"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{$CellContext`p, $CellContext`k}, {{{1, 2}}, Null}, {
+      VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[{{1., 0.}, {0., 1.2246467991473532`*^-16}}, 0.01273]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{1., 0.}, 0.01273], 
+         InsetBox["p", Offset[{2, 2}, {1.01273, 0.01273}], ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0., 1.2246467991473532*^-16}, 0.01273], 
+         InsetBox["k", Offset[{2, 2}, {0.01273, 0.012730000000000123}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->
+  "Out[160]=",ExpressionUUID->"c61db397-5649-4ea2-8af8-994654a6cb61"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{$CellContext`p, $CellContext`k, $CellContext`l, $CellContext`n}, \
+{{{4, 2}, {1, 2}, {2, 3}, {1, 3}}, Null}, {VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[{{0., 2.}, {-1., 1.}}, 0.02261146496815286], 
+        ArrowBox[BezierCurveBox[CompressedData["
+1:eJxTTMoPSmViYGCQAWIQjQYcYIzl8zZ2X7f/bw/jJ000+lCS/Q/O17vRpHuj
+6S+cz1O8yJmx7Q+c/ysRpOE3gr/EH4QQ6m3uzpIX+wnnG6pbiSSc+A7np4HB
+Nzh/MVj7Fzj/sUUfEH2G85WVQOATnJ/IvS2Be9sHON/+5WS7l5Pfwfl7doPA
+azjfEmTc4xdwPkh3AvczON8YDB7D+eDgyX8A55/j757SuPw2nC+ec1As5+A1
+OF+yYpepvc4lOH9F+ptHX8+fhvOn2IEceBjOf/Dy2p8NHjvh/H9aZzr5WFfA
++TAAAGdHa/U=
+         "]], 0.02261146496815286], 
+        ArrowBox[{{-1., 1.}, {0., 0.}}, 0.02261146496815286], 
+        ArrowBox[{{-1., 2.}, {-1., 1.}}, 0.02261146496815286]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{0., 2.}, 0.02261146496815286], 
+         InsetBox["p", 
+          Offset[{2, 2}, {0.02261146496815286, 2.022611464968153}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{-1., 1.}, 0.02261146496815286], 
+         InsetBox["k", 
+          Offset[{2, 2}, {-0.9773885350318472, 1.0226114649681528}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{0., 0.}, 0.02261146496815286], 
+         InsetBox["l", 
+          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{-1., 2.}, 0.02261146496815286], 
+         InsetBox["n", 
+          Offset[{2, 2}, {-0.9773885350318472, 2.022611464968153}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->"Out[161]=",ExpressionUUID->"93b5c6b4-b160-406f-b17f-3f5664011d44"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graph", "@", 
+  RowBox[{"parameterMixtureVectorDistribution", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "a", ",", "b", ",", "\[Sigma]1", ",", "\[Sigma]2", ",", " ", "\[Rho]"}], 
+     "}"}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Sigma]1", ",", "\[Sigma]2"}], "}"}], "\[Distributed]", 
+     RowBox[{"MultinormalDistribution", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"10", ",", "10"}], "}"}], ",", 
+       RowBox[{"IdentityMatrix", "[", "2", "]"}]}], "]"}]}], ",", 
+    RowBox[{"\[Rho]", "\[Distributed]", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"1", ",", "2"}], "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
+     RowBox[{"BinormalDistribution", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\[Sigma]1", ",", "\[Sigma]2"}], "}"}], ",", "\[Rho]"}], 
+      "]"}]}]}], "]"}]}]], "Input",
+ CellLabel->
+  "In[163]:=",ExpressionUUID->"3a0181b0-1786-4c30-a883-3044a4d0c921"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{$CellContext`a, $CellContext`b, $CellContext`\[Sigma]1, \
+$CellContext`\[Sigma]2, $CellContext`\[Rho]}, {{{3, 1}, {3, 2}, {4, 1}, {4, 
+       2}, {5, 1}, {5, 2}}, Null}, {VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[{{-1., 1.}, {0., 0.}}, 0.02261146496815286], 
+        ArrowBox[{{-1., 1.}, {1., 0.}}, 0.02261146496815286], 
+        ArrowBox[{{0., 1.}, {0., 0.}}, 0.02261146496815286], 
+        ArrowBox[{{0., 1.}, {1., 0.}}, 0.02261146496815286], 
+        ArrowBox[{{1., 1.}, {0., 0.}}, 0.02261146496815286], 
+        ArrowBox[{{1., 1.}, {1., 0.}}, 0.02261146496815286]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{0., 0.}, 0.02261146496815286], 
+         InsetBox["a", 
+          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
+         InsetBox["b", 
+          Offset[{2, 2}, {1.0226114649681528, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{-1., 1.}, 0.02261146496815286], 
+         InsetBox["\[Sigma]1", 
+          Offset[{2, 2}, {-0.9773885350318472, 1.0226114649681528}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{0., 1.}, 0.02261146496815286], 
+         InsetBox["\[Sigma]2", 
+          Offset[{2, 2}, {0.02261146496815286, 1.0226114649681528}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{1., 1.}, 0.02261146496815286], 
+         InsetBox["\[Rho]", 
+          Offset[{2, 2}, {1.0226114649681528, 1.0226114649681528}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->"Out[163]=",ExpressionUUID->"dcb8aba0-8c00-464e-abaa-8f20d6a69819"]
+}, Open  ]]
+}, Open  ]]
 },
 WindowSize->{1810, 888},
 WindowMargins->{{Automatic, 44}, {31, Automatic}},

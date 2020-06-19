@@ -43,4 +43,8 @@ Get["FunctionRepo`checkboxLegended`"];
 
 expressionToFunction;
 Get["FunctionRepo`expressionToFunction`"];
+
+parameterMixtureVectorDistribution;
+Get["FunctionRepo`parameterMixtureVectorDistribution`"];
+
 EndPackage[]
