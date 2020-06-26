@@ -81,6 +81,42 @@ MapThread[
     }
 ];
 
+parameterMixtureVectorDistribution /: RandomVariate[
+    parameterMixtureVectorDistribution[dists__Distributed],
+    opts : OptionsPattern[]
+] := Catch[
+    Module[{
+    },
+        Fold[
+            Function[
+                Replace[
+                    {#2[[1]], RandomVariate[#2[[2]] /. #1, opts]},
+                    {
+                        {var : Except[_List], num : Except[_RandomVariate]} :> Append[#1, var -> num],
+                        {var_List, num_List} /; Length[var] === Length[num] :> Append[#1, AssociationThread[var, num]],
+                        _ :> Throw[$Failed, rvNoNum]
+                    }
+                ]
+            ],
+            <||>,
+            {dists}
+        ]
+    ],
+    rvNoNum
+];
+
+parameterMixtureVectorDistribution /: RandomVariate[
+    pdist_parameterMixtureVectorDistribution,
+    n_Integer,
+    opts : OptionsPattern[]
+] := Table[RandomVariate[pdist, opts], n];
+
+parameterMixtureVectorDistribution /: RandomVariate[
+    pdist_parameterMixtureVectorDistribution,
+    spec : {__Integer},
+    opts : OptionsPattern[]
+] := Table[RandomVariate[pdist, opts], Evaluate[Sequence @@ Map[List, spec]]];
+
 parameterMixtureVectorDistribution[dists : Distributed[_, _]..] /; !dependencyOrderedQ[dists] := $Failed;
 parameterMixtureVectorDistribution[___, Except[Distributed[_, _]], ___] := $Failed;
 
