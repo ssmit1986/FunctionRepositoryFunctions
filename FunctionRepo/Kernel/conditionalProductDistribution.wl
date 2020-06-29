@@ -1,8 +1,8 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`parameterMixtureVectorDistribution`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`conditionalProductDistribution`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[parameterMixtureVectorDistribution, "parameterMixtureVectorDistribution[Distributed[var$1, dist$1], Distributed[var$2, dist$2], $$] represents a vector distribution where each dist$i can dependend on var$j for all j$ < i$"];
+GeneralUtilities`SetUsage[conditionalProductDistribution, "conditionalProductDistribution[Distributed[var$1, dist$1], Distributed[var$2, dist$2], $$] represents a vector distribution where each dist$i can dependend on var$j for all j$ < i$"];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -15,7 +15,7 @@ dependencyOrderedQ[dists : Distributed[_, _]..] := With[{
     Which[
         !DuplicateFreeQ[vars],
             Message[
-                parameterMixtureVectorDistribution::duplicates,
+                conditionalProductDistribution::duplicates,
                 Keys @ Select[Counts[vars], GreaterThan[1]]
             ];
             False,
@@ -28,17 +28,17 @@ dependencyOrderedQ[dists : Distributed[_, _]..] := With[{
                 Range[1, ndists]
             ]
         ],
-            Message[parameterMixtureVectorDistribution::depend];
+            Message[conditionalProductDistribution::depend];
             False,
         True, True
     ]
 ];
 dependencyOrderedQ[___] := False;
 
-parameterMixtureVectorDistribution::depend = "Dependency of distributions is circular or not ordered correctly.";
-parameterMixtureVectorDistribution::duplicates = "Duplicate variables `1` found.";
+conditionalProductDistribution::depend = "Dependency of distributions is circular or not ordered correctly.";
+conditionalProductDistribution::duplicates = "Duplicate variables `1` found.";
 
-parameterMixtureVectorDistribution /: Graph[parameterMixtureVectorDistribution[dists__Distributed], rest___] := Module[{
+conditionalProductDistribution /: Graph[conditionalProductDistribution[dists__Distributed], rest___] := Module[{
     vars = randomVariables[dists],
     edges
 },
@@ -55,8 +55,8 @@ parameterMixtureVectorDistribution /: Graph[parameterMixtureVectorDistribution[d
 
 MapThread[
     Function[{fun, accessor, aggregator},
-        parameterMixtureVectorDistribution /: fun[
-            parameterMixtureVectorDistribution[dists__Distributed],
+        conditionalProductDistribution /: fun[
+            conditionalProductDistribution[dists__Distributed],
             coords_List
         ] := With[{
             vars = randomVariables[dists]
@@ -81,8 +81,8 @@ MapThread[
     }
 ];
 
-parameterMixtureVectorDistribution /: RandomVariate[
-    parameterMixtureVectorDistribution[dists__Distributed],
+conditionalProductDistribution /: RandomVariate[
+    conditionalProductDistribution[dists__Distributed],
     opts : OptionsPattern[]
 ] := Catch[
     Module[{
@@ -105,20 +105,20 @@ parameterMixtureVectorDistribution /: RandomVariate[
     rvNoNum
 ];
 
-parameterMixtureVectorDistribution /: RandomVariate[
-    pdist_parameterMixtureVectorDistribution,
+conditionalProductDistribution /: RandomVariate[
+    pdist_conditionalProductDistribution,
     n_Integer,
     opts : OptionsPattern[]
 ] := Table[RandomVariate[pdist, opts], n];
 
-parameterMixtureVectorDistribution /: RandomVariate[
-    pdist_parameterMixtureVectorDistribution,
+conditionalProductDistribution /: RandomVariate[
+    pdist_conditionalProductDistribution,
     spec : {__Integer},
     opts : OptionsPattern[]
 ] := Table[RandomVariate[pdist, opts], Evaluate[Sequence @@ Map[List, spec]]];
 
-parameterMixtureVectorDistribution[dists : Distributed[_, _]..] /; !dependencyOrderedQ[dists] := $Failed;
-parameterMixtureVectorDistribution[___, Except[Distributed[_, _]], ___] := $Failed;
+conditionalProductDistribution[dists : Distributed[_, _]..] /; !dependencyOrderedQ[dists] := $Failed;
+conditionalProductDistribution[___, Except[Distributed[_, _]], ___] := $Failed;
 
 End[] (* End Private Context *)
 
