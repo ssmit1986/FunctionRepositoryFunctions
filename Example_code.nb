@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[37]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -12034,8 +12034,305 @@ Cell[BoxData[
 }, Open  ]],
 
 Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"normalInverseWishartDistribution", "[", 
+    RowBox[{
+    "\[Mu]0_", ",", "\[Lambda]_", ",", "\[CapitalPsi]_", ",", "\[Nu]_"}], 
+    "]"}], ":=", " ", 
+   RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\[FormalCapitalSigma]", "\[Distributed]", 
+      RowBox[{"InverseWishartMatrixDistribution", "[", 
+       RowBox[{"\[Nu]", ",", "\[CapitalPsi]"}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\[FormalMu]", "\[Distributed]", 
+      RowBox[{"MultinormalDistribution", "[", 
+       RowBox[{"\[Mu]0", ",", 
+        RowBox[{"\[FormalCapitalSigma]", "/", "\[Lambda]"}]}], "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellLabel->"In[44]:=",ExpressionUUID->"174f959e-ac23-4ace-aca6-62a7a9ebd237"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"normalInverseWishartDistribution", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", "5", ",", 
+     RowBox[{"(", GridBox[{
+        {"1", 
+         RowBox[{"1", "/", "2"}]},
+        {
+         RowBox[{"1", "/", "2"}], "2"}
+       }], ")"}], ",", "7"}], "]"}], ",", "5"}], "]"}]], "Input",
+ CellLabel->"In[45]:=",ExpressionUUID->"20f15be7-899d-4ee8-b8b7-49a2d295a99a"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[FormalCapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.11780781481659117`", ",", 
+          RowBox[{"-", "0.02387263085602309`"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.02387263085602309`"}], ",", 
+          "0.24207078256915687`"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalMu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.3290966979349559`", ",", 
+        RowBox[{"-", "2.9194007291185864`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[FormalCapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.40232535099193506`", ",", "0.6512724656621082`"}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"0.6512724656621082`", ",", "1.618916845423084`"}], "}"}]}], 
+       "}"}]}], ",", 
+     RowBox[{"\[FormalMu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.7852259213435693`", ",", 
+        RowBox[{"-", "1.7168813611377811`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[FormalCapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.20260421367650436`", ",", "0.0042014279446711145`"}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.0042014279446711145`", ",", "0.31389547243404015`"}], 
+         "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalMu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.1285967960516192`", ",", 
+        RowBox[{"-", "3.3805425492913335`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[FormalCapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1.1674867961390587`", ",", 
+          RowBox[{"-", "0.314445962469068`"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.314445962469068`"}], ",", "0.282163430131301`"}], 
+         "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalMu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0.8051680170578909`", ",", 
+        RowBox[{"-", "2.891723461543855`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[FormalCapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.3293180007296778`", ",", 
+          RowBox[{"-", "0.0012156964832982116`"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.0012156964832982116`"}], ",", 
+          "0.164570168530709`"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalMu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0.9494857111401089`", ",", 
+        RowBox[{"-", "3.224283109379057`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}]}], "}"}]], "Output",
+ CellLabel->"Out[45]=",ExpressionUUID->"2ab1a2e7-f02e-4dc1-a8d0-8e64cc7c23e7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"normalInverseWishartDistribution", "[", 
+  RowBox[{"\[Mu]0", ",", "\[Lambda]", ",", "\[CapitalPsi]", ",", "\[Nu]"}], 
+  "]"}]], "Input",
+ CellLabel->"In[47]:=",ExpressionUUID->"139b909a-ff53-4bc8-8f87-bf3a50f92586"],
+
+Cell[BoxData[
+ RowBox[{"conditionalProductDistribution", "[", 
+  RowBox[{
+   RowBox[{"\[FormalCapitalSigma]", "\[Distributed]", 
+    RowBox[{"InverseWishartMatrixDistribution", "[", 
+     RowBox[{"\[Nu]", ",", "\[CapitalPsi]"}], "]"}]}], ",", 
+   RowBox[{"\[FormalMu]", "\[Distributed]", 
+    RowBox[{"MultinormalDistribution", "[", 
+     RowBox[{"\[Mu]0", ",", 
+      FractionBox["\[FormalCapitalSigma]", "\[Lambda]"]}], "]"}]}]}], 
+  "]"}]], "Output",
+ CellLabel->"Out[47]=",ExpressionUUID->"942a9708-52a2-48b7-a29c-b35e6424bddd"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"posterior", "[", 
+   RowBox[{
+   "\[Mu]0_", ",", "\[Lambda]_", ",", "\[CapitalPsi]_", ",", "\[Nu]_"}], 
+   "]"}], ":=", 
+  RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalSigma]", ",", "\[Mu]"}], "}"}], "\[Distributed]", 
+     RowBox[{"normalInverseWishartDistribution", "[", 
+      RowBox[{
+      "\[Mu]0", ",", "\[Lambda]", ",", "\[CapitalPsi]", ",", "\[Nu]"}], 
+      "]"}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{"\[FormalCapitalX]", "\[Distributed]", 
+     RowBox[{"MultinormalDistribution", "[", 
+      RowBox[{"\[Mu]", ",", "\[CapitalSigma]"}], "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellLabel->"In[72]:=",ExpressionUUID->"f196eb57-8205-402c-b38f-ad7475201bb0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"posterior", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", "5", ",", 
+     RowBox[{"(", GridBox[{
+        {"1", 
+         RowBox[{"1", "/", "2"}]},
+        {
+         RowBox[{"1", "/", "2"}], "2"}
+       }], ")"}], ",", "7"}], "]"}], ",", "5"}], "]"}]], "Input",
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"98cb3bdb-adc5-4d93-b479-9db57af39f1d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[CapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.12083125628806331`", ",", "0.0009972337653880775`"}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.0009972337653880775`", ",", "1.1750572062971516`"}], 
+         "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[Mu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.3415642975308684`", ",", 
+        RowBox[{"-", "3.3055486941897003`"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalCapitalX]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.6527991796098433`", ",", 
+        RowBox[{"-", "2.9864847625164677`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[CapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.5541930109530315`", ",", 
+          RowBox[{"-", "0.1625315432025406`"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.1625315432025406`"}], ",", "0.32438982030306696`"}],
+          "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[Mu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.511681514509226`", ",", 
+        RowBox[{"-", "3.2055913231591155`"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalCapitalX]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.0372639327039526`", ",", 
+        RowBox[{"-", "3.7748649342709566`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[CapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.2079576006385577`", ",", "0.31665771428078887`"}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"0.31665771428078887`", ",", "1.9879417462036282`"}], 
+         "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[Mu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.5107474576861304`", ",", 
+        RowBox[{"-", "2.3553705160140606`"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalCapitalX]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.849820889853072`", ",", 
+        RowBox[{"-", "0.07893791211481282`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[CapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.1129206963447388`", ",", "0.07096916115064092`"}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"0.07096916115064092`", ",", "0.2818867907235032`"}], 
+         "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[Mu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0.9804223843480984`", ",", 
+        RowBox[{"-", "3.342588230236977`"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalCapitalX]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1.0101769937756115`", ",", 
+        RowBox[{"-", "2.7648549267518314`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\[CapitalSigma]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.5032305468817351`", ",", 
+          RowBox[{"-", "0.43193402663308367`"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.43193402663308367`"}], ",", "0.7788812799555321`"}],
+          "}"}]}], "}"}]}], ",", 
+     RowBox[{"\[Mu]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0.8602019022629628`", ",", 
+        RowBox[{"-", "2.817804095282213`"}]}], "}"}]}], ",", 
+     RowBox[{"\[FormalCapitalX]", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0.25445751617741585`", ",", 
+        RowBox[{"-", "2.68298619897228`"}]}], "}"}]}]}], 
+    "\[RightAssociation]"}]}], "}"}]], "Output",
+ CellLabel->"Out[115]=",ExpressionUUID->"c912df0b-688b-494b-b5a4-cc12bdac702a"]
+}, Open  ]],
+
+Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[75]:=",ExpressionUUID->"f692eb66-639d-4184-8219-378f58eedb9a"]
+ CellLabel->"In[74]:=",ExpressionUUID->"f692eb66-639d-4184-8219-378f58eedb9a"]
 }, Closed]]
 },
 WindowSize->{1814, 888},

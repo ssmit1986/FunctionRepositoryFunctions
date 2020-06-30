@@ -92,8 +92,10 @@ conditionalProductDistribution /: RandomVariate[
                 Replace[
                     {#2[[1]], RandomVariate[#2[[2]] /. #1, opts]},
                     {
+                        {var : Except[_List], num_?AssociationQ} /; Length[num] === 1 :> Append[#1, var -> First[num]],
                         {var : Except[_List], num : Except[_RandomVariate]} :> Append[#1, var -> num],
                         {var_List, num_List} /; Length[var] === Length[num] :> Append[#1, AssociationThread[var, num]],
+                        {var_List, num_?AssociationQ} /; Length[var] === Length[num] :> Append[#1, AssociationThread[var, Values[num]]],
                         _ :> Throw[$Failed, rvNoNum]
                     }
                 ]
