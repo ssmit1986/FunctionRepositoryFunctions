@@ -85,24 +85,21 @@ conditionalProductDistribution /: RandomVariate[
     conditionalProductDistribution[dists__Distributed],
     opts : OptionsPattern[]
 ] := Catch[
-    Module[{
-    },
-        Fold[
-            Function[
+    Values @ Fold[
+        Function[
+            Append[#1, 
                 Replace[
                     {#2[[1]], RandomVariate[#2[[2]] /. #1, opts]},
                     {
-                        {var : Except[_List], num_?AssociationQ} /; Length[num] === 1 :> Append[#1, var -> First[num]],
-                        {var : Except[_List], num : Except[_RandomVariate]} :> Append[#1, var -> num],
-                        {var_List, num_List} /; Length[var] === Length[num] :> Append[#1, AssociationThread[var, num]],
-                        {var_List, num_?AssociationQ} /; Length[var] === Length[num] :> Append[#1, AssociationThread[var, Values[num]]],
+                        {var : Except[_List], num : Except[_RandomVariate]} :> var -> num,
+                        {var_List, num_List} /; Length[var] === Length[num] :> AssociationThread[var, num],
                         _ :> Throw[$Failed, rvNoNum]
                     }
                 ]
-            ],
-            <||>,
-            {dists}
-        ]
+            ]
+        ],
+        <||>,
+        {dists}
     ],
     rvNoNum
 ];
