@@ -47,4 +47,7 @@ Get["FunctionRepo`expressionToFunction`"];
 conditionalProductDistribution;
 Get["FunctionRepo`conditionalProductDistribution`"];
 
+mergeByKey;
+Get["FunctionRepo`mergeByKey`"];
+
 EndPackage[]
