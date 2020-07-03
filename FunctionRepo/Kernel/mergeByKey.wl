@@ -10,7 +10,7 @@ mergeByKey[rules : {___Rule}, default : _ : Identity][data : {__?AssociationQ}] 
 
 mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] := Module[{
     assoc = With[{
-        (* random UUID for identifying where the undefined keys were after using AssociationTranspose *)
+        (* random UUID from CreateUUID["mergebykey"] for identifying where the undefined keys were after using AssociationTranspose *)
         missingToken = Missing["mergebykey-0bde4aea-38fd-4a9f-bb4a-d09b00f7d52b"]
     },
         DeleteCases[
@@ -22,11 +22,22 @@ mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] 
         ]
     ],
     keys,
-    queryRules
+    queryRules,
+    mergeRules = Replace[
+        Flatten @ Replace[
+            rules,
+            Verbatim[Rule][lst_List, fun_] :> Thread[lst -> fun],
+            {1}
+        ],
+        Verbatim[Rule][Key[k_], fun_] :> k -> fun,
+        {1}
+    ]
 },
-    keys = Keys[assoc];
+    keys = Key /@ Keys[assoc];
     queryRules = DeleteCases[
-        Thread[Key /@ keys -> Lookup[rules, keys, default]],
+        Thread[
+            keys -> Lookup[mergeRules, keys, default]
+        ],
         _ -> Identity
     ];
     If[ MatchQ[queryRules, {__Rule}]

@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[5]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[92]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -12262,6 +12262,78 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell[BoxData[{
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Key", "[", "a", "]"}], "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Key", "[", "a", "]"}], "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
+  "]"}]}], "Input",
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"67dd6cf9-c4d1-45e4-a74a-e1f3e25f86d7"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"a", "\[Rule]", "6"}], ",", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{"2", " ", 
+     SqrtBox["13"]}]}], ",", 
+   RowBox[{"c", "\[Rule]", 
+    RowBox[{"{", "\[Pi]", "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->
+  "Out[115]=",ExpressionUUID->"b1b1c000-bdd6-41ba-bc32-2519e1690776"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"a", "\[Rule]", "6"}], ",", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{"2", " ", 
+     SqrtBox["13"]}]}], ",", 
+   RowBox[{"c", "\[Rule]", 
+    RowBox[{"foo", "[", 
+     RowBox[{"{", "\[Pi]", "}"}], "]"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[116]=",ExpressionUUID->"a9f89cc8-e7e1-4370-8934-855315ac6b11"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
  RowBox[{
   RowBox[{"mergeByKey", "[", 
    RowBox[{"{", 
@@ -12359,8 +12431,206 @@ Cell[BoxData[
      RowBox[{"{", "\[Pi]", "}"}], "]"}]}]}], 
   "\[RightAssociation]"}]], "Output",
  CellLabel->"Out[22]=",ExpressionUUID->"9a181be5-4577-45b1-8bbc-6856bee99a9f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}], ",", 
+       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], "\[Rule]", " ", "Total"}], ",", " ", 
+     RowBox[{"c", "\[Rule]", " ", "Mean"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}], ",", 
+       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "\[Rule]", " ", "Total"}], "}"}], ",", 
+   "Mean"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}], ",", 
+       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"c", "\[Rule]", " ", "Mean"}], "}"}], ",", "Total"}], 
+  "]"}]}], "Input",
+ CellLabel->
+  "In[108]:=",ExpressionUUID->"faa91ffe-d8cb-492d-835a-623e58eff6e7"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"a", "\[Rule]", "6"}], ",", 
+   RowBox[{"b", "\[Rule]", "12"}], ",", 
+   RowBox[{"c", "\[Rule]", 
+    FractionBox[
+     RowBox[{"\[ExponentialE]", "+", "\[Pi]"}], "2"]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->
+  "Out[108]=",ExpressionUUID->"ae9f7faf-74b0-4a00-93b8-dba0f2962f2a"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"a", "\[Rule]", "6"}], ",", 
+   RowBox[{"b", "\[Rule]", "12"}], ",", 
+   RowBox[{"c", "\[Rule]", 
+    FractionBox[
+     RowBox[{"\[ExponentialE]", "+", "\[Pi]"}], "2"]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->
+  "Out[109]=",ExpressionUUID->"2f31fbf0-1e80-4bde-8813-9a87249ab9a7"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"a", "\[Rule]", "6"}], ",", 
+   RowBox[{"b", "\[Rule]", "12"}], ",", 
+   RowBox[{"c", "\[Rule]", 
+    FractionBox[
+     RowBox[{"\[ExponentialE]", "+", "\[Pi]"}], "2"]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[110]=",ExpressionUUID->"0c48387b-2442-401e-a7c9-42e7341a9c91"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "a", "}"}], "\[Rule]", " ", "Total"}], "}"}]}], "]"}], "\n", 
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Key", "[", 
+      RowBox[{"{", "a", "}"}], "]"}], "\[Rule]", " ", "Total"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Key", "[", 
+        RowBox[{"{", "a", "}"}], "]"}], ",", "b"}], "}"}], "\[Rule]", " ", 
+     "Total"}], "}"}]}], "]"}]}], "Input",
+ CellLabel->
+  "In[102]:=",ExpressionUUID->"bd557d6f-8492-4788-8b7c-7d9ad8340e57"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", "a", "}"}], "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "5"}], "}"}]}], ",", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "10"}], "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->
+  "Out[102]=",ExpressionUUID->"03cbdc0e-22f2-4a81-9405-ed70f6f91044"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", "a", "}"}], "\[Rule]", "6"}], ",", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "10"}], "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->
+  "Out[103]=",ExpressionUUID->"c7ccc52e-913d-4633-b1b9-3ba7a9e7ad40"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", "a", "}"}], "\[Rule]", "6"}], ",", 
+   RowBox[{"b", "\[Rule]", "12"}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[104]=",ExpressionUUID->"4d8a6d76-4a94-410d-b3c0-7fa22b380f27"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
 },
 WindowSize->{1814, 888},
 WindowMargins->{{Automatic, 40}, {31, Automatic}},
