@@ -6,6 +6,8 @@ GeneralUtilities`SetUsage[mergeByKey, "mergeByKey[{assoc$1, assoc$2, $$}, {key$1
 
 Begin["`Private`"] (* Begin Private Context *) 
 
+mergeByKey[rules : {___Rule}, default : _ : Identity][data : {__?AssociationQ}] := mergeByKey[data, rules, default];
+
 mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] := Module[{
     assoc = With[{
         (* random UUID for identifying where the undefined keys were after using AssociationTranspose *)
@@ -19,15 +21,20 @@ mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] 
             {2}
         ]
     ],
-    keys
+    keys,
+    queryRules
 },
     keys = Keys[assoc];
-    Query[
-        DeleteCases[
-            Thread[Key /@ keys -> Lookup[rules, keys, default]],
-            _ -> Identity
-        ]
-    ] @ assoc
+    queryRules = DeleteCases[
+        Thread[Key /@ keys -> Lookup[rules, keys, default]],
+        _ -> Identity
+    ];
+    If[ MatchQ[queryRules, {__Rule}]
+        ,
+        Query[queryRules] @ assoc
+        ,
+        assoc
+    ]
 ];
 
 End[] (* End Private Context *)
