@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[92]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -12163,6 +12163,66 @@ Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{"mergeByKey", "[", 
   RowBox[{
+   RowBox[{"{", "}"}], ",", " ", 
+   RowBox[{"{", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"a", "\[Rule]", "1"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"a", "\[Rule]", "1"}], "}"}], ",", "f"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mergeByKey", "[", 
+   RowBox[{"{", "}"}], "]"}], "@", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mergeByKey", "[", 
+   RowBox[{"{", 
+    RowBox[{"a", "\[Rule]", "1"}], "}"}], "]"}], "@", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mergeByKey", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"a", "\[Rule]", "1"}], "}"}], ",", "f"}], "]"}], "@", 
+  RowBox[{"{", "}"}]}]}], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"169a1e74-6838-4014-8181-2ab3e5677890"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[21]=",ExpressionUUID->"ef622c64-0463-424b-aef3-292cfad4e5ee"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[22]=",ExpressionUUID->"4dbd13d9-c46f-475a-8231-9e9515d50478"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[23]=",ExpressionUUID->"521e110d-140c-4594-bab7-939f765866aa"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[24]=",ExpressionUUID->"c20eb659-8cbd-4544-96b1-99a94a5fa34a"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[25]=",ExpressionUUID->"c5d11a88-31a7-4a0e-9fc2-d90f07388886"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[26]=",ExpressionUUID->"6747a12d-ab81-48a9-8e01-8d5f044d1048"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"mergeByKey", "[", 
+  RowBox[{
    RowBox[{"{", 
     RowBox[{
      RowBox[{"<|", 
@@ -12219,7 +12279,7 @@ Cell[BoxData[{
      RowBox[{"a", "\[Rule]", "Total"}], ",", 
      RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
   "]"}]}], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"38892401-1053-4b39-95e9-aea69b75b306"],
+ CellLabel->"In[27]:=",ExpressionUUID->"38892401-1053-4b39-95e9-aea69b75b306"],
 
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", 
@@ -12230,7 +12290,7 @@ Cell[BoxData[
      SqrtBox["13"]}]}], ",", 
    RowBox[{"c", "\[Rule]", 
     RowBox[{"{", "\[Pi]", "}"}]}]}], "\[RightAssociation]"}]], "Output",
- CellLabel->"Out[17]=",ExpressionUUID->"398e848b-3dab-4cfd-897c-d533f9f82ff2"],
+ CellLabel->"Out[27]=",ExpressionUUID->"9f5f7974-c7dd-4faf-8d8d-0c7184128c16"],
 
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", 
@@ -12243,7 +12303,7 @@ Cell[BoxData[
     RowBox[{"foo", "[", 
      RowBox[{"{", "\[Pi]", "}"}], "]"}]}]}], 
   "\[RightAssociation]"}]], "Output",
- CellLabel->"Out[18]=",ExpressionUUID->"51d18b31-67ff-482b-8740-729815587d81"],
+ CellLabel->"Out[28]=",ExpressionUUID->"e84c0888-1d44-41fd-babe-539a668cb6e9"],
 
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", 
@@ -12256,7 +12316,7 @@ Cell[BoxData[
     RowBox[{"foo", "[", 
      RowBox[{"{", "\[Pi]", "}"}], "]"}]}]}], 
   "\[RightAssociation]"}]], "Output",
- CellLabel->"Out[19]=",ExpressionUUID->"cab18a5a-de4e-4997-a95a-67d92106af1b"]
+ CellLabel->"Out[29]=",ExpressionUUID->"1bfe576f-afd5-4d9b-8833-6af3e375449b"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12302,8 +12362,7 @@ Cell[BoxData[{
       RowBox[{"Key", "[", "a", "]"}], "\[Rule]", "Total"}], ",", 
      RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
   "]"}]}], "Input",
- CellLabel->
-  "In[115]:=",ExpressionUUID->"67dd6cf9-c4d1-45e4-a74a-e1f3e25f86d7"],
+ CellLabel->"In[30]:=",ExpressionUUID->"67dd6cf9-c4d1-45e4-a74a-e1f3e25f86d7"],
 
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", 
@@ -12314,8 +12373,7 @@ Cell[BoxData[
      SqrtBox["13"]}]}], ",", 
    RowBox[{"c", "\[Rule]", 
     RowBox[{"{", "\[Pi]", "}"}]}]}], "\[RightAssociation]"}]], "Output",
- CellLabel->
-  "Out[115]=",ExpressionUUID->"b1b1c000-bdd6-41ba-bc32-2519e1690776"],
+ CellLabel->"Out[30]=",ExpressionUUID->"7580565d-8c6d-4589-b9e5-00b21911be3a"],
 
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", 
@@ -12328,7 +12386,7 @@ Cell[BoxData[
     RowBox[{"foo", "[", 
      RowBox[{"{", "\[Pi]", "}"}], "]"}]}]}], 
   "\[RightAssociation]"}]], "Output",
- CellLabel->"Out[116]=",ExpressionUUID->"a9f89cc8-e7e1-4370-8934-855315ac6b11"]
+ CellLabel->"Out[31]=",ExpressionUUID->"58a88aca-5e99-4a9f-a4b3-a996b86f08b7"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12630,7 +12688,7 @@ Cell[BoxData[
    RowBox[{"b", "\[Rule]", "12"}]}], "\[RightAssociation]"}]], "Output",
  CellLabel->"Out[104]=",ExpressionUUID->"4d8a6d76-4a94-410d-b3c0-7fa22b380f27"]
 }, Open  ]]
-}, Open  ]]
+}, Closed]]
 },
 WindowSize->{1814, 888},
 WindowMargins->{{Automatic, 40}, {31, Automatic}},

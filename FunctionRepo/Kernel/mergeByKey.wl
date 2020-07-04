@@ -6,7 +6,9 @@ GeneralUtilities`SetUsage[mergeByKey, "mergeByKey[{assoc$1, assoc$2, $$}, {key$1
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-mergeByKey[rules : {___Rule}, default : _ : Identity][data : {__?AssociationQ}] := mergeByKey[data, rules, default];
+mergeByKey[rules : {___Rule}, default : _ : Identity][data : {___?AssociationQ}] := mergeByKey[data, rules, default];
+
+mergeByKey[{}, {___Rule}, Repeated[_, {0, 1}]] := <||>;
 
 mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] := Module[{
     assoc = With[{
@@ -33,7 +35,7 @@ mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] 
         {1}
     ]
 },
-    keys = Key /@ Keys[assoc];
+    keys = Keys[assoc, Key];
     queryRules = DeleteCases[
         Thread[
             keys -> Lookup[mergeRules, keys, default]
