@@ -2,7 +2,7 @@
 
 BeginPackage["FunctionRepo`conditionalProductDistribution`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[conditionalProductDistribution, "conditionalProductDistribution[Distributed[var$1, dist$1], Distributed[var$2, dist$2], $$] represents a vector distribution where each dist$i can dependend on var$j for all j$ < i$"];
+GeneralUtilities`SetUsage[conditionalProductDistribution, "conditionalProductDistribution[Distributed[var$1, dist$1], Distributed[var$2, dist$2], $$] represents a vector distribution where each dist$i can dependend on var$j for all i$ < j$"];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -10,7 +10,8 @@ randomVariables[dists__Distributed] := Flatten @ {dists}[[All, 1]];
 
 dependencyOrderedQ[dists : Distributed[_, _]..] := With[{
     ndists = Length[{dists}],
-    vars = randomVariables[dists]
+    vars = randomVariables[dists],
+    list = {dists}
 },
     Which[
         !DuplicateFreeQ[vars],
@@ -21,9 +22,9 @@ dependencyOrderedQ[dists : Distributed[_, _]..] := With[{
             False,
         !TrueQ[
             And @@ Map[
-                FreeQ[ (* test if the nth distribution does not depend on any of the (n-m)th variables *)
-                    {dists}[[#, 2]],
-                    Alternatives @@ DeleteDuplicates @ Flatten[Drop[{dists}[[All, 1]], # - 1]]
+                FreeQ[ (* test if the nth distribution does not depend on any of the first n variables *)
+                    list[[#, 2]],
+                    Alternatives @@ DeleteDuplicates @ Flatten[list[[;; #, 1]]]
                 ]&,
                 Range[1, ndists]
             ]
@@ -87,7 +88,7 @@ conditionalProductDistribution /: RandomVariate[
 ] := Catch[
     Values @ Fold[
         Function[
-            Append[#1, 
+            Prepend[#1, 
                 Replace[
                     {#2[[1]], RandomVariate[#2[[2]] /. #1, opts]},
                     {
@@ -99,7 +100,7 @@ conditionalProductDistribution /: RandomVariate[
             ]
         ],
         <||>,
-        {dists}
+        Reverse @ {dists}
     ],
     rvNoNum
 ];
