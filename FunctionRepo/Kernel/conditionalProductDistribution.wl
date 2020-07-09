@@ -54,31 +54,51 @@ conditionalProductDistribution /: Graph[conditionalProductDistribution[dists__Di
     Graph[vars, edges, rest, VertexLabels -> Automatic]
 ];
 
+conditionalMap[f_, agg_, dists : {__Distributed}] := agg @ Map[
+    f[#[[2]], #[[1]]]&,
+    dists
+];
+conditionalMap[f_, agg_, dists : {__Distributed}, wrapper_] := agg @ Map[
+    f[#[[2]], wrapper @ #[[1]]]&,
+    dists
+];
+conditionalMap[f_, agg_, dists : {{__Distributed}..}, rest___] := Map[
+    conditionalMap[f, agg, #, rest]&,
+    dists
+];
+conditionalMap[___] := $Failed
+
 MapThread[
-    Function[{fun, accessor, aggregator},
+    Function[{fun, wrapper, aggregator},
         conditionalProductDistribution /: fun[
             conditionalProductDistribution[dists__Distributed],
             coords_List
-        ] := With[{
-            vars = randomVariables[dists]
+        ] := Module[{
+            vars = randomVariables[dists],
+            assoc,
+            nvars
         },
-            aggregator @ Map[
-                With[{
-                    pos = Flatten @ Position[vars, Alternatives @@ Flatten[{#[[1]]}], {1}, Heads -> False]
-                },
-                    fun[
-                        #[[2]],
-                        accessor[coords, If[ListQ[#[[1]]], pos, First[pos]]]
-                    ]
-                ]&,
-                {dists}
-            ]
+            nvars = Length[vars];
+            Which[
+                MatchQ[Replace[coords, {l_List :> Length[l], _ -> $Failed}, {1}], {nvars..}],
+                    assoc = AssociationThread[vars, #]& /@ coords,
+                Length[coords] === nvars,
+                    assoc = AssociationThread[vars, coords],
+                True,
+                    Return[$Failed]
+            ];
+            Replace[fun,
+                {
+                    Likelihood | LogLikelihood :> aggregator,
+                    _ :> Identity
+                }
+            ] @ conditionalMap[fun, aggregator, {dists} /. assoc, Replace[wrapper, None :> Sequence[]]]
         ]
     ],
     {
-        {PDF,           Likelihood,     LogLikelihood},
-        {#1[[#2]]&,     #1[[All, #2]]&, #1[[All, #2]]&},
-        {Apply[Times],  Apply[Times],   Total}
+        {PDF,           Likelihood,     LogLikelihood   },
+        {None,          List,           List            },
+        {Apply[Times],  Apply[Times],   Total           }
     }
 ];
 
