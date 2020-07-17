@@ -11,18 +11,9 @@ mergeByKey[rules : {___Rule}, default : _ : Identity][data : {___?AssociationQ}]
 mergeByKey[{}, {___Rule}, Repeated[_, {0, 1}]] := <||>;
 
 mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] := Module[{
-    assoc = With[{
-        (* random UUID from CreateUUID["mergebykey"] for identifying where the undefined keys were after using AssociationTranspose *)
-        missingToken = Missing["mergebykey-0bde4aea-38fd-4a9f-bb4a-d09b00f7d52b"]
-    },
-        DeleteCases[
-            GeneralUtilities`AssociationTranspose[
-                KeyUnion[data, missingToken&]
-            ],
-            missingToken,
-            {2}
-        ]
-    ],
+    (* random UUID from CreateUUID["mergebykey"] for identifying where the undefined keys were after using AssociationTranspose *)
+    missingToken = Missing["mergebykey-0bde4aea-38fd-4a9f-bb4a-d09b00f7d52b"],
+    assoc,
     keys,
     queryRules,
     mergeRules = Replace[
@@ -33,9 +24,22 @@ mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] 
         ],
         Verbatim[Rule][Key[k_], fun_] :> k -> fun,
         {1}
-    ]
+    ],
+    keysSameQ = SameQ @@ Keys[data]
 },
-    keys = Keys[assoc, Key];
+    If[ keysSameQ, (* Avoid KeyUnion if it's not necessary *)
+        assoc = data,
+        assoc = KeyUnion[data, missingToken&]
+    ];
+    keys = Keys[First @ assoc];
+    (* This is essentially how GeneralUtilities`AssociationTranspose works *)
+    assoc = AssociationThread[keys,
+        If[ keysSameQ,
+            Transpose @ Values[assoc],
+            DeleteCases[Transpose @ Values[assoc], missingToken, {2}]
+        ]
+    ];
+    keys = Key /@ keys;
     queryRules = DeleteCases[
         Thread[
             keys -> Lookup[mergeRules, keys, default]
