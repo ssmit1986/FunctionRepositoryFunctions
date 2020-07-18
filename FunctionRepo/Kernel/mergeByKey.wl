@@ -8,11 +8,11 @@ Begin["`Private`"] (* Begin Private Context *)
 
 mergeByKey[rules : {___Rule}, default : _ : Identity][data : {___?AssociationQ}] := mergeByKey[data, rules, default];
 
-mergeByKey[{}, {___Rule}, Repeated[_, {0, 1}]] := <||>;
+mergeByKey[{<||>...}, {___Rule}, Repeated[_, {0, 1}]] := <||>;
 
 mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] := Module[{
-    (* random UUID from CreateUUID["mergebykey"] for identifying where the undefined keys were after using AssociationTranspose *)
-    missingToken = Missing["mergebykey-0bde4aea-38fd-4a9f-bb4a-d09b00f7d52b"],
+    (* Unique symbol that is used for identifying where the undefined keys were after transposing the association *)
+    missingToken,
     assoc,
     keys,
     queryRules,
