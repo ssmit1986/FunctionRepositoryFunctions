@@ -29,7 +29,7 @@ mergeByKey[data : {__?AssociationQ}, rules : {___Rule}, default : _ : Identity] 
 },
     If[ keysSameQ, (* Avoid KeyUnion if it's not necessary *)
         assoc = data,
-        assoc = KeyUnion[data, missingToken&]
+        assoc = KeyUnion[DeleteCases[data, <||>], missingToken&]
     ];
     keys = Keys[First @ assoc];
     (* This is essentially how GeneralUtilities`AssociationTranspose works *)
