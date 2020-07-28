@@ -197,11 +197,12 @@ SparseAssociation[
     default : _ : Automatic
 ] /; AllTrue[keys, DuplicateFreeQ] := Module[{
     depth = Length[keys],
+    ruleSym = Rule, (* Avoid localization issues associated with Rule *)
     rules
 },
     rules = Flatten @ Last @ Reap[
         MapIndexed[
-            Sow[Replace[#2, Key[s : keySpec] :> s, {1}] -> #1]&,
+            Sow[ruleSym[Replace[#2, Key[s : keySpec] :> s, {1}], #1]]&,
             DeleteMissing[assoc, depth],
             {depth}
         ];
