@@ -6,6 +6,30 @@ GeneralUtilities`SetUsage[conditionalProductDistribution, "conditionalProductDis
 
 Begin["`Private`"] (* Begin Private Context *) 
 
+protectedSymbolQ[sym_Symbol] := MatchQ[Quiet @ Attributes[sym], {___, Protected, ___}];
+protectedSymbolQ[_] := False;
+
+canonicalVarQ = MatchQ[_Symbol?protectedSymbolQ | (_Symbol?protectedSymbolQ)[___]];
+
+canonicalQ[Distributed[var_List, dist_]] := var =!= {} && TrueQ[AllTrue[var, canonicalVarQ]];
+canonicalQ[Distributed[var_, dist_]] := canonicalVarQ[var];
+canonicalQ[_] := False;
+
+canonicalReplacementRules[{}] := {};
+canonicalReplacementRules[vars_List] := Block[{
+    i = 1 + Max[0, Cases[vars, \[FormalX][n_Integer] :> n]],
+    dupFree = DeleteDuplicates[Flatten @ vars]
+},
+    AssociationThread[
+        dupFree,
+        Replace[
+            dupFree,
+            v : Except[_?canonicalVarQ] :> \[FormalX][i++],
+            {1}
+        ]
+    ]
+];
+
 randomVariables[dists__Distributed] := Flatten @ {dists}[[All, 1]];
 
 dependencyOrderedQ[dists : Distributed[_, _]..] := With[{
@@ -138,7 +162,16 @@ conditionalProductDistribution /: RandomVariate[
 ] := Table[RandomVariate[pdist, opts], Evaluate[Sequence @@ Map[List, spec]]];
 
 conditionalProductDistribution[dists : Distributed[_, _]..] /; !dependencyOrderedQ[dists] := $Failed;
-conditionalProductDistribution[___, Except[Distributed[_, _]], ___] := $Failed;
+conditionalProductDistribution[___, Except[Distributed[_, _]] | Distributed[{}, _], ___] := $Failed;
+conditionalProductDistribution[dists__Distributed] /; !AllTrue[{dists}, canonicalQ] := With[{
+    rules = canonicalReplacementRules[randomVariables[dists]]
+},
+    conditionalProductDistribution @@ ReplaceAll[
+        {dists},
+        rules
+    ]
+];
+
 
 End[] (* End Private Context *)
 
