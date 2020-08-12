@@ -14,7 +14,7 @@ SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-
 constructedAssocPattern = _Association?(#["ValidatedQ"]&);
 SparseAssociationQ = MatchQ[SparseAssociation[constructedAssocPattern]];
 
-keySpec = _String;
+keySpec = Except[_List | _Rule | _Association];
 
 With[{
     cf = Compile[{
@@ -291,8 +291,9 @@ SparseAssociation /: ArrayRules[SparseAssociation[data : constructedAssocPattern
 ];
 
 partSpec = ({__Integer} | _Integer | All | _Span);
-accesskeySpec = Flatten[keySpec | {keySpec..} | partSpec];
+accesskeySpec = Flatten[_String | {__String} | Key[keySpec] | {Key[keySpec]..} | partSpec];
 
+SparseAssociation /: Part[SparseAssociation[data : constructedAssocPattern], 0] := SparseAssociation;
 SparseAssociation /: Part[
     SparseAssociation[data : constructedAssocPattern],
     keys : (accesskeySpec..)
@@ -301,7 +302,7 @@ SparseAssociation /: Part[
     positions
 },
     positions = MapThread[
-        Replace[#2, s : keySpec | {keySpec..} :> Lookup[#1, s]]&,
+        Replace[#2, s : Except[partSpec] :> Lookup[#1, s]]&,
         {dataKeys[[1]], {keys}}
     ];
     Condition[
@@ -331,7 +332,8 @@ SparseAssociation /: Part[
 SparseAssociation /: Part[SparseAssociation[constructedAssocPattern], other__] := (Message[SparseAssociation::part, {other}]; $Failed);
 SparseAssociation /: Part[SparseAssociation[Except[constructedAssocPattern], ___], __] := (Message[SparseAssociation::badData]; $Failed);
 
-SparseAssociation[data : constructedAssocPattern][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
+SparseAssociation[data : constructedAssocPattern][keys__String] := Part[SparseAssociation[data], keys];
+SparseAssociation[data : constructedAssocPattern][keys : (keySpec..)] := Part[SparseAssociation[data], Sequence @@ Map[Key, {keys}]];
 
 (* Typesetting *)
 (* Make sure the summary boxes are loaded *)
