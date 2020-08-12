@@ -85,13 +85,13 @@ SparseAssociation[rule : _List -> _List, rest___] := With[{rules = Thread[rule, 
 SparseAssociation[{rules___Rule, {Verbatim[_]..} -> default_}, keys_, Repeated[Automatic, {0, 1}]] := SparseAssociation[{rules}, keys, default];
 SparseAssociation[{rules___Rule, {Verbatim[_]..} -> _}, rest__] := SparseAssociation[{rules}, rest];
 
-SparseAssociation[rules : {(keySpec -> _)..}, rest___] := SparseAssociation[
+SparseAssociation[rules : {__Rule} /; !MatchQ[rules, {(_List -> _)..}], rest___] := SparseAssociation[
     MapAt[List, rules, {All, 1}],
     rest
 ];
 
 (* Finding keys automatically for array rules and association constructors *)
-SparseAssociation[rules : {({keySpec..} -> _)..}, Automatic, default : _ : Automatic] := With[{
+SparseAssociation[rules : {__Rule}, Automatic, default : _ : Automatic] := With[{
     allKeys = rules[[All, 1]]
 },
     SparseAssociation[
@@ -124,7 +124,7 @@ SparseAssociation[assoc_?AssociationQ, Automatic, default : _ : Automatic] := Mo
 SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : {keySpec..}, rest___] :=
     SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
 
-SparseAssociation[rules : {({keySpec..} -> _)..}, keys : {keySpec..}, rest___] :=
+SparseAssociation[rules : {__Rule}, keys : {keySpec..}, rest___] :=
     SparseAssociation[rules, ConstantArray[keys, Length[rules[[1, 1]]]], rest]
 
 SparseAssociation[assoc_?AssociationQ, keys : {keySpec..}, rest___] :=
@@ -134,7 +134,7 @@ SparseAssociation[{}, keys : {keySpec..}, rest___] := SparseAssociation[{}, {key
 
 (* Constructor for list-of-rules spec *)
 SparseAssociation[
-    rules : {({keySpec..} -> _)...},
+    rules : {___Rule},
     keys : {{keySpec..}..},
     default : _ : Automatic
 ] /; AllTrue[keys, DuplicateFreeQ] := Module[{
