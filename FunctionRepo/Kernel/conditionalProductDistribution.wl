@@ -17,9 +17,10 @@ canonicalQ[_] := False;
 
 canonicalReplacementRules[{}] := {};
 canonicalReplacementRules[vars_List] := Block[{
-    i = 1 + Max[0, Cases[vars, \[FormalX][n_Integer] :> n]],
-    dupFree = DeleteDuplicates[Flatten @ vars]
+    dupFree = DeleteDuplicates[Flatten @ vars],
+    i
 },
+    i = 1 + Max[0, Cases[dupFree, \[FormalX][n_Integer] :> n]];
     AssociationThread[
         dupFree,
         Replace[
