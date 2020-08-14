@@ -163,12 +163,14 @@ conditionalProductDistribution /: RandomVariate[
 
 conditionalProductDistribution[dists : Distributed[_, _]..] /; !dependencyOrderedQ[dists] := $Failed;
 conditionalProductDistribution[___, Except[Distributed[_, _]] | Distributed[{}, _], ___] := $Failed;
-conditionalProductDistribution[dists__Distributed] /; !AllTrue[{dists}, canonicalQ] := With[{
-    rules = canonicalReplacementRules[randomVariables[dists]]
+conditionalProductDistribution[dists__Distributed] /; !AllTrue[{dists}, canonicalQ] := Module[{
+    rules = canonicalReplacementRules[randomVariables[dists]],
+    newDists
 },
-    conditionalProductDistribution @@ ReplaceAll[
-        {dists},
-        rules
+    newDists = ReplaceAll[{dists}, rules];
+    If[ AllTrue[newDists, canonicalQ],
+        conditionalProductDistribution @@ newDists,
+        $Failed
     ]
 ];
 
