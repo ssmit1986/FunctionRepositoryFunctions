@@ -50,4 +50,7 @@ Get["FunctionRepo`conditionalProductDistribution`"];
 mergeByKey;
 Get["FunctionRepo`mergeByKey`"];
 
+graphicsToGraph;
+Get["FunctionRepo`graphicsToGraph`"];
+
 EndPackage[]
