@@ -40,4 +40,17 @@ Get["FunctionRepo`multiSet`"];
 
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
+
+expressionToFunction;
+Get["FunctionRepo`expressionToFunction`"];
+
+conditionalProductDistribution;
+Get["FunctionRepo`conditionalProductDistribution`"];
+
+mergeByKey;
+Get["FunctionRepo`mergeByKey`"];
+
+graphicsToGraph;
+Get["FunctionRepo`graphicsToGraph`"];
+
 EndPackage[]

@@ -14,8 +14,6 @@ SparseAssociation::map = "Cannot map `1` over SparseAssociation. Only dimension-
 constructedAssocPattern = _Association?(#["ValidatedQ"]&);
 SparseAssociationQ = MatchQ[SparseAssociation[constructedAssocPattern]];
 
-keySpec = _String;
-
 With[{
     cf = Compile[{
         {lst, _Integer, 1},
@@ -33,7 +31,7 @@ With[{
     ]
 },
     (* Test if a list is equal to Range[n] for some n *)
-    integerRangeQ[{}] := True;
+    integerRangeQ[{}] := False;
     integerRangeQ[list : {__Integer}] := cf[list, 1, 1];
     integerRangeQ[_] := False
 ];
@@ -49,12 +47,7 @@ verifyDataStructure[data : validAssocPattern] := With[{
         TrueQ @ And[
             Length[keys] === Length[dims],
             AllTrue[dims, Positive],
-            AllTrue[keys, 
-                And[
-                    MatchQ[Keys[#], {keySpec..}],
-                    integerRangeQ[Values[#]]
-                ]&
-            ],
+            AllTrue[keys, integerRangeQ[Values[#]]&],
             And @@ Thread[Max /@ keys <= dims]
         ]
     ]
@@ -85,13 +78,13 @@ SparseAssociation[rule : _List -> _List, rest___] := With[{rules = Thread[rule, 
 SparseAssociation[{rules___Rule, {Verbatim[_]..} -> default_}, keys_, Repeated[Automatic, {0, 1}]] := SparseAssociation[{rules}, keys, default];
 SparseAssociation[{rules___Rule, {Verbatim[_]..} -> _}, rest__] := SparseAssociation[{rules}, rest];
 
-SparseAssociation[rules : {(keySpec -> _)..}, rest___] := SparseAssociation[
+SparseAssociation[rules : {__Rule} /; !MatchQ[rules, {(_List -> _)..}], rest___] := SparseAssociation[
     MapAt[List, rules, {All, 1}],
     rest
 ];
 
 (* Finding keys automatically for array rules and association constructors *)
-SparseAssociation[rules : {({keySpec..} -> _)..}, Automatic, default : _ : Automatic] := With[{
+SparseAssociation[rules : {__Rule}, Automatic, default : _ : Automatic] := With[{
     allKeys = rules[[All, 1]]
 },
     SparseAssociation[
@@ -117,25 +110,25 @@ SparseAssociation[assoc_?AssociationQ, Automatic, default : _ : Automatic] := Mo
         assoc,
         allKeys,
         default
-    ] /; MatchQ[allKeys, {{keySpec..}..}]
+    ] /; MatchQ[allKeys, {{__}..}]
 ];
 
 (* Normalize key argument *)
-SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : {keySpec..}, rest___] :=
+SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : Except[{{__}..}], rest___] :=
     SparseAssociation[array, ConstantArray[keys, ArrayDepth[array]], rest];
 
-SparseAssociation[rules : {({keySpec..} -> _)..}, keys : {keySpec..}, rest___] :=
+SparseAssociation[rules : {__Rule}, keys : Except[{{__}..}], rest___] :=
     SparseAssociation[rules, ConstantArray[keys, Length[rules[[1, 1]]]], rest]
 
-SparseAssociation[assoc_?AssociationQ, keys : {keySpec..}, rest___] :=
+SparseAssociation[assoc_?AssociationQ, keys : Except[{{__}..}], rest___] :=
     SparseAssociation[assoc, ConstantArray[keys, associationDepth[assoc]], rest]
 
-SparseAssociation[{}, keys : {keySpec..}, rest___] := SparseAssociation[{}, {keys}, rest];
+SparseAssociation[{}, keys : Except[{{__}..}], rest___] := SparseAssociation[{}, {keys}, rest];
 
 (* Constructor for list-of-rules spec *)
 SparseAssociation[
-    rules : {({keySpec..} -> _)...},
-    keys : {{keySpec..}..},
+    rules : {___Rule},
+    keys : {{__}..},
     default : _ : Automatic
 ] /; AllTrue[keys, DuplicateFreeQ] := Module[{
     pos = keyRange /@ keys,
@@ -169,7 +162,7 @@ SparseAssociation[
 (* Constructor for array specs *)
 SparseAssociation[
     array_?ArrayQ,
-    keys : {{keySpec..}..},
+    keys : {{__}..},
     default : _ : Automatic
 ] /; AllTrue[keys, DuplicateFreeQ] := Module[{
     dims = Dimensions[array],
@@ -193,20 +186,21 @@ SparseAssociation[
 (* Constructor for nested Association spec *)
 SparseAssociation[
     assoc_?AssociationQ,
-    keys : {{keySpec..}..},
+    keys : {{__}..},
     default : _ : Automatic
 ] /; AllTrue[keys, DuplicateFreeQ] := Module[{
     depth = Length[keys],
+    ruleSym = Rule, (* Avoid localization issues associated with Rule *)
     rules
 },
     rules = Flatten @ Last @ Reap[
         MapIndexed[
-            Sow[Replace[#2, Key[s : keySpec] :> s, {1}] -> #1]&,
+            Sow[ruleSym[Replace[#2, Key[s_] :> s, {1}], #1]]&,
             DeleteMissing[assoc, depth],
             {depth}
         ];
     ];
-    SparseAssociation[rules, keys, default] /; MatchQ[rules, {({keySpec..} -> _)..}]
+    SparseAssociation[rules, keys, default] /; MatchQ[rules, {(_List -> _)..}]
 ];
 
 (* accessors *)
@@ -290,8 +284,9 @@ SparseAssociation /: ArrayRules[SparseAssociation[data : constructedAssocPattern
 ];
 
 partSpec = ({__Integer} | _Integer | All | _Span);
-accesskeySpec = Flatten[keySpec | {keySpec..} | partSpec];
+accesskeySpec = Flatten[_String | _Key | {(_String | _Key)..} | partSpec];
 
+SparseAssociation /: Part[SparseAssociation[data : constructedAssocPattern], 0] := SparseAssociation;
 SparseAssociation /: Part[
     SparseAssociation[data : constructedAssocPattern],
     keys : (accesskeySpec..)
@@ -300,7 +295,7 @@ SparseAssociation /: Part[
     positions
 },
     positions = MapThread[
-        Replace[#2, s : keySpec | {keySpec..} :> Lookup[#1, s]]&,
+        Replace[#2, s : Except[partSpec] :> Lookup[#1, s]]&,
         {dataKeys[[1]], {keys}}
     ];
     Condition[
@@ -330,7 +325,8 @@ SparseAssociation /: Part[
 SparseAssociation /: Part[SparseAssociation[constructedAssocPattern], other__] := (Message[SparseAssociation::part, {other}]; $Failed);
 SparseAssociation /: Part[SparseAssociation[Except[constructedAssocPattern], ___], __] := (Message[SparseAssociation::badData]; $Failed);
 
-SparseAssociation[data : constructedAssocPattern][keys : (keySpec..)] := Part[SparseAssociation[data], keys];
+SparseAssociation[data : constructedAssocPattern][keys__String] := Part[SparseAssociation[data], keys];
+SparseAssociation[data : constructedAssocPattern][keys__] := Part[SparseAssociation[data], Sequence @@ Map[Key, {keys}]];
 
 (* Typesetting *)
 (* Make sure the summary boxes are loaded *)
