@@ -37,6 +37,12 @@ Dual /: Power[Dual[a_, b_], 0 | 0. | _?(EqualTo[0])] := Dual[a^0, 0];
 Dual /: Power[Dual[a_, b_], -1] := Dual[Divide[1, a], -Divide[b, a^2]];
 Dual /: Power[d_Dual, n_Integer?Negative] := Divide[1, Power[d, -n]];
 Dual /: Power[Dual[a_, b_], x_?scalarQ] := Dual[a^x, b * x * a^Subtract[x, 1]];
+Dual /: Power[base_?scalarQ, Dual[a_, b_]] := Dual[base^a, b * base^a * Log[base]];
+Dual /: Power[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[
+    a1^a2,
+    a1^Subtract[a2, 1] * a2 * b1 + a1^a2 * b2 * Log[a1]
+];
+
 Dual /: Abs[Dual[a_, b_]] := Dual[Abs[a], b Sign[a]];
 Dual /: Sign[Dual[a_, b_]] := Sign[a];
 
