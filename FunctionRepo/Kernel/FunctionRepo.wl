@@ -53,4 +53,7 @@ Get["FunctionRepo`mergeByKey`"];
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
 
+Dual;
+Get["FunctionRepo`DualNumbers`"];
+
 EndPackage[]
