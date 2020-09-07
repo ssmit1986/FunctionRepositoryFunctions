@@ -26,7 +26,7 @@ Dual[a_, Dual[b_, c_]] := Dual[a, b];
 Dual /: Dual[a_, 0] := a;
 Dual /: c_?scalarQ + Dual[a_, b_] := Dual[c + a, b];
 Dual /: Dual[a_, b_] + Dual[c_, d_] := Dual[a + c, b + d];
-Dual /: c_?scalarQ*Dual[a_, b_] := Dual[c * a, c * b];
+Dual /: c_?scalarQ * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a_, b_] * Dual[c_, d_] := Dual[a * c, b * c + a * d];
 Dual /: Power[d_Dual, n_Integer?Positive] := Fold[
     (If[#2 == 1, d, 1] * #1) * #1 &,
