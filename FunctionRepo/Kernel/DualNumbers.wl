@@ -57,17 +57,22 @@ KeyValueMap[
     ]
 ];
 
-Dual /: f_[d__Dual] /; MemberQ[Attributes[f], NumericFunction] := With[{
-    args = {d}
-}, 
-   Dual[
-       f @@ args[[All, 1]],
-        (Derivative[##][f] @@ args[[All, 1]]) & @@@ IdentityMatrix[Length[args]].args[[All, 2]]
-    ]
-];
-
-
-
+Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFunction] := With[{
+    args = {first, d, rest}
+}, With[{
+    dualPos = Flatten @ Position[args, _Dual, {1}, Heads -> False],
+    inputs = Replace[args, Dual[a_, _] :> a, {1}]
+}, With[{
+    derrivs = Derivative[##][f]& @@@ IdentityMatrix[Length[args]][[dualPos]]
+},
+    Dual[
+        f @@ inputs,
+        Dot[
+            Function[# @@ inputs] /@ derrivs,
+            args[[dualPos, 2]]
+        ]
+    ] /; MatchQ[derrivs, {__Function}]
+]]];
 
 End[] (* End Private Context *)
 
