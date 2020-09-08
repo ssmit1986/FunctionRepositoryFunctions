@@ -56,6 +56,7 @@ Get["FunctionRepo`graphicsToGraph`"];
 Dual;
 DualEpsilon;
 DualQ;
+ScalarQ;
 Standard;
 StandardAll;
 NonStandard;
