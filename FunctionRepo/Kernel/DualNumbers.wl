@@ -65,7 +65,7 @@ Scan[
     ],
     {
         NumericQ, NumberQ, IntegerQ, Positive, Negative, NonPositive, NonNegative, PossibleZeroQ,
-        EvenQ, OddQ, PrimeQ, AlgebraicIntegerQ
+        Re, Im, EvenQ, OddQ, PrimeQ, AlgebraicIntegerQ
     }
 ];
 
@@ -82,7 +82,10 @@ KeyValueMap[
                 MemberQ[Attributes[#], NumericFunction]&
             ]
         ],
-        Head[#] === Function &
+        And[
+            Head[#] === Function,
+            !MatchQ[#, Function[D[__]]]
+        ]&
     ]
 ];
 
@@ -108,7 +111,7 @@ KeyValueMap[
 
 Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
     Function[fun,
-        Dual /: (expr : fun[___, _Dual, ___]) := ReleaseHold @ StandardAll[HoldComplete[expr]]
+        Dual /: fun[first___, d_Dual, rest___] := fun @@ std[{first, d, rest}]
     ],
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
