@@ -12,9 +12,15 @@ GeneralUtilities`SetUsage[StandardAll,
 GeneralUtilities`SetUsage[NonStandard,
     "NonStandard[d$] extracts the non-standard part of a dual number d$ (i.e., the second argument)."
 ];
-DualEpsilon;
-DualQ;
-ScalarQ
+GeneralUtilities`SetUsage[DualExpand,
+    "DualExpand[expr$, eps$] replaces each dual number Dual[a$, b$] with a$ + b$ * eps$."
+];
+GeneralUtilities`SetUsage[DualFactor,
+    "DualFactor[expr$, eps$] replaces eps$ with Dual[0, 1] in expr$."
+];
+GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
+GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
+GeneralUtilities`SetUsage[ScalarQ, "ScalarQ[expr$] = !DualQ[expr$]"];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -36,7 +42,14 @@ Dual[a_] := Dual[a, 1];
 SetAttributes[Standard, Listable];
 Standard[Dual[a_, _]] := a;
 Standard[x_?NumericQ] := x;
+
 StandardAll[expr_] := ReplaceAll[expr, Dual[a_, _] :> a];
+
+DualExpand[expr_, eps : _ : \[FormalEpsilon]] := ReplaceRepeated[
+    expr,
+    Dual[a_, b_] :> a + b * eps
+];
+DualFactor[expr_, eps : _ : \[FormalEpsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
 
 SetAttributes[NonStandard, Listable];
 NonStandard[Dual[_, b_]] := b;

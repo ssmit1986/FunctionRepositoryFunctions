@@ -60,6 +60,8 @@ ScalarQ;
 Standard;
 StandardAll;
 NonStandard;
+DualFactor;
+DualExpand;
 Get["FunctionRepo`DualNumbers`"];
 
 EndPackage[]

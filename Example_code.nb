@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[8]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[3]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -13652,17 +13652,21 @@ Cell["DualNumbers", \
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[41]:=",ExpressionUUID->"8973c38a-ec91-4fc0-adab-c5050d55ef99"],
+ CellLabel->"In[34]:=",ExpressionUUID->"8973c38a-ec91-4fc0-adab-c5050d55ef99"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{"?", "Dual"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "DualQ"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ScalarQ"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "DualEpsilon"}], "\[IndentingNewLine]", 
  RowBox[{"?", "Standard"}], "\[IndentingNewLine]", 
  RowBox[{"?", "NonStandard"}], "\[IndentingNewLine]", 
- RowBox[{"?", "StandardAll"}]}], "Input",
- CellLabel->
-  "In[130]:=",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
+ RowBox[{"?", "StandardAll"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "DualExpand"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "DualFactor"}]}], "Input",
+ CellLabel->"In[48]:=",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -13726,9 +13730,9 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a_", ",", 
                     "FunctionRepo`DualNumbers`Private`b_"}], "]"}], "+", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}]}], "^:=", 
+                    RowBox[{"(", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`c", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}], ")"}]}], "^:=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     RowBox[{
@@ -13761,9 +13765,9 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a_", ",", 
                     "FunctionRepo`DualNumbers`Private`b_"}], "]"}], " ", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}]}], "^:=", 
+                    RowBox[{"(", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`c", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}], ")"}]}], "^:=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     RowBox[{
@@ -13797,30 +13801,156 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`d"}]}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"Abs", "[", 
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"NumericQ", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b_"}], "]"}], "]"}], "^:=", 
-                    RowBox[{"Dual", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
                     RowBox[{
-                    RowBox[{
-                    "Abs", "[", "FunctionRepo`DualNumbers`Private`a", "]"}], 
-                    ",", 
-                    RowBox[{"FunctionRepo`DualNumbers`Private`b", " ", 
-                    RowBox[{
-                    "Sign", "[", "FunctionRepo`DualNumbers`Private`a", 
-                    "]"}]}]}], "]"}]}]},
+                    "NumericQ", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"Sign", "[", 
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"NumberQ", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b_"}], "]"}], "]"}], "^:=", 
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
                     RowBox[{
-                    "Sign", "[", "FunctionRepo`DualNumbers`Private`a", 
+                    "NumberQ", "[", "FunctionRepo`DualNumbers`Private`a$", 
                     "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"IntegerQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "IntegerQ", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"Positive", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "Positive", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"Negative", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "Negative", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"NonPositive", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "NonPositive", "[", "FunctionRepo`DualNumbers`Private`a$",
+                     "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"NonNegative", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "NonNegative", "[", "FunctionRepo`DualNumbers`Private`a$",
+                     "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"PossibleZeroQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "PossibleZeroQ", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"Re", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "Re", "[", "FunctionRepo`DualNumbers`Private`a$", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"Im", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "Im", "[", "FunctionRepo`DualNumbers`Private`a$", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"EvenQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "EvenQ", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"OddQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "OddQ", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"PrimeQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "PrimeQ", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"AlgebraicIntegerQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", "_"}], "]"}],
+                     "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "AlgebraicIntegerQ", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{"AiryAi", "[", 
@@ -14527,6 +14657,34 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
+                    RowBox[{"CatalanNumber", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "CatalanNumber", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"CatalanNumber", "[", "#1", "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Log", "[", "4", "]"}], "+", 
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"#1", "+", 
+                    FractionBox["1", "2"]}], "]"}], "-", 
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"#1", "+", "2"}], "]"}]}], ")"}]}], "&"}], ")"}], 
+                    "[", "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
                     RowBox[{"CauchyWindow", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -14595,6 +14753,24 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     RowBox[{"#1", "<", 
                     RowBox[{"Ceiling", "[", "#1", "]"}]}]}], "}"}], "}"}], 
                     ",", "Indeterminate"}], "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"ChampernowneNumber", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "ChampernowneNumber", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"0", "&"}], ")"}], "[", 
                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
@@ -14716,6 +14892,26 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
+                    RowBox[{"CoshIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "CoshIntegral", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"Cosh", "[", "#1", "]"}], "#1"], "&"}], ")"}], 
+                    "[", "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
                     RowBox[{"CosineWindow", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -14755,6 +14951,26 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     FractionBox["1", "2"]}]}], "}"}]}], "}"}], ",", 
                     "Indeterminate"}], "]"}], "&"}], ")"}], "[", 
                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"CosIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "CosIntegral", "[", "FunctionRepo`DualNumbers`Private`a$",
+                     "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"Cos", "[", "#1", "]"}], "#1"], "&"}], ")"}], "[",
+                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
@@ -15545,6 +15761,92 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
+                    RowBox[{"FresnelC", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FresnelC", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Cos", "[", 
+                    FractionBox[
+                    RowBox[{"\[Pi]", " ", 
+                    SuperscriptBox["#1", "2"]}], "2"], "]"}], "&"}], ")"}], 
+                    "[", "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"FresnelF", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FresnelF", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "\[Pi]"}], " ", "#1", " ", 
+                    RowBox[{"FresnelG", "[", "#1", "]"}]}], "&"}], ")"}], "[",
+                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"FresnelG", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FresnelG", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"\[Pi]", " ", "#1", " ", 
+                    RowBox[{"FresnelF", "[", "#1", "]"}]}], "-", "1"}], "&"}],
+                     ")"}], "[", "FunctionRepo`DualNumbers`Private`a$", "]"}],
+                     " ", "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"FresnelS", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FresnelS", "[", "FunctionRepo`DualNumbers`Private`a$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Sin", "[", 
+                    FractionBox[
+                    RowBox[{"\[Pi]", " ", 
+                    SuperscriptBox["#1", "2"]}], "2"], "]"}], "&"}], ")"}], 
+                    "[", "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
                     RowBox[{"Gamma", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -15782,6 +16084,29 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     FractionBox["1", "2"]}], "<", "#1", "<", 
                     FractionBox["1", "2"]}]}], "}"}]}], "}"}], ",", "0"}], 
                     "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HarmonicNumber", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "HarmonicNumber", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    FractionBox[
+                    SuperscriptBox["\[Pi]", "2"], "6"], "-", 
+                    RowBox[{"HarmonicNumber", "[", 
+                    RowBox[{"#1", ",", "2"}], "]"}]}], "&"}], ")"}], "[", 
                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
@@ -16644,27 +16969,6 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"Mod", "[", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "Mod", "[", "FunctionRepo`DualNumbers`Private`a$", "]"}], 
-                    ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{
-                    SubscriptBox["\[PartialD]", "#1"], 
-                    RowBox[{"Mod", "[", "#1", "]"}]}], "&"}], ")"}], "[", 
-                    "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
-                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
-                    {
-                    RowBox[{
                     RowBox[{"ModularLambda", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -16953,27 +17257,6 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     MultilineFunction->None], "[", 
                     RowBox[{"#1", ",", "#1"}], "]"}]}], "&"}], ")"}], "[", 
                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
-                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
-                    {
-                    RowBox[{
-                    RowBox[{"Quotient", "[", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "Quotient", "[", "FunctionRepo`DualNumbers`Private`a$", 
-                    "]"}], ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{
-                    SubscriptBox["\[PartialD]", "#1"], 
-                    RowBox[{"Quotient", "[", "#1", "]"}]}], "&"}], ")"}], "[",
-                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
@@ -17409,6 +17692,45 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
+                    RowBox[{"SinhIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "SinhIntegral", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"Sinh", "[", "#1", "]"}], "#1"], "&"}], ")"}], 
+                    "[", "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"SinIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "SinIntegral", "[", "FunctionRepo`DualNumbers`Private`a$",
+                     "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Sinc", "[", "#1", "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
                     SqrtBox[
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -17426,6 +17748,42 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     SqrtBox["#1"]}]], "&"}], ")"}], "[", 
                     "FunctionRepo`DualNumbers`Private`a$", "]"}], " ", 
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Subfactorial", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "Subfactorial", "[", 
+                    "FunctionRepo`DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"\[ImaginaryI]", " ", "\[Pi]", " ", 
+                    RowBox[{"Subfactorial", "[", "#1", "]"}]}], "+", 
+                    FractionBox[
+                    RowBox[{"MeijerG", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", 
+                    RowBox[{"1", "+", "#1"}]}], "}"}], ",", 
+                    RowBox[{"{", "}"}]}], "}"}], ",", 
+                    RowBox[{"-", "1"}]}], "]"}], "\[ExponentialE]"]}], "&"}], 
+                    ")"}], "[", "FunctionRepo`DualNumbers`Private`a$", "]"}], 
+                    " ", "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{"Tan", "[", 
@@ -17650,61 +18008,6 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     SuperscriptBox[
                     RowBox[{"Dual", "[", 
                     RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}]], "^:=", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    
-                    SuperscriptBox["FunctionRepo`DualNumbers`Private`a$", 
-                    "FunctionRepo`DualNumbers`Private`c$"], ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{
-                    SuperscriptBox["#1", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], "+", "#2"}]], " ", "#2"}], "&"}], 
-                    ")"}], "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a$", ",", 
-                    "FunctionRepo`DualNumbers`Private`c$"}], "]"}], " ", 
-                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
-                    {
-                    RowBox[{
-                    SuperscriptBox[
-                    RowBox[{"(", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}], ")"}], 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}]], "^:=", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    
-                    SuperscriptBox["FunctionRepo`DualNumbers`Private`c$", 
-                    "FunctionRepo`DualNumbers`Private`a$"], ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"Log", "[", "#1", "]"}], " ", 
-                    SuperscriptBox["#1", "#2"]}], "&"}], ")"}], "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$", ",", 
-                    "FunctionRepo`DualNumbers`Private`a$"}], "]"}], " ", 
-                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
-                    {
-                    RowBox[{
-                    SuperscriptBox[
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
                     "FunctionRepo`DualNumbers`Private`a1$_", ",", 
                     "FunctionRepo`DualNumbers`Private`b1$_"}], "]"}], 
                     RowBox[{"Dual", "[", 
@@ -17743,79 +18046,49 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b2$"}]}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"Mod", "[", 
-                    RowBox[{
+                    SuperscriptBox[
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a$_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], ",", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}]}], "]"}], "^:=", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], 
+                    "FunctionRepo`DualNumbers`Private`c$_"], "^:=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
-                    RowBox[{"Mod", "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`a$", ",", 
-                    "FunctionRepo`DualNumbers`Private`c$"}], "]"}], ",", 
+                    
+                    SuperscriptBox["FunctionRepo`DualNumbers`Private`a$", 
+                    "FunctionRepo`DualNumbers`Private`c$"], ",", 
                     RowBox[{
                     RowBox[{
                     RowBox[{"(", 
                     RowBox[{
-                    RowBox[{"1", "-", 
-                    RowBox[{"Piecewise", "[", 
                     RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
+                    SuperscriptBox["#1", 
                     RowBox[{
-                    FractionBox["#1", "#2"], ">", 
-                    RowBox[{"Floor", "[", 
-                    FractionBox["#1", "#2"], "]"}]}]}], "}"}], "}"}], ",", 
-                    "Indeterminate"}], "]"}]}], "&"}], ")"}], "[", 
+                    RowBox[{"-", "1"}], "+", "#2"}]], " ", "#2"}], "&"}], 
+                    ")"}], "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a$", ",", 
                     "FunctionRepo`DualNumbers`Private`c$"}], "]"}], " ", 
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"Mod", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}], ",", 
+                    SuperscriptBox["FunctionRepo`DualNumbers`Private`c$_", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a$_", ",", 
-                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}]}], "]"}], 
-                    "^:=", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}]], "^:=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
-                    RowBox[{"Mod", "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$", ",", 
-                    "FunctionRepo`DualNumbers`Private`a$"}], "]"}], ",", 
+                    
+                    SuperscriptBox["FunctionRepo`DualNumbers`Private`c$", 
+                    "FunctionRepo`DualNumbers`Private`a$"], ",", 
                     RowBox[{
                     RowBox[{
                     RowBox[{"(", 
                     RowBox[{
                     RowBox[{
-                    RowBox[{"-", 
-                    RowBox[{"Floor", "[", 
-                    FractionBox["#1", "#2"], "]"}]}], "+", 
-                    FractionBox[
-                    RowBox[{
-                    RowBox[{"Piecewise", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{
-                    FractionBox["#1", "#2"], ">", 
-                    RowBox[{"Floor", "[", 
-                    FractionBox["#1", "#2"], "]"}]}]}], "}"}], "}"}], ",", 
-                    "Indeterminate"}], "]"}], " ", "#1"}], "#2"]}], "&"}], 
-                    ")"}], "[", 
+                    RowBox[{"Log", "[", "#1", "]"}], " ", 
+                    SuperscriptBox["#1", "#2"]}], "&"}], ")"}], "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`c$", ",", 
                     "FunctionRepo`DualNumbers`Private`a$"}], "]"}], " ", 
@@ -17886,18 +18159,16 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b2$"}]}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"Binomial", "[", 
+                    RowBox[{"Mod", "[", 
                     RowBox[{
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a$_", ",", 
                     "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], ",", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}]}], "]"}], "^:=", 
+                    "FunctionRepo`DualNumbers`Private`c$_"}], "]"}], "^:=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
-                    RowBox[{"Binomial", "[", 
+                    RowBox[{"Mod", "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a$", ",", 
                     "FunctionRepo`DualNumbers`Private`c$"}], "]"}], ",", 
@@ -17905,29 +18176,25 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     RowBox[{
                     RowBox[{"(", 
                     RowBox[{
+                    RowBox[{"1", "-", 
+                    RowBox[{"Piecewise", "[", 
                     RowBox[{
-                    RowBox[{"Binomial", "[", 
-                    RowBox[{"#1", ",", "#2"}], "]"}], " ", 
-                    RowBox[{"(", 
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
                     RowBox[{
-                    RowBox[{"PolyGamma", "[", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"1", "+", "#1"}]}], "]"}], "-", 
-                    RowBox[{"PolyGamma", "[", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"1", "+", "#1", "-", "#2"}]}], "]"}]}], ")"}]}], 
-                    "&"}], ")"}], "[", 
+                    FractionBox["#1", "#2"], ">", 
+                    RowBox[{"Floor", "[", 
+                    FractionBox["#1", "#2"], "]"}]}]}], "}"}], "}"}], ",", 
+                    "Indeterminate"}], "]"}]}], "&"}], ")"}], "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a$", ",", 
                     "FunctionRepo`DualNumbers`Private`c$"}], "]"}], " ", 
                     "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"Binomial", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`c$_", "?", 
-                    "FunctionRepo`DualNumbers`Private`scalarQ"}], ",", 
+                    RowBox[{"Mod", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`c$_", ",", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`a$_", ",", 
@@ -17935,7 +18202,7 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "^:=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
-                    RowBox[{"Binomial", "[", 
+                    RowBox[{"Mod", "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`c$", ",", 
                     "FunctionRepo`DualNumbers`Private`a$"}], "]"}], ",", 
@@ -17944,16 +18211,21 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     RowBox[{"(", 
                     RowBox[{
                     RowBox[{
-                    RowBox[{"Binomial", "[", 
-                    RowBox[{"#1", ",", "#2"}], "]"}], " ", 
-                    RowBox[{"(", 
+                    RowBox[{"-", 
+                    RowBox[{"Floor", "[", 
+                    FractionBox["#1", "#2"], "]"}]}], "+", 
+                    FractionBox[
                     RowBox[{
-                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
                     RowBox[{"0", ",", 
-                    RowBox[{"1", "+", "#1", "-", "#2"}]}], "]"}], "-", 
-                    RowBox[{"PolyGamma", "[", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"1", "+", "#2"}]}], "]"}]}], ")"}]}], "&"}], 
+                    RowBox[{
+                    FractionBox["#1", "#2"], ">", 
+                    RowBox[{"Floor", "[", 
+                    FractionBox["#1", "#2"], "]"}]}]}], "}"}], "}"}], ",", 
+                    "Indeterminate"}], "]"}], " ", "#1"}], "#2"]}], "&"}], 
                     ")"}], "[", 
                     RowBox[{
                     "FunctionRepo`DualNumbers`Private`c$", ",", 
@@ -18021,70 +18293,664 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     "FunctionRepo`DualNumbers`Private`b2$"}]}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"FunctionRepo`DualNumbers`Private`expr", ":", 
-                    RowBox[{"___", "\[Equal]", "_Dual", "\[Equal]", "___"}]}],
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], ",", 
+                    "FunctionRepo`DualNumbers`Private`c$_"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$", ",", 
+                    "FunctionRepo`DualNumbers`Private`c$"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{"#1", ",", "#2"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"1", "+", "#1"}]}], "]"}], "-", 
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"1", "+", "#1", "-", "#2"}]}], "]"}]}], ")"}]}], 
+                    "&"}], ")"}], "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$", ",", 
+                    "FunctionRepo`DualNumbers`Private`c$"}], "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`c$_", ",", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}]}], "]"}], 
+                    "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`c$", ",", 
+                    "FunctionRepo`DualNumbers`Private`a$"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Binomial", "[", 
+                    RowBox[{"#1", ",", "#2"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"1", "+", "#1", "-", "#2"}]}], "]"}], "-", 
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"1", "+", "#2"}]}], "]"}]}], ")"}]}], "&"}], 
+                    ")"}], "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`c$", ",", 
+                    "FunctionRepo`DualNumbers`Private`a$"}], "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a1$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b1$_"}], "]"}], ",", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a2$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b2$_"}], "]"}]}], "]"}],
                      "^:=", 
-                    RowBox[{"ReleaseHold", "[", 
-                    RowBox[{"StandardAll", "[", 
+                    RowBox[{"Dual", "[", 
                     RowBox[{
-                    "HoldComplete", "[", 
-                    "FunctionRepo`DualNumbers`Private`expr", "]"}], "]"}], 
-                    "]"}]}]},
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a1$", ",", 
+                    "FunctionRepo`DualNumbers`Private`a2$"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{"#1", ",", "#2"}], "]"}], " ", 
+                    RowBox[{"Log", "[", "#2", "]"}]}], "+", 
+                    RowBox[{"MeijerG", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", "#1"}], "}"}], ",", 
+                    RowBox[{"{", "}"}]}], "}"}], ",", "#2"}], "]"}]}], "&"}], 
+                    ")"}], "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a1$", ",", 
+                    "FunctionRepo`DualNumbers`Private`a2$"}], "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b1$"}], "+", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", 
+                    SuperscriptBox["\[ExponentialE]", 
+                    RowBox[{"-", "#2"}]]}], " ", 
+                    SuperscriptBox["#2", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "#1"}]]}], "&"}], ")"}], "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a1$", ",", 
+                    "FunctionRepo`DualNumbers`Private`a2$"}], "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b2$"}]}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"FunctionRepo`DualNumbers`Private`expr", ":", 
+                    RowBox[{"Gamma", "[", 
                     RowBox[{
-                    "___", "\[NotEqual]", "_Dual", "\[NotEqual]", "___"}]}], "^:=", 
-                    RowBox[{"ReleaseHold", "[", 
-                    RowBox[{"StandardAll", "[", 
+                    RowBox[{"Dual", "[", 
                     RowBox[{
-                    "HoldComplete", "[", 
-                    "FunctionRepo`DualNumbers`Private`expr", "]"}], "]"}], 
-                    "]"}]}]},
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], ",", 
+                    "FunctionRepo`DualNumbers`Private`c$_"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$", ",", 
+                    "FunctionRepo`DualNumbers`Private`c$"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{"#1", ",", "#2"}], "]"}], " ", 
+                    RowBox[{"Log", "[", "#2", "]"}]}], "+", 
+                    RowBox[{"MeijerG", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", "#1"}], "}"}], ",", 
+                    RowBox[{"{", "}"}]}], "}"}], ",", "#2"}], "]"}]}], "&"}], 
+                    ")"}], "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$", ",", 
+                    "FunctionRepo`DualNumbers`Private`c$"}], "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"FunctionRepo`DualNumbers`Private`expr", ":", 
-                    RowBox[{"___", ">", "_Dual", ">", "___"}]}], "^:=", 
-                    RowBox[{"ReleaseHold", "[", 
-                    RowBox[{"StandardAll", "[", 
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`c$_", ",", 
+                    RowBox[{"Dual", "[", 
                     RowBox[{
-                    "HoldComplete", "[", 
-                    "FunctionRepo`DualNumbers`Private`expr", "]"}], "]"}], 
-                    "]"}]}]},
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}]}], "]"}], 
+                    "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`c$", ",", 
+                    "FunctionRepo`DualNumbers`Private`a$"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", 
+                    SuperscriptBox["\[ExponentialE]", 
+                    RowBox[{"-", "#2"}]]}], " ", 
+                    SuperscriptBox["#2", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "#1"}]]}], "&"}], ")"}], "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`c$", ",", 
+                    "FunctionRepo`DualNumbers`Private`a$"}], "]"}], " ", 
+                    "FunctionRepo`DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
-                    RowBox[{"FunctionRepo`DualNumbers`Private`expr", ":", 
                     RowBox[{
-                    "___", "\[GreaterEqual]", "_Dual", "\[GreaterEqual]", 
-                    "___"}]}], "^:=", 
-                    RowBox[{"ReleaseHold", "[", 
-                    RowBox[{"StandardAll", "[", 
+                    "FunctionRepo`DualNumbers`Private`first$___", "\[Equal]", 
+                    "FunctionRepo`DualNumbers`Private`d$_Dual", "\[Equal]", 
+                    "FunctionRepo`DualNumbers`Private`rest$___"}], "^:=", 
+                    RowBox[{"Equal", "@@", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`std", "[", 
+                    RowBox[{"{", 
                     RowBox[{
-                    "HoldComplete", "[", 
-                    "FunctionRepo`DualNumbers`Private`expr", "]"}], "]"}], 
-                    "]"}]}]},
+                    "FunctionRepo`DualNumbers`Private`first$", ",", 
+                    "FunctionRepo`DualNumbers`Private`d$", ",", 
+                    "FunctionRepo`DualNumbers`Private`rest$"}], "}"}], 
+                    "]"}]}]}]},
                     {
                     RowBox[{
-                    RowBox[{"FunctionRepo`DualNumbers`Private`expr", ":", 
-                    RowBox[{"___", "<", "_Dual", "<", "___"}]}], "^:=", 
-                    RowBox[{"ReleaseHold", "[", 
-                    RowBox[{"StandardAll", "[", 
                     RowBox[{
-                    "HoldComplete", "[", 
-                    "FunctionRepo`DualNumbers`Private`expr", "]"}], "]"}], 
-                    "]"}]}]},
+                    "FunctionRepo`DualNumbers`Private`first$___", 
+                    "\[NotEqual]", "FunctionRepo`DualNumbers`Private`d$_Dual",
+                     "\[NotEqual]", 
+                    "FunctionRepo`DualNumbers`Private`rest$___"}], "^:=", 
+                    RowBox[{"Unequal", "@@", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`std", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`first$", ",", 
+                    "FunctionRepo`DualNumbers`Private`d$", ",", 
+                    "FunctionRepo`DualNumbers`Private`rest$"}], "}"}], 
+                    "]"}]}]}]},
                     {
                     RowBox[{
-                    RowBox[{"FunctionRepo`DualNumbers`Private`expr", ":", 
                     RowBox[{
-                    "___", "\[LessEqual]", "_Dual", "\[LessEqual]", "___"}]}],
-                     "^:=", 
-                    RowBox[{"ReleaseHold", "[", 
-                    RowBox[{"StandardAll", "[", 
+                    "FunctionRepo`DualNumbers`Private`first$___", ">", 
+                    "FunctionRepo`DualNumbers`Private`d$_Dual", ">", 
+                    "FunctionRepo`DualNumbers`Private`rest$___"}], "^:=", 
+                    RowBox[{"Greater", "@@", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`std", "[", 
+                    RowBox[{"{", 
                     RowBox[{
-                    "HoldComplete", "[", 
-                    "FunctionRepo`DualNumbers`Private`expr", "]"}], "]"}], 
+                    "FunctionRepo`DualNumbers`Private`first$", ",", 
+                    "FunctionRepo`DualNumbers`Private`d$", ",", 
+                    "FunctionRepo`DualNumbers`Private`rest$"}], "}"}], 
+                    "]"}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`first$___", 
+                    "\[GreaterEqual]", 
+                    "FunctionRepo`DualNumbers`Private`d$_Dual", 
+                    "\[GreaterEqual]", 
+                    "FunctionRepo`DualNumbers`Private`rest$___"}], "^:=", 
+                    RowBox[{"GreaterEqual", "@@", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`std", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`first$", ",", 
+                    "FunctionRepo`DualNumbers`Private`d$", ",", 
+                    "FunctionRepo`DualNumbers`Private`rest$"}], "}"}], 
+                    "]"}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`first$___", "<", 
+                    "FunctionRepo`DualNumbers`Private`d$_Dual", "<", 
+                    "FunctionRepo`DualNumbers`Private`rest$___"}], "^:=", 
+                    RowBox[{"Less", "@@", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`std", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`first$", ",", 
+                    "FunctionRepo`DualNumbers`Private`d$", ",", 
+                    "FunctionRepo`DualNumbers`Private`rest$"}], "}"}], 
+                    "]"}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`first$___", 
+                    "\[LessEqual]", 
+                    "FunctionRepo`DualNumbers`Private`d$_Dual", 
+                    "\[LessEqual]", 
+                    "FunctionRepo`DualNumbers`Private`rest$___"}], "^:=", 
+                    RowBox[{"LessEqual", "@@", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`std", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`first$", ",", 
+                    "FunctionRepo`DualNumbers`Private`d$", ",", 
+                    "FunctionRepo`DualNumbers`Private`rest$"}], "}"}], 
+                    "]"}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "Abs", "[", "FunctionRepo`DualNumbers`Private`a", "]"}], 
+                    ",", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`b", " ", 
+                    RowBox[{
+                    "Sign", "[", "FunctionRepo`DualNumbers`Private`a", 
+                    "]"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Sign", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b_"}], "]"}], "]"}], "^:=", 
+                    RowBox[{
+                    "Sign", "[", "FunctionRepo`DualNumbers`Private`a", 
                     "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Clip", "[", 
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b_"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`DualNumbers`Private`xmin", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}], ",", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`xmax", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}]}], "}"}]}], "]"}],
+                     ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Clip", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`a", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`xmin", ",", 
+                    "FunctionRepo`DualNumbers`Private`xmax"}], "}"}]}], "]"}],
+                     ",", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`b", " ", 
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`xmin", "\[LessEqual]", 
+                    "FunctionRepo`DualNumbers`Private`a", "\[LessEqual]", 
+                    "FunctionRepo`DualNumbers`Private`xmax"}]}], "}"}], "}"}],
+                     ",", "0"}], "]"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Clip", "[", 
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b_"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`DualNumbers`Private`xmin", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}], ",", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`xmax", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`DualNumbers`Private`ymin", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}], ",", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`ymax", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}]}], "}"}]}], "]"}],
+                     ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Clip", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`a", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`xmin", ",", 
+                    "FunctionRepo`DualNumbers`Private`xmax"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`ymin", ",", 
+                    "FunctionRepo`DualNumbers`Private`ymax"}], "}"}]}], "]"}],
+                     ",", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`b", " ", 
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`xmin", "\[LessEqual]", 
+                    "FunctionRepo`DualNumbers`Private`a", "\[LessEqual]", 
+                    "FunctionRepo`DualNumbers`Private`xmax"}]}], "}"}], "}"}],
+                     ",", "0"}], "]"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Clip", "[", 
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`xmin$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`xmax$_"}], "}"}]}], 
+                    "]"}], ":=", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`stdargs$", "=", 
+                    RowBox[{"{", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`a$", ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`std", "[", 
+                    "FunctionRepo`DualNumbers`Private`xmin$", "]"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`std", "[", 
+                    "FunctionRepo`DualNumbers`Private`xmax$", "]"}]}], 
+                    "}"}]}], "}"}], ",", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Clip", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "3"}], "}"}], 
+                    "\[RightDoubleBracket]"}]}], "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`DualNumbers`Private`b$", " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], "\[LessEqual]", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "\[LessEqual]", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}]}]}], "}"}], "}"}], ",", "0"}], 
+                    "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}]}], "+", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DualQ", "[", "FunctionRepo`DualNumbers`Private`xmin$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`nonstd", "[", 
+                    "FunctionRepo`DualNumbers`Private`xmin$", "]"}], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "<", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}]}], "}"}], "}"}], ",", "0"}], 
+                    "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}]}], ",",
+                     "0"}], "]"}], "+", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DualQ", "[", "FunctionRepo`DualNumbers`Private`xmax$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`nonstd", "[", 
+                    "FunctionRepo`DualNumbers`Private`xmax$", "]"}], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ">", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}]}], "&&", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "\[GreaterEqual]", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}]}]}], "}"}], "}"}], ",", "0"}],
+                     "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}]}], ",",
+                     "0"}], "]"}]}]}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Clip", "[", 
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b$_"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`xmin$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`xmax$_"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`ymin$_", ",", 
+                    "FunctionRepo`DualNumbers`Private`ymax$_"}], "}"}]}], 
+                    "]"}], ":=", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`stdargs$", "=", 
+                    RowBox[{"{", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`a$", ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`std", "[", 
+                    "FunctionRepo`DualNumbers`Private`xmin$", "]"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`std", "[", 
+                    "FunctionRepo`DualNumbers`Private`xmax$", "]"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`std", "[", 
+                    "FunctionRepo`DualNumbers`Private`ymin$", "]"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`std", "[", 
+                    "FunctionRepo`DualNumbers`Private`ymax$", "]"}]}], 
+                    "}"}]}], "}"}], ",", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Clip", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "3"}], "}"}], "\[RightDoubleBracket]"}],
+                     ",", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "5"}], "}"}], 
+                    "\[RightDoubleBracket]"}]}], "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`DualNumbers`Private`b$", " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], "\[LessEqual]", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "\[LessEqual]", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}]}]}], "}"}], "}"}], ",", "0"}], 
+                    "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}]}], "+", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DualQ", "[", "FunctionRepo`DualNumbers`Private`ymin$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`nonstd", "[", 
+                    "FunctionRepo`DualNumbers`Private`ymin$", "]"}], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "<", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}]}], "}"}], "}"}], ",", "0"}], 
+                    "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}]}], ",",
+                     "0"}], "]"}], "+", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DualQ", "[", "FunctionRepo`DualNumbers`Private`ymax$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`nonstd", "[", 
+                    "FunctionRepo`DualNumbers`Private`ymax$", "]"}], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Piecewise", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ">", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}]}], "&&", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "\[GreaterEqual]", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}]}]}], "}"}], "}"}], ",", "0"}],
+                     "]"}], "&"}], ")"}], "[", 
+                    "FunctionRepo`DualNumbers`Private`stdargs$", "]"}]}], ",",
+                     "0"}], "]"}]}]}], "]"}]}], "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{
@@ -18115,21 +18981,16 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     RowBox[{"FunctionRepo`DualNumbers`Private`dualPos", "=", 
                     RowBox[{"Flatten", "[", 
                     RowBox[{"Position", "[", 
-                    RowBox[{
-                    "FunctionRepo`DualNumbers`Private`args", ",", "_Dual", 
-                    ",", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`args", ",", 
+                    "_Dual", ",", 
                     RowBox[{"{", "1", "}"}], ",", 
                     RowBox[{"Heads", "\[Rule]", "False"}]}], "]"}], "]"}]}], 
                     ",", 
                     RowBox[{"FunctionRepo`DualNumbers`Private`inputs", "=", 
-                    RowBox[{"Replace", "[", 
-                    RowBox[{"FunctionRepo`DualNumbers`Private`args", ",", 
                     RowBox[{
-                    RowBox[{"Dual", "[", 
-                    RowBox[{"FunctionRepo`DualNumbers`Private`a_", ",", "_"}],
-                     "]"}], "\[RuleDelayed]", 
-                    "FunctionRepo`DualNumbers`Private`a"}], ",", 
-                    RowBox[{"{", "1", "}"}]}], "]"}]}]}], "}"}], ",", 
+                    "FunctionRepo`DualNumbers`Private`std", "[", 
+                    "FunctionRepo`DualNumbers`Private`args", "]"}]}]}], "}"}],
+                     ",", 
                     RowBox[{"With", "[", 
                     RowBox[{
                     RowBox[{"{", 
@@ -18197,6 +19058,14 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     RowBox[{"0", ",", "1"}], "]"}]}]},
                     {
                     RowBox[{
+                    RowBox[{
+                    "Dual", "[", "FunctionRepo`DualNumbers`Private`a_", "]"}],
+                     ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`a", ",", "1"}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     RowBox[{"Dual", "[", 
@@ -18224,9 +19093,8 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     {
                     RowBox[{
                     RowBox[{"Dual", "[", 
-                    RowBox[{"FunctionRepo`DualNumbers`Private`a_", ",", 
-                    RowBox[{"0", "|", "0.`"}]}], "]"}], ":=", 
-                    "FunctionRepo`DualNumbers`Private`a"}]}
+                    RowBox[{"FunctionRepo`DualNumbers`Private`a_", ",", "0"}],
+                     "]"}], ":=", "FunctionRepo`DualNumbers`Private`a"}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -18240,6 +19108,7 @@ RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"b\\\", \
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`Dual\"\>"}
                  },
@@ -18408,9 +19277,9 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
           Pattern[FunctionRepo`DualNumbers`Private`a, 
            Blank[]], 
           Pattern[FunctionRepo`DualNumbers`Private`b, 
-           Blank[]]] + PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ] :> 
+           Blank[]]] + Pattern[FunctionRepo`DualNumbers`Private`c, 
+          Except[
+           Blank[FunctionRepo`Dual]]] :> 
        FunctionRepo`Dual[
         FunctionRepo`DualNumbers`Private`c + 
          FunctionRepo`DualNumbers`Private`a, 
@@ -18431,9 +19300,9 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
           Pattern[FunctionRepo`DualNumbers`Private`a, 
            Blank[]], 
           Pattern[FunctionRepo`DualNumbers`Private`b, 
-           Blank[]]] PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ] :> 
+           Blank[]]] Pattern[FunctionRepo`DualNumbers`Private`c, 
+          Except[
+           Blank[FunctionRepo`Dual]]] :> 
        FunctionRepo`Dual[
         FunctionRepo`DualNumbers`Private`c FunctionRepo`DualNumbers`Private`a,
           FunctionRepo`DualNumbers`Private`c 
@@ -18451,20 +19320,89 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
           FunctionRepo`DualNumbers`Private`b 
           FunctionRepo`DualNumbers`Private`c + 
          FunctionRepo`DualNumbers`Private`a 
-          FunctionRepo`DualNumbers`Private`d], Abs[
-         FunctionRepo`Dual[
-          Pattern[FunctionRepo`DualNumbers`Private`a, 
-           Blank[]], 
-          Pattern[FunctionRepo`DualNumbers`Private`b, 
-           Blank[]]]] :> FunctionRepo`Dual[
-         Abs[FunctionRepo`DualNumbers`Private`a], 
-         FunctionRepo`DualNumbers`Private`b 
-         Sign[FunctionRepo`DualNumbers`Private`a]], Sign[
-         FunctionRepo`Dual[
-          Pattern[FunctionRepo`DualNumbers`Private`a, 
-           Blank[]], 
-          Pattern[FunctionRepo`DualNumbers`Private`b, 
-           Blank[]]]] :> Sign[FunctionRepo`DualNumbers`Private`a], AiryAi[
+          FunctionRepo`DualNumbers`Private`d], HoldPattern[
+         NumericQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> NumericQ[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         NumberQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> NumberQ[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         IntegerQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> IntegerQ[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         Positive[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> Positive[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         Negative[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> Negative[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         NonPositive[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> NonPositive[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         NonNegative[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> NonNegative[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         PossibleZeroQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> PossibleZeroQ[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         Re[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> Re[FunctionRepo`DualNumbers`Private`a$], HoldPattern[
+         Im[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> Im[FunctionRepo`DualNumbers`Private`a$], HoldPattern[
+         EvenQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> EvenQ[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         OddQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> OddQ[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         PrimeQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> PrimeQ[FunctionRepo`DualNumbers`Private`a$], 
+       HoldPattern[
+         AlgebraicIntegerQ[
+          FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a$, 
+            Blank[]], 
+           Blank[]]]] :> 
+       AlgebraicIntegerQ[FunctionRepo`DualNumbers`Private`a$], AiryAi[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
            Blank[]], 
@@ -18707,6 +19645,16 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
             Pi^(-1) ((-2) Pi^2 Sin[2 Pi #] + 4 Pi^2 Sin[2 Pi #] #), 
              Inequality[0, Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], CatalanNumber[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         CatalanNumber[
+         FunctionRepo`DualNumbers`Private`a$], (
+          CatalanNumber[#] (Log[4] + PolyGamma[# + 1/2] - 
+           PolyGamma[# + 2])& )[FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], CauchyWindow[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
@@ -18729,6 +19677,15 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
          Ceiling[
          FunctionRepo`DualNumbers`Private`a$], (
           Piecewise[{{0, # < Ceiling[#]}}, Indeterminate]& )[
+          FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], ChampernowneNumber[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         ChampernowneNumber[
+         FunctionRepo`DualNumbers`Private`a$], (0& )[
           FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Clip[
          FunctionRepo`Dual[
@@ -18771,6 +19728,15 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
          Cosh[
          FunctionRepo`DualNumbers`Private`a$], (Sinh[#]& )[
           FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], CoshIntegral[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         CoshIntegral[
+         FunctionRepo`DualNumbers`Private`a$], (Cosh[#]/#& )[
+          FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], CosineWindow[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
@@ -18783,6 +19749,15 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
+          FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], CosIntegral[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         CosIntegral[
+         FunctionRepo`DualNumbers`Private`a$], (Cos[#]/#& )[
           FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Cot[
          FunctionRepo`Dual[
@@ -19054,6 +20029,42 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
                NotElement[
                 Im[#], Integers]]]}}, Indeterminate]& )[
           FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], FresnelC[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         FresnelC[
+         FunctionRepo`DualNumbers`Private`a$], (Cos[Pi 2^(-1) #^2]& )[
+          FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], FresnelF[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         FresnelF[
+         FunctionRepo`DualNumbers`Private`a$], (-Pi # FresnelG[#]& )[
+          FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], FresnelG[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         FresnelG[
+         FunctionRepo`DualNumbers`Private`a$], (Pi # FresnelF[#] - 1& )[
+          FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], FresnelS[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         FresnelS[
+         FunctionRepo`DualNumbers`Private`a$], (Sin[Pi 2^(-1) #^2]& )[
+          FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Gamma[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
@@ -19128,6 +20139,15 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], HarmonicNumber[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         HarmonicNumber[
+         FunctionRepo`DualNumbers`Private`a$], (Pi^2/6 - 
+          HarmonicNumber[#, 2]& )[FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Haversine[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
@@ -19443,14 +20463,6 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
          Minus[
          FunctionRepo`DualNumbers`Private`a$], (-1& )[
           FunctionRepo`DualNumbers`Private`a$] 
-         FunctionRepo`DualNumbers`Private`b$], Mod[
-         FunctionRepo`Dual[
-          Pattern[FunctionRepo`DualNumbers`Private`a$, 
-           Blank[]], 
-          Pattern[FunctionRepo`DualNumbers`Private`b$, 
-           Blank[]]]] :> FunctionRepo`Dual[
-         Mod[FunctionRepo`DualNumbers`Private`a$], (D[
-           Mod[#], #]& )[FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], ModularLambda[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
@@ -19542,14 +20554,6 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
            QPochhammer[#, #] (Log[1 - #] + QPolyGamma[0, 1, #])/# + 
           Derivative[0, 1][QPochhammer][#, #]& )[
           FunctionRepo`DualNumbers`Private`a$] 
-         FunctionRepo`DualNumbers`Private`b$], Quotient[
-         FunctionRepo`Dual[
-          Pattern[FunctionRepo`DualNumbers`Private`a$, 
-           Blank[]], 
-          Pattern[FunctionRepo`DualNumbers`Private`b$, 
-           Blank[]]]] :> FunctionRepo`Dual[
-         Quotient[FunctionRepo`DualNumbers`Private`a$], (D[
-           Quotient[#], #]& )[FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Ramp[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
@@ -19690,6 +20694,24 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
          Sinh[
          FunctionRepo`DualNumbers`Private`a$], (Cosh[#]& )[
           FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], SinhIntegral[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         SinhIntegral[
+         FunctionRepo`DualNumbers`Private`a$], (Sinh[#]/#& )[
+          FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], SinIntegral[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         SinIntegral[
+         FunctionRepo`DualNumbers`Private`a$], (Sinc[#]& )[
+          FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Sqrt[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
@@ -19699,6 +20721,16 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
          Sqrt[
          FunctionRepo`DualNumbers`Private`a$], (
           Rational[1, 2] #^Rational[-1, 2]& )[
+          FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], Subfactorial[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         Subfactorial[
+         FunctionRepo`DualNumbers`Private`a$], (I Pi Subfactorial[#] + 
+          1 E^(-1) MeijerG[{{}, {1, 1}}, {{0, 0, 1 + #}, {}}, -1]& )[
           FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Tan[
          FunctionRepo`Dual[
@@ -19779,31 +20811,6 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
           FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], FunctionRepo`Dual[
-          Pattern[FunctionRepo`DualNumbers`Private`a$, 
-           Blank[]], 
-          Pattern[FunctionRepo`DualNumbers`Private`b$, 
-           Blank[]]]^PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c$, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ] :> 
-       FunctionRepo`Dual[
-        FunctionRepo`DualNumbers`Private`a$^
-         FunctionRepo`DualNumbers`Private`c$, (#^(-1 + #2) #2& )[
-          FunctionRepo`DualNumbers`Private`a$, 
-           FunctionRepo`DualNumbers`Private`c$] 
-         FunctionRepo`DualNumbers`Private`b$], PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c$, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ]^
-        FunctionRepo`Dual[
-          Pattern[FunctionRepo`DualNumbers`Private`a$, 
-           Blank[]], 
-          Pattern[FunctionRepo`DualNumbers`Private`b$, 
-           Blank[]]] :> 
-       FunctionRepo`Dual[
-        FunctionRepo`DualNumbers`Private`c$^
-         FunctionRepo`DualNumbers`Private`a$, (Log[#] #^#2& )[
-          FunctionRepo`DualNumbers`Private`c$, 
-           FunctionRepo`DualNumbers`Private`a$] 
-         FunctionRepo`DualNumbers`Private`b$], FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a1$, 
            Blank[]], 
           Pattern[FunctionRepo`DualNumbers`Private`b1$, 
@@ -19820,35 +20827,27 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
           FunctionRepo`DualNumbers`Private`b1$ + (Log[#] #^#2& )[
            FunctionRepo`DualNumbers`Private`a1$, 
             FunctionRepo`DualNumbers`Private`a2$] 
-          FunctionRepo`DualNumbers`Private`b2$], Mod[
-         FunctionRepo`Dual[
+          FunctionRepo`DualNumbers`Private`b2$], FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
            Blank[]], 
           Pattern[FunctionRepo`DualNumbers`Private`b$, 
-           Blank[]]], 
-         PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c$, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ]] :> 
+           Blank[]]]^Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]] :> 
        FunctionRepo`Dual[
-         Mod[
-         FunctionRepo`DualNumbers`Private`a$, 
-          FunctionRepo`DualNumbers`Private`c$], (1 - 
-          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate]& )[
+        FunctionRepo`DualNumbers`Private`a$^
+         FunctionRepo`DualNumbers`Private`c$, (#^(-1 + #2) #2& )[
           FunctionRepo`DualNumbers`Private`a$, 
            FunctionRepo`DualNumbers`Private`c$] 
-         FunctionRepo`DualNumbers`Private`b$], Mod[
-         PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c$, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ], 
-         FunctionRepo`Dual[
+         FunctionRepo`DualNumbers`Private`b$], 
+       Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]]^FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
            Blank[]], 
           Pattern[FunctionRepo`DualNumbers`Private`b$, 
-           Blank[]]]] :> FunctionRepo`Dual[
-         Mod[
-         FunctionRepo`DualNumbers`Private`c$, 
-          FunctionRepo`DualNumbers`Private`a$], (-Floor[#/#2] + 
-          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] #/#2& )[
+           Blank[]]] :> 
+       FunctionRepo`Dual[
+        FunctionRepo`DualNumbers`Private`c$^
+         FunctionRepo`DualNumbers`Private`a$, (Log[#] #^#2& )[
           FunctionRepo`DualNumbers`Private`c$, 
            FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Mod[
@@ -19872,36 +20871,32 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
            Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] #/#2& )[
            FunctionRepo`DualNumbers`Private`a1$, 
             FunctionRepo`DualNumbers`Private`a2$] 
-          FunctionRepo`DualNumbers`Private`b2$], Binomial[
+          FunctionRepo`DualNumbers`Private`b2$], Mod[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
            Blank[]], 
           Pattern[FunctionRepo`DualNumbers`Private`b$, 
            Blank[]]], 
-         PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c$, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ]] :> 
-       FunctionRepo`Dual[
-         Binomial[
+         Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]]] :> FunctionRepo`Dual[
+         Mod[
          FunctionRepo`DualNumbers`Private`a$, 
-          FunctionRepo`DualNumbers`Private`c$], (
-          Binomial[#, #2] (PolyGamma[0, 1 + #] - PolyGamma[0, 1 + # - #2])& )[
+          FunctionRepo`DualNumbers`Private`c$], (1 - 
+          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate]& )[
           FunctionRepo`DualNumbers`Private`a$, 
            FunctionRepo`DualNumbers`Private`c$] 
-         FunctionRepo`DualNumbers`Private`b$], Binomial[
-         PatternTest[
-          Pattern[FunctionRepo`DualNumbers`Private`c$, 
-           Blank[]], FunctionRepo`DualNumbers`Private`scalarQ], 
+         FunctionRepo`DualNumbers`Private`b$], Mod[
+         Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]], 
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a$, 
            Blank[]], 
           Pattern[FunctionRepo`DualNumbers`Private`b$, 
            Blank[]]]] :> FunctionRepo`Dual[
-         Binomial[
+         Mod[
          FunctionRepo`DualNumbers`Private`c$, 
-          FunctionRepo`DualNumbers`Private`a$], (
-          Binomial[#, #2] (PolyGamma[0, 1 + # - #2] - PolyGamma[
-           0, 1 + #2])& )[
+          FunctionRepo`DualNumbers`Private`a$], (-Floor[#/#2] + 
+          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] #/#2& )[
           FunctionRepo`DualNumbers`Private`c$, 
            FunctionRepo`DualNumbers`Private`a$] 
          FunctionRepo`DualNumbers`Private`b$], Binomial[
@@ -19927,32 +20922,272 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
             0, 1 + #2])& )[
            FunctionRepo`DualNumbers`Private`a1$, 
             FunctionRepo`DualNumbers`Private`a2$] 
-          FunctionRepo`DualNumbers`Private`b2$], 
-       Pattern[FunctionRepo`DualNumbers`Private`expr, BlankNullSequence[] == 
-         Blank[FunctionRepo`Dual] == BlankNullSequence[]] :> ReleaseHold[
-         FunctionRepo`StandardAll[
-          HoldComplete[FunctionRepo`DualNumbers`Private`expr]]], 
-       Pattern[
-        FunctionRepo`DualNumbers`Private`expr, BlankNullSequence[] != 
-         Blank[FunctionRepo`Dual] != BlankNullSequence[]] :> ReleaseHold[
-         FunctionRepo`StandardAll[
-          HoldComplete[FunctionRepo`DualNumbers`Private`expr]]], 
-       Pattern[FunctionRepo`DualNumbers`Private`expr, BlankNullSequence[] > 
-         Blank[FunctionRepo`Dual] > BlankNullSequence[]] :> ReleaseHold[
-         FunctionRepo`StandardAll[
-          HoldComplete[FunctionRepo`DualNumbers`Private`expr]]], 
-       Pattern[FunctionRepo`DualNumbers`Private`expr, BlankNullSequence[] >= 
-         Blank[FunctionRepo`Dual] >= BlankNullSequence[]] :> ReleaseHold[
-         FunctionRepo`StandardAll[
-          HoldComplete[FunctionRepo`DualNumbers`Private`expr]]], 
-       Pattern[FunctionRepo`DualNumbers`Private`expr, BlankNullSequence[] < 
-         Blank[FunctionRepo`Dual] < BlankNullSequence[]] :> ReleaseHold[
-         FunctionRepo`StandardAll[
-          HoldComplete[FunctionRepo`DualNumbers`Private`expr]]], 
-       Pattern[FunctionRepo`DualNumbers`Private`expr, BlankNullSequence[] <= 
-         Blank[FunctionRepo`Dual] <= BlankNullSequence[]] :> ReleaseHold[
-         FunctionRepo`StandardAll[
-          HoldComplete[FunctionRepo`DualNumbers`Private`expr]]], Condition[
+          FunctionRepo`DualNumbers`Private`b2$], Binomial[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]], 
+         Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]]] :> FunctionRepo`Dual[
+         Binomial[
+         FunctionRepo`DualNumbers`Private`a$, 
+          FunctionRepo`DualNumbers`Private`c$], (
+          Binomial[#, #2] (PolyGamma[0, 1 + #] - PolyGamma[0, 1 + # - #2])& )[
+          FunctionRepo`DualNumbers`Private`a$, 
+           FunctionRepo`DualNumbers`Private`c$] 
+         FunctionRepo`DualNumbers`Private`b$], Binomial[
+         Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]], 
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         Binomial[
+         FunctionRepo`DualNumbers`Private`c$, 
+          FunctionRepo`DualNumbers`Private`a$], (
+          Binomial[#, #2] (PolyGamma[0, 1 + # - #2] - PolyGamma[
+           0, 1 + #2])& )[
+          FunctionRepo`DualNumbers`Private`c$, 
+           FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], Gamma[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a1$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b1$, 
+           Blank[]]], 
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a2$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b2$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         Gamma[
+         FunctionRepo`DualNumbers`Private`a1$, 
+          FunctionRepo`DualNumbers`Private`a2$], (Gamma[#, #2] Log[#2] + 
+           MeijerG[{{}, {1, 1}}, {{0, 0, #}, {}}, #2]& )[
+           FunctionRepo`DualNumbers`Private`a1$, 
+            FunctionRepo`DualNumbers`Private`a2$] 
+          FunctionRepo`DualNumbers`Private`b1$ + (-E^(-#2) #2^(-1 + #)& )[
+           FunctionRepo`DualNumbers`Private`a1$, 
+            FunctionRepo`DualNumbers`Private`a2$] 
+          FunctionRepo`DualNumbers`Private`b2$], Gamma[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]], 
+         Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]]] :> FunctionRepo`Dual[
+         Gamma[
+         FunctionRepo`DualNumbers`Private`a$, 
+          FunctionRepo`DualNumbers`Private`c$], (Gamma[#, #2] Log[#2] + 
+          MeijerG[{{}, {1, 1}}, {{0, 0, #}, {}}, #2]& )[
+          FunctionRepo`DualNumbers`Private`a$, 
+           FunctionRepo`DualNumbers`Private`c$] 
+         FunctionRepo`DualNumbers`Private`b$], Gamma[
+         Pattern[FunctionRepo`DualNumbers`Private`c$, 
+          Blank[]], 
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         Gamma[
+         FunctionRepo`DualNumbers`Private`c$, 
+          FunctionRepo`DualNumbers`Private`a$], (-E^(-#2) #2^(-1 + #)& )[
+          FunctionRepo`DualNumbers`Private`c$, 
+           FunctionRepo`DualNumbers`Private`a$] 
+         FunctionRepo`DualNumbers`Private`b$], 
+       Pattern[FunctionRepo`DualNumbers`Private`first$, 
+          BlankNullSequence[]] == Pattern[FunctionRepo`DualNumbers`Private`d$, 
+          Blank[FunctionRepo`Dual]] == 
+        Pattern[FunctionRepo`DualNumbers`Private`rest$, 
+          BlankNullSequence[]] :> Apply[Equal, 
+         FunctionRepo`DualNumbers`Private`std[{
+          FunctionRepo`DualNumbers`Private`first$, 
+           FunctionRepo`DualNumbers`Private`d$, 
+           FunctionRepo`DualNumbers`Private`rest$}]], 
+       Pattern[FunctionRepo`DualNumbers`Private`first$, 
+          BlankNullSequence[]] != Pattern[FunctionRepo`DualNumbers`Private`d$, 
+          Blank[FunctionRepo`Dual]] != 
+        Pattern[FunctionRepo`DualNumbers`Private`rest$, 
+          BlankNullSequence[]] :> Apply[Unequal, 
+         FunctionRepo`DualNumbers`Private`std[{
+          FunctionRepo`DualNumbers`Private`first$, 
+           FunctionRepo`DualNumbers`Private`d$, 
+           FunctionRepo`DualNumbers`Private`rest$}]], 
+       Pattern[FunctionRepo`DualNumbers`Private`first$, 
+          BlankNullSequence[]] > Pattern[FunctionRepo`DualNumbers`Private`d$, 
+          Blank[FunctionRepo`Dual]] > 
+        Pattern[FunctionRepo`DualNumbers`Private`rest$, 
+          BlankNullSequence[]] :> Apply[Greater, 
+         FunctionRepo`DualNumbers`Private`std[{
+          FunctionRepo`DualNumbers`Private`first$, 
+           FunctionRepo`DualNumbers`Private`d$, 
+           FunctionRepo`DualNumbers`Private`rest$}]], 
+       Pattern[FunctionRepo`DualNumbers`Private`first$, 
+          BlankNullSequence[]] >= Pattern[FunctionRepo`DualNumbers`Private`d$, 
+          Blank[FunctionRepo`Dual]] >= 
+        Pattern[FunctionRepo`DualNumbers`Private`rest$, 
+          BlankNullSequence[]] :> Apply[GreaterEqual, 
+         FunctionRepo`DualNumbers`Private`std[{
+          FunctionRepo`DualNumbers`Private`first$, 
+           FunctionRepo`DualNumbers`Private`d$, 
+           FunctionRepo`DualNumbers`Private`rest$}]], 
+       Pattern[FunctionRepo`DualNumbers`Private`first$, 
+          BlankNullSequence[]] < Pattern[FunctionRepo`DualNumbers`Private`d$, 
+          Blank[FunctionRepo`Dual]] < 
+        Pattern[FunctionRepo`DualNumbers`Private`rest$, 
+          BlankNullSequence[]] :> Apply[Less, 
+         FunctionRepo`DualNumbers`Private`std[{
+          FunctionRepo`DualNumbers`Private`first$, 
+           FunctionRepo`DualNumbers`Private`d$, 
+           FunctionRepo`DualNumbers`Private`rest$}]], 
+       Pattern[FunctionRepo`DualNumbers`Private`first$, 
+          BlankNullSequence[]] <= Pattern[FunctionRepo`DualNumbers`Private`d$, 
+          Blank[FunctionRepo`Dual]] <= 
+        Pattern[FunctionRepo`DualNumbers`Private`rest$, 
+          BlankNullSequence[]] :> Apply[LessEqual, 
+         FunctionRepo`DualNumbers`Private`std[{
+          FunctionRepo`DualNumbers`Private`first$, 
+           FunctionRepo`DualNumbers`Private`d$, 
+           FunctionRepo`DualNumbers`Private`rest$}]], Abs[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b, 
+           Blank[]]]] :> FunctionRepo`Dual[
+         Abs[FunctionRepo`DualNumbers`Private`a], 
+         FunctionRepo`DualNumbers`Private`b 
+         Sign[FunctionRepo`DualNumbers`Private`a]], Sign[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b, 
+           Blank[]]]] :> Sign[FunctionRepo`DualNumbers`Private`a], Clip[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b, 
+           Blank[]]], {
+          Pattern[FunctionRepo`DualNumbers`Private`xmin, 
+           Except[
+            Blank[FunctionRepo`Dual]]], 
+          Pattern[FunctionRepo`DualNumbers`Private`xmax, 
+           Except[
+            Blank[FunctionRepo`Dual]]]}] :> FunctionRepo`Dual[
+         Clip[
+         FunctionRepo`DualNumbers`Private`a, {
+          FunctionRepo`DualNumbers`Private`xmin, 
+           FunctionRepo`DualNumbers`Private`xmax}], 
+         FunctionRepo`DualNumbers`Private`b 
+         Piecewise[{{
+            1, FunctionRepo`DualNumbers`Private`xmin <= 
+             FunctionRepo`DualNumbers`Private`a <= 
+             FunctionRepo`DualNumbers`Private`xmax}}, 0]], Clip[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b, 
+           Blank[]]], {
+          Pattern[FunctionRepo`DualNumbers`Private`xmin, 
+           Except[
+            Blank[FunctionRepo`Dual]]], 
+          Pattern[FunctionRepo`DualNumbers`Private`xmax, 
+           Except[
+            Blank[FunctionRepo`Dual]]]}, {
+          Pattern[FunctionRepo`DualNumbers`Private`ymin, 
+           Except[
+            Blank[FunctionRepo`Dual]]], 
+          Pattern[FunctionRepo`DualNumbers`Private`ymax, 
+           Except[
+            Blank[FunctionRepo`Dual]]]}] :> FunctionRepo`Dual[
+         Clip[
+         FunctionRepo`DualNumbers`Private`a, {
+          FunctionRepo`DualNumbers`Private`xmin, 
+           FunctionRepo`DualNumbers`Private`xmax}, {
+          FunctionRepo`DualNumbers`Private`ymin, 
+           FunctionRepo`DualNumbers`Private`ymax}], 
+         FunctionRepo`DualNumbers`Private`b 
+         Piecewise[{{
+            1, FunctionRepo`DualNumbers`Private`xmin <= 
+             FunctionRepo`DualNumbers`Private`a <= 
+             FunctionRepo`DualNumbers`Private`xmax}}, 0]], Clip[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]], {
+          Pattern[FunctionRepo`DualNumbers`Private`xmin$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`xmax$, 
+           Blank[]]}] :> 
+       With[{FunctionRepo`DualNumbers`Private`stdargs$ = {
+           FunctionRepo`DualNumbers`Private`a$, 
+            FunctionRepo`DualNumbers`Private`std[
+            FunctionRepo`DualNumbers`Private`xmin$], 
+            FunctionRepo`DualNumbers`Private`std[
+            FunctionRepo`DualNumbers`Private`xmax$]}}, 
+         FunctionRepo`Dual[
+          (Clip[
+           Part[#, 1], 
+           Part[#, {2, 3}]]& )[FunctionRepo`DualNumbers`Private`stdargs$], 
+          FunctionRepo`DualNumbers`Private`b$ (
+            Piecewise[{{1, Part[#, 2] <= Part[#, 1] <= Part[#, 3]}}, 0]& )[
+            FunctionRepo`DualNumbers`Private`stdargs$] + If[
+            FunctionRepo`DualQ[FunctionRepo`DualNumbers`Private`xmin$], 
+            FunctionRepo`DualNumbers`Private`nonstd[
+             FunctionRepo`DualNumbers`Private`xmin$] (
+             Piecewise[{{1, Part[#, 1] < Part[#, 2]}}, 0]& )[
+             FunctionRepo`DualNumbers`Private`stdargs$], 0] + If[
+            FunctionRepo`DualQ[FunctionRepo`DualNumbers`Private`xmax$], 
+            FunctionRepo`DualNumbers`Private`nonstd[
+             FunctionRepo`DualNumbers`Private`xmax$] (Piecewise[{{1, 
+                And[Part[#, 1] > Part[#, 3], Part[#, 1] >= Part[#, 2]]}}, 
+              0]& )[FunctionRepo`DualNumbers`Private`stdargs$], 0]]], Clip[
+         FunctionRepo`Dual[
+          Pattern[FunctionRepo`DualNumbers`Private`a$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`b$, 
+           Blank[]]], {
+          Pattern[FunctionRepo`DualNumbers`Private`xmin$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`xmax$, 
+           Blank[]]}, {
+          Pattern[FunctionRepo`DualNumbers`Private`ymin$, 
+           Blank[]], 
+          Pattern[FunctionRepo`DualNumbers`Private`ymax$, 
+           Blank[]]}] :> 
+       With[{FunctionRepo`DualNumbers`Private`stdargs$ = {
+           FunctionRepo`DualNumbers`Private`a$, 
+            FunctionRepo`DualNumbers`Private`std[
+            FunctionRepo`DualNumbers`Private`xmin$], 
+            FunctionRepo`DualNumbers`Private`std[
+            FunctionRepo`DualNumbers`Private`xmax$], 
+            FunctionRepo`DualNumbers`Private`std[
+            FunctionRepo`DualNumbers`Private`ymin$], 
+            FunctionRepo`DualNumbers`Private`std[
+            FunctionRepo`DualNumbers`Private`ymax$]}}, 
+         FunctionRepo`Dual[
+          (Clip[
+           Part[#, 1], 
+           Part[#, {2, 3}], 
+           Part[#, {4, 5}]]& )[FunctionRepo`DualNumbers`Private`stdargs$], 
+          FunctionRepo`DualNumbers`Private`b$ (
+            Piecewise[{{1, Part[#, 2] <= Part[#, 1] <= Part[#, 3]}}, 0]& )[
+            FunctionRepo`DualNumbers`Private`stdargs$] + If[
+            FunctionRepo`DualQ[FunctionRepo`DualNumbers`Private`ymin$], 
+            FunctionRepo`DualNumbers`Private`nonstd[
+             FunctionRepo`DualNumbers`Private`ymin$] (
+             Piecewise[{{1, Part[#, 1] < Part[#, 2]}}, 0]& )[
+             FunctionRepo`DualNumbers`Private`stdargs$], 0] + If[
+            FunctionRepo`DualQ[FunctionRepo`DualNumbers`Private`ymax$], 
+            FunctionRepo`DualNumbers`Private`nonstd[
+             FunctionRepo`DualNumbers`Private`ymax$] (Piecewise[{{1, 
+                And[Part[#, 1] > Part[#, 3], Part[#, 1] >= Part[#, 2]]}}, 
+              0]& )[FunctionRepo`DualNumbers`Private`stdargs$], 0]]], 
+       Condition[
          Pattern[FunctionRepo`DualNumbers`Private`f, 
           Blank[Symbol]][
           Pattern[FunctionRepo`DualNumbers`Private`first, 
@@ -19971,10 +21206,8 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
              Position[FunctionRepo`DualNumbers`Private`args, 
               Blank[FunctionRepo`Dual], {1}, Heads -> False]], 
            FunctionRepo`DualNumbers`Private`inputs = 
-           Replace[FunctionRepo`DualNumbers`Private`args, FunctionRepo`Dual[
-               Pattern[FunctionRepo`DualNumbers`Private`a, 
-                Blank[]], 
-               Blank[]] :> FunctionRepo`DualNumbers`Private`a, {1}]}, 
+           FunctionRepo`DualNumbers`Private`std[
+            FunctionRepo`DualNumbers`Private`args]}, 
           With[{FunctionRepo`DualNumbers`Private`derrivs = Apply[Derivative[
                SlotSequence[1]][FunctionRepo`DualNumbers`Private`f]& , 
               Part[
@@ -19998,6 +21231,10 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
     Information`InformationValueForm[
      DownValues, FunctionRepo`Dual, {
       FunctionRepo`Dual[] -> FunctionRepo`Dual[0, 1], FunctionRepo`Dual[
+         Pattern[FunctionRepo`DualNumbers`Private`a, 
+          Blank[]]] :> 
+       FunctionRepo`Dual[FunctionRepo`DualNumbers`Private`a, 1], 
+       FunctionRepo`Dual[
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a, 
            Blank[]], 
@@ -20020,13 +21257,733 @@ part \!\(\*StyleBox[\"a\", \"TI\"]\) and infinitesimal part \
         FunctionRepo`DualNumbers`Private`a, 
          FunctionRepo`DualNumbers`Private`b], FunctionRepo`Dual[
          Pattern[FunctionRepo`DualNumbers`Private`a, 
-          Blank[]], 
-         Alternatives[0, 0.]] :> FunctionRepo`DualNumbers`Private`a}], 
-    "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
-    "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "FunctionRepo`Dual"], False]]], "Output",
- CellLabel->
-  "Out[130]=",ExpressionUUID->"0c7c44d9-70f3-44a9-80af-261db2f111fd"],
+          Blank[]], 0] :> FunctionRepo`DualNumbers`Private`a}], "SubValues" -> 
+    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> "FunctionRepo`Dual"],
+    False]]], "Output",
+ CellLabel->"Out[48]=",ExpressionUUID->"f9527a0f-a25e-4dc2-bfa9-e0cca2122320"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tests if \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) is a dual number.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"DualQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{"_", ",", "_"}], "]"}], "]"}], ":=", "True"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"DualQ", "[", "_", "]"}], ":=", "False"}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`DualQ\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tests if \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) is a dual number.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"DualQ\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"]}], \
+\"]\"}]\) tests if \!\(\*StyleBox[\"expr\", \"TI\"]\) is a dual number.", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`DualQ, {FunctionRepo`DualQ[
+         FunctionRepo`Dual[
+          Blank[], 
+          Blank[]]] :> True, FunctionRepo`DualQ[
+         Blank[]] :> False}], "SubValues" -> None, "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`DualQ"], 
+   False]]], "Output",
+ CellLabel->"Out[49]=",ExpressionUUID->"c3f8a499-fdca-44cf-bf6f-5c901c88825a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ScalarQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) = \
+!DualQ[\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\)]\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"ScalarQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{"_", ",", "_"}], "]"}], "]"}], ":=", "False"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"ScalarQ", "[", "_", "]"}], ":=", "True"}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`ScalarQ\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ScalarQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) = \
+!DualQ[\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\)]\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"ScalarQ\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"]}], \
+\"]\"}]\) = !DualQ[\!\(\*StyleBox[\"expr\", \"TI\"]\)]", "Documentation" -> 
+    None, "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`ScalarQ, {FunctionRepo`ScalarQ[
+         FunctionRepo`Dual[
+          Blank[], 
+          Blank[]]] :> False, FunctionRepo`ScalarQ[
+         Blank[]] :> True}], "SubValues" -> None, "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`ScalarQ"], 
+   False]]], "Output",
+ CellLabel->"Out[50]=",ExpressionUUID->"66b74be8-2960-41cd-b1cf-4e8deb0e94d1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"DualEpsilon = Dual[0, 1].\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Assignment\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"OwnValues\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "OwnValues", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{"DualEpsilon", "=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{"0", ",", "1"}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`DualEpsilon\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"DualEpsilon = Dual[0, 1].\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> "DualEpsilon = Dual[0, 1].", 
+    "Documentation" -> None, "OwnValues" -> 
+    Information`InformationValueForm[
+     OwnValues, FunctionRepo`DualEpsilon, {
+      FunctionRepo`DualEpsilon -> FunctionRepo`Dual[0, 1]}], "UpValues" -> 
+    None, "DownValues" -> None, "SubValues" -> None, "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`DualEpsilon"], 
+   False]]], "Output",
+ CellLabel->"Out[51]=",ExpressionUUID->"b6d55a3f-8e51-425a-b393-f53f4be2bb49"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -20086,13 +22043,28 @@ standard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \\\"TI\\\"]\\) \
                     RowBox[{"Dual", "[", 
                     RowBox[{"FunctionRepo`DualNumbers`Private`a_", ",", "_"}],
                      "]"}], "]"}], ":=", 
-                    "FunctionRepo`DualNumbers`Private`a"}]}
+                    "FunctionRepo`DualNumbers`Private`a"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Standard", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`x_", "?", "NumericQ"}], 
+                    "]"}], ":=", "FunctionRepo`DualNumbers`Private`x"}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
                     
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Attributes\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Attributes", "Tooltip"]& ], 
+                   RowBox[{"{", "Listable", "}"}]},
                   {
                    TagBox[
                     TooltipBox[
@@ -20267,12 +22239,15 @@ standard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \\\"TI\\\"]\\) \
          FunctionRepo`Dual[
           Pattern[FunctionRepo`DualNumbers`Private`a, 
            Blank[]], 
-          Blank[]]] :> FunctionRepo`DualNumbers`Private`a}], "SubValues" -> 
-    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
-    "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "FunctionRepo`Standard"], False]]], "Output",
- CellLabel->
-  "Out[131]=",ExpressionUUID->"cc48771d-bcdb-4603-881a-bf29b6ee628c"],
+          Blank[]]] :> FunctionRepo`DualNumbers`Private`a, 
+       FunctionRepo`Standard[
+         PatternTest[
+          Pattern[FunctionRepo`DualNumbers`Private`x, 
+           Blank[]], NumericQ]] :> FunctionRepo`DualNumbers`Private`x}], 
+    "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
+    "FormatValues" -> None, "Options" -> None, "Attributes" -> {Listable}, 
+    "FullName" -> "FunctionRepo`Standard"], False]]], "Output",
+ CellLabel->"Out[52]=",ExpressionUUID->"a24768d5-c274-4631-8e86-8f33cd48dfe4"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -20332,13 +22307,26 @@ non-standard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \
                     RowBox[{"Dual", "[", 
                     RowBox[{"_", ",", "FunctionRepo`DualNumbers`Private`b_"}],
                      "]"}], "]"}], ":=", 
-                    "FunctionRepo`DualNumbers`Private`b"}]}
+                    "FunctionRepo`DualNumbers`Private`b"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"NonStandard", "[", 
+                    RowBox[{"_", "?", "NumericQ"}], "]"}], ":=", "0"}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
                     
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Attributes\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Attributes", "Tooltip"]& ], 
+                   RowBox[{"{", "Listable", "}"}]},
                   {
                    TagBox[
                     TooltipBox[
@@ -20514,12 +22502,14 @@ non-standard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \
          FunctionRepo`Dual[
           Blank[], 
           Pattern[FunctionRepo`DualNumbers`Private`b, 
-           Blank[]]]] :> FunctionRepo`DualNumbers`Private`b}], "SubValues" -> 
-    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
-    "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "FunctionRepo`NonStandard"], False]]], "Output",
- CellLabel->
-  "Out[132]=",ExpressionUUID->"c35f2529-5e78-47fb-afb6-f9206f6140f5"],
+           Blank[]]]] :> FunctionRepo`DualNumbers`Private`b, 
+       FunctionRepo`NonStandard[
+         PatternTest[
+          Blank[], NumericQ]] :> 0}], "SubValues" -> None, "DefaultValues" -> 
+    None, "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {Listable}, "FullName" -> "FunctionRepo`NonStandard"], 
+   False]]], "Output",
+ CellLabel->"Out[53]=",ExpressionUUID->"2152337a-e7ab-4514-b497-7f92abc23201"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -20772,7 +22762,543 @@ standard parts.\"\>", "InformationUsageText",
     None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "FunctionRepo`StandardAll"], False]]], "Output",
- CellLabel->"Out[133]=",ExpressionUUID->"1551149a-fec6-46e7-9b11-9d2def775dc4"]
+ CellLabel->"Out[54]=",ExpressionUUID->"d4bec4eb-593e-4d06-b9ab-b696a586baeb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualExpand\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) replaces each dual number \
+Dual[\\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\), \
+\\!\\(\\*StyleBox[\\\"b\\\", \\\"TI\\\"]\\)] with \
+\\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\) + \\!\\(\\*StyleBox[\\\"b\\\", \\\
+\"TI\\\"]\\) * \\!\\(\\*StyleBox[\\\"eps\\\", \\\"TI\\\"]\\).\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"DualExpand", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`expr_", ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`eps_", ":", 
+                    "\[FormalEpsilon]"}]}], "]"}], ":=", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`expr", "//.", 
+                    "\[VeryThinSpace]", 
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`a_", ",", 
+                    "FunctionRepo`DualNumbers`Private`b_"}], "]"}], 
+                    "\[RuleDelayed]", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`a", "+", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`b", " ", 
+                    "FunctionRepo`DualNumbers`Private`eps"}]}]}]}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`DualExpand\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualExpand\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) replaces each dual number \
+Dual[\\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\), \
+\\!\\(\\*StyleBox[\\\"b\\\", \\\"TI\\\"]\\)] with \
+\\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\) + \\!\\(\\*StyleBox[\\\"b\\\", \\\
+\"TI\\\"]\\) * \\!\\(\\*StyleBox[\\\"eps\\\", \\\"TI\\\"]\\).\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"DualExpand\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \
+\",\",  StyleBox[\"eps\", \"TI\"]}], \"]\"}]\) replaces each dual number \
+Dual[\!\(\*StyleBox[\"a\", \"TI\"]\), \!\(\*StyleBox[\"b\", \"TI\"]\)] with \
+\!\(\*StyleBox[\"a\", \"TI\"]\) + \!\(\*StyleBox[\"b\", \"TI\"]\) * \
+\!\(\*StyleBox[\"eps\", \"TI\"]\).", "Documentation" -> None, "OwnValues" -> 
+    None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`DualExpand, {FunctionRepo`DualExpand[
+         Pattern[FunctionRepo`DualNumbers`Private`expr, 
+          Blank[]], 
+         Optional[
+          Pattern[FunctionRepo`DualNumbers`Private`eps, 
+           Blank[]], \[FormalEpsilon]]] :> 
+       ReplaceRepeated[
+        FunctionRepo`DualNumbers`Private`expr, FunctionRepo`Dual[
+           Pattern[FunctionRepo`DualNumbers`Private`a, 
+            Blank[]], 
+           Pattern[FunctionRepo`DualNumbers`Private`b, 
+            Blank[]]] :> 
+         FunctionRepo`DualNumbers`Private`a + 
+          FunctionRepo`DualNumbers`Private`b 
+           FunctionRepo`DualNumbers`Private`eps]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "FunctionRepo`DualExpand"], False]]], "Output",
+ CellLabel->"Out[55]=",ExpressionUUID->"bb6c6c28-91e2-47ec-9b1c-021704b5dc7d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualFactor\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) replaces \\!\\(\\*StyleBox[\\\"eps\\\", \
+\\\"TI\\\"]\\) with Dual[0, 1] in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\
+\\).\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"DualFactor", "[", 
+                    RowBox[{"FunctionRepo`DualNumbers`Private`expr_", ",", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`eps_", ":", 
+                    "\[FormalEpsilon]"}]}], "]"}], ":=", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`expr", "//.", 
+                    "\[VeryThinSpace]", 
+                    RowBox[{
+                    "FunctionRepo`DualNumbers`Private`eps", "\[RuleDelayed]", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{"0", ",", "1"}], "]"}]}]}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`DualFactor\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualFactor\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) replaces \\!\\(\\*StyleBox[\\\"eps\\\", \
+\\\"TI\\\"]\\) with Dual[0, 1] in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\
+\\).\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"DualFactor\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \
+\",\",  StyleBox[\"eps\", \"TI\"]}], \"]\"}]\) replaces \
+\!\(\*StyleBox[\"eps\", \"TI\"]\) with Dual[0, 1] in \!\(\*StyleBox[\"expr\", \
+\"TI\"]\).", "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None,
+     "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`DualFactor, {FunctionRepo`DualFactor[
+         Pattern[FunctionRepo`DualNumbers`Private`expr, 
+          Blank[]], 
+         Optional[
+          Pattern[FunctionRepo`DualNumbers`Private`eps, 
+           Blank[]], \[FormalEpsilon]]] :> 
+       ReplaceRepeated[
+        FunctionRepo`DualNumbers`Private`expr, 
+         FunctionRepo`DualNumbers`Private`eps :> FunctionRepo`Dual[0, 1]]}], 
+    "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
+    "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "FunctionRepo`DualFactor"], False]]], "Output",
+ CellLabel->"Out[56]=",ExpressionUUID->"ce90b105-4e3c-44ec-92a8-457a9833597a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -20938,11 +23464,36 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"-", "0.3217712604863809`"}]], "Output",
  CellLabel->"Out[123]=",ExpressionUUID->"01bdeb25-8b32-43ea-a1a3-c72820faad8c"]
-}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[32]:=",ExpressionUUID->"5376b4c2-6de9-4156-898b-e4ee9350f01d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DualExpand", "[", 
+  RowBox[{"Sqrt", "[", 
+   RowBox[{"Dual", "[", 
+    RowBox[{"x", ",", "1"}], "]"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[33]:=",ExpressionUUID->"6cd6b85d-7c27-4ac8-a699-b90967d0603e"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["\[FormalEpsilon]", 
+   RowBox[{"2", " ", 
+    SqrtBox["x"]}]], "+", 
+  SqrtBox["x"]}]], "Output",
+ CellLabel->"Out[33]=",ExpressionUUID->"25e885d5-7d55-4296-8289-d9015cd07a58"]
+}, Open  ]],
+
+Cell[BoxData["Quit"], "Input",
+ CellLabel->"In[33]:=",ExpressionUUID->"ef57e62a-c506-4353-aece-109758d6ff42"]
 }, Open  ]]
 },
 WindowSize->{1814, 888},
-WindowMargins->{{Automatic, 31}, {83, Automatic}},
+WindowMargins->{{Automatic, 31}, {Automatic, 10}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
