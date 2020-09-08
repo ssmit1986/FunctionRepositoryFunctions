@@ -59,6 +59,16 @@ Dual /: Dual[a_, b_] + Dual[c_, d_] := Dual[a + c, b + d];
 Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a_, b_] * Dual[c_, d_] := Dual[a * c, b * c + a * d];
 
+Scan[
+    Function[fun,
+        Dual /: HoldPattern[fun[Dual[a_, _]]] := fun[a];
+    ],
+    {
+        NumericQ, NumberQ, IntegerQ, Positive, Negative, NonPositive, NonNegative, PossibleZeroQ,
+        EvenQ, OddQ, PrimeQ, AlgebraicIntegerQ
+    }
+];
+
 (* Set upvalues for most built-in numeric functions where possible *)
 KeyValueMap[
     Function[{fun, derriv},
@@ -92,7 +102,7 @@ KeyValueMap[
         Function[f,
             Derivative[##][f]& @@@ IdentityMatrix[2]
         ],
-        {Power, Mod, Binomial}
+        {Power, Mod, Binomial, Gamma}
     ]
 ];
 
