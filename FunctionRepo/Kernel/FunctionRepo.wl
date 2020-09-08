@@ -54,6 +54,11 @@ graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
 
 Dual;
+DualEpsilon;
+DualQ;
+Standard;
+StandardAll;
+NonStandard;
 Get["FunctionRepo`DualNumbers`"];
 
 EndPackage[]

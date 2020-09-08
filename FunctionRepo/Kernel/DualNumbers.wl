@@ -2,7 +2,16 @@
 
 BeginPackage["FunctionRepo`DualNumbers`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[Dual, "mergeByKey[{assoc$1, assoc$2, $$}, {key$1 -> fun$1, key$2 -> fun$2, $$}, default$] merges the assocations using different merge functions for different keys."];
+GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with standard part a$ and infinitesimal part b$."];
+GeneralUtilities`SetUsage[Standard,
+    "Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument)."
+];
+GeneralUtilities`SetUsage[StandardAll,
+    "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
+];
+GeneralUtilities`SetUsage[NonStandard,
+    "NonStandard[d$] extracts the non-standard part of a dual number d$ (i.e., the second argument)."
+];
 DualEpsilon;
 DualQ;
 
@@ -18,12 +27,17 @@ DualQ[_] := False;
 
 scalarQ[c_] := !DualQ[c]
 
-DualEpsilon = Dual[0, 1];
+Dual[] = DualEpsilon = Dual[0, 1];
+
+Standard[Dual[a_, _]] := a;
+StandardAll[expr_] := ReplaceAll[expr, Dual[a_, _] :> a];
+
+NonStandard[Dual[_, b_]] := b;
 
 Dual[Dual[a_, b_], c_] := Dual[a, b + c];
 Dual[a_, Dual[b_, c_]] := Dual[a, b];
 
-Dual /: Dual[a_, 0] := a;
+Dual /: Dual[a_, 0 | 0.] := a;
 Dual /: c_?scalarQ + Dual[a_, b_] := Dual[c + a, b];
 Dual /: Dual[a_, b_] + Dual[c_, d_] := Dual[a + c, b + d];
 Dual /: c_?scalarQ * Dual[a_, b_] := Dual[c * a, c * b];
@@ -34,7 +48,7 @@ Dual /: Power[d_Dual, n_Integer?Positive] := Fold[
     d,
     Rest[IntegerDigits[n, 2]]
 ];
-Dual /: Power[Dual[a_, b_], 0 | 0. | _?(EqualTo[0])] := Dual[a^0, 0];
+Dual /: Power[Dual[a_, b_], 0 | 0.] := Dual[a^0, 0];
 Dual /: Power[Dual[a_, b_], -1] := Dual[Divide[1, a], -Divide[b, a^2]];
 Dual /: Power[d_Dual, n_Integer?Negative] := Divide[1, Power[d, -n]];
 Dual /: Power[Dual[a_, b_], x_?scalarQ] := Dual[a^x, b * x * a^Subtract[x, 1]];
@@ -52,7 +66,7 @@ KeyValueMap[
     Function[{fun, derriv},
         Dual /: fun[Dual[a_, b_]] := Dual[fun[a], derriv[a] * b]
     ],
-    KeyDrop[{Plus, Times, Power, Divide, Subtract}] @ Select[
+    KeyDrop[{Plus, Times, Power, Divide, Subtract, Abs, Sign}] @ Select[
         AssociationMap[
             Derivative[1],
             Symbol /@ Select[
@@ -82,6 +96,13 @@ KeyValueMap[
         ],
         {Power, Mod, Binomial}
     ]
+];
+
+Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
+    Function[fun,
+        Dual /: (expr : fun[___, _Dual, ___]) := ReleaseHold @ StandardAll[HoldComplete[expr]]
+    ],
+    {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
 
 Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFunction] := With[{
