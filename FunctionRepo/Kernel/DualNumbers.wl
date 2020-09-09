@@ -124,7 +124,11 @@ KeyValueMap[
 
 Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
     Function[fun,
-        Dual /: fun[first___, d_Dual, rest___] := fun @@ std[{first, d, rest}]
+        Dual /: fun[first___, d : Dual[_?NumericQ, _], rest___] := With[{
+            test = fun @@ std[{first, d, rest}]
+        },
+            test /; BooleanQ[test]
+        ]
     ],
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
