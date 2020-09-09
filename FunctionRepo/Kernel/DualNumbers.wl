@@ -19,6 +19,7 @@ GeneralUtilities`SetUsage[DualFactor,
     "DualFactor[expr$, eps$] replaces eps$ with Dual[0, 1] in expr$."
 ];
 GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
+GeneralUtilities`SetUsage[InactiveEpsilon, "InactiveEpsilon is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[ScalarQ, "ScalarQ[expr$] = !DualQ[expr$]"];
 
@@ -39,19 +40,21 @@ ScalarQ[_] := True;
 scalarPatt = Except[_Dual];
 
 Dual[] = DualEpsilon = Dual[0, 1];
+InactiveEpsilon = Inactive[Dual][0, 1];
+
 Dual[a_] := Dual[a, 1];
 
 SetAttributes[Standard, Listable];
 Standard[Dual[a_, _]] := a;
 Standard[x_?NumericQ] := x;
 
-StandardAll[expr_] := ReplaceAll[expr, Dual[a_, _] :> a];
+StandardAll[expr_] := ReplaceRepeated[expr, Dual[a_, _] :> a];
 
-DualExpand[expr_, eps : _ : \[FormalEpsilon]] := ReplaceRepeated[
+DualExpand[expr_, eps : _ : InactiveEpsilon] := ReplaceRepeated[
     expr,
     Dual[a_, b_] :> a + b * eps
 ];
-DualFactor[expr_, eps : _ : \[FormalEpsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
+DualFactor[expr_, eps : _ : InactiveEpsilon] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
 
 SetAttributes[NonStandard, Listable];
 NonStandard[Dual[_, b_]] := b;
@@ -67,6 +70,9 @@ nonstd[x_] := 0;
 
 Dual[Dual[a_, b_], c_] := Dual[a, b + c];
 Dual[a_, Dual[b_, c_]] := Dual[a, b];
+
+Derivative[1, 0][Dual] = 1&;
+Derivative[0, 1][Dual] = Dual[0, 1]&;
 
 Dual /: Dual[a_, 0] := a;
 Dual /: (c : scalarPatt) + Dual[a_, b_] := Dual[c + a, b];
