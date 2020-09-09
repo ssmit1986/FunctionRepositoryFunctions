@@ -29,6 +29,8 @@ Begin["`Private`"] (* Begin Private Context *)
     https://mathematica.stackexchange.com/a/13926/43522
 *)
 
+derivativePatt = Except[Function[D[__]], _Function];
+
 DualQ[Dual[_, _]] := True;
 DualQ[_] := False;
 
@@ -95,10 +97,7 @@ KeyValueMap[
                 MemberQ[Attributes[#], NumericFunction]&
             ]
         ],
-        And[
-            Head[#] === Function,
-            !MatchQ[#, Function[D[__]]]
-        ]&
+        MatchQ[derivativePatt]
     ]
 ];
 
@@ -134,7 +133,7 @@ Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dua
 ];
 
 (* Special cases *)
-Dual /: Abs[Dual[a_, b_]] := Dual[Abs[a], b Sign[a]];
+Dual /: Abs[Dual[a_, b_]] := Dual[Abs[a], b * Sign[a]];
 Dual /: Sign[Dual[a_, b_]] := Sign[a];
 
 (* Special cases for Clip *)
@@ -201,7 +200,7 @@ Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFun
             Function[# @@ inputs] /@ derrivs,
             args[[dualPos, 2]]
         ]
-    ] /; MatchQ[derrivs, {__Function}]
+    ] /; MatchQ[derrivs, {derivativePatt..}]
 ]]];
 
 End[] (* End Private Context *)
