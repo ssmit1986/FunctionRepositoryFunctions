@@ -22,6 +22,7 @@ GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
 GeneralUtilities`SetUsage[InactiveEpsilon, "InactiveEpsilon is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[ScalarQ, "ScalarQ[expr$] = !DualQ[expr$]"];
+DualFindRoot;
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -208,6 +209,34 @@ Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFun
         ]
     ] /; MatchQ[derrivs, {derivativePatt..}]
 ]]];
+
+DualFindRoot[Equal[lhs_, rhs_], rest___] := DualFindRoot[lhs - rhs, rest];
+DualFindRoot[eqs : {___, _Equal, ___}, rest___] := DualFindRoot[
+    Replace[eqs, lhs_ == rhs_ :> lhs - rhs, {1}],
+    rest
+];
+DualFindRoot[eq : Except[_List], {var_, init__?NumericQ}, rest___] := DualFindRoot[{eq}, {{var, init}}, rest];
+
+DualFindRoot[eqs : {Except[_Equal]..}, spec : {{_, __?NumericQ}..}, rest___] := Module[{
+    stdEqs = StandardAll[DualFactor @ eqs],
+    nonstdEqs,
+    vars,
+    stdSol, nonstdSol, 
+    dualRules
+},
+    stdSol = FindRoot[stdEqs, spec, rest];
+    If[ !MatchQ[stdSol, {(_ -> _?NumericQ)..}],
+        Return[$Failed]
+    ];
+    vars = Keys[stdSol];
+    dualRules = Thread[vars -> (Values[stdSol] + Map[Dual[0, #]&, vars])];
+    nonstdEqs = eqs /. dualRules;
+    If[ !MatchQ[nonstdEqs, {__Dual}],
+        Return[$Failed]
+    ];    
+    nonstdSol = First @ Solve[Function[NonStandard[#] == 0] /@ nonstdEqs, vars];
+    Thread[vars -> MapThread[Dual, {Lookup[stdSol, vars], Lookup[nonstdSol, vars]}]]
+];
 
 End[] (* End Private Context *)
 

@@ -63,6 +63,7 @@ StandardAll;
 NonStandard;
 DualFactor;
 DualExpand;
+DualFindRoot;
 Get["FunctionRepo`DualNumbers`"];
 
 EndPackage[]
