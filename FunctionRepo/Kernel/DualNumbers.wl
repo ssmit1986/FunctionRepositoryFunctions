@@ -34,6 +34,9 @@ GeneralUtilities`SetUsage[DualFindMinimum,
 GeneralUtilities`SetUsage[FindDualSolution,
     "FindDualSolution[eqs$, sol$] finds a Dual-valued solution to eqs$ where sol$ is the standard-valued solution."
 ];
+GeneralUtilities`SetUsage[DualLinearSolveFunction,
+    "DualLinearSolveFunction[ls$, b$] is produced from LinearSolve[Dual[a$, b$]]. A DualLinearSolveFunction can be applied to Dual arrays."
+];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -94,6 +97,16 @@ Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 
+
+Dual /: Dot[
+    c_?ArrayQ,
+    Dual[a_?ArrayQ, b_?ArrayQ]
+] /; Dimensions[a] === Dimensions[b] := Dual[c.a, c.b]
+Dual /: Dot[
+    Dual[a_?ArrayQ, b_?ArrayQ],
+    c_?ArrayQ
+] /; Dimensions[a] === Dimensions[b] := Dual[a.c, b.c]
+
 Dual /: Dot[
     Dual[a1_?ArrayQ, b1_?ArrayQ],
     Dual[a2_?ArrayQ, b2_?ArrayQ]
@@ -107,25 +120,47 @@ Dual /: Inverse[
 ] /; Dimensions[a] === Dimensions[b] := With[{inv = Inverse[a]},
     Dual[
         inv,
-        - Dot[inv, b, inv] /; MatrixQ[inv]
-    ]
+        - Dot[inv, b, inv]
+    ] /; MatrixQ[inv]
 ];
 
-(* Unfinished; cannot apply to dual numbers 
+DualLinearSolveFunction[ls_LinearSolveFunction, b_?SquareMatrixQ][m_?ArrayQ] := With[{
+    inv = ls[m]
+},
+    Dual[
+        inv,
+        -ls[b. inv]
+    ] /; ArrayQ[inv]
+];
+DualLinearSolveFunction[ls_LinearSolveFunction, b_?SquareMatrixQ][
+    Dual[a2_?ArrayQ, b2_?ArrayQ]
+] /; Dimensions[a2] === Dimensions[b2] := With[{
+    inv = ls[a2]
+},
+    Dual[
+        inv,
+        -ls[b.inv] + ls[b2]
+    ] /; ArrayQ[inv]
+];
+
 Dual /: LinearSolve[
     Dual[a_?SquareMatrixQ, b_?SquareMatrixQ],
     opts : OptionsPattern[]
 ] /; Dimensions[a] === Dimensions[b] := With[{
-    inv = LinearSolve[a, opts]
+    ls = LinearSolve[a, opts]
 },
-    Function[
-        Dual[
-            inv[#],
-            -inv[b . inv[#]]
-        ]
-    ] /; Head[inv] === LinearSolveFunction
+    DualLinearSolveFunction[ls, b] /; Head[ls] === LinearSolveFunction
 ];
-*)
+
+Dual /: LinearSolve[
+    Dual[a_?SquareMatrixQ, b_?SquareMatrixQ],
+    x : (_?ArrayQ | _?DualQ),
+    opts : OptionsPattern[]
+] /; Dimensions[a] === Dimensions[b] := With[{
+    ls = LinearSolve[a, opts]
+},
+    DualLinearSolveFunction[ls, b][x] /; Head[ls] === LinearSolveFunction
+];
 
 
 Scan[

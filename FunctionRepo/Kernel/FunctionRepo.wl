@@ -67,6 +67,7 @@ DualSimplify;
 FindDualSolution;
 DualFindRoot;
 DualFindMinimum;
+DualLinearSolveFunction;
 Get["FunctionRepo`DualNumbers`"];
 
 EndPackage[]
