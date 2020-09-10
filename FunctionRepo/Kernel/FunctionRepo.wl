@@ -57,6 +57,8 @@ Dual;
 DualEpsilon;
 InactiveEpsilon;
 DualQ;
+DualArrayQ;
+DualSquareMatrixQ;
 ScalarQ;
 Standard;
 StandardAll;

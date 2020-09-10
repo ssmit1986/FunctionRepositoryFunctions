@@ -24,6 +24,8 @@ GeneralUtilities`SetUsage[DualSimplify,
 GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
 GeneralUtilities`SetUsage[InactiveEpsilon, "InactiveEpsilon is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
+GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
+GeneralUtilities`SetUsage[DualSquareMatrixQ, "DualSquareMatrixQ[expr$] tests if expr$ is a square matrix of dual numbers."]
 GeneralUtilities`SetUsage[ScalarQ, "ScalarQ[expr$] = !DualQ[expr$]"];
 GeneralUtilities`SetUsage[DualFindRoot,
     "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
@@ -49,6 +51,12 @@ derivativePatt = Except[Function[D[__]], _Function];
 
 DualQ[Dual[_, _]] := True;
 DualQ[_] := False;
+
+DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
+DualArrayQ[_] := False;
+
+DualSquareMatrixQ[Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]] /; Dimensions[a] === Dimensions[b] := True;
+DualSquareMatrixQ[_] := False;
 
 ScalarQ[Dual[_, _]] := False;
 ScalarQ[_] := True;
@@ -97,27 +105,45 @@ Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 
+(* (* These definitions can be helpful for calculating very large Powers *)
+Dual /: Power[d_Dual, n_Integer?Positive] := Fold[
+    Function[If[#2 === 1, d * #1, #1] * #1],
+    d,
+    Rest[IntegerDigits[n, 2]]
+];
+Dual /: Power[Dual[a_, b_], -1] := Dual[Divide[1, a], -Divide[b, a^2]];
+Dual /: Power[d_Dual, n_Integer?Negative] := Power[Power[d, -n], -1];
+*)
+
+Dual /: Dimensions[Dual[a_, _]?DualArrayQ] := Dimensions[a];
+Dual /: Dimensions[Dual[_, _]] := {};
+
+Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
+Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
 
 Dual /: Dot[
-    c_?ArrayQ,
-    Dual[a_?ArrayQ, b_?ArrayQ]
-] /; Dimensions[a] === Dimensions[b] := Dual[c.a, c.b]
-Dual /: Dot[
-    Dual[a_?ArrayQ, b_?ArrayQ],
-    c_?ArrayQ
-] /; Dimensions[a] === Dimensions[b] := Dual[a.c, b.c]
-
-Dual /: Dot[
-    Dual[a1_?ArrayQ, b1_?ArrayQ],
-    Dual[a2_?ArrayQ, b2_?ArrayQ]
-] /; And[
-    Dimensions[a1] === Dimensions[b1],
-    Dimensions[a2] === Dimensions[b2]
+    Dual[a1_, b1_]?DualArrayQ,
+    Dual[a2_, b2_]?DualArrayQ
 ] := Dual[a1.a2, a1.b2 + b1.a2];
 
+Dual /: MatrixPower[
+    d_Dual?DualSquareMatrixQ,
+    n_Integer?Positive
+] := Fold[
+    Function[
+        If[#2 === 1, d.#1, #1] . #1
+    ],
+    d,
+    Rest[IntegerDigits[n, 2]]
+];
+Dual /: MatrixPower[
+    d_Dual?DualSquareMatrixQ,
+    n_Integer?Negative
+] := Inverse @ MatrixPower[d, -n];
+
 Dual /: Inverse[
-    Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]
-] /; Dimensions[a] === Dimensions[b] := With[{inv = Inverse[a]},
+    Dual[a_, b_]?DualSquareMatrixQ
+] := With[{inv = Inverse[a]},
     Dual[
         inv,
         - Dot[inv, b, inv]
@@ -133,8 +159,8 @@ DualLinearSolveFunction[ls_LinearSolveFunction, b_?SquareMatrixQ][m_?ArrayQ] := 
     ] /; ArrayQ[inv]
 ];
 DualLinearSolveFunction[ls_LinearSolveFunction, b_?SquareMatrixQ][
-    Dual[a2_?ArrayQ, b2_?ArrayQ]
-] /; Dimensions[a2] === Dimensions[b2] := With[{
+    Dual[a2_?ArrayQ, b2_?ArrayQ]?DualArrayQ
+] := With[{
     inv = ls[a2]
 },
     Dual[
@@ -144,19 +170,19 @@ DualLinearSolveFunction[ls_LinearSolveFunction, b_?SquareMatrixQ][
 ];
 
 Dual /: LinearSolve[
-    Dual[a_?SquareMatrixQ, b_?SquareMatrixQ],
+    Dual[a_, b_]?DualSquareMatrixQ,
     opts : OptionsPattern[]
-] /; Dimensions[a] === Dimensions[b] := With[{
+] := With[{
     ls = LinearSolve[a, opts]
 },
     DualLinearSolveFunction[ls, b] /; Head[ls] === LinearSolveFunction
 ];
 
 Dual /: LinearSolve[
-    Dual[a_?SquareMatrixQ, b_?SquareMatrixQ],
+    Dual[a_, b_]?DualSquareMatrixQ,
     x : (_?ArrayQ | _?DualQ),
     opts : OptionsPattern[]
-] /; Dimensions[a] === Dimensions[b] := With[{
+] := With[{
     ls = LinearSolve[a, opts]
 },
     DualLinearSolveFunction[ls, b][x] /; Head[ls] === LinearSolveFunction
