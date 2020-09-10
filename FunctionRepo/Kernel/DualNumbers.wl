@@ -18,6 +18,9 @@ GeneralUtilities`SetUsage[DualExpand,
 GeneralUtilities`SetUsage[DualFactor,
     "DualFactor[expr$, eps$] replaces eps$ with Dual[0, 1] in expr$."
 ];
+GeneralUtilities`SetUsage[DualSimplify,
+    "DualSimplify[expr$, eps$] expands expr$ around eps$ = 0, keeping only the 0th and 1st order terms."
+];
 GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
 GeneralUtilities`SetUsage[InactiveEpsilon, "InactiveEpsilon is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
@@ -56,6 +59,8 @@ DualExpand[expr_, eps : _ : InactiveEpsilon] := ReplaceRepeated[
     Dual[a_, b_] :> a + b * eps
 ];
 DualFactor[expr_, eps : _ : InactiveEpsilon] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
+
+DualSimplify[expr_, eps : _ : InactiveEpsilon] := Normal @ Series[expr, {eps, 0, 1}];
 
 SetAttributes[NonStandard, Listable];
 NonStandard[Dual[_, b_]] := b;
