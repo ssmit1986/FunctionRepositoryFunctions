@@ -90,9 +90,16 @@ Derivative[0, 1][Dual] = Dual[0, 1]&;
 
 Dual /: Dual[a_, 0] := a;
 Dual /: (c : scalarPatt) + Dual[a_, b_] := Dual[c + a, b];
-Dual /: Dual[a_, b_] + Dual[c_, d_] := Dual[a + c, b + d];
+Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
-Dual /: Dual[a_, b_] * Dual[c_, d_] := Dual[a * c, b * c + a * d];
+Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
+Dual /: Dot[
+    Dual[a1_?ArrayQ, b1_?ArrayQ],
+    Dual[a2_?ArrayQ, b2_?ArrayQ]
+] /; And[
+    Dimensions[a1] === Dimensions[b1],
+    Dimensions[a2] === Dimensions[b2]
+] := Dual[a1.a2, a1.b2 + b1.a2];
 
 Scan[
     Function[fun,
