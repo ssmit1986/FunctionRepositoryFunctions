@@ -25,7 +25,15 @@ GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
 GeneralUtilities`SetUsage[InactiveEpsilon, "InactiveEpsilon is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[ScalarQ, "ScalarQ[expr$] = !DualQ[expr$]"];
-DualFindRoot;
+GeneralUtilities`SetUsage[DualFindRoot,
+    "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
+];
+GeneralUtilities`SetUsage[DualFindMinimum,
+    "DualFindMinimum works like DualFindMinimum, but allows for Dual numbers in the objective function.\nDualFindMinimum does not support constraints on the independent variables."
+];
+GeneralUtilities`SetUsage[FindDualSolution,
+    "FindDualSolution[eqs$, sol$] finds a Dual-valued solution to eqs$ where sol$ is the standard-valued solution."
+];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -215,32 +223,66 @@ Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFun
     ] /; MatchQ[derrivs, {derivativePatt..}]
 ]]];
 
-DualFindRoot[Equal[lhs_, rhs_], rest___] := DualFindRoot[lhs - rhs, rest];
-DualFindRoot[eqs : {___, _Equal, ___}, rest___] := DualFindRoot[
-    Replace[eqs, lhs_ == rhs_ :> lhs - rhs, {1}],
-    rest
-];
-DualFindRoot[eq : Except[_List], {var_, init__?NumericQ}, rest___] := DualFindRoot[{eq}, {{var, init}}, rest];
+equationNormalForm[eq : Except[_List]] := equationNormalForm[{eq}]
+equationNormalForm[eqs : {___, Except[_Equal], ___}] := equationNormalForm @ Replace[eqs, f : Except[_Equal]:> f == 0, {1}];
+equationNormalForm[eqs : {HoldPattern[Equal[_, _]]..}] := Flatten @ Map[Thread, eqs];
+equationNormalForm[_] := $Failed
 
-DualFindRoot[eqs : {Except[_Equal]..}, spec : {{_, __?NumericQ}..}, rest___] := Module[{
-    stdEqs = StandardAll[DualFactor @ eqs],
-    nonstdEqs,
-    vars,
-    stdSol, nonstdSol, 
-    dualRules
+FindDualSolution::nonsol = "Not all standard parts of the equations are solved by solution `1`.";
+
+FindDualSolution[eqs_, sol : {__Rule}] := Module[{
+    equations = equationNormalForm[eqs],
+    vars = Keys[sol],
+    dualRules,
+    nonstdSol
 },
+    If[ FailureQ[equations],
+        Return[$Failed]
+    ];
+    dualRules = Thread[vars -> (Values[sol] + Map[Dual[0, #]&, vars])];
+    equations = DualFactor[Subtract @@@ equations] /. dualRules;
+    If[ !MatchQ[equations, {Dual[_?(EqualTo[0]), _]..}],
+        Message[FindDualSolution::nonsol, Short @ sol]
+    ];
+    equations = Function[NonStandard[#] == 0] /@ equations;
+    nonstdSol = First @ Solve[equations, vars];
+    Thread[vars -> MapThread[Dual, {Lookup[sol, vars], Lookup[nonstdSol, vars, 0]}]]
+];
+
+DualFindRoot[eq_, spec : {_, __?NumericQ}, rest___] := DualFindRoot[eq, {spec}, rest];
+DualFindRoot[eqs_, spec : {{_, __?NumericQ}..}, rest___] := Module[{
+    equations = equationNormalForm[eqs],
+    stdEqs, stdSol
+},
+    If[ FailureQ[equations],
+        Return[$Failed]
+    ];
+    stdEqs = Subtract @@@ equations;
+    stdEqs = StandardAll[DualFactor[stdEqs]];
     stdSol = FindRoot[stdEqs, spec, rest];
     If[ !MatchQ[stdSol, {(_ -> _?NumericQ)..}],
         Return[$Failed]
     ];
-    vars = Keys[stdSol];
-    dualRules = Thread[vars -> (Values[stdSol] + Map[Dual[0, #]&, vars])];
-    nonstdEqs = eqs /. dualRules;
-    If[ !MatchQ[nonstdEqs, {__Dual}],
+    Quiet[FindDualSolution[equations, stdSol], {FindDualSolution::nonsol}]
+];
+
+DualFindMinimum[eq_, spec : {_, __?NumericQ}, rest___] := DualFindRoot[eq, {spec}, rest];
+DualFindMinimum[fun : Except[_List], spec : {{_, __?NumericQ}..}, rest___] := Module[{
+    stdfun, stdSol,
+    vars = spec[[All, 1]]
+},
+    stdfun = StandardAll[DualFactor[fun]];
+    stdSol = FindMinimum[stdfun, spec, rest];
+    If[ !MatchQ[stdSol, {_?NumericQ, {(_ -> _?NumericQ)..}}],
         Return[$Failed]
-    ];    
-    nonstdSol = First @ Solve[Function[NonStandard[#] == 0] /@ nonstdEqs, vars];
-    Thread[vars -> MapThread[Dual, {Lookup[stdSol, vars], Lookup[nonstdSol, vars]}]]
+    ];
+    Quiet[
+        FindDualSolution[
+            D[fun, {vars}],
+            Last @ stdSol
+        ],
+        {FindDualSolution::nonsol}
+    ]
 ];
 
 End[] (* End Private Context *)

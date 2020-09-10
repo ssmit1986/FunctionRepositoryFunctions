@@ -64,7 +64,9 @@ NonStandard;
 DualFactor;
 DualExpand;
 DualSimplify;
+FindDualSolution;
 DualFindRoot;
+DualFindMinimum;
 Get["FunctionRepo`DualNumbers`"];
 
 EndPackage[]
