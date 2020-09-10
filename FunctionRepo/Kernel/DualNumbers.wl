@@ -93,6 +93,7 @@ Dual /: (c : scalarPatt) + Dual[a_, b_] := Dual[c + a, b];
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
+
 Dual /: Dot[
     Dual[a1_?ArrayQ, b1_?ArrayQ],
     Dual[a2_?ArrayQ, b2_?ArrayQ]
@@ -100,6 +101,32 @@ Dual /: Dot[
     Dimensions[a1] === Dimensions[b1],
     Dimensions[a2] === Dimensions[b2]
 ] := Dual[a1.a2, a1.b2 + b1.a2];
+
+Dual /: Inverse[
+    Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]
+] /; Dimensions[a] === Dimensions[b] := With[{inv = Inverse[a]},
+    Dual[
+        inv,
+        - Dot[inv, b, inv] /; MatrixQ[inv]
+    ]
+];
+
+(* Unfinished; cannot apply to dual numbers 
+Dual /: LinearSolve[
+    Dual[a_?SquareMatrixQ, b_?SquareMatrixQ],
+    opts : OptionsPattern[]
+] /; Dimensions[a] === Dimensions[b] := With[{
+    inv = LinearSolve[a, opts]
+},
+    Function[
+        Dual[
+            inv[#],
+            -inv[b . inv[#]]
+        ]
+    ] /; Head[inv] === LinearSolveFunction
+];
+*)
+
 
 Scan[
     Function[fun,
