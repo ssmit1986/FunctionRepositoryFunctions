@@ -356,6 +356,9 @@ equationNormalForm[eqs : {___, Except[_Equal], ___}] := equationNormalForm @ Rep
 equationNormalForm[eqs : {HoldPattern[Equal[_, _]]..}] := Flatten @ Map[Thread, eqs];
 equationNormalForm[_] := $Failed
 
+firstSol[{el_, ___}] := el;
+firstSol[other_] := other;
+
 FindDualSolution::nonsol = "Warning: solution `1` could not be verified to solve the standard parts of the provided equations.";
 
 FindDualSolution[eqs_, sol : {__Rule}] := Module[{
@@ -374,9 +377,12 @@ FindDualSolution[eqs_, sol : {__Rule}] := Module[{
     ];
     equations = Function[NonStandard[#] == 0] /@ equations;
     nonstdSol = Solve[equations, vars];
-    Map[
-        Thread[vars -> MapThread[Dual, {Lookup[sol, vars], Lookup[#, vars, 0]}]]&,
-        nonstdSol
+    If[ MatchQ[nonstdSol, {{__Rule}..}],
+        Map[
+            Thread[vars -> MapThread[Dual, {Lookup[sol, vars], Lookup[#, vars, 0]}]]&,
+            nonstdSol
+        ],
+        $Failed
     ]
 ];
 
@@ -394,7 +400,7 @@ DualFindRoot[eqs_, spec : {{_, __?NumericQ}..}, rest___] := Module[{
     If[ !MatchQ[stdSol, {(_ -> _?NumericQ)..}],
         Return[$Failed]
     ];
-    Quiet[First @ FindDualSolution[equations, stdSol], {FindDualSolution::nonsol}]
+    Quiet[firstSol @ FindDualSolution[equations, stdSol], {FindDualSolution::nonsol}]
 ];
 
 DualFindMinimum[eq_, spec : {_, __?NumericQ}, rest___] := DualFindMinimum[eq, {spec}, rest];
@@ -409,13 +415,16 @@ DualFindMinimum[fun : Except[_List], spec : {{_, __?NumericQ}..}, rest___] := Mo
         Return[$Failed]
     ];
     dualSol = Quiet[
-        First @ FindDualSolution[
+        firstSol @ FindDualSolution[
             D[fun, {vars}],
             Last @ stdSol
         ],
         {FindDualSolution::nonsol}
     ];
-    {fun /. dualSol, dualSol}
+    If[ MatchQ[dualSol, {__Rule}],
+        {fun /. dualSol, dualSol},
+        dualSol
+    ]
 ];
 
 End[] (* End Private Context *)
