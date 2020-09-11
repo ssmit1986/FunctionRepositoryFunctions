@@ -126,6 +126,62 @@ Dual /: Power[d_Dual, n_Integer?Positive] := Fold[
 ];
 *)
 
+
+(* Special cases *)
+Dual /: Abs[Dual[a_, b_]] := Dual[Abs[a], b * Sign[a]];
+Dual /: Sign[Dual[a_, b_]] := Sign[a];
+
+(* Special cases for Clip *)
+Dual /: Clip[Dual[a_, b_], {xmin : scalarPatt, xmax : scalarPatt}] := Dual[
+    Clip[a, {xmin, xmax}],
+    b * Piecewise[{{1, xmin<= a <= xmax}}, 0]
+];
+Dual /: Clip[Dual[a_, b_], {xmin : scalarPatt, xmax : scalarPatt}, {ymin : scalarPatt, ymax : scalarPatt}] := Dual[
+    Clip[a, {xmin, xmax}, {ymin, ymax}],
+    b * Piecewise[{{1, xmin<= a <= xmax}}, 0]
+];
+With[{
+    clipDerivatives3arg1 = Piecewise[{{1, #[[2]] <= #[[1]] <= #[[3]]}}, 0]&,
+    clipDerivatives3arg2 = Piecewise[{{1, #[[1]] < #[[2]]}}, 0]&,
+    clipDerivatives3arg3 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&,
+    clipDerivatives5arg1 = Piecewise[{{1, #[[2]] <= #[[1]] <= #[[3]]}}, 0]&,
+    clipDerivatives5arg2 = 0&,
+    clipDerivatives5arg3 = 0&,
+    clipDerivatives5arg4 = Piecewise[{{1, #[[1]] < #[[2]]}}, 0]&,
+    clipDerivatives5arg5 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&
+},
+    Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}] := With[{
+        stdargs = {a, std @ xmin, std @ xmax}
+    },
+        Dual[
+            Clip[#[[1]], #[[{2, 3}]]]& @ stdargs,
+            Plus[
+                b * clipDerivatives3arg1 @ stdargs,
+                If[ DualQ[xmin], nonstd[xmin] * clipDerivatives3arg2 @ stdargs, 0],
+                If[ DualQ[xmax], nonstd[xmax] * clipDerivatives3arg3 @ stdargs, 0]
+            ]
+        ]
+    ];
+    Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}, {ymin_, ymax_}] := With[{
+        stdargs = {a, std @ xmin, std @ xmax, std @ ymin, std @ ymax}
+    },
+        Dual[
+            Clip[#[[1]], #[[{2, 3}]], #[[{4, 5}]]]& @ stdargs,
+            Plus[
+                b * clipDerivatives5arg1 @ stdargs,
+                (* these are always 0 anyway *)
+                (*
+                If[ DualQ[xmin], nonstd[xmin] * clipDerivatives5arg2 @@ stdargs, 0],
+                If[ DualQ[xmax], nonstd[xmax] * clipDerivatives5arg3 @@ stdargs, 0],
+                *)
+                If[ DualQ[ymin], nonstd[ymin] * clipDerivatives5arg4 @ stdargs, 0],
+                If[ DualQ[ymax], nonstd[ymax] * clipDerivatives5arg5 @ stdargs, 0]
+            ]
+        ]
+    ]
+];
+
+(* Array operations *)
 Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
 Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
 
@@ -195,7 +251,6 @@ Dual /: LinearSolve[
 },
     DualLinearSolveFunction[ls, b][x] /; Head[ls] === LinearSolveFunction
 ];
-
 
 Scan[
     Function[fun,
@@ -277,64 +332,10 @@ Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dua
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
 
-(* Special cases *)
-Dual /: Abs[Dual[a_, b_]] := Dual[Abs[a], b * Sign[a]];
-Dual /: Sign[Dual[a_, b_]] := Sign[a];
-
-(* Special cases for Clip *)
-Dual /: Clip[Dual[a_, b_], {xmin : scalarPatt, xmax : scalarPatt}] := Dual[
-    Clip[a, {xmin, xmax}],
-    b * Piecewise[{{1, xmin<= a <= xmax}}, 0]
-];
-Dual /: Clip[Dual[a_, b_], {xmin : scalarPatt, xmax : scalarPatt}, {ymin : scalarPatt, ymax : scalarPatt}] := Dual[
-    Clip[a, {xmin, xmax}, {ymin, ymax}],
-    b * Piecewise[{{1, xmin<= a <= xmax}}, 0]
-];
-With[{
-    clipDerivatives3arg1 = Piecewise[{{1, #[[2]] <= #[[1]] <= #[[3]]}}, 0]&,
-    clipDerivatives3arg2 = Piecewise[{{1, #[[1]] < #[[2]]}}, 0]&,
-    clipDerivatives3arg3 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&,
-    clipDerivatives5arg1 = Piecewise[{{1, #[[2]] <= #[[1]] <= #[[3]]}}, 0]&,
-    clipDerivatives5arg2 = 0&,
-    clipDerivatives5arg3 = 0&,
-    clipDerivatives5arg4 = Piecewise[{{1, #[[1]] < #[[2]]}}, 0]&,
-    clipDerivatives5arg5 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&
-},
-    Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}] := With[{
-        stdargs = {a, std @ xmin, std @ xmax}
-    },
-        Dual[
-            Clip[#[[1]], #[[{2, 3}]]]& @ stdargs,
-            Plus[
-                b * clipDerivatives3arg1 @ stdargs,
-                If[ DualQ[xmin], nonstd[xmin] * clipDerivatives3arg2 @ stdargs, 0],
-                If[ DualQ[xmax], nonstd[xmax] * clipDerivatives3arg3 @ stdargs, 0]
-            ]
-        ]
-    ];
-    Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}, {ymin_, ymax_}] := With[{
-        stdargs = {a, std @ xmin, std @ xmax, std @ ymin, std @ ymax}
-    },
-        Dual[
-            Clip[#[[1]], #[[{2, 3}]], #[[{4, 5}]]]& @ stdargs,
-            Plus[
-                b * clipDerivatives5arg1 @ stdargs,
-                (* these are always 0 anyway *)
-                (*
-                If[ DualQ[xmin], nonstd[xmin] * clipDerivatives5arg2 @@ stdargs, 0],
-                If[ DualQ[xmax], nonstd[xmax] * clipDerivatives5arg3 @@ stdargs, 0],
-                *)
-                If[ DualQ[ymin], nonstd[ymin] * clipDerivatives5arg4 @ stdargs, 0],
-                If[ DualQ[ymax], nonstd[ymax] * clipDerivatives5arg5 @ stdargs, 0]
-            ]
-        ]
-    ]
-];
-
 Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFunction] := With[{
     args = {first, d, rest}
 }, With[{
-    dualPos = Flatten @ Position[args, _Dual, {1}, Heads -> False],
+    dualPos = Flatten @ Position[args, _Dual?DualQ, {1}, Heads -> False],
     inputs = std[args]
 }, With[{
     derrivs = Derivative[##][f]& @@@ IdentityMatrix[Length[args]][[dualPos]]
@@ -347,6 +348,8 @@ Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFun
         ]
     ] /; MatchQ[derrivs, {derivativePatt..}]
 ]]];
+
+(* Helper functions for equation solving with Dual numbers *)
 
 equationNormalForm[eq : Except[_List]] := equationNormalForm[{eq}]
 equationNormalForm[eqs : {___, Except[_Equal], ___}] := equationNormalForm @ Replace[eqs, f : Except[_Equal]:> f == 0, {1}];
