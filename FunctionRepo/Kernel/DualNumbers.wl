@@ -107,6 +107,13 @@ Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 
+Dual /: HoldPattern @ Subtract[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[Subtract[a1, a2], Subtract[b1, b2]];
+
+Dual /: HoldPattern @ Divide[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[
+    Divide[a1, a2],
+    Divide[Subtract[b1 * a2, a1 * b2] , a2^2]
+];
+
 Dual /: Power[Dual[a_, b_], 1] := Dual[a, b];
 Dual /: Power[Dual[Except[0 | 0.], _], 0] := 1;
 Dual /: Power[Dual[a_, b_], -1] := Dual[Divide[1, a], -Divide[b, a^2]];
