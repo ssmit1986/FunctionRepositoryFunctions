@@ -53,4 +53,23 @@ Get["FunctionRepo`mergeByKey`"];
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
 
+Dual;
+DualEpsilon;
+InactiveEpsilon;
+DualQ;
+DualArrayQ;
+DualSquareMatrixQ;
+ScalarQ;
+Standard;
+StandardAll;
+NonStandard;
+DualFactor;
+DualExpand;
+DualSimplify;
+FindDualSolution;
+DualFindRoot;
+DualFindMinimum;
+DualLinearSolveFunction;
+Get["FunctionRepo`DualNumbers`"];
+
 EndPackage[]
