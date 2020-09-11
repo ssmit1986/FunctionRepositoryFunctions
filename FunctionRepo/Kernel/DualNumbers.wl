@@ -49,16 +49,16 @@ Begin["`Private`"] (* Begin Private Context *)
 
 derivativePatt = Except[Function[D[__]], _Function];
 
-DualQ[Dual[_, _]] := True;
+Dual /: DualQ[Dual[_, _]] := True;
 DualQ[_] := False;
 
-DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
+Dual /: DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualArrayQ[_] := False;
 
-DualSquareMatrixQ[Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]] /; Dimensions[a] === Dimensions[b] := True;
+Dual /: DualSquareMatrixQ[Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualSquareMatrixQ[_] := False;
 
-ScalarQ[Dual[_, _]] := False;
+Dual /: ScalarQ[Dual[_, _]] := False;
 ScalarQ[_] := True;
 scalarPatt = Except[_Dual];
 
@@ -70,8 +70,12 @@ Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
 Dual[a_] := Dual[a, 1];
 
 SetAttributes[Standard, Listable];
-Standard[Dual[a_, _]] := a;
+Dual /: Standard[Dual[a_, _]] := a;
 Standard[x_?NumericQ] := x;
+
+SetAttributes[NonStandard, Listable];
+Dual /: NonStandard[Dual[_, b_]] := b;
+NonStandard[_?NumericQ] := 0;
 
 StandardAll[expr_] := ReplaceRepeated[expr, Dual[a_, _] :> a];
 
@@ -83,10 +87,6 @@ DualFactor[expr_, eps : _ : InactiveEpsilon] := ReplaceRepeated[expr, eps :> Dua
 
 DualSimplify[expr_, eps : _ : InactiveEpsilon] := Normal @ Series[expr, {eps, 0, 1}];
 
-SetAttributes[NonStandard, Listable];
-NonStandard[Dual[_, b_]] := b;
-NonStandard[_?NumericQ] := 0;
-
 SetAttributes[std, Listable];
 std[Dual[a_, _]] := a;
 std[x_] := x;
@@ -95,8 +95,8 @@ SetAttributes[nonstd, Listable];
 nonstd[Dual[_, b_]] := b;
 nonstd[x_] := 0;
 
-Dual[Dual[a_, b_], c_] := Dual[a, b + c];
-Dual[a_, Dual[b_, c_]] := Dual[a, b];
+Dual[Dual[a_, b_], c_] ^:= Dual[a, b + c];
+Dual[a_, Dual[b_, _]] ^:= Dual[a, b];
 
 Derivative[1, 0][Dual] = 1&;
 Derivative[0, 1][Dual] = Dual[0, 1]&;
