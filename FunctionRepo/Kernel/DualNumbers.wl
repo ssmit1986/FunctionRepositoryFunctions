@@ -65,6 +65,8 @@ scalarPatt = Except[_Dual];
 Dual[] = DualEpsilon = Dual[0, 1];
 InactiveEpsilon = Inactive[Dual][0, 1];
 
+Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
+Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
 Dual[a_] := Dual[a, 1];
 
 SetAttributes[Standard, Listable];
@@ -105,18 +107,17 @@ Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 
-(* (* These definitions can be helpful for calculating very large Powers *)
+Dual /: Power[Dual[a_, b_], 1] := Dual[a, b];
+Dual /: Power[Dual[Except[0 | 0.], _], 0] := 1;
+Dual /: Power[Dual[a_, b_], -1] := Dual[Divide[1, a], -Divide[b, a^2]];
+
+(* (* This definition can be helpful for calculating very large Powers *)
 Dual /: Power[d_Dual, n_Integer?Positive] := Fold[
     Function[If[#2 === 1, d * #1, #1] * #1],
     d,
     Rest[IntegerDigits[n, 2]]
 ];
-Dual /: Power[Dual[a_, b_], -1] := Dual[Divide[1, a], -Divide[b, a^2]];
-Dual /: Power[d_Dual, n_Integer?Negative] := Power[Power[d, -n], -1];
 *)
-
-Dual /: Dimensions[Dual[a_, _]?DualArrayQ] := Dimensions[a];
-Dual /: Dimensions[Dual[_, _]] := {};
 
 Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
 Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
@@ -180,7 +181,7 @@ Dual /: LinearSolve[
 
 Dual /: LinearSolve[
     Dual[a_, b_]?DualSquareMatrixQ,
-    x : (_?ArrayQ | _?DualQ),
+    x : (_?ArrayQ | _?DualArrayQ),
     opts : OptionsPattern[]
 ] := With[{
     ls = LinearSolve[a, opts]
@@ -199,10 +200,32 @@ Scan[
     }
 ];
 
+(* Elementary support for manipulating Dual arrays *)
+Dual::arrayOp = "Warning: operation `1` attempted on a Dual number that's not an array.";
+Scan[
+    Function[fun,
+        Dual /: HoldPattern[fun[Dual[a_, b_]?DualArrayQ, rest___]] := Dual[fun[a, rest], fun[b, rest]];
+        Dual /: HoldPattern[fun[Dual[_, _], ___]] /; (Message[Dual::arrayOp, fun]; False):= Undefined
+    ],
+    {
+        Total, Mean, Transpose, Part, Take, Drop
+    }
+];
+
+Scan[
+    Function[fun,
+        Dual /: HoldPattern[fun[Dual[a_, b_]?DualArrayQ, rest___]] := fun[a, rest];
+        Dual /: HoldPattern[fun[Dual[_, _], ___]] /; (Message[Dual::arrayOp, fun]; False):= Undefined
+    ],
+    {
+        MatrixQ, VectorQ, ArrayQ, Dimensions, Length
+    }
+];
+
 (* Set upvalues for most built-in numeric functions where possible *)
 KeyValueMap[
     Function[{fun, derriv},
-        Dual /: fun[Dual[a_, b_]] := Dual[fun[a], derriv[a] * b]
+        Dual /: HoldPattern[fun[Dual[a_, b_]]] := Dual[fun[a], derriv[a] * b]
     ],
     KeyDrop[{Plus, Times, Power, Divide, Subtract, Abs, Sign, Mod, Binomial}] @ Select[
         AssociationMap[
@@ -220,12 +243,12 @@ KeyValueMap[
 KeyValueMap[
     Function[{fun, derriv},
         With[{d1 = derriv[[1]], d2 = derriv[[2]]},
-            Dual /: fun[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[
+            Dual /: HoldPattern[fun[Dual[a1_, b1_], Dual[a2_, b2_]]] := Dual[
                 fun[a1, a2],
                 d1[a1, a2] * b1 + d2[a1, a2] * b2
             ];
-            Dual /: fun[Dual[a_, b_], c_] := Dual[fun[a, c], d1[a, c] * b];
-            Dual /: fun[c_, Dual[a_, b_]] := Dual[fun[c, a], d2[c, a] * b]
+            Dual /: HoldPattern[fun[Dual[a_, b_], c_]] := Dual[fun[a, c], d1[a, c] * b];
+            Dual /: HoldPattern[fun[c_, Dual[a_, b_]]] := Dual[fun[c, a], d2[c, a] * b]
         ]
     ],
     AssociationMap[
@@ -238,7 +261,7 @@ KeyValueMap[
 
 Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
     Function[fun,
-        Dual /: fun[first___, d : Dual[_?NumericQ, _], rest___] := With[{
+        Dual /: HoldPattern[fun[first___, d : Dual[_?NumericQ, _], rest___]] := With[{
             test = fun @@ std[{first, d, rest}]
         },
             test /; BooleanQ[test]
