@@ -53,4 +53,7 @@ Get["FunctionRepo`mergeByKey`"];
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
 
+GroupCases;
+Get["FunctionRepo`GroupCases`"];
+
 EndPackage[]

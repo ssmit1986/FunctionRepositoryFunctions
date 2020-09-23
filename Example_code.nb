@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[4]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -13642,6 +13642,535 @@ Cell[BoxData[
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
  CellLabel->"Out[27]=",ExpressionUUID->"9075f1be-9bc8-44c3-b677-bff455b73805"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["GroupCases", \
+"Subsection",ExpressionUUID->"74d353c8-8caf-44c8-8420-a8b74bf8571f"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[36]:=",ExpressionUUID->"4dc785e5-de18-4033-83d1-6029238d197c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "GroupCases"}]], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"af34ae3e-0924-4f36-8960-f10f699c9820"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"GroupCases\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"el\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  \
+StyleBox[SubscriptBox[\\\"el\\\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}], \\\",\\\",  StyleBox[\\\"patt\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) groups \
+elements \\!\\(\\*StyleBox[SubscriptBox[\\\"el\\\", StyleBox[\\\"i\\\", \
+\\\"TI\\\"]], \\\"TI\\\"]\\) by wether or not the match \
+\\!\\(\\*StyleBox[\\\"patt\\\", \\\"TI\\\"]\\) and creates an association \
+<|\\!\\(\\*StyleBox[\\\"patt\\\", \\\"TI\\\"]\\) \[Rule] \[Ellipsis], _ \
+\[Rule] \[Ellipsis]|>\\n\\!\\(\\*RowBox[{\\\"GroupCases\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"list\\\", \\\"TI\\\"], \\\",\\\",  RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"patt\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"patt\\\", StyleBox[\\\"2\\\
+\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \
+\\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) groups using multiple \
+patterns.\\n\\!\\(\\*RowBox[{\\\"GroupCases\\\", \\\"[\\\", RowBox[{StyleBox[\
+\\\"patt\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) represents an operator form of \
+GroupCases.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    
+                    StyleBox["\<\" DownValue Definitions\"\>", 
+                    "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"DownValues\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "DownValues", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"GroupCases", "[", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], ",", "_"}], "]"}], ":=", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{"_", "\[Rule]", 
+                    RowBox[{"{", "}"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"GroupCases", "[", 
+                    RowBox[{"FunctionRepo`GroupCases`Private`list_List", ",", 
+                    RowBox[{"Verbatim", "[", "_", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{
+                    "_", "\[Rule]", "FunctionRepo`GroupCases`Private`list"}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"GroupCases", "[", 
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`list_List", ",", 
+                    "FunctionRepo`GroupCases`Private`spec_"}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`GroupCases`Private`pattSpec", "=", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{"FunctionRepo`GroupCases`Private`spec", ",", 
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`l_List", 
+                    "\[RuleDelayed]", 
+                    RowBox[{"DeleteDuplicates", "[", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"FunctionRepo`GroupCases`Private`l", ",", "_"}], 
+                    "]"}], "]"}]}], ",", 
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`patt_", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`patt", ",", "_"}], 
+                    "}"}]}]}], "]"}]}], ",", 
+                    "FunctionRepo`GroupCases`Private`rules", ",", 
+                    "FunctionRepo`GroupCases`Private`results"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`GroupCases`Private`rules", "=", 
+                    RowBox[{"MapIndexed", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"FunctionRepo`GroupCases`Private`tag", "=", 
+                    RowBox[{
+                    "#2", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`match", ":", "#1"}], 
+                    "\[RuleDelayed]", 
+                    RowBox[{"Sow", "[", 
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`match", ",", 
+                    "FunctionRepo`GroupCases`Private`tag"}], "]"}]}]}], "]"}],
+                     "&"}], ",", "FunctionRepo`GroupCases`Private`pattSpec"}],
+                     "]"}]}], ";", 
+                    RowBox[{"FunctionRepo`GroupCases`Private`results", "=", 
+                    RowBox[{"Last", "[", 
+                    RowBox[{"Reap", "[", 
+                    RowBox[{
+                    RowBox[{"Replace", "[", 
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`list", ",", 
+                    "FunctionRepo`GroupCases`Private`rules", ",", 
+                    RowBox[{"{", "1", "}"}]}], "]"}], ",", 
+                    RowBox[{"Range", "[", 
+                    RowBox[{
+                    "Length", "[", "FunctionRepo`GroupCases`Private`rules", 
+                    "]"}], "]"}]}], "]"}], "]"}]}], ";", 
+                    RowBox[{"AssociationThread", "[", 
+                    RowBox[{"FunctionRepo`GroupCases`Private`pattSpec", ",", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{
+                    "Join", ",", "FunctionRepo`GroupCases`Private`results", 
+                    ",", 
+                    RowBox[{"{", "1", "}"}]}], "]"}]}], "]"}]}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    
+                    StyleBox["\<\" SubValue Definitions\"\>", 
+                    "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"SubValues\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "SubValues", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "GroupCases", "[", 
+                    "FunctionRepo`GroupCases`Private`spec_", "]"}], "[", 
+                    "FunctionRepo`GroupCases`Private`list_List", "]"}], ":=", 
+                    RowBox[{"GroupCases", "[", 
+                    RowBox[{
+                    "FunctionRepo`GroupCases`Private`list", ",", 
+                    "FunctionRepo`GroupCases`Private`spec"}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`GroupCases\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"GroupCases\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"el\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  \
+StyleBox[SubscriptBox[\\\"el\\\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}], \\\",\\\",  StyleBox[\\\"patt\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) groups \
+elements \\!\\(\\*StyleBox[SubscriptBox[\\\"el\\\", StyleBox[\\\"i\\\", \
+\\\"TI\\\"]], \\\"TI\\\"]\\) by wether or not the match \
+\\!\\(\\*StyleBox[\\\"patt\\\", \\\"TI\\\"]\\) and creates an association \
+<|\\!\\(\\*StyleBox[\\\"patt\\\", \\\"TI\\\"]\\) \[Rule] \[Ellipsis], _ \
+\[Rule] \[Ellipsis]|>\\n\\!\\(\\*RowBox[{\\\"GroupCases\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"list\\\", \\\"TI\\\"], \\\",\\\",  RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"patt\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"patt\\\", StyleBox[\\\"2\\\
+\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \
+\\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) groups using multiple \
+patterns.\\n\\!\\(\\*RowBox[{\\\"GroupCases\\\", \\\"[\\\", RowBox[{StyleBox[\
+\\\"patt\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) represents an operator form of \
+GroupCases.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {3., 9.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"GroupCases\", \"[\", RowBox[{RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"el\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[SubscriptBox[\"el\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\",  StyleBox[\"patt\
+\", \"TI\"]}], \"]\"}]\) groups elements \!\(\*StyleBox[SubscriptBox[\"el\", \
+StyleBox[\"i\", \"TI\"]], \"TI\"]\) by wether or not the match \
+\!\(\*StyleBox[\"patt\", \"TI\"]\) and creates an association \
+<|\!\(\*StyleBox[\"patt\", \"TI\"]\) \[Rule] \[Ellipsis], _ \[Rule] \
+\[Ellipsis]|>\n\!\(\*RowBox[{\"GroupCases\", \"[\", \
+RowBox[{StyleBox[\"list\", \"TI\"], \",\",  RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"patt\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[SubscriptBox[\"patt\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) groups \
+using multiple patterns.\n\!\(\*RowBox[{\"GroupCases\", \"[\", \
+RowBox[{StyleBox[\"patt\", \"TI\"]}], \"]\"}]\) represents an operator form \
+of GroupCases.", "Documentation" -> None, "OwnValues" -> None, "UpValues" -> 
+    None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`GroupCases, {FunctionRepo`GroupCases[{}, 
+         Blank[]] :> Association[Blank[] -> {}], FunctionRepo`GroupCases[
+         Pattern[FunctionRepo`GroupCases`Private`list, 
+          Blank[List]], 
+         Verbatim[
+          Blank[]]] :> 
+       Association[Blank[] -> FunctionRepo`GroupCases`Private`list], 
+       FunctionRepo`GroupCases[
+         Pattern[FunctionRepo`GroupCases`Private`list, 
+          Blank[List]], 
+         Pattern[FunctionRepo`GroupCases`Private`spec, 
+          Blank[]]] :> 
+       Module[{FunctionRepo`GroupCases`Private`pattSpec = 
+          Replace[FunctionRepo`GroupCases`Private`spec, 
+            Pattern[FunctionRepo`GroupCases`Private`l, 
+              Blank[List]] :> DeleteDuplicates[
+              Append[FunctionRepo`GroupCases`Private`l, 
+               Blank[]]], Pattern[FunctionRepo`GroupCases`Private`patt, 
+              Blank[]] :> {FunctionRepo`GroupCases`Private`patt, 
+              Blank[]}], FunctionRepo`GroupCases`Private`rules, 
+          FunctionRepo`GroupCases`Private`results}, 
+         FunctionRepo`GroupCases`Private`rules = 
+          MapIndexed[
+           With[{FunctionRepo`GroupCases`Private`tag = Part[#2, 1]}, 
+             Pattern[FunctionRepo`GroupCases`Private`match, #] :> 
+             Sow[FunctionRepo`GroupCases`Private`match, 
+               FunctionRepo`GroupCases`Private`tag]]& , 
+            FunctionRepo`GroupCases`Private`pattSpec]; 
+         FunctionRepo`GroupCases`Private`results = Last[
+            Reap[
+             Replace[
+             FunctionRepo`GroupCases`Private`list, 
+              FunctionRepo`GroupCases`Private`rules, {1}], 
+             Range[
+              Length[FunctionRepo`GroupCases`Private`rules]]]]; 
+         AssociationThread[FunctionRepo`GroupCases`Private`pattSpec, 
+           Apply[Join, FunctionRepo`GroupCases`Private`results, {1}]]]}], 
+    "SubValues" -> 
+    Information`InformationValueForm[
+     SubValues, FunctionRepo`GroupCases, {FunctionRepo`GroupCases[
+         Pattern[FunctionRepo`GroupCases`Private`spec, 
+          Blank[]]][
+         Pattern[FunctionRepo`GroupCases`Private`list, 
+          Blank[List]]] :> 
+       FunctionRepo`GroupCases[
+        FunctionRepo`GroupCases`Private`list, 
+         FunctionRepo`GroupCases`Private`spec]}], "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`GroupCases"], 
+   False]]], "Output",
+ CellLabel->"Out[30]=",ExpressionUUID->"734db54d-2b24-4c77-9bb5-0fc306a49377"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", "_Integer"}], 
+  "]"}]], "Input",
+ CellLabel->"In[37]:=",ExpressionUUID->"c8f845e9-836b-4173-9fab-f31841ed98b8"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"_Integer", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}]}], ",", 
+   RowBox[{"_", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"3.`", ",", "x"}], "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[37]=",ExpressionUUID->"d54a52b6-ce3c-4f97-a36a-bfb973e57a7c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"_Integer", ",", "_Real"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[38]:=",ExpressionUUID->"b1e26980-2f01-4a7b-b232-f52330529639"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"_Integer", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}]}], ",", 
+   RowBox[{"_Real", "\[Rule]", 
+    RowBox[{"{", "3.`", "}"}]}], ",", 
+   RowBox[{"_", "\[Rule]", 
+    RowBox[{"{", "x", "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[38]=",ExpressionUUID->"928bdb83-d954-4bbc-aa78-58d1588c9d45"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"_Integer", ",", "_Real", ",", "_Complex"}], "}"}]}], 
+  "]"}]], "Input",
+ CellLabel->"In[39]:=",ExpressionUUID->"1ae48412-a27d-41d6-9741-33b5b1d987f3"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"_Integer", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}]}], ",", 
+   RowBox[{"_Real", "\[Rule]", 
+    RowBox[{"{", "3.`", "}"}]}], ",", 
+   RowBox[{"_Complex", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", 
+   RowBox[{"_", "\[Rule]", 
+    RowBox[{"{", "x", "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[39]=",ExpressionUUID->"5f4ce9c5-5827-4e88-9075-ca6e70337eda"]
 }, Open  ]]
 }, Closed]]
 },
