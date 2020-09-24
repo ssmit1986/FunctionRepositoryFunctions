@@ -13,6 +13,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
 
+* GroupCases (submitted)
+
 * [KullbackLeiblerDivergence](https://resources.wolframcloud.com/FunctionRepository/resources/KullbackLeiblerDivergence)
 
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
