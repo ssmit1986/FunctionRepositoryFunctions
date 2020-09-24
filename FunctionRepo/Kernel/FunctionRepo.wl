@@ -1,3 +1,4 @@
+Unprotect["FunctionRepo`*", "FunctionRepo`*`*"];
 ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
@@ -52,5 +53,8 @@ Get["FunctionRepo`mergeByKey`"];
 
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
+
+GroupCases;
+Get["FunctionRepo`GroupCases`"];
 
 EndPackage[]
