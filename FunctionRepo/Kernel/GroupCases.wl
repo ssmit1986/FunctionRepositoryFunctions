@@ -3,6 +3,7 @@
 BeginPackage["FunctionRepo`GroupCases`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[GroupCases, "GroupCases[{el$1, el$2, $$}, patt$] groups elements el$i by wether or not the match patt$ and creates an association <|patt$ -> $$, _ -> $$|>
+GroupCases[list$, patt$ :> rhs$] applies a transformation to matched elements.
 GroupCases[list$, {patt$1, patt$2, $$}] groups using multiple patterns.
 GroupCases[patt$] represents an operator form of GroupCases. 
 "];
@@ -22,14 +23,7 @@ GroupCases[list_List, spec_] := Module[{
     rules,
     results
 },
-    rules = MapIndexed[
-        Function[
-            With[{tag = #2[[1]]},
-                match : #1 :> Sow[match, tag]
-            ] 
-        ],
-        pattSpec
-    ];
+    rules = MapIndexed[makeRule, pattSpec];
     results = Last @ Reap[
         Replace[list, rules, {1}],
         Range[Length[rules]]
@@ -43,6 +37,23 @@ patternList[spec_] := DeleteDuplicates @ Replace[spec,
         patt_ :> {patt, _}
     }
 ];
+
+makeRule[
+    (rule : (Rule | RuleDelayed))[patt_, val_],
+    {tag_}
+] /; FreeQ[Unevaluated[val], Condition | RuleCondition] := match : patt :> Sow[val, tag];
+
+Protect[unmatched];
+With[{
+    unmatchedToken = unmatched[CreateUUID["GroupCases"]]
+},
+    makeRule[(rule : (Rule | RuleDelayed))[patt_, val_], {tag_}] := match_ :> With[{
+        try = Replace[match, {rule[patt, val], _ :> unmatchedToken}]
+    },
+        Sow[try, tag] /; try =!= unmatchedToken
+    ]
+];
+makeRule[patt_, {tag_}] := match : patt :> Sow[match, tag];
 
 End[] (* End Private Context *)
 
