@@ -1,4 +1,6 @@
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
@@ -6,7 +8,23 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[20]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[53]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "GroupCases", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"GroupCases\\\\\\\"\\\"}]\\) appears \
+in multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\", \\\",\\\", \\\"\\\\\\\"Global`\
+\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\"}]\\) may shadow or be \
+shadowed by other definitions.\"", 2, 54, 1, 16928392303490370612, "Local", 
+   "FunctionRepo`GroupCases"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[53]:=",ExpressionUUID->"6c6f6dec-f2ff-4ad2-b502-f578c58029d3"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -418,6 +436,7 @@ rules", "\[LeftDoubleBracket]",
 indexDrop", "=", 
                     RowBox[{
                     "Keys", "[", 
+                    
                     "FunctionRepo`conditionedMultinormalDistribution`Private`\
 rulesNoDup", "]"}]}], ";", 
                     RowBox[{
@@ -674,9 +693,8 @@ symmetrizedQ", ",",
                     RowBox[{"Symmetric", "[", 
                     RowBox[{"{", 
                     RowBox[{"1", ",", "2"}], "}"}], "]"}]}], "]"}], "&"}], 
-                    ",", 
-                    "FunctionRepo`conditionedMultinormalDistribution`Private`\
-dist", ",", "2"}], "]"}], ",", 
+                    ",", "FunctionRepo`conditionedMultinormalDistribution`\
+Private`dist", ",", "2"}], "]"}], ",", 
                     "FunctionRepo`conditionedMultinormalDistribution`Private`\
 dist"}], "]"}]}], "]"}]}], ")"}], "/;", 
                     RowBox[{
@@ -723,6 +741,7 @@ dim"}]}]}]}], "]"}]}]}
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], \
 "\<\"FunctionRepo`conditionedMultinormalDistribution\"\>"}
@@ -1048,7 +1067,6 @@ marginals]; False)]] :>
           Length[FunctionRepo`conditionedMultinormalDistribution`Private`mu], 
           FunctionRepo`conditionedMultinormalDistribution`Private`indexKeep, 
           FunctionRepo`conditionedMultinormalDistribution`Private`indexDrop, 
-          
           FunctionRepo`conditionedMultinormalDistribution`Private`\
 partitionedMu, 
           FunctionRepo`conditionedMultinormalDistribution`Private`\
@@ -1136,7 +1154,6 @@ indexDrop]}, {
 indexDrop, FunctionRepo`conditionedMultinormalDistribution`Private`indexKeep], 
               Part[
               FunctionRepo`conditionedMultinormalDistribution`Private`cov, 
-               
                FunctionRepo`conditionedMultinormalDistribution`Private`\
 indexDrop, 
                FunctionRepo`conditionedMultinormalDistribution`Private`\
@@ -1168,8 +1185,8 @@ inv = Inverse[
 partionedCov, 2, 2]]}, Dot[
               FunctionRepo`conditionedMultinormalDistribution`Private`inv, #]& \
 ]]; FunctionRepo`conditionedMultinormalDistribution`Private`dist = 
-           Quiet[{Part[
-               FunctionRepo`conditionedMultinormalDistribution`Private`\
+           Quiet[{
+             Part[FunctionRepo`conditionedMultinormalDistribution`Private`\
 partitionedMu, 1] + Dot[
                 Part[
                 FunctionRepo`conditionedMultinormalDistribution`Private`\
@@ -1383,7 +1400,6 @@ fitting methods.\"\>", "InformationUsageText",
                     "_", "?", 
                     "FunctionRepo`convertDataFormat`Private`emptyDataQ"}], 
                     ",", 
-                    
                     RowBox[{"\<\"Matrix\"\>", "|", "\<\"Vector\"\>", 
                     "|", "\<\"ListOfRules\"\>"}]}], "]"}], ":=", 
                     RowBox[{"{", "}"}]}]},
@@ -2099,6 +2115,7 @@ validationFunction"}], "}"}], ",",
                     RowBox[{
                     
                     RowBox[{"\<\"KFold\"\>", "\[RuleDelayed]", 
+                    
                     "FunctionRepo`crossValidateModel`Private`kFoldValidation"}\
 ], ",", 
                     
@@ -2709,6 +2726,7 @@ Cell[BoxData[
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
            RectangleBox[{6.5, 0}, {7.5, 1.}, "RoundingRadius" -> 0]},
+          
           ImageSizeCache->{{372.2617293835068, 422.4373899119296}, {
            105.32649282342827`, 113.12211964054985`}}],
          "DelayedMouseEffectStyle"],
@@ -2936,7 +2954,6 @@ Preserves ordering.\"\>", "InformationUsageText",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
-                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`deleteContainedStrings\"\
 \>"}
@@ -3376,6 +3393,7 @@ that evaluates to a result matching the pattern.\"\>", "InformationUsageText",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -3480,6 +3498,7 @@ that evaluates to a result matching the pattern.\"\>", "InformationUsageText",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
+            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
@@ -4043,6 +4062,7 @@ methodOpts"}]}], "]"}], ",",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -4132,7 +4152,6 @@ Kullback-Leibler divergence from distribution Q to P\"\>",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -4222,8 +4241,9 @@ $CellContext`x = \[FormalX]]; {
             FunctionRepo`kullbackLeiblerDivergence`Private`methodSpec, 1]; 
           FunctionRepo`kullbackLeiblerDivergence`Private`method = 
            First[FunctionRepo`kullbackLeiblerDivergence`Private`method]; 
-          Switch[FunctionRepo`kullbackLeiblerDivergence`Private`method, 
-            Expectation, Null, NExpectation, 
+          Switch[
+           FunctionRepo`kullbackLeiblerDivergence`Private`method, Expectation,
+             Null, NExpectation, 
             With[{FunctionRepo`kullbackLeiblerDivergence`Private`rand = Quiet[
                 Map[
                 RandomVariate[#, 5]& , {
@@ -4572,7 +4592,6 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
                     RowBox[{"Association", "[", 
                     RowBox[{
                     RowBox[{
-                    
                     RowBox[{"\<\"Distribution\"\>", "\[Rule]", 
                     "FunctionRepo`maximumSpacingEstimation`Private`dist"}], "/.",
                      "\[VeryThinSpace]", 
@@ -4707,7 +4726,6 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
-                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`maximumSpacingEstimation\
 \"\>"}
@@ -5011,8 +5029,8 @@ fitParams", ",",
                     RowBox[{
                     "{", "FunctionRepo`multiNonlinearModelFit`Private`\
 independents", "}"}], ",", 
-                    "FunctionRepo`multiNonlinearModelFit`Private`opts"}], "]"}
-                    ]}]},
+                    "FunctionRepo`multiNonlinearModelFit`Private`opts"}], 
+                    "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{"multiNonlinearModelFit", "[", 
@@ -5195,8 +5213,7 @@ augmentedData", "=",
                     RowBox[{
                     "Length", "/@", 
                     "FunctionRepo`multiNonlinearModelFit`Private`list"}], "===", 
-                    RowBox[{
-                    "Length", "/@", 
+                    RowBox[{"Length", "/@", 
                     "FunctionRepo`multiNonlinearModelFit`Private`datasets"}]}]\
 }], "\[RuleDelayed]", 
                     RowBox[{
@@ -5393,6 +5410,7 @@ independents"}], "}"}], "]"}], ",",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`multiNonlinearModelFit\"\
 \>"}
@@ -6279,7 +6297,6 @@ Cell[BoxData[
                     "\": \""}, "RowDefault"], "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
                  TagBox[
-                  
                   TemplateBox[{",", "\",\"", "\"a\"", "\"b\""}, 
                    "RowWithSeparators"], "SummaryItem"]}]}, {
                RowBox[{
@@ -6294,8 +6311,7 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, 
-             GridBoxItemSize -> {
+             False, GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -6788,7 +6804,6 @@ Cell[BoxData[
                     "\": \""}, "RowDefault"], "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
                  TagBox[
-                  
                   TemplateBox[{",", "\",\"", "\"a\"", "\"b\""}, 
                    "RowWithSeparators"], "SummaryItem"]}]}, {
                RowBox[{
@@ -6803,8 +6818,7 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, 
-             GridBoxItemSize -> {
+             False, GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -7321,6 +7335,7 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
                     "FunctionRepo`tukeyMedianPolish`Private`mat_List", ",", 
                     RowBox[{
                     "FunctionRepo`tukeyMedianPolish`Private`outputType", ":", 
+                    
                     RowBox[{"\<\"Matrix\"\>", 
                     "|", "\<\"PropertyAssociation\"\>"}], 
                     ":", "\<\"Matrix\"\>"}], ",", 
@@ -7397,9 +7412,8 @@ itukeyMedianPolish", "]"}]}], "]"}]}], "]"}]}], "}"}], ",",
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{"{", 
-                    RowBox[{
-                    "FunctionRepo`tukeyMedianPolish`Private`m", ",", "_Real", 
-                    ",", "2"}], "}"}], "}"}], ",", 
+                    RowBox[{"FunctionRepo`tukeyMedianPolish`Private`m", ",", 
+                    "_Real", ",", "2"}], "}"}], "}"}], ",", 
                     RowBox[{
                     "FunctionRepo`tukeyMedianPolish`Private`fun", "[", 
                     "FunctionRepo`tukeyMedianPolish`Private`m", "]"}], ",", 
@@ -7443,7 +7457,6 @@ itukeyMedianPolish", "]"}]}], "]"}]}], "]"}]}], "}"}], ",",
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -7493,6 +7506,7 @@ itukeyMedianPolish", "[",
                      ",", 
                     RowBox[{
                     "Options", "[", 
+                    
                     "FunctionRepo`tukeyMedianPolish`Private`\
 itukeyMedianPolish", "]"}]}], "]"}]}], "]"}], "[", 
                     "FunctionRepo`tukeyMedianPolish`Private`mat", "]"}]}]},
@@ -7676,7 +7690,6 @@ itukeyMedianPolish", "]"}]}], "]"}]}], "]"}], "[",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -7747,6 +7760,7 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -11266,8 +11280,9 @@ NAAAirm6HQ==
         ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
         0.7]}], {DiskBox[{0., 0.}, 0.02261146496815286], InsetBox[
-          RowBox[{"\[FormalX]", "(", "1", ")"}], Offset[{2, 2}, 
-          {0.02261146496815286, 0.02261146496815286}], ImageScaled[{0, 0}],
+          RowBox[{"\[FormalX]", "(", "1", ")"}], 
+          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {DiskBox[{0., 1.}, 0.02261146496815286], 
          InsetBox[
           RowBox[{"\[FormalX]", "(", "2", ")"}], 
@@ -11787,9 +11802,8 @@ Cell[BoxData[
         ArrowBox[{{1., 1.}, {1., 0.}}, 0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
         0.7]}], {DiskBox[{0., 0.}, 0.02261146496815286], InsetBox[
-          RowBox[{"\[FormalX]", "(", "1", ")"}], 
-          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815286}], 
-          ImageScaled[{0, 0}],
+          RowBox[{"\[FormalX]", "(", "1", ")"}], Offset[{2, 2}, 
+          {0.02261146496815286, 0.02261146496815286}], ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
          InsetBox[
           RowBox[{"\[FormalX]", "(", "2", ")"}], 
@@ -13560,8 +13574,7 @@ lines and arrows to the closes points.", "Documentation" -> None, "OwnValues" ->
               FunctionRepo`graphicsToGraph`Private`edges1, 
                FunctionRepo`graphicsToGraph`Private`edges2], {2}], 
              VertexCoordinates -> 
-             Thread[
-              FunctionRepo`graphicsToGraph`Private`vertices -> 
+             Thread[FunctionRepo`graphicsToGraph`Private`vertices -> 
                FunctionRepo`graphicsToGraph`Private`pts]], 
            Length[FunctionRepo`graphicsToGraph`Private`pts] > 0]]}], 
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
@@ -13652,8 +13665,7 @@ Cell["GroupCases", \
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->
-  "In[120]:=",ExpressionUUID->"4dc785e5-de18-4033-83d1-6029238d197c"],
+ CellLabel->"In[3]:=",ExpressionUUID->"4dc785e5-de18-4033-83d1-6029238d197c"],
 
 Cell[CellGroupData[{
 
@@ -13727,6 +13739,7 @@ GroupCases.\"\>", "InformationUsageText",
                   {
                    TagBox[
                     TooltipBox[
+                    
                     StyleBox["\<\" DownValue Definitions\"\>", 
                     "InformationRowLabel",
                     StripOnInput->False],
@@ -13995,6 +14008,7 @@ GroupCases.\"\>", "InformationUsageText",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
+            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
@@ -14108,8 +14122,7 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", "_Integer"}], 
   "]"}]], "Input",
- CellLabel->
-  "In[121]:=",ExpressionUUID->"c8f845e9-836b-4173-9fab-f31841ed98b8"],
+ CellLabel->"In[4]:=",ExpressionUUID->"c8f845e9-836b-4173-9fab-f31841ed98b8"],
 
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", 
@@ -14120,7 +14133,7 @@ Cell[BoxData[
    RowBox[{"_", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"3.`", ",", "x"}], "}"}]}]}], "\[RightAssociation]"}]], "Output",
- CellLabel->"Out[121]=",ExpressionUUID->"6ded385c-5b19-42ad-8183-3d39046d8482"]
+ CellLabel->"Out[4]=",ExpressionUUID->"7c48b7e7-f5db-4fdc-bf40-388407f82bec"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -14199,8 +14212,7 @@ Cell[BoxData[
     RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"_Integer", ",", "_Real"}], "}"}]}], "]"}]], "Input",
- CellLabel->
-  "In[124]:=",ExpressionUUID->"b1e26980-2f01-4a7b-b232-f52330529639"],
+ CellLabel->"In[5]:=",ExpressionUUID->"b1e26980-2f01-4a7b-b232-f52330529639"],
 
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", 
@@ -14212,7 +14224,34 @@ Cell[BoxData[
     RowBox[{"{", "3.`", "}"}]}], ",", 
    RowBox[{"_", "\[Rule]", 
     RowBox[{"{", "x", "}"}]}]}], "\[RightAssociation]"}]], "Output",
- CellLabel->"Out[124]=",ExpressionUUID->"a318b81a-af2e-46b6-858e-56e950f1f305"]
+ CellLabel->"Out[5]=",ExpressionUUID->"927538c3-076e-4f3a-89f6-f2aa10d8c192"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<Int\>\"", "\[Rule]", " ", "_Integer"}], ",", 
+     RowBox[{"\"\<Float\>\"", "\[Rule]", " ", "_Real"}], ",", 
+     RowBox[{"\"\<NAN\>\"", "\[Rule]", " ", "_"}]}], "|>"}]}], "]"}]], "Input",
+ CellLabel->"In[55]:=",ExpressionUUID->"4d0334ae-35cc-4a7e-8152-13899ec7be0e"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"Int\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}]}], ",", 
+   RowBox[{"\<\"Float\"\>", "\[Rule]", 
+    RowBox[{"{", "3.`", "}"}]}], ",", 
+   RowBox[{"\<\"NAN\"\>", "\[Rule]", 
+    RowBox[{"{", "x", "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[55]=",ExpressionUUID->"19303695-9025-4550-8126-16853e3744a2"]
 }, Open  ]],
 
 Cell[CellGroupData[{
