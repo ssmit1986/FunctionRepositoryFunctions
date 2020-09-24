@@ -2,7 +2,7 @@
 
 BeginPackage["FunctionRepo`GroupCases`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[GroupCases, "GroupCases[{el$1, el$2, $$}, patt$] groups elements el$i by wether or not the match patt$ and creates an association <|patt$ -> $$, _ -> $$|>
+GeneralUtilities`SetUsage[GroupCases, "GroupCases[{el$1, el$2, $$}, patt$] groups elements el$i by whether or not the match patt$ and creates an association <|patt$ -> $$, _ -> $$|>
 GroupCases[list$, patt$ :> rhs$] applies a transformation to matched elements.
 GroupCases[list$, {spec$1, spec$2, $$}] groups using multiple patterns.
 GroupCases[spec$] represents an operator form of GroupCases. 
