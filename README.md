@@ -1,6 +1,8 @@
 # FunctionRepositoryFunctions
 A compilation of functions I submitted (or intend to submit) to the Wolfram Function Repository:
 
+* [AsynchronousDynamicModule](https://resources.wolframcloud.com/FunctionRepository/resources/AsynchronousDynamicModule)
+
 * [CheckboxLegended](https://resources.wolframcloud.com/FunctionRepository/resources/CheckboxLegended)
 
 * [ConditionalProductDistribution](https://resources.wolframcloud.com/FunctionRepository/resources/ConditionalProductDistribution)

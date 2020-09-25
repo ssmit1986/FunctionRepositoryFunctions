@@ -3,58 +3,61 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 
-crossValidateModel;
-Get["FunctionRepo`crossValidateModel`"];
-
-conditionedMultinormalDistribution;
-Get["FunctionRepo`conditionedMultinormalDistribution`"];
-
-kullbackLeiblerDivergence;
-Get["FunctionRepo`kullbackLeiblerDivergence`"];
-
-multiNonlinearModelFit;
-Get["FunctionRepo`multiNonlinearModelFit`"];
-
-SparseAssociation;
-Get["FunctionRepo`SparseAssociation`"];
-
-firstMatchingValue;
-Get["FunctionRepo`firstMatchingValue`"];
-
-deleteContainedStrings;
-Get["FunctionRepo`deleteContainedStrings`"];
-
-convertDataFormat;
-Get["FunctionRepo`convertDataFormat`"];
-
-maximumSpacingEstimation;
-Get["FunctionRepo`maximumSpacingEstimation`"];
-
-tukeyMedianPolish;
-Get["FunctionRepo`tukeyMedianPolish`"];
-
-importAGSData;
-Get["FunctionRepo`importAGSData`"];
-
-multiSet;
-Get["FunctionRepo`multiSet`"];
+AsynchronousDynamicModule;
+Get["FunctionRepo`AsynchronousDynamicModule`"];
 
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
 
-expressionToFunction;
-Get["FunctionRepo`expressionToFunction`"];
-
 conditionalProductDistribution;
 Get["FunctionRepo`conditionalProductDistribution`"];
 
-mergeByKey;
-Get["FunctionRepo`mergeByKey`"];
+conditionedMultinormalDistribution;
+Get["FunctionRepo`conditionedMultinormalDistribution`"];
+
+convertDataFormat;
+Get["FunctionRepo`convertDataFormat`"];
+
+crossValidateModel;
+Get["FunctionRepo`crossValidateModel`"];
+
+expressionToFunction;
+Get["FunctionRepo`expressionToFunction`"];
+
+deleteContainedStrings;
+Get["FunctionRepo`deleteContainedStrings`"];
+
+firstMatchingValue;
+Get["FunctionRepo`firstMatchingValue`"];
 
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
 
 GroupCases;
 Get["FunctionRepo`GroupCases`"];
+
+importAGSData;
+Get["FunctionRepo`importAGSData`"];
+
+kullbackLeiblerDivergence;
+Get["FunctionRepo`kullbackLeiblerDivergence`"];
+
+maximumSpacingEstimation;
+Get["FunctionRepo`maximumSpacingEstimation`"];
+
+mergeByKey;
+Get["FunctionRepo`mergeByKey`"];
+
+multiNonlinearModelFit;
+Get["FunctionRepo`multiNonlinearModelFit`"];
+
+multiSet;
+Get["FunctionRepo`multiSet`"];
+
+SparseAssociation;
+Get["FunctionRepo`SparseAssociation`"];
+
+tukeyMedianPolish;
+Get["FunctionRepo`tukeyMedianPolish`"];
 
 EndPackage[]
