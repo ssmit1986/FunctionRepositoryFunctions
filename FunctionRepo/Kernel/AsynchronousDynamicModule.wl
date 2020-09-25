@@ -12,24 +12,31 @@ Attributes[AsynchronousDynamicModule] = {HoldAll};
 
 AsynchronousDynamicModule[
     DynamicModule[{vars___}, content_, opts1___, Initialization :> init_, opts2___], 
+    placeHolder : _ : ProgressIndicator[Appearance -> "Necklace"]
+] := AsynchronousDynamicModule[{vars}, content,
+    init,
+    placeHolder,
+    Evaluate @ Unique["Global`initQ"],
+    opts1, opts2
+];
+
+AsynchronousDynamicModule[
+    DynamicModule[{vars___}, content_, opts1___, Initialization :> init_, opts2___], 
     placeHolder : _ : ProgressIndicator[Appearance -> "Necklace"],
-    initVar : _Symbol : initQ
-] := AsynchronousDynamicModule[
-    {vars},
-    content,
+    initVar_Symbol
+] := AsynchronousDynamicModule[{vars}, content,
     init,
     placeHolder,
     initVar,
-    opts1,
-    opts2
+    opts1, opts2
 ];
 
 AsynchronousDynamicModule[
     {vars___},
     content_,
     init_,
-    placeHolder : _ : ProgressIndicator[Appearance -> "Necklace"],
-    initVar : _Symbol : initQ,
+    placeHolder_,
+    initVar_Symbol,
     opts : OptionsPattern[DynamicModule]
 ] := DynamicModule[{
     vars,
