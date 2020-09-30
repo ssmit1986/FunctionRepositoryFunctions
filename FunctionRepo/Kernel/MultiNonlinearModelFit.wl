@@ -1,25 +1,25 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`multiNonlinearModelFit`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`MultiNonlinearModelFit`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-multiNonlinearModelFit::usage = "multiNonlinearModelFit[{dat1, dat2, ...}, {fun1, fun2, ...}, params, vars] fits fun_i to data_i simultaneously.";
+MultiNonlinearModelFit::usage = "MultiNonlinearModelFit[{dat1, dat2, ...}, {fun1, fun2, ...}, params, vars] fits fun_i to data_i simultaneously.";
 
 Begin["`Private`"] (* Begin Private Context *)
 
-Options[multiNonlinearModelFit] = Join[
+Options[MultiNonlinearModelFit] = Join[
     Options[NonlinearModelFit],
     {
         "DatasetIndexSymbol" -> \[FormalN]
     }
 ];
 
-multiNonlinearModelFit[datasets_, form_, fitParams_, independents : Except[_List], opts : OptionsPattern[]] := 
-    multiNonlinearModelFit[datasets, form, fitParams, {independents}, opts];
+MultiNonlinearModelFit[datasets_, form_, fitParams_, independents : Except[_List], opts : OptionsPattern[]] := 
+    MultiNonlinearModelFit[datasets, form, fitParams, {independents}, opts];
  
-multiNonlinearModelFit[datasets_, form : Except[{__Rule}, _List], fitParams_, independents_, opts : OptionsPattern[]] := 
-    multiNonlinearModelFit[datasets, <|"Expressions" -> form, "Constraints" -> True|>, fitParams, independents, opts];
+MultiNonlinearModelFit[datasets_, form : Except[{__Rule}, _List], fitParams_, independents_, opts : OptionsPattern[]] := 
+    MultiNonlinearModelFit[datasets, <|"Expressions" -> form, "Constraints" -> True|>, fitParams, independents, opts];
  
-multiNonlinearModelFit[
+MultiNonlinearModelFit[
     datasets : {__?(MatrixQ[#1, NumericQ] &)}, 
     KeyValuePattern[{"Expressions" -> expressions_List, "Constraints" -> constraints_}], 
     fitParams_List, 
@@ -27,16 +27,18 @@ multiNonlinearModelFit[
     opts : OptionsPattern[]
 ] := Module[{
     fitfun, weights,
-    numSets = Length[expressions], 
-    augmentedData = Join @@ MapIndexed[
-        Join[ConstantArray[N[#2], Length[#1]], #1, 2]&,
-        datasets
-    ], 
+    numSets = Length[expressions],
+    precision = Precision @ datasets,
+    augmentedData,
     indexSymbol = OptionValue["DatasetIndexSymbol"]
 },
     Condition[
+        augmentedData = Join @@ MapIndexed[
+            Join[ConstantArray[N[#2, precision], Length[#1]], #1, 2]&,
+            datasets
+        ];
         fitfun = With[{
-            conditions = Join @@ ({#1, expressions[[#1]]} & ) /@ Range[numSets]
+            conditions = Join @@ Transpose[{Range[numSets], expressions}]
         }, 
             Switch @@ Prepend[conditions, Round[indexSymbol]]
         ]; 
@@ -47,7 +49,7 @@ multiNonlinearModelFit[
                     Join @@ MapThread[ConstantArray, {list, Length /@ datasets}], 
                 list : {__?(VectorQ[#1, NumericQ] & )} /; Length /@ list === Length /@ datasets :>
                     Join @@ list, 
-                "InverseLengthWeights" :> Join @@ (ConstantArray[1./#1, #1] & ) /@ Length /@ datasets
+                "InverseLengthWeights" :> Join @@ (ConstantArray[1/#1, #1] & ) /@ Length /@ datasets
             }
         ]; 
         NonlinearModelFit[

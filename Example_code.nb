@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[96]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -5069,14 +5069,15 @@ $Failed]]}], "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None,
 
 Cell[CellGroupData[{
 
-Cell["multiNonlinearModelFit", \
+Cell["MultiNonlinearModelFit", \
 "Subsection",ExpressionUUID->"b0f9ea23-866e-4cac-9997-19632af0abfe"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"?", "multiNonlinearModelFit"}]], "Input",
- CellLabel->"In[72]:=",ExpressionUUID->"6efeacfa-38f2-467c-826b-25397978554a"],
+ RowBox[{"?", 
+  "MultiNonlinearModelFit"}]], \
+"Input",ExpressionUUID->"6efeacfa-38f2-467c-826b-25397978554a"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5535,7 +5536,6 @@ independents"}], "}"}], "]"}], ",",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
-                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`multiNonlinearModelFit\"\
 \>"}
@@ -5768,8 +5768,7 @@ vars] fits fun_i to data_i simultaneously.", "Documentation" -> None,
           OptionValue["DatasetIndexSymbol"]}, 
          Condition[
          FunctionRepo`multiNonlinearModelFit`Private`fitfun = 
-           With[{
-             FunctionRepo`multiNonlinearModelFit`Private`conditions = 
+           With[{FunctionRepo`multiNonlinearModelFit`Private`conditions = 
               Apply[Join, 
                 Map[{#, 
                   Part[
@@ -5858,7 +5857,7 @@ Cell[BoxData[{
       RowBox[{"2", ",", "All", ",", "2"}], "]"}], "]"}], "+=", "2."}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"model", "=", 
-  RowBox[{"multiNonlinearModelFit", "[", "\[IndentingNewLine]", 
+  RowBox[{"MultiNonlinearModelFit", "[", "\[IndentingNewLine]", 
    RowBox[{"data", ",", "\[IndentingNewLine]", " ", 
     RowBox[{"{", 
      RowBox[{
@@ -5871,7 +5870,6 @@ Cell[BoxData[{
     RowBox[{"{", "\[FormalX]", "}"}]}], "\[IndentingNewLine]", 
    "]"}]}]}], "Input",
  TaggingRules->{},
- CellLabel->"In[73]:=",
  CellID->161500924,ExpressionUUID->"c39143e0-8df7-4e59-b0a1-a501fd5ada30"],
 
 Cell[BoxData[
@@ -6438,7 +6436,8 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, GridBoxItemSize -> {
+             False, 
+             GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -6848,8 +6847,7 @@ Cell[BoxData[
                  TagBox["0", "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, 
-             GridBoxItemSize -> {
+             False, GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -6947,7 +6945,8 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, GridBoxItemSize -> {
+             False, 
+             GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -7464,7 +7463,6 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
                     "FunctionRepo`tukeyMedianPolish`Private`mat_List", ",", 
                     RowBox[{
                     "FunctionRepo`tukeyMedianPolish`Private`outputType", ":", 
-                    
                     RowBox[{"\<\"Matrix\"\>", 
                     "|", "\<\"PropertyAssociation\"\>"}], 
                     ":", "\<\"Matrix\"\>"}], ",", 
@@ -7891,7 +7889,6 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[

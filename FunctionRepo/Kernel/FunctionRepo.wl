@@ -48,8 +48,8 @@ Get["FunctionRepo`maximumSpacingEstimation`"];
 mergeByKey;
 Get["FunctionRepo`mergeByKey`"];
 
-multiNonlinearModelFit;
-Get["FunctionRepo`multiNonlinearModelFit`"];
+MultiNonlinearModelFit;
+Get["FunctionRepo`MultiNonlinearModelFit`"];
 
 multiSet;
 Get["FunctionRepo`multiSet`"];
