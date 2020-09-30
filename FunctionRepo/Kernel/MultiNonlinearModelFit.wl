@@ -49,7 +49,10 @@ MultiNonlinearModelFit[
                     Join @@ MapThread[ConstantArray, {list, Length /@ datasets}], 
                 list : {__?(VectorQ[#1, NumericQ] & )} /; Length /@ list === Length /@ datasets :>
                     Join @@ list, 
-                "InverseLengthWeights" :> Join @@ (ConstantArray[1/#1, #1] & ) /@ Length /@ datasets
+                "InverseLengthWeights" :> Join @@ Map[
+                    ConstantArray[N[1 / #1, precision], #1]&,
+                    Length /@ datasets
+                ]
             }
         ]; 
         NonlinearModelFit[
