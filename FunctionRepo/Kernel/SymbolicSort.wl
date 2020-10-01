@@ -3,7 +3,8 @@
 BeginPackage["FunctionRepo`SymbolicSort`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[SymbolicSort, 
-    "SymbolicSort[{expr$1, expr$2, $$}, vars$, assum$] tries to sort expression expr$i using assumptions assum$.
+    "SymbolicSort[{expr$1, expr$2, $$}, vars$] sorts expr$i that depend on vars$i.
+SymbolicSort[list$, vars$, assum$] tries to sort expression expr$i using assumptions assum$.
 SymbolicSort[list$, vars$, assum$, dom$] specifies the domain of vars$.
 SymbolicSort[list$, vars$, assum$, dom&, prop$] specifies what property should be returned."
 ];
@@ -18,16 +19,21 @@ SymbolicSort::timeout = "Timeout while comparing `1` and `2`. Consider increasin
 SymbolicSort::noOrder = "No ordering of expressions `1` could be found."
 
 SymbolicSort[{}, _, _, Graph, ___] := Graph[{}];
-SymbolicSort[{}, _, __] := {};
+SymbolicSort[{}, __] := {};
 
-SymbolicSort[list_List, varSpec_, assum_, dom : _ : Reals, prop : Graph, opts : OptionsPattern[]] := With[{
-    graph = symbolicSortGraph[list, varSpec, assum, dom, OptionValue[TimeConstraint]
-    ]
+SymbolicSort[list_List, varSpec_, opts : OptionsPattern[]] :=
+    SymbolicSort[list, varSpec, True, Reals, opts];
+
+SymbolicSort[list_List, varSpec_, assum_, opts : OptionsPattern[]] :=
+    SymbolicSort[list, varSpec, assum, Reals, opts];
+
+SymbolicSort[list_List, varSpec_, assum_, dom_, Graph, opts : OptionsPattern[]] := With[{
+    graph = symbolicSortGraph[list, varSpec, assum, dom, OptionValue[TimeConstraint]]
 },
     graph /; GraphQ[graph]
 ];
 
-SymbolicSort[list_List, varSpec_, assum_, dom : _ : Reals, prop : List : List, opts : OptionsPattern[]] := With[{
+SymbolicSort[list_List, varSpec_, assum_, dom_, opts : OptionsPattern[]] := With[{
     sort = With[{timeCons = OptionValue[TimeConstraint]},
         Catch[
             Sort[
@@ -45,7 +51,10 @@ SymbolicSort[list_List, varSpec_, assum_, dom : _ : Reals, prop : List : List, o
 },
     sort /; Replace[
         ListQ[sort],
-        False :> (Message[SymbolicSort::noOrder, Short[list]]; False)
+        False :> (
+            Message[SymbolicSort::noOrder, Short[list]];
+            False
+        )
     ]
 ];
 
