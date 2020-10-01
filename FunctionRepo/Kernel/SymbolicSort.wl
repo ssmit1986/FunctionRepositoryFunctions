@@ -105,21 +105,17 @@ symbolicSortGraph[list_List, varSpec_, assum_, dom_, timeCons_] := Module[{
     Graph[list, orderings]
 ];
 
-pruneGraph[gr_] := Module[{
-    directedGraph = EdgeDelete[gr, UndirectedEdge[_, _]],
-    assoc,
-    edgeList = Lookup[GroupBy[EdgeList[gr], Head], {DirectedEdge, UndirectedEdge}, {}]
+pruneGraph[gr_] := With[{
+    directedEdges = EdgeList[
+        TransitiveReductionGraph @ EdgeDelete[gr, UndirectedEdge[_, _]]
+    ],
+    undirectedEdges = EdgeList @ EdgeDelete[gr, DirectedEdge[_, _]]
 },
-    assoc = AssociationThread[VertexList[directedGraph], VertexOutDegree[directedGraph]];
     Graph[
-        Keys @ assoc,
+        VertexList[gr],
         Join[
-            Values @ GroupBy[
-                edgeList[[1]],
-                First ,
-                First @* MaximalBy[assoc @ #[[2]]&]
-            ],
-            edgeList[[2]]
+            directedEdges,
+            undirectedEdges
         ],
         VertexLabels -> Automatic
     ]
