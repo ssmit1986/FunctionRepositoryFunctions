@@ -30,7 +30,7 @@ SymbolicSort[list_List, varSpec_, assum_, opts : OptionsPattern[]] :=
 SymbolicSort[list_List, varSpec_, assum_, dom_, Graph, opts : OptionsPattern[]] := With[{
     graph = symbolicSortGraph[list, varSpec, assum, dom, OptionValue[TimeConstraint]]
 },
-    graph /; GraphQ[graph]
+    pruneGraph[graph] /; GraphQ[graph]
 ];
 
 SymbolicSort[list_List, varSpec_, assum_, dom_, opts : OptionsPattern[]] := With[{
@@ -56,25 +56,6 @@ SymbolicSort[list_List, varSpec_, assum_, dom_, opts : OptionsPattern[]] := With
             False
         )
     ]
-];
-
-symbolicSortGraph[list_List, varSpec_, assum_, dom_, timeCons_] := Module[{
-    nItems = Length[list],
-    orderings
-},
-    orderings = Flatten @ Table[
-        Replace[
-            expressionOrder[list[[i]], list[[j]], varSpec, assum, dom, timeCons],
-            {
-                1 :> DirectedEdge @@ list[[{i, j}]],
-                -1 :> DirectedEdge @@ list[[{j, i}]],
-                _ :> UndirectedEdge @@ list[[{i, j}]]
-            }
-        ],
-        {i, nItems},
-        {j, 1, i - 1}
-    ];
-    Graph[list, orderings, VertexLabels -> Automatic]
 ];
 
 expressionOrder[ex1_, ex2_, varSpec_, assum_, dom_, timeCons_] := Catch[
@@ -103,6 +84,45 @@ expressionOrder[ex1_, ex2_, varSpec_, assum_, dom_, timeCons_] := Catch[
             0
     ],
     timeout
+];
+
+symbolicSortGraph[list_List, varSpec_, assum_, dom_, timeCons_] := Module[{
+    nItems = Length[list],
+    orderings
+},
+    orderings = Flatten @ Table[
+        Replace[
+            expressionOrder[list[[i]], list[[j]], varSpec, assum, dom, timeCons],
+            {
+                1 :> DirectedEdge @@ list[[{i, j}]],
+                -1 :> DirectedEdge @@ list[[{j, i}]],
+                _ :> UndirectedEdge @@ list[[{i, j}]]
+            }
+        ],
+        {i, nItems},
+        {j, 1, i - 1}
+    ];
+    Graph[list, orderings]
+];
+
+pruneGraph[gr_] := Module[{
+    directedGraph = EdgeDelete[gr, UndirectedEdge[_, _]],
+    assoc,
+    edgeList = Lookup[GroupBy[EdgeList[gr], Head], {DirectedEdge, UndirectedEdge}, {}]
+},
+    assoc = AssociationThread[VertexList[directedGraph], VertexOutDegree[directedGraph]];
+    Graph[
+        Keys @ assoc,
+        Join[
+            Values @ GroupBy[
+                edgeList[[1]],
+                First ,
+                First @* MaximalBy[assoc @ #[[2]]&]
+            ],
+            edgeList[[2]]
+        ],
+        VertexLabels -> Automatic
+    ]
 ];
 
 End[] (* End Private Context *)

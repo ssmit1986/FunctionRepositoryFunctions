@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[26]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[2]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -14770,7 +14770,7 @@ should be returned", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[43]:=",ExpressionUUID->"c4575ef6-702e-480e-bc4b-e831a3e9cdaf"],
+ CellLabel->"In[51]:=",ExpressionUUID->"c4575ef6-702e-480e-bc4b-e831a3e9cdaf"],
 
 Cell[CellGroupData[{
 
@@ -14781,13 +14781,13 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"Exp", "[", "x", "]"}], ",", "x"}], "}"}], ",", "x"}], 
   "]"}]], "Input",
- CellLabel->"In[53]:=",ExpressionUUID->"3e829411-5070-4376-8e70-7737b373849e"],
+ CellLabel->"In[4]:=",ExpressionUUID->"3e829411-5070-4376-8e70-7737b373849e"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"x", ",", 
    SuperscriptBox["\[ExponentialE]", "x"]}], "}"}]], "Output",
- CellLabel->"Out[53]=",ExpressionUUID->"83348b27-c51a-4e4a-805d-7c1adeca28ac"]
+ CellLabel->"Out[4]=",ExpressionUUID->"3e9812f6-c24c-4248-8546-048d83d93dce"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -14811,8 +14811,7 @@ Cell[BoxData[{
      RowBox[{
       RowBox[{"x", "^", "2"}], "+", "1"}]}], "}"}], ",", "x", ",", 
    RowBox[{"x", ">", "0"}], ",", "Reals", ",", "Graph"}], "]"}]}], "Input",
- CellLabel->
-  "In[118]:=",ExpressionUUID->"7c360c22-57d3-4cd6-b550-bb5484bd1072"],
+ CellLabel->"In[37]:=",ExpressionUUID->"7c360c22-57d3-4cd6-b550-bb5484bd1072"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -14821,8 +14820,7 @@ Cell[BoxData[
    RowBox[{"1", "+", 
     SuperscriptBox["x", "2"]}], ",", 
    SuperscriptBox["\[ExponentialE]", "x"]}], "}"}]], "Output",
- CellLabel->
-  "Out[118]=",ExpressionUUID->"0cc20482-c300-4ac1-8ebb-b9980aa5bfda"],
+ CellLabel->"Out[37]=",ExpressionUUID->"cbffebb9-ec52-4d8f-a8ae-21d5f26db49b"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -14830,64 +14828,34 @@ Cell[BoxData[
    DynamicModuleBox[{Typeset`graph = HoldComplete[
      Graph[{$CellContext`x, 
        Log[$CellContext`x], E^$CellContext`x, 1 + $CellContext`x^2}, {{{2, 
-       1}, {1, 3}, {2, 3}, {1, 4}, {2, 4}, {4, 3}}, Null}, {
-      VertexLabels -> {Automatic}}]]}, 
+       1}, {1, 4}, {4, 3}}, Null}, {VertexLabels -> {Automatic}}]]}, 
     TagBox[GraphicsGroupBox[{
        {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
-        ArrowBox[BezierCurveBox[CompressedData["
-1:eJxTTMoPSmViYGCQAWIQjQYcYIzl8zZ2X7f/bw/jJ000+lCS/Q/O17vRpHuj
-6S+cz1O8yJmx7Q+c/ysRpOE3gr/EH4QQ6m3uzpIX+wnnG6pbiSSc+A7np4HB
-Nzh/MVj7Fzj/sUUfEH2G85WVQOATnJ/IvS2Be9sHON/+5WS7l5Pfwfl7doPA
-azjfEmTc4xdwPkh3AvczON8YDB7D+eDgyX8A55/j757SuPw2nC+ec1As5+A1
-OF+yYpepvc4lOH9F+ptHX8+fhvOn2IEceBjOf/Dy2p8NHjvh/H9aZzr5WFfA
-+TAAAGdHa/U=
-         "]], 0.030239520958083826`], 
-        ArrowBox[{{0., 2.}, {-1., 1.}}, 0.030239520958083826`], 
-        ArrowBox[{{0., 3.}, {0., 2.}}, 0.030239520958083826`], 
-        ArrowBox[BezierCurveBox[CompressedData["
-1:eJxTTMoPSmViYGBQBWIQjQo4HGbympsuPrTC/qSydvHXOewOcuvXBN86vMu+
-Y1aS7kNNdoeqPTNFz04+am+Zskzv8DI2B41P0yd4HDtnf6/hW9lsYTYHn5qM
-s+trrtiXfQhiyypgdXiSriTVKXbLnmXz7jt6e1kc3t+1EY+QeGDfcsLg18uf
-zA6yNuatk1If2/802BQ3W43ZodqP4frnT8/sE9/Yczk7MzlETA4Vtb/5wt7I
-VUh98n5Gh3MtoT4hba/s37t1zvtmyujwSImhxvjXa/sZH5cU5C5jcOjPDV1y
-x+StvZZr6tzvAgwO11JCj/qbvbMPaJ7iqfX6n/1ODob7Pf/e2SudW87bs+Kv
-vVlk6MfJve/tT2SxtItE/bH3Cwv9k/L4vb175Kqth///soeEywf7NDD4Zu8L
-ld+xLNTLhuErXL/51N8Vr5d+tt8FNf+BYcSn4vBP9jD7N9Rkb7sq8tG+D+q+
-iNdZXYp73tvD3L/IMsfWK+2t/Xmo/5ye3GpV1XhtD/O/6ettyZsZX9rDwgdG
-y0DDD0bDwhdGP4OGP4yGxQ+MVofGH4yuhsYvjIbFP4yeB00fMBo9BQEAMtsN
-+g==
-         "]], 0.030239520958083826`], ArrowBox[BezierCurveBox[CompressedData["
-1:eJxTTMoPSmViYGCQAWIQjQo4HGbympsuPrRi/0ll7eKvc9gd5NavCb51eNf+
-jllJug812R2q9swUPTv56H7LlGV6h5exOWh8mj7B49i5/fcavpXNFmZz8KnJ
-OLu+5sr+sg9BbFkFrA5P0pWkOsVu7WfZvPuO3l4Wh/d3bcQjJB7sbzlh8Ovl
-T2YHWRvz1kmpj/f/NNgUN1uN2aHaj+H650/P9ie+sedydmZyiJgcKmp/88V+
-I1ch9cn7GR3OtYT6hLS92v/erXPeN1NGh0dKDDXGv17vn/FxSUHuMgaH/tzQ
-JXdM3u7Xck2d+12AweFaSuhRf7N3+wOap3hqvf5nv5OD4X7Pv3f7lc4t5+1Z
-8dfeLDL04+Te9/tPZLG0i0T9sfcLC/2T8vj9fvfIVVsP//9lDwmXD/tnzQSB
-n3D++RtHX883/wHnfz6slPrg5Td7RiifPXoDa/SGr3B59nl5Z/m7v8D5X3ti
-9/yr/AznX1KvBaJPcD5Y+ZSPcH5Eol+JxoEPcD6UtgcA7hvDDQ==
-         "]], 0.030239520958083826`], 
-        ArrowBox[{{-1., 1.}, {0., 0.}}, 0.030239520958083826`]}, 
+        ArrowBox[{{{1., 4.898587196589413*^-16}, {2., 
+         2.4492935982947064`*^-16}}, {{0., 6.123233995736766*^-16}, {1., 
+         4.898587196589413*^-16}}, {{2., 2.4492935982947064`*^-16}, {3., 
+         0.}}}, 0.030239520958083826`]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
-        0.7]}], {DiskBox[{0., 2.}, 0.030239520958083826], 
+        0.7]}], {DiskBox[{1., 4.898587196589413*^-16}, 0.030239520958083826], 
          InsetBox["x", 
-          Offset[{2, 2}, {0.030239520958083826, 2.0302395209580837}], 
+          Offset[{2, 2}, {1.030239520958084, 0.030239520958084316}], 
           ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{0., 3.}, 0.030239520958083826], 
-         InsetBox[
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0., 6.123233995736766*^-16}, 0.030239520958083826], InsetBox[
           RowBox[{"log", "(", "x", ")"}], 
-          Offset[{2, 2}, {0.030239520958083826, 3.0302395209580837}], 
+          Offset[{2, 2}, {0.030239520958083826, 0.030239520958084437}], 
           ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{0., 0.}, 0.030239520958083826], 
+          BaseStyle->"Graphics"]}, {DiskBox[{3., 0.}, 0.030239520958083826], 
          InsetBox[
           SuperscriptBox["\[ExponentialE]", "x"], 
-          Offset[{2, 2}, {0.030239520958083826, 0.030239520958083826}], 
+          Offset[{2, 2}, {3.0302395209580837, 0.030239520958083826}], 
           ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{-1., 1.}, 0.030239520958083826], 
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{2., 2.4492935982947064*^-16}, 0.030239520958083826], 
          InsetBox[
           RowBox[{
            SuperscriptBox["x", "2"], "+", "1"}], 
-          Offset[{2, 2}, {-0.9697604790419162, 1.030239520958084}], 
+          Offset[{2, 2}, {2.0302395209580837, 0.030239520958084073}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}}}],
      MouseAppearanceTag["NetworkGraphics"]],
@@ -14896,7 +14864,7 @@ n3D++RtHX883/wHnfz6slPrg5Td7RiifPXoDa/SGr3B59nl5Z/m7v8D5X3ti
    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
- CellLabel->"Out[119]=",ExpressionUUID->"737b72af-423e-4a88-9405-61c0a4fbc91b"]
+ CellLabel->"Out[38]=",ExpressionUUID->"ada064ce-9bbe-445b-9c71-3e82460e614e"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -14916,23 +14884,21 @@ Cell[BoxData[{
      SqrtBox[
       SuperscriptBox["x", "2"]], ",", "x"}], "}"}], ",", "x", ",", 
    RowBox[{"x", ">", "0"}]}], "]"}]}], "Input",
- CellLabel->
-  "In[131]:=",ExpressionUUID->"bd279bdf-b498-4615-9a6b-e529b3a8d9ae"],
+ CellLabel->"In[39]:=",ExpressionUUID->"bd279bdf-b498-4615-9a6b-e529b3a8d9ae"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"x", ",", 
    SqrtBox[
     SuperscriptBox["x", "2"]]}], "}"}]], "Output",
- CellLabel->
-  "Out[131]=",ExpressionUUID->"8bffb103-e906-478a-b103-1a0a1a1b5cf4"],
+ CellLabel->"Out[39]=",ExpressionUUID->"42c1cae1-0e29-4cd9-a70f-3d6906f17893"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    SqrtBox[
     SuperscriptBox["x", "2"]], ",", "x"}], "}"}]], "Output",
- CellLabel->"Out[132]=",ExpressionUUID->"6676b839-4fc6-4e62-8b73-fe8e62dcc78e"]
+ CellLabel->"Out[40]=",ExpressionUUID->"99fbd829-af76-4025-b3cd-709415f00301"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -14959,8 +14925,7 @@ Cell[BoxData[{
     RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
    RowBox[{"x", "<", "y", "<", "z"}], ",", "Reals", ",", "Graph"}], 
   "]"}]}], "Input",
- CellLabel->
-  "In[122]:=",ExpressionUUID->"7a58a37d-bb03-428b-b83b-5e2a2a0662f0"],
+ CellLabel->"In[41]:=",ExpressionUUID->"7a58a37d-bb03-428b-b83b-5e2a2a0662f0"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -14968,8 +14933,7 @@ Cell[BoxData[
    SuperscriptBox["\[ExponentialE]", "x"], ",", 
    SuperscriptBox["\[ExponentialE]", "y"], ",", 
    SuperscriptBox["\[ExponentialE]", "z"]}], "}"}]], "Output",
- CellLabel->
-  "Out[122]=",ExpressionUUID->"340a7f6d-6a2e-44a9-8654-d3560dd24a19"],
+ CellLabel->"Out[41]=",ExpressionUUID->"7433b848-371a-43a3-8ffd-a66de058251d"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -14977,36 +14941,27 @@ Cell[BoxData[
    DynamicModuleBox[{Typeset`graph = HoldComplete[
      Graph[{
       E^$CellContext`y, E^$CellContext`x, E^$CellContext`z}, {{{2, 1}, {1, 
-       3}, {2, 3}}, Null}, {VertexLabels -> {Automatic}}]]}, 
+       3}}, Null}, {VertexLabels -> {Automatic}}]]}, 
     TagBox[GraphicsGroupBox[{
        {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
-        ArrowBox[{{0., 1.}, {1., 0.}}, 0.02261146496815286], 
-        ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286], 
-        ArrowBox[BezierCurveBox[CompressedData["
-1:eJxTTMoPSmViYGCQAWIQjQYcZvKamy4+tMJ+knvYs1eW/+3l1q8JvnV4lz2f
-6dGoQ8H/7Kv2zBQ9O/mofdEJn9g237/2Gp+mT/A4ds5+D+Pbt2bqf+x9ajLO
-rq+5Yv/2wVKeKw9+2T9JV5LqFLtlz55WvjO26qf9+7s24hESD+w5JiZ+ufz5
-u72sjXnrpNTH9p8SU/aa+X6zr/ZjuP750zP7QzfqRdravthHTA4Vtb/5wj61
-S8VPrf6z/bmWUJ+Qtlf293uFbN9mf7J/pMRQY/zrtb3+Y8+Ht3w+2vfnhi65
-Y/LWPqTrlNV7xQ/211JCj/qbvbOfz6Y5OeTaW/udHAz3e/69s3ea4y8tEfja
-3iwy9OPk3vf2E69y8GlueWHvFxb6J+Xxe/ueTSHZ7f+f2kOC5YO9MRg8hvPn
-bey+bp//AM4/x989pXH5bXtGKF8856BYzsFrcHnJil2m9jqX4PwV6W8efT1/
-Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
-         "]], 0.02261146496815286]}, 
+        ArrowBox[{{{1., 2.4492935982947064`*^-16}, {2., 0.}}, {{0., 
+         3.6739403974420594`*^-16}, {1., 2.4492935982947064`*^-16}}}, 
+         0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
-        0.7]}], {DiskBox[{0., 1.}, 0.02261146496815286], InsetBox[
-          SuperscriptBox["\[ExponentialE]", "y"], 
-          Offset[{2, 2}, {0.02261146496815286, 1.0226114649681528}], 
-          ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{0., 2.}, 0.02261146496815286], 
+        0.7]}], {DiskBox[{1., 2.4492935982947064*^-16}, 0.02261146496815286], 
          InsetBox[
-          SuperscriptBox["\[ExponentialE]", "x"], 
-          Offset[{2, 2}, {0.02261146496815286, 2.022611464968153}], 
+          SuperscriptBox["\[ExponentialE]", "y"], 
+          Offset[{2, 2}, {1.0226114649681528, 0.022611464968153108}], 
           ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0., 3.6739403974420594*^-16}, 0.02261146496815286], InsetBox[
+          SuperscriptBox["\[ExponentialE]", "x"], 
+          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815323}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{2., 0.}, 0.02261146496815286], 
          InsetBox[
           SuperscriptBox["\[ExponentialE]", "z"], 
-          Offset[{2, 2}, {1.0226114649681528, 0.02261146496815286}], 
+          Offset[{2, 2}, {2.022611464968153, 0.02261146496815286}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}}}],
      MouseAppearanceTag["NetworkGraphics"]],
@@ -15015,7 +14970,7 @@ Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
- CellLabel->"Out[123]=",ExpressionUUID->"84a0bb5f-8492-4d09-94fa-b556b650523b"]
+ CellLabel->"Out[42]=",ExpressionUUID->"bbd99f56-cf60-416b-8e99-0924c987f947"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -15041,53 +14996,41 @@ Cell[BoxData[{
     RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
    RowBox[{"0", "<", "x", "<", "y", "<", "z"}], ",", "Reals", ",", "Graph"}], 
   "]"}]}], "Input",
- CellLabel->
-  "In[124]:=",ExpressionUUID->"cc8f256b-6483-4f9c-8a0f-547e99744e70"],
+ CellLabel->"In[43]:=",ExpressionUUID->"cc8f256b-6483-4f9c-8a0f-547e99744e70"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{"Log", "[", "x", "]"}], ",", "y", ",", 
    SuperscriptBox["\[ExponentialE]", "z"]}], "}"}]], "Output",
- CellLabel->
-  "Out[124]=",ExpressionUUID->"224e7ac1-db22-4fbb-bf56-78c9e6a90a2b"],
+ CellLabel->"Out[43]=",ExpressionUUID->"0c44b33d-e8d9-49fe-96e0-618c0925c4a9"],
 
 Cell[BoxData[
  GraphicsBox[
   NamespaceBox["NetworkGraphics",
    DynamicModuleBox[{Typeset`graph = HoldComplete[
      Graph[{$CellContext`y, 
-       Log[$CellContext`x], E^$CellContext`z}, {{{2, 1}, {1, 3}, {2, 3}}, 
-       Null}, {VertexLabels -> {Automatic}}]]}, 
+       Log[$CellContext`x], E^$CellContext`z}, {{{2, 1}, {1, 3}}, Null}, {
+      VertexLabels -> {Automatic}}]]}, 
     TagBox[GraphicsGroupBox[{
        {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
-        ArrowBox[{{0., 1.}, {1., 0.}}, 0.02261146496815286], 
-        ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286], 
-        ArrowBox[BezierCurveBox[CompressedData["
-1:eJxTTMoPSmViYGCQAWIQjQYcZvKamy4+tMJ+knvYs1eW/+3l1q8JvnV4lz2f
-6dGoQ8H/7Kv2zBQ9O/mofdEJn9g237/2Gp+mT/A4ds5+D+Pbt2bqf+x9ajLO
-rq+5Yv/2wVKeKw9+2T9JV5LqFLtlz55WvjO26qf9+7s24hESD+w5JiZ+ufz5
-u72sjXnrpNTH9p8SU/aa+X6zr/ZjuP750zP7QzfqRdravthHTA4Vtb/5wj61
-S8VPrf6z/bmWUJ+Qtlf293uFbN9mf7J/pMRQY/zrtb3+Y8+Ht3w+2vfnhi65
-Y/LWPqTrlNV7xQ/211JCj/qbvbOfz6Y5OeTaW/udHAz3e/69s3ea4y8tEfja
-3iwy9OPk3vf2E69y8GlueWHvFxb6J+Xxe/ueTSHZ7f+f2kOC5YO9MRg8hvPn
-bey+bp//AM4/x989pXH5bXtGKF8856BYzsFrcHnJil2m9jqX4PwV6W8efT1/
-Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
-         "]], 0.02261146496815286]}, 
+        ArrowBox[{{{1., 2.4492935982947064`*^-16}, {2., 0.}}, {{0., 
+         3.6739403974420594`*^-16}, {1., 2.4492935982947064`*^-16}}}, 
+         0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
-        0.7]}], {DiskBox[{0., 1.}, 0.02261146496815286], 
+        0.7]}], {DiskBox[{1., 2.4492935982947064*^-16}, 0.02261146496815286], 
          InsetBox["y", 
-          Offset[{2, 2}, {0.02261146496815286, 1.0226114649681528}], 
+          Offset[{2, 2}, {1.0226114649681528, 0.022611464968153108}], 
           ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{0., 2.}, 0.02261146496815286], 
-         InsetBox[
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0., 3.6739403974420594*^-16}, 0.02261146496815286], InsetBox[
           RowBox[{"log", "(", "x", ")"}], 
-          Offset[{2, 2}, {0.02261146496815286, 2.022611464968153}], 
+          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815323}], 
           ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
+          BaseStyle->"Graphics"]}, {DiskBox[{2., 0.}, 0.02261146496815286], 
          InsetBox[
           SuperscriptBox["\[ExponentialE]", "z"], 
-          Offset[{2, 2}, {1.0226114649681528, 0.02261146496815286}], 
+          Offset[{2, 2}, {2.022611464968153, 0.02261146496815286}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}}}],
      MouseAppearanceTag["NetworkGraphics"]],
@@ -15096,7 +15039,7 @@ Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
- CellLabel->"Out[125]=",ExpressionUUID->"3f9a390d-7f3f-48ae-bbd5-a69fbef383ba"]
+ CellLabel->"Out[44]=",ExpressionUUID->"49f99a2b-879e-47b1-9cbb-500ab819652e"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -15122,8 +15065,7 @@ Cell[BoxData[{
     RowBox[{"x", ",", "y", ",", "z", ",", "a"}], "}"}], ",", 
    RowBox[{"0", "<", "x", "<", "y", "<", "z"}], ",", "Reals", ",", "Graph"}], 
   "]"}]}], "Input",
- CellLabel->
-  "In[126]:=",ExpressionUUID->"716c319f-8083-4184-9724-cc5a90dae07c"],
+ CellLabel->"In[45]:=",ExpressionUUID->"716c319f-8083-4184-9724-cc5a90dae07c"],
 
 Cell[BoxData[
  TemplateBox[{
@@ -15131,12 +15073,12 @@ Cell[BoxData[
    "\"No ordering of expressions \\!\\(\\*RowBox[{\\\"{\\\", \
 RowBox[{SuperscriptBox[\\\"\[ExponentialE]\\\", \\\"y\\\"], \\\",\\\", \
 \\\"x\\\", \\\",\\\", SuperscriptBox[\\\"\[ExponentialE]\\\", \\\"z\\\"], \
-\\\",\\\", \\\"a\\\"}], \\\"}\\\"}]\\) could be found.\"", 2, 126, 2, 
-   16932427971030721906, "Local", "FunctionRepo`SymbolicSort"},
+\\\",\\\", \\\"a\\\"}], \\\"}\\\"}]\\) could be found.\"", 2, 45, 7, 
+   16932516438931160218, "Local", "FunctionRepo`SymbolicSort"},
   "MessageTemplate2"]], "Message", "MSG",
  CellLabel->
   "During evaluation of \
-In[126]:=",ExpressionUUID->"9574b439-c1fb-4f13-b36b-7b65b38f57eb"],
+In[45]:=",ExpressionUUID->"5e2bc177-c8b4-4ad6-a2dd-b211eaff552e"],
 
 Cell[BoxData[
  RowBox[{"SymbolicSort", "[", 
@@ -15147,9 +15089,10 @@ Cell[BoxData[
      SuperscriptBox["\[ExponentialE]", "z"], ",", "a"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"x", ",", "y", ",", "z", ",", "a"}], "}"}], ",", 
-   RowBox[{"0", "<", "x", "<", "y", "<", "z"}]}], "]"}]], "Output",
- CellLabel->
-  "Out[126]=",ExpressionUUID->"2bc98dbe-6d20-42b1-8814-c798c124f2e5"],
+   RowBox[{"0", "<", "x", "<", "y", "<", "z"}], ",", 
+   TemplateBox[{},
+    "Reals"]}], "]"}]], "Output",
+ CellLabel->"Out[45]=",ExpressionUUID->"886aad68-e7ee-45b5-9c7c-b64259ba5bdd"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -15157,48 +15100,45 @@ Cell[BoxData[
    DynamicModuleBox[{Typeset`graph = HoldComplete[
      Graph[{
       E^$CellContext`y, $CellContext`x, E^$CellContext`z, $CellContext`a}, {{{
-      2, 1}, {1, 3}, {2, 3}}, {{4, 1}, {4, 2}, {4, 3}}}, {
+       2, 1}, {1, 3}}, {{4, 1}, {4, 2}, {4, 3}}}, {
       VertexLabels -> {Automatic}}]]}, 
     TagBox[GraphicsGroupBox[{
        {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
         {Arrowheads[0.], 
-         ArrowBox[{{0., 0.8648518418050273}, {0.8801007068687547, 
-          0.012343887973135792`}}, 0.011203681998439248`]}, 
-        ArrowBox[{{0., 0.8648518418050273}, {0.01377283290387632, 0.}}, 
-         0.011203681998439248`], 
+         ArrowBox[{{0.9333992261709453, 0.8688665807962485}, {
+          0.9352581889010569, 0.}}, 0.021532914174925727`]}, 
+        ArrowBox[{{0.9333992261709453, 0.8688665807962485}, {0., 
+         0.43398273723536557`}}, 0.021532914174925727`], 
         {Arrowheads[0.], 
-         ArrowBox[{{0.8668530587504213, 0.878012864898719}, {
-          0.8801007068687547, 0.012343887973135792`}}, 
-          0.011203681998439248`]}, 
-        ArrowBox[{{0.8668530587504213, 0.878012864898719}, {0., 
-         0.8648518418050273}}, 0.011203681998439248`], 
-        ArrowBox[{{0.8668530587504213, 0.878012864898719}, {
-         0.01377283290387632, 0.}}, 0.011203681998439248`], 
+         ArrowBox[{{1.868189993219565, 0.43484730778664377`}, {
+          0.9352581889010569, 0.}}, 0.021532914174925727`]}, 
+        ArrowBox[{{1.868189993219565, 0.43484730778664377`}, {
+         0.9333992261709453, 0.8688665807962485}}, 0.021532914174925727`], 
         {Arrowheads[0.], 
-         ArrowBox[{{0.01377283290387632, 0.}, {0.8801007068687547, 
-          0.012343887973135792`}}, 0.011203681998439248`]}}, 
+         ArrowBox[{{0., 0.43398273723536557`}, {0.9352581889010569, 0.}}, 
+          0.021532914174925727`]}}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
-        0.7]}], {DiskBox[{0., 0.8648518418050273}, 0.011203681998439248], 
-         InsetBox[
+        0.7]}], {
+         DiskBox[{0.9333992261709453, 0.8688665807962485}, 
+          0.021532914174925727], InsetBox[
           SuperscriptBox["\[ExponentialE]", "y"], 
-          Offset[{2, 2}, {0.011203681998439248, 0.8760555238034665}], 
+          Offset[{2, 2}, {0.954932140345871, 0.8903994949711742}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {
-         DiskBox[{0.8668530587504213, 0.878012864898719}, 
-          0.011203681998439248], 
+         DiskBox[{1.868189993219565, 0.43484730778664377}, 
+          0.021532914174925727], 
          InsetBox["x", 
-          Offset[{2, 2}, {0.8780567407488605, 0.8892165468971582}], 
+          Offset[{2, 2}, {1.8897229073944906, 0.45638022196156947}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {
-         DiskBox[{0.01377283290387632, 0.}, 0.011203681998439248], InsetBox[
+         DiskBox[{0., 0.43398273723536557}, 0.021532914174925727], InsetBox[
           SuperscriptBox["\[ExponentialE]", "z"], 
-          Offset[{2, 2}, {0.024976514902315568, 0.011203681998439248}], 
+          Offset[{2, 2}, {0.021532914174925727, 0.45551565141029127}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {
-         DiskBox[{0.8801007068687547, 0.012343887973135792}, 
-          0.011203681998439248], 
+         DiskBox[{0.9352581889010569, 0.}, 0.021532914174925727], 
          InsetBox["a", 
-          Offset[{2, 2}, {0.891304388867194, 0.02354756997157504}], 
+          Offset[{2, 2}, {0.9567911030759827, 0.021532914174925727}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}}}],
      MouseAppearanceTag["NetworkGraphics"]],
@@ -15207,7 +15147,105 @@ Cell[BoxData[
    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
- CellLabel->"Out[127]=",ExpressionUUID->"28f1a122-546e-43ab-a677-7d3507f680c5"]
+ CellLabel->"Out[46]=",ExpressionUUID->"6284cba5-39d6-4961-a1b6-ce8eb23c4578"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"Log", "[", "x", "]"}], ",", 
+     RowBox[{"Exp", "[", "x", "]"}], ",", 
+     RowBox[{
+      RowBox[{"x", "^", "2"}], "+", "1"}], ",", 
+     RowBox[{"Sin", "[", "x", "]"}]}], "}"}], ",", "x", ",", 
+   RowBox[{"x", ">", "0"}], ",", "Reals", ",", "Graph"}], "]"}]], "Input",
+ CellLabel->"In[52]:=",ExpressionUUID->"036a8e0d-3076-4c90-83f8-724f3f982b93"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Resolve", "nint", 
+   "\"Warning: \\!\\(\\*RowBox[{\\\"Resolve\\\"}]\\) used numeric integration \
+to show that the solution set found is complete.\"", 2, 52, 10, 
+   16932516438931160218, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[52]:=",ExpressionUUID->"3a101b6d-7d59-4c73-a13f-330b262b5eb9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SymbolicSort", "timeout", 
+   "\"Timeout while comparing \\!\\(\\*RowBox[{\\\"Sin\\\", \\\"[\\\", \
+\\\"x\\\", \\\"]\\\"}]\\) and \\!\\(\\*RowBox[{\\\"Log\\\", \\\"[\\\", \
+\\\"x\\\", \\\"]\\\"}]\\). Consider increasing the TimeConstraint option.\"", 
+   2, 52, 11, 16932516438931160218, "Local", "FunctionRepo`SymbolicSort"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[52]:=",ExpressionUUID->"d5192078-a07a-4ca7-96de-4a2f89e98baf"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{$CellContext`x, 
+       Log[$CellContext`x], E^$CellContext`x, 1 + $CellContext`x^2, 
+       Sin[$CellContext`x]}, {{{2, 1}, {1, 4}, {4, 3}, {5, 1}}, {{5, 2}}}, {
+      VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[{{0.9025607086344003, 0.37911848615959226`}, {
+         2.109608983792234, 0.37909568854540593`}}, 0.031202796858901136`], 
+        {Arrowheads[0.], 
+         ArrowBox[{{9.243089363675239*^-6, 0.}, {0., 0.7578676723691089}}, 
+          0.031202796858901136`]}, 
+        ArrowBox[{{9.243089363675239*^-6, 0.}, {0.9025607086344003, 
+         0.37911848615959226`}}, 0.031202796858901136`], 
+        ArrowBox[{{2.109608983792234, 0.37909568854540593`}, {
+         3.1354131841348387`, 0.3788926117249257}}, 0.031202796858901136`], 
+        ArrowBox[{{0., 0.7578676723691089}, {0.9025607086344003, 
+         0.37911848615959226`}}, 0.031202796858901136`]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {
+         DiskBox[{0.9025607086344003, 0.37911848615959226}, 
+          0.031202796858901136], 
+         InsetBox["x", 
+          Offset[{2, 2}, {0.9337635054933014, 0.4103212830184934}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{9.243089363675239*^-6, 0.}, 0.031202796858901136], InsetBox[
+          RowBox[{"log", "(", "x", ")"}], Offset[{2, 2}, 
+          {0.03121203994826481, 0.031202796858901136}], ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.1354131841348387, 0.3788926117249257}, 
+          0.031202796858901136], InsetBox[
+          SuperscriptBox["\[ExponentialE]", "x"], 
+          Offset[{2, 2}, {3.1666159809937398, 0.41009540858382687}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{2.109608983792234, 0.37909568854540593}, 
+          0.031202796858901136], InsetBox[
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", "1"}], 
+          Offset[{2, 2}, {2.140811780651135, 0.4102984854043071}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0., 0.7578676723691089}, 0.031202796858901136], InsetBox[
+          RowBox[{"sin", "(", "x", ")"}], 
+          Offset[{2, 2}, {0.031202796858901136, 0.78907046922801}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->"Out[52]=",ExpressionUUID->"67c1dc32-a74f-434c-ac7d-e63a3a428ab0"]
 }, Open  ]]
 }, Closed]]
 },
