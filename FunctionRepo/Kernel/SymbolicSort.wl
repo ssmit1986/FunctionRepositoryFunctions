@@ -4,7 +4,8 @@ BeginPackage["FunctionRepo`SymbolicSort`", {"FunctionRepo`", "GeneralUtilities`"
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[SymbolicSort, 
     "SymbolicSort[{expr$1, expr$2, $$}, vars$, assum$] tries to sort expression expr$i using assumptions assum$.
-SymbolicSort[list$, vars$, assum$, prop$] specifies what property should be returned"
+SymbolicSort[list$, vars$, assum$, dom$] specifies the domain of vars$.
+SymbolicSort[list$, vars$, assum$, dom&, prop$] specifies what property should be returned."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
@@ -13,37 +14,86 @@ Options[SymbolicSort] = {
     TimeConstraint -> 5
 };
 
-SymbolicSort[list_List, varSpec_, assum_, opts : OptionsPattern[]] := Module[{
-    vars = Replace[varSpec, var : Except[_List] :> {var}],
-    timeCons = OptionValue[TimeConstraint],
+SymbolicSort::timeout = "Timeout while comparing `1` and `2`. Consider increasing the TimeConstraint option.";
+SymbolicSort::noOrder = "No ordering of expressions `1` could be found."
+
+SymbolicSort[{}, _, _, Graph, ___] := Graph[{}];
+SymbolicSort[{}, _, __] := {};
+
+SymbolicSort[list_List, varSpec_, assum_, dom : _ : Reals, prop : Graph, opts : OptionsPattern[]] := With[{
+    graph = symbolicSortGraph[list, varSpec, assum, dom, OptionValue[TimeConstraint]
+    ]
+},
+    graph /; GraphQ[graph]
+];
+
+SymbolicSort[list_List, varSpec_, assum_, dom : _ : Reals, prop : List : List, opts : OptionsPattern[]] := With[{
+    sort = With[{timeCons = OptionValue[TimeConstraint]},
+        Catch[
+            Sort[
+                list,
+                Function[
+                    Replace[
+                        expressionOrder[#1, #2, varSpec, assum, dom, timeCons],
+                        0 :> Throw[$Failed, symsort]
+                    ]
+                ]
+            ],
+            symsort
+        ]
+    ]
+},
+    sort /; Replace[
+        ListQ[sort],
+        False :> (Message[SymbolicSort::noOrder, Short[list]]; False)
+    ]
+];
+
+symbolicSortGraph[list_List, varSpec_, assum_, dom_, timeCons_] := Module[{
     nItems = Length[list],
     orderings
 },
     orderings = Flatten @ Table[
-        orderExpressions[list[[i]], list[[j]], vars, assum, timeCons],
+        Replace[
+            expressionOrder[list[[i]], list[[j]], varSpec, assum, dom, timeCons],
+            {
+                1 :> DirectedEdge @@ list[[{i, j}]],
+                -1 :> DirectedEdge @@ list[[{j, i}]],
+                _ :> UndirectedEdge @@ list[[{i, j}]]
+            }
+        ],
         {i, nItems},
         {j, 1, i - 1}
     ];
-    Graph[orderings, VertexLabels -> Automatic]
+    Graph[list, orderings, VertexLabels -> Automatic]
 ];
 
-orderExpressions[ex1_, ex2_, vars_, assum_, timeCons_] := Which[
-    TrueQ[
-        TimeConstrained[
-            Resolve[ForAll[vars, assum, ex1 <= ex2]],
-            timeCons
-        ]
+expressionOrder[ex1_, ex2_, varSpec_, assum_, dom_, timeCons_] := Catch[
+    Which[
+        TrueQ[
+            TimeConstrained[
+                Resolve[ForAll[varSpec, assum, ex1 <= ex2], dom],
+                timeCons
+                ,
+                Message[SymbolicSort::timeout, ex1, ex2];
+                Throw[0, timeout]
+            ]
+        ],
+            1,
+        TrueQ[
+            TimeConstrained[
+                Resolve[ForAll[varSpec, assum, ex1 >= ex2], dom],
+                timeCons
+                ,
+                Message[SymbolicSort::timeout, ex1, ex2];
+                Throw[0, timeout]
+            ]
+        ],
+            -1,
+        True,
+            0
     ],
-        DirectedEdge[ex1, ex2],
-    TrueQ[
-        TimeConstrained[
-            Resolve[ForAll[vars, assum, ex1 > ex2]],
-            timeCons
-        ]
-    ],
-        DirectedEdge[ex2, ex1],
-    True,
-        UndirectedEdge[ex1, ex2]
+    timeout
 ];
 
 End[] (* End Private Context *)

@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[20]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -14454,7 +14454,7 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"?", "SymbolicSort"}]], "Input",
- CellLabel->"In[22]:=",ExpressionUUID->"56602dc1-7821-4db7-879c-02ecb6897043"],
+ CellLabel->"In[13]:=",ExpressionUUID->"56602dc1-7821-4db7-879c-02ecb6897043"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -14526,68 +14526,23 @@ specifies what property should be returned\"\>", "InformationUsageText",
                     "FunctionRepo`SymbolicSort`Private`list_List", ",", 
                     "FunctionRepo`SymbolicSort`Private`varSpec_", ",", 
                     "FunctionRepo`SymbolicSort`Private`assum_", ",", 
-                    RowBox[{"FunctionRepo`SymbolicSort`Private`opts", ":", 
-                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
-                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`opts", ":", 
+                    "OptionsPattern"}]}], "]"}], ":=", 
+                    RowBox[{"With", "[", 
                     RowBox[{
                     RowBox[{"{", 
+                    RowBox[{"FunctionRepo`SymbolicSort`Private`graph", "=", 
                     RowBox[{
-                    RowBox[{"FunctionRepo`SymbolicSort`Private`vars", "=", 
-                    RowBox[{"Replace", "[", 
-                    RowBox[{"FunctionRepo`SymbolicSort`Private`varSpec", ",", 
+                    "FunctionRepo`SymbolicSort`Private`symbolicSortGraph", 
+                    "[", 
                     RowBox[{
-                    RowBox[{"FunctionRepo`SymbolicSort`Private`var", ":", 
-                    RowBox[{"Except", "[", "_List", "]"}]}], "\[RuleDelayed]", 
-                    RowBox[{
-                    "{", "FunctionRepo`SymbolicSort`Private`var", "}"}]}]}], 
-                    "]"}]}], ",", 
-                    RowBox[{"FunctionRepo`SymbolicSort`Private`timeCons", "=", 
-                    RowBox[{"OptionValue", "[", "TimeConstraint", "]"}]}], 
-                    ",", 
-                    RowBox[{"FunctionRepo`SymbolicSort`Private`nItems", "=", 
-                    RowBox[{
-                    "Length", "[", "FunctionRepo`SymbolicSort`Private`list", 
-                    "]"}]}], ",", 
-                    "FunctionRepo`SymbolicSort`Private`orderings"}], "}"}], 
-                    ",", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`orderings", "=", 
-                    RowBox[{"Flatten", "[", 
-                    RowBox[{"Table", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`orderExpressions", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`list", 
-                    "\[LeftDoubleBracket]", 
-                    "FunctionRepo`SymbolicSort`Private`i", 
-                    "\[RightDoubleBracket]"}], ",", 
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`list", 
-                    "\[LeftDoubleBracket]", 
-                    "FunctionRepo`SymbolicSort`Private`j", 
-                    "\[RightDoubleBracket]"}], ",", 
-                    "FunctionRepo`SymbolicSort`Private`vars", ",", 
+                    "FunctionRepo`SymbolicSort`Private`list", ",", 
+                    "FunctionRepo`SymbolicSort`Private`varSpec", ",", 
                     "FunctionRepo`SymbolicSort`Private`assum", ",", 
-                    "FunctionRepo`SymbolicSort`Private`timeCons"}], "]"}], 
-                    ",", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`i", ",", 
-                    "FunctionRepo`SymbolicSort`Private`nItems"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`j", ",", "1", ",", 
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`i", "-", "1"}]}], 
-                    "}"}]}], "]"}], "]"}]}], ";", 
-                    RowBox[{"Graph", "[", 
-                    RowBox[{
-                    "FunctionRepo`SymbolicSort`Private`orderings", ",", 
-                    RowBox[{"VertexLabels", "\[Rule]", "Automatic"}]}], 
-                    "]"}]}]}], "]"}]}]}
+                    RowBox[{"OptionValue", "[", "TimeConstraint", "]"}]}], 
+                    "]"}]}], "}"}], ",", 
+                    "FunctionRepo`SymbolicSort`Private`graph"}], "]"}]}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -14799,72 +14754,180 @@ should be returned", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
           Blank[]], 
          Pattern[FunctionRepo`SymbolicSort`Private`assum, 
           Blank[]], 
-         Pattern[FunctionRepo`SymbolicSort`Private`opts, 
-          OptionsPattern[]]] :> 
-       Module[{FunctionRepo`SymbolicSort`Private`vars = 
-          Replace[FunctionRepo`SymbolicSort`Private`varSpec, 
-            Pattern[FunctionRepo`SymbolicSort`Private`var, 
-              Except[
-               Blank[List]]] :> {FunctionRepo`SymbolicSort`Private`var}], 
-          FunctionRepo`SymbolicSort`Private`timeCons = 
-          OptionValue[TimeConstraint], 
-          FunctionRepo`SymbolicSort`Private`nItems = 
-          Length[FunctionRepo`SymbolicSort`Private`list], 
-          FunctionRepo`SymbolicSort`Private`orderings}, 
-         FunctionRepo`SymbolicSort`Private`orderings = Flatten[
-            Table[
-             FunctionRepo`SymbolicSort`Private`orderExpressions[
-              Part[
-              FunctionRepo`SymbolicSort`Private`list, 
-               FunctionRepo`SymbolicSort`Private`i], 
-              Part[
-              FunctionRepo`SymbolicSort`Private`list, 
-               FunctionRepo`SymbolicSort`Private`j], 
-              FunctionRepo`SymbolicSort`Private`vars, 
-              FunctionRepo`SymbolicSort`Private`assum, 
-              FunctionRepo`SymbolicSort`Private`timeCons], {
-             FunctionRepo`SymbolicSort`Private`i, 
-              FunctionRepo`SymbolicSort`Private`nItems}, {
-             FunctionRepo`SymbolicSort`Private`j, 1, 
-              FunctionRepo`SymbolicSort`Private`i - 1}]]; 
-         Graph[FunctionRepo`SymbolicSort`Private`orderings, VertexLabels -> 
-           Automatic]]}], "SubValues" -> None, "DefaultValues" -> None, 
-    "NValues" -> None, "FormatValues" -> None, 
+         Pattern[FunctionRepo`SymbolicSort`Private`opts, OptionsPattern]] :> 
+       With[{FunctionRepo`SymbolicSort`Private`graph = 
+          FunctionRepo`SymbolicSort`Private`symbolicSortGraph[
+           FunctionRepo`SymbolicSort`Private`list, 
+            FunctionRepo`SymbolicSort`Private`varSpec, 
+            FunctionRepo`SymbolicSort`Private`assum, 
+            OptionValue[TimeConstraint]]}, 
+         FunctionRepo`SymbolicSort`Private`graph]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> {TimeConstraint -> 5}, "Attributes" -> {}, "FullName" -> 
     "FunctionRepo`SymbolicSort"], False]]], "Output",
- CellLabel->"Out[22]=",ExpressionUUID->"5b663113-cf56-42aa-b511-9f4dbdcd9e63"]
+ CellLabel->"Out[13]=",ExpressionUUID->"e950b3e7-ecbc-4201-b348-65c33febc1bb"]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[31]:=",ExpressionUUID->"c4575ef6-702e-480e-bc4b-e831a3e9cdaf"],
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"c4575ef6-702e-480e-bc4b-e831a3e9cdaf"],
 
 Cell[CellGroupData[{
 
+Cell[BoxData[{
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"Log", "[", "x", "]"}], ",", 
+     RowBox[{"Exp", "[", "x", "]"}], ",", 
+     RowBox[{
+      RowBox[{"x", "^", "2"}], "+", "1"}]}], "}"}], ",", "x", ",", 
+   RowBox[{"x", ">", "0"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"Log", "[", "x", "]"}], ",", 
+     RowBox[{"Exp", "[", "x", "]"}], ",", 
+     RowBox[{
+      RowBox[{"x", "^", "2"}], "+", "1"}]}], "}"}], ",", "x", ",", 
+   RowBox[{"x", ">", "0"}], ",", "Reals", ",", "Graph"}], "]"}]}], "Input",
+ CellLabel->
+  "In[118]:=",ExpressionUUID->"7c360c22-57d3-4cd6-b550-bb5484bd1072"],
+
 Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Log", "[", "x", "]"}], ",", "x", ",", 
+   RowBox[{"1", "+", 
+    SuperscriptBox["x", "2"]}], ",", 
+   SuperscriptBox["\[ExponentialE]", "x"]}], "}"}]], "Output",
+ CellLabel->
+  "Out[118]=",ExpressionUUID->"0cc20482-c300-4ac1-8ebb-b9980aa5bfda"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{$CellContext`x, 
+       Log[$CellContext`x], E^$CellContext`x, 1 + $CellContext`x^2}, {{{2, 
+       1}, {1, 3}, {2, 3}, {1, 4}, {2, 4}, {4, 3}}, Null}, {
+      VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[BezierCurveBox[CompressedData["
+1:eJxTTMoPSmViYGCQAWIQjQYcYIzl8zZ2X7f/bw/jJ000+lCS/Q/O17vRpHuj
+6S+cz1O8yJmx7Q+c/ysRpOE3gr/EH4QQ6m3uzpIX+wnnG6pbiSSc+A7np4HB
+Nzh/MVj7Fzj/sUUfEH2G85WVQOATnJ/IvS2Be9sHON/+5WS7l5Pfwfl7doPA
+azjfEmTc4xdwPkh3AvczON8YDB7D+eDgyX8A55/j757SuPw2nC+ec1As5+A1
+OF+yYpepvc4lOH9F+ptHX8+fhvOn2IEceBjOf/Dy2p8NHjvh/H9aZzr5WFfA
++TAAAGdHa/U=
+         "]], 0.030239520958083826`], 
+        ArrowBox[{{0., 2.}, {-1., 1.}}, 0.030239520958083826`], 
+        ArrowBox[{{0., 3.}, {0., 2.}}, 0.030239520958083826`], 
+        ArrowBox[BezierCurveBox[CompressedData["
+1:eJxTTMoPSmViYGBQBWIQjQo4HGbympsuPrTC/qSydvHXOewOcuvXBN86vMu+
+Y1aS7kNNdoeqPTNFz04+am+Zskzv8DI2B41P0yd4HDtnf6/hW9lsYTYHn5qM
+s+trrtiXfQhiyypgdXiSriTVKXbLnmXz7jt6e1kc3t+1EY+QeGDfcsLg18uf
+zA6yNuatk1If2/802BQ3W43ZodqP4frnT8/sE9/Yczk7MzlETA4Vtb/5wt7I
+VUh98n5Gh3MtoT4hba/s37t1zvtmyujwSImhxvjXa/sZH5cU5C5jcOjPDV1y
+x+StvZZr6tzvAgwO11JCj/qbvbMPaJ7iqfX6n/1ODob7Pf/e2SudW87bs+Kv
+vVlk6MfJve/tT2SxtItE/bH3Cwv9k/L4vb175Kqth///soeEywf7NDD4Zu8L
+ld+xLNTLhuErXL/51N8Vr5d+tt8FNf+BYcSn4vBP9jD7N9Rkb7sq8tG+D+q+
+iNdZXYp73tvD3L/IMsfWK+2t/Xmo/5ye3GpV1XhtD/O/6ettyZsZX9rDwgdG
+y0DDD0bDwhdGP4OGP4yGxQ+MVofGH4yuhsYvjIbFP4yeB00fMBo9BQEAMtsN
++g==
+         "]], 0.030239520958083826`], ArrowBox[BezierCurveBox[CompressedData["
+1:eJxTTMoPSmViYGCQAWIQjQo4HGbympsuPrRi/0ll7eKvc9gd5NavCb51eNf+
+jllJug812R2q9swUPTv56H7LlGV6h5exOWh8mj7B49i5/fcavpXNFmZz8KnJ
+OLu+5sr+sg9BbFkFrA5P0pWkOsVu7WfZvPuO3l4Wh/d3bcQjJB7sbzlh8Ovl
+T2YHWRvz1kmpj/f/NNgUN1uN2aHaj+H650/P9ie+sedydmZyiJgcKmp/88V+
+I1ch9cn7GR3OtYT6hLS92v/erXPeN1NGh0dKDDXGv17vn/FxSUHuMgaH/tzQ
+JXdM3u7Xck2d+12AweFaSuhRf7N3+wOap3hqvf5nv5OD4X7Pv3f7lc4t5+1Z
+8dfeLDL04+Te9/tPZLG0i0T9sfcLC/2T8vj9fvfIVVsP//9lDwmXD/tnzQSB
+n3D++RtHX883/wHnfz6slPrg5Td7RiifPXoDa/SGr3B59nl5Z/m7v8D5X3ti
+9/yr/AznX1KvBaJPcD5Y+ZSPcH5Eol+JxoEPcD6UtgcA7hvDDQ==
+         "]], 0.030239520958083826`], 
+        ArrowBox[{{-1., 1.}, {0., 0.}}, 0.030239520958083826`]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{0., 2.}, 0.030239520958083826], 
+         InsetBox["x", 
+          Offset[{2, 2}, {0.030239520958083826, 2.0302395209580837}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{0., 3.}, 0.030239520958083826], 
+         InsetBox[
+          RowBox[{"log", "(", "x", ")"}], 
+          Offset[{2, 2}, {0.030239520958083826, 3.0302395209580837}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{0., 0.}, 0.030239520958083826], 
+         InsetBox[
+          SuperscriptBox["\[ExponentialE]", "x"], 
+          Offset[{2, 2}, {0.030239520958083826, 0.030239520958083826}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{-1., 1.}, 0.030239520958083826], 
+         InsetBox[
+          RowBox[{
+           SuperscriptBox["x", "2"], "+", "1"}], 
+          Offset[{2, 2}, {-0.9697604790419162, 1.030239520958084}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->"Out[119]=",ExpressionUUID->"737b72af-423e-4a88-9405-61c0a4fbc91b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
  RowBox[{"SymbolicSort", "[", 
   RowBox[{
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"Log", "[", "x", "]"}], ",", 
-     RowBox[{"Log", "[", "y", "]"}], ",", 
-     RowBox[{"Log", "[", "z", "]"}]}], "}"}], ",", 
+     RowBox[{"Exp", "[", "y", "]"}], ",", 
+     RowBox[{"Exp", "[", "x", "]"}], ",", 
+     RowBox[{"Exp", "[", "z", "]"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
-   RowBox[{"0", "<", "x", "<", "y", "<", "z"}]}], "]"}]], "Input",
- CellLabel->"In[32]:=",ExpressionUUID->"716c319f-8083-4184-9724-cc5a90dae07c"],
+   RowBox[{"x", "<", "y", "<", "z"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Exp", "[", "y", "]"}], ",", 
+     RowBox[{"Exp", "[", "x", "]"}], ",", 
+     RowBox[{"Exp", "[", "z", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+   RowBox[{"x", "<", "y", "<", "z"}], ",", "Reals", ",", "Graph"}], 
+  "]"}]}], "Input",
+ CellLabel->
+  "In[122]:=",ExpressionUUID->"7a58a37d-bb03-428b-b83b-5e2a2a0662f0"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   SuperscriptBox["\[ExponentialE]", "x"], ",", 
+   SuperscriptBox["\[ExponentialE]", "y"], ",", 
+   SuperscriptBox["\[ExponentialE]", "z"]}], "}"}]], "Output",
+ CellLabel->
+  "Out[122]=",ExpressionUUID->"340a7f6d-6a2e-44a9-8654-d3560dd24a19"],
 
 Cell[BoxData[
  GraphicsBox[
   NamespaceBox["NetworkGraphics",
    DynamicModuleBox[{Typeset`graph = HoldComplete[
      Graph[{
-       Log[$CellContext`x], 
-       Log[$CellContext`y], 
-       Log[$CellContext`z]}, {{{1, 2}, {1, 3}, {2, 3}}, Null}, {
-      VertexLabels -> {Automatic}}]]}, 
+      E^$CellContext`y, E^$CellContext`x, E^$CellContext`z}, {{{2, 1}, {1, 
+       3}, {2, 3}}, Null}, {VertexLabels -> {Automatic}}]]}, 
     TagBox[GraphicsGroupBox[{
        {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[{{0., 1.}, {1., 0.}}, 0.02261146496815286], 
         ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286], 
         ArrowBox[BezierCurveBox[CompressedData["
 1:eJxTTMoPSmViYGCQAWIQjQYcZvKamy4+tMJ+knvYs1eW/+3l1q8JvnV4lz2f
@@ -14876,21 +14939,20 @@ Y/LWPqTrlNV7xQ/211JCj/qbvbOfz6Y5OeTaW/udHAz3e/69s3ea4y8tEfja
 3iwy9OPk3vf2E69y8GlueWHvFxb6J+Xxe/ueTSHZ7f+f2kOC5YO9MRg8hvPn
 bey+bp//AM4/x989pXH5bXtGKF8856BYzsFrcHnJil2m9jqX4PwV6W8efT1/
 Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
-         "]], 0.02261146496815286], 
-        ArrowBox[{{0., 1.}, {1., 0.}}, 0.02261146496815286]}, 
+         "]], 0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
-        0.7]}], {DiskBox[{0., 2.}, 0.02261146496815286], InsetBox[
-          RowBox[{"log", "(", "x", ")"}], 
-          Offset[{2, 2}, {0.02261146496815286, 2.022611464968153}], 
-          ImageScaled[{0, 0}],
-          BaseStyle->"Graphics"]}, {DiskBox[{0., 1.}, 0.02261146496815286], 
-         InsetBox[
-          RowBox[{"log", "(", "y", ")"}], 
+        0.7]}], {DiskBox[{0., 1.}, 0.02261146496815286], InsetBox[
+          SuperscriptBox["\[ExponentialE]", "y"], 
           Offset[{2, 2}, {0.02261146496815286, 1.0226114649681528}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{0., 2.}, 0.02261146496815286], 
+         InsetBox[
+          SuperscriptBox["\[ExponentialE]", "x"], 
+          Offset[{2, 2}, {0.02261146496815286, 2.022611464968153}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
          InsetBox[
-          RowBox[{"log", "(", "z", ")"}], 
+          SuperscriptBox["\[ExponentialE]", "z"], 
           Offset[{2, 2}, {1.0226114649681528, 0.02261146496815286}], 
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}}}],
@@ -14900,7 +14962,198 @@ Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
    "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
- CellLabel->"Out[32]=",ExpressionUUID->"25d919ed-7f05-4ca4-9ea1-b3033491e4f3"]
+ CellLabel->"Out[123]=",ExpressionUUID->"84a0bb5f-8492-4d09-94fa-b556b650523b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"Log", "[", "x", "]"}], ",", 
+     RowBox[{"Exp", "[", "z", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+   RowBox[{"0", "<", "x", "<", "y", "<", "z"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"Log", "[", "x", "]"}], ",", 
+     RowBox[{"Exp", "[", "z", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+   RowBox[{"0", "<", "x", "<", "y", "<", "z"}], ",", "Reals", ",", "Graph"}], 
+  "]"}]}], "Input",
+ CellLabel->
+  "In[124]:=",ExpressionUUID->"cc8f256b-6483-4f9c-8a0f-547e99744e70"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Log", "[", "x", "]"}], ",", "y", ",", 
+   SuperscriptBox["\[ExponentialE]", "z"]}], "}"}]], "Output",
+ CellLabel->
+  "Out[124]=",ExpressionUUID->"224e7ac1-db22-4fbb-bf56-78c9e6a90a2b"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{$CellContext`y, 
+       Log[$CellContext`x], E^$CellContext`z}, {{{2, 1}, {1, 3}, {2, 3}}, 
+       Null}, {VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[{{0., 1.}, {1., 0.}}, 0.02261146496815286], 
+        ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286], 
+        ArrowBox[BezierCurveBox[CompressedData["
+1:eJxTTMoPSmViYGCQAWIQjQYcZvKamy4+tMJ+knvYs1eW/+3l1q8JvnV4lz2f
+6dGoQ8H/7Kv2zBQ9O/mofdEJn9g237/2Gp+mT/A4ds5+D+Pbt2bqf+x9ajLO
+rq+5Yv/2wVKeKw9+2T9JV5LqFLtlz55WvjO26qf9+7s24hESD+w5JiZ+ufz5
+u72sjXnrpNTH9p8SU/aa+X6zr/ZjuP750zP7QzfqRdravthHTA4Vtb/5wj61
+S8VPrf6z/bmWUJ+Qtlf293uFbN9mf7J/pMRQY/zrtb3+Y8+Ht3w+2vfnhi65
+Y/LWPqTrlNV7xQ/211JCj/qbvbOfz6Y5OeTaW/udHAz3e/69s3ea4y8tEfja
+3iwy9OPk3vf2E69y8GlueWHvFxb6J+Xxe/ueTSHZ7f+f2kOC5YO9MRg8hvPn
+bey+bp//AM4/x989pXH5bXtGKF8856BYzsFrcHnJil2m9jqX4PwV6W8efT1/
+Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
+         "]], 0.02261146496815286]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{0., 1.}, 0.02261146496815286], 
+         InsetBox["y", 
+          Offset[{2, 2}, {0.02261146496815286, 1.0226114649681528}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{0., 2.}, 0.02261146496815286], 
+         InsetBox[
+          RowBox[{"log", "(", "x", ")"}], 
+          Offset[{2, 2}, {0.02261146496815286, 2.022611464968153}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
+         InsetBox[
+          SuperscriptBox["\[ExponentialE]", "z"], 
+          Offset[{2, 2}, {1.0226114649681528, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->"Out[125]=",ExpressionUUID->"3f9a390d-7f3f-48ae-bbd5-a69fbef383ba"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Exp", "[", "y", "]"}], ",", "x", ",", 
+     RowBox[{"Exp", "[", "z", "]"}], ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z", ",", "a"}], "}"}], ",", 
+   RowBox[{"0", "<", "x", "<", "y", "<", "z"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Exp", "[", "y", "]"}], ",", "x", ",", 
+     RowBox[{"Exp", "[", "z", "]"}], ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z", ",", "a"}], "}"}], ",", 
+   RowBox[{"0", "<", "x", "<", "y", "<", "z"}], ",", "Reals", ",", "Graph"}], 
+  "]"}]}], "Input",
+ CellLabel->
+  "In[126]:=",ExpressionUUID->"716c319f-8083-4184-9724-cc5a90dae07c"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SymbolicSort", "noOrder", 
+   "\"No ordering of expressions \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[\\\"\[ExponentialE]\\\", \\\"y\\\"], \\\",\\\", \
+\\\"x\\\", \\\",\\\", SuperscriptBox[\\\"\[ExponentialE]\\\", \\\"z\\\"], \
+\\\",\\\", \\\"a\\\"}], \\\"}\\\"}]\\) could be found.\"", 2, 126, 2, 
+   16932427971030721906, "Local", "FunctionRepo`SymbolicSort"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[126]:=",ExpressionUUID->"9574b439-c1fb-4f13-b36b-7b65b38f57eb"],
+
+Cell[BoxData[
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", "y"], ",", "x", ",", 
+     SuperscriptBox["\[ExponentialE]", "z"], ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z", ",", "a"}], "}"}], ",", 
+   RowBox[{"0", "<", "x", "<", "y", "<", "z"}]}], "]"}]], "Output",
+ CellLabel->
+  "Out[126]=",ExpressionUUID->"2bc98dbe-6d20-42b1-8814-c798c124f2e5"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{
+      E^$CellContext`y, $CellContext`x, E^$CellContext`z, $CellContext`a}, {{{
+      2, 1}, {1, 3}, {2, 3}}, {{4, 1}, {4, 2}, {4, 3}}}, {
+      VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        {Arrowheads[0.], 
+         ArrowBox[{{0., 0.8648518418050273}, {0.8801007068687547, 
+          0.012343887973135792`}}, 0.011203681998439248`]}, 
+        ArrowBox[{{0., 0.8648518418050273}, {0.01377283290387632, 0.}}, 
+         0.011203681998439248`], 
+        {Arrowheads[0.], 
+         ArrowBox[{{0.8668530587504213, 0.878012864898719}, {
+          0.8801007068687547, 0.012343887973135792`}}, 
+          0.011203681998439248`]}, 
+        ArrowBox[{{0.8668530587504213, 0.878012864898719}, {0., 
+         0.8648518418050273}}, 0.011203681998439248`], 
+        ArrowBox[{{0.8668530587504213, 0.878012864898719}, {
+         0.01377283290387632, 0.}}, 0.011203681998439248`], 
+        {Arrowheads[0.], 
+         ArrowBox[{{0.01377283290387632, 0.}, {0.8801007068687547, 
+          0.012343887973135792`}}, 0.011203681998439248`]}}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{0., 0.8648518418050273}, 0.011203681998439248], 
+         InsetBox[
+          SuperscriptBox["\[ExponentialE]", "y"], 
+          Offset[{2, 2}, {0.011203681998439248, 0.8760555238034665}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.8668530587504213, 0.878012864898719}, 
+          0.011203681998439248], 
+         InsetBox["x", 
+          Offset[{2, 2}, {0.8780567407488605, 0.8892165468971582}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.01377283290387632, 0.}, 0.011203681998439248], InsetBox[
+          SuperscriptBox["\[ExponentialE]", "z"], Offset[{2, 2}, 
+          {0.024976514902315568, 0.011203681998439248}], ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.8801007068687547, 0.012343887973135792}, 
+          0.011203681998439248], 
+         InsetBox["a", 
+          Offset[{2, 2}, {0.891304388867194, 0.02354756997157504}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->"Out[127]=",ExpressionUUID->"28f1a122-546e-43ab-a677-7d3507f680c5"]
 }, Open  ]]
 }, Closed]]
 },
