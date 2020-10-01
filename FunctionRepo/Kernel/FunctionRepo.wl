@@ -57,6 +57,9 @@ Get["FunctionRepo`multiSet`"];
 SparseAssociation;
 Get["FunctionRepo`SparseAssociation`"];
 
+SymbolicSort;
+Get["FunctionRepo`SymbolicSort`"];
+
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
 

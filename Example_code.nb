@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[96]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[20]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -14442,6 +14442,465 @@ Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"0.0007250312121212122`2.", ",", "Null"}], "}"}]], "Output",
  CellLabel->"Out[129]=",ExpressionUUID->"2b691dd5-6464-458d-9d00-9c27a8e31cd7"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["SymbolicSort", \
+"Subsection",ExpressionUUID->"c23a7756-5099-4bf1-9895-d8276eef9566"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "SymbolicSort"}]], "Input",
+ CellLabel->"In[22]:=",ExpressionUUID->"56602dc1-7821-4db7-879c-02ecb6897043"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"SymbolicSort\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"expr\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  \
+StyleBox[SubscriptBox[\\\"expr\\\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}], \\\",\\\",  StyleBox[\\\"vars\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\
+\"assum\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tries to sort expression \
+\\!\\(\\*StyleBox[SubscriptBox[\\\"expr\\\", StyleBox[\\\"i\\\", \
+\\\"TI\\\"]], \\\"TI\\\"]\\) using assumptions \
+\\!\\(\\*StyleBox[\\\"assum\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"SymbolicSort\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"list\\\", \\\"TI\\\"], \\\",\\\",  \
+StyleBox[\\\"vars\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"assum\\\", \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"prop\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) \
+specifies what property should be returned\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"SymbolicSort", "[", 
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`list_List", ",", 
+                    "FunctionRepo`SymbolicSort`Private`varSpec_", ",", 
+                    "FunctionRepo`SymbolicSort`Private`assum_", ",", 
+                    RowBox[{"FunctionRepo`SymbolicSort`Private`opts", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`SymbolicSort`Private`vars", "=", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{"FunctionRepo`SymbolicSort`Private`varSpec", ",", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`SymbolicSort`Private`var", ":", 
+                    RowBox[{"Except", "[", "_List", "]"}]}], "\[RuleDelayed]", 
+                    RowBox[{
+                    "{", "FunctionRepo`SymbolicSort`Private`var", "}"}]}]}], 
+                    "]"}]}], ",", 
+                    RowBox[{"FunctionRepo`SymbolicSort`Private`timeCons", "=", 
+                    RowBox[{"OptionValue", "[", "TimeConstraint", "]"}]}], 
+                    ",", 
+                    RowBox[{"FunctionRepo`SymbolicSort`Private`nItems", "=", 
+                    RowBox[{
+                    "Length", "[", "FunctionRepo`SymbolicSort`Private`list", 
+                    "]"}]}], ",", 
+                    "FunctionRepo`SymbolicSort`Private`orderings"}], "}"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`orderings", "=", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`orderExpressions", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`list", 
+                    "\[LeftDoubleBracket]", 
+                    "FunctionRepo`SymbolicSort`Private`i", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`list", 
+                    "\[LeftDoubleBracket]", 
+                    "FunctionRepo`SymbolicSort`Private`j", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    "FunctionRepo`SymbolicSort`Private`vars", ",", 
+                    "FunctionRepo`SymbolicSort`Private`assum", ",", 
+                    "FunctionRepo`SymbolicSort`Private`timeCons"}], "]"}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`i", ",", 
+                    "FunctionRepo`SymbolicSort`Private`nItems"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`j", ",", "1", ",", 
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`i", "-", "1"}]}], 
+                    "}"}]}], "]"}], "]"}]}], ";", 
+                    RowBox[{"Graph", "[", 
+                    RowBox[{
+                    "FunctionRepo`SymbolicSort`Private`orderings", ",", 
+                    RowBox[{"VertexLabels", "\[Rule]", "Automatic"}]}], 
+                    "]"}]}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Options\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Options", "Tooltip"]& ], 
+                   RowBox[{"TimeConstraint", "\[Rule]", "5"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`SymbolicSort\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"SymbolicSort\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"expr\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  \
+StyleBox[SubscriptBox[\\\"expr\\\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}], \\\",\\\",  StyleBox[\\\"vars\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\
+\"assum\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tries to sort expression \
+\\!\\(\\*StyleBox[SubscriptBox[\\\"expr\\\", StyleBox[\\\"i\\\", \
+\\\"TI\\\"]], \\\"TI\\\"]\\) using assumptions \
+\\!\\(\\*StyleBox[\\\"assum\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"SymbolicSort\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"list\\\", \\\"TI\\\"], \\\",\\\",  \
+StyleBox[\\\"vars\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"assum\\\", \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"prop\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) \
+specifies what property should be returned\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {3., 9.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"SymbolicSort\", \"[\", RowBox[{RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"expr\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[SubscriptBox[\"expr\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\",  StyleBox[\"vars\
+\", \"TI\"], \",\",  StyleBox[\"assum\", \"TI\"]}], \"]\"}]\) tries to sort \
+expression \!\(\*StyleBox[SubscriptBox[\"expr\", StyleBox[\"i\", \"TI\"]], \
+\"TI\"]\) using assumptions \!\(\*StyleBox[\"assum\", \"TI\"]\).\n\
+\!\(\*RowBox[{\"SymbolicSort\", \"[\", RowBox[{StyleBox[\"list\", \"TI\"], \
+\",\",  StyleBox[\"vars\", \"TI\"], \",\",  StyleBox[\"assum\", \"TI\"], \
+\",\",  StyleBox[\"prop\", \"TI\"]}], \"]\"}]\) specifies what property \
+should be returned", "Documentation" -> None, "OwnValues" -> None, "UpValues" -> 
+    None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`SymbolicSort, {FunctionRepo`SymbolicSort[
+         Pattern[FunctionRepo`SymbolicSort`Private`list, 
+          Blank[List]], 
+         Pattern[FunctionRepo`SymbolicSort`Private`varSpec, 
+          Blank[]], 
+         Pattern[FunctionRepo`SymbolicSort`Private`assum, 
+          Blank[]], 
+         Pattern[FunctionRepo`SymbolicSort`Private`opts, 
+          OptionsPattern[]]] :> 
+       Module[{FunctionRepo`SymbolicSort`Private`vars = 
+          Replace[FunctionRepo`SymbolicSort`Private`varSpec, 
+            Pattern[FunctionRepo`SymbolicSort`Private`var, 
+              Except[
+               Blank[List]]] :> {FunctionRepo`SymbolicSort`Private`var}], 
+          FunctionRepo`SymbolicSort`Private`timeCons = 
+          OptionValue[TimeConstraint], 
+          FunctionRepo`SymbolicSort`Private`nItems = 
+          Length[FunctionRepo`SymbolicSort`Private`list], 
+          FunctionRepo`SymbolicSort`Private`orderings}, 
+         FunctionRepo`SymbolicSort`Private`orderings = Flatten[
+            Table[
+             FunctionRepo`SymbolicSort`Private`orderExpressions[
+              Part[
+              FunctionRepo`SymbolicSort`Private`list, 
+               FunctionRepo`SymbolicSort`Private`i], 
+              Part[
+              FunctionRepo`SymbolicSort`Private`list, 
+               FunctionRepo`SymbolicSort`Private`j], 
+              FunctionRepo`SymbolicSort`Private`vars, 
+              FunctionRepo`SymbolicSort`Private`assum, 
+              FunctionRepo`SymbolicSort`Private`timeCons], {
+             FunctionRepo`SymbolicSort`Private`i, 
+              FunctionRepo`SymbolicSort`Private`nItems}, {
+             FunctionRepo`SymbolicSort`Private`j, 1, 
+              FunctionRepo`SymbolicSort`Private`i - 1}]]; 
+         Graph[FunctionRepo`SymbolicSort`Private`orderings, VertexLabels -> 
+           Automatic]]}], "SubValues" -> None, "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> {TimeConstraint -> 5}, "Attributes" -> {}, "FullName" -> 
+    "FunctionRepo`SymbolicSort"], False]]], "Output",
+ CellLabel->"Out[22]=",ExpressionUUID->"5b663113-cf56-42aa-b511-9f4dbdcd9e63"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[31]:=",ExpressionUUID->"c4575ef6-702e-480e-bc4b-e831a3e9cdaf"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SymbolicSort", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Log", "[", "x", "]"}], ",", 
+     RowBox[{"Log", "[", "y", "]"}], ",", 
+     RowBox[{"Log", "[", "z", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+   RowBox[{"0", "<", "x", "<", "y", "<", "z"}]}], "]"}]], "Input",
+ CellLabel->"In[32]:=",ExpressionUUID->"716c319f-8083-4184-9724-cc5a90dae07c"],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{
+       Log[$CellContext`x], 
+       Log[$CellContext`y], 
+       Log[$CellContext`z]}, {{{1, 2}, {1, 3}, {2, 3}}, Null}, {
+      VertexLabels -> {Automatic}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[Medium], 
+        ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286], 
+        ArrowBox[BezierCurveBox[CompressedData["
+1:eJxTTMoPSmViYGCQAWIQjQYcZvKamy4+tMJ+knvYs1eW/+3l1q8JvnV4lz2f
+6dGoQ8H/7Kv2zBQ9O/mofdEJn9g237/2Gp+mT/A4ds5+D+Pbt2bqf+x9ajLO
+rq+5Yv/2wVKeKw9+2T9JV5LqFLtlz55WvjO26qf9+7s24hESD+w5JiZ+ufz5
+u72sjXnrpNTH9p8SU/aa+X6zr/ZjuP750zP7QzfqRdravthHTA4Vtb/5wj61
+S8VPrf6z/bmWUJ+Qtlf293uFbN9mf7J/pMRQY/zrtb3+Y8+Ht3w+2vfnhi65
+Y/LWPqTrlNV7xQ/211JCj/qbvbOfz6Y5OeTaW/udHAz3e/69s3ea4y8tEfja
+3iwy9OPk3vf2E69y8GlueWHvFxb6J+Xxe/ueTSHZ7f+f2kOC5YO9MRg8hvPn
+bey+bp//AM4/x989pXH5bXtGKF8856BYzsFrcHnJil2m9jqX4PwV6W8efT1/
+Gs6fYvdyst3Lw3D+g5fX/mzw2Ann/9M608nHugLOh0UYALTwvFk=
+         "]], 0.02261146496815286], 
+        ArrowBox[{{0., 1.}, {1., 0.}}, 0.02261146496815286]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{0., 2.}, 0.02261146496815286], InsetBox[
+          RowBox[{"log", "(", "x", ")"}], 
+          Offset[{2, 2}, {0.02261146496815286, 2.022611464968153}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{0., 1.}, 0.02261146496815286], 
+         InsetBox[
+          RowBox[{"log", "(", "y", ")"}], 
+          Offset[{2, 2}, {0.02261146496815286, 1.0226114649681528}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
+         InsetBox[
+          RowBox[{"log", "(", "z", ")"}], 
+          Offset[{2, 2}, {1.0226114649681528, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None]], "Output",
+ CellLabel->"Out[32]=",ExpressionUUID->"25d919ed-7f05-4ca4-9ea1-b3033491e4f3"]
 }, Open  ]]
 }, Closed]]
 },
