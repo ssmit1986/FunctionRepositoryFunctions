@@ -1,6 +1,8 @@
 # FunctionRepositoryFunctions
 A compilation of functions I submitted (or intend to submit) to the Wolfram Function Repository:
 
+* [AsynchronousDynamicModule](https://resources.wolframcloud.com/FunctionRepository/resources/AsynchronousDynamicModule)
+
 * [CheckboxLegended](https://resources.wolframcloud.com/FunctionRepository/resources/CheckboxLegended)
 
 * [ConditionalProductDistribution](https://resources.wolframcloud.com/FunctionRepository/resources/ConditionalProductDistribution)
@@ -13,6 +15,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
 
+* GroupCases (submitted)
+
 * [KullbackLeiblerDivergence](https://resources.wolframcloud.com/FunctionRepository/resources/KullbackLeiblerDivergence)
 
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
@@ -20,5 +24,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * [MultiNonlinearModelFit](https://resources.wolframcloud.com/FunctionRepository/resources/MultiNonlinearModelFit)
 
 * [SparseAssociation](https://resources.wolframcloud.com/FunctionRepository/resources/SparseAssociation)
+
+* SymbolicSort (to be submitted)
 
 * [TukeyMedianPolish](https://resources.wolframcloud.com/FunctionRepository/resources/TukeyMedianPolish)
