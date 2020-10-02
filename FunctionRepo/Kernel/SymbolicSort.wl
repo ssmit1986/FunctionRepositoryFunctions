@@ -22,7 +22,7 @@ SymbolicSort[{}, _, _, Graph, ___] := Graph[{}];
 SymbolicSort[{}, __] := {};
 
 SymbolicSort[list_List, varSpec_, opts : OptionsPattern[]] :=
-    SymbolicSort[list, varSpec, True, Reals, opts];
+    SymbolicSort[list, varSpec, $Assumptions, Reals, opts];
 
 SymbolicSort[list_List, varSpec_, assum_, opts : OptionsPattern[]] :=
     SymbolicSort[list, varSpec, assum, Reals, opts];
@@ -31,6 +31,17 @@ SymbolicSort[list_List, varSpec_, assum_, dom_, Graph, opts : OptionsPattern[]] 
     graph = symbolicSortGraph[list, varSpec, assum, dom, OptionValue[TimeConstraint]]
 },
     pruneGraph[graph] /; GraphQ[graph]
+];
+
+SymbolicSort[list_List, varSpec_, assum_, dom_, List, opts : OptionsPattern[]] := With[{
+    sort = With[{timeCons = OptionValue[TimeConstraint]},
+        Sort[
+            list,
+            expressionOrder[#1, #2, varSpec, assum, dom, timeCons]&
+        ]
+    ]
+},
+    sort /; ListQ[sort]
 ];
 
 SymbolicSort[list_List, varSpec_, assum_, dom_, opts : OptionsPattern[]] := With[{
