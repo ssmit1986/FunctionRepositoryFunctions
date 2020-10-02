@@ -16,55 +16,57 @@ Options[MultiNonlinearModelFit] = Join[
 MultiNonlinearModelFit[datasets_, form_, fitParams_, independents : Except[_List], opts : OptionsPattern[]] := 
     MultiNonlinearModelFit[datasets, form, fitParams, {independents}, opts];
  
-MultiNonlinearModelFit[datasets_, form : Except[{__Rule}, _List], fitParams_, independents_, opts : OptionsPattern[]] := 
+MultiNonlinearModelFit[datasets_, form : Except[_?AssociationQ], fitParams_, independents_, opts : OptionsPattern[]] := 
     MultiNonlinearModelFit[datasets, <|"Expressions" -> form, "Constraints" -> True|>, fitParams, independents, opts];
  
 MultiNonlinearModelFit[
     datasets : {__?(MatrixQ[#1, NumericQ] &)}, 
-    KeyValuePattern[{"Expressions" -> expressions_List, "Constraints" -> constraints_}], 
+    assoc : KeyValuePattern[{
+        "Expressions" -> expressions_,
+        "Constraints" -> constraints_
+    }] /; AssociationQ[assoc],
     fitParams_List, 
     independents_List,
     opts : OptionsPattern[]
 ] := Module[{
     fitfun, weights,
-    numSets = Length[expressions],
+    numSets = Length[datasets],
     precision = Precision @ datasets,
     augmentedData,
     indexSymbol = OptionValue["DatasetIndexSymbol"]
 },
-    Condition[
-        augmentedData = Join @@ MapIndexed[
-            Join[ConstantArray[N[#2, precision], Length[#1]], #1, 2]&,
-            datasets
-        ];
-        fitfun = With[{
-            conditions = Join @@ Transpose[{Range[numSets], expressions}]
-        }, 
-            Switch @@ Prepend[conditions, Round[indexSymbol]]
-        ]; 
-        weights = Replace[
-            OptionValue[Weights],
-            {
-                (list_List)?(VectorQ[#1, NumericQ]& ) /; Length[list] === numSets :> 
-                    Join @@ MapThread[ConstantArray, {list, Length /@ datasets}], 
-                list : {__?(VectorQ[#1, NumericQ] & )} /; Length /@ list === Length /@ datasets :>
-                    Join @@ list, 
-                "InverseLengthWeights" :> Join @@ Map[
-                    ConstantArray[N[1 / #1, precision], #1]&,
-                    Length /@ datasets
-                ]
-            }
-        ]; 
-        NonlinearModelFit[
-            augmentedData,
-            If[TrueQ[constraints], fitfun, {fitfun, constraints}], 
-            fitParams,
-            Flatten[{indexSymbol, independents}],
-            Weights -> weights, 
-            Sequence @@ FilterRules[{opts}, Options[NonlinearModelFit]]
+    augmentedData = Join @@ MapIndexed[
+        Join[ConstantArray[N[#2, precision], Length[#1]], #1, 2]&,
+        datasets
+    ];
+    fitfun = With[{
+        conditions = Map[
+            {#, Indexed[expressions, #]}&, 
+            Range[numSets]
         ]
-        ,
-        numSets === Length[datasets]
+    }, 
+        Switch @@ Prepend[conditions, Round[indexSymbol]]
+    ]; 
+    weights = Replace[
+        OptionValue[Weights],
+        {
+            (list_List)?(VectorQ[#1, NumericQ]& ) /; Length[list] === numSets :> 
+                Join @@ MapThread[ConstantArray, {list, Length /@ datasets}], 
+            list : {__?(VectorQ[#1, NumericQ] & )} /; Length /@ list === Length /@ datasets :>
+                Join @@ list, 
+            "InverseLengthWeights" :> Join @@ Map[
+                ConstantArray[N[1 / #1, precision], #1]&,
+                Length /@ datasets
+            ]
+        }
+    ]; 
+    NonlinearModelFit[
+        augmentedData,
+        If[TrueQ[constraints], fitfun, {fitfun, constraints}], 
+        fitParams,
+        Flatten[{indexSymbol, independents}],
+        Weights -> weights, 
+        Sequence @@ FilterRules[{opts}, Options[NonlinearModelFit]]
     ]
 ];
 
