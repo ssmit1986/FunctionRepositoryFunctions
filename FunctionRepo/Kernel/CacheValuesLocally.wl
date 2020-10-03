@@ -10,8 +10,8 @@ Begin["`Private`"] (* Begin Private Context *)
 
 SetAttributes[CacheValuesLocally, HoldAll];
 
-CacheValuesLocally[funs : {__Symbol}, expr_] := Internal`InheritedBlock[funs,
-    Map[
+CacheValuesLocally[functions : {__Symbol}, expr_] := Internal`InheritedBlock[functions,
+    Scan[
         Function[{fun},
             Module[{outsideQ = True},
                 fun[args___] /; outsideQ := Set[
@@ -22,7 +22,7 @@ CacheValuesLocally[funs : {__Symbol}, expr_] := Internal`InheritedBlock[funs,
             DownValues[fun] = RotateRight[DownValues[fun]],
             HoldFirst
         ],
-        Unevaluated[funs]
+        Unevaluated[functions]
     ];
     expr
 ];
