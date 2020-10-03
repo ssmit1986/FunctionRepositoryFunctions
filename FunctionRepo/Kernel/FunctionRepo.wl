@@ -6,6 +6,9 @@ BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
+CacheValuesLocally;
+Get["FunctionRepo`CacheValuesLocally`"];
+
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
 
