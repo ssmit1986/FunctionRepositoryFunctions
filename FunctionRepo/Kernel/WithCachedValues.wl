@@ -15,9 +15,13 @@ WithCachedValues[functions : {__Symbol}, expr_] := Internal`InheritedBlock[funct
         Function[{fun},
             Module[{outsideQ = True},
                 DownValues[fun] = Prepend[ DownValues[fun],
-                    HoldPattern[fun[args___] /; outsideQ] :> Set[
-                        fun[args],
-                        Block[{outsideQ = False}, fun[args]]
+                    HoldPattern[fun[args___] /; outsideQ] :> Block[{outsideQ = False},
+                        With[{value = fun[args]},
+                            Set[
+                                fun[args],
+                                value
+                            ] /; value =!= Unevaluated[fun[args]]
+                        ]
                     ]
                 ]
             ],
