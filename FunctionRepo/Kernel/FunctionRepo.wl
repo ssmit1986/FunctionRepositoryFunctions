@@ -6,9 +6,6 @@ BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
-CacheValuesLocally;
-Get["FunctionRepo`CacheValuesLocally`"];
-
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
 
@@ -65,5 +62,8 @@ Get["FunctionRepo`SymbolicSort`"];
 
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
+
+WithCachedValues;
+Get["FunctionRepo`WithCachedValues`"];
 
 EndPackage[]

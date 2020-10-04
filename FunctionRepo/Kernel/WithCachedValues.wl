@@ -1,16 +1,16 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`CacheValuesLocally`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`WithCachedValues`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[CacheValuesLocally, 
-    "CacheValuesLocally[{f$1, f$2, $$}, expr$] evaluates expr$ while automatically memoizing function values of functions f$i without permanently storing the values."
+GeneralUtilities`SetUsage[WithCachedValues, 
+    "WithCachedValues[{f$1, f$2, $$}, expr$] evaluates expr$ while automatically memoizing function values of functions f$i without permanently storing the values."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-SetAttributes[CacheValuesLocally, HoldAll];
+SetAttributes[WithCachedValues, HoldAll];
 
-CacheValuesLocally[functions : {__Symbol}, expr_] := Internal`InheritedBlock[functions,
+WithCachedValues[functions : {__Symbol}, expr_] := Internal`InheritedBlock[functions,
     Scan[
         Function[{fun},
             Module[{outsideQ = True},

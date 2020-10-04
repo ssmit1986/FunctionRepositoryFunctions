@@ -153,564 +153,6 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["CacheValuesLocally", \
-"Subsection",ExpressionUUID->"3b3040c0-9a7c-4627-b132-dc4e86eaeafd"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"?", "CacheValuesLocally"}]], "Input",
- CellLabel->"In[14]:=",ExpressionUUID->"f39ba590-a5e2-4f17-b185-8f29bb9e25db"],
-
-Cell[BoxData[
- InterpretationBox[
-  StyleBox[
-   FrameBox[
-    DynamicModuleBox[{System`InformationDump`open$$ = False, 
-     System`InformationDump`mouseOver$$ = False}, 
-     PaneSelectorBox[{True->
-      TagBox[GridBox[{
-         {
-          ItemBox[
-           PaneBox[
-            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
-             StripOnInput->False,
-             BaseStyle -> None],
-            FrameMargins->{{4, 0}, {-1, 1}}],
-           BaseStyle->"InformationTitleBackground",
-           StripOnInput->False], 
-          ItemBox["\<\"\"\>",
-           BaseStyle->"InformationTitleBackground",
-           StripOnInput->False]},
-         {
-          ItemBox[
-           PaneBox[
-            
-            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"CacheValuesLocally\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
-\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"2\\\", \
-\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\
-\"]}], \\\"}\\\"}], \\\",\\\",  StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\
-\"}]\\) evaluates \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) while \
-automatically memoizing function values of functions \
-\\!\\(\\*StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"i\\\", \\\"TI\\\"]], \
-\\\"TI\\\"]\\) without permanently storing the values.\"\>", 
-             "InformationUsageText",
-             StripOnInput->False,
-             LineSpacing->{1.5, 1.5, 3.}],
-            FrameMargins->{{10, 10}, {8, 10}}],
-           BaseStyle->"InformationUsageSubtitleBackground",
-           StripOnInput->False], 
-          ItemBox["\<\"\"\>",
-           BaseStyle->"InformationUsageSubtitleBackground",
-           StripOnInput->False]},
-         {
-          PaneBox[GridBox[{
-             {
-              
-              DynamicModuleBox[{System`InformationDump`open$$ = {
-               False, False, False, False, False, False, False, False, False, 
-                False, False, False}}, 
-               StyleBox[GridBox[{
-                  {
-                   TagBox[
-                    TooltipBox[
-                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
-                    StripOnInput->False],
-                    "\"Definitions\"",
-                    TooltipStyle->"TextStyling"],
-                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
-                    {
-                    RowBox[{
-                    RowBox[{"CacheValuesLocally", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`funs", ":", 
-                    RowBox[{"{", "__Symbol", "}"}]}], ",", 
-                    "FunctionRepo`CacheValuesLocally`Private`expr_"}], "]"}], 
-                    ":=", 
-                    RowBox[{"Internal`InheritedBlock", "[", 
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`funs", ",", 
-                    RowBox[{"Module", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`insideQ", ",", 
-                    "FunctionRepo`CacheValuesLocally`Private`result"}], "}"}],
-                     ",", 
-                    RowBox[{
-                    RowBox[{"MapIndexed", "[", 
-                    RowBox[{
-                    RowBox[{"Function", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`fun", ",", 
-                    "FunctionRepo`CacheValuesLocally`Private`index"}], "}"}], 
-                    ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`fun", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`args___", "]"}], 
-                    "/;", 
-                    RowBox[{"!", 
-                    RowBox[{"TrueQ", "[", 
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`insideQ", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`index", "]"}], 
-                    "]"}]}]}], ":=", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`fun", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`args", "]"}], 
-                    "=", 
-                    RowBox[{"Internal`InheritedBlock", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "{", "FunctionRepo`CacheValuesLocally`Private`insideQ", 
-                    "}"}], ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`insideQ", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`index", "]"}], 
-                    "=", "True"}], ";", 
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`fun", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`args", "]"}]}]}],
-                     "]"}]}]}], ";", 
-                    RowBox[{
-                    RowBox[{
-                    "DownValues", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`fun", "]"}], "=", 
-                    RowBox[{"RotateRight", "[", 
-                    RowBox[{
-                    "DownValues", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`fun", "]"}], 
-                    "]"}]}]}], ",", "HoldFirst"}], "]"}], ",", 
-                    RowBox[{
-                    "Unevaluated", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`funs", "]"}]}], 
-                    "]"}], ";", 
-                    RowBox[{
-                    "FunctionRepo`CacheValuesLocally`Private`result", "=", 
-                    "FunctionRepo`CacheValuesLocally`Private`expr"}], ";", 
-                    RowBox[{
-                    "Remove", "[", 
-                    "FunctionRepo`CacheValuesLocally`Private`insideQ", "]"}], 
-                    ";", "FunctionRepo`CacheValuesLocally`Private`result"}]}],
-                     "]"}]}], "]"}]}]}
-                    },
-                    DefaultBaseStyle->"Column",
-                    GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
-                    GridBoxItemSize->{
-                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
-                  {
-                   TagBox[
-                    TooltipBox[
-                    StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
-                    StripOnInput->False],
-                    "\"Attributes\"",
-                    TooltipStyle->"TextStyling"],
-                    Annotation[#, "Attributes", "Tooltip"]& ], 
-                   RowBox[{"{", "HoldAll", "}"}]},
-                  {
-                   TagBox[
-                    TooltipBox[
-                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
-                    StripOnInput->False],
-                    "\"FullName\"",
-                    TooltipStyle->"TextStyling"],
-                    
-                    Annotation[#, "FullName", 
-                    "Tooltip"]& ], "\<\"FunctionRepo`CacheValuesLocally\"\>"}
-                 },
-                 AutoDelete->False,
-                 GridBoxAlignment->{"Columns" -> {Right, Left}},
-                 GridBoxDividers->None,
-                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
-                 GridBoxSpacings->{"Columns" -> {
-                    Offset[0.27999999999999997`], {
-                    Offset[0.5599999999999999]}, 
-                    Offset[0.27999999999999997`]}, "Rows" -> {
-                    Offset[0.2], {
-                    Offset[0.8]}, 
-                    Offset[0.2]}}], "DialogStyle",
-                StripOnInput->False],
-               DynamicModuleValues:>{}]}
-            },
-            DefaultBaseStyle->"Column",
-            GridBoxAlignment->{"Columns" -> {{Left}}},
-            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], {
-                 Offset[0.5599999999999999]}, 
-                Offset[0.27999999999999997`]}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[3.6]}, 
-                Offset[0.2]}}],
-           FrameMargins->6], ""},
-         {
-          ItemBox[
-           TagBox[
-            ButtonBox[
-             PaneSelectorBox[{False->
-              
-              DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "UpPointerOpener"]], True->
-              
-              DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
-              System`InformationDump`mouseOver$$]],
-             Alignment->Left,
-             Appearance->{"Default" -> None},
-             
-             ButtonFunction:>FEPrivate`Set[
-              System`InformationDump`open$$, False],
-             Evaluator->Automatic,
-             FrameMargins->{{9, 0}, {0, 0}},
-             ImageMargins->0,
-             ImageSize->Full,
-             Method->"Preemptive"],
-            
-            EventHandlerTag[{
-             "MouseEntered" :> 
-              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
-              "MouseExited" :> 
-              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
-              Method -> "Preemptive", PassEventsDown -> Automatic, 
-              PassEventsUp -> True}]],
-           BaseStyle->"InformationTitleBackground",
-           StripOnInput->False], "\[SpanFromLeft]"}
-        },
-        AutoDelete->False,
-        FrameStyle->Directive[
-          GrayLevel[0.8], 
-          Thickness[Tiny]],
-        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
-        GridBoxDividers->{
-         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
-        GridBoxItemSize->{
-         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
-       "Grid"], False->
-      TagBox[GridBox[{
-         {
-          ItemBox[
-           PaneBox[
-            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
-             StripOnInput->False],
-            FrameMargins->{{4, 0}, {-1, 1}}],
-           BaseStyle->"InformationTitleBackground",
-           StripOnInput->False], 
-          ItemBox["\<\"\"\>",
-           BaseStyle->"InformationTitleBackground",
-           StripOnInput->False]},
-         {
-          ItemBox[
-           PaneBox[
-            
-            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"CacheValuesLocally\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
-\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"2\\\", \
-\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\
-\"]}], \\\"}\\\"}], \\\",\\\",  StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\
-\"}]\\) evaluates \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) while \
-automatically memoizing function values of functions \
-\\!\\(\\*StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"i\\\", \\\"TI\\\"]], \
-\\\"TI\\\"]\\) without permanently storing the values.\"\>", 
-             "InformationUsageText",
-             StripOnInput->False,
-             LineSpacing->{1.5, 1.5, 3.}],
-            FrameMargins->{{10, 10}, {8, 10}}],
-           BaseStyle->"InformationUsageSubtitleBackground",
-           StripOnInput->False], 
-          ItemBox["\<\"\"\>",
-           BaseStyle->"InformationUsageSubtitleBackground",
-           StripOnInput->False]},
-         {
-          ItemBox[
-           TagBox[
-            ButtonBox[
-             PaneSelectorBox[{False->
-              
-              DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {3., 9.}}], True->
-              
-              DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
-              System`InformationDump`mouseOver$$]],
-             Alignment->Left,
-             Appearance->{"Default" -> None},
-             
-             ButtonFunction:>FEPrivate`Set[
-              System`InformationDump`open$$, True],
-             Evaluator->Automatic,
-             FrameMargins->{{9, 0}, {0, 0}},
-             ImageMargins->0,
-             ImageSize->Full,
-             Method->"Preemptive"],
-            
-            EventHandlerTag[{
-             "MouseEntered" :> 
-              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
-              "MouseExited" :> 
-              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
-              Method -> "Preemptive", PassEventsDown -> Automatic, 
-              PassEventsUp -> True}]],
-           BaseStyle->"InformationTitleBackground",
-           StripOnInput->False], "\[SpanFromLeft]"}
-        },
-        AutoDelete->False,
-        FrameStyle->Directive[
-          GrayLevel[0.8], 
-          Thickness[Tiny]],
-        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
-        GridBoxDividers->{
-         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
-        GridBoxItemSize->{
-         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
-       "Grid"]}, Dynamic[System`InformationDump`open$$],
-      BaselinePosition->Baseline,
-      FrameMargins->0,
-      ImageSize->Automatic],
-     DynamicModuleValues:>{}],
-    BaseStyle->"InformationGridFrame",
-    StripOnInput->False], "InformationGridPlain",
-   StripOnInput->False],
-  InformationData[
-   Association[
-   "ObjectType" -> "Symbol", "Usage" -> 
-    "\!\(\*RowBox[{\"CacheValuesLocally\", \"[\", RowBox[{RowBox[{\"{\", \
-RowBox[{StyleBox[SubscriptBox[\"f\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
-\",\",  StyleBox[SubscriptBox[\"f\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
-\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\",  StyleBox[\"expr\
-\", \"TI\"]}], \"]\"}]\) evaluates \!\(\*StyleBox[\"expr\", \"TI\"]\) while \
-automatically memoizing function values of functions \
-\!\(\*StyleBox[SubscriptBox[\"f\", StyleBox[\"i\", \"TI\"]], \"TI\"]\) \
-without permanently storing the values.", "Documentation" -> None, 
-    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
-    Information`InformationValueForm[
-     DownValues, FunctionRepo`CacheValuesLocally, {
-      FunctionRepo`CacheValuesLocally[
-         Pattern[FunctionRepo`CacheValuesLocally`Private`funs, {
-           BlankSequence[Symbol]}], 
-         Pattern[FunctionRepo`CacheValuesLocally`Private`expr, 
-          Blank[]]] :> 
-       Internal`InheritedBlock[FunctionRepo`CacheValuesLocally`Private`funs, 
-         Module[{
-          FunctionRepo`CacheValuesLocally`Private`insideQ, 
-           FunctionRepo`CacheValuesLocally`Private`result}, MapIndexed[
-            
-            Function[{
-             FunctionRepo`CacheValuesLocally`Private`fun, 
-              FunctionRepo`CacheValuesLocally`Private`index}, Condition[
-                FunctionRepo`CacheValuesLocally`Private`fun[
-                 Pattern[FunctionRepo`CacheValuesLocally`Private`args, 
-                  BlankNullSequence[]]], 
-                Not[
-                 TrueQ[
-                  FunctionRepo`CacheValuesLocally`Private`insideQ[
-                  FunctionRepo`CacheValuesLocally`Private`index]]]] := (
-               FunctionRepo`CacheValuesLocally`Private`fun[
-                FunctionRepo`CacheValuesLocally`Private`args] = 
-               Internal`InheritedBlock[{
-                 FunctionRepo`CacheValuesLocally`Private`insideQ}, 
-                 FunctionRepo`CacheValuesLocally`Private`insideQ[
-                   FunctionRepo`CacheValuesLocally`Private`index] = True; 
-                 FunctionRepo`CacheValuesLocally`Private`fun[
-                  FunctionRepo`CacheValuesLocally`Private`args]]); 
-             DownValues[FunctionRepo`CacheValuesLocally`Private`fun] = 
-              RotateRight[
-                DownValues[FunctionRepo`CacheValuesLocally`Private`fun]], 
-             HoldFirst], 
-            Unevaluated[FunctionRepo`CacheValuesLocally`Private`funs]]; 
-          FunctionRepo`CacheValuesLocally`Private`result = 
-           FunctionRepo`CacheValuesLocally`Private`expr; 
-          Remove[FunctionRepo`CacheValuesLocally`Private`insideQ]; 
-          FunctionRepo`CacheValuesLocally`Private`result]]}], "SubValues" -> 
-    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
-    "Options" -> None, "Attributes" -> {HoldAll}, "FullName" -> 
-    "FunctionRepo`CacheValuesLocally"], False]]], "Output",
- CellLabel->"Out[14]=",ExpressionUUID->"7197a0a3-5afe-485e-b18b-c4ede3dbdf4e"]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[67]:=",ExpressionUUID->"ac70fe5e-1f93-4187-93bc-22aeb48fcce8"],
-
-Cell[BoxData[{
- RowBox[{"ClearAll", "[", "f", "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"f", "[", "x_", "]"}], "/;", 
-    RowBox[{"EvenQ", "[", "x", "]"}]}], " ", ":=", 
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{"Pause", "[", "1", "]"}], ";", 
-     RowBox[{"Print", "[", 
-      RowBox[{"{", "x", "}"}], "]"}], ";", 
-     RowBox[{"Cos", "[", "x", "]"}]}], ")"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"f", "[", "x_", "]"}], " ", ":=", 
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{"Pause", "[", "1", "]"}], ";", 
-     RowBox[{"Print", "[", "x", "]"}], ";", 
-     RowBox[{"Sin", "[", "x", "]"}]}], ")"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"f", "[", "args___", "]"}], " ", ":=", 
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{"Pause", "[", "1", "]"}], ";", 
-     RowBox[{"Print", "[", 
-      RowBox[{"{", "args", "}"}], "]"}], ";", 
-     RowBox[{"Sin", "[", 
-      RowBox[{"{", "args", "}"}], "]"}]}], ")"}]}], ";"}]}], "Input",
- CellLabel->"In[68]:=",ExpressionUUID->"fc736c3b-0480-4eb4-a975-f69effd15fa3"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"CacheValuesLocally", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"f", ",", "g"}], "}"}], ",", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"f", "[", "1", "]"}], ",", 
-      RowBox[{"f", "[", "1", "]"}], ",", 
-      RowBox[{"f", "[", "2", "]"}], ",", 
-      RowBox[{"f", "[", "1", "]"}], ",", 
-      RowBox[{"f", "[", "2", "]"}], ",", 
-      RowBox[{"f", "[", "1", "]"}], ",", 
-      RowBox[{"f", "[", "2", "]"}], ",", 
-      RowBox[{"f", "[", 
-       RowBox[{"1", ",", "2"}], "]"}], ",", 
-      RowBox[{"f", "[", 
-       RowBox[{"1", ",", "2"}], "]"}]}], "}"}]}], "]"}], "//", 
-  "AbsoluteTiming"}]], "Input",
- CellLabel->"In[75]:=",ExpressionUUID->"b7eacef8-0ec1-484b-af9e-a0569f1c66f2"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData["1"], "Print",
- CellLabel->
-  "During evaluation of \
-In[75]:=",ExpressionUUID->"6ea5912c-a256-4def-a3a9-5824e5deb27e"],
-
-Cell[BoxData[
- RowBox[{"{", "2", "}"}]], "Print",
- CellLabel->
-  "During evaluation of \
-In[75]:=",ExpressionUUID->"3957596f-9ced-4189-b834-9f184b666643"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1", ",", "2"}], "}"}]], "Print",
- CellLabel->
-  "During evaluation of \
-In[75]:=",ExpressionUUID->"611dbfbd-fbcd-446d-8d9f-640acdd665e4"]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"3.0064143`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"Sin", "[", "1", "]"}], ",", 
-     RowBox[{"Sin", "[", "1", "]"}], ",", 
-     RowBox[{"Cos", "[", "2", "]"}], ",", 
-     RowBox[{"Sin", "[", "1", "]"}], ",", 
-     RowBox[{"Cos", "[", "2", "]"}], ",", 
-     RowBox[{"Sin", "[", "1", "]"}], ",", 
-     RowBox[{"Cos", "[", "2", "]"}], ",", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"Sin", "[", "1", "]"}], ",", 
-       RowBox[{"Sin", "[", "2", "]"}]}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"Sin", "[", "1", "]"}], ",", 
-       RowBox[{"Sin", "[", "2", "]"}]}], "}"}]}], "}"}]}], "}"}]], "Output",
- CellLabel->"Out[75]=",ExpressionUUID->"3e35ee81-78a4-46c0-808d-c2b24df209d3"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"DownValues", "[", "f", "]"}], "//", "TableForm"}]], "Input",
- CellLabel->"In[76]:=",ExpressionUUID->"eed0cf90-63d3-4c60-b138-6a5dff22a9b9"],
-
-Cell[BoxData[
- TagBox[
-  TagBox[GridBox[{
-     {
-      RowBox[{
-       RowBox[{"HoldPattern", "[", 
-        RowBox[{
-         RowBox[{"f", "[", "x_", "]"}], "/;", 
-         RowBox[{"EvenQ", "[", "x", "]"}]}], "]"}], "\[RuleDelayed]", 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"Pause", "[", "1", "]"}], ";", 
-         RowBox[{"Print", "[", 
-          RowBox[{"{", "x", "}"}], "]"}], ";", 
-         RowBox[{"Cos", "[", "x", "]"}]}], ")"}]}]},
-     {
-      RowBox[{
-       RowBox[{"HoldPattern", "[", 
-        RowBox[{"f", "[", "x_", "]"}], "]"}], "\[RuleDelayed]", 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"Pause", "[", "1", "]"}], ";", 
-         RowBox[{"Print", "[", "x", "]"}], ";", 
-         RowBox[{"Sin", "[", "x", "]"}]}], ")"}]}]},
-     {
-      RowBox[{
-       RowBox[{"HoldPattern", "[", 
-        RowBox[{"f", "[", "args___", "]"}], "]"}], "\[RuleDelayed]", 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"Pause", "[", "1", "]"}], ";", 
-         RowBox[{"Print", "[", 
-          RowBox[{"{", "args", "}"}], "]"}], ";", 
-         RowBox[{"Sin", "[", 
-          RowBox[{"{", "args", "}"}], "]"}]}], ")"}]}]}
-    },
-    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.5599999999999999]}, 
-        Offset[0.27999999999999997`]}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}}],
-   Column],
-  Function[BoxForm`e$, 
-   TableForm[BoxForm`e$]]]], "Output",
- CellLabel->
-  "Out[76]//TableForm=",ExpressionUUID->"0a841b42-ea2e-483d-b60b-b729e39e21de"]
-}, Open  ]]
-}, Closed]],
-
-Cell[CellGroupData[{
-
 Cell["conditionedMultinormalDistribution", \
 "Subsection",ExpressionUUID->"d74078a0-641e-4aa0-a1a8-445f4149fb05"],
 
@@ -840,6 +282,7 @@ rest"}], "]"}]}]},
                     RowBox[{
                     "FunctionRepo`conditionedMultinormalDistribution`Private`\
 cov_", "?", "SquareMatrixQ"}], "]"}], ",", 
+                    
                     "FunctionRepo`conditionedMultinormalDistribution`Private`\
 rest___"}], "]"}], ":=", 
                     RowBox[{"conditionedMultinormalDistribution", "[", 
@@ -1172,7 +615,6 @@ i", ",", "FunctionRepo`conditionedMultinormalDistribution`Private`dim", ",",
 ints_List", "\[RuleDelayed]", 
                     RowBox[{"Mod", "[", 
                     RowBox[{
-                    
                     "FunctionRepo`conditionedMultinormalDistribution`Private`\
 ints", ",", "FunctionRepo`conditionedMultinormalDistribution`Private`dim", 
                     ",", "1"}], "]"}]}]}], "}"}]}], "]"}]}], ";", 
@@ -1311,7 +753,6 @@ partionedCov", "\[LeftDoubleBracket]",
                     RowBox[{"1", ",", "1"}], "\[RightDoubleBracket]"}], "-", 
                     RowBox[{
                     RowBox[{
-                    
                     "FunctionRepo`conditionedMultinormalDistribution`Private`\
 partionedCov", "\[LeftDoubleBracket]", 
                     RowBox[{"1", ",", "2"}], "\[RightDoubleBracket]"}], ".", 
@@ -1415,7 +856,6 @@ dim"}]}]}]}], "]"}]}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -1688,7 +1128,6 @@ cov], FunctionRepo`conditionedMultinormalDistribution`Private`lm > 1]]]],
             FunctionRepo`conditionedMultinormalDistribution`Private`mu, 
              FunctionRepo`conditionedMultinormalDistribution`Private`cov}, 
             FunctionRepo`conditionedMultinormalDistribution`Private`rules, 
-            
             FunctionRepo`conditionedMultinormalDistribution`Private`marginals]\
 , {{
               PatternTest[
@@ -1825,7 +1264,6 @@ indexDrop}];
 partionedCov = {{
               Part[
               FunctionRepo`conditionedMultinormalDistribution`Private`cov, 
-               
                FunctionRepo`conditionedMultinormalDistribution`Private`\
 indexKeep, FunctionRepo`conditionedMultinormalDistribution`Private`indexKeep], 
               Part[
@@ -2802,7 +2240,6 @@ validationFunction"}], "}"}], ",",
                     RowBox[{
                     
                     RowBox[{"\<\"KFold\"\>", "\[RuleDelayed]", 
-                    
                     "FunctionRepo`crossValidateModel`Private`kFoldValidation"}\
 ], ",", 
                     
@@ -3287,7 +2724,6 @@ Cell[BoxData[
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
            RectangleBox[{-0.5, 0}, {0.5, 11.}, "RoundingRadius" -> 0]},
-          
           ImageSizeCache->{{25.232105684547637`, 75.40776621297037}, {
            33.37022465221263, 113.12211964054985`}}],
          "DelayedMouseEffectStyle"],
@@ -3641,6 +3077,7 @@ Preserves ordering.\"\>", "InformationUsageText",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`deleteContainedStrings\"\
 \>"}
@@ -4031,7 +3468,6 @@ that evaluates to a result matching the pattern.\"\>", "InformationUsageText",
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -4177,7 +3613,6 @@ that evaluates to a result matching the pattern.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -4463,7 +3898,8 @@ methodSpec", "=",
                     "{", "FunctionRepo`kullbackLeiblerDivergence`Private`sym",
                      "}"}]}]}], "]"}]}], ",", 
                     "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
-                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
+                    ",", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
 methodOpts", ",", "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
                     ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
 domainq", ",", "FunctionRepo`kullbackLeiblerDivergence`Private`assumptions", 
@@ -4839,6 +4275,7 @@ Kullback-Leibler divergence from distribution Q to P\"\>",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -4928,9 +4365,8 @@ $CellContext`x = \[FormalX]]; {
             FunctionRepo`kullbackLeiblerDivergence`Private`methodSpec, 1]; 
           FunctionRepo`kullbackLeiblerDivergence`Private`method = 
            First[FunctionRepo`kullbackLeiblerDivergence`Private`method]; 
-          Switch[
-           FunctionRepo`kullbackLeiblerDivergence`Private`method, Expectation,
-             Null, NExpectation, 
+          Switch[FunctionRepo`kullbackLeiblerDivergence`Private`method, 
+            Expectation, Null, NExpectation, 
             With[{FunctionRepo`kullbackLeiblerDivergence`Private`rand = Quiet[
                 Map[
                 RandomVariate[#, 5]& , {
@@ -5279,6 +4715,7 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
                     RowBox[{"Association", "[", 
                     RowBox[{
                     RowBox[{
+                    
                     RowBox[{"\<\"Distribution\"\>", "\[Rule]", 
                     "FunctionRepo`maximumSpacingEstimation`Private`dist"}], "/.",
                      "\[VeryThinSpace]", 
@@ -5287,8 +4724,7 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
                     "FunctionRepo`maximumSpacingEstimation`Private`result", 
                     "]"}]}], ",", 
                     RowBox[{"\<\"MaxSpacingEstimate\"\>", "\[Rule]", 
-                    RowBox[{
-                    "First", "[", 
+                    RowBox[{"First", "[", 
                     "FunctionRepo`maximumSpacingEstimation`Private`result", 
                     "]"}]}]}], "]"}], ",", "$Failed"}], "]"}]}]}], "]"}]}]}
                     },
@@ -5413,6 +4849,7 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`maximumSpacingEstimation\
 \"\>"}
@@ -5901,7 +5338,8 @@ augmentedData", "=",
                     RowBox[{
                     "Length", "/@", 
                     "FunctionRepo`multiNonlinearModelFit`Private`list"}], "===", 
-                    RowBox[{"Length", "/@", 
+                    RowBox[{
+                    "Length", "/@", 
                     "FunctionRepo`multiNonlinearModelFit`Private`datasets"}]}]\
 }], "\[RuleDelayed]", 
                     RowBox[{
@@ -6098,7 +5536,6 @@ independents"}], "}"}], "]"}], ",",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
-                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`multiNonlinearModelFit\"\
 \>"}
@@ -6999,7 +6436,8 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, GridBoxItemSize -> {
+             False, 
+             GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -7507,7 +6945,8 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, GridBoxItemSize -> {
+             False, 
+             GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -7752,8 +7191,7 @@ Cell[BoxData[
                  TagBox["0", "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, 
-             GridBoxItemSize -> {
+             False, GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -8025,7 +7463,6 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
                     "FunctionRepo`tukeyMedianPolish`Private`mat_List", ",", 
                     RowBox[{
                     "FunctionRepo`tukeyMedianPolish`Private`outputType", ":", 
-                    
                     RowBox[{"\<\"Matrix\"\>", 
                     "|", "\<\"PropertyAssociation\"\>"}], 
                     ":", "\<\"Matrix\"\>"}], ",", 
@@ -8387,6 +7824,7 @@ itukeyMedianPolish", "]"}]}], "]"}]}], "]"}], "[",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -8451,7 +7889,6 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -11971,9 +11408,8 @@ NAAAirm6HQ==
         ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
         0.7]}], {DiskBox[{0., 0.}, 0.02261146496815286], InsetBox[
-          RowBox[{"\[FormalX]", "(", "1", ")"}], 
-          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815286}], 
-          ImageScaled[{0, 0}],
+          RowBox[{"\[FormalX]", "(", "1", ")"}], Offset[{2, 2}, 
+          {0.02261146496815286, 0.02261146496815286}], ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {DiskBox[{0., 1.}, 0.02261146496815286], 
          InsetBox[
           RowBox[{"\[FormalX]", "(", "2", ")"}], 
@@ -12493,8 +11929,9 @@ Cell[BoxData[
         ArrowBox[{{1., 1.}, {1., 0.}}, 0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
         0.7]}], {DiskBox[{0., 0.}, 0.02261146496815286], InsetBox[
-          RowBox[{"\[FormalX]", "(", "1", ")"}], Offset[{2, 2}, 
-          {0.02261146496815286, 0.02261146496815286}], ImageScaled[{0, 0}],
+          RowBox[{"\[FormalX]", "(", "1", ")"}], 
+          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {DiskBox[{1., 0.}, 0.02261146496815286], 
          InsetBox[
           RowBox[{"\[FormalX]", "(", "2", ")"}], 
@@ -14265,7 +13702,8 @@ lines and arrows to the closes points.", "Documentation" -> None, "OwnValues" ->
               FunctionRepo`graphicsToGraph`Private`edges1, 
                FunctionRepo`graphicsToGraph`Private`edges2], {2}], 
              VertexCoordinates -> 
-             Thread[FunctionRepo`graphicsToGraph`Private`vertices -> 
+             Thread[
+              FunctionRepo`graphicsToGraph`Private`vertices -> 
                FunctionRepo`graphicsToGraph`Private`pts]], 
            Length[FunctionRepo`graphicsToGraph`Private`pts] > 0]]}], 
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
@@ -14430,7 +13868,6 @@ GroupCases.\"\>", "InformationUsageText",
                   {
                    TagBox[
                     TooltipBox[
-                    
                     StyleBox["\<\" DownValue Definitions\"\>", 
                     "InformationRowLabel",
                     StripOnInput->False],
@@ -14699,7 +14136,6 @@ GroupCases.\"\>", "InformationUsageText",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
-            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
@@ -15782,9 +15218,8 @@ Cell[BoxData[
           ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {
          DiskBox[{9.243089363675239*^-6, 0.}, 0.031202796858901136], InsetBox[
-          RowBox[{"log", "(", "x", ")"}], 
-          Offset[{2, 2}, {0.03121203994826481, 0.031202796858901136}], 
-          ImageScaled[{0, 0}],
+          RowBox[{"log", "(", "x", ")"}], Offset[{2, 2}, 
+          {0.03121203994826481, 0.031202796858901136}], ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {
          DiskBox[{3.1354131841348387, 0.3788926117249257}, 
           0.031202796858901136], InsetBox[
@@ -15811,6 +15246,532 @@ Cell[BoxData[
   FormatType->TraditionalForm,
   FrameTicks->None]], "Output",
  CellLabel->"Out[52]=",ExpressionUUID->"67c1dc32-a74f-434c-ac7d-e63a3a428ab0"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["WithCachedValues", \
+"Subsection",ExpressionUUID->"3b3040c0-9a7c-4627-b132-dc4e86eaeafd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "WithCachedValues"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"75189c5b-7f70-49a4-8f2c-334a4f4df12d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"WithCachedValues\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
+\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\
+\"]}], \\\"}\\\"}], \\\",\\\",  StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\
+\"}]\\) evaluates \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) while \
+automatically memoizing function values of functions \
+\\!\\(\\*StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"i\\\", \\\"TI\\\"]], \
+\\\"TI\\\"]\\) without permanently storing the values.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"WithCachedValues", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`WithCachedValues`Private`functions", ":", 
+                    RowBox[{"{", "__Symbol", "}"}]}], ",", 
+                    "FunctionRepo`WithCachedValues`Private`expr_"}], "]"}], ":=", 
+                    RowBox[{"Internal`InheritedBlock", "[", 
+                    RowBox[{
+                    "FunctionRepo`WithCachedValues`Private`functions", ",", 
+                    RowBox[{
+                    RowBox[{"Scan", "[", 
+                    RowBox[{
+                    RowBox[{"Function", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "{", "FunctionRepo`WithCachedValues`Private`fun", "}"}], 
+                    ",", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`WithCachedValues`Private`outsideQ", "=", 
+                    "True"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "DownValues", "[", 
+                    "FunctionRepo`WithCachedValues`Private`fun", "]"}], "=", 
+                    RowBox[{"Prepend", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DownValues", "[", 
+                    "FunctionRepo`WithCachedValues`Private`fun", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`WithCachedValues`Private`fun", "[", 
+                    "FunctionRepo`WithCachedValues`Private`args___", "]"}], "/;",
+                     "FunctionRepo`WithCachedValues`Private`outsideQ"}], 
+                    "]"}], "\[RuleDelayed]", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    "FunctionRepo`WithCachedValues`Private`fun", "[", 
+                    "FunctionRepo`WithCachedValues`Private`args", "]"}], "=", 
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "FunctionRepo`WithCachedValues`Private`outsideQ", "=", 
+                    "False"}], "}"}], ",", 
+                    RowBox[{
+                    "FunctionRepo`WithCachedValues`Private`fun", "[", 
+                    "FunctionRepo`WithCachedValues`Private`args", "]"}]}], 
+                    "]"}]}], ")"}]}]}], "]"}]}]}], "]"}], ",", "HoldFirst"}], 
+                    "]"}], ",", 
+                    RowBox[{
+                    "Unevaluated", "[", 
+                    "FunctionRepo`WithCachedValues`Private`functions", 
+                    "]"}]}], "]"}], ";", 
+                    "FunctionRepo`WithCachedValues`Private`expr"}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Attributes\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Attributes", "Tooltip"]& ], 
+                   RowBox[{"{", "HoldAll", "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`WithCachedValues\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"WithCachedValues\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
+\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\
+\"]}], \\\"}\\\"}], \\\",\\\",  StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\
+\"}]\\) evaluates \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) while \
+automatically memoizing function values of functions \
+\\!\\(\\*StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"i\\\", \\\"TI\\\"]], \
+\\\"TI\\\"]\\) without permanently storing the values.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {3., 9.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"WithCachedValues\", \"[\", RowBox[{RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"f\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[SubscriptBox[\"f\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\",  StyleBox[\"expr\
+\", \"TI\"]}], \"]\"}]\) evaluates \!\(\*StyleBox[\"expr\", \"TI\"]\) while \
+automatically memoizing function values of functions \
+\!\(\*StyleBox[SubscriptBox[\"f\", StyleBox[\"i\", \"TI\"]], \"TI\"]\) \
+without permanently storing the values.", "Documentation" -> None, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`WithCachedValues, {FunctionRepo`WithCachedValues[
+         Pattern[FunctionRepo`WithCachedValues`Private`functions, {
+           BlankSequence[Symbol]}], 
+         Pattern[FunctionRepo`WithCachedValues`Private`expr, 
+          Blank[]]] :> 
+       Internal`InheritedBlock[
+        FunctionRepo`WithCachedValues`Private`functions, Scan[
+           Function[{FunctionRepo`WithCachedValues`Private`fun}, 
+            
+            Module[{FunctionRepo`WithCachedValues`Private`outsideQ = True}, 
+             DownValues[FunctionRepo`WithCachedValues`Private`fun] = Prepend[
+               DownValues[FunctionRepo`WithCachedValues`Private`fun], 
+               HoldPattern[
+                 Condition[
+                  FunctionRepo`WithCachedValues`Private`fun[
+                   Pattern[FunctionRepo`WithCachedValues`Private`args, 
+                    BlankNullSequence[]]], 
+                  FunctionRepo`WithCachedValues`Private`outsideQ]] :> (
+                FunctionRepo`WithCachedValues`Private`fun[
+                 FunctionRepo`WithCachedValues`Private`args] = 
+                Block[{FunctionRepo`WithCachedValues`Private`outsideQ = 
+                   False}, 
+                  FunctionRepo`WithCachedValues`Private`fun[
+                  FunctionRepo`WithCachedValues`Private`args]])]], HoldFirst], 
+           Unevaluated[FunctionRepo`WithCachedValues`Private`functions]]; 
+         FunctionRepo`WithCachedValues`Private`expr]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {HoldAll}, "FullName" -> 
+    "FunctionRepo`WithCachedValues"], False]]], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"42ae188e-2fe3-4c5a-9a83-4f4762545b76"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[67]:=",ExpressionUUID->"ac70fe5e-1f93-4187-93bc-22aeb48fcce8"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "f", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", "x_", "]"}], "/;", 
+    RowBox[{"EvenQ", "[", "x", "]"}]}], " ", ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Pause", "[", "1", "]"}], ";", 
+     RowBox[{"Print", "[", 
+      RowBox[{"{", "x", "}"}], "]"}], ";", 
+     RowBox[{"Cos", "[", "x", "]"}]}], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], " ", ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Pause", "[", "1", "]"}], ";", 
+     RowBox[{"Print", "[", "x", "]"}], ";", 
+     RowBox[{"Sin", "[", "x", "]"}]}], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "args___", "]"}], " ", ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Pause", "[", "1", "]"}], ";", 
+     RowBox[{"Print", "[", 
+      RowBox[{"{", "args", "}"}], "]"}], ";", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"{", "args", "}"}], "]"}]}], ")"}]}], ";"}]}], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"fc736c3b-0480-4eb4-a975-f69effd15fa3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WithCachedValues", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"f", ",", "g"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"f", "[", "1", "]"}], ",", 
+      RowBox[{"f", "[", "1", "]"}], ",", 
+      RowBox[{"f", "[", "2", "]"}], ",", 
+      RowBox[{"f", "[", "1", "]"}], ",", 
+      RowBox[{"f", "[", "2", "]"}], ",", 
+      RowBox[{"f", "[", "1", "]"}], ",", 
+      RowBox[{"f", "[", "2", "]"}], ",", 
+      RowBox[{"f", "[", 
+       RowBox[{"1", ",", "2"}], "]"}], ",", 
+      RowBox[{"f", "[", 
+       RowBox[{"1", ",", "2"}], "]"}]}], "}"}]}], "]"}], "//", 
+  "AbsoluteTiming"}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"b7eacef8-0ec1-484b-af9e-a0569f1c66f2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["1"], "Print",
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"2ff58891-4986-494f-b418-92b41686646c"],
+
+Cell[BoxData[
+ RowBox[{"{", "2", "}"}]], "Print",
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"03251045-bf9c-47e4-a6cd-491addae1939"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "2"}], "}"}]], "Print",
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"e7ad3191-ebfd-4721-a4d1-afb9e499fae3"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"3.0039993`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Sin", "[", "1", "]"}], ",", 
+     RowBox[{"Sin", "[", "1", "]"}], ",", 
+     RowBox[{"Cos", "[", "2", "]"}], ",", 
+     RowBox[{"Sin", "[", "1", "]"}], ",", 
+     RowBox[{"Cos", "[", "2", "]"}], ",", 
+     RowBox[{"Sin", "[", "1", "]"}], ",", 
+     RowBox[{"Cos", "[", "2", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Sin", "[", "1", "]"}], ",", 
+       RowBox[{"Sin", "[", "2", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Sin", "[", "1", "]"}], ",", 
+       RowBox[{"Sin", "[", "2", "]"}]}], "}"}]}], "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[8]=",ExpressionUUID->"eb315211-d1a8-42f0-acf5-8f0ec0388747"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DownValues", "[", "f", "]"}], "//", "TableForm"}]], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"eed0cf90-63d3-4c60-b138-6a5dff22a9b9"],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{
+         RowBox[{"f", "[", "x_", "]"}], "/;", 
+         RowBox[{"EvenQ", "[", "x", "]"}]}], "]"}], "\[RuleDelayed]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Pause", "[", "1", "]"}], ";", 
+         RowBox[{"Print", "[", 
+          RowBox[{"{", "x", "}"}], "]"}], ";", 
+         RowBox[{"Cos", "[", "x", "]"}]}], ")"}]}]},
+     {
+      RowBox[{
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{"f", "[", "x_", "]"}], "]"}], "\[RuleDelayed]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Pause", "[", "1", "]"}], ";", 
+         RowBox[{"Print", "[", "x", "]"}], ";", 
+         RowBox[{"Sin", "[", "x", "]"}]}], ")"}]}]},
+     {
+      RowBox[{
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{"f", "[", "args___", "]"}], "]"}], "\[RuleDelayed]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Pause", "[", "1", "]"}], ";", 
+         RowBox[{"Print", "[", 
+          RowBox[{"{", "args", "}"}], "]"}], ";", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"{", "args", "}"}], "]"}]}], ")"}]}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellLabel->
+  "Out[9]//TableForm=",ExpressionUUID->"68899a30-0502-416f-be2a-8749776984da"]
 }, Open  ]]
 }, Closed]]
 },
