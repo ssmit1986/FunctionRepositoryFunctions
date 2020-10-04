@@ -14,12 +14,13 @@ CacheValuesLocally[functions : {__Symbol}, expr_] := Internal`InheritedBlock[fun
     Scan[
         Function[{fun},
             Module[{outsideQ = True},
-                fun[args___] /; outsideQ := Set[
-                    fun[args],
-                    Block[{outsideQ = False}, fun[args]]
+                DownValues[fun] = Prepend[ DownValues[fun],
+                    HoldPattern[fun[args___] /; outsideQ] :> Set[
+                        fun[args],
+                        Block[{outsideQ = False}, fun[args]]
+                    ]
                 ]
-            ];
-            DownValues[fun] = RotateRight[DownValues[fun]],
+            ],
             HoldFirst
         ],
         Unevaluated[functions]
