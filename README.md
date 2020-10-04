@@ -28,3 +28,5 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * SymbolicSort (to be submitted)
 
 * [TukeyMedianPolish](https://resources.wolframcloud.com/FunctionRepository/resources/TukeyMedianPolish)
+
+* WithCachedValues (to be submitted)
