@@ -29,4 +29,4 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [TukeyMedianPolish](https://resources.wolframcloud.com/FunctionRepository/resources/TukeyMedianPolish)
 
-* WithCachedValues (to be submitted)
+* [WithCachedValues](https://resources.wolframcloud.com/FunctionRepository/resources/WithCachedValues)
