@@ -22,12 +22,16 @@ GroupCases[list_List, Verbatim[_]] := <|_ -> list|>;
 GroupCases[list_List, spec_] := Module[{
     pattSpec = patternList[spec],
     rules,
-    results
+    results,
+    sowTag
 },
-    rules = MapIndexed[makeRule, Replace[pattSpec, assoc_?AssociationQ :> Values[assoc]]];
+    rules = MapIndexed[
+        makeRule[#1, sowTag @@ #2]&,
+        Replace[pattSpec, assoc_?AssociationQ :> Values[assoc]]
+    ];
     results = Last @ Reap[
         Replace[list, rules, {1}],
-        Range[Length[rules]]
+        Array[sowTag, Length[rules]]
     ];
     AssociationThread[
         Replace[pattSpec, assoc_?AssociationQ :> Keys[assoc]],
@@ -43,20 +47,15 @@ patternList[patt_] := {patt, _};
 
 makeRule[
     (rule : (Rule | RuleDelayed))[patt_, val_],
-    {tag_}
+    tag_
 ] /; FreeQ[Unevaluated[val], Condition | RuleCondition] := match : patt :> Sow[val, tag];
 
-Protect[unmatched];
-With[{
-    unmatchedToken = unmatched[CreateUUID["GroupCases"]]
+makeRule[(rule : (Rule | RuleDelayed))[patt_, val_], tag_] := match_ :> With[{
+    try = Replace[match, {rule[patt, val], _ :> tag}]
 },
-    makeRule[(rule : (Rule | RuleDelayed))[patt_, val_], {tag_}] := match_ :> With[{
-        try = Replace[match, {rule[patt, val], _ :> unmatchedToken}]
-    },
-        Sow[try, tag] /; try =!= unmatchedToken
-    ]
+    Sow[try, tag] /; try =!= tag
 ];
-makeRule[patt_, {tag_}] := match : patt :> Sow[match, tag];
+makeRule[patt_, tag_] := match : patt :> Sow[match, tag];
 
 End[] (* End Private Context *)
 
