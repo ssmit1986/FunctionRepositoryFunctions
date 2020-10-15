@@ -1,29 +1,29 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`crossValidateModel`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`CrossValidateModel`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-crossValidateModel::usage = "crossValidateModel[data, fitFunction] repeatedly splits the data into training/validation subsets; then fits a model using fitFunction on the training set and validates the result with the validation set.";
+CrossValidateModel::usage = "CrossValidateModel[data, fitFunction] repeatedly splits the data into training/validation subsets; then fits a model using fitFunction on the training set and validates the result with the validation set.";
 
 Begin["`Private`"] (* Begin Private Context *)
 
-crossValidateModel::unknownMethod = "Unknow method `1`";
+CrossValidateModel::unknownMethod = "Unknow method `1`";
 
-Options[crossValidateModel] = Join[
+Options[CrossValidateModel] = Join[
     {
         Method -> "KFold",
         "ValidationFunction" -> Automatic,
         "ParallelQ" -> False
     }
 ];
-crossValidateModel[data_, dist_?DistributionParameterQ, opts : OptionsPattern[]] := crossValidateModel[
+CrossValidateModel[data_, dist_?DistributionParameterQ, opts : OptionsPattern[]] := CrossValidateModel[
     data,
     Function[EstimatedDistribution[#1, dist]],
     opts
 ];
-crossValidateModel[data_,
+CrossValidateModel[data_,
     dists_?(Function[ListQ[#] || AssociationQ[#]]) /; AllTrue[dists, DistributionParameterQ],
     opts : OptionsPattern[]
-] := crossValidateModel[
+] := CrossValidateModel[
     data,
     If[ AssociationQ[dists], Map, AssociationMap][
         Function[dist, Function[EstimatedDistribution[#1, dist]]],
@@ -32,7 +32,7 @@ crossValidateModel[data_,
     opts
 ];
 
-crossValidateModel[data : (_List | _Rule | _?AssociationQ), trainingFun : Except[_List], opts : OptionsPattern[]] := Module[{
+CrossValidateModel[data : (_List | _Rule | _?AssociationQ), trainingFun : Except[_List], opts : OptionsPattern[]] := Module[{
     method,
     nDat = dataSize[data],
     rules,
@@ -56,7 +56,7 @@ crossValidateModel[data : (_List | _Rule | _?AssociationQ), trainingFun : Except
             "KFold" :> kFoldValidation,
             "RandomSubSampling" :> subSamplingValidation,
             other_ :> (
-                Message[crossValidateModel::unknownMethod, other];
+                Message[CrossValidateModel::unknownMethod, other];
                 Return[$Failed]
             )
         }

@@ -15,7 +15,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
 
-* GroupCases (submitted)
+* [GroupCases](https://resources.wolframcloud.com/FunctionRepository/resources/GroupCases)
 
 * [KullbackLeiblerDivergence](https://resources.wolframcloud.com/FunctionRepository/resources/KullbackLeiblerDivergence)
 
@@ -25,6 +25,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [SparseAssociation](https://resources.wolframcloud.com/FunctionRepository/resources/SparseAssociation)
 
-* SymbolicSort (to be submitted)
+* [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
 
 * [TukeyMedianPolish](https://resources.wolframcloud.com/FunctionRepository/resources/TukeyMedianPolish)
+
+* [WithCachedValues](https://resources.wolframcloud.com/FunctionRepository/resources/WithCachedValues)

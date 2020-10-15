@@ -63,4 +63,7 @@ Get["FunctionRepo`SymbolicSort`"];
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
 
+WithCachedValues;
+Get["FunctionRepo`WithCachedValues`"];
+
 EndPackage[]
