@@ -43,12 +43,12 @@ convertDataFormat[data_, typeOut_String] /; MemberQ[Keys[$dataTypes], typeOut] :
     dataOut
 },
     Condition[
-        If[ typeIn === typeOut, Return[data]];
+        If[ typeIn === typeOut, Return[data, Module]];
         
         dataOut = Developer`ToPackedArray /@ convertToRuleOfLists[data, typeIn];
         If[ UnsameQ @@ Map[Length, dataOut],
             Message[convertDataFormat::uneqLen];
-            Return[$Failed]
+            Return[$Failed, Module]
         ];
         If[ And[
                 MatchQ[typeOut, "Matrix" | "Vector"],
@@ -57,7 +57,7 @@ convertDataFormat[data_, typeOut_String] /; MemberQ[Keys[$dataTypes], typeOut] :
             ]
             ,
             Message[convertDataFormat::outDim];
-            Return[$Failed]
+            Return[$Failed, Module]
         ];
         dataOut = convertToTargetType[dataOut, typeOut];
         If[ MatchQ[dataOut, $dataTypes[typeOut]]

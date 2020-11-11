@@ -45,10 +45,10 @@ kullbackLeiblerDivergence[p_?DistributionParameterQ, q_?DistributionParameterQ, 
                     Test if p and q can be sampled from *)
                     If[! AllTrue[rand, ArrayQ],
                         Message[kullbackLeiblerDivergence::randomSample, p, q];
-                        Return[$Failed]
+                        Return[$Failed, Module]
                     ]
                 ],
-            _,  (Message[kullbackLeiblerDivergence::method, method]; Return[$Failed])
+            _,  (Message[kullbackLeiblerDivergence::method, method]; Return[$Failed, Module])
         ];
         domainp = DistributionDomain[p];
         domainq = DistributionDomain[q];
@@ -59,7 +59,7 @@ kullbackLeiblerDivergence[p_?DistributionParameterQ, q_?DistributionParameterQ, 
             False,
             (
                 Message[kullbackLeiblerDivergence::supportPQ, p, q];
-                Return[Undefined]
+                Return[Undefined, Module]
             ),
             _, Message[kullbackLeiblerDivergence::supportValidationFail, p, q]
         ];

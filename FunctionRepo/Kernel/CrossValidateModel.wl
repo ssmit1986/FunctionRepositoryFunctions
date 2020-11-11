@@ -57,7 +57,7 @@ CrossValidateModel[data : (_List | _Rule | _?AssociationQ), trainingFun : Except
             "RandomSubSampling" :> subSamplingValidation,
             other_ :> (
                 Message[CrossValidateModel::unknownMethod, other];
-                Return[$Failed]
+                Return[$Failed, Module]
             )
         }
     ];

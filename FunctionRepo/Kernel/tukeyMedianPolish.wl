@@ -79,7 +79,7 @@ itukeyMedianPolish[opts : OptionsPattern[]] := With[{
             rowMedians
         },
             If[ Length[dims] =!= 2 || dims[[1]] === 0 || dims[[2]] === 0, 
-                Return[{{}}]
+                Return[{{}}, Module]
             ];
             matrix = Table[
                 If[ i <= dims[[1]] && j <= dims[[2]],
