@@ -18,8 +18,8 @@ Get["FunctionRepo`conditionedMultinormalDistribution`"];
 convertDataFormat;
 Get["FunctionRepo`convertDataFormat`"];
 
-crossValidateModel;
-Get["FunctionRepo`crossValidateModel`"];
+CrossValidateModel;
+Get["FunctionRepo`CrossValidateModel`"];
 
 expressionToFunction;
 Get["FunctionRepo`expressionToFunction`"];

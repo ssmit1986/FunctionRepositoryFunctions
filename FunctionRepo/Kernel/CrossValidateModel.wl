@@ -21,12 +21,12 @@ CrossValidateModel[data_, dist_?DistributionParameterQ, opts : OptionsPattern[]]
     opts
 ];
 CrossValidateModel[data_,
-    dists_?(Function[ListQ[#] || AssociationQ[#]]) /; AllTrue[dists, DistributionParameterQ],
+    dists_?(Function[ListQ[#] || AssociationQ[#]]) /; AnyTrue[dists, DistributionParameterQ],
     opts : OptionsPattern[]
 ] := CrossValidateModel[
     data,
     If[ AssociationQ[dists], Map, AssociationMap][
-        Function[dist, Function[EstimatedDistribution[#1, dist]]],
+        Replace[dist_?DistributionParameterQ :> Function[EstimatedDistribution[#1, dist]]],
         dists
     ],
     opts

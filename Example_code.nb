@@ -2001,14 +2001,14 @@ to a different format to make it easier to switch out fitting methods.",
 
 Cell[CellGroupData[{
 
-Cell["crossValidateModel", \
+Cell["CrossValidateModel", \
 "Subsection",ExpressionUUID->"e35e1810-89ab-4aef-9e34-ee0d65c9d9ae"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"?", "crossValidateModel"}]], "Input",
- CellLabel->"In[57]:=",ExpressionUUID->"98de2084-dd51-4c5b-be4b-75e6154c6586"],
+ RowBox[{"?", "CrossValidateModel"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"98de2084-dd51-4c5b-be4b-75e6154c6586"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -2034,7 +2034,7 @@ Cell[BoxData[
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"crossValidateModel[data, fitFunction] repeatedly \
+            StyleBox["\<\"CrossValidateModel[data, fitFunction] repeatedly \
 splits the data into training/validation subsets; then fits a model using \
 fitFunction on the training set and validates the result with the validation \
 set.\"\>", "InformationUsageText",
@@ -2047,118 +2047,134 @@ set.\"\>", "InformationUsageText",
            BaseStyle->"InformationUsageSubtitleBackground",
            StripOnInput->False]},
          {
-          PaneBox[GridBox[{
-             {
-              
-              DynamicModuleBox[{System`InformationDump`open$$ = {
-               False, False, False, False, False, False, False, False, False, 
-                False, False, False}}, 
-               StyleBox[GridBox[{
-                  {
-                   TagBox[
-                    TooltipBox[
-                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
-                    StripOnInput->False],
-                    "\"Definitions\"",
-                    TooltipStyle->"TextStyling"],
-                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
-                    {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"Definitions\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "Definitions", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
                     RowBox[{
-                    RowBox[{"crossValidateModel", "[", 
+                    RowBox[{"CrossValidateModel", "[", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`data_", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`data_", ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`dist_", "?", 
+                    "FunctionRepo`CrossValidateModel`Private`dist_", "?", 
                     "DistributionParameterQ"}], ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`opts", ":", 
+                    "FunctionRepo`CrossValidateModel`Private`opts", ":", 
                     RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
-                    RowBox[{"crossValidateModel", "[", 
+                    RowBox[{"CrossValidateModel", "[", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`data", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`data", ",", 
                     RowBox[{
                     RowBox[{"EstimatedDistribution", "[", 
-                    RowBox[{
-                    "#1", ",", 
-                    "FunctionRepo`crossValidateModel`Private`dist"}], "]"}], 
+                    
+                    RowBox[{"#1", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`dist"}], "]"}], 
                     "&"}], ",", 
-                    "FunctionRepo`crossValidateModel`Private`opts"}], "]"}]}]},
-                    {
+                    "FunctionRepo`CrossValidateModel`Private`opts"}], 
+                    "]"}]}]}, {" "}, {
                     RowBox[{
-                    RowBox[{"crossValidateModel", "[", 
+                    RowBox[{"CrossValidateModel", "[", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`data_", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`data_", ",", 
                     RowBox[{
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`dists_", "?", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`dists_", 
+                    "?", 
                     RowBox[{"(", 
                     RowBox[{
                     RowBox[{
                     RowBox[{"ListQ", "[", "#1", "]"}], "||", 
                     RowBox[{"AssociationQ", "[", "#1", "]"}]}], "&"}], 
                     ")"}]}], "/;", 
-                    RowBox[{"AllTrue", "[", 
+                    RowBox[{"AnyTrue", "[", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`dists", 
+                    ",", "DistributionParameterQ"}], "]"}]}], ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`dists", ",", 
-                    "DistributionParameterQ"}], "]"}]}], ",", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`opts", ":", 
+                    "FunctionRepo`CrossValidateModel`Private`opts", ":", 
                     RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
-                    RowBox[{"crossValidateModel", "[", 
+                    RowBox[{"CrossValidateModel", "[", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`data", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`data", ",", 
                     RowBox[{
                     RowBox[{"If", "[", 
                     RowBox[{
-                    RowBox[{
-                    "AssociationQ", "[", 
-                    "FunctionRepo`crossValidateModel`Private`dists", "]"}], 
+                    
+                    RowBox[{"AssociationQ", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`dists", "]"}], 
                     ",", "Map", ",", "AssociationMap"}], "]"}], "[", 
                     RowBox[{
-                    RowBox[{"Function", "[", 
+                    RowBox[{"Replace", "[", 
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`dist", ",", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`dist_", 
+                    "?", "DistributionParameterQ"}], "\[RuleDelayed]", 
+                    RowBox[{"(", 
                     RowBox[{
                     RowBox[{"EstimatedDistribution", "[", 
+                    
+                    RowBox[{"#1", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`dist"}], "]"}], 
+                    "&"}], ")"}]}], "]"}], ",", 
+                    "FunctionRepo`CrossValidateModel`Private`dists"}], "]"}], 
+                    ",", "FunctionRepo`CrossValidateModel`Private`opts"}], 
+                    "]"}]}]}, {" "}, {
                     RowBox[{
-                    "#1", ",", 
-                    "FunctionRepo`crossValidateModel`Private`dist"}], "]"}], 
-                    "&"}]}], "]"}], ",", 
-                    "FunctionRepo`crossValidateModel`Private`dists"}], "]"}], 
-                    ",", "FunctionRepo`crossValidateModel`Private`opts"}], 
-                    "]"}]}]},
-                    {
+                    RowBox[{"CrossValidateModel", "[", 
                     RowBox[{
-                    RowBox[{"crossValidateModel", "[", 
+                    
                     RowBox[{
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`data", ":", 
+                    "FunctionRepo`CrossValidateModel`Private`data", ":", 
                     RowBox[{"_List", "|", "_Rule", "|", 
                     RowBox[{"_", "?", "AssociationQ"}]}]}], ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`trainingFun", 
+                    "FunctionRepo`CrossValidateModel`Private`trainingFun", 
                     ":", 
                     RowBox[{"Except", "[", "_List", "]"}]}], ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`opts", ":", 
+                    "FunctionRepo`CrossValidateModel`Private`opts", ":", 
                     RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
                     RowBox[{"Module", "[", 
                     RowBox[{
                     RowBox[{"{", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`method", 
+                    ",", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`nDat", 
+                    "=", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`method", ",", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`nDat", "=", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`dataSize", "[", 
-                    "FunctionRepo`crossValidateModel`Private`data", "]"}]}], 
-                    ",", "FunctionRepo`crossValidateModel`Private`rules", ",",
-                     "FunctionRepo`crossValidateModel`Private`methodFun", ",",
-                     "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`dataSize", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`data", "]"}]}], 
+                    ",", "FunctionRepo`CrossValidateModel`Private`rules", ",",
+                     "FunctionRepo`CrossValidateModel`Private`methodFun", ",",
+                     "FunctionRepo`CrossValidateModel`Private`\
 validationFunction"}], "}"}], ",", 
                     RowBox[{
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`method", "=", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`method", 
+                    "=", 
                     RowBox[{"Replace", "[", 
                     RowBox[{
                     RowBox[{"Flatten", "[", 
@@ -2170,195 +2186,228 @@ validationFunction"}], "}"}], ",",
                     RowBox[{
                     RowBox[{"{", 
                     
-                    RowBox[{"\<\"LeaveOneOut\"\>", ",", 
-                    "FunctionRepo`crossValidateModel`Private`rest___"}], 
+                    RowBox[{"\"LeaveOneOut\"", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`rest___"}], 
                     "}"}], "\[RuleDelayed]", 
                     RowBox[{"{", 
-                    RowBox[{"\<\"KFold\"\>", ",", 
+                    RowBox[{"\"KFold\"", ",", 
                     
-                    RowBox[{"\<\"Folds\"\>", "\[Rule]", 
-                    "FunctionRepo`crossValidateModel`Private`nDat"}], ",", 
+                    RowBox[{"\"Folds\"", "\[Rule]", 
+                    "FunctionRepo`CrossValidateModel`Private`nDat"}], ",", 
                     RowBox[{"Sequence", "@@", 
                     RowBox[{"FilterRules", "[", 
                     RowBox[{
-                    RowBox[{
-                    "{", "FunctionRepo`crossValidateModel`Private`rest", 
-                    "}"}], ",", 
-                    RowBox[{"Except", "[", "\<\"Folds\"\>", "]"}]}], 
-                    "]"}]}]}], "}"}]}], ",", 
+                    
+                    RowBox[{"{", 
+                    "FunctionRepo`CrossValidateModel`Private`rest", "}"}], 
+                    ",", 
+                    RowBox[{"Except", "[", "\"Folds\"", "]"}]}], "]"}]}]}], 
+                    "}"}]}], ",", 
                     RowBox[{
                     RowBox[{"{", 
                     
-                    RowBox[{"\<\"BootStrap\"\>", ",", 
-                    "FunctionRepo`crossValidateModel`Private`rest___"}], 
+                    RowBox[{"\"BootStrap\"", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`rest___"}], 
                     "}"}], "\[RuleDelayed]", 
                     RowBox[{"{", 
-                    RowBox[{"\<\"RandomSubSampling\"\>", ",", 
-                    RowBox[{"\<\"SamplingFunction\"\>", "\[Rule]", 
+                    RowBox[{"\"RandomSubSampling\"", ",", 
+                    RowBox[{"\"SamplingFunction\"", "\[Rule]", 
                     RowBox[{"{", 
-                    RowBox[{"\<\"BootStrap\"\>", ",", 
+                    RowBox[{"\"BootStrap\"", ",", 
                     RowBox[{"Lookup", "[", 
                     RowBox[{
                     RowBox[{
-                    "{", "FunctionRepo`crossValidateModel`Private`rest", 
-                    "}"}], ",", "\<\"BootStrapSize\"\>", ",", 
-                    "FunctionRepo`crossValidateModel`Private`nDat"}], "]"}]}],
+                    "{", "FunctionRepo`CrossValidateModel`Private`rest", 
+                    "}"}], ",", "\"BootStrapSize\"", ",", 
+                    "FunctionRepo`CrossValidateModel`Private`nDat"}], "]"}]}],
                      "}"}]}], ",", 
                     RowBox[{"Sequence", "@@", 
                     RowBox[{"FilterRules", "[", 
                     RowBox[{
-                    RowBox[{
-                    "{", "FunctionRepo`crossValidateModel`Private`rest", 
-                    "}"}], ",", 
+                    
                     RowBox[{"{", 
-                    RowBox[{"\<\"Runs\"\>", ",", "\<\"ParallelQ\"\>"}], 
-                    "}"}]}], "]"}]}]}], "}"}]}]}], "}"}]}], "]"}]}], ";", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`rules", "=", 
+                    "FunctionRepo`CrossValidateModel`Private`rest", "}"}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"Runs\"", ",", "\"ParallelQ\""}], "}"}]}], 
+                    "]"}]}]}], "}"}]}]}], "}"}]}], "]"}]}], ";", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`rules", 
+                    "=", 
                     RowBox[{"Join", "[", 
                     RowBox[{
-                    RowBox[{
-                    "Rest", "[", 
-                    "FunctionRepo`crossValidateModel`Private`method", "]"}], 
+                    
+                    RowBox[{"Rest", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`method", "]"}], 
                     ",", 
                     RowBox[{"FilterRules", "[", 
                     RowBox[{
+                    
+                    RowBox[{"{", 
+                    "FunctionRepo`CrossValidateModel`Private`opts", "}"}], 
+                    ",", 
+                    RowBox[{"{", "\"ParallelQ\"", "}"}]}], "]"}]}], "]"}]}], 
+                    ";", 
+                    
                     RowBox[{
-                    "{", "FunctionRepo`crossValidateModel`Private`opts", 
-                    "}"}], ",", 
-                    RowBox[{"{", "\<\"ParallelQ\"\>", "}"}]}], "]"}]}], 
-                    "]"}]}], ";", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`methodFun", "=", 
+                    "FunctionRepo`CrossValidateModel`Private`methodFun", "=", 
                     RowBox[{"Replace", "[", 
                     RowBox[{
-                    RowBox[{
-                    "First", "[", 
-                    "FunctionRepo`crossValidateModel`Private`method", "]"}], 
+                    
+                    RowBox[{"First", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`method", "]"}], 
                     ",", 
                     RowBox[{"{", 
                     RowBox[{
                     
-                    RowBox[{"\<\"KFold\"\>", "\[RuleDelayed]", 
-                    "FunctionRepo`crossValidateModel`Private`kFoldValidation"}\
+                    RowBox[{"\"KFold\"", "\[RuleDelayed]", 
+                    "FunctionRepo`CrossValidateModel`Private`kFoldValidation"}\
 ], ",", 
-                    
-                    RowBox[{"\<\"RandomSubSampling\"\>", "\[RuleDelayed]", 
-                    "FunctionRepo`crossValidateModel`Private`\
-subSamplingValidation"}], ",", 
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`other_", 
+                    "\"RandomSubSampling\"", "\[RuleDelayed]", 
+                    "FunctionRepo`CrossValidateModel`Private`\
+subSamplingValidation"}], ",", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`other_", 
                     "\[RuleDelayed]", 
                     RowBox[{"(", 
                     RowBox[{
                     RowBox[{"Message", "[", 
                     RowBox[{
                     StyleBox[
-                    RowBox[{"crossValidateModel", "::", "unknownMethod"}], 
+                    RowBox[{"CrossValidateModel", "::", "unknownMethod"}], 
                     "MessageName"], ",", 
-                    "FunctionRepo`crossValidateModel`Private`other"}], "]"}], 
+                    "FunctionRepo`CrossValidateModel`Private`other"}], "]"}], 
                     ";", 
-                    RowBox[{"Return", "[", "$Failed", "]"}]}], ")"}]}]}], 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"$Failed", ",", "Module"}], "]"}]}], ")"}]}]}], 
                     "}"}]}], "]"}]}], ";", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`\
 validationFunction", "=", 
                     RowBox[{"Replace", "[", 
                     RowBox[{
-                    RowBox[{
-                    "OptionValue", "[", "\<\"ValidationFunction\"\>", "]"}], 
-                    ",", 
+                    
+                    RowBox[{"OptionValue", "[", "\"ValidationFunction\"", 
+                    "]"}], ",", 
                     RowBox[{"{", 
                     RowBox[{
                     RowBox[{
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`assoc_", 
+                    "?", "AssociationQ"}], "\[RuleDelayed]", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`assoc_", "?", 
-                    "AssociationQ"}], "\[RuleDelayed]", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`\
 parseValidationOption", "/@", 
-                    "FunctionRepo`crossValidateModel`Private`assoc"}]}], ",", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`other_", 
+                    "FunctionRepo`CrossValidateModel`Private`assoc"}]}], ",", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`other_", 
                     "\[RuleDelayed]", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
-parseValidationOption", "[", "FunctionRepo`crossValidateModel`Private`other", 
+                    "FunctionRepo`CrossValidateModel`Private`\
+parseValidationOption", "[", "FunctionRepo`CrossValidateModel`Private`other", 
                     "]"}]}]}], "}"}]}], "]"}]}], ";", 
                     RowBox[{"If", "[", 
                     RowBox[{
-                    RowBox[{
-                    "AssociationQ", "[", 
-                    "FunctionRepo`crossValidateModel`Private`trainingFun", 
+                    
+                    RowBox[{"AssociationQ", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`trainingFun", 
                     "]"}], ",", 
                     RowBox[{"If", "[", 
                     RowBox[{
                     RowBox[{"!", 
-                    RowBox[{
-                    "AssociationQ", "[", 
-                    "FunctionRepo`crossValidateModel`Private`\
+                    
+                    RowBox[{"AssociationQ", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`\
 validationFunction", "]"}]}], ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`\
 validationFunction", "=", 
                     RowBox[{
                     RowBox[{"(", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`\
 validationFunction", "&"}], ")"}], "/@", 
-                    "FunctionRepo`crossValidateModel`Private`trainingFun"}]}],
+                    "FunctionRepo`CrossValidateModel`Private`trainingFun"}]}],
                      ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`\
 validationFunction", "=", 
                     RowBox[{"AssociationThread", "[", 
                     RowBox[{
-                    RowBox[{
-                    "Keys", "[", 
-                    "FunctionRepo`crossValidateModel`Private`trainingFun", 
+                    
+                    RowBox[{"Keys", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`trainingFun", 
                     "]"}], ",", 
                     RowBox[{"Lookup", "[", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`\
 validationFunction", ",", 
-                    RowBox[{
-                    "Keys", "[", 
-                    "FunctionRepo`crossValidateModel`Private`trainingFun", 
+                    
+                    RowBox[{"Keys", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`trainingFun", 
                     "]"}], ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`\
 defaultValidationFunction", "[", "]"}]}], "]"}]}], "]"}]}]}], "]"}]}], "]"}], 
                     ";", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`methodFun", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`methodFun", "[", 
+                    
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`data", 
+                    ",", "FunctionRepo`CrossValidateModel`Private`nDat", ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`data", ",", 
-                    "FunctionRepo`crossValidateModel`Private`nDat", ",", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`quietReporting", 
+                    "FunctionRepo`CrossValidateModel`Private`quietReporting", 
                     "[", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`listOperator1", 
-                    "[", "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`listOperator1", 
+                    "[", "FunctionRepo`CrossValidateModel`Private`\
 trainingFun", "]"}], "]"}], ",", 
+                    
                     RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`listOperator2", 
-                    "[", "FunctionRepo`crossValidateModel`Private`\
+                    "FunctionRepo`CrossValidateModel`Private`listOperator2", 
+                    "[", "FunctionRepo`CrossValidateModel`Private`\
 validationFunction", "]"}], ",", 
                     RowBox[{"Sequence", "@@", 
                     RowBox[{"FilterRules", "[", 
-                    RowBox[{
-                    "FunctionRepo`crossValidateModel`Private`rules", ",", 
-                    RowBox[{
-                    "Options", "[", 
-                    "FunctionRepo`crossValidateModel`Private`methodFun", 
-                    "]"}]}], "]"}]}]}], "]"}]}]}], "]"}]}]}
-                    },
-                    DefaultBaseStyle->"Column",
-                    GridBoxAlignment->{"Columns" -> {{Left}}},
                     
-                    GridBoxItemSize->{
-                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                    RowBox[{"FunctionRepo`CrossValidateModel`Private`rules", 
+                    ",", 
+                    
+                    RowBox[{"Options", "[", 
+                    "FunctionRepo`CrossValidateModel`Private`methodFun", 
+                    "]"}]}], "]"}]}]}], "]"}]}]}], "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
                   {
                    TagBox[
                     TooltipBox[
@@ -2384,7 +2433,7 @@ validationFunction", "]"}], ",",
                     TooltipStyle->"TextStyling"],
                     
                     Annotation[#, "FullName", 
-                    "Tooltip"]& ], "\<\"FunctionRepo`crossValidateModel\"\>"}
+                    "Tooltip"]& ], "\<\"FunctionRepo`CrossValidateModel\"\>"}
                  },
                  AutoDelete->False,
                  GridBoxAlignment->{"Columns" -> {Right, Left}},
@@ -2413,7 +2462,7 @@ validationFunction", "]"}], ",",
                 Offset[0.2], {
                  Offset[3.6]}, 
                 Offset[0.2]}}],
-           FrameMargins->6], ""},
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
          {
           ItemBox[
            TagBox[
@@ -2436,7 +2485,6 @@ validationFunction", "]"}], ",",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
-            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
@@ -2473,7 +2521,7 @@ validationFunction", "]"}], ",",
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"crossValidateModel[data, fitFunction] repeatedly \
+            StyleBox["\<\"CrossValidateModel[data, fitFunction] repeatedly \
 splits the data into training/validation subsets; then fits a model using \
 fitFunction on the training set and validates the result with the validation \
 set.\"\>", "InformationUsageText",
@@ -2540,152 +2588,153 @@ set.\"\>", "InformationUsageText",
   InformationData[
    Association[
    "ObjectType" -> "Symbol", "Usage" -> 
-    "crossValidateModel[data, fitFunction] repeatedly splits the data into \
+    "CrossValidateModel[data, fitFunction] repeatedly splits the data into \
 training/validation subsets; then fits a model using fitFunction on the \
 training set and validates the result with the validation set.", 
     "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
     "DownValues" -> 
     Information`InformationValueForm[
-     DownValues, FunctionRepo`crossValidateModel, {
-      FunctionRepo`crossValidateModel[
-         Pattern[FunctionRepo`crossValidateModel`Private`data, 
+     DownValues, FunctionRepo`CrossValidateModel, {
+      FunctionRepo`CrossValidateModel[
+         Pattern[FunctionRepo`CrossValidateModel`Private`data, 
           Blank[]], 
          PatternTest[
-          Pattern[FunctionRepo`crossValidateModel`Private`dist, 
+          Pattern[FunctionRepo`CrossValidateModel`Private`dist, 
            Blank[]], DistributionParameterQ], 
-         Pattern[FunctionRepo`crossValidateModel`Private`opts, 
+         Pattern[FunctionRepo`CrossValidateModel`Private`opts, 
           OptionsPattern[]]] :> 
-       FunctionRepo`crossValidateModel[
-        FunctionRepo`crossValidateModel`Private`data, 
+       FunctionRepo`CrossValidateModel[
+        FunctionRepo`CrossValidateModel`Private`data, 
          EstimatedDistribution[#, 
-          FunctionRepo`crossValidateModel`Private`dist]& , 
-         FunctionRepo`crossValidateModel`Private`opts], 
-       FunctionRepo`crossValidateModel[
-         Pattern[FunctionRepo`crossValidateModel`Private`data, 
+          FunctionRepo`CrossValidateModel`Private`dist]& , 
+         FunctionRepo`CrossValidateModel`Private`opts], 
+       FunctionRepo`CrossValidateModel[
+         Pattern[FunctionRepo`CrossValidateModel`Private`data, 
           Blank[]], 
          Condition[
           PatternTest[
-           Pattern[FunctionRepo`crossValidateModel`Private`dists, 
+           Pattern[FunctionRepo`CrossValidateModel`Private`dists, 
             Blank[]], Or[
             ListQ[#], 
             AssociationQ[#]]& ], 
-          AllTrue[
-          FunctionRepo`crossValidateModel`Private`dists, 
+          AnyTrue[
+          FunctionRepo`CrossValidateModel`Private`dists, 
            DistributionParameterQ]], 
-         Pattern[FunctionRepo`crossValidateModel`Private`opts, 
+         Pattern[FunctionRepo`CrossValidateModel`Private`opts, 
           OptionsPattern[]]] :> 
-       FunctionRepo`crossValidateModel[
-        FunctionRepo`crossValidateModel`Private`data, 
+       FunctionRepo`CrossValidateModel[
+        FunctionRepo`CrossValidateModel`Private`data, 
          If[
-          AssociationQ[FunctionRepo`crossValidateModel`Private`dists], Map, 
+          AssociationQ[FunctionRepo`CrossValidateModel`Private`dists], Map, 
           AssociationMap][
-          Function[
-          FunctionRepo`crossValidateModel`Private`dist, 
-           EstimatedDistribution[#, 
-            FunctionRepo`crossValidateModel`Private`dist]& ], 
-          FunctionRepo`crossValidateModel`Private`dists], 
-         FunctionRepo`crossValidateModel`Private`opts], 
-       FunctionRepo`crossValidateModel[
-         Pattern[FunctionRepo`crossValidateModel`Private`data, 
+          Replace[PatternTest[
+             Pattern[FunctionRepo`CrossValidateModel`Private`dist, 
+              Blank[]], DistributionParameterQ] :> (
+            EstimatedDistribution[#, 
+             FunctionRepo`CrossValidateModel`Private`dist]& )], 
+          FunctionRepo`CrossValidateModel`Private`dists], 
+         FunctionRepo`CrossValidateModel`Private`opts], 
+       FunctionRepo`CrossValidateModel[
+         Pattern[FunctionRepo`CrossValidateModel`Private`data, 
           Alternatives[
            Blank[List], 
            Blank[Rule], 
            PatternTest[
             Blank[], AssociationQ]]], 
-         Pattern[FunctionRepo`crossValidateModel`Private`trainingFun, 
+         Pattern[FunctionRepo`CrossValidateModel`Private`trainingFun, 
           Except[
            Blank[List]]], 
-         Pattern[FunctionRepo`crossValidateModel`Private`opts, 
+         Pattern[FunctionRepo`CrossValidateModel`Private`opts, 
           OptionsPattern[]]] :> 
-       Module[{FunctionRepo`crossValidateModel`Private`method, 
-          FunctionRepo`crossValidateModel`Private`nDat = 
-          FunctionRepo`crossValidateModel`Private`dataSize[
-           FunctionRepo`crossValidateModel`Private`data], 
-          FunctionRepo`crossValidateModel`Private`rules, 
-          FunctionRepo`crossValidateModel`Private`methodFun, 
-          FunctionRepo`crossValidateModel`Private`validationFunction}, 
-         FunctionRepo`crossValidateModel`Private`method = Replace[
+       Module[{FunctionRepo`CrossValidateModel`Private`method, 
+          FunctionRepo`CrossValidateModel`Private`nDat = 
+          FunctionRepo`CrossValidateModel`Private`dataSize[
+           FunctionRepo`CrossValidateModel`Private`data], 
+          FunctionRepo`CrossValidateModel`Private`rules, 
+          FunctionRepo`CrossValidateModel`Private`methodFun, 
+          FunctionRepo`CrossValidateModel`Private`validationFunction}, 
+         FunctionRepo`CrossValidateModel`Private`method = Replace[
             Flatten[{
               OptionValue[Method]}], {{"LeaveOneOut", 
-               Pattern[FunctionRepo`crossValidateModel`Private`rest, 
+               Pattern[FunctionRepo`CrossValidateModel`Private`rest, 
                 BlankNullSequence[]]} :> {
               "KFold", "Folds" -> 
-               FunctionRepo`crossValidateModel`Private`nDat, 
+               FunctionRepo`CrossValidateModel`Private`nDat, 
                Apply[Sequence, 
-                FilterRules[{FunctionRepo`crossValidateModel`Private`rest}, 
+                FilterRules[{FunctionRepo`CrossValidateModel`Private`rest}, 
                  Except["Folds"]]]}, {"BootStrap", 
-               Pattern[FunctionRepo`crossValidateModel`Private`rest, 
+               Pattern[FunctionRepo`CrossValidateModel`Private`rest, 
                 BlankNullSequence[]]} :> {
               "RandomSubSampling", "SamplingFunction" -> {"BootStrap", 
                  
-                 Lookup[{FunctionRepo`crossValidateModel`Private`rest}, 
+                 Lookup[{FunctionRepo`CrossValidateModel`Private`rest}, 
                   "BootStrapSize", 
-                  FunctionRepo`crossValidateModel`Private`nDat]}, 
+                  FunctionRepo`CrossValidateModel`Private`nDat]}, 
                Apply[Sequence, 
                 
-                FilterRules[{FunctionRepo`crossValidateModel`Private`rest}, {
+                FilterRules[{FunctionRepo`CrossValidateModel`Private`rest}, {
                  "Runs", "ParallelQ"}]]}}]; 
-         FunctionRepo`crossValidateModel`Private`rules = Join[
-            Rest[FunctionRepo`crossValidateModel`Private`method], 
+         FunctionRepo`CrossValidateModel`Private`rules = Join[
+            Rest[FunctionRepo`CrossValidateModel`Private`method], 
             
-            FilterRules[{FunctionRepo`crossValidateModel`Private`opts}, {
+            FilterRules[{FunctionRepo`CrossValidateModel`Private`opts}, {
              "ParallelQ"}]]; 
-         FunctionRepo`crossValidateModel`Private`methodFun = Replace[
-            First[FunctionRepo`crossValidateModel`Private`method], {
+         FunctionRepo`CrossValidateModel`Private`methodFun = Replace[
+            First[FunctionRepo`CrossValidateModel`Private`method], {
             "KFold" :> 
-             FunctionRepo`crossValidateModel`Private`kFoldValidation, 
+             FunctionRepo`CrossValidateModel`Private`kFoldValidation, 
              "RandomSubSampling" :> 
-             FunctionRepo`crossValidateModel`Private`subSamplingValidation, 
-             Pattern[FunctionRepo`crossValidateModel`Private`other, 
+             FunctionRepo`CrossValidateModel`Private`subSamplingValidation, 
+             Pattern[FunctionRepo`CrossValidateModel`Private`other, 
                Blank[]] :> (Message[
-                MessageName[FunctionRepo`crossValidateModel, "unknownMethod"],
-                 FunctionRepo`crossValidateModel`Private`other]; 
-              Return[$Failed])}]; 
-         FunctionRepo`crossValidateModel`Private`validationFunction = Replace[
+                MessageName[FunctionRepo`CrossValidateModel, "unknownMethod"],
+                 FunctionRepo`CrossValidateModel`Private`other]; 
+              Return[$Failed, Module])}]; 
+         FunctionRepo`CrossValidateModel`Private`validationFunction = Replace[
             OptionValue["ValidationFunction"], {PatternTest[
-               Pattern[FunctionRepo`crossValidateModel`Private`assoc, 
+               Pattern[FunctionRepo`CrossValidateModel`Private`assoc, 
                 Blank[]], AssociationQ] :> 
-             Map[FunctionRepo`crossValidateModel`Private`\
-parseValidationOption, FunctionRepo`crossValidateModel`Private`assoc], 
-             Pattern[FunctionRepo`crossValidateModel`Private`other, 
+             Map[FunctionRepo`CrossValidateModel`Private`\
+parseValidationOption, FunctionRepo`CrossValidateModel`Private`assoc], 
+             Pattern[FunctionRepo`CrossValidateModel`Private`other, 
                Blank[]] :> 
-             FunctionRepo`crossValidateModel`Private`parseValidationOption[
-              FunctionRepo`crossValidateModel`Private`other]}]; If[
-           AssociationQ[FunctionRepo`crossValidateModel`Private`trainingFun], 
+             FunctionRepo`CrossValidateModel`Private`parseValidationOption[
+              FunctionRepo`CrossValidateModel`Private`other]}]; If[
+           AssociationQ[FunctionRepo`CrossValidateModel`Private`trainingFun], 
            If[
             Not[
              AssociationQ[
-             FunctionRepo`crossValidateModel`Private`validationFunction]], 
-            FunctionRepo`crossValidateModel`Private`validationFunction = 
-            Map[FunctionRepo`crossValidateModel`Private`validationFunction& , 
-              FunctionRepo`crossValidateModel`Private`trainingFun], 
-            FunctionRepo`crossValidateModel`Private`validationFunction = 
+             FunctionRepo`CrossValidateModel`Private`validationFunction]], 
+            FunctionRepo`CrossValidateModel`Private`validationFunction = 
+            Map[FunctionRepo`CrossValidateModel`Private`validationFunction& , 
+              FunctionRepo`CrossValidateModel`Private`trainingFun], 
+            FunctionRepo`CrossValidateModel`Private`validationFunction = 
             AssociationThread[
-              Keys[FunctionRepo`crossValidateModel`Private`trainingFun], 
+              Keys[FunctionRepo`CrossValidateModel`Private`trainingFun], 
               Lookup[
-              FunctionRepo`crossValidateModel`Private`validationFunction, 
-               Keys[FunctionRepo`crossValidateModel`Private`trainingFun], 
+              FunctionRepo`CrossValidateModel`Private`validationFunction, 
+               Keys[FunctionRepo`CrossValidateModel`Private`trainingFun], 
                
-               FunctionRepo`crossValidateModel`Private`\
+               FunctionRepo`CrossValidateModel`Private`\
 defaultValidationFunction[]]]]]; 
-         FunctionRepo`crossValidateModel`Private`methodFun[
-          FunctionRepo`crossValidateModel`Private`data, 
-           FunctionRepo`crossValidateModel`Private`nDat, 
-           FunctionRepo`crossValidateModel`Private`quietReporting[
-            FunctionRepo`crossValidateModel`Private`listOperator1[
-            FunctionRepo`crossValidateModel`Private`trainingFun]], 
-           FunctionRepo`crossValidateModel`Private`listOperator2[
-           FunctionRepo`crossValidateModel`Private`validationFunction], 
+         FunctionRepo`CrossValidateModel`Private`methodFun[
+          FunctionRepo`CrossValidateModel`Private`data, 
+           FunctionRepo`CrossValidateModel`Private`nDat, 
+           FunctionRepo`CrossValidateModel`Private`quietReporting[
+            FunctionRepo`CrossValidateModel`Private`listOperator1[
+            FunctionRepo`CrossValidateModel`Private`trainingFun]], 
+           FunctionRepo`CrossValidateModel`Private`listOperator2[
+           FunctionRepo`CrossValidateModel`Private`validationFunction], 
            Apply[Sequence, 
-            FilterRules[FunctionRepo`crossValidateModel`Private`rules, 
-             Options[FunctionRepo`crossValidateModel`Private`methodFun]]]]]}],
+            FilterRules[FunctionRepo`CrossValidateModel`Private`rules, 
+             Options[FunctionRepo`CrossValidateModel`Private`methodFun]]]]]}],
      "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, 
     "Options" -> {
      Method -> "KFold", "ValidationFunction" -> Automatic, "ParallelQ" -> 
       False}, "Attributes" -> {}, "FullName" -> 
-    "FunctionRepo`crossValidateModel"], False]]], "Output",
- CellLabel->"Out[57]=",ExpressionUUID->"f5e1b2e4-8cd7-4112-9450-4c2f4cceb29f"]
+    "FunctionRepo`CrossValidateModel"], False]]], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"b9ef77f5-ff6a-4763-ae82-66471125e233"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2704,14 +2753,14 @@ Cell[BoxData[{
  CellChangeTimes->{{3.781610902284114*^9, 3.7816109277192287`*^9}, {
   3.781611173709198*^9, 3.781611180206622*^9}, {3.7816116711764913`*^9, 
   3.781611675183671*^9}, {3.7816117183975105`*^9, 3.781611728390929*^9}},
- CellLabel->"In[58]:=",ExpressionUUID->"8528c3aa-c63e-44f6-8859-92cd72a89101"],
+ CellLabel->"In[4]:=",ExpressionUUID->"8528c3aa-c63e-44f6-8859-92cd72a89101"],
 
 Cell[BoxData[
  GraphicsBox[{
    {RGBColor[0.987148, 0.8073604000000001, 0.49470040000000004`], EdgeForm[{
-    Opacity[0.644], Thickness[Small]}], {}, 
+    Opacity[0.651], Thickness[Small]}], {}, 
     {RGBColor[0.987148, 0.8073604000000001, 0.49470040000000004`], EdgeForm[{
-     Opacity[0.644], Thickness[Small]}], 
+     Opacity[0.651], Thickness[Small]}], 
      TagBox[
       TooltipBox[
        TagBox[
@@ -2723,36 +2772,16 @@ Cell[BoxData[
               GrayLevel[0.5], 
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
-           RectangleBox[{-0.5, 0}, {0.5, 11.}, "RoundingRadius" -> 0]},
-          ImageSizeCache->{{25.232105684547637`, 75.40776621297037}, {
-           33.37022465221263, 113.12211964054985`}}],
-         "DelayedMouseEffectStyle"],
-        StatusArea[#, 11]& ,
-        TagBoxNote->"11"],
-       StyleBox["11", {}, StripOnInput -> False]],
-      Annotation[#, 
-       Style[11, {}], "Tooltip"]& ], 
-     TagBox[
-      TooltipBox[
-       TagBox[
-        TagBox[
-         DynamicBox[{
-           FEPrivate`If[
-            CurrentValue["MouseOver"], 
-            EdgeForm[{
-              GrayLevel[0.5], 
-              AbsoluteThickness[1.5], 
-              Opacity[0.66]}], {}, {}], 
-           RectangleBox[{0.5, 0}, {1.5, 33.}, "RoundingRadius" -> 0]},
+           RectangleBox[{-0.5, 0}, {0.5, 19.}, "RoundingRadius" -> 0]},
           
-          ImageSizeCache->{{74.80776621297038, 
-           124.98342674139312`}, {-124.9335653244618, 113.12211964054984`}}],
+          ImageSizeCache->{{25.23210568454764, 
+           82.49000343131648}, {-54.57632533482868, 113.12211964054987`}}],
          "DelayedMouseEffectStyle"],
-        StatusArea[#, 33]& ,
-        TagBoxNote->"33"],
-       StyleBox["33", {}, StripOnInput -> False]],
+        StatusArea[#, 19]& ,
+        TagBoxNote->"19"],
+       StyleBox["19", {}, StripOnInput -> False]],
       Annotation[#, 
-       Style[33, {}], "Tooltip"]& ], 
+       Style[19, {}], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        TagBox[
@@ -2764,10 +2793,10 @@ Cell[BoxData[
               GrayLevel[0.5], 
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
-           RectangleBox[{1.5, 0}, {2.5, 27.}, "RoundingRadius" -> 0]},
+           RectangleBox[{0.5, 0}, {1.5, 27.}, "RoundingRadius" -> 0]},
           
-          ImageSizeCache->{{124.38342674139311`, 
-           174.5590872698159}, {-81.75980442173243, 113.12211964054985`}}],
+          ImageSizeCache->{{81.89000343131647, 
+           139.14790117808536`}, {-124.93356532446175`, 113.12211964054988`}}],
          "DelayedMouseEffectStyle"],
         StatusArea[#, 27]& ,
         TagBoxNote->"27"],
@@ -2785,16 +2814,16 @@ Cell[BoxData[
               GrayLevel[0.5], 
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
-           RectangleBox[{2.5, 0}, {3.5, 14.}, "RoundingRadius" -> 0]},
+           RectangleBox[{1.5, 0}, {2.5, 24.}, "RoundingRadius" -> 0]},
           
-          ImageSizeCache->{{173.95908726981588`, 224.13474779823858`}, {
-           11.783344200847921`, 113.12211964054985`}}],
+          ImageSizeCache->{{138.54790117808534`, 
+           195.80579892485414`}, {-98.54960032834937, 113.12211964054988`}}],
          "DelayedMouseEffectStyle"],
-        StatusArea[#, 14]& ,
-        TagBoxNote->"14"],
-       StyleBox["14", {}, StripOnInput -> False]],
+        StatusArea[#, 24]& ,
+        TagBoxNote->"24"],
+       StyleBox["24", {}, StripOnInput -> False]],
       Annotation[#, 
-       Style[14, {}], "Tooltip"]& ], 
+       Style[24, {}], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        TagBox[
@@ -2806,16 +2835,16 @@ Cell[BoxData[
               GrayLevel[0.5], 
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
-           RectangleBox[{3.5, 0}, {4.5, 11.}, "RoundingRadius" -> 0]},
+           RectangleBox[{2.5, 0}, {3.5, 18.}, "RoundingRadius" -> 0]},
           
-          ImageSizeCache->{{223.53474779823858`, 273.71040832666137`}, {
-           33.37022465221261, 113.12211964054985`}}],
+          ImageSizeCache->{{195.20579892485415`, 
+           252.463696671623}, {-45.78167033612455, 113.12211964054988`}}],
          "DelayedMouseEffectStyle"],
-        StatusArea[#, 11]& ,
-        TagBoxNote->"11"],
-       StyleBox["11", {}, StripOnInput -> False]],
+        StatusArea[#, 18]& ,
+        TagBoxNote->"18"],
+       StyleBox["18", {}, StripOnInput -> False]],
       Annotation[#, 
-       Style[11, {}], "Tooltip"]& ], 
+       Style[18, {}], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        TagBox[
@@ -2827,16 +2856,16 @@ Cell[BoxData[
               GrayLevel[0.5], 
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
-           RectangleBox[{4.5, 0}, {5.5, 3.}, "RoundingRadius" -> 0]},
+           RectangleBox[{3.5, 0}, {4.5, 9.}, "RoundingRadius" -> 0]},
           
-          ImageSizeCache->{{273.11040832666134`, 323.2860688550841}, {
-           90.93523918918514, 113.12211964054985`}}],
+          ImageSizeCache->{{251.86369667162302`, 309.1215944183919}, {
+           33.370224652212656`, 113.12211964054988`}}],
          "DelayedMouseEffectStyle"],
-        StatusArea[#, 3]& ,
-        TagBoxNote->"3"],
-       StyleBox["3", {}, StripOnInput -> False]],
+        StatusArea[#, 9]& ,
+        TagBoxNote->"9"],
+       StyleBox["9", {}, StripOnInput -> False]],
       Annotation[#, 
-       Style[3, {}], "Tooltip"]& ], 
+       Style[9, {}], "Tooltip"]& ], 
      TagBox[
       TooltipBox[
        TagBox[
@@ -2848,10 +2877,31 @@ Cell[BoxData[
               GrayLevel[0.5], 
               AbsoluteThickness[1.5], 
               Opacity[0.66]}], {}, {}], 
-           RectangleBox[{6.5, 0}, {7.5, 1.}, "RoundingRadius" -> 0]},
+           RectangleBox[{4.5, 0}, {5.5, 2.}, "RoundingRadius" -> 0]},
           
-          ImageSizeCache->{{372.2617293835068, 422.4373899119296}, {
-           105.32649282342827`, 113.12211964054985`}}],
+          ImageSizeCache->{{308.5215944183919, 365.7794921651607}, {
+           94.9328096431416, 113.12211964054988`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 2]& ,
+        TagBoxNote->"2"],
+       StyleBox["2", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[2, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{5.5, 0}, {6.5, 1.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{365.1794921651607, 422.4373899119296}, {
+           103.72746464184573`, 113.12211964054988`}}],
          "DelayedMouseEffectStyle"],
         StatusArea[#, 1]& ,
         TagBoxNote->"1"],
@@ -2861,20 +2911,20 @@ Cell[BoxData[
   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
   Axes->{True, True},
   AxesLabel->{None, None},
-  AxesOrigin->{-0.66, 0},
+  AxesOrigin->{-0.64, 0},
   FrameLabel->{{None, None}, {None, None}},
   FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
   GridLines->{None, None},
   GridLinesStyle->Directive[
     GrayLevel[0.5, 0.4]],
-  PlotRange->{{-0.5, 7.5}, {All, All}},
+  PlotRange->{{-0.5, 6.5}, {All, All}},
   PlotRangePadding->{{
      Scaled[0.02], 
      Scaled[0.02]}, {
      Scaled[0.02], 
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
- CellLabel->"Out[59]=",ExpressionUUID->"c49933cf-851a-4942-8a52-ea8594a5cb0f"]
+ CellLabel->"Out[5]=",ExpressionUUID->"64de8959-a236-4a24-8913-17a3428f72a6"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2882,12 +2932,12 @@ Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"val", "=", 
-   RowBox[{"crossValidateModel", "[", 
+   RowBox[{"CrossValidateModel", "[", 
     RowBox[{"data", ",", 
      RowBox[{"PoissonDistribution", "[", "\[Lambda]", "]"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"val", "//", "TableForm"}]}], "Input",
- CellLabel->"In[60]:=",ExpressionUUID->"c7566495-73d8-4323-bcb1-fa905a691565"],
+ CellLabel->"In[14]:=",ExpressionUUID->"c7566495-73d8-4323-bcb1-fa905a691565"],
 
 Cell[BoxData[
  TagBox[
@@ -2896,37 +2946,37 @@ Cell[BoxData[
       RowBox[{"\[LeftAssociation]", 
        RowBox[{
         RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
-         RowBox[{"PoissonDistribution", "[", "1.9875`", "]"}]}], ",", 
+         RowBox[{"PoissonDistribution", "[", "1.6625`", "]"}]}], ",", 
         RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
-         "1.577064268974675`"}]}], "\[RightAssociation]"}]},
+         "1.7595620842179927`"}]}], "\[RightAssociation]"}]},
      {
       RowBox[{"\[LeftAssociation]", 
        RowBox[{
         RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
-         RowBox[{"PoissonDistribution", "[", "1.7875`", "]"}]}], ",", 
+         RowBox[{"PoissonDistribution", "[", "1.95`", "]"}]}], ",", 
         RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
-         "2.011551270422792`"}]}], "\[RightAssociation]"}]},
+         "1.7017825876994337`"}]}], "\[RightAssociation]"}]},
      {
       RowBox[{"\[LeftAssociation]", 
        RowBox[{
         RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
-         RowBox[{"PoissonDistribution", "[", "1.9625`", "]"}]}], ",", 
+         RowBox[{"PoissonDistribution", "[", "1.8875`", "]"}]}], ",", 
         RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
-         "1.6146264694175652`"}]}], "\[RightAssociation]"}]},
+         "1.5355736038300278`"}]}], "\[RightAssociation]"}]},
      {
       RowBox[{"\[LeftAssociation]", 
        RowBox[{
         RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
-         RowBox[{"PoissonDistribution", "[", "2.025`", "]"}]}], ",", 
+         RowBox[{"PoissonDistribution", "[", "1.825`", "]"}]}], ",", 
         RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
-         "1.4964207601480601`"}]}], "\[RightAssociation]"}]},
+         "1.7714657083877952`"}]}], "\[RightAssociation]"}]},
      {
       RowBox[{"\[LeftAssociation]", 
        RowBox[{
         RowBox[{"\<\"FittedModel\"\>", "\[Rule]", 
-         RowBox[{"PoissonDistribution", "[", "1.9875`", "]"}]}], ",", 
+         RowBox[{"PoissonDistribution", "[", "1.725`", "]"}]}], ",", 
         RowBox[{"\<\"ValidationResult\"\>", "\[Rule]", 
-         "1.7045365275209536`"}]}], "\[RightAssociation]"}]}
+         "1.7311684740817523`"}]}], "\[RightAssociation]"}]}
     },
     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
     GridBoxSpacings->{"Columns" -> {
@@ -2940,7 +2990,7 @@ Cell[BoxData[
   Function[BoxForm`e$, 
    TableForm[BoxForm`e$]]]], "Output",
  CellLabel->
-  "Out[61]//TableForm=",ExpressionUUID->"dae8d752-42df-479c-b756-0834db41405a"]
+  "Out[15]//TableForm=",ExpressionUUID->"d2eb7030-c0a5-4f40-bcc1-9e8d99e801fe"]
 }, Open  ]]
 }, Closed]],
 
@@ -3118,7 +3168,6 @@ Preserves ordering.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -3468,6 +3517,7 @@ that evaluates to a result matching the pattern.\"\>", "InformationUsageText",
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -3495,7 +3545,6 @@ that evaluates to a result matching the pattern.\"\>", "InformationUsageText",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
-                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`firstMatchingValue\"\>"}
                  },
@@ -3613,6 +3662,7 @@ that evaluates to a result matching the pattern.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -3898,8 +3948,7 @@ methodSpec", "=",
                     "{", "FunctionRepo`kullbackLeiblerDivergence`Private`sym",
                      "}"}]}]}], "]"}]}], ",", 
                     "FunctionRepo`kullbackLeiblerDivergence`Private`method", 
-                    ",", 
-                    "FunctionRepo`kullbackLeiblerDivergence`Private`\
+                    ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
 methodOpts", ",", "FunctionRepo`kullbackLeiblerDivergence`Private`domainp", 
                     ",", "FunctionRepo`kullbackLeiblerDivergence`Private`\
 domainq", ",", "FunctionRepo`kullbackLeiblerDivergence`Private`assumptions", 
@@ -4115,8 +4164,8 @@ assumptions", ",",
                     RowBox[{"LogLikelihood", "[", 
                     RowBox[{
                     "FunctionRepo`kullbackLeiblerDivergence`Private`p", ",", 
-                    RowBox[{
-                    "{", "FunctionRepo`kullbackLeiblerDivergence`Private`rv", 
+                    RowBox[{"{", 
+                    "FunctionRepo`kullbackLeiblerDivergence`Private`rv", 
                     "}"}]}], "]"}], "-", 
                     RowBox[{"LogLikelihood", "[", 
                     RowBox[{
@@ -4357,6 +4406,7 @@ from distribution Q to P", "Documentation" -> None, "OwnValues" -> None,
            If[
             
             FreeQ[{FunctionRepo`kullbackLeiblerDivergence`Private`p, 
+              
               FunctionRepo`kullbackLeiblerDivergence`Private`q}, \[FormalX]], \
 $CellContext`x = \[FormalX]]; {
             FunctionRepo`kullbackLeiblerDivergence`Private`method, 
@@ -4724,7 +4774,8 @@ data using the maximum spacing estimation method.\"\>", "InformationUsageText",
                     "FunctionRepo`maximumSpacingEstimation`Private`result", 
                     "]"}]}], ",", 
                     RowBox[{"\<\"MaxSpacingEstimate\"\>", "\[Rule]", 
-                    RowBox[{"First", "[", 
+                    RowBox[{
+                    "First", "[", 
                     "FunctionRepo`maximumSpacingEstimation`Private`result", 
                     "]"}]}]}], "]"}], ",", "$Failed"}], "]"}]}]}], "]"}]}]}
                     },
@@ -5512,7 +5563,6 @@ independents"}], "}"}], "]"}], ",",
                     BaselinePosition->{Baseline, {1, 1}},
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{1.}}}], False->
                     RowBox[{
@@ -5536,6 +5586,7 @@ independents"}], "}"}], "]"}], ",",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"FunctionRepo`multiNonlinearModelFit\"\
 \>"}
@@ -6436,8 +6487,7 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, 
-             GridBoxItemSize -> {
+             False, GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -6945,8 +6995,7 @@ Cell[BoxData[
                    "RowWithSeparators"], "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, 
-             GridBoxItemSize -> {
+             False, GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
@@ -7441,7 +7490,6 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
          {
           PaneBox[GridBox[{
              {
-              
               DynamicModuleBox[{System`InformationDump`open$$ = {
                False, False, False, False, False, False, False, False, False, 
                 False, False, False}}, 
@@ -7463,6 +7511,7 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
                     "FunctionRepo`tukeyMedianPolish`Private`mat_List", ",", 
                     RowBox[{
                     "FunctionRepo`tukeyMedianPolish`Private`outputType", ":", 
+                    
                     RowBox[{"\<\"Matrix\"\>", 
                     "|", "\<\"PropertyAssociation\"\>"}], 
                     ":", "\<\"Matrix\"\>"}], ",", 
@@ -7719,7 +7768,6 @@ itukeyMedianPolish", "]"}]}], "]"}]}], "]"}], "[",
                     ImageSize->Automatic],
                     Appearance->None,
                     BaseStyle->None,
-                    
                     ButtonFunction:>(Part[System`InformationDump`open$$, 9] = 
                     True),
                     Evaluator->Automatic,
@@ -7889,6 +7937,7 @@ polish algorithm to find row and column effects in a data matrix.\"\>",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -11408,8 +11457,9 @@ NAAAirm6HQ==
         ArrowBox[{{0., 2.}, {0., 1.}}, 0.02261146496815286]}, 
        {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
         0.7]}], {DiskBox[{0., 0.}, 0.02261146496815286], InsetBox[
-          RowBox[{"\[FormalX]", "(", "1", ")"}], Offset[{2, 2}, 
-          {0.02261146496815286, 0.02261146496815286}], ImageScaled[{0, 0}],
+          RowBox[{"\[FormalX]", "(", "1", ")"}], 
+          Offset[{2, 2}, {0.02261146496815286, 0.02261146496815286}], 
+          ImageScaled[{0, 0}],
           BaseStyle->"Graphics"]}, {DiskBox[{0., 1.}, 0.02261146496815286], 
          InsetBox[
           RowBox[{"\[FormalX]", "(", "2", ")"}], 
@@ -13454,8 +13504,7 @@ endpoints of the lines and arrows to the closes points.\"\>",
                     RowBox[{
                     RowBox[{"FunctionRepo`graphicsToGraph`Private`nf", "=", 
                     RowBox[{"Nearest", "[", 
-                    RowBox[{
-                    "FunctionRepo`graphicsToGraph`Private`pts", 
+                    RowBox[{"FunctionRepo`graphicsToGraph`Private`pts", 
                     "\[Rule]", "\<\"Index\"\>"}], "]"}]}], ";", 
                     RowBox[{"Graph", "[", 
                     RowBox[{
@@ -13702,8 +13751,7 @@ lines and arrows to the closes points.", "Documentation" -> None, "OwnValues" ->
               FunctionRepo`graphicsToGraph`Private`edges1, 
                FunctionRepo`graphicsToGraph`Private`edges2], {2}], 
              VertexCoordinates -> 
-             Thread[
-              FunctionRepo`graphicsToGraph`Private`vertices -> 
+             Thread[FunctionRepo`graphicsToGraph`Private`vertices -> 
                FunctionRepo`graphicsToGraph`Private`pts]], 
            Length[FunctionRepo`graphicsToGraph`Private`pts] > 0]]}], 
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
@@ -13727,7 +13775,8 @@ Cell[BoxData[
      LineBox[{{0.10768873888571645`, -0.06993584425640234}, {
       0.4420731707317076, -0.4742276422764235}}], 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
+      None], 
+      ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
        0.5242395980607011, 0.29813008130081364`}}]}, 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
       None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
@@ -14041,6 +14090,7 @@ operator form of GroupCases.\"\>", "InformationUsageText",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -14598,7 +14648,6 @@ specifies what property should be returned\"\>", "InformationUsageText",
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -15311,7 +15360,7 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"?", "WithCachedValues"}]], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"75189c5b-7f70-49a4-8f2c-334a4f4df12d"],
+ CellLabel->"In[38]:=",ExpressionUUID->"75189c5b-7f70-49a4-8f2c-334a4f4df12d"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -15357,30 +15406,32 @@ automatically memoizing function values of functions \
            BaseStyle->"InformationUsageSubtitleBackground",
            StripOnInput->False]},
          {
-          PaneBox[GridBox[{
-             {
-              
-              DynamicModuleBox[{System`InformationDump`open$$ = {
-               False, False, False, False, False, False, False, False, False, 
-                False, False, False}}, 
-               StyleBox[GridBox[{
-                  {
-                   TagBox[
-                    TooltipBox[
-                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
-                    StripOnInput->False],
-                    "\"Definitions\"",
-                    TooltipStyle->"TextStyling"],
-                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
-                    {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"Definitions\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "Definitions", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
                     RowBox[{
                     RowBox[{"WithCachedValues", "[", 
                     RowBox[{
+                    
                     RowBox[{
                     "FunctionRepo`WithCachedValues`Private`functions", ":", 
                     RowBox[{"{", "__Symbol", "}"}]}], ",", 
-                    "FunctionRepo`WithCachedValues`Private`expr_"}], "]"}], ":=", 
+                    "FunctionRepo`WithCachedValues`Private`expr_"}], "]"}], 
+                    ":=", 
                     RowBox[{"Internal`InheritedBlock", "[", 
+                    
                     RowBox[{
                     "FunctionRepo`WithCachedValues`Private`functions", ",", 
                     RowBox[{
@@ -15388,59 +15439,88 @@ automatically memoizing function values of functions \
                     RowBox[{
                     RowBox[{"Function", "[", 
                     RowBox[{
-                    RowBox[{
-                    "{", "FunctionRepo`WithCachedValues`Private`fun", "}"}], 
-                    ",", 
+                    
+                    RowBox[{"{", "FunctionRepo`WithCachedValues`Private`fun", 
+                    "}"}], ",", 
                     RowBox[{"Module", "[", 
                     RowBox[{
                     RowBox[{"{", 
+                    
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`outsideQ", 
+                    "=", "True"}], "}"}], ",", 
                     RowBox[{
-                    "FunctionRepo`WithCachedValues`Private`outsideQ", "=", 
-                    "True"}], "}"}], ",", 
-                    RowBox[{
-                    RowBox[{
-                    "DownValues", "[", 
+                    
+                    RowBox[{"DownValues", "[", 
                     "FunctionRepo`WithCachedValues`Private`fun", "]"}], "=", 
                     RowBox[{"Prepend", "[", 
                     RowBox[{
-                    RowBox[{
-                    "DownValues", "[", 
+                    
+                    RowBox[{"DownValues", "[", 
                     "FunctionRepo`WithCachedValues`Private`fun", "]"}], ",", 
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
                     RowBox[{
-                    RowBox[{
-                    "FunctionRepo`WithCachedValues`Private`fun", "[", 
-                    "FunctionRepo`WithCachedValues`Private`args___", "]"}], "/;",
-                     "FunctionRepo`WithCachedValues`Private`outsideQ"}], 
+                    
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`fun", "[", 
+                    "FunctionRepo`WithCachedValues`Private`args___", "]"}], 
+                    "/;", "FunctionRepo`WithCachedValues`Private`outsideQ"}], 
                     "]"}], "\[RuleDelayed]", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{
-                    "FunctionRepo`WithCachedValues`Private`fun", "[", 
-                    "FunctionRepo`WithCachedValues`Private`args", "]"}], "=", 
                     RowBox[{"Block", "[", 
                     RowBox[{
                     RowBox[{"{", 
+                    
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`outsideQ", 
+                    "=", "False"}], "}"}], ",", 
+                    RowBox[{"With", "[", 
                     RowBox[{
-                    "FunctionRepo`WithCachedValues`Private`outsideQ", "=", 
-                    "False"}], "}"}], ",", 
-                    RowBox[{
-                    "FunctionRepo`WithCachedValues`Private`fun", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`value", 
+                    "=", 
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`fun", "[", 
                     "FunctionRepo`WithCachedValues`Private`args", "]"}]}], 
-                    "]"}]}], ")"}]}]}], "]"}]}]}], "]"}], ",", "HoldFirst"}], 
-                    "]"}], ",", 
+                    "}"}], ",", 
                     RowBox[{
-                    "Unevaluated", "[", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`fun", "[", 
+                    "FunctionRepo`WithCachedValues`Private`args", "]"}], "=", 
+                    "FunctionRepo`WithCachedValues`Private`value"}], ")"}], 
+                    "/;", 
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`value", 
+                    "=!=", 
+                    RowBox[{"Unevaluated", "[", 
+                    
+                    RowBox[{"FunctionRepo`WithCachedValues`Private`fun", "[", 
+                    "FunctionRepo`WithCachedValues`Private`args", "]"}], 
+                    "]"}]}]}]}], "]"}]}], "]"}]}]}], "]"}]}]}], "]"}], ",", 
+                    "HoldFirst"}], "]"}], ",", 
+                    
+                    RowBox[{"Unevaluated", "[", 
                     "FunctionRepo`WithCachedValues`Private`functions", 
                     "]"}]}], "]"}], ";", 
-                    "FunctionRepo`WithCachedValues`Private`expr"}]}], "]"}]}]}
-                    },
-                    DefaultBaseStyle->"Column",
-                    GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
-                    GridBoxItemSize->{
-                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                    "FunctionRepo`WithCachedValues`Private`expr"}]}], 
+                    "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
                   {
                    TagBox[
                     TooltipBox[
@@ -15488,7 +15568,7 @@ automatically memoizing function values of functions \
                 Offset[0.2], {
                  Offset[3.6]}, 
                 Offset[0.2]}}],
-           FrameMargins->6], ""},
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
          {
           ItemBox[
            TagBox[
@@ -15576,6 +15656,7 @@ automatically memoizing function values of functions \
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -15648,19 +15729,26 @@ without permanently storing the values.", "Documentation" -> None,
                   FunctionRepo`WithCachedValues`Private`fun[
                    Pattern[FunctionRepo`WithCachedValues`Private`args, 
                     BlankNullSequence[]]], 
-                  FunctionRepo`WithCachedValues`Private`outsideQ]] :> (
-                FunctionRepo`WithCachedValues`Private`fun[
-                 FunctionRepo`WithCachedValues`Private`args] = 
-                Block[{FunctionRepo`WithCachedValues`Private`outsideQ = 
-                   False}, 
+                  FunctionRepo`WithCachedValues`Private`outsideQ]] :> 
+               Block[{FunctionRepo`WithCachedValues`Private`outsideQ = False}, 
+                 
+                 With[{FunctionRepo`WithCachedValues`Private`value = 
+                   FunctionRepo`WithCachedValues`Private`fun[
+                    FunctionRepo`WithCachedValues`Private`args]}, 
+                  Condition[
                   FunctionRepo`WithCachedValues`Private`fun[
-                  FunctionRepo`WithCachedValues`Private`args]])]], HoldFirst], 
+                    FunctionRepo`WithCachedValues`Private`args] = 
+                   FunctionRepo`WithCachedValues`Private`value, 
+                   FunctionRepo`WithCachedValues`Private`value =!= Unevaluated[
+                    FunctionRepo`WithCachedValues`Private`fun[
+                    FunctionRepo`WithCachedValues`Private`args]]]]]]], 
+            HoldFirst], 
            Unevaluated[FunctionRepo`WithCachedValues`Private`functions]]; 
          FunctionRepo`WithCachedValues`Private`expr]}], "SubValues" -> None, 
     "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {HoldAll}, "FullName" -> 
     "FunctionRepo`WithCachedValues"], False]]], "Output",
- CellLabel->"Out[3]=",ExpressionUUID->"42ae188e-2fe3-4c5a-9a83-4f4762545b76"]
+ CellLabel->"Out[38]=",ExpressionUUID->"ba28f84e-0b84-416f-b643-e76db48fca8a"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -15834,7 +15922,7 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1.2 Inherited,
-FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (June 9, 2020)",
+FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 14, 2020)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]
