@@ -31,45 +31,48 @@ convertDataFormat[_?emptyDataQ, "Matrix" | "Vector" | "ListOfRules"] := {};
 convertDataFormat[_?emptyDataQ, "RuleOfLists"] := {} -> {};
 convertDataFormat[_?emptyDataQ, "Assocation"] := <|"Input" -> {}, "Output" -> {}|>;
 
-convertDataFormat[data_, typeOut_String] /; MemberQ[Keys[$dataTypes], typeOut] := Module[{
-    typeIn = Catch @ KeyValueMap[
-        Function[
-            If[ MatchQ[data, #2],
-                Throw[#1]
-            ]
+convertDataFormat[data_, typeOut_String] /; MemberQ[Keys[$dataTypes], typeOut] := Catch[
+    Module[{
+        typeIn = Catch @ KeyValueMap[
+            Function[
+                If[ MatchQ[data, #2],
+                    Throw[#1]
+                ]
+            ],
+            $dataTypes
         ],
-        $dataTypes
-    ],
-    dataOut
-},
-    Condition[
-        If[ typeIn === typeOut, Return[data, Module]];
-        
-        dataOut = Developer`ToPackedArray /@ convertToRuleOfLists[data, typeIn];
-        If[ UnsameQ @@ Map[Length, dataOut],
-            Message[convertDataFormat::uneqLen];
-            Return[$Failed, Module]
-        ];
-        If[ And[
-                MatchQ[typeOut, "Matrix" | "Vector"],
-                MatchQ[dataOut, _ -> _?MatrixQ],
-                MatchQ[Dimensions[dataOut[[2]]], {_, _?(# > 1&)}]
+        dataOut
+    },
+        Condition[
+            If[ typeIn === typeOut, Throw[data, convertDataFormat]];
+            
+            dataOut = Developer`ToPackedArray /@ convertToRuleOfLists[data, typeIn];
+            If[ UnsameQ @@ Map[Length, dataOut],
+                Message[convertDataFormat::uneqLen];
+                Throw[$Failed, convertDataFormat]
+            ];
+            If[ And[
+                    MatchQ[typeOut, "Matrix" | "Vector"],
+                    MatchQ[dataOut, _ -> _?MatrixQ],
+                    MatchQ[Dimensions[dataOut[[2]]], {_, _?(# > 1&)}]
+                ]
+                ,
+                Message[convertDataFormat::outDim];
+                Throw[$Failed, convertDataFormat]
+            ];
+            dataOut = convertToTargetType[dataOut, typeOut];
+            If[ MatchQ[dataOut, $dataTypes[typeOut]]
+                ,
+                dataOut
+                ,
+                Message[convertDataFormat::convertFail, typeIn, typeOut];
+                $Failed
             ]
             ,
-            Message[convertDataFormat::outDim];
-            Return[$Failed, Module]
-        ];
-        dataOut = convertToTargetType[dataOut, typeOut];
-        If[ MatchQ[dataOut, $dataTypes[typeOut]]
-            ,
-            dataOut
-            ,
-            Message[convertDataFormat::convertFail, typeIn, typeOut];
-            $Failed
+            StringQ[typeIn]
         ]
-        ,
-        StringQ[typeIn]
-    ]
+    ],
+    convertDataFormat
 ];
 convertDataFormat[_, out_] := (
     Message[convertDataFormat::notImplemented, out];
