@@ -21,8 +21,8 @@ Get["FunctionRepo`convertDataFormat`"];
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
 
-expressionToFunction;
-Get["FunctionRepo`expressionToFunction`"];
+ExpressionToFunction;
+Get["FunctionRepo`ExpressionToFunction`"];
 
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
