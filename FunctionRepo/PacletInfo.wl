@@ -4,7 +4,7 @@
 
 Paclet[
     "Name" -> "FunctionRepo",
-    "Version" -> "1.0",
+    "Version" -> "1.1",
     "MathematicaVersion" -> "12.0+",
     "Creator" -> "Sjoerd Smit",
     "Extensions" -> {
