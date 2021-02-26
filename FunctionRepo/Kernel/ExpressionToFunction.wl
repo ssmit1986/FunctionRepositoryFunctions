@@ -6,7 +6,7 @@ GeneralUtilities`SetUsage[ExpressionToFunction, "ExpressionToFunction[expr$, var
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-Options[ExpressionToFunction] = {Attributes -> {}};
+Options[ExpressionToFunction] = {Attributes -> None, Evaluated -> False};
 Attributes[ExpressionToFunction] = {HoldAll};
 
 ExpressionToFunction[expr_, vars : (_Symbol | {__Symbol}) .., opts : OptionsPattern[]] := Apply[
@@ -19,7 +19,7 @@ ExpressionToFunction[expr_, vars : (_Symbol | {__Symbol}) .., opts : OptionsPatt
                     lst_List :> Unique["vecVar"],
                     {1}
                 ],
-                attributes = OptionValue[Attributes]
+                attributes = Replace[OptionValue[Attributes], None -> {}]
             },
                 With[{
                     rules = Flatten @ Map[
@@ -37,10 +37,15 @@ ExpressionToFunction[expr_, vars : (_Symbol | {__Symbol}) .., opts : OptionsPatt
                         Thread[{vars} -> symbols]
                     ]
                 },
-                    ReleaseHold @ Function[
-                        Evaluate[symbols],
-                            Evaluate[Hold[expr] /. rules],
-                            attributes
+                    If[ TrueQ @ OptionValue[Evaluated],
+                        Function[Evaluate[symbols], Evaluate[expr /. rules], attributes],
+                        ReleaseHold[
+                            Function[
+                                Evaluate[symbols],
+                                Evaluate[Hold[expr] /. rules],
+                                attributes
+                            ]
+                        ]
                     ]
                 ]
             ]
@@ -59,7 +64,7 @@ ExpressionToFunction[
         Null,
         Block[{##},
             With[{
-                attributes = OptionValue[Attributes],
+                attributes = Replace[OptionValue[Attributes], None -> {}],
                 rules = Flatten @ Map[
                         Function[
                             Replace[#1,
@@ -83,13 +88,21 @@ ExpressionToFunction[
                         {vars}
                     ]
             },
-                Activate[
-                    ReleaseHold @ Function[
-                        Null,
-                        Evaluate[Hold[expr] /. rules],
-                        attributes
+                If[ TrueQ @ OptionValue[Evaluated],
+                    Activate[
+                        Function[Null, Evaluate[expr /. rules], attributes],
+                        Slot
                     ],
-                    Slot
+                    Activate[
+                        ReleaseHold[
+                            Function[
+                                Null,
+                                Evaluate[Hold[expr] /. rules],
+                                attributes
+                            ]
+                        ],
+                        Slot
+                    ]
                 ]
             ]
         ],
