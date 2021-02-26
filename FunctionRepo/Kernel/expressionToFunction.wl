@@ -2,14 +2,14 @@
 
 BeginPackage["FunctionRepo`expressionToFunction`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[expressionToFunction, "expressionToFunction[expr$, var$1, var$2, $$] returns a function that takes var$i as arguments"];
+GeneralUtilities`SetUsage[ExpressionToFunction, "ExpressionToFunction[expr$, var$1, var$2, $$] returns a function that takes var$i as arguments"];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-Options[expressionToFunction] = {Attributes -> {}};
-Attributes[expressionToFunction] = {HoldAll};
+Options[ExpressionToFunction] = {Attributes -> {}};
+Attributes[ExpressionToFunction] = {HoldAll};
 
-expressionToFunction[expr_, vars : (_Symbol | {__Symbol}) .., opts : OptionsPattern[]] := Apply[
+ExpressionToFunction[expr_, vars : (_Symbol | {__Symbol}) .., opts : OptionsPattern[]] := Apply[
     Function[
         Null,
         Block[{##},
@@ -50,7 +50,7 @@ expressionToFunction[expr_, vars : (_Symbol | {__Symbol}) .., opts : OptionsPatt
     Flatten[Hold @@ Cases[Hold[vars], s_Symbol :> Hold[s], {1, 2}]]
 ];
 
-expressionToFunction[
+ExpressionToFunction[
     expr_,
     vars : Longest[((_Symbol | {__Symbol}) -> (_Integer?Positive | _String)) ..],
     opts : OptionsPattern[]
@@ -60,8 +60,7 @@ expressionToFunction[
         Block[{##},
             With[{
                 attributes = OptionValue[Attributes],
-                rules = Activate[
-                    Flatten @ Map[
+                rules = Flatten @ Map[
                         Function[
                             Replace[#1,
                                 {
@@ -82,14 +81,15 @@ expressionToFunction[
                             ]
                         ],
                         {vars}
+                    ]
+            },
+                Activate[
+                    ReleaseHold @ Function[
+                        Null,
+                        Evaluate[Hold[expr] /. rules],
+                        attributes
                     ],
                     Slot
-                ]
-            },
-                ReleaseHold @ Function[
-                    Null,
-                    Evaluate[Hold[expr] /. rules],
-                    attributes
                 ]
             ]
         ],

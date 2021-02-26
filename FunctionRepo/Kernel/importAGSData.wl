@@ -13,7 +13,7 @@ importAGSData[importString_String] := Module[{
 },
     groupStrings = extractGroupBlocks[importString];
     If[ groupStrings === {},
-        Return[$Failed]
+        Return[$Failed, Module]
     ];
     
     groupBlockData = ImportString[#, "CSV"]& /@ groupStrings;
@@ -58,11 +58,11 @@ processGroupBlock[{{"GROUP", groupName_String}, rest__List}] := Module[{
     assoc
 },
     If[ !(MatrixQ[data] && MatchQ[data, {{_String, __}..}]),
-        Return[$Failed]
+        Return[$Failed, Module]
     ];
     
     headers = FirstCase[data, {headingLabel, s__String} :> {s}];
-    If[ MissingQ[headers], Return[$Failed]];
+    If[ MissingQ[headers], Return[$Failed, Module]];
     
     assoc = GroupBy[
         DeleteCases[data, {headingLabel, __}],
