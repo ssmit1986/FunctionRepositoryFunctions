@@ -1,6 +1,4 @@
 Notebook[{
-
-Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
@@ -8,24 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[68]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ExpressionToFunction", "shdw", 
-   "\"Symbol \
-\\!\\(\\*RowBox[{\\\"\\\\\\\"ExpressionToFunction\\\\\\\"\\\"}]\\) appears in \
-multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\", \\\",\\\", \\\"\\\\\\\"Global`\
-\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \
-\\!\\(\\*RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\"}]\\) may shadow or be \
-shadowed by other definitions.\"", 2, 69, 3, 17016081090493088222, "Local", 
-   "FunctionRepo`ExpressionToFunction"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellLabel->
-  "During evaluation of \
-In[68]:=",ExpressionUUID->"d03a91cc-c1bc-4d9b-991e-8e7973d6f5f0"]
-}, Open  ]],
+ CellLabel->"In[3]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -268,7 +249,7 @@ Cell["ExpressionToFunction", \
 
 Cell[BoxData[
  RowBox[{"?", "ExpressionToFunction"}]], "Input",
- CellLabel->"In[70]:=",ExpressionUUID->"086b7cb7-f73e-474f-b11d-3a3b0ac27b2e"],
+ CellLabel->"In[5]:=",ExpressionUUID->"086b7cb7-f73e-474f-b11d-3a3b0ac27b2e"],
 
 Cell["Create a function from a simple polynomial:", "Text",
  TaggingRules->{},

@@ -1,6 +1,6 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`expressionToFunction`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`ExpressionToFunction`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[ExpressionToFunction, "ExpressionToFunction[expr$, var$1, var$2, $$] returns a function that takes var$i as arguments"];
 
