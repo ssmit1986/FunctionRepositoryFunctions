@@ -1,6 +1,8 @@
 # FunctionRepositoryFunctions
 A compilation of functions I submitted (or intend to submit) to the Wolfram Function Repository:
 
+* [ArgumentCount](https://resources.wolframcloud.com/FunctionRepository/resources/ArgumentCount) (Note that there's also a built-in function ``GeneralUtilities`ArgumentCount``)
+
 * [AsynchronousDynamicModule](https://resources.wolframcloud.com/FunctionRepository/resources/AsynchronousDynamicModule)
 
 * [CheckboxLegended](https://resources.wolframcloud.com/FunctionRepository/resources/CheckboxLegended)
