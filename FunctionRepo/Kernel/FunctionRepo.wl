@@ -3,6 +3,9 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 
+argumentCount;
+Get["FunctionRepo`argumentCount`"];
+
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
