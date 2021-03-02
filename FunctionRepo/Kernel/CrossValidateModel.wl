@@ -261,8 +261,8 @@ kFoldValidation[data_, nData_, estimator_, tester_, opts : OptionsPattern[]] := 
 ];
 
 subSamplingIndices[n_Integer, k_Integer] := AssociationThread[
-    {"TrainingSet", "ValidationSet"},
-    TakeDrop[RandomSample[Range[n]], Subtract[n, k]]
+    {"ValidationSet", "TrainingSet"},
+    TakeDrop[RandomSample[Range[n]], k]
 ];
 
 Options[subSamplingValidation] = {
