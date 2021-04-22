@@ -66,6 +66,9 @@ Get["FunctionRepo`SmoothCurve`"];
 SparseAssociation;
 Get["FunctionRepo`SparseAssociation`"];
 
+ScalableContentWindow;
+Get["FunctionRepo`ScalableContentWindow`"];
+
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 

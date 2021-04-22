@@ -6,7 +6,8 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[2]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ EmphasizeSyntaxErrors->True,
+ CellLabel->"In[9]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2672,6 +2673,70 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
+Cell["ScalableContentWindow", \
+"Subsection",ExpressionUUID->"7b52dd16-fbca-4ec3-b00b-9dcca3429ebf"],
+
+Cell[BoxData[
+ RowBox[{"?", "ScalableContentWindow"}]], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"c399a213-288e-41ea-a935-ee04690d634f"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"47d53391-ef55-4158-b5dd-c4b134429a43"],
+
+Cell[BoxData[
+ RowBox[{"ScalableContentWindow", "[", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"Disk", "[", "]"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[12]:=",ExpressionUUID->"ad2ef9ff-a499-47a7-9aa1-68da0e5f8dd9"],
+
+Cell[BoxData[
+ RowBox[{"ScalableContentWindow", "[", "\[IndentingNewLine]", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", "x", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"Evaluate", "@", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Labeled", "[", 
+          RowBox[{
+           RowBox[{"x", "^", "n"}], ",", 
+           RowBox[{"x", "^", "n"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"n", ",", "1", ",", "3"}], "}"}]}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", 
+        RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", "\"\<Polynomials\>\""}]}], "]"}]}], 
+   "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[15]:=",ExpressionUUID->"55abbc45-9655-4528-96e3-3fd6ec8875d4"],
+
+Cell[BoxData[
+ RowBox[{"ScalableContentWindow", "[", "\[IndentingNewLine]", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"Sin", "[", 
+       RowBox[{"x", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"a", " ", "x"}]}], ")"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "0", ",", "6"}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "1"}], "}"}], ",", 
+      RowBox[{"ControlType", "\[Rule]", "InputField"}]}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[23]:=",ExpressionUUID->"8f8a4243-66e9-4487-9231-708a4891ff0a"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["SymbolicSort", \
 "Subsection",ExpressionUUID->"c23a7756-5099-4bf1-9895-d8276eef9566"],
 
@@ -2895,7 +2960,7 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1.2 Inherited,
-FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 14, 2020)",
+FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]

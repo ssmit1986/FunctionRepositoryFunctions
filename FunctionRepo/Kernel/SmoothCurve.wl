@@ -12,7 +12,8 @@ SmoothCurve[pts_?MatrixQ, opts : OptionsPattern[]] := Module[{
     controlPoints,
     tvec
 },
-]
+    pts
+];
 
 chebyshevNodes[npts_Integer] := Rescale[
     NumericalSort @ Cos[Pi * Divide[Range[0, npts - 1], npts - 1]]
