@@ -11,7 +11,10 @@ Begin["`Private`"] (* Begin Private Context *)
 
 Options[ScalableContentWindow] = Options[Notebook];
 
-ScalableContentWindow[content_, alignment : _ : {Center, Center}, opts : OptionsPattern[Notebook]] := CreateDocument[
+ScalableContentWindow[content_, opts : OptionsPattern[]] :=
+    ScalableContentWindow[content, {Center, Center}, opts];
+
+ScalableContentWindow[content_, alignment_, opts : OptionsPattern[]] := CreateDocument[
     {
         Cell[
             BoxData @ ToBoxes[
