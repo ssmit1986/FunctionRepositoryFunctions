@@ -26,10 +26,10 @@ ScalableContentWindow[content_, alignment_, opts : OptionsPattern[]] := CreateDo
                             Alignment -> alignment,
                             ImageSizeAction -> "ResizeToFit"
                         ],
-                        size = 0.99 * CurrentValue[EvaluationNotebook[], WindowSize]
+                        size = 0.99 * AbsoluteCurrentValue[EvaluationNotebook[], WindowSize]
                     ],
                     Initialization :> (
-                        size = 0.99 * CurrentValue[EvaluationNotebook[], WindowSize]
+                        size = 0.99 * AbsoluteCurrentValue[EvaluationNotebook[], WindowSize]
                     )
                 ]
             ]
