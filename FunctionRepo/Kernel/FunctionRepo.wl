@@ -69,6 +69,9 @@ Get["FunctionRepo`SparseAssociation`"];
 ScalableContentWindow;
 Get["FunctionRepo`ScalableContentWindow`"];
 
+SelfReferentialAssociation;
+Get["FunctionRepo`SelfReferentialAssociation`"];
+
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 
