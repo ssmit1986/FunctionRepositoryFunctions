@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[25]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2074,7 +2074,7 @@ Cell[BoxData[
      RowBox[{"\"\<c\>\"", "\[Rule]", " ", 
       RowBox[{"StringTemplate", "[", "\"\<`a` + `b`\>\"", "]"}]}]}], 
     "\[IndentingNewLine]", "|>"}], "\[IndentingNewLine]", "]"}]}]], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"e7b0fe11-1c5b-4f7a-a440-3354bb8cf919"],
+ CellLabel->"In[17]:=",ExpressionUUID->"e7b0fe11-1c5b-4f7a-a440-3354bb8cf919"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -2083,22 +2083,33 @@ Cell[BoxData[
     "SummaryHead"], "[", 
    DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
     TemplateBox[{
-      PaneSelectorBox[{
-       False -> GridBox[{{"\"\[LeftAssociation]\[RightAssociation]\"", 
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            "\"\[LeftAssociation]\[RightAssociation]\"", 
             GridBox[{{
                RowBox[{
-                 TagBox["\"Data keys \"", "SummaryItemAnnotation"], 
+                 TagBox["\"Number of data keys \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
-                 TagBox[
-                  TemplateBox[{",", "\",\"", "\"a\""}, "RowWithSeparators"], 
-                  "SummaryItem"]}]}, {
+                 TagBox["1", "SummaryItem"]}]}, {
                RowBox[{
-                 TagBox["\"Expression keys \"", "SummaryItemAnnotation"], 
-                 "\[InvisibleSpace]", 
                  TagBox[
-                  
-                  TemplateBox[{",", "\",\"", "\"b\"", "\"c\""}, 
-                   "RowWithSeparators"], "SummaryItem"]}]}}, 
+                 "\"Number of Expression keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["2", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Total keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["3", "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
              False, GridBoxItemSize -> {
@@ -2111,22 +2122,48 @@ Cell[BoxData[
           AutoDelete -> False, 
           GridBoxItemSize -> {
            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-          BaselinePosition -> {1, 1}], True -> 
-        GridBox[{{"\"\[LeftAssociation]\[RightAssociation]\"", 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            "\"\[LeftAssociation]\[RightAssociation]\"", 
             GridBox[{{
+               RowBox[{
+                 TagBox["\"Number of data keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["1", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                 "\"Number of Expression keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["2", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Total keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["3", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Data keys \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
                  TagBox[
-                  TemplateBox[{",", "\",\"", "\"a\""}, "RowWithSeparators"], 
+                  TagBox[
+                   RowBox[{"{", "\"a\"", "}"}], Short[#, 3]& ], 
                   "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Expression keys \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
                  TagBox[
-                  
-                  TemplateBox[{",", "\",\"", "\"b\"", "\"c\""}, 
-                   "RowWithSeparators"], "SummaryItem"]}]}}, 
+                  TagBox[
+                   RowBox[{"{", 
+                    RowBox[{"\"b\"", ",", "\"c\""}], "}"}], Short[#, 3]& ], 
+                  "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
              False, GridBoxItemSize -> {
@@ -2154,7 +2191,7 @@ Cell[BoxData[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[4]=",ExpressionUUID->"c051616e-e278-4844-90ed-69d495d3e8b4"]
+ CellLabel->"Out[17]=",ExpressionUUID->"1c0166b7-a207-440c-b25c-f0b8e3a65604"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2163,17 +2200,112 @@ Cell[BoxData[{
  RowBox[{"sAssoc", "[", "\"\<a\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{"sAssoc", "[", "\"\<b\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{"sAssoc", "[", "\"\<c\>\"", "]"}]}], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"883c42a8-01d2-4ada-bec2-06655dd95296"],
+ CellLabel->"In[21]:=",ExpressionUUID->"883c42a8-01d2-4ada-bec2-06655dd95296"],
 
 Cell[BoxData["1"], "Output",
- CellLabel->"Out[5]=",ExpressionUUID->"e480c6db-6806-4f71-a9fd-07ffa5221d9c"],
+ CellLabel->"Out[21]=",ExpressionUUID->"25e4ed0d-c330-44a6-8f70-a9a651685d47"],
 
 Cell[BoxData[
  RowBox[{"Sin", "[", "1", "]"}]], "Output",
- CellLabel->"Out[6]=",ExpressionUUID->"b18f1f7c-a7ca-4a0f-ac9a-bfd0af53fe50"],
+ CellLabel->"Out[22]=",ExpressionUUID->"324b620e-d2d4-4e12-853f-62f30f5f00e2"],
 
 Cell[BoxData["\<\"1 + 0.841471\"\>"], "Output",
- CellLabel->"Out[7]=",ExpressionUUID->"5c3a33d9-b37b-46b3-b851-eea0b5dbd46d"]
+ CellLabel->"Out[23]=",ExpressionUUID->"32364459-94a0-4c41-a8fb-d15131bd919d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"<|", 
+   RowBox[{"\"\<a\>\"", "\[Rule]", " ", "1"}], "|>"}], "[", 
+  RowBox[{"[", 
+   RowBox[{"{", "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[24]:=",ExpressionUUID->"9486c1cd-2317-44aa-890a-a69a0802d40d"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[24]=",ExpressionUUID->"44f50b38-7ef6-40e2-9e26-58dec71d9e2a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Normal", "[", "sAssoc", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Keys", "[", "sAssoc", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Values", "[", "sAssoc", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "sAssoc", "]"}]}], "Input",
+ CellLabel->"In[28]:=",ExpressionUUID->"72741387-889c-40a1-970e-dbd761ad735f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"a\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"b\"\>", "\[Rule]", 
+    RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "\<\"1 + 0.841471\"\>"}]}], 
+  "}"}]], "Output",
+ CellLabel->"Out[28]=",ExpressionUUID->"678be093-d74a-4385-928f-b761deae2147"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>"}], "}"}]], "Output",
+ CellLabel->"Out[29]=",ExpressionUUID->"98232a9c-2107-4d0d-b79e-735136903c65"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", 
+   RowBox[{"Sin", "[", "1", "]"}], ",", "\<\"1 + 0.841471\"\>"}], 
+  "}"}]], "Output",
+ CellLabel->"Out[30]=",ExpressionUUID->"355bf2a7-7ad7-452c-9562-9fb45cbcfdb6"],
+
+Cell[BoxData["3"], "Output",
+ CellLabel->"Out[31]=",ExpressionUUID->"e7795f00-6a25-4cb0-930c-8dafafdce566"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", "\"\<b\>\"", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", 
+   RowBox[{"{", 
+    RowBox[{"\"\<b\>\"", ",", "\"\<c\>\""}], "}"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", "2", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3"}], "}"}], "]"}], "]"}]}], "Input",
+ CellLabel->"In[36]:=",ExpressionUUID->"aad938f2-820e-4945-b8e7-83985b66f8a1"],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", "1", "]"}]], "Output",
+ CellLabel->"Out[36]=",ExpressionUUID->"d5d9b475-8499-435a-906f-ec8efd7f040c"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"b\"\>", "\[Rule]", 
+    RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "\<\"1 + 0.841471\"\>"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[37]=",ExpressionUUID->"0ab84596-780a-46f9-bb37-19a494514700"],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", "1", "]"}]], "Output",
+ CellLabel->"Out[38]=",ExpressionUUID->"d0f9c465-7d56-486b-8f9f-5e796f1b1857"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"b\"\>", "\[Rule]", 
+    RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "\<\"1 + 0.841471\"\>"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[39]=",ExpressionUUID->"33604b3f-672d-4da3-9bf5-f8519862bccf"]
 }, Open  ]]
 }, Closed]],
 
