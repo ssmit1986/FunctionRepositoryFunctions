@@ -31,7 +31,7 @@ SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ]
             Function[expr, 
                 MatchQ[
                     Unevaluated[expr],
-                    _TemplateExpression| _TemplateObject | _StringTemplate
+                    _TemplateExpression| _TemplateObject
                 ],
                 HoldFirst
             ]
