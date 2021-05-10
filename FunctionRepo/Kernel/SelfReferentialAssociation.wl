@@ -7,19 +7,38 @@ TemplateObjects can be specified with TemplateSlots that query the Association i
 
 Begin["`Private`"] (* Begin Private Context *)
 
-SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := SelfReferentialAssociation[##, Keys[assoc]]& @@ Lookup[
-    GroupBy[
-        assoc,
-        Function[expr, 
-            MatchQ[
-                Unevaluated[expr],
-                _TemplateExpression| _TemplateObject | _StringTemplate
+SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Apply[
+    Function[
+        SelfReferentialAssociation[##,
+            Association @ KeyValueMap[
+                Function[{key, val},
+                        key -> DeleteDuplicates[ (* Find all dependent template slots that need to be computed to calculate this one *)
+                        Cases[val, 
+                            TemplateSlot[slot_String] /; KeyExistsQ[#2, slot] :> slot, 
+                            Infinity,
+                            Heads -> True
+                        ]
+                    ]
+                ],
+                #2
             ],
-            HoldFirst
+            Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *)
         ]
     ],
-    {False, True},
-    <||>
+    Lookup[
+        GroupBy[
+            assoc,
+            Function[expr, 
+                MatchQ[
+                    Unevaluated[expr],
+                    _TemplateExpression| _TemplateObject | _StringTemplate
+                ],
+                HoldFirst
+            ]
+        ],
+        {False, True},
+        <||>
+    ]
 ];
 
 SelfReferentialAssociation[assoc_?AssociationQ] := Failure["ConstructionFailure",
@@ -35,68 +54,86 @@ SelfReferentialAssociation[_] := Failure["ConstructionFailure",
     <|"MessageTemplate" -> "Can only construct SelfReferentialAssociation from an Association with String keys."|>
 ];
 
-SelfReferentialAssociation[data_, _, _][key_] /; KeyExistsQ[data, key] := data[key];
+SelfReferentialAssociation[data_, _, _, _][key_] /; KeyExistsQ[data, key] := data[key];
 
-(sAssoc : SelfReferentialAssociation[data_, exprs_, _])[key_] /; KeyExistsQ[exprs, key] := TemplateApply[
+(sAssoc : SelfReferentialAssociation[data_, exprs_, refs_, _])[key_] /; KeyExistsQ[exprs, key] := TemplateApply[
     exprs[key],
     Append[
         data,
         Map[
             # -> sAssoc[#]&,
-            DeleteDuplicates[ (* Find all template slots that need to be computed to calculate this one *)
-                Cases[exprs[key], 
-                    TemplateSlot[slot_String] /; KeyExistsQ[exprs, slot] :> slot, 
-                    Infinity,
-                    Heads -> True
-                ]
-            ]
+            refs[key]
         ]
     ]
 ];
-SelfReferentialAssociation[_, _, _][key_] := Missing["KeyAbsent", key];
+SelfReferentialAssociation[_, _, _, _][key_] := Missing["KeyAbsent", key];
 
 SelfReferentialAssociation /: MakeBoxes[
-    SelfReferentialAssociation[data_?AssociationQ, expr_?AssociationQ, keys_], 
+    SelfReferentialAssociation[data_?AssociationQ, expr_?AssociationQ, refs_, keys_], 
     form_
 ] := BoxForm`ArrangeSummaryBox["SelfReferentialAssociation",
     SelfReferentialAssociation[data, expr],
-    "\[LeftAssociation]\[RightAssociation]",
+    "\[LeftAssociation]\[Ellipsis]\[RightAssociation]",
     {
         BoxForm`SummaryItem[{"Number of data keys ", Length[Keys[data]]}],
-        BoxForm`SummaryItem[{"Number of Expression keys ", Length[Keys[expr]]}],
+        BoxForm`SummaryItem[{"Number of templated keys ", Length[Keys[expr]]}],
         BoxForm`SummaryItem[{"Total keys ", Length[keys]}]
     },
     {
         BoxForm`SummaryItem[{"Data keys ", Short[Keys[data], 3]}],
-        BoxForm`SummaryItem[{"Expression keys ", Short[Keys[expr], 3]}]
+        BoxForm`SummaryItem[{"Templated keys ", Short[Keys[expr], 3]}]
     },
     form
 ];
 
-SelfReferentialAssociation /: Keys[SelfReferentialAssociation[_, _, keys_List]] := keys;
-SelfReferentialAssociation /: Values[sAssoc : SelfReferentialAssociation[data_, expr_, keys_List]] := Values[
-    KeyTake[
-        Append[
-            data,
-            Map[# -> sAssoc[#]&, Keys[expr]]
-        ],
-        keys
-    ]
+SelfReferentialAssociation /: Normal[sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]] := KeyTake[
+    Join[data, expr],
+    keys
 ];
-SelfReferentialAssociation /: Normal[sAssoc : SelfReferentialAssociation[data_, expr_, keys_List]] := Thread[
-    keys -> Values[sAssoc]
-];
-SelfReferentialAssociation /: Length[SelfReferentialAssociation[_, _, keys_List]] := Length[keys];
 
-SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _], s_String] := sAssoc[s];
-SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _], strings : {__String}] := AssociationThread[
+SelfReferentialAssociation /: AssociationThread[sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]] := KeyTake[
+    Append[
+        data,
+        Map[# -> sAssoc[#]&, Keys[expr]]
+    ],
+    keys
+];
+
+SelfReferentialAssociation /: Keys[SelfReferentialAssociation[_, _, _, keys_List]] := keys;
+
+SelfReferentialAssociation /: Values[sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]] :=
+    Values @ AssociationThread[sAssoc];
+
+SelfReferentialAssociation /: Length[SelfReferentialAssociation[_, _, _, keys_List]] := Length[keys];
+
+SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _, _], s_String] := sAssoc[s];
+SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _, _], strings : {__String}] := AssociationThread[
     strings,
     sAssoc /@ strings
 ];
-SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, keys_List], i : _Integer | {___Integer}] := Part[
+SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _, keys_List], i : _Integer | {__Integer}] := Part[
     sAssoc,
     keys[[i]]
 ];
+SelfReferentialAssociation /: Part[SelfReferentialAssociation[_, _, _, _], {}] := <||>;
+
+SelfReferentialAssociation /: Join[
+    sAssocs : Longest[__SelfReferentialAssociation]
+] /; Length[{sAssocs}] > 1 := With[{
+    list = Normal /@ {sAssocs}
+},
+    SelfReferentialAssociation @ Apply[Join, list]
+];
+
+SelfReferentialAssociation /: Join[sAssoc_SelfReferentialAssociation, assoc : Longest[__?AssociationQ]] := 
+    SelfReferentialAssociation[Join[Normal @ sAssoc, assoc]];
+SelfReferentialAssociation /: Join[assoc : Longest[__?AssociationQ], sAssoc_SelfReferentialAssociation] :=
+    SelfReferentialAssociation[Join[assoc, Normal @ sAssoc]];
+
+SelfReferentialAssociation /: Append[sAssoc_SelfReferentialAssociation, new_] :=
+    SelfReferentialAssociation[Append[Normal @ sAssoc, new]];
+SelfReferentialAssociation /: Prepend[sAssoc_SelfReferentialAssociation, new_] :=
+    SelfReferentialAssociation[Prepend[Normal @ sAssoc, new]];
 
 End[] (* End Private Context *)
 
