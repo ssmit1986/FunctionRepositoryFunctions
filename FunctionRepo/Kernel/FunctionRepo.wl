@@ -60,8 +60,17 @@ Get["FunctionRepo`MultiNonlinearModelFit`"];
 multiSet;
 Get["FunctionRepo`multiSet`"];
 
+SmoothCurve;
+Get["FunctionRepo`SmoothCurve`"];
+
 SparseAssociation;
 Get["FunctionRepo`SparseAssociation`"];
+
+ScalableContentWindow;
+Get["FunctionRepo`ScalableContentWindow`"];
+
+SelfReferentialAssociation;
+Get["FunctionRepo`SelfReferentialAssociation`"];
 
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];

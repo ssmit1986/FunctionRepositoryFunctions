@@ -113,12 +113,15 @@ slotFunctionPattern = HoldPattern[Function[_] | Function[Null, __]];
 
 (* Turns a function with multiple slots into a function that accepts all arguments as a list in the first slot *)
 multiArgToVectorArgFunction[fit_FittedModel] := multiArgToVectorArgFunction[fit["Function"]];
-multiArgToVectorArgFunction[function : slotFunctionPattern] := Function @@ ReplaceAll[
-    Hold @@ function,
-    {
-        insideFun : slotFunctionPattern :> insideFun, (* Make sure only the outer function is affected *)
-        Slot[i_Integer] :> Slot[1][[i]]
-    }
+multiArgToVectorArgFunction[function : slotFunctionPattern] := Activate[
+    Function @@ ReplaceAll[
+        Hold @@ function,
+        {
+            insideFun : slotFunctionPattern :> insideFun, (* Make sure only the outer function is affected *)
+            Verbatim[Slot][i_Integer] :> Inactive[Slot][1][[i]]
+        }
+    ],
+    Slot
 ];
 multiArgToVectorArgFunction[other_] := Function[other @@ #];
 
@@ -261,8 +264,8 @@ kFoldValidation[data_, nData_, estimator_, tester_, opts : OptionsPattern[]] := 
 ];
 
 subSamplingIndices[n_Integer, k_Integer] := AssociationThread[
-    {"TrainingSet", "ValidationSet"},
-    TakeDrop[RandomSample[Range[n]], Subtract[n, k]]
+    {"ValidationSet", "TrainingSet"},
+    TakeDrop[RandomSample[Range[n]], k]
 ];
 
 Options[subSamplingValidation] = {

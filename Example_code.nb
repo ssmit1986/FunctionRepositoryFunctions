@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[2]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[25]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1467,6 +1467,850 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
+Cell["SelfReferentialAssociation", \
+"Subsection",ExpressionUUID->"12996abd-a209-4947-9aa2-405b85d07452"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "SelfReferentialAssociation"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"e69dca7c-5ee0-44bf-aa42-92964ab67e22"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"SelfReferentialAssociation\\\",\
+ \\\"[\\\", RowBox[{StyleBox[\\\"assoc\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) \
+creates an association in which TemplateObjects can be specified with \
+TemplateSlots that query the Association itself.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" SubValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"SubValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "SubValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"SelfReferentialAssociation", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`data_", 
+                    ",", "_"}], "]"}], "[", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`key_", 
+                    "]"}], "/;", 
+                    RowBox[{"KeyExistsQ", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`data", 
+                    ",", "FunctionRepo`SelfReferentialAssociation`Private`\
+key"}], "]"}]}], ":=", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`data", 
+                    "[", "FunctionRepo`SelfReferentialAssociation`Private`\
+key", "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`sAssoc", 
+                    ":", 
+                    RowBox[{"SelfReferentialAssociation", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`data_", 
+                    ",", "FunctionRepo`SelfReferentialAssociation`Private`\
+exprs_"}], "]"}]}], ")"}], "[", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`key_", 
+                    "]"}], "/;", 
+                    RowBox[{"KeyExistsQ", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`exprs", 
+                    ",", "FunctionRepo`SelfReferentialAssociation`Private`\
+key"}], "]"}]}], ":=", 
+                    RowBox[{"TemplateApply", "[", 
+                    RowBox[{
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`exprs", 
+                    "[", "FunctionRepo`SelfReferentialAssociation`Private`\
+key", "]"}], ",", 
+                    RowBox[{"Append", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`data", 
+                    ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"#1", "\[Rule]", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`sAssoc", 
+                    "[", "#1", "]"}]}], "&"}], ")"}], "/@", 
+                    RowBox[{"DeleteDuplicates", "[", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`exprs", 
+                    "[", "FunctionRepo`SelfReferentialAssociation`Private`\
+key", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{"TemplateSlot", "[", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`slot_\
+String", "]"}], "/;", 
+                    RowBox[{"KeyExistsQ", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`exprs", 
+                    ",", "FunctionRepo`SelfReferentialAssociation`Private`\
+slot"}], "]"}]}], "\[RuleDelayed]", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`slot"}], 
+                    ",", "\[Infinity]", ",", 
+                    RowBox[{"Heads", "\[Rule]", "True"}]}], "]"}], "]"}]}]}], 
+                    "]"}]}], "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"SelfReferentialAssociation", "[", 
+                    RowBox[{"_", ",", "_"}], "]"}], "[", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`key_", 
+                    "]"}], ":=", 
+                    RowBox[{"Missing", "[", 
+                    
+                    RowBox[{
+                    "\"KeyAbsent\"", ",", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`key"}], 
+                    "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]},
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" DownValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"DownValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "DownValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"SelfReferentialAssociation", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`assoc_", 
+                    "?", "AssociationQ"}], "]"}], "/;", 
+                    RowBox[{"AllTrue", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"Keys", "[", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`assoc", 
+                    "]"}], ",", "StringQ"}], "]"}]}], ":=", 
+                    RowBox[{"SelfReferentialAssociation", "@@", 
+                    RowBox[{"Lookup", "[", 
+                    RowBox[{
+                    RowBox[{"GroupBy", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`assoc", 
+                    ",", 
+                    RowBox[{"Function", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`expr", 
+                    ",", 
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"Unevaluated", "[", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`expr", 
+                    "]"}], ",", 
+                    
+                    RowBox[{"_TemplateExpression", "|", "_TemplateObject", 
+                    "|", "_StringTemplate"}]}], "]"}], ",", "HoldFirst"}], 
+                    "]"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"False", ",", "True"}], "}"}], ",", 
+                    RowBox[{"Association", "[", "]"}]}], "]"}]}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{"SelfReferentialAssociation", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`SelfReferentialAssociation`Private`assoc_", 
+                    "?", "AssociationQ"}], "]"}], ":=", 
+                    RowBox[{"Failure", "[", 
+                    RowBox[{"\"ConstructionFailure\"", ",", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"\"MessageTemplate\"", "\[Rule]", 
+                    "\"Key(s) `Keys` are not Strings.\""}], ",", 
+                    RowBox[{"\"MessageParameters\"", "\[Rule]", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{"\"Keys\"", "\[Rule]", 
+                    RowBox[{"Select", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"Keys", "[", 
+                    "FunctionRepo`SelfReferentialAssociation`Private`assoc", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"!", 
+                    RowBox[{"StringQ", "[", "#1", "]"}]}], "&"}]}], "]"}]}], 
+                    "]"}]}]}], "]"}]}], "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{"SelfReferentialAssociation", "[", "_", "]"}], 
+                    ":=", 
+                    RowBox[{"Failure", "[", 
+                    RowBox[{"\"ConstructionFailure\"", ",", 
+                    RowBox[{"Association", "[", 
+                    
+                    RowBox[{"\"MessageTemplate\"", "\[Rule]", 
+                    "\"Can only construct SelfReferentialAssociation from an \
+Association with String keys.\""}], "]"}]}], "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]},
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" Format Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"FormatValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "FormatValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    StyleBox[
+                    "MakeBoxes[SelfReferentialAssociation[(FunctionRepo`\
+SelfReferentialAssociation`Private`data_)?AssociationQ, \
+(FunctionRepo`SelfReferentialAssociation`Private`expr_)?AssociationQ], \
+FunctionRepo`SelfReferentialAssociation`Private`form_] ^:= \
+BoxForm`ArrangeSummaryBox[\"SelfReferentialAssociation\", \
+SelfReferentialAssociation[FunctionRepo`SelfReferentialAssociation`Private`\
+data, FunctionRepo`SelfReferentialAssociation`Private`expr], \"\
+\[LeftAssociation]\[RightAssociation]\", {BoxForm`SummaryItem[{\"Data keys \
+\", Row[Keys[FunctionRepo`SelfReferentialAssociation`Private`data], \",\"]}], \
+BoxForm`SummaryItem[{\"Expression keys \", \
+Row[Keys[FunctionRepo`SelfReferentialAssociation`Private`expr], \",\"]}]}, \
+{}, FunctionRepo`SelfReferentialAssociation`Private`form]", 
+                    ShowStringCharacters -> True, NumberMarks -> True]}, {
+                   " "}}, ColumnAlignments -> Left, 
+                  GridBaseline -> {Baseline, {1, 1}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], \
+"\<\"FunctionRepo`SelfReferentialAssociation\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"SelfReferentialAssociation\\\",\
+ \\\"[\\\", RowBox[{StyleBox[\\\"assoc\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) \
+creates an association in which TemplateObjects can be specified with \
+TemplateSlots that query the Association itself.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {3., 9.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"SelfReferentialAssociation\", \"[\", \
+RowBox[{StyleBox[\"assoc\", \"TI\"]}], \"]\"}]\) creates an association in \
+which TemplateObjects can be specified with TemplateSlots that query the \
+Association itself.", "Documentation" -> None, "OwnValues" -> None, 
+    "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`SelfReferentialAssociation, {Condition[
+         FunctionRepo`SelfReferentialAssociation[
+          PatternTest[
+           Pattern[FunctionRepo`SelfReferentialAssociation`Private`assoc, 
+            Blank[]], AssociationQ]], 
+         AllTrue[
+          Keys[FunctionRepo`SelfReferentialAssociation`Private`assoc], 
+          StringQ]] :> Apply[FunctionRepo`SelfReferentialAssociation, 
+         Lookup[
+          GroupBy[FunctionRepo`SelfReferentialAssociation`Private`assoc, 
+           Function[FunctionRepo`SelfReferentialAssociation`Private`expr, 
+            MatchQ[
+             Unevaluated[
+             FunctionRepo`SelfReferentialAssociation`Private`expr], 
+             Alternatives[
+              Blank[TemplateExpression], 
+              Blank[TemplateObject], 
+              Blank[StringTemplate]]], HoldFirst]], {False, True}, 
+          Association[]]], FunctionRepo`SelfReferentialAssociation[
+         PatternTest[
+          Pattern[FunctionRepo`SelfReferentialAssociation`Private`assoc, 
+           Blank[]], AssociationQ]] :> Failure["ConstructionFailure", 
+         Association[
+         "MessageTemplate" -> "Key(s) `Keys` are not Strings.", 
+          "MessageParameters" -> Association["Keys" -> Select[
+              Keys[FunctionRepo`SelfReferentialAssociation`Private`assoc], Not[
+               StringQ[#]]& ]]]], FunctionRepo`SelfReferentialAssociation[
+         Blank[]] :> Failure["ConstructionFailure", 
+         Association[
+         "MessageTemplate" -> 
+          "Can only construct SelfReferentialAssociation from an Association \
+with String keys."]]}], "SubValues" -> 
+    Information`InformationValueForm[
+     SubValues, FunctionRepo`SelfReferentialAssociation, {Condition[
+         FunctionRepo`SelfReferentialAssociation[
+          Pattern[FunctionRepo`SelfReferentialAssociation`Private`data, 
+           Blank[]], 
+          Blank[]][
+          Pattern[FunctionRepo`SelfReferentialAssociation`Private`key, 
+           Blank[]]], 
+         KeyExistsQ[
+         FunctionRepo`SelfReferentialAssociation`Private`data, 
+          FunctionRepo`SelfReferentialAssociation`Private`key]] :> 
+       FunctionRepo`SelfReferentialAssociation`Private`data[
+        FunctionRepo`SelfReferentialAssociation`Private`key], Condition[
+         Pattern[FunctionRepo`SelfReferentialAssociation`Private`sAssoc, 
+          FunctionRepo`SelfReferentialAssociation[
+           Pattern[FunctionRepo`SelfReferentialAssociation`Private`data, 
+            Blank[]], 
+           Pattern[FunctionRepo`SelfReferentialAssociation`Private`exprs, 
+            Blank[]]]][
+          Pattern[FunctionRepo`SelfReferentialAssociation`Private`key, 
+           Blank[]]], 
+         KeyExistsQ[
+         FunctionRepo`SelfReferentialAssociation`Private`exprs, 
+          FunctionRepo`SelfReferentialAssociation`Private`key]] :> 
+       TemplateApply[
+         FunctionRepo`SelfReferentialAssociation`Private`exprs[
+         FunctionRepo`SelfReferentialAssociation`Private`key], 
+         Append[FunctionRepo`SelfReferentialAssociation`Private`data, 
+          
+          Map[# -> 
+           FunctionRepo`SelfReferentialAssociation`Private`sAssoc[#]& , 
+           DeleteDuplicates[
+            Cases[
+             FunctionRepo`SelfReferentialAssociation`Private`exprs[
+             FunctionRepo`SelfReferentialAssociation`Private`key], Condition[
+               TemplateSlot[
+                Pattern[FunctionRepo`SelfReferentialAssociation`Private`slot, 
+                 Blank[String]]], 
+               KeyExistsQ[
+               FunctionRepo`SelfReferentialAssociation`Private`exprs, 
+                FunctionRepo`SelfReferentialAssociation`Private`slot]] :> 
+             FunctionRepo`SelfReferentialAssociation`Private`slot, Infinity, 
+             Heads -> True]]]]], FunctionRepo`SelfReferentialAssociation[
+         Blank[], 
+         Blank[]][
+         Pattern[FunctionRepo`SelfReferentialAssociation`Private`key, 
+          Blank[]]] :> 
+       Missing["KeyAbsent", 
+         FunctionRepo`SelfReferentialAssociation`Private`key]}], 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> 
+    Information`InformationValueForm[
+     FormatValues, FunctionRepo`SelfReferentialAssociation, {MakeBoxes[
+         FunctionRepo`SelfReferentialAssociation[
+          PatternTest[
+           Pattern[FunctionRepo`SelfReferentialAssociation`Private`data, 
+            Blank[]], AssociationQ], 
+          PatternTest[
+           Pattern[FunctionRepo`SelfReferentialAssociation`Private`expr, 
+            Blank[]], AssociationQ]], 
+         Pattern[FunctionRepo`SelfReferentialAssociation`Private`form, 
+          Blank[]]] :> BoxForm`ArrangeSummaryBox["SelfReferentialAssociation", 
+         FunctionRepo`SelfReferentialAssociation[
+         FunctionRepo`SelfReferentialAssociation`Private`data, 
+          FunctionRepo`SelfReferentialAssociation`Private`expr], 
+         "\[LeftAssociation]\[RightAssociation]", {
+          BoxForm`SummaryItem[{"Data keys ", 
+            Row[
+             Keys[FunctionRepo`SelfReferentialAssociation`Private`data], 
+             ","]}], 
+          BoxForm`SummaryItem[{"Expression keys ", 
+            Row[
+             Keys[FunctionRepo`SelfReferentialAssociation`Private`expr], 
+             ","]}]}, {}, 
+         FunctionRepo`SelfReferentialAssociation`Private`form]}], "Options" -> 
+    None, "Attributes" -> {}, "FullName" -> 
+    "FunctionRepo`SelfReferentialAssociation"], False]]], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"bdfd9aa0-88df-4454-86ea-8dd514766acd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sAssoc", "=", 
+  RowBox[{"SelfReferentialAssociation", "[", "\[IndentingNewLine]", 
+   RowBox[{"<|", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\"\<a\>\"", "\[Rule]", " ", "1"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<b\>\"", "\[Rule]", " ", 
+      RowBox[{"TemplateExpression", "[", 
+       RowBox[{"Sin", "@", 
+        RowBox[{"TemplateSlot", "[", "\"\<a\>\"", "]"}]}], "]"}]}], " ", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<c\>\"", "\[Rule]", " ", 
+      RowBox[{"StringTemplate", "[", "\"\<`a` + `b`\>\"", "]"}]}]}], 
+    "\[IndentingNewLine]", "|>"}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"e7b0fe11-1c5b-4f7a-a440-3354bb8cf919"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["SelfReferentialAssociation",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            "\"\[LeftAssociation]\[RightAssociation]\"", 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Number of data keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["1", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                 "\"Number of Expression keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["2", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Total keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["3", "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            "\"\[LeftAssociation]\[RightAssociation]\"", 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Number of data keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["1", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                 "\"Number of Expression keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["2", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Total keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["3", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Data keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   RowBox[{"{", "\"a\"", "}"}], Short[#, 3]& ], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Expression keys \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  TagBox[
+                   RowBox[{"{", 
+                    RowBox[{"\"b\"", ",", "\"c\""}], "}"}], Short[#, 3]& ], 
+                  "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  FunctionRepo`SelfReferentialAssociation[
+   Association["a" -> 1], 
+   Association["b" -> TemplateExpression[
+      Sin[
+       TemplateSlot["a"]]], "c" -> TemplateObject[{
+       TemplateSlot["a"], " + ", 
+       TemplateSlot["b"]}, CombinerFunction -> StringJoin, InsertionFunction -> 
+      TextString]]],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellLabel->"Out[17]=",ExpressionUUID->"1c0166b7-a207-440c-b25c-f0b8e3a65604"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"sAssoc", "[", "\"\<a\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", "\"\<b\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", "\"\<c\>\"", "]"}]}], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"883c42a8-01d2-4ada-bec2-06655dd95296"],
+
+Cell[BoxData["1"], "Output",
+ CellLabel->"Out[21]=",ExpressionUUID->"25e4ed0d-c330-44a6-8f70-a9a651685d47"],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", "1", "]"}]], "Output",
+ CellLabel->"Out[22]=",ExpressionUUID->"324b620e-d2d4-4e12-853f-62f30f5f00e2"],
+
+Cell[BoxData["\<\"1 + 0.841471\"\>"], "Output",
+ CellLabel->"Out[23]=",ExpressionUUID->"32364459-94a0-4c41-a8fb-d15131bd919d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"<|", 
+   RowBox[{"\"\<a\>\"", "\[Rule]", " ", "1"}], "|>"}], "[", 
+  RowBox[{"[", 
+   RowBox[{"{", "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[24]:=",ExpressionUUID->"9486c1cd-2317-44aa-890a-a69a0802d40d"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[24]=",ExpressionUUID->"44f50b38-7ef6-40e2-9e26-58dec71d9e2a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Normal", "[", "sAssoc", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Keys", "[", "sAssoc", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Values", "[", "sAssoc", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "sAssoc", "]"}]}], "Input",
+ CellLabel->"In[28]:=",ExpressionUUID->"72741387-889c-40a1-970e-dbd761ad735f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"a\"\>", "\[Rule]", "1"}], ",", 
+   RowBox[{"\<\"b\"\>", "\[Rule]", 
+    RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "\<\"1 + 0.841471\"\>"}]}], 
+  "}"}]], "Output",
+ CellLabel->"Out[28]=",ExpressionUUID->"678be093-d74a-4385-928f-b761deae2147"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>"}], "}"}]], "Output",
+ CellLabel->"Out[29]=",ExpressionUUID->"98232a9c-2107-4d0d-b79e-735136903c65"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", 
+   RowBox[{"Sin", "[", "1", "]"}], ",", "\<\"1 + 0.841471\"\>"}], 
+  "}"}]], "Output",
+ CellLabel->"Out[30]=",ExpressionUUID->"355bf2a7-7ad7-452c-9562-9fb45cbcfdb6"],
+
+Cell[BoxData["3"], "Output",
+ CellLabel->"Out[31]=",ExpressionUUID->"e7795f00-6a25-4cb0-930c-8dafafdce566"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", "\"\<b\>\"", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", 
+   RowBox[{"{", 
+    RowBox[{"\"\<b\>\"", ",", "\"\<c\>\""}], "}"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", "2", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"sAssoc", "[", 
+  RowBox[{"[", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3"}], "}"}], "]"}], "]"}]}], "Input",
+ CellLabel->"In[36]:=",ExpressionUUID->"aad938f2-820e-4945-b8e7-83985b66f8a1"],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", "1", "]"}]], "Output",
+ CellLabel->"Out[36]=",ExpressionUUID->"d5d9b475-8499-435a-906f-ec8efd7f040c"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"b\"\>", "\[Rule]", 
+    RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "\<\"1 + 0.841471\"\>"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[37]=",ExpressionUUID->"0ab84596-780a-46f9-bb37-19a494514700"],
+
+Cell[BoxData[
+ RowBox[{"Sin", "[", "1", "]"}]], "Output",
+ CellLabel->"Out[38]=",ExpressionUUID->"d0f9c465-7d56-486b-8f9f-5e796f1b1857"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"b\"\>", "\[Rule]", 
+    RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "\<\"1 + 0.841471\"\>"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[39]=",ExpressionUUID->"33604b3f-672d-4da3-9bf5-f8519862bccf"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["tukeyMedianPolish", \
 "Subsection",ExpressionUUID->"e9e75c8c-5552-4968-99ba-f046fd15b3b5"],
 
@@ -2672,6 +3516,70 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
+Cell["ScalableContentWindow", \
+"Subsection",ExpressionUUID->"7b52dd16-fbca-4ec3-b00b-9dcca3429ebf"],
+
+Cell[BoxData[
+ RowBox[{"?", "ScalableContentWindow"}]], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"c399a213-288e-41ea-a935-ee04690d634f"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"47d53391-ef55-4158-b5dd-c4b134429a43"],
+
+Cell[BoxData[
+ RowBox[{"ScalableContentWindow", "[", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"Disk", "[", "]"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[12]:=",ExpressionUUID->"ad2ef9ff-a499-47a7-9aa1-68da0e5f8dd9"],
+
+Cell[BoxData[
+ RowBox[{"ScalableContentWindow", "[", "\[IndentingNewLine]", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", "x", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"Evaluate", "@", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Labeled", "[", 
+          RowBox[{
+           RowBox[{"x", "^", "n"}], ",", 
+           RowBox[{"x", "^", "n"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"n", ",", "1", ",", "3"}], "}"}]}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", 
+        RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", "\"\<Polynomials\>\""}]}], "]"}]}], 
+   "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[15]:=",ExpressionUUID->"55abbc45-9655-4528-96e3-3fd6ec8875d4"],
+
+Cell[BoxData[
+ RowBox[{"ScalableContentWindow", "[", "\[IndentingNewLine]", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"Sin", "[", 
+       RowBox[{"x", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"a", " ", "x"}]}], ")"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "0", ",", "6"}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "1"}], "}"}], ",", 
+      RowBox[{"ControlType", "\[Rule]", "InputField"}]}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[23]:=",ExpressionUUID->"8f8a4243-66e9-4487-9231-708a4891ff0a"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["SymbolicSort", \
 "Subsection",ExpressionUUID->"c23a7756-5099-4bf1-9895-d8276eef9566"],
 
@@ -2895,7 +3803,7 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1.2 Inherited,
-FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 14, 2020)",
+FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]
