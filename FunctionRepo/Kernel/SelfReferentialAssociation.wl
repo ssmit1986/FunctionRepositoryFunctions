@@ -117,24 +117,6 @@ cachedQuery[_, key_] := Missing["KeyAbsent", key];
     cachedQuery[sAssoc, key]
 ];
 
-SelfReferentialAssociation /: MakeBoxes[
-    SelfReferentialAssociation[data_?AssociationQ, expr_?AssociationQ, refs_, keys_], 
-    form_
-] := BoxForm`ArrangeSummaryBox["SelfReferentialAssociation",
-    SelfReferentialAssociation[data, expr],
-    "\[LeftAssociation]\[Ellipsis]\[RightAssociation]",
-    {
-        BoxForm`SummaryItem[{"Number of data keys ", Length[Keys[data]]}],
-        BoxForm`SummaryItem[{"Number of templated keys ", Length[Keys[expr]]}],
-        BoxForm`SummaryItem[{"Total keys ", Length[keys]}]
-    },
-    {
-        BoxForm`SummaryItem[{"Data keys ", Short[Keys[data], 3]}],
-        BoxForm`SummaryItem[{"Templated keys ", Short[Keys[expr], 3]}]
-    },
-    form
-];
-
 SelfReferentialAssociation /: Normal[sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]] := KeyTake[
     Join[data, expr],
     keys
@@ -171,7 +153,7 @@ SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _, 
 ];
 
 SelfReferentialAssociation /: Part[
-    sAssoc : SelfReferentialAssociation[__, -_, _, keys_List],
+    sAssoc : SelfReferentialAssociation[_, _, _, keys_List],
     All
 ] := AssociationThread[keys, Values[sAssoc]];
 
@@ -194,6 +176,24 @@ SelfReferentialAssociation /: Append[sAssoc_SelfReferentialAssociation, new_] :=
     SelfReferentialAssociation[Append[Normal @ sAssoc, new]];
 SelfReferentialAssociation /: Prepend[sAssoc_SelfReferentialAssociation, new_] :=
     SelfReferentialAssociation[Prepend[Normal @ sAssoc, new]];
+
+SelfReferentialAssociation /: MakeBoxes[
+    SelfReferentialAssociation[data_?AssociationQ, expr_?AssociationQ, refs_, keys_], 
+    form_
+] := BoxForm`ArrangeSummaryBox["SelfReferentialAssociation",
+    SelfReferentialAssociation[data, expr],
+    "\[LeftAssociation]\[Ellipsis]\[RightAssociation]",
+    {
+        BoxForm`SummaryItem[{"Number of data keys ", Length[Keys[data]]}],
+        BoxForm`SummaryItem[{"Number of templated keys ", Length[Keys[expr]]}],
+        BoxForm`SummaryItem[{"Total keys ", Length[keys]}]
+    },
+    {
+        BoxForm`SummaryItem[{"Data keys ", Short[Keys[data], 3]}],
+        BoxForm`SummaryItem[{"Templated keys ", Short[Keys[expr], 3]}]
+    },
+    form
+];
 
 End[] (* End Private Context *)
 
