@@ -7,25 +7,16 @@ TemplateObjects can be specified with TemplateSlots that query the Association i
 
 Begin["`Private`"] (* Begin Private Context *)
 
-SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Apply[
-    Function[
-        SelfReferentialAssociation[##,
-            Association @ KeyValueMap[
-                Function[{key, val},
-                        key -> DeleteDuplicates[ (* Find all dependent template slots that need to be computed to calculate this one *)
-                        Cases[val, 
-                            TemplateSlot[slot_String] /; KeyExistsQ[#2, slot] :> slot, 
-                            Infinity,
-                            Heads -> True
-                        ]
-                    ]
-                ],
-                #2
-            ],
-            Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *)
-        ]
-    ],
-    Lookup[
+acyclicDependencyQ[refAssoc_?AssociationQ] := TrueQ @ AcyclicGraphQ @ Graph[
+    Flatten @ KeyValueMap[
+        Thread[DirectedEdge[##]]&,
+        refAssoc
+    ]
+];
+acyclicDependencyQ[_] := False;
+
+SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Module[{
+    splitAssoc = Lookup[
         GroupBy[
             assoc,
             Function[expr, 
@@ -38,6 +29,34 @@ SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ]
         ],
         {False, True},
         <||>
+    ],
+    refs
+},
+    refs = Association @ KeyValueMap[
+        Function[{key, val},
+            key -> DeleteDuplicates[ (* Find all dependent template slots that need to be computed to calculate this one *)
+                Cases[val, 
+                    TemplateSlot[slot_String] :> slot, 
+                    Infinity,
+                    Heads -> True
+                ]
+            ]
+        ],
+        splitAssoc[[2]]
+    ];
+    If[ acyclicDependencyQ[refs]
+        ,
+        SelfReferentialAssociation[
+            Sequence @@ splitAssoc,
+            refs,
+            Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *)
+        ]
+        ,
+        Failure["ConstructionFailure",
+            <|
+                "MessageTemplate" -> "Cyclic dependency of keys detected."
+            |>
+        ]
     ]
 ];
 
@@ -54,19 +73,30 @@ SelfReferentialAssociation[_] := Failure["ConstructionFailure",
     <|"MessageTemplate" -> "Can only construct SelfReferentialAssociation from an Association with String keys."|>
 ];
 
-SelfReferentialAssociation[data_, _, _, _][key_] /; KeyExistsQ[data, key] := data[key];
+cachedQuery[
+    sAssoc : SelfReferentialAssociation[data_, _, _, _],
+    key_String
+] /; KeyExistsQ[data, key] := (cachedQuery[sAssoc, key] = data[key]);
 
-(sAssoc : SelfReferentialAssociation[data_, exprs_, refs_, _])[key_] /; KeyExistsQ[exprs, key] := TemplateApply[
-    exprs[key],
-    Append[
-        data,
-        Map[
-            # -> sAssoc[#]&,
-            refs[key]
+cachedQuery[
+    sAssoc : SelfReferentialAssociation[data_, exprs_, refs_, _],
+    key_String
+] /; KeyExistsQ[exprs, key] := (
+    cachedQuery[sAssoc, key] = TemplateApply[
+        exprs[key],
+        AssociationThread[
+            refs[key],
+            Map[cachedQuery[sAssoc, #]&, refs[key]]
         ]
     ]
+);
+cachedQuery[_, key_] := Missing["KeyAbsent", key];
+
+(sAssoc : SelfReferentialAssociation[_, _, _, _])[key_] := Internal`InheritedBlock[{
+    cachedQuery
+},
+    cachedQuery[sAssoc, key]
 ];
-SelfReferentialAssociation[_, _, _, _][key_] := Missing["KeyAbsent", key];
 
 SelfReferentialAssociation /: MakeBoxes[
     SelfReferentialAssociation[data_?AssociationQ, expr_?AssociationQ, refs_, keys_], 
@@ -91,30 +121,41 @@ SelfReferentialAssociation /: Normal[sAssoc : SelfReferentialAssociation[data_, 
     keys
 ];
 
-SelfReferentialAssociation /: AssociationThread[sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]] := KeyTake[
-    Append[
-        data,
-        Map[# -> sAssoc[#]&, Keys[expr]]
-    ],
-    keys
-];
-
 SelfReferentialAssociation /: Keys[SelfReferentialAssociation[_, _, _, keys_List]] := keys;
 
-SelfReferentialAssociation /: Values[sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]] :=
-    Values @ AssociationThread[sAssoc];
+SelfReferentialAssociation /: Values[
+    sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]
+] := Internal`InheritedBlock[{
+    cachedQuery
+},
+    cachedQuery[sAssoc, #]& /@ keys
+];
 
 SelfReferentialAssociation /: Length[SelfReferentialAssociation[_, _, _, keys_List]] := Length[keys];
 
 SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _, _], s_String] := sAssoc[s];
-SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _, _], strings : {__String}] := AssociationThread[
-    strings,
-    sAssoc /@ strings
+SelfReferentialAssociation /: Part[
+    sAssoc : SelfReferentialAssociation[_, _, _, _],
+    strings : {__String}
+] := Internal`InheritedBlock[{
+    cachedQuery
+},
+    AssociationThread[
+        strings,
+        cachedQuery[sAssoc, #]& /@ strings
+    ]
 ];
+
 SelfReferentialAssociation /: Part[sAssoc : SelfReferentialAssociation[_, _, _, keys_List], i : _Integer | {__Integer}] := Part[
     sAssoc,
     keys[[i]]
 ];
+
+SelfReferentialAssociation /: Part[
+    sAssoc : SelfReferentialAssociation[__, -_, _, keys_List],
+    All
+] := AssociationThread[keys, Values[sAssoc]];
+
 SelfReferentialAssociation /: Part[SelfReferentialAssociation[_, _, _, _], {}] := <||>;
 
 SelfReferentialAssociation /: Join[
