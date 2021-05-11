@@ -15,6 +15,20 @@ acyclicDependencyQ[refAssoc_?AssociationQ] := TrueQ @ AcyclicGraphQ @ Graph[
 ];
 acyclicDependencyQ[_] := False;
 
+packIfSmaller[list_] := With[{
+    packedList = Developer`ToPackedArray[list]
+},
+    If[ ByteCount[packedList] < ByteCount[list],
+        packedList,
+        list
+    ]
+];
+
+SelfReferentialAssociation[rules : {__Rule}] := SelfReferentialAssociation[Association @ rules];
+
+SelfReferentialAssociation[] := SelfReferentialAssociation[<||>];
+SelfReferentialAssociation[<||>] := SelfReferentialAssociation[<||>, <||>, <||>, {}];
+
 SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Module[{
     splitAssoc = Lookup[
         GroupBy[
@@ -30,7 +44,8 @@ SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ]
         {False, True},
         <||>
     ],
-    refs
+    refs,
+    posIndex = First /@ PositionIndex[Keys[assoc]]
 },
     refs = Association @ KeyValueMap[
         Function[{key, val},
@@ -48,7 +63,7 @@ SelfReferentialAssociation[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ]
         ,
         SelfReferentialAssociation[
             Sequence @@ splitAssoc,
-            refs,
+            packIfSmaller /@ Map[posIndex, refs, {2}],
             Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *)
         ]
         ,
@@ -79,14 +94,18 @@ cachedQuery[
 ] /; KeyExistsQ[data, key] := (cachedQuery[sAssoc, key] = data[key]);
 
 cachedQuery[
-    sAssoc : SelfReferentialAssociation[data_, exprs_, refs_, _],
+    sAssoc : SelfReferentialAssociation[data_, exprs_, refs_, keyList_],
     key_String
 ] /; KeyExistsQ[exprs, key] := (
-    cachedQuery[sAssoc, key] = TemplateApply[
-        exprs[key],
-        AssociationThread[
-            refs[key],
-            Map[cachedQuery[sAssoc, #]&, refs[key]]
+    cachedQuery[sAssoc, key] = With[{
+        keys = keyList[[refs[key]]]
+    },
+        TemplateApply[
+            exprs[key],
+            AssociationThread[
+                keys,
+                Map[cachedQuery[sAssoc, #]&, keys]
+            ]
         ]
     ]
 );
