@@ -3,6 +3,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [ArgumentCount](https://resources.wolframcloud.com/FunctionRepository/resources/ArgumentCount) (Note that there's also a built-in function ``GeneralUtilities`ArgumentCount``)
 
+* AssociationTemplate (to be submitted)
+
 * [AsynchronousDynamicModule](https://resources.wolframcloud.com/FunctionRepository/resources/AsynchronousDynamicModule)
 
 * [CheckboxLegended](https://resources.wolframcloud.com/FunctionRepository/resources/CheckboxLegended)
@@ -24,8 +26,6 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
 
 * [MultiNonlinearModelFit](https://resources.wolframcloud.com/FunctionRepository/resources/MultiNonlinearModelFit)
-
-* SelfReferentialAssociation (to be submitted)
 
 * [SparseAssociation](https://resources.wolframcloud.com/FunctionRepository/resources/SparseAssociation)
 

@@ -6,6 +6,9 @@ BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 argumentCount;
 Get["FunctionRepo`argumentCount`"];
 
+AssociationTemplate;
+Get["FunctionRepo`AssociationTemplate`"];
+
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
@@ -68,9 +71,6 @@ Get["FunctionRepo`SparseAssociation`"];
 
 ScalableContentWindow;
 Get["FunctionRepo`ScalableContentWindow`"];
-
-SelfReferentialAssociation;
-Get["FunctionRepo`SelfReferentialAssociation`"];
 
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
