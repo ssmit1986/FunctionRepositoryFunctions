@@ -7,10 +7,17 @@ TemplateObjects can be specified with TemplateSlots that query the Association i
 
 Begin["`Private`"] (* Begin Private Context *)
 
-acyclicDependencyQ[refAssoc_?AssociationQ] := TrueQ @ AcyclicGraphQ @ Graph[
-    Flatten @ KeyValueMap[
-        Thread[DirectedEdge[##]]&,
-        refAssoc
+acyclicDependencyQ[refAssoc_?AssociationQ] := With[{
+    graph = Graph[
+        Flatten @ KeyValueMap[
+            Thread[DirectedEdge[##]]&,
+            refAssoc
+        ]
+    ]
+},
+    TrueQ @ And[
+        LoopFreeGraphQ[graph],
+        AcyclicGraphQ[graph]
     ]
 ];
 acyclicDependencyQ[_] := False;
@@ -88,33 +95,39 @@ SelfReferentialAssociation[_] := Failure["ConstructionFailure",
     <|"MessageTemplate" -> "Can only construct SelfReferentialAssociation from an Association with String keys."|>
 ];
 
+cachedQuery[sAssoc_, key_String, extraVals_] /; KeyExistsQ[extraVals, key] := (
+    cachedQuery[sAssoc, key, extraVals] = extraVals[key]
+);
+
 cachedQuery[
     sAssoc : SelfReferentialAssociation[data_, _, _, _],
-    key_String
-] /; KeyExistsQ[data, key] := (cachedQuery[sAssoc, key] = data[key]);
+    key_String,
+    rest___
+] /; KeyExistsQ[data, key] := (cachedQuery[sAssoc, key, rest] = data[key]);
 
 cachedQuery[
     sAssoc : SelfReferentialAssociation[data_, exprs_, refs_, keyList_],
-    key_String
+    key_String,
+    rest___
 ] /; KeyExistsQ[exprs, key] := (
-    cachedQuery[sAssoc, key] = With[{
+    cachedQuery[sAssoc, key, rest] = With[{
         keys = keyList[[refs[key]]]
     },
         TemplateApply[
             exprs[key],
             AssociationThread[
                 keys,
-                Map[cachedQuery[sAssoc, #]&, keys]
+                Map[cachedQuery[sAssoc, #, rest]&, keys]
             ]
         ]
     ]
 );
-cachedQuery[_, key_] := Missing["KeyAbsent", key];
+cachedQuery[_, key_, ___] := Missing["KeyAbsent", key];
 
-(sAssoc : SelfReferentialAssociation[_, _, _, _])[key_] := Internal`InheritedBlock[{
+(sAssoc : SelfReferentialAssociation[_, _, _, _])[key_, rest : Repeated[_?AssociationQ, {0, 1}]] := Internal`InheritedBlock[{
     cachedQuery
 },
-    cachedQuery[sAssoc, key]
+    cachedQuery[sAssoc, key, rest]
 ];
 
 SelfReferentialAssociation /: Normal[sAssoc : SelfReferentialAssociation[data_, expr_, _, keys_List]] := KeyTake[
