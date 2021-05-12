@@ -6,8 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->
-  "In[233]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -325,8 +324,7 @@ Cell["AssociationTemplate", \
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->
-  "In[232]:=",ExpressionUUID->"87aefd6c-71df-4a59-81ee-fa2275590ebf"],
+ CellLabel->"In[3]:=",ExpressionUUID->"87aefd6c-71df-4a59-81ee-fa2275590ebf"],
 
 Cell[CellGroupData[{
 
@@ -1529,6 +1527,19 @@ String keys."]]}], "SubValues" ->
     "Attributes" -> {}, "FullName" -> "FunctionRepo`AssociationTemplate"], 
    False]]], "Output",
  CellLabel->"Out[235]=",ExpressionUUID->"7101b95e-7402-407a-86d6-180d9f447df7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"AssociationTemplate", "[", "]"}], "[", "\"\<a\>\"", "]"}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"8b0c71a1-9450-4945-aea3-6078ff33f265"],
+
+Cell[BoxData[
+ RowBox[{"Missing", "[", 
+  RowBox[{"\<\"KeyAbsent\"\>", ",", "\<\"a\"\>"}], "]"}]], "Output",
+ CellLabel->"Out[5]=",ExpressionUUID->"0dfaecce-047a-47e4-9756-05d9ddf6969a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4966,7 +4977,7 @@ Cell[BoxData[
 }, Closed]]
 },
 WindowSize->{1814, 888},
-WindowMargins->{{Automatic, 31}, {Automatic, 10}},
+WindowMargins->{{Automatic, 27}, {Automatic, 7}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},

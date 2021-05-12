@@ -34,7 +34,7 @@ packIfSmaller[list_] := With[{
 AssociationTemplate[rules : {__Rule}] := AssociationTemplate[Association @ rules];
 
 AssociationTemplate[] := AssociationTemplate[<||>];
-AssociationTemplate[<||>] := AssociationTemplate[<||>, <||>, <||>, {}];
+AssociationTemplate[<||>] := AssociationTemplate[<||>, <||>, <||>, {}, ""];
 
 AssociationTemplate[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Module[{
     splitAssoc = Lookup[
@@ -71,7 +71,8 @@ AssociationTemplate[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Mod
         AssociationTemplate[
             Sequence @@ splitAssoc,
             packIfSmaller /@ Map[posIndex, refs, {2}],
-            Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *)
+            Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *),
+            CreateUUID[]
         ]
         ,
         Failure["ConstructionFailure",
@@ -95,22 +96,32 @@ AssociationTemplate[_] := Failure["ConstructionFailure",
     <|"MessageTemplate" -> "Can only construct AssociationTemplate from an Association with String keys."|>
 ];
 
-cachedQuery[sAssoc_, key_String, extraVals_] /; KeyExistsQ[extraVals, key] := (
-    cachedQuery[sAssoc, key, extraVals] = extraVals[key]
+$queryCache = <||>;
+
+SetAttributes[cacheBlock, HoldAll];
+cacheBlock[expr_] := Block[{$queryCache = <||>}, expr];
+
+(* 
+    This caching method is has less overhead than ordinary memoization when the cache needs to be cleared again
+*)
+cachedQuery[AssociationTemplate[_, _, _, _, id_], key_String, ___] /; KeyExistsQ[$queryCache, {id, key}] := $queryCache[{id, key}];
+
+cachedQuery[AssociationTemplate[_, _, _, _, id_], key_String, extraVals_] /; KeyExistsQ[extraVals, key] := (
+    $queryCache[{id, key}] = extraVals[key]
 );
 
 cachedQuery[
-    sAssoc : AssociationTemplate[data_, _, _, _],
+    sAssoc : AssociationTemplate[data_, _, _, _, id_],
     key_String,
     rest___
-] /; KeyExistsQ[data, key] := (cachedQuery[sAssoc, key, rest] = data[key]);
+] /; KeyExistsQ[data, key] := ($queryCache[{id, key}] = data[key]);
 
 cachedQuery[
-    sAssoc : AssociationTemplate[data_, exprs_, refs_, keyList_],
+    sAssoc : AssociationTemplate[data_, exprs_, refs_, keyList_, id_],
     key_String,
     rest___
 ] /; KeyExistsQ[exprs, key] := (
-    cachedQuery[sAssoc, key, rest] = With[{
+    $queryCache[{id, key}] = With[{
         keys = keyList[[refs[key]]]
     },
         TemplateApply[
@@ -122,55 +133,51 @@ cachedQuery[
         ]
     ]
 );
-cachedQuery[_, key_, ___] := Missing["KeyAbsent", key];
+cachedQuery[AssociationTemplate[_, _, _, _, id_], key_, ___] := (
+    $queryCache[{id, key}] = Missing["KeyAbsent", key]
+);
 
-(sAssoc : AssociationTemplate[_, _, _, _])[key_, rest : Repeated[_?AssociationQ, {0, 1}]] := Internal`InheritedBlock[{
-    cachedQuery
-},
+(sAssoc : AssociationTemplate[_, _, _, _, _])[key_, rest : Repeated[_?AssociationQ, {0, 1}]] := cacheBlock[
     cachedQuery[sAssoc, key, rest]
 ];
 
-AssociationTemplate /: Normal[sAssoc : AssociationTemplate[data_, expr_, _, keys_List]] := KeyTake[
+AssociationTemplate /: Normal[sAssoc : AssociationTemplate[data_, expr_, _, keys_List, _]] := KeyTake[
     Join[data, expr],
     keys
 ];
 
-AssociationTemplate /: Keys[AssociationTemplate[_, _, _, keys_List]] := keys;
+AssociationTemplate /: Keys[AssociationTemplate[_, _, _, keys_List, _]] := keys;
 
 AssociationTemplate /: Values[
-    sAssoc : AssociationTemplate[data_, expr_, _, keys_List]
-] := Internal`InheritedBlock[{
-    cachedQuery
-},
+    sAssoc : AssociationTemplate[data_, expr_, _, keys_List, _]
+] := cacheBlock[
     cachedQuery[sAssoc, #]& /@ keys
 ];
 
-AssociationTemplate /: Length[AssociationTemplate[_, _, _, keys_List]] := Length[keys];
+AssociationTemplate /: Length[AssociationTemplate[_, _, _, keys_List, _]] := Length[keys];
 
-AssociationTemplate /: Part[sAssoc : AssociationTemplate[_, _, _, _], s_String] := sAssoc[s];
+AssociationTemplate /: Part[sAssoc : AssociationTemplate[_, _, _, _, _], s_String] := sAssoc[s];
 AssociationTemplate /: Part[
-    sAssoc : AssociationTemplate[_, _, _, _],
+    sAssoc : AssociationTemplate[_, _, _, _, _],
     strings : {__String}
-] := Internal`InheritedBlock[{
-    cachedQuery
-},
+] := cacheBlock[
     AssociationThread[
         strings,
         cachedQuery[sAssoc, #]& /@ strings
     ]
 ];
 
-AssociationTemplate /: Part[sAssoc : AssociationTemplate[_, _, _, keys_List], i : _Integer | {__Integer}] := Part[
+AssociationTemplate /: Part[sAssoc : AssociationTemplate[_, _, _, keys_List, _], i : _Integer | {__Integer}] := Part[
     sAssoc,
     keys[[i]]
 ];
 
 AssociationTemplate /: Part[
-    sAssoc : AssociationTemplate[_, _, _, keys_List],
+    sAssoc : AssociationTemplate[_, _, _, keys_List, _],
     All
 ] := AssociationThread[keys, Values[sAssoc]];
 
-AssociationTemplate /: Part[AssociationTemplate[_, _, _, _], {}] := <||>;
+AssociationTemplate /: Part[AssociationTemplate[_, _, _, _, _], {}] := <||>;
 
 AssociationTemplate /: Join[
     sAssocs : Longest[__AssociationTemplate]
@@ -191,7 +198,7 @@ AssociationTemplate /: Prepend[sAssoc_AssociationTemplate, new_] :=
     AssociationTemplate[Prepend[Normal @ sAssoc, new]];
 
 AssociationTemplate /: MakeBoxes[
-    AssociationTemplate[data_?AssociationQ, expr_?AssociationQ, refs_, keys_], 
+    AssociationTemplate[data_?AssociationQ, expr_?AssociationQ, refs_, keys_, _], 
     form_
 ] := BoxForm`ArrangeSummaryBox["AssociationTemplate",
     AssociationTemplate[data, expr],
