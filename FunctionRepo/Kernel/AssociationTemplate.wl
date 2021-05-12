@@ -70,7 +70,7 @@ AssociationTemplate[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Mod
         ,
         AssociationTemplate[
             Sequence @@ splitAssoc,
-            packIfSmaller /@ Map[posIndex, refs, {2}],
+            Map[packIfSmaller @ Lookup[posIndex, #]&, refs],
             Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *),
             CreateUUID[]
         ]
