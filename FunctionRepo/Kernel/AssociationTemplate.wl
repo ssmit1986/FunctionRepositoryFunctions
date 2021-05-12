@@ -137,6 +137,10 @@ cachedQuery[AssociationTemplate[_, _, _, _, id_], key_, ___] := (
     $queryCache[{id, key}] = Missing["KeyAbsent", key]
 );
 
+AssociationTemplate[_, _, _, _, _][key_, extraVals_?AssociationQ] /; KeyExistsQ[extraVals, key] := extraVals[key];
+
+AssociationTemplate[data_, _, _, _, _][key_, ___] /; KeyExistsQ[data, key] := data[key];
+
 (sAssoc : AssociationTemplate[_, _, _, _, _])[key_, rest : Repeated[_?AssociationQ, {0, 1}]] := cacheBlock[
     cachedQuery[sAssoc, key, rest]
 ];
