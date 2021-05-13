@@ -31,6 +31,24 @@ packIfSmaller[list_] := With[{
     ]
 ];
 
+findRefs[fun_Function] := DeleteDuplicates[
+    Cases[
+        (* Delete inner functions with slots *)
+        ReplaceAll[Hold @@ fun, Function[_] | Function[Null, __] -> Null], 
+        Slot[slot_String] | Slot[1][slot_String] :> slot, 
+        Infinity,
+        Heads -> True
+    ]
+];
+
+findRefs[template_] := DeleteDuplicates[
+    Cases[template, 
+        TemplateSlot[slot_String] :> slot, 
+        Infinity,
+        Heads -> True
+    ]
+];
+
 AssociationTemplate[rules : {__Rule}] := AssociationTemplate[Association @ rules];
 
 AssociationTemplate[] := AssociationTemplate[<||>];
@@ -43,7 +61,7 @@ AssociationTemplate[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Mod
             Function[expr, 
                 MatchQ[
                     Unevaluated[expr],
-                    _TemplateExpression| _TemplateObject
+                    HoldPattern[_TemplateExpression| _TemplateObject | Function[_] | Function[Null, __]]
                 ],
                 HoldFirst
             ]
@@ -54,18 +72,8 @@ AssociationTemplate[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Mod
     refs,
     posIndex = First /@ PositionIndex[Keys[assoc]]
 },
-    refs = Association @ KeyValueMap[
-        Function[{key, val},
-            key -> DeleteDuplicates[ (* Find all dependent template slots that need to be computed to calculate this one *)
-                Cases[val, 
-                    TemplateSlot[slot_String] :> slot, 
-                    Infinity,
-                    Heads -> True
-                ]
-            ]
-        ],
-        splitAssoc[[2]]
-    ];
+    (* Find all dependent template slots that need to be extracted to calculate the templated one *)
+    refs = findRefs /@ splitAssoc[[2]];
     If[ acyclicDependencyQ[refs]
         ,
         AssociationTemplate[
@@ -122,14 +130,16 @@ cachedQuery[
     rest___
 ] /; KeyExistsQ[exprs, key] := (
     $queryCache[{id, key}] = With[{
-        keys = keyList[[refs[key]]]
+        templateVals = With[{
+            keys = keyList[[refs[key]]]
+        },
+            AssociationThread[keys, Map[cachedQuery[sAssoc, #, rest]&, keys]]
+        ],
+        template = exprs[key]
     },
-        TemplateApply[
-            exprs[key],
-            AssociationThread[
-                keys,
-                Map[cachedQuery[sAssoc, #, rest]&, keys]
-            ]
+        If[ Head[template] === Function,
+            template @ templateVals,
+            TemplateApply[template, templateVals]
         ]
     ]
 );
