@@ -12,6 +12,14 @@ Begin["`Private`"] (* Begin Private Context *)
 SetAttributes[toInputFormString, HoldAllComplete];
 toInputFormString[expr_] := ToString[Unevaluated[InputForm[expr]], CharacterEncoding -> "ASCII"];
 
+FormatTestFile[dir_String?DirectoryQ,
+    depth : (_Integer | {__} | _DirectedInfinity) : 1,
+    opts : OptionsPattern[FileNames]
+] := Map[
+    FormatTestFile[#, Automatic]&,
+    FileNames["*.wlt", dir, depth, opts]
+];
+
 FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automatic] := Enclose @ Module[{
     expressions = Confirm @ Import[file, {"Package", "HeldExpressions"}],
     stringOut,
