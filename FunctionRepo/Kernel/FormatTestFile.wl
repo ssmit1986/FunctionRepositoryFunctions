@@ -14,7 +14,8 @@ toInputFormString[expr_] := ToString[Unevaluated[InputForm[expr]], CharacterEnco
 
 FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automatic] := Enclose @ Module[{
     expressions = Confirm @ Import[file, {"Package", "HeldExpressions"}],
-    stringOut
+    stringOut,
+    indentStr = "    "
 },
     stringOut = StringRiffle[
         List /@ Replace[
@@ -23,7 +24,16 @@ FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automa
                 HoldComplete[VerificationTest[args__]] :> StringJoin[
                     "VerificationTest[\n    ",
                     StringRiffle[
-                        CodeFormat /@ Map[toInputFormString, Unevaluated[{args}]],
+                        StringReplace[
+                            Map[
+                                CodeFormat[#, 
+                                    "IndentationString" -> indentStr,
+                                    "NewlineString" -> "\n"
+                                ]&,
+                                Map[toInputFormString, Unevaluated[{args}]]
+                            ],
+                            "\n" ~~ indentStr :> "\n" <> indentStr <> indentStr
+                        ],
                         "\n    ,\n    "
                     ],
                     "\n]"
