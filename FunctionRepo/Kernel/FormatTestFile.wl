@@ -23,14 +23,14 @@ FormatTestFile[dir_String?DirectoryQ,
 FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automatic] := Enclose @ Module[{
     expressions = Confirm @ Import[file, {"Package", "HeldExpressions"}],
     stringOut,
-    indentStr = "    "
+    indentStr = StringRepeat[" ", 4]
 },
     stringOut = StringRiffle[
         List /@ Replace[
             expressions,
             {
                 HoldComplete[VerificationTest[args__]] :> StringJoin[
-                    "VerificationTest[\n    ",
+                    "VerificationTest[\n" <> indentStr,
                     StringRiffle[
                         StringReplace[
                             Map[
@@ -42,7 +42,7 @@ FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automa
                             ],
                             "\n" ~~ indentStr :> "\n" <> indentStr <> indentStr
                         ],
-                        "\n    ,\n    "
+                        "\n" <> indentStr <> ",\n" <> indentStr
                     ],
                     "\n]"
                 ],
