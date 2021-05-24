@@ -17,7 +17,7 @@ FormatTestFile[dir_String?DirectoryQ,
     opts : OptionsPattern[FileNames]
 ] := Map[
     FormatTestFile[#, Automatic]&,
-    FileNames["*.wlt", dir, depth, opts]
+    Join @@ Map[FileNames[#, dir, depth, opts]&, {"*.wlt", ".mt"}]
 ];
 
 FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automatic] := Enclose @ Module[{
