@@ -27,14 +27,17 @@ Get["FunctionRepo`convertDataFormat`"];
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
 
-ExpressionToFunction;
-Get["FunctionRepo`ExpressionToFunction`"];
-
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
 
+ExpressionToFunction;
+Get["FunctionRepo`ExpressionToFunction`"];
+
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
+
+FormatTestFile;
+Get["FunctionRepo`FormatTestFile`"];
 
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
