@@ -3,7 +3,7 @@
 BeginPackage["FunctionRepo`FormatTestFile`", {"FunctionRepo`", "CodeFormatter`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[FormatTestFile,
-    "FormatTestFile[file$] makes a .wlt file produced from a testing notebook more readable.
+    "FormatTestFile[file$] makes a .wlt (or .mt) file produced from a testing notebook more readable.
 FormatTestFile[fileIn$, fileOut$] writes the result to a new file."
 ];
 
@@ -21,7 +21,7 @@ FormatTestFile[dir_String?DirectoryQ,
     opts : OptionsPattern[FileNames]
 ] := Map[
     FormatTestFile[#, Automatic]&,
-    Join @@ Map[FileNames[#, dir, depth, opts]&, {"*.wlt", ".mt"}]
+    Join @@ Map[FileNames[#, dir, depth, opts]&, {"*.wlt", "*.mt"}]
 ];
 
 FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automatic] := Enclose @ Module[{
