@@ -12,6 +12,10 @@ Begin["`Private`"] (* Begin Private Context *)
 SetAttributes[toInputFormString, HoldAllComplete];
 toInputFormString[expr_] := ToString[Unevaluated[InputForm[expr]], CharacterEncoding -> "ASCII"];
 
+FormatTestFile[] := FormatTestFile[SystemDialogInput["FileOpen"]];
+
+FormatTestFile[$Canceled] := $Canceled;
+
 FormatTestFile[dir_String?DirectoryQ,
     depth : (_Integer | {__} | _DirectedInfinity) : 1,
     opts : OptionsPattern[FileNames]
@@ -61,6 +65,7 @@ FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automa
     ]
 ];
 
+FormatTestFile[___] := $Failed;
 
 End[] (* End Private Context *)
 
