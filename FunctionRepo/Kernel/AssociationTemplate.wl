@@ -49,6 +49,11 @@ findRefs[template_] := DeleteDuplicates[
     ]
 ];
 
+SetAttributes[processTemplate, HoldAll];
+processTemplate[s_String] := StringTemplate[s];
+processTemplate[expr : Except[_TemplateExpression| _TemplateObject | Function[_] | Function[Null, __]]] := TemplateExpression[expr];
+processTemplate[other_] := other;
+
 AssociationTemplate[rules : {__Rule}] := AssociationTemplate[Association @ rules];
 
 AssociationTemplate[] := AssociationTemplate[<||>];
@@ -56,22 +61,17 @@ AssociationTemplate[<||>] := AssociationTemplate[<||>, <||>, <||>, {}, ""];
 
 AssociationTemplate[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Module[{
     splitAssoc = Lookup[
-        GroupBy[
-            assoc,
-            Function[expr, 
-                MatchQ[
-                    Unevaluated[expr],
-                    HoldPattern[_TemplateExpression| _TemplateObject | Function[_] | Function[Null, __]]
-                ],
-                HoldFirst
-            ]
-        ],
-        {False, True},
-        <||>
+        GroupBy[Normal @ assoc, Head],
+        {Rule, RuleDelayed},
+        {}
     ],
     refs,
     posIndex = First /@ PositionIndex[Keys[assoc]]
 },
+    splitAssoc[[1]] = Association[splitAssoc[[1]]];
+    splitAssoc[[2]] = AssociationThread[
+        Keys[splitAssoc[[2]]] :> Evaluate @ Values[splitAssoc[[2]], processTemplate]
+    ];
     (* Find all dependent template slots that need to be extracted to calculate the templated one *)
     refs = findRefs /@ splitAssoc[[2]];
     If[ acyclicDependencyQ[refs]
