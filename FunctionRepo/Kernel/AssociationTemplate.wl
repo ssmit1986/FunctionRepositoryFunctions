@@ -35,7 +35,7 @@ findRefs[fun_Function] := DeleteDuplicates[
     Cases[
         (* Delete inner functions with slots *)
         ReplaceAll[Hold @@ fun, Function[_] | Function[Null, __] -> Null], 
-        Slot[slot_String] | Slot[1][slot_String] :> slot, 
+        Verbatim[Slot][slot_String] | Verbatim[Slot][1][slot_String] :> slot, 
         Infinity,
         Heads -> True
     ]
