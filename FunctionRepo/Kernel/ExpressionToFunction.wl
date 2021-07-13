@@ -3,6 +3,9 @@
 BeginPackage["FunctionRepo`ExpressionToFunction`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[ExpressionToFunction, "ExpressionToFunction[expr$, var$1, var$2, $$] returns a function that takes var$i as arguments"];
+GeneralUtilities`SetUsage[ExpressionToFunctionOperator,
+    "ExpressionToFunctionOperator[var$1, var$2, $$] represents an operator form of ExpressionToFunction that can be applied to expressions."
+];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -109,6 +112,14 @@ ExpressionToFunction[
         {HoldAll}
     ],
     Flatten[Hold @@ Cases[Hold[vars], s_Symbol :> Hold[s], {2, 3}]]
+];
+
+Options[ExpressionToFunctionOperator] = Options[ExpressionToFunction];
+Attributes[ExpressionToFunctionOperator] = {HoldAll};
+
+ExpressionToFunctionOperator[args__] := Function[expr, 
+    ExpressionToFunction[expr, args],
+    {HoldFirst}
 ];
 
 End[] (* End Private Context *)

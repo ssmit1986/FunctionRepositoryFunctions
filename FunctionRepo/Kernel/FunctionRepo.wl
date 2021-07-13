@@ -31,6 +31,7 @@ deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
 
 ExpressionToFunction;
+ExpressionToFunctionOperator;
 Get["FunctionRepo`ExpressionToFunction`"];
 
 firstMatchingValue;
