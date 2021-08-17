@@ -3,7 +3,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [ArgumentCount](https://resources.wolframcloud.com/FunctionRepository/resources/ArgumentCount) (Note that there's also a built-in function ``GeneralUtilities`ArgumentCount``)
 
-* AssociationTemplate (to be submitted)
+* [AssociationTemplate](https://resources.wolframcloud.com/FunctionRepository/resources/AssociationTemplate)
 
 * [AsynchronousDynamicModule](https://resources.wolframcloud.com/FunctionRepository/resources/AsynchronousDynamicModule)
 
@@ -16,6 +16,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * [CrossValidateModel](https://resources.wolframcloud.com/FunctionRepository/resources/CrossValidateModel)
 
 * [ExpressionToFunction](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunction)
+
+* [ExpressionToFunctionOperator](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunctionOperator)
 
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
 
