@@ -38,7 +38,7 @@ AsynchronousDynamicModule[
     placeHolder_,
     initVar_Symbol,
     opts : OptionsPattern[DynamicModule]
-] := DynamicModule[{
+] := Dynamic[#, TrackedSymbols :> {}]& @ DynamicModule[{
     vars,
     initVar = False
 },
