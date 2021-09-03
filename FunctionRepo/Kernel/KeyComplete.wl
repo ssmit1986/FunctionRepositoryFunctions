@@ -8,29 +8,32 @@ from assoc$ will be added as key$i -> f$[key$i]."
 
 Begin["`Private`"] (* Begin Private Context *)
 
-(* KeyComplete *)
-
+(* Operator form *)
 KeyComplete[list_List, f_][arg_] := KeyComplete[arg, list, f];
 
-KeyComplete[assoc_?AssociationQ, keyList_List, f_] := With[{
-	keys = Keys[assoc]
+(* Trivial cases *)
+KeyComplete[<||>, list_, f_] := AssociationThread[list, f /@ list];
+
+KeyComplete[_Association?AssociationQ, {}, _] := <||>; 
+
+(* Main definition *)
+KeyComplete[assoc_Association?AssociationQ, keyList_List, f_] := With[{
+	complement = Complement[keyList, Keys[assoc]]
 },
-	With[{complement = Complement[keyList, keys]},
-		KeyTake[
-			If[ complement === {}
-				,
-				assoc
-				,
-				Join[
-					assoc,
-					AssociationThread[
-						complement,
-						Map[f, complement]
-					]
+	KeyTake[
+		If[ complement === {}
+			,
+			assoc
+			,
+			Join[
+				assoc,
+				AssociationThread[
+					complement,
+					Map[f, complement]
 				]
-			],
-			keyList
-		]
+			]
+		],
+		keyList
 	]
 ];
 
