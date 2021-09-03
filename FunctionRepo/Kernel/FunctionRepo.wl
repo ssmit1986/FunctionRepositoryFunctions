@@ -49,6 +49,9 @@ Get["FunctionRepo`GroupCases`"];
 importAGSData;
 Get["FunctionRepo`importAGSData`"];
 
+KeyComplete;
+Get["FunctionRepo`KeyComplete`"];
+
 kullbackLeiblerDivergence;
 Get["FunctionRepo`kullbackLeiblerDivergence`"];
 
