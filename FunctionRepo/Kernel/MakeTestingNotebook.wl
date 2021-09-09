@@ -61,30 +61,39 @@ testToCellGroup[
 testToCellGroup[
 	test : VerificationTest[in_, out_, msgs_, opts___],
 	True
-] := Cell @ CellGroupData[
-	{
-		Cell[
-			BoxData @ MakeBoxes[in, StandardForm],
-			"VerificationTest"
-		],
-		Cell[
-			BoxData @ MakeBoxes[out, StandardForm],
-			"ExpectedOutput"
-		],
-		Cell[
-			BoxData @ MakeBoxes[msgs, StandardForm],
-			"ExpectedMessage"
-		],
-		Cell[
-			BoxData @ MakeBoxes[{opts}, StandardForm],
-			"TestOptions"
-		],
-		Cell[
-			BoxData @ ToBoxes @ MUnit`bottomCell[],
-			"BottomCell"
-		]
-	},
-	Open
+] := With[{
+	imax = 10^9
+},
+	Cell @ CellGroupData[
+		{
+			Cell[
+				BoxData @ MakeBoxes[in, StandardForm],
+				"VerificationTest",
+				CellID -> RandomInteger[imax]
+			],
+			Cell[
+				BoxData @ MakeBoxes[out, StandardForm],
+				"ExpectedOutput",
+				CellID -> RandomInteger[imax]
+			],
+			Cell[
+				BoxData @ MakeBoxes[msgs, StandardForm],
+				"ExpectedMessage",
+				CellID -> RandomInteger[imax]
+			],
+			Cell[
+				BoxData @ MakeBoxes[{opts}, StandardForm],
+				"TestOptions",
+				CellID -> RandomInteger[imax]
+			],
+			Cell[
+				BoxData @ ToBoxes @ MUnit`bottomCell[],
+				"BottomCell",
+				CellID -> RandomInteger[imax]
+			]
+		},
+		Open
+	]
 ];
 
 
