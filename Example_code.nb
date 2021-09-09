@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[51]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[61]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1260,6 +1260,17 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
+Cell["KeyComplete", \
+"Subsection",ExpressionUUID->"9fab75b0-8eca-4f65-9683-96a85ee1f214"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "KeyComplete"}]], \
+"Input",ExpressionUUID->"52efd771-8a55-4a4c-b5b2-426903691e57"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["kullbackLeiblerDivergence", \
 "Subsection",ExpressionUUID->"e2779f55-4ae5-4ebd-b5b6-3be2e30b7a6c"],
 
@@ -1297,6 +1308,16 @@ Cell[BoxData[
      RowBox[{"0", ",", "0", ",", "1"}], "}"}], "]"}]}], "\[IndentingNewLine]",
    "]"}]], "Input",
  CellLabel->"In[70]:=",ExpressionUUID->"200811e0-9976-442e-8d63-800751e9f445"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["MakeTestingNotebook", \
+"Subsection",ExpressionUUID->"d03e1114-a977-42e7-b446-4bfa4aaeff28"],
+
+Cell[BoxData[
+ RowBox[{"?", "MakeTestingNotebook"}]], "Input",
+ CellLabel->"In[34]:=",ExpressionUUID->"f12401b6-278a-4c48-88a1-4d9133207306"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -2990,7 +3011,7 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1.2 Inherited,
-FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (June 19, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]

@@ -55,6 +55,9 @@ Get["FunctionRepo`KeyComplete`"];
 kullbackLeiblerDivergence;
 Get["FunctionRepo`kullbackLeiblerDivergence`"];
 
+MakeTestingNotebook;
+Get["FunctionRepo`MakeTestingNotebook`"];
+
 maximumSpacingEstimation;
 Get["FunctionRepo`maximumSpacingEstimation`"];
 
