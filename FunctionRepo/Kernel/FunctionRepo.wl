@@ -49,6 +49,9 @@ Get["FunctionRepo`GroupCases`"];
 importAGSData;
 Get["FunctionRepo`importAGSData`"];
 
+KeyComplete;
+Get["FunctionRepo`KeyComplete`"];
+
 kullbackLeiblerDivergence;
 Get["FunctionRepo`kullbackLeiblerDivergence`"];
 
@@ -84,5 +87,8 @@ Get["FunctionRepo`tukeyMedianPolish`"];
 
 WithCachedValues;
 Get["FunctionRepo`WithCachedValues`"];
+
+WLTToNotebook;
+Get["FunctionRepo`WLTToNotebook`"];
 
 EndPackage[]

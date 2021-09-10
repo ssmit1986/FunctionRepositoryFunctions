@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[51]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1256,6 +1256,17 @@ Cell[BoxData[{
      RowBox[{"_Integer", "?", "OddQ"}]}], "]"}], ",", "\[IndentingNewLine]", 
    "x"}], "}"}]}], "Input",
  CellLabel->"In[65]:=",ExpressionUUID->"29421cbc-f709-476c-b19c-f1a36aa67e57"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["KeyComplete", \
+"Subsection",ExpressionUUID->"9fab75b0-8eca-4f65-9683-96a85ee1f214"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "KeyComplete"}]], \
+"Input",ExpressionUUID->"52efd771-8a55-4a4c-b5b2-426903691e57"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -2981,6 +2992,352 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"DownValues", "[", "f", "]"}], "//", "TableForm"}]], "Input",
  CellLabel->"In[9]:=",ExpressionUUID->"eed0cf90-63d3-4c60-b138-6a5dff22a9b9"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["WLTToNotebook", \
+"Subsection",ExpressionUUID->"d03e1114-a977-42e7-b446-4bfa4aaeff28"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "WLTToNotebook"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"f12401b6-278a-4c48-88a1-4d9133207306"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"WLTToNotebook\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
+.wlt file to a testing notebook.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"Definitions\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "Definitions", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"WLTToNotebook", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"FunctionRepo`WLTToNotebook`Private`file_", "?", 
+                    "FileExistsQ"}], ",", 
+                    RowBox[{"FunctionRepo`WLTToNotebook`Private`opts", ":", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], "/;", 
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"FileExtension", "[", 
+                    "FunctionRepo`WLTToNotebook`Private`file", "]"}], ",", 
+                    RowBox[{"\"wlt\"", "|", "\"mt\""}]}], "]"}]}], ":=", 
+                    RowBox[{"Enclose", "[", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    
+                    RowBox[{"FunctionRepo`WLTToNotebook`Private`heldContents",
+                     "=", 
+                    RowBox[{"Confirm", "[", 
+                    RowBox[{
+                    RowBox[{"Import", "[", 
+                    RowBox[{"FunctionRepo`WLTToNotebook`Private`file", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"WL\"", ",", "\"HeldExpressions\""}], "}"}]}], 
+                    "]"}], ",", "\"Import error\""}], "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"$Context", ",", "$ContextPath"}], "}"}], ",", 
+                    RowBox[{"Needs", "[", "\"MUnit`\"", "]"}]}], "]"}], ";", 
+                    
+                    RowBox[{"FunctionRepo`WLTToNotebook`Private`heldContents",
+                     "=", 
+                    
+                    RowBox[{
+                    "FunctionRepo`WLTToNotebook`Private`testToCellGroup", 
+                    "/@", "FunctionRepo`WLTToNotebook`Private`heldContents"}]}\
+], ";", 
+                    RowBox[{"NotebookPut", "[", 
+                    RowBox[{"Notebook", "[", 
+                    RowBox[{
+                    RowBox[{"Cases", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"Flatten", "[", 
+                    "FunctionRepo`WLTToNotebook`Private`heldContents", "]"}], 
+                    ",", "_Cell"}], "]"}], ",", 
+                    RowBox[{"TaggingRules", "\[Rule]", 
+                    RowBox[{"Association", "[", 
+                    RowBox[{"\"$testsRun\"", "\[Rule]", "False"}], "]"}]}], 
+                    ",", 
+                    RowBox[{"StyleDefinitions", "\[Rule]", 
+                    RowBox[{"FrontEnd`FileName", "[", 
+                    RowBox[{
+                    RowBox[{"{", "\"MUnit\"", "}"}], ",", "\"MUnit.nb\"", ",", 
+                    RowBox[{"CharacterEncoding", "\[Rule]", "\"UTF-8\""}]}], 
+                    "]"}]}]}], "]"}], "]"}]}]}], "]"}], "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`WLTToNotebook\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"WLTToNotebook\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
+.wlt file to a testing notebook.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {3., 9.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"WLTToNotebook\", \"[\", RowBox[{StyleBox[\"testfile\", \
+\"TI\"]}], \"]\"}]\) converts a a .wlt file to a testing notebook.", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`WLTToNotebook, {Condition[
+         FunctionRepo`WLTToNotebook[
+          PatternTest[
+           Pattern[FunctionRepo`WLTToNotebook`Private`file, 
+            Blank[]], FileExistsQ], 
+          Pattern[FunctionRepo`WLTToNotebook`Private`opts, 
+           OptionsPattern[]]], 
+         MatchQ[
+          FileExtension[FunctionRepo`WLTToNotebook`Private`file], 
+          Alternatives["wlt", "mt"]]] :> Enclose[
+         Module[{FunctionRepo`WLTToNotebook`Private`heldContents = Confirm[
+             Import[
+             FunctionRepo`WLTToNotebook`Private`file, {
+              "WL", "HeldExpressions"}], "Import error"]}, 
+          Block[{$Context, $ContextPath}, 
+            Needs["MUnit`"]]; 
+          FunctionRepo`WLTToNotebook`Private`heldContents = 
+           Map[FunctionRepo`WLTToNotebook`Private`testToCellGroup, 
+             FunctionRepo`WLTToNotebook`Private`heldContents]; NotebookPut[
+            Notebook[
+             Cases[
+              Flatten[FunctionRepo`WLTToNotebook`Private`heldContents], 
+              Blank[Cell]], TaggingRules -> Association["$testsRun" -> False],
+              StyleDefinitions -> 
+             FrontEnd`FileName[{"MUnit"}, "MUnit.nb", CharacterEncoding -> 
+               "UTF-8"]]]]]}], "SubValues" -> None, "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> {}, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`WLTToNotebook"], 
+   False]]], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"147b8d4e-d587-4216-a778-9b8d8bcc34d7"]
+}, Open  ]]
 }, Closed]]
 },
 WindowSize->{1814, 888},
@@ -2990,7 +3347,7 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1.2 Inherited,
-FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (June 19, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]

@@ -38,7 +38,7 @@ FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automa
                     StringRiffle[
                         StringReplace[
                             Map[
-                                CodeFormat[#, 
+                                CodeFormatter`CodeFormat[#, 
                                     "IndentationString" -> indentStr,
                                     "NewlineString" -> "\n"
                                 ]&,
@@ -50,7 +50,7 @@ FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automa
                     ],
                     "\n]"
                 ],
-                HoldComplete[expr_] :> CodeFormat[toInputFormString[expr]]
+                HoldComplete[expr_] :> CodeFormatter`CodeFormat[toInputFormString[expr]]
             },
             {1}
         ],

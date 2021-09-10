@@ -6,8 +6,8 @@ GeneralUtilities`SetUsage[GroupCases, "GroupCases[{el$1, el$2, $$}, patt$] group
 GroupCases[list$, patt$ :> rhs$] applies a transformation to matched elements.
 GroupCases[list$, {spec$1, spec$2, $$}] groups using multiple patterns.
 GroupCases[list$, <|key$1 -> spec$1, $$}] labels the returned values with key$i.
-GroupCases[spec$] represents an operator form of GroupCases. 
-"];
+GroupCases[spec$] represents an operator form of GroupCases."
+];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
