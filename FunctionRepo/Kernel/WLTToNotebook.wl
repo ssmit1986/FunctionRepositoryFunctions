@@ -21,7 +21,7 @@ WLTToNotebook[
 	];
 		
 	NotebookPut @ Notebook[
-		Cases[heldContents, _Cell],
+		Cases[Flatten @ heldContents, _Cell],
 		ShowGroupOpener -> True,
 		TaggingRules -> Association["$testsRun" -> False],
 		StyleDefinitions -> FrontEnd`FileName[
@@ -46,21 +46,34 @@ generateUniqueID[max_, hashTable_] := Module[{i = 0},
 
 SetAttributes[testToCellGroup, HoldAllComplete];
 
+(* Handle verification tests terminated by a ; *)
+testToCellGroup[
+	HoldComplete[CompoundExpression[expressions__]],
+	rest___
+] := Map[
+	testToCellGroup[#, rest]&,
+	Thread @ HoldComplete[{expressions}]
+];
+
+(* Handle 1-arg tests *)
 testToCellGroup[
 	HoldComplete[test : VerificationTest[fst_, args___]],
 	cellids_
 ] /; Quiet @ CheckArguments[test, 1] := testToCellGroup[VerificationTest[fst, True, {}, args], cellids];
 
+(* Handle 2-arg tests *)
 testToCellGroup[
 	HoldComplete[test : VerificationTest[fst_, snd_, args___]],
 	cellids_
 ] /; Quiet @ CheckArguments[test, 2] := testToCellGroup[VerificationTest[fst, snd, {}, args], cellids];
 
+(* Handle 3-arg tests *)
 testToCellGroup[
 	HoldComplete[test_VerificationTest],
 	cellids_
 ] /; Quiet @ CheckArguments[test, 3] := testToCellGroup[test, cellids]
 
+(* Convert test to Cells *)
 testToCellGroup[
 	test : VerificationTest[in_, out_, msgs_, opts___],
 	cellids_
