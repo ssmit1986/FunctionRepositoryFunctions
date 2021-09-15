@@ -8,7 +8,9 @@ GeneralUtilities`SetUsage[WLTToNotebook,
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-WLTToNotebook[file_] := Enclose @ Module[{
+Options[WLTToNotebook] = Options[Notebook];
+
+WLTToNotebook[file_, opts : OptionsPattern[]] := Enclose @ Module[{
 	heldContents,
 	cellids
 },
@@ -23,12 +25,13 @@ WLTToNotebook[file_] := Enclose @ Module[{
 		
 	NotebookPut @ Notebook[
 		Cases[Flatten @ heldContents, _Cell],
-		ShowGroupOpener -> True,
+		opts,
 		TaggingRules -> Association["$testsRun" -> False],
 		StyleDefinitions -> FrontEnd`FileName[
 			{"MUnit"}, "MUnit.nb",
 			CharacterEncoding -> "UTF-8"
-		]
+		],
+		ShowGroupOpener -> True
 	]
 ];
 
