@@ -7,6 +7,11 @@ GeneralUtilities`SetUsage[FormatTestFile,
 FormatTestFile[fileIn$, fileOut$] writes the result to a new file."
 ];
 
+GeneralUtilities`SetUsage[ConvertTestNotebooks,
+    "ConvertTestNotebooks[nb$] converts a .nb testing notebook file to a .wlt file with the same name in the same directory.
+ConvertTestNotebooks[dir$] converts all notebooks in directory dir$."
+];
+
 Begin["`Private`"] (* Begin Private Context *)
 
 SetAttributes[toInputFormString, HoldAllComplete];
@@ -66,6 +71,24 @@ FormatTestFile[file_String?FileExistsQ, fileOut : (_String | Automatic) : Automa
 ];
 
 FormatTestFile[___] := $Failed;
+
+ConvertTestNotebooks[file_String?FileExistsQ] /; ToLowerCase @ FileExtension[file] === "nb" := Module[{
+	nb, str, fileOut
+},
+	Block[{$Context, $ContextPath}, Needs["MUnit`"]];
+	fileOut = StringReplace[file, ".nb" ~~ EndOfString :> ".wlt"];
+	nb = NotebookOpen[file];
+	str = MUnit`NotebookToTests[nb, "PreserveDataInSections" -> False];
+	NotebookClose[nb];
+	Export[fileOut, str, "String"];
+	FormatTestFile[fileOut];
+	fileOut
+];
+
+ConvertTestNotebooks[testDir_?DirectoryQ] := Map[
+	ConvertTestNotebooks[#]&,
+	FileNames["*.nb", testDir]
+];
 
 End[] (* End Private Context *)
 

@@ -38,6 +38,7 @@ firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
 
 FormatTestFile;
+ConvertTestNotebooks;
 Get["FunctionRepo`FormatTestFile`"];
 
 graphicsToGraph;
