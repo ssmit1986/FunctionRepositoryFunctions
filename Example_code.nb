@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[30]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2543,6 +2543,41 @@ Cell[BoxData[{
     RowBox[{"test", ",", "_Integer"}], "]"}], ";"}], "//", 
   "RepeatedTiming"}]}], "Input",
  CellLabel->"In[127]:=",ExpressionUUID->"924a0f49-0c5c-46d4-b64b-5a097066638b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["MonitorFile", \
+"Subsection",ExpressionUUID->"63ef91fc-fb9e-4313-bc68-3d37895e390b"],
+
+Cell[BoxData[
+ RowBox[{"?", "MonitorFile"}]], "Input",
+ CellLabel->"In[16]:=",ExpressionUUID->"c4151c94-679d-4e72-bc2b-49a791f8e58c"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[74]:=",ExpressionUUID->"6d7fd2e1-de6e-469d-9e85-1c3aa7a69e17"],
+
+Cell[BoxData[
+ RowBox[{"MonitorFile", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "contents", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<FunctionRepo\>\"", 
+      ",", "\"\<Kernel\>\"", ",", "\"\<MonitorFile.wl\>\""}], "}"}], "]"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ImportFunction\>\"", "->", 
+    RowBox[{"Function", "[", 
+     RowBox[{"Import", "[", 
+      RowBox[{"#", ",", "\"\<String\>\""}], "]"}], "]"}]}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[75]:=",ExpressionUUID->"219b7ce3-4a16-4126-ba81-662c65746983"],
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "@", "contents"}]], "Input",
+ CellLabel->"In[38]:=",ExpressionUUID->"10f36b7f-4285-4b85-abc7-bb2a68f9ce68"]
 }, Closed]],
 
 Cell[CellGroupData[{
