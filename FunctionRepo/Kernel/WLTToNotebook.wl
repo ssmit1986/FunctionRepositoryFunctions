@@ -8,26 +8,30 @@ GeneralUtilities`SetUsage[WLTToNotebook,
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-WLTToNotebook[
-	file_?FileExistsQ
-] /; MatchQ[ToLowerCase @ FileExtension[file] , "wlt" | "mt"] := Enclose @ Module[{
+Options[WLTToNotebook] = Options[Notebook];
+
+WLTToNotebook[file_, opts : OptionsPattern[]] := Enclose @ Module[{
 	heldContents,
-	cellids = CreateDataStructure["HashSet"]
+	cellids
 },
+	ConfirmBy[file, FileExistsQ, "File does not exist"];
+	ConfirmBy[ToLowerCase @ FileExtension[file], MatchQ["wlt" | "mt"], "File extension is not .wlt or .mt"];
 	Block[{$Context, $ContextPath},
 		Needs["MUnit`"];
 		heldContents = Confirm[Import[file, {"WL", "HeldExpressions"}], "Import error"];
+		cellids = CreateDataStructure["HashSet"];
 		heldContents = testToCellGroup[#, cellids]& /@ heldContents;
 	];
 		
 	NotebookPut @ Notebook[
 		Cases[Flatten @ heldContents, _Cell],
-		ShowGroupOpener -> True,
+		opts,
 		TaggingRules -> Association["$testsRun" -> False],
 		StyleDefinitions -> FrontEnd`FileName[
 			{"MUnit"}, "MUnit.nb",
 			CharacterEncoding -> "UTF-8"
-		]
+		],
+		ShowGroupOpener -> True
 	]
 ];
 
