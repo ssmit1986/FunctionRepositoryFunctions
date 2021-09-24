@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[30]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[2]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2550,13 +2550,11 @@ Cell[CellGroupData[{
 Cell["MonitorFile", \
 "Subsection",ExpressionUUID->"63ef91fc-fb9e-4313-bc68-3d37895e390b"],
 
-Cell[BoxData[
- RowBox[{"?", "MonitorFile"}]], "Input",
- CellLabel->"In[16]:=",ExpressionUUID->"c4151c94-679d-4e72-bc2b-49a791f8e58c"],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[74]:=",ExpressionUUID->"6d7fd2e1-de6e-469d-9e85-1c3aa7a69e17"],
+Cell[BoxData[{
+ RowBox[{"?", "MonitorFile"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Options", "[", "MonitorFile", "]"}], "//", "TableForm"}]}], "Input",
+ CellLabel->"In[26]:=",ExpressionUUID->"c4151c94-679d-4e72-bc2b-49a791f8e58c"],
 
 Cell[BoxData[
  RowBox[{"MonitorFile", "[", "\[IndentingNewLine]", 
@@ -2572,12 +2570,46 @@ Cell[BoxData[
     RowBox[{"Function", "[", 
      RowBox[{"Import", "[", 
       RowBox[{"#", ",", "\"\<String\>\""}], "]"}], "]"}]}]}], 
-  "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->"In[75]:=",ExpressionUUID->"219b7ce3-4a16-4126-ba81-662c65746983"],
+  "\[IndentingNewLine]", 
+  "]"}]], "Input",ExpressionUUID->"219b7ce3-4a16-4126-ba81-662c65746983"],
 
 Cell[BoxData[
- RowBox[{"Dynamic", "@", "contents"}]], "Input",
- CellLabel->"In[38]:=",ExpressionUUID->"10f36b7f-4285-4b85-abc7-bb2a68f9ce68"]
+ RowBox[{"Dynamic", "[", "contents", "]"}]], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"10f36b7f-4285-4b85-abc7-bb2a68f9ce68"],
+
+Cell[BoxData[
+ RowBox[{"MonitorFile", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "contents", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<FunctionRepo\>\"", 
+      ",", "\"\<Kernel\>\"", ",", "\"\<MonitorFile.wl\>\""}], "}"}], "]"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ImportFunction\>\"", "->", 
+    RowBox[{"Function", "[", 
+     RowBox[{"Import", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<WL\>\"", ",", "\"\<HeldExpressions\>\""}], "}"}]}], 
+      "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ContentDisplayFunction\>\"", "->", 
+    RowBox[{"Function", "[", 
+     RowBox[{"First", "[", 
+      RowBox[{"#", ",", "\"\<\>\""}], "]"}], "]"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<LayoutFunction\>\"", " ", "->", " ", 
+    RowBox[{"Function", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"file", ",", "date", ",", "contentDisplay"}], "}"}], ",", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{"file", ",", "date", ",", 
+         RowBox[{"Framed", "[", "contentDisplay", "]"}]}], "}"}], "]"}]}], 
+     "]"}]}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[25]:=",ExpressionUUID->"26406d56-e134-4473-9fb0-317ae0e1c21f"]
 }, Closed]],
 
 Cell[CellGroupData[{
