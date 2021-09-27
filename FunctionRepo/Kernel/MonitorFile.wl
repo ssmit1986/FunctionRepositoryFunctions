@@ -9,49 +9,57 @@ GeneralUtilities`SetUsage[MonitorFile,
 Begin["`Private`"] (* Begin Private Context *) 
 
 Options[MonitorFile] = {
-	"FileCheckFunction" -> Function[FileHash[#, "SHA512"]],
+	"FileCheckFunction" -> "LastModificationDate",
 	"ImportFunction" -> Import,
-	"ContentDisplayFunction" -> Function[
-		StringForm["`1` bytes imported", ByteCount[#]]
-	],
+	"ContentDisplayFunction" -> Automatic,
 	"LayoutFunction" -> Automatic,
 	"PurgeContentsQ" -> False,
-	UpdateInterval -> 1.
+	UpdateInterval -> 1.,
+	"PlaceHolder" -> ProgressIndicator[Appearance -> "Necklace"]
 };
 
 MonitorFile[
 	Dynamic[fileContents_],
-	file_,
+	file_String,
 	opts : OptionsPattern[]
 ] := With[{
-	fileCheckFun = OptionValue["FileCheckFunction"],
+	fileCheckFun = Replace[
+		OptionValue["FileCheckFunction"],
+		prop_String :> Function[Information[File[#], prop]]
+	],
 	importFunction = OptionValue["ImportFunction"],
-	formatFun = OptionValue["ContentDisplayFunction"],
+	formatFun = Replace[
+		OptionValue["ContentDisplayFunction"],
+		Automatic :> Function[
+			StringForm["`1` bytes imported", ByteCount[#]]
+		]
+	],
 	layoutFunction = Replace[
 		OptionValue["LayoutFunction"],
-		Automatic -> defaultGrid
+		Automatic :> defaultGrid
 	],
 	updateInterval = OptionValue[UpdateInterval],
-	purgeContentsQ = OptionValue["PurgeContentsQ"]
+	purgeContentsQ = OptionValue["PurgeContentsQ"],
+	placeHolder = OptionValue["PlaceHolder"]
 },
 	DynamicModule[{
-		display = "",
+		display = Replace[placeHolder, None -> ""],
 		hash = "",
 		modificationDate = ""
 	}, 
 		DynamicWrapper[
 			DynamicWrapper[
-				Dynamic[
-					layoutFunction[file, modificationDate, display],
-					TrackedSymbols :> {modificationDate, display}
-				]
+				Dynamic[display, TrackedSymbols :> {display}]
 				,
 				hash; (* This triggers the update *)
 				If[ FileExistsQ[file]
 					,
+					If[ placeHolder =!= None,
+						display = placeHolder
+					];
 					modificationDate = Information[File[file], "LastModificationDate"];
 					fileContents = importFunction[file];
-					display = formatFun[fileContents]
+					display = layoutFunction[file, formatFun[fileContents], modificationDate]
 				],
 				SynchronousUpdating -> False, 
 				TrackedSymbols :> {hash}
@@ -61,7 +69,7 @@ MonitorFile[
 				,
 				hash = "";
 				modificationDate = Missing[];
-				display = "";
+				display = layoutFunction[file, "", modificationDate];
 				If[ purgeContentsQ,
 					fileContents = Missing["FileMissing"]
 				]
@@ -74,12 +82,12 @@ MonitorFile[
 	]
 ];
 
-defaultGrid[file_, _Missing, _] := Tooltip[
+defaultGrid[file_, _, _Missing] := Tooltip[
 	Style[StringForm["File `1` doesn't exist", FileNameTake[file]], "Text"],
 	file
 ];
 
-defaultGrid[file_, modificationDate_, display_] := Grid[
+defaultGrid[file_, display_, modificationDate_] := Grid[
 	{
 		{"File", Tooltip[FileNameTake[file], file]},
 		{"Last modified:", Replace[modificationDate, d_?DateObjectQ :> DateString[d]]}, 
