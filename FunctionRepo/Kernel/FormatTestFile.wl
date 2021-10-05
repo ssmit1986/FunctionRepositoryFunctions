@@ -89,15 +89,17 @@ formatExpressions[expressions : {___HoldComplete}] := Enclose @ Module[{
 ConvertTestNotebooks[file_String?FileExistsQ] /; ToLowerCase @ FileExtension[file] === "nb" := Enclose @ Module[{
 	nb, str, fileOut
 },
-	Block[{$Context, $ContextPath}, Needs["MUnit`"]];
-	fileOut = StringReplace[file, ".nb" ~~ EndOfString :> ".wlt"];
-	nb = NotebookOpen[file];
-	str = ConfirmBy[
-		formatExpressions @ MUnit`NotebookToTests[nb, "PreserveDataInSections" -> False],
-		StringQ
-	];
-	NotebookClose[nb];
-	Export[fileOut, str, "String"]
+	Block[{$Context, $ContextPath}, (* Block contexts to make sure that explicit contexts in the files are preserved *)
+		Needs["MUnit`"];
+		fileOut = StringReplace[file, ".nb" ~~ EndOfString :> ".wlt"];
+		nb = NotebookOpen[file];
+		str = ConfirmBy[
+			formatExpressions @ MUnit`NotebookToTests[nb, "PreserveDataInSections" -> False],
+			StringQ
+		];
+		NotebookClose[nb];
+		Export[fileOut, str, "String"]
+	]
 ];
 
 ConvertTestNotebooks[testDir_?DirectoryQ] := Map[
