@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[2]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[7]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -534,6 +534,20 @@ Cell["convertDataFormat", \
 Cell[BoxData[
  RowBox[{"?", "convertDataFormat"}]], "Input",
  CellLabel->"In[56]:=",ExpressionUUID->"33b38c0c-05f4-47b4-b352-aef21b1b7a2b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ConvertToTemplateNotebook", \
+"Subsection",ExpressionUUID->"19453f8c-d7ec-4608-868c-5a7a308f6adb"],
+
+Cell[BoxData[
+ RowBox[{"?", "ConvertToTemplateNotebook"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"3489cd04-0a66-4d0d-87ee-399033cfc76b"],
+
+Cell[BoxData[
+ RowBox[{"ConvertToTemplateNotebook", "[", "]"}]], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"28296e7a-243a-447b-ab54-84015e11ca3e"]
 }, Closed]],
 
 Cell[CellGroupData[{

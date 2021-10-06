@@ -24,6 +24,9 @@ Get["FunctionRepo`conditionedMultinormalDistribution`"];
 convertDataFormat;
 Get["FunctionRepo`convertDataFormat`"];
 
+ConvertToTemplateNotebook;
+Get["FunctionRepo`ConvertToTemplateNotebook`"];
+
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
 
