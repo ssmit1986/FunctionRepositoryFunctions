@@ -15,7 +15,7 @@ Options[MonitorFile] = {
 	"LayoutFunction" -> Automatic,
 	"PurgeContentsQ" -> False,
 	UpdateInterval -> 1.,
-	"PlaceHolder" -> ProgressIndicator[Appearance -> "Necklace"]
+	"Placeholder" -> ProgressIndicator[Appearance -> "Necklace"]
 };
 
 MonitorFile[
@@ -40,10 +40,10 @@ MonitorFile[
 	],
 	updateInterval = OptionValue[UpdateInterval],
 	purgeContentsQ = OptionValue["PurgeContentsQ"],
-	placeHolder = OptionValue["PlaceHolder"]
+	placeholder = OptionValue["Placeholder"]
 },
 	DynamicModule[{
-		display = Replace[placeHolder, None -> ""],
+		display = Replace[placeholder, None -> ""],
 		hash = "",
 		modificationDate = ""
 	}, 
@@ -54,8 +54,8 @@ MonitorFile[
 				hash; (* This triggers the update *)
 				If[ FileExistsQ[file]
 					,
-					If[ placeHolder =!= None,
-						display = placeHolder
+					If[ placeholder =!= None,
+						display = placeholder
 					];
 					modificationDate = Information[File[file], "LastModificationDate"];
 					fileContents = importFunction[file];

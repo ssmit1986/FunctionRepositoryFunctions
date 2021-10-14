@@ -27,11 +27,15 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
 
+* [MonitorFile](https://resources.wolframcloud.com/FunctionRepository/resources/MonitorFile/)
+
 * [MultiNonlinearModelFit](https://resources.wolframcloud.com/FunctionRepository/resources/MultiNonlinearModelFit)
 
 * [SparseAssociation](https://resources.wolframcloud.com/FunctionRepository/resources/SparseAssociation)
 
 * [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
+
+* ToExpressionExpect: submitted for review
 
 * [TukeyMedianPolish](https://resources.wolframcloud.com/FunctionRepository/resources/TukeyMedianPolish)
 

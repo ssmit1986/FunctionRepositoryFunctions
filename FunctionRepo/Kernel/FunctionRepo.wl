@@ -24,6 +24,9 @@ Get["FunctionRepo`conditionedMultinormalDistribution`"];
 convertDataFormat;
 Get["FunctionRepo`convertDataFormat`"];
 
+ConvertToTemplateNotebook;
+Get["FunctionRepo`ConvertToTemplateNotebook`"];
+
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
 
@@ -82,6 +85,9 @@ Get["FunctionRepo`ScalableContentWindow`"];
 
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
+
+ToExpressionExpect;
+Get["FunctionRepo`ToExpressionExpect`"];
 
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
