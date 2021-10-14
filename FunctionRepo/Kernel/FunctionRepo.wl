@@ -86,6 +86,9 @@ Get["FunctionRepo`ScalableContentWindow`"];
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 
+ToExpressionExpect;
+Get["FunctionRepo`ToExpressionExpect`"];
+
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
 
