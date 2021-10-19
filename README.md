@@ -35,7 +35,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
 
-* ToExpressionExpect: submitted for review
+* ToExpressionMatched: submitted for review
 
 * [TukeyMedianPolish](https://resources.wolframcloud.com/FunctionRepository/resources/TukeyMedianPolish)
 
