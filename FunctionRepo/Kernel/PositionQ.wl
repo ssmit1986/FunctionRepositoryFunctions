@@ -8,12 +8,12 @@ PositionQ[expr$, {pos$1, pos$2, $$}] returns True if all positions exists in exp
 
 Begin["`Private`"] (* Begin Private Context *)
 
+SetAttributes[returnTrue, HoldAllComplete];
+returnTrue[_] := True;
+
 PositionQ[pos_][expr_] := PositionQ[expr, pos];
 
 PositionQ[_, {} | {{}}] := True;
-
-SetAttributes[returnTrue, HoldAllComplete];
-returnTrue[_] := True;
 
 PositionQ[expr_, pos : {__Integer}] := TrueQ @ Quiet[
 	Extract[Unevaluated[expr], pos, returnTrue],
