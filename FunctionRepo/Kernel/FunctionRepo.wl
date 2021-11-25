@@ -74,6 +74,10 @@ Get["FunctionRepo`MultiNonlinearModelFit`"];
 multiSet;
 Get["FunctionRepo`multiSet`"];
 
+PositionQ;
+Get["FunctionRepo`PositionQ`"];
+
+
 SmoothCurve;
 Get["FunctionRepo`SmoothCurve`"];
 

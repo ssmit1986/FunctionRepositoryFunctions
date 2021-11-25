@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[36]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2628,6 +2628,499 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["PositionQ", \
+"Subsection",ExpressionUUID->"194af45e-ed7a-4a32-bbbb-89c03373fd71"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "PositionQ"}]], "Input",
+ CellLabel->"In[16]:=",ExpressionUUID->"c1209d77-14f4-48af-89c9-208cde1f5e27"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"PositionQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"pos\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) returns True if \\!\\(\\*StyleBox[\\\"pos\\\", \
+\\\"TI\\\"]\\) is a valid position in \\!\\(\\*StyleBox[\\\"expr\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"PositionQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"pos\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"pos\\\", \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) returns True if \
+all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" SubValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"SubValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "SubValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{
+                    "PositionQ", "[", "FunctionRepo`PositionQ`Private`pos_", 
+                    "]"}], "[", "FunctionRepo`PositionQ`Private`expr_", "]"}],
+                     ":=", 
+                    RowBox[{"PositionQ", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`PositionQ`Private`expr", ",", 
+                    "FunctionRepo`PositionQ`Private`pos"}], "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]},
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" DownValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"DownValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "DownValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{"PositionQ", "[", 
+                    RowBox[{"_", ",", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], "|", 
+                    RowBox[{"{", 
+                    RowBox[{"{", "}"}], "}"}]}]}], "]"}], ":=", "True"}]}, {
+                   " "}, {
+                    RowBox[{
+                    RowBox[{"PositionQ", "[", 
+                    RowBox[{"FunctionRepo`PositionQ`Private`expr_", ",", 
+                    RowBox[{"FunctionRepo`PositionQ`Private`pos", ":", 
+                    RowBox[{"{", "__Integer", "}"}]}]}], "]"}], ":=", 
+                    RowBox[{"TrueQ", "[", 
+                    RowBox[{"Quiet", "[", 
+                    RowBox[{
+                    RowBox[{"Extract", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"Unevaluated", "[", 
+                    "FunctionRepo`PositionQ`Private`expr", "]"}], ",", 
+                    "FunctionRepo`PositionQ`Private`pos", ",", 
+                    "FunctionRepo`PositionQ`Private`returnTrue"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    StyleBox[
+                    RowBox[{"Extract", "::", "partw"}], "MessageName"], 
+                    "}"}]}], "]"}], "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{"PositionQ", "[", 
+                    RowBox[{"FunctionRepo`PositionQ`Private`expr_", ",", 
+                    RowBox[{"FunctionRepo`PositionQ`Private`pos", ":", 
+                    RowBox[{"{", "__List", "}"}]}]}], "]"}], ":=", 
+                    RowBox[{"ListQ", "[", 
+                    RowBox[{"Extract", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"Unevaluated", "[", 
+                    "FunctionRepo`PositionQ`Private`expr", "]"}], ",", 
+                    "FunctionRepo`PositionQ`Private`pos", ",", 
+                    "HoldComplete"}], "]"}], "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{"PositionQ", "[", 
+                    RowBox[{"_", ",", "_"}], "]"}], ":=", "False"}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`PositionQ\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"PositionQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"pos\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) returns True if \\!\\(\\*StyleBox[\\\"pos\\\", \
+\\\"TI\\\"]\\) is a valid position in \\!\\(\\*StyleBox[\\\"expr\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"PositionQ\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"pos\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"pos\\\", \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) returns True if \
+all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {3., 9.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"PositionQ\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \
+\",\",  StyleBox[\"pos\", \"TI\"]}], \"]\"}]\) returns True if \
+\!\(\*StyleBox[\"pos\", \"TI\"]\) is a valid position in \
+\!\(\*StyleBox[\"expr\", \"TI\"]\).\n\!\(\*RowBox[{\"PositionQ\", \"[\", \
+RowBox[{StyleBox[\"expr\", \"TI\"], \",\",  RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"pos\", StyleBox[\"1\", \"TR\"]], \"TI\"], \",\
+\",  StyleBox[SubscriptBox[\"pos\", StyleBox[\"2\", \"TR\"]], \"TI\"], \",\", \
+ StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) returns True if \
+all positions exists in \!\(\*StyleBox[\"expr\", \"TI\"]\).", "Documentation" -> 
+    None, "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`PositionQ, {FunctionRepo`PositionQ[
+         Blank[], 
+         Alternatives[{}, {{}}]] :> True, FunctionRepo`PositionQ[
+         Pattern[FunctionRepo`PositionQ`Private`expr, 
+          Blank[]], 
+         Pattern[FunctionRepo`PositionQ`Private`pos, {
+           BlankSequence[Integer]}]] :> TrueQ[
+         Quiet[
+          Extract[
+           Unevaluated[FunctionRepo`PositionQ`Private`expr], 
+           FunctionRepo`PositionQ`Private`pos, 
+           FunctionRepo`PositionQ`Private`returnTrue], {
+           MessageName[Extract, "partw"]}]], FunctionRepo`PositionQ[
+         Pattern[FunctionRepo`PositionQ`Private`expr, 
+          Blank[]], 
+         Pattern[FunctionRepo`PositionQ`Private`pos, {
+           BlankSequence[List]}]] :> ListQ[
+         Extract[
+          Unevaluated[FunctionRepo`PositionQ`Private`expr], 
+          FunctionRepo`PositionQ`Private`pos, HoldComplete]], 
+       FunctionRepo`PositionQ[
+         Blank[], 
+         Blank[]] :> False}], "SubValues" -> 
+    Information`InformationValueForm[
+     SubValues, FunctionRepo`PositionQ, {FunctionRepo`PositionQ[
+         Pattern[FunctionRepo`PositionQ`Private`pos, 
+          Blank[]]][
+         Pattern[FunctionRepo`PositionQ`Private`expr, 
+          Blank[]]] :> 
+       FunctionRepo`PositionQ[
+        FunctionRepo`PositionQ`Private`expr, 
+         FunctionRepo`PositionQ`Private`pos]}], "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`PositionQ"], 
+   False]]], "Output",
+ CellLabel->"Out[16]=",ExpressionUUID->"30837765-e0f9-4103-aeb7-bb5442146ab1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "2", "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[23]:=",ExpressionUUID->"eff8eca7-a77b-4b15-a52d-2f8e2761ddf5"],
+
+Cell[BoxData["True"], "Output",
+ CellLabel->"Out[23]=",ExpressionUUID->"f5616de7-a14e-469d-9f51-6d661514ae83"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[24]=",ExpressionUUID->"17ce9d3a-9fa2-4a96-ad6e-3e11840b0028"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", "1", "}"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", "2", "}"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", "3", "}"}]}], "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"f42c2287-3a38-4e4e-abb7-fcefcc093884"],
+
+Cell[BoxData["True"], "Output",
+ CellLabel->"Out[30]=",ExpressionUUID->"ac098513-4e54-42c2-ac6e-d08132b60f9d"],
+
+Cell[BoxData["True"], "Output",
+ CellLabel->"Out[31]=",ExpressionUUID->"4e28007a-29bf-43ff-8878-65af76083857"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[32]=",ExpressionUUID->"9a181831-8a1f-41a5-8211-ebc89102ce58"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "3"}], "}"}], "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[41]:=",ExpressionUUID->"36024d4c-7fcb-4487-a24f-141951528ffb"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[41]=",ExpressionUUID->"5c437f2c-6d37-404a-a620-d94a3fd049ff"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[42]=",ExpressionUUID->"742c0b38-d45c-4395-8080-046330a4bee1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"1", "+", "1"}], ",", 
+   RowBox[{"{", "1", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"PositionQ", "[", 
+  RowBox[{
+   RowBox[{"Unevaluated", "[", 
+    RowBox[{"1", "+", "1"}], "]"}], ",", 
+   RowBox[{"{", "1", "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[38]:=",ExpressionUUID->"584a5202-8e73-400a-9f71-457d29e6bfb1"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[38]=",ExpressionUUID->"561f4c46-9012-4606-8fda-28ea53a8e28b"],
+
+Cell[BoxData["True"], "Output",
+ CellLabel->"Out[39]=",ExpressionUUID->"3a917085-9547-499a-aa4d-f5dd32f369ba"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["ScalableContentWindow", \
 "Subsection",ExpressionUUID->"7b52dd16-fbca-4ec3-b00b-9dcca3429ebf"],
 
@@ -3421,7 +3914,6 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
                     RowBox[{"Module", "[", 
                     RowBox[{
                     RowBox[{"{", 
-                    
                     RowBox[{"FunctionRepo`WLTToNotebook`Private`heldContents",
                      "=", 
                     RowBox[{"Confirm", "[", 
@@ -3609,6 +4101,7 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
