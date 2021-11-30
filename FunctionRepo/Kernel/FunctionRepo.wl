@@ -74,6 +74,10 @@ Get["FunctionRepo`MultiNonlinearModelFit`"];
 multiSet;
 Get["FunctionRepo`multiSet`"];
 
+PositionQ;
+Get["FunctionRepo`PositionQ`"];
+
+
 SmoothCurve;
 Get["FunctionRepo`SmoothCurve`"];
 
@@ -86,8 +90,8 @@ Get["FunctionRepo`ScalableContentWindow`"];
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 
-ToExpressionExpect;
-Get["FunctionRepo`ToExpressionExpect`"];
+ToExpressionMatched;
+Get["FunctionRepo`ToExpressionMatched`"];
 
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];

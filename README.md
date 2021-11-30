@@ -29,13 +29,15 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [MonitorFile](https://resources.wolframcloud.com/FunctionRepository/resources/MonitorFile/)
 
+* [PositionQ](https://resources.wolframcloud.com/FunctionRepository/resources/PositionQ/)
+
 * [MultiNonlinearModelFit](https://resources.wolframcloud.com/FunctionRepository/resources/MultiNonlinearModelFit)
 
 * [SparseAssociation](https://resources.wolframcloud.com/FunctionRepository/resources/SparseAssociation)
 
 * [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
 
-* ToExpressionExpect: submitted for review
+* [ToExpressionMatched](https://resources.wolframcloud.com/FunctionRepository/resources/ToExpressionMatched)
 
 * [TukeyMedianPolish](https://resources.wolframcloud.com/FunctionRepository/resources/TukeyMedianPolish)
 
