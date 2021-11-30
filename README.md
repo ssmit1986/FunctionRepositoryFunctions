@@ -29,7 +29,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [MonitorFile](https://resources.wolframcloud.com/FunctionRepository/resources/MonitorFile/)
 
-* PositionQ (to be submitted)
+* [PositionQ](https://resources.wolframcloud.com/FunctionRepository/resources/PositionQ/)
 
 * [MultiNonlinearModelFit](https://resources.wolframcloud.com/FunctionRepository/resources/MultiNonlinearModelFit)
 
