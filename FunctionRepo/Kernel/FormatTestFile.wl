@@ -71,7 +71,10 @@ formatExpressions[expressions : {___HoldComplete}] := Enclose @ Module[{
 									]&,
 									Map[toInputFormString, Unevaluated[{args}]]
 								],
-								"\n" ~~ indentStr :> "\n" <> indentStr <> indentStr
+								{
+									"\n" ~~ indentStr -> "\n" <> indentStr <> indentStr,
+									"\n]" ~~ EndOfString -> "\n" <> indentStr <> "]"
+								}
 							],
 							"\n" <> indentStr <> ",\n" <> indentStr
 						],
