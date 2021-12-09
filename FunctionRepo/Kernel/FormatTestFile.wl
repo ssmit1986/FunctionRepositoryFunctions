@@ -14,6 +14,8 @@ ConvertTestNotebooks[dir$] converts all notebooks in directory dir$."
 
 Begin["`Private`"] (* Begin Private Context *)
 
+$defaultIndentString = "\t";
+
 SetAttributes[toInputFormString, HoldAllComplete];
 toInputFormString[expr_] := ToString[Unevaluated[InputForm[expr]], CharacterEncoding -> "ASCII"];
 
@@ -51,7 +53,7 @@ formatExpressions[str_String] := formatExpressions[
 ];
 
 formatExpressions[expressions : {___HoldComplete}] := Enclose @ Module[{
-	indentStr = StringRepeat[" ", 4]
+	indentStr = $defaultIndentString
 },
 	ConfirmMatch[
 		StringRiffle[
