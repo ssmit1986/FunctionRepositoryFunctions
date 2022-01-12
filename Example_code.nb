@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[36]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[9]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -534,6 +534,616 @@ Cell["convertDataFormat", \
 Cell[BoxData[
  RowBox[{"?", "convertDataFormat"}]], "Input",
  CellLabel->"In[56]:=",ExpressionUUID->"33b38c0c-05f4-47b4-b352-aef21b1b7a2b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ConvertStringsToSymbols", \
+"Subsection",ExpressionUUID->"0fd3e109-cb2c-4549-abd2-5dc81feddbbb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "ConvertStringsToSymbols"}]], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"a50f3260-8bfa-4c0e-a4c4-2e5154433008"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ConvertStringsToSymbols\\\", \
+\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  \
+StyleBox[\\\"str\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts all instances of \
+\\!\\(\\*StyleBox[\\\"str\\\", \\\"TI\\\"]\\) to a symbol before evaluating \
+\\!\\(\\*StyleBox[\\\"expr\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"ConvertStringsToSymbols\\\", \
+\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  RowBox[{\\\
+\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"str\\\", StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"str\\\", \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) converts \
+multiple strings.\\n\\!\\(\\*RowBox[{\\\"ConvertStringsToSymbols\\\", \\\"[\\\
+\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  \
+RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"str\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"] , \\\"\[Rule]\\\",  \
+StyleBox[SubscriptBox[\\\"context\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}]}], \\\"]\\\"}]\\) creates the symbols in a specified context.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"Definitions\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "Definitions", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{"ConvertStringsToSymbols", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr_", ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ":=", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr"}]}, {
+                   " "}, {
+                    RowBox[{
+                    RowBox[{"ConvertStringsToSymbols", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr_", ",", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`spec", ":", 
+                    RowBox[{"_String", "|", 
+                    RowBox[{"(", 
+                    RowBox[{"_String", "\[Rule]", "_"}], ")"}]}]}]}], "]"}], 
+                    ":=", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`\
+toHeldExpression", "[", "FunctionRepo`ConvertStringsToSymbols`Private`spec", 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{"HoldComplete", "[", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`sym_Symbol",
+                     "]"}], "\[RuleDelayed]", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    
+                    RowBox[{"Unevaluated", "[", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr", 
+                    "]"}], "/.", "\[VeryThinSpace]", 
+                    RowBox[{
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`symName", 
+                    "[", "FunctionRepo`ConvertStringsToSymbols`Private`spec", 
+                    "]"}], "\[RuleDelayed]", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`sym"}]}], 
+                    ")"}]}], ",", 
+                    RowBox[{"_", "\[RuleDelayed]", "$Failed"}]}], "}"}]}], 
+                    "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{"ConvertStringsToSymbols", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr_", ",", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`spec", ":", 
+                    RowBox[{"(", 
+                    RowBox[{"_List", "\[Rule]", "_"}], ")"}]}]}], "]"}], ":=", 
+                    RowBox[{"ConvertStringsToSymbols", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr", ",", 
+                    
+                    RowBox[{
+                    "Thread", "[", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`spec", 
+                    "]"}]}], "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{"ConvertStringsToSymbols", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr_", ",",
+                     "FunctionRepo`ConvertStringsToSymbols`Private`specList_\
+List"}], "]"}], ":=", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"HoldComplete", "@@", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`\
+toHeldExpression", "/@", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`specList"}]}\
+], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`hold", ":", 
+                    RowBox[{"HoldComplete", "[", "__Symbol", "]"}]}], "/;", 
+                    RowBox[{
+                    
+                    RowBox[{"Length", "[", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`hold", 
+                    "]"}], "===", 
+                    
+                    RowBox[{"Length", "[", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`specList", 
+                    "]"}]}]}], "\[RuleDelayed]", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    
+                    RowBox[{"Unevaluated", "[", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`expr", 
+                    "]"}], "/.", "\[VeryThinSpace]", 
+                    RowBox[{"List", "@@", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"HoldComplete", "@@", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ConvertStringsToSymbols`Private`symName", 
+                    "/@", "FunctionRepo`ConvertStringsToSymbols`Private`\
+specList"}]}], "\[RuleDelayed]", 
+                    "FunctionRepo`ConvertStringsToSymbols`Private`hold"}], 
+                    ",", "HoldComplete"}], "]"}]}]}], ")"}]}], ",", 
+                    RowBox[{"_", "\[RuleDelayed]", "$Failed"}]}], "}"}]}], 
+                    "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], \
+"\<\"FunctionRepo`ConvertStringsToSymbols\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ConvertStringsToSymbols\\\", \
+\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  \
+StyleBox[\\\"str\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts all instances of \
+\\!\\(\\*StyleBox[\\\"str\\\", \\\"TI\\\"]\\) to a symbol before evaluating \
+\\!\\(\\*StyleBox[\\\"expr\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"ConvertStringsToSymbols\\\", \
+\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  RowBox[{\\\
+\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"str\\\", StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"str\\\", \
+StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) converts \
+multiple strings.\\n\\!\\(\\*RowBox[{\\\"ConvertStringsToSymbols\\\", \\\"[\\\
+\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  \
+RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"str\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"] , \\\"\[Rule]\\\",  \
+StyleBox[SubscriptBox[\\\"context\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
+\\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}]}], \\\"]\\\"}]\\) creates the symbols in a specified context.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {4., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[<|
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"ConvertStringsToSymbols\", \"[\", \
+RowBox[{StyleBox[\"expr\", \"TI\"], \",\",  StyleBox[\"str\", \"TI\"]}], \
+\"]\"}]\) converts all instances of \!\(\*StyleBox[\"str\", \"TI\"]\) to a \
+symbol before evaluating \!\(\*StyleBox[\"expr\", \"TI\"]\).\n\
+\!\(\*RowBox[{\"ConvertStringsToSymbols\", \"[\", RowBox[{StyleBox[\"expr\", \
+\"TI\"], \",\",  RowBox[{\"{\", RowBox[{StyleBox[SubscriptBox[\"str\", \
+StyleBox[\"1\", \"TR\"]], \"TI\"], \",\",  StyleBox[SubscriptBox[\"str\", \
+StyleBox[\"2\", \"TR\"]], \"TI\"], \",\",  StyleBox[\"\[Ellipsis]\", \
+\"TR\"]}], \"}\"}]}], \"]\"}]\) converts multiple strings.\n\
+\!\(\*RowBox[{\"ConvertStringsToSymbols\", \"[\", RowBox[{StyleBox[\"expr\", \
+\"TI\"], \",\",  RowBox[{\"{\", RowBox[{StyleBox[SubscriptBox[\"str\", \
+StyleBox[\"1\", \"TR\"]], \"TI\"] , \"\[Rule]\",  \
+StyleBox[SubscriptBox[\"context\", StyleBox[\"1\", \"TR\"]], \"TI\"], \",\",  \
+StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) creates the symbols \
+in a specified context.", "Documentation" -> None, "OwnValues" -> None, 
+    "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`ConvertStringsToSymbols, {
+      FunctionRepo`ConvertStringsToSymbols[
+         Pattern[FunctionRepo`ConvertStringsToSymbols`Private`expr, 
+          Blank[]], {}] :> FunctionRepo`ConvertStringsToSymbols`Private`expr, 
+       FunctionRepo`ConvertStringsToSymbols[
+         Pattern[FunctionRepo`ConvertStringsToSymbols`Private`expr, 
+          Blank[]], 
+         Pattern[FunctionRepo`ConvertStringsToSymbols`Private`spec, 
+          Alternatives[
+           Blank[String], Blank[String] -> Blank[]]]] :> Replace[
+         FunctionRepo`ConvertStringsToSymbols`Private`toHeldExpression[
+         FunctionRepo`ConvertStringsToSymbols`Private`spec], {HoldComplete[
+            Pattern[FunctionRepo`ConvertStringsToSymbols`Private`sym, 
+             Blank[Symbol]]] :> ReplaceAll[
+            Unevaluated[FunctionRepo`ConvertStringsToSymbols`Private`expr], 
+            FunctionRepo`ConvertStringsToSymbols`Private`symName[
+             FunctionRepo`ConvertStringsToSymbols`Private`spec] :> 
+            FunctionRepo`ConvertStringsToSymbols`Private`sym], 
+          Blank[] :> $Failed}], FunctionRepo`ConvertStringsToSymbols[
+         Pattern[FunctionRepo`ConvertStringsToSymbols`Private`expr, 
+          Blank[]], 
+         Pattern[
+         FunctionRepo`ConvertStringsToSymbols`Private`spec, Blank[List] -> 
+          Blank[]]] :> 
+       FunctionRepo`ConvertStringsToSymbols[
+        FunctionRepo`ConvertStringsToSymbols`Private`expr, 
+         Thread[FunctionRepo`ConvertStringsToSymbols`Private`spec]], 
+       FunctionRepo`ConvertStringsToSymbols[
+         Pattern[FunctionRepo`ConvertStringsToSymbols`Private`expr, 
+          Blank[]], 
+         Pattern[FunctionRepo`ConvertStringsToSymbols`Private`specList, 
+          Blank[List]]] :> Replace[
+         Flatten[
+          Apply[HoldComplete, 
+           Map[
+           FunctionRepo`ConvertStringsToSymbols`Private`toHeldExpression, 
+            FunctionRepo`ConvertStringsToSymbols`Private`specList]]], {
+         Condition[
+            Pattern[FunctionRepo`ConvertStringsToSymbols`Private`hold, 
+             HoldComplete[
+              BlankSequence[Symbol]]], 
+            Length[FunctionRepo`ConvertStringsToSymbols`Private`hold] === 
+            Length[FunctionRepo`ConvertStringsToSymbols`Private`specList]] :> 
+          ReplaceAll[
+            Unevaluated[FunctionRepo`ConvertStringsToSymbols`Private`expr], 
+            Apply[List, 
+             Thread[Apply[HoldComplete, 
+                Map[
+                FunctionRepo`ConvertStringsToSymbols`Private`symName, 
+                 FunctionRepo`ConvertStringsToSymbols`Private`specList]] :> 
+              FunctionRepo`ConvertStringsToSymbols`Private`hold, 
+              HoldComplete]]], Blank[] :> $Failed}]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "FunctionRepo`ConvertStringsToSymbols"|>, False]]], "Output",
+ CellLabel->"Out[11]=",ExpressionUUID->"6e1b47eb-a80b-47e7-87ac-00256920bc4a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"x", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ConvertStringsToSymbols", "[", 
+   RowBox[{
+    RowBox[{"Hold", "[", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", "\"\<x\>\""}], 
+   "]"}], "//", "FullForm"}]}], "Input",
+ CellLabel->"In[16]:=",ExpressionUUID->"713f79a1-8728-48d9-93ee-a955ac4175a8"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"Hold", "[", 
+    RowBox[{"x", ",", "\"\<y\>\""}], "]"}],
+   ShowSpecialCharacters->False,
+   ShowStringCharacters->True,
+   NumberMarks->True],
+  FullForm]], "Output",
+ CellLabel->
+  "Out[17]//FullForm=",ExpressionUUID->"d6017f79-357d-4cc1-b636-b39da7d98507"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"x", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ConvertStringsToSymbols", "[", 
+   RowBox[{
+    RowBox[{"Hold", "[", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", 
+    RowBox[{"\"\<x\>\"", "->", "\"\<bla`\>\""}]}], "]"}], "//", 
+  "FullForm"}]}], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"39975288-6635-4974-b642-c4f42db7986d"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"Hold", "[", 
+    RowBox[{"bla`x", ",", "\"\<y\>\""}], "]"}],
+   ShowSpecialCharacters->False,
+   ShowStringCharacters->True,
+   NumberMarks->True],
+  FullForm]], "Output",
+ CellLabel->
+  "Out[20]//FullForm=",ExpressionUUID->"9faa7edd-44c9-44fe-8b77-88fdd2c2e428"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ConvertStringsToSymbols", "[", 
+   RowBox[{
+    RowBox[{"Hold", "[", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], "]"}], "//", 
+  "FullForm"}]], "Input",
+ CellLabel->"In[18]:=",ExpressionUUID->"9a934b0b-7f45-40c3-a7a6-49e757ae196e"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"Hold", "[", 
+    RowBox[{"x", ",", "y"}], "]"}],
+   ShowSpecialCharacters->False,
+   ShowStringCharacters->True,
+   NumberMarks->True],
+  FullForm]], "Output",
+ CellLabel->
+  "Out[18]//FullForm=",ExpressionUUID->"37623c78-2307-45e1-85f1-90f74c23d10a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ConvertStringsToSymbols", "[", 
+   RowBox[{
+    RowBox[{"Hold", "[", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<x\>\"", "->", "\"\<bla`\>\""}], ",", "\"\<y\>\""}], 
+     "}"}]}], "]"}], "//", "FullForm"}]], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"6bc96b16-1f52-449a-8d51-23ddec5e5dd4"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"Hold", "[", 
+    RowBox[{"bla`x", ",", "y"}], "]"}],
+   ShowSpecialCharacters->False,
+   ShowStringCharacters->True,
+   NumberMarks->True],
+  FullForm]], "Output",
+ CellLabel->
+  "Out[21]//FullForm=",ExpressionUUID->"7482a8cf-fd21-4493-8aff-c41bc7919454"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ConvertStringsToSymbols", "[", 
+   RowBox[{
+    RowBox[{"Hold", "[", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}], "->", 
+     "\"\<bla`\>\""}]}], "]"}], "//", "FullForm"}]], "Input",
+ CellLabel->"In[22]:=",ExpressionUUID->"bca4157e-be64-45aa-8e9f-905ff3c68fe1"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"Hold", "[", 
+    RowBox[{"bla`x", ",", "bla`y"}], "]"}],
+   ShowSpecialCharacters->False,
+   ShowStringCharacters->True,
+   NumberMarks->True],
+  FullForm]], "Output",
+ CellLabel->
+  "Out[22]//FullForm=",ExpressionUUID->"4c79639d-2cee-4cf2-be6f-1212ffbad349"]
+}, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -2720,7 +3330,6 @@ all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>",
                StyleBox[
                 TagBox[
                  TooltipBox[
-                  
                   StyleBox["\<\" DownValue Definitions\"\>", 
                    "InformationRowLabel",
                    StripOnInput->False],
@@ -2822,6 +3431,7 @@ all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -2919,11 +3529,11 @@ all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {3., 9.}}], True->
+               ImageSizeCache->{12., {4., 8.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -2963,8 +3573,7 @@ all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>",
     BaseStyle->"InformationGridFrame",
     StripOnInput->False], "InformationGridPlain",
    StripOnInput->False],
-  InformationData[
-   Association[
+  InformationData[<|
    "ObjectType" -> "Symbol", "Usage" -> 
     "\!\(\*RowBox[{\"PositionQ\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \
 \",\",  StyleBox[\"pos\", \"TI\"]}], \"]\"}]\) returns True if \
@@ -3010,7 +3619,7 @@ all positions exists in \!\(\*StyleBox[\"expr\", \"TI\"]\).", "Documentation" ->
         FunctionRepo`PositionQ`Private`expr, 
          FunctionRepo`PositionQ`Private`pos]}], "DefaultValues" -> None, 
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
-    "Attributes" -> {}, "FullName" -> "FunctionRepo`PositionQ"], 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`PositionQ"|>, 
    False]]], "Output",
  CellLabel->"Out[16]=",ExpressionUUID->"30837765-e0f9-4103-aeb7-bb5442146ab1"]
 }, Open  ]],
@@ -3583,10 +4192,10 @@ Cell[BoxData[
        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
      "SummaryPanel"],
     DynamicModuleValues:>{}], "]"}],
-  Failure["MatchFailure", 
-   Association[
+  Failure[
+  "MatchFailure", <|
    "MessageTemplate" -> "Interpreted expression did not match `Pattern`", 
-    "MessageParameters" -> Association["Pattern" -> Blank[Times]]]],
+    "MessageParameters" -> <|"Pattern" -> Blank[Times]|>|>],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
@@ -3704,10 +4313,10 @@ Cell[BoxData[
        Dynamic[Typeset`open$$], ImageSize -> Automatic]},
      "SummaryPanel"],
     DynamicModuleValues:>{}], "]"}],
-  Failure["MatchFailure", 
-   Association[
+  Failure[
+  "MatchFailure", <|
    "MessageTemplate" -> "Interpreted expression did not match `Pattern`", 
-    "MessageParameters" -> Association["Pattern" -> Blank[Integer]]]],
+    "MessageParameters" -> <|"Pattern" -> Blank[Integer]|>|>],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
@@ -3914,6 +4523,7 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
                     RowBox[{"Module", "[", 
                     RowBox[{
                     RowBox[{"{", 
+                    
                     RowBox[{"FunctionRepo`WLTToNotebook`Private`heldContents",
                      "=", 
                     RowBox[{"Confirm", "[", 
@@ -4093,11 +4703,11 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {3., 9.}}], True->
+               ImageSizeCache->{12., {4., 8.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -4137,8 +4747,7 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
     BaseStyle->"InformationGridFrame",
     StripOnInput->False], "InformationGridPlain",
    StripOnInput->False],
-  InformationData[
-   Association[
+  InformationData[<|
    "ObjectType" -> "Symbol", "Usage" -> 
     "\!\(\*RowBox[{\"WLTToNotebook\", \"[\", RowBox[{StyleBox[\"testfile\", \
 \"TI\"]}], \"]\"}]\) converts a a .wlt file to a testing notebook.", 
@@ -4167,25 +4776,25 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
             Notebook[
              Cases[
               Flatten[FunctionRepo`WLTToNotebook`Private`heldContents], 
-              Blank[Cell]], TaggingRules -> Association["$testsRun" -> False],
-              StyleDefinitions -> 
+              Blank[Cell]], TaggingRules -> <|"$testsRun" -> False|>, 
+             StyleDefinitions -> 
              FrontEnd`FileName[{"MUnit"}, "MUnit.nb", CharacterEncoding -> 
                "UTF-8"]]]]]}], "SubValues" -> None, "DefaultValues" -> None, 
     "NValues" -> None, "FormatValues" -> None, "Options" -> {}, 
-    "Attributes" -> {}, "FullName" -> "FunctionRepo`WLTToNotebook"], 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`WLTToNotebook"|>, 
    False]]], "Output",
  CellLabel->"Out[3]=",ExpressionUUID->"147b8d4e-d587-4216-a778-9b8d8bcc34d7"]
 }, Open  ]]
 }, Closed]]
 },
-WindowSize->{1814, 888},
-WindowMargins->{{Automatic, 27}, {Automatic, 7}},
+WindowSize->{1428., 735.75},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1.2 Inherited,
-FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (June 19, 2021)",
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]

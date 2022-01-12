@@ -24,6 +24,9 @@ Get["FunctionRepo`conditionedMultinormalDistribution`"];
 convertDataFormat;
 Get["FunctionRepo`convertDataFormat`"];
 
+ConvertStringsToSymbols;
+Get["FunctionRepo`ConvertStringsToSymbols`"];
+
 ConvertToTemplateNotebook;
 Get["FunctionRepo`ConvertToTemplateNotebook`"];
 
