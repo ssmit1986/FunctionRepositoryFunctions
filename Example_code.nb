@@ -4066,7 +4066,7 @@ Cell["TimedPane", \
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[24]:=",ExpressionUUID->"abeadb38-b175-4425-8918-21974315921a"],
+ CellLabel->"In[63]:=",ExpressionUUID->"abeadb38-b175-4425-8918-21974315921a"],
 
 Cell[BoxData[
  RowBox[{"?", "TimedPane"}]], "Input",
@@ -4145,7 +4145,38 @@ Cell[BoxData[{
       RowBox[{"2", "->", "3"}]}], "|>"}]}], ",", 
    RowBox[{"UpdateInterval", "->", "0.1"}]}], "]"}], "\[IndentingNewLine]", 
  RowBox[{"Dynamic", "[", "t", "]"}]}], "Input",
- CellLabel->"In[59]:=",ExpressionUUID->"cd33cc8e-8646-4bdb-a5a7-ab66fcaf29c5"]
+ CellLabel->"In[59]:=",ExpressionUUID->"cd33cc8e-8646-4bdb-a5a7-ab66fcaf29c5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"state", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "t", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"spec", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"1", "->", "1"}], ",", 
+     RowBox[{"2", "->", "3"}]}], "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"TimedPane", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "->", "1"}], ",", 
+     RowBox[{"2", "->", "2"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Dynamic", "[", "state", "]"}], ",", 
+     RowBox[{"Dynamic", "[", "t", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "->", "2"}], ",", 
+     RowBox[{"2", "->", "1"}]}], "}"}], ",", 
+   RowBox[{"\"\<ResetTime\>\"", "->", 
+    RowBox[{"Dynamic", "[", "spec", "]"}]}], ",", 
+   RowBox[{"UpdateInterval", "->", "0.1"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", "t", "]"}]}], "Input",
+ CellLabel->"In[69]:=",ExpressionUUID->"556c716a-e0c2-4ca1-9ddf-dc9b40817c30"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -4882,7 +4913,7 @@ PrivateNotebookOptions->{"FileOutlineCache"->False},
 ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
-Magnification:>1.2 Inherited,
+Magnification:>1. Inherited,
 FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
