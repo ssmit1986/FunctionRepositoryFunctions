@@ -92,8 +92,8 @@ Get["FunctionRepo`ScalableContentWindow`"];
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 
-TimedPane;
-Get["FunctionRepo`TimedPane`"];
+TimedPaneSelector;
+Get["FunctionRepo`TimedPaneSelector`"];
 
 ToExpressionMatched;
 Get["FunctionRepo`ToExpressionMatched`"];

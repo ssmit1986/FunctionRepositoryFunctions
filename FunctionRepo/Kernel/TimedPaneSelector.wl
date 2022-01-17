@@ -1,10 +1,10 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`TimedPane`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`TimedPaneSelector`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[TimedPane,
-	"TimedPane[content$, Dynamic[state$], rules$] creates a pane that changes states automatically as specified by rules$.
-TimedPane[content$, {Dynamic[state$], Dynamic[t$]}, rules$] updates t$ to track the time remaining till the pane changes."
+GeneralUtilities`SetUsage[TimedPaneSelector,
+	"TimedPaneSelector[content$, Dynamic[state$], rules$] creates a pane that changes states automatically as specified by rules$.
+TimedPaneSelector[content$, {Dynamic[state$], Dynamic[t$]}, rules$] updates t$ to track the time remaining till the pane changes."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
@@ -43,19 +43,24 @@ customDynamicWrapper[disp_, action_, interval_] :=
 
 findResetTime[num_?NumericQ, ___] := num;
 findResetTime[Dynamic[val_, ___], rest___] := findResetTime[val, rest];
-findResetTime[assoc_?AssociationQ, key_, default_] := Lookup[assoc, key, default];
-findResetTime[fun_, key_, ___] := fun[key];
+findResetTime[fun_, key_, default_] := Replace[
+	Replace[
+		fun[key],
+		Except[_?NumericQ] :> Setting[default]
+	],
+	Except[_?NumericQ] :> 5
+];
 
-Options[TimedPane] = Join[
+Options[TimedPaneSelector] = Join[
 	{
-		UpdateInterval -> 1,
-		"ResetTime" -> 5,
-		"DefaultResetTime" -> 5
+		UpdateInterval -> 1.,
+		"ResetTime" -> <||>,
+		"DefaultResetTime" -> 5.
 	},
 	Options[PaneSelector]
 ];
 
-TimedPane[
+TimedPaneSelector[
 	content : {__Rule}, (* You can use _ -> defaultContent to put things into the 3rd argument of PaneSelector *)
 	{
 		Dynamic[
@@ -143,15 +148,14 @@ TimedPane[
 	),
 	UnsavedVariables :> {triggeredQ, currentTriggeredKey, tExpire}
 ];
-TimedPane[fst_, trigDynamic_Dynamic, rest___] := DynamicModule[{
+TimedPaneSelector[fst_, trigDynamic_Dynamic, rest___] := DynamicModule[{
 	tExpire
 },
-	TimedPane[fst,
+	TimedPaneSelector[fst,
 		{trigDynamic, Dynamic[tExpire]},
 		rest
 	]
 ];
-
 
 End[] (* End Private Context *)
 

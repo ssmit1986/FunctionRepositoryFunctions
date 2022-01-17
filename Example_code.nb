@@ -891,11 +891,11 @@ StyleBox[SubscriptBox[\\\"context\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -3529,11 +3529,11 @@ all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -4061,26 +4061,26 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["TimedPane", \
+Cell["TimedPaneSelector", \
 "Subsection",ExpressionUUID->"56a99f88-57d9-4b9a-90d5-129caad37cf9"],
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[63]:=",ExpressionUUID->"abeadb38-b175-4425-8918-21974315921a"],
+ CellLabel->"In[78]:=",ExpressionUUID->"abeadb38-b175-4425-8918-21974315921a"],
 
 Cell[BoxData[
- RowBox[{"?", "TimedPane"}]], "Input",
- CellLabel->"In[9]:=",ExpressionUUID->"a1559367-0483-4378-8b5f-2f27a137d040"],
+ RowBox[{"?", "TimedPaneSelector"}]], "Input",
+ CellLabel->"In[79]:=",ExpressionUUID->"a1559367-0483-4378-8b5f-2f27a137d040"],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{"state", "=", "1"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"TimedPane", "[", 
+ RowBox[{"TimedPaneSelector", "[", 
   RowBox[{
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"1", "->", "2"}], ",", 
-     RowBox[{"2", "->", "1"}]}], "}"}], ",", 
+     RowBox[{"1", "->", "1"}], ",", 
+     RowBox[{"2", "->", "2"}]}], "}"}], ",", 
    RowBox[{"Dynamic", "[", "state", "]"}], ",", 
    RowBox[{"{", 
     RowBox[{
@@ -4090,15 +4090,15 @@ Cell[BoxData[{
     RowBox[{"<|", 
      RowBox[{
       RowBox[{"1", "->", "1"}], ",", 
-      RowBox[{"2", "->", "3"}]}], "|>"}]}]}], "]"}]}], "Input",
- CellLabel->"In[16]:=",ExpressionUUID->"b6609242-c9e1-4ba4-abf5-2096ba77876d"],
+      RowBox[{"2", "->", "3"}]}], "|>"}]}]}], 
+  "]"}]}], "Input",ExpressionUUID->"b6609242-c9e1-4ba4-abf5-2096ba77876d"],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{"state", "=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Clear", "[", "t", "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"TimedPane", "[", 
+ RowBox[{"TimedPaneSelector", "[", 
   RowBox[{
    RowBox[{"{", 
     RowBox[{
@@ -4126,7 +4126,7 @@ Cell[BoxData[{
   RowBox[{"state", "=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Clear", "[", "t", "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"TimedPane", "[", 
+ RowBox[{"TimedPaneSelector", "[", 
   RowBox[{
    RowBox[{"{", 
     RowBox[{
@@ -4144,8 +4144,8 @@ Cell[BoxData[{
       RowBox[{"1", "->", "1"}], ",", 
       RowBox[{"2", "->", "3"}]}], "|>"}]}], ",", 
    RowBox[{"UpdateInterval", "->", "0.1"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"Dynamic", "[", "t", "]"}]}], "Input",
- CellLabel->"In[59]:=",ExpressionUUID->"cd33cc8e-8646-4bdb-a5a7-ab66fcaf29c5"],
+ RowBox[{"Dynamic", "[", "t", 
+  "]"}]}], "Input",ExpressionUUID->"cd33cc8e-8646-4bdb-a5a7-ab66fcaf29c5"],
 
 Cell[BoxData[{
  RowBox[{
@@ -4158,7 +4158,7 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"1", "->", "1"}], ",", 
      RowBox[{"2", "->", "3"}]}], "|>"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"TimedPane", "[", 
+ RowBox[{"TimedPaneSelector", "[", 
   RowBox[{
    RowBox[{"{", 
     RowBox[{
@@ -4175,8 +4175,8 @@ Cell[BoxData[{
    RowBox[{"\"\<ResetTime\>\"", "->", 
     RowBox[{"Dynamic", "[", "spec", "]"}]}], ",", 
    RowBox[{"UpdateInterval", "->", "0.1"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"Dynamic", "[", "t", "]"}]}], "Input",
- CellLabel->"In[69]:=",ExpressionUUID->"556c716a-e0c2-4ca1-9ddf-dc9b40817c30"]
+ RowBox[{"Dynamic", "[", "t", 
+  "]"}]}], "Input",ExpressionUUID->"556c716a-e0c2-4ca1-9ddf-dc9b40817c30"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -4823,11 +4823,11 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
