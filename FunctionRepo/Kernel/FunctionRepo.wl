@@ -80,7 +80,6 @@ Get["FunctionRepo`multiSet`"];
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
 
-
 SmoothCurve;
 Get["FunctionRepo`SmoothCurve`"];
 
@@ -92,6 +91,9 @@ Get["FunctionRepo`ScalableContentWindow`"];
 
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
+
+TimedPane;
+Get["FunctionRepo`TimedPane`"];
 
 ToExpressionMatched;
 Get["FunctionRepo`ToExpressionMatched`"];

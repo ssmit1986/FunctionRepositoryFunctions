@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[9]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[5]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -4057,6 +4057,95 @@ Cell[BoxData[
      RowBox[{"Sin", "[", "x", "]"}]}], "}"}], ",", "x", ",", 
    RowBox[{"x", ">", "0"}], ",", "Reals", ",", "Graph"}], "]"}]], "Input",
  CellLabel->"In[52]:=",ExpressionUUID->"036a8e0d-3076-4c90-83f8-724f3f982b93"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["TimedPane", \
+"Subsection",ExpressionUUID->"56a99f88-57d9-4b9a-90d5-129caad37cf9"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[24]:=",ExpressionUUID->"abeadb38-b175-4425-8918-21974315921a"],
+
+Cell[BoxData[
+ RowBox[{"?", "TimedPane"}]], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"a1559367-0483-4378-8b5f-2f27a137d040"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"state", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"TimedPane", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "->", "2"}], ",", 
+     RowBox[{"2", "->", "1"}]}], "}"}], ",", 
+   RowBox[{"Dynamic", "[", "state", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "->", "2"}], ",", 
+     RowBox[{"2", "->", "1"}]}], "}"}], ",", 
+   RowBox[{"\"\<ResetTime\>\"", "->", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"1", "->", "1"}], ",", 
+      RowBox[{"2", "->", "3"}]}], "|>"}]}]}], "]"}]}], "Input",
+ CellLabel->"In[16]:=",ExpressionUUID->"b6609242-c9e1-4ba4-abf5-2096ba77876d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"state", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "t", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"TimedPane", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "->", "1"}], ",", 
+     RowBox[{"2", "->", "2"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Dynamic", "[", "state", "]"}], ",", 
+     RowBox[{"Dynamic", "[", "t", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "->", "2"}], ",", 
+     RowBox[{"2", "->", "1"}]}], "}"}], ",", 
+   RowBox[{"\"\<ResetTime\>\"", "->", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"1", "->", "1"}], ",", 
+      RowBox[{"2", "->", "3"}]}], "|>"}]}], ",", 
+   RowBox[{"UpdateInterval", "->", "0.1"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", "t", 
+  "]"}]}], "Input",ExpressionUUID->"75d9c77c-6d26-4da0-b989-18a994ee0595"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"state", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "t", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"TimedPane", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "->", "1"}], ",", 
+     RowBox[{"_", "->", "2"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Dynamic", "[", "state", "]"}], ",", 
+     RowBox[{"Dynamic", "[", "t", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", "->", "2"}], "}"}], ",", 
+   RowBox[{"\"\<ResetTime\>\"", "->", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"1", "->", "1"}], ",", 
+      RowBox[{"2", "->", "3"}]}], "|>"}]}], ",", 
+   RowBox[{"UpdateInterval", "->", "0.1"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", "t", "]"}]}], "Input",
+ CellLabel->"In[59]:=",ExpressionUUID->"cd33cc8e-8646-4bdb-a5a7-ab66fcaf29c5"]
 }, Closed]],
 
 Cell[CellGroupData[{
