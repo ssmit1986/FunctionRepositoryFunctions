@@ -53,9 +53,9 @@ findResetTime[fun_, key_, default_] := Replace[
 
 Options[TimedPaneSelector] = Join[
 	{
-		UpdateInterval -> 1.,
+		UpdateInterval -> 0.1,
 		"ResetTime" -> <||>,
-		"DefaultResetTime" -> 5.
+		"DefaultResetTime" -> 1.
 	},
 	Options[PaneSelector]
 ];
