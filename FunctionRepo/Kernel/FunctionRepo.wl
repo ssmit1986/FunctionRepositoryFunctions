@@ -89,6 +89,9 @@ Get["FunctionRepo`SparseAssociation`"];
 ScalableContentWindow;
 Get["FunctionRepo`ScalableContentWindow`"];
 
+SplitAt;
+Get["FunctionRepo`SplitAt`"];
+
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 
