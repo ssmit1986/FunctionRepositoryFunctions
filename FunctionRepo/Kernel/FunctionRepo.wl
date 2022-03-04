@@ -80,14 +80,14 @@ Get["FunctionRepo`multiSet`"];
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
 
+ScalableContentWindow;
+Get["FunctionRepo`ScalableContentWindow`"];
+
 SmoothCurve;
 Get["FunctionRepo`SmoothCurve`"];
 
 SparseAssociation;
 Get["FunctionRepo`SparseAssociation`"];
-
-ScalableContentWindow;
-Get["FunctionRepo`ScalableContentWindow`"];
 
 SplitAt;
 Get["FunctionRepo`SplitAt`"];

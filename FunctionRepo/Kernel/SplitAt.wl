@@ -3,7 +3,8 @@
 BeginPackage["FunctionRepo`SplitAt`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[SplitAt,
-	"SplitAt[list$, f] converts list$ into a list of lists such that each element for which f$ returns True starts a new sublist."
+	"SplitAt[list$, f$] converts list$ into a list of lists such that each element for which f$ returns True starts a new sublist.
+SplitAt[list$, f$, After] splits the list after each element that satisfies f$."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)

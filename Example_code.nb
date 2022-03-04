@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[5]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[14]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -3917,6 +3917,84 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
+Cell["SplitAt", \
+"Subsection",ExpressionUUID->"00a30405-0278-4bec-a0ba-e93107c74a64"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[27]:=",ExpressionUUID->"81052adf-fa18-422d-9af5-2e16b7a04c0c"],
+
+Cell[BoxData[
+ RowBox[{"?", "SplitAt"}]], "Input",
+ CellLabel->"In[28]:=",ExpressionUUID->"a2e9d309-4d24-454b-a215-9b909082ad13"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SplitAt", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "5", ",", "7", ",", "3", ",", "4", ",", "5", ",", "5", ",", "3", ",", "7",
+      ",", "8", ",", "9", ",", "1", ",", "8", ",", "7", ",", "9", ",", "10", 
+     ",", "2", ",", "10", ",", "4", ",", "1"}], "}"}], ",", 
+   "\[IndentingNewLine]", "EvenQ"}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[25]:=",ExpressionUUID->"c36be3eb-8443-4a0c-9277-5c523675d620"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"5", ",", "7", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "5", ",", "5", ",", "3", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"8", ",", "9", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"8", ",", "7", ",", "9"}], "}"}], ",", 
+   RowBox[{"{", "10", "}"}], ",", 
+   RowBox[{"{", "2", "}"}], ",", 
+   RowBox[{"{", "10", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "1"}], "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[25]=",ExpressionUUID->"2694aa27-4b89-4d96-b0be-9e238c0638ac"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SplitAt", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "5", ",", "7", ",", "3", ",", "4", ",", "5", ",", "5", ",", "3", ",", "7",
+      ",", "8", ",", "9", ",", "1", ",", "8", ",", "7", ",", "9", ",", "10", 
+     ",", "2", ",", "10", ",", "4", ",", "1"}], "}"}], ",", 
+   "\[IndentingNewLine]", "EvenQ", ",", "\[IndentingNewLine]", "After"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->"In[26]:=",ExpressionUUID->"500f502d-7e5b-43a6-9ed0-90aec0037123"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"5", ",", "7", ",", "3", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "5", ",", "3", ",", "7", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "1", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "9", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", "2", "}"}], ",", 
+   RowBox[{"{", "10", "}"}], ",", 
+   RowBox[{"{", "4", "}"}], ",", 
+   RowBox[{"{", "1", "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[26]=",ExpressionUUID->"49703e36-1e93-45fd-b326-1cc4fe5bddc1"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["SymbolicSort", \
 "Subsection",ExpressionUUID->"c23a7756-5099-4bf1-9895-d8276eef9566"],
 
@@ -4694,7 +4772,6 @@ RowBox[{StyleBox[\\\"testfile\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) converts a a \
              },
              DefaultBaseStyle->"Column",
              GridBoxAlignment->{"Columns" -> {{Left}}},
-             
              GridBoxItemSize->{
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
             "Column"],
@@ -4914,7 +4991,7 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1. Inherited,
-FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]

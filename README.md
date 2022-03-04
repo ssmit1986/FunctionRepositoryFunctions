@@ -35,6 +35,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [SparseAssociation](https://resources.wolframcloud.com/FunctionRepository/resources/SparseAssociation)
 
+* SplitAt
+
 * [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
 
 * [ToExpressionMatched](https://resources.wolframcloud.com/FunctionRepository/resources/ToExpressionMatched)
