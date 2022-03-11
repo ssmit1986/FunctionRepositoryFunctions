@@ -47,6 +47,9 @@ FormatTestFile;
 ConvertTestNotebooks;
 Get["FunctionRepo`FormatTestFile`"];
 
+FunctionToExcelFormula;
+Get["FunctionRepo`FunctionToExcelFormula`"];
+
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
 
