@@ -50,9 +50,25 @@ FunctionToExcelFormula[fun : HoldPattern @ Function[_, _]] := With[{
 },
 	stringCleanup @ StringJoin[
 		functionHeaderString[fun],
-		Sequence @@ Prepend[sep] @ Riffle[
-			args,
-			sep
+		Sequence @@ If[ Length[args] === 0,
+			{},
+			Prepend[sep] @ Riffle[args, sep]
+		]
+		,
+		")"
+	]
+];
+
+FunctionToExcelFormula[fun_Function, argList : _String | {___String}] := With[{
+	sep = " , ",
+	trimmedList = StringTrim[argList]
+},
+	stringCleanup @ StringJoin[
+		functionHeaderString[fun],
+		If[ MatchQ[trimmedList, "" | {""...}], "", sep],
+		Replace[
+			trimmedList,
+			lst_List :> Riffle[lst, sep]
 		],
 		")"
 	]
@@ -68,7 +84,7 @@ functionHeaderString[fun_] := StringTemplate["=Wolfram(\"`1`\""][
 	]
 ];
 
-stringCleanup[str_] := StringDelete[str, "\r" | "\n"];
+stringCleanup[str_] := str;
 
 End[] (* End Private Context *)
 
