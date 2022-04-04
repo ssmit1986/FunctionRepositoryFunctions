@@ -9,17 +9,22 @@ SplitAtPositions[list$, {i$1, i$2, $$}, Before] splits before i$k."
 
 Begin["`Private`"] (* Begin Private Context *)
 
-SplitAtPositions[list_, {}, ___] := {list};
+SplitAtPositions[{}, ___] := {};
+SplitAtPositions[list_List, {}, ___] := {list};
 SplitAtPositions[list_, indices_] := SplitAtPositions[list, indices, Before];
 
-SplitAtPositions[list_, indices : {__Integer}, beforeAfter : Before | After] := With[{
+SplitAtPositions[
+	list_List,
+	indices : {__Integer},
+	beforeAfter : Before | After
+] /; AllTrue[MinMax[indices], Between[{1, Length[list]}]] := With[{
 	spans = Span @@@ MapAt[
 		If[ beforeAfter === Before,
 			# - 1&,
 			# + 1&
 		],
 		Partition[
-			Flatten @ {1, Union @ Mod[indices, Length[list], 1], All},
+			Flatten @ {1, Union @ indices, All},
 			2,
 			1
 		],
@@ -34,6 +39,8 @@ SplitAtPositions[list_, indices : {__Integer}, beforeAfter : Before | After] := 
 		{}
 	]
 ];
+
+SplitAtPositions[___] := $Failed;
 
 End[] (* End Private Context *)
 
