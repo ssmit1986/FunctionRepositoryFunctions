@@ -95,6 +95,9 @@ Get["FunctionRepo`SparseAssociation`"];
 SplitAt;
 Get["FunctionRepo`SplitAt`"];
 
+SplitAtPositions;
+Get["FunctionRepo`SplitAtPositions`"];
+
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 

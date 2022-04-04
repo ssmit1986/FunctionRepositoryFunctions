@@ -6,8 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->
-  "In[170]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[5]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2215,17 +2214,17 @@ paste into Excel to be used with theCloudConnector for Excel.",
                 Pattern[FunctionRepo`FunctionToExcelFormula`Private`n, 
                  Blank[Integer]]] :> 
               FunctionRepo`FunctionToExcelFormula`Private`n]], Except[
-              Blank[Integer]] :> 0]}, StringTemplate["=Wolfram(\"`1`\""][
-           StringReplace[
-            ToString[
-            FunctionRepo`FunctionToExcelFormula`Private`fun, InputForm], "\"" -> 
-            "\"\""]] <> Apply[Sequence, 
-           If[FunctionRepo`FunctionToExcelFormula`Private`argNum === 0, {}, 
-            Riffle[
-             Map[ToString, 
-              Range[FunctionRepo`FunctionToExcelFormula`Private`argNum]], 
-             " , "]]] <> ")"]}], "SubValues" -> None, "DefaultValues" -> None,
-     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+              Blank[Integer]] :> 0]}, (StringTemplate["=Wolfram(\"`1`\""][
+            StringReplace[
+             ToString[
+             FunctionRepo`FunctionToExcelFormula`Private`fun, InputForm], 
+             "\"" -> "\"\""]] <> Apply[Sequence, 
+            If[FunctionRepo`FunctionToExcelFormula`Private`argNum === 0, {}, 
+             Riffle[
+              Map[ToString, 
+               Range[FunctionRepo`FunctionToExcelFormula`Private`argNum]], 
+              " , "]]]) <> ")"]}], "SubValues" -> None, "DefaultValues" -> 
+    None, "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "FunctionRepo`FunctionToExcelFormula"|>,
     False]]], "Output",
  CellLabel->"Out[172]=",ExpressionUUID->"16fdc23f-746f-46fd-a7b3-5f1c62a6727c"]
@@ -3826,6 +3825,7 @@ all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -4389,6 +4389,101 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["SplitAtPositions", \
+"Subsection",ExpressionUUID->"7ed4c912-edb1-40c6-8d8a-483382c70406"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[27]:=",ExpressionUUID->"3a2583ba-9863-4533-ada7-fb0bd6bfa0b0"],
+
+Cell[BoxData[
+ RowBox[{"?", "SplitAtPositions"}]], "Input",
+ CellLabel->"In[12]:=",ExpressionUUID->"3a8f1c84-600d-4a0f-84e2-ae75498f7665"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SplitAtPositions", "[", 
+  RowBox[{
+   RowBox[{"Range", "[", "20", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "4", ",", "10", ",", "20"}], "}"}], ",", "Before"}], 
+  "]"}]], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"d0dc5297-9ae1-47ca-bd55-7e63fc829340"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "5", ",", "6", ",", "7", ",", "8", ",", "9"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "10", ",", "11", ",", "12", ",", "13", ",", "14", ",", "15", ",", "16", 
+     ",", "17", ",", "18", ",", "19"}], "}"}], ",", 
+   RowBox[{"{", "20", "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[30]=",ExpressionUUID->"d74cab75-4432-4dad-ac34-ba5a4af4f445"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SplitAtPositions", "[", 
+  RowBox[{
+   RowBox[{"Range", "[", "20", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "4", ",", "10", ",", "20"}], "}"}], ",", "After"}], 
+  "]"}]], "Input",
+ CellLabel->"In[31]:=",ExpressionUUID->"cd475c91-4dd7-4099-aa77-b11cec96ded2"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "6", ",", "7", ",", "8", ",", "9", ",", "10"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "11", ",", "12", ",", "13", ",", "14", ",", "15", ",", "16", ",", "17", 
+     ",", "18", ",", "19", ",", "20"}], "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[31]=",ExpressionUUID->"4925a6c4-faff-47b5-a7fd-a7b1c0aefdb6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SplitAtPositions", "[", 
+  RowBox[{
+   RowBox[{"Range", "[", "20", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "4", ",", "10", ",", "0"}], "}"}], ",", "After"}], 
+  "]"}]], "Input",
+ CellLabel->"In[35]:=",ExpressionUUID->"afbba9df-9851-4bf6-8dee-bbfce87a705e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "6", ",", "7", ",", "8", ",", "9", ",", "10"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "11", ",", "12", ",", "13", ",", "14", ",", "15", ",", "16", ",", "17", 
+     ",", "18", ",", "19", ",", "20"}], "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[35]=",ExpressionUUID->"8fe005ed-ce87-457b-8290-48c3fb8eaea5"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["SymbolicSort", \
 "Subsection",ExpressionUUID->"c23a7756-5099-4bf1-9895-d8276eef9566"],
 
@@ -4891,7 +4986,8 @@ Cell[BoxData[
                  GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, GridBoxItemSize -> {
+             False, 
+             GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
