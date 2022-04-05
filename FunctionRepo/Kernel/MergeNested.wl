@@ -9,7 +9,7 @@ Begin["`Private`"] (* Begin Private Context *)
 
 MergeNested[f_][data_] := MergeNested[data, f];
 
-MergeNested[{}, _] := <||>;
+MergeNested[{<||>...}, _] := <||>;
 MergeNested[data : {__?AssociationQ}, f_] := Merge[data, MergeNested[f]];
 MergeNested[data_, f_]:= f[data];
 
