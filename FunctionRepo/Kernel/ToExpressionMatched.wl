@@ -3,7 +3,7 @@
 BeginPackage["FunctionRepo`ToExpressionMatched`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[ToExpressionMatched, 
-    "ToExpressionMatched[input$, patt$] interprets input as an expression and then, before evaluating it, checks that it matches patt$ before evaluating and returning it.
+    "ToExpressionMatched[input$, patt$] interprets input as an expression and then, before further evaluating it, checks that it matches patt$ before evaluating and returning it.
 ToExpressionMatched[input$, patt$, form$] uses interpretation rules corresponding to the specified form.
 ToExpressionMatched[input$, patt$, form$, h$] wraps the head h$ around the expression produced before evaluating it."
 ];

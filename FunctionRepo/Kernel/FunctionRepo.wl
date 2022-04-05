@@ -24,6 +24,9 @@ Get["FunctionRepo`conditionedMultinormalDistribution`"];
 convertDataFormat;
 Get["FunctionRepo`convertDataFormat`"];
 
+ConvertStringsToSymbols;
+Get["FunctionRepo`ConvertStringsToSymbols`"];
+
 ConvertToTemplateNotebook;
 Get["FunctionRepo`ConvertToTemplateNotebook`"];
 
@@ -44,6 +47,9 @@ FormatTestFile;
 ConvertTestNotebooks;
 Get["FunctionRepo`FormatTestFile`"];
 
+FunctionToExcelFormula;
+Get["FunctionRepo`FunctionToExcelFormula`"];
+
 graphicsToGraph;
 Get["FunctionRepo`graphicsToGraph`"];
 
@@ -62,8 +68,11 @@ Get["FunctionRepo`kullbackLeiblerDivergence`"];
 maximumSpacingEstimation;
 Get["FunctionRepo`maximumSpacingEstimation`"];
 
-mergeByKey;
-Get["FunctionRepo`mergeByKey`"];
+MergeByKey;
+Get["FunctionRepo`MergeByKey`"];
+
+MergeNested;
+Get["FunctionRepo`MergeNested`"];
 
 MonitorFile;
 Get["FunctionRepo`MonitorFile`"];
@@ -77,6 +86,8 @@ Get["FunctionRepo`multiSet`"];
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
 
+ScalableContentWindow;
+Get["FunctionRepo`ScalableContentWindow`"];
 
 SmoothCurve;
 Get["FunctionRepo`SmoothCurve`"];
@@ -84,11 +95,17 @@ Get["FunctionRepo`SmoothCurve`"];
 SparseAssociation;
 Get["FunctionRepo`SparseAssociation`"];
 
-ScalableContentWindow;
-Get["FunctionRepo`ScalableContentWindow`"];
+SplitAt;
+Get["FunctionRepo`SplitAt`"];
+
+SplitAtPositions;
+Get["FunctionRepo`SplitAtPositions`"];
 
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
+
+TimedPaneSelector;
+Get["FunctionRepo`TimedPaneSelector`"];
 
 ToExpressionMatched;
 Get["FunctionRepo`ToExpressionMatched`"];
