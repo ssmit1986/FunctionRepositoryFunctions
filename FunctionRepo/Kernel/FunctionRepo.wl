@@ -68,8 +68,11 @@ Get["FunctionRepo`kullbackLeiblerDivergence`"];
 maximumSpacingEstimation;
 Get["FunctionRepo`maximumSpacingEstimation`"];
 
-mergeByKey;
-Get["FunctionRepo`mergeByKey`"];
+MergeByKey;
+Get["FunctionRepo`MergeByKey`"];
+
+MergeNested;
+Get["FunctionRepo`MergeNested`"];
 
 MonitorFile;
 Get["FunctionRepo`MonitorFile`"];

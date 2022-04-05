@@ -6,7 +6,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[5]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[31]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2339,6 +2339,988 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["MergeByKey", \
+"Subsection",ExpressionUUID->"632751ab-02e6-4506-b7b9-a41d933933c2"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"a996b9d2-2112-49a3-a48c-8eafa235a7a8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"?", "MergeByKey"}], "\[IndentingNewLine]"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"deaa79eb-4b45-47ce-bf43-09b036158c7f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"MergeByKey\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"assoc\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  \
+StyleBox[SubscriptBox[\\\"assoc\\\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\
+\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \
+\\\",\\\",  RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"key\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"] , \\\"\[Rule]\\\",  \
+StyleBox[SubscriptBox[\\\"fun\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\
+\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"key\\\", StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\"TI\\\"] , \\\"\[Rule]\\\",  StyleBox[SubscriptBox[\\\"fun\\\
+\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\",\\\",  StyleBox[\\\"default\
+\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) merges the assocations using different \
+merge functions for different keys.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" SubValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"SubValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "SubValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MergeByKey", "[", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`MergeByKey`Private`rules", ":", 
+                    RowBox[{"{", "___Rule", "}"}]}], ",", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`default_", ":", 
+                    "Identity"}]}], "]"}], "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`data", ":", 
+                    RowBox[{"{", 
+                    RowBox[{"___", "?", "AssociationQ"}], "}"}]}], "]"}], 
+                    ":=", 
+                    RowBox[{"MergeByKey", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`MergeByKey`Private`data", ",", 
+                    "FunctionRepo`MergeByKey`Private`rules", ",", 
+                    "FunctionRepo`MergeByKey`Private`default"}], "]"}]}]}, {
+                   " "}}, GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]},
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" DownValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"DownValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "DownValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{"MergeByKey", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}], 
+                    "..."}], "}"}], ",", 
+                    RowBox[{"{", "___Rule", "}"}], ",", 
+                    RowBox[{"Repeated", "[", 
+                    RowBox[{"_", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ":=", 
+                    RowBox[{"Association", "[", "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{"MergeByKey", "[", 
+                    RowBox[{
+                    RowBox[{"FunctionRepo`MergeByKey`Private`data", ":", 
+                    RowBox[{"{", 
+                    RowBox[{"__", "?", "AssociationQ"}], "}"}]}], ",", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`rules", ":", 
+                    RowBox[{"{", "___Rule", "}"}]}], ",", 
+                    
+                    RowBox[{
+                    "FunctionRepo`MergeByKey`Private`default_", ":", 
+                    "Identity"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`missingToken", 
+                    ",", "FunctionRepo`MergeByKey`Private`assoc", ",", 
+                    "FunctionRepo`MergeByKey`Private`keys", ",", 
+                    "FunctionRepo`MergeByKey`Private`queryRules", ",", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`mergeRules", "=", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`rules", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Verbatim", "[", "Rule", "]"}], "[", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`lst_List", ",", 
+                    "FunctionRepo`MergeByKey`Private`fun_"}], "]"}], 
+                    "\[RuleDelayed]", 
+                    RowBox[{"Thread", "[", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`lst", "\[Rule]", 
+                    "FunctionRepo`MergeByKey`Private`fun"}], "]"}]}], ",", 
+                    RowBox[{"{", "1", "}"}]}], "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Verbatim", "[", "Rule", "]"}], "[", 
+                    RowBox[{
+                    
+                    RowBox[{"Key", "[", "FunctionRepo`MergeByKey`Private`k_", 
+                    "]"}], ",", "FunctionRepo`MergeByKey`Private`fun_"}], 
+                    "]"}], "\[RuleDelayed]", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`k", "\[Rule]", 
+                    "FunctionRepo`MergeByKey`Private`fun"}]}], ",", 
+                    RowBox[{"{", "1", "}"}]}], "]"}]}], ",", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`keysSameQ", "=", 
+                    RowBox[{"SameQ", "@@", 
+                    
+                    RowBox[{"Keys", "[", 
+                    "FunctionRepo`MergeByKey`Private`data", "]"}]}]}]}], 
+                    "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`keysSameQ", ",", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`assoc", "=", 
+                    "FunctionRepo`MergeByKey`Private`data"}], ",", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`assoc", "=", 
+                    RowBox[{"KeyUnion", "[", 
+                    RowBox[{
+                    RowBox[{"DeleteCases", "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`data", ",", 
+                    RowBox[{"Association", "[", "]"}]}], "]"}], ",", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`missingToken", 
+                    "&"}]}], "]"}]}]}], "]"}], ";", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`keys", "=", 
+                    RowBox[{"Keys", "[", 
+                    
+                    RowBox[{"First", "[", 
+                    "FunctionRepo`MergeByKey`Private`assoc", "]"}], "]"}]}], 
+                    ";", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`assoc", "=", 
+                    RowBox[{"AssociationThread", "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`keys", ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`keysSameQ", ",", 
+                    RowBox[{"Transpose", "[", 
+                    
+                    RowBox[{"Values", "[", 
+                    "FunctionRepo`MergeByKey`Private`assoc", "]"}], "]"}], 
+                    ",", 
+                    RowBox[{"DeleteCases", "[", 
+                    RowBox[{
+                    RowBox[{"Transpose", "[", 
+                    
+                    RowBox[{"Values", "[", 
+                    "FunctionRepo`MergeByKey`Private`assoc", "]"}], "]"}], 
+                    ",", "FunctionRepo`MergeByKey`Private`missingToken", ",", 
+                    RowBox[{"{", "2", "}"}]}], "]"}]}], "]"}]}], "]"}]}], ";", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`keys", "=", 
+                    
+                    RowBox[{"Key", "/@", 
+                    "FunctionRepo`MergeByKey`Private`keys"}]}], ";", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`queryRules", "=", 
+                    RowBox[{"DeleteCases", "[", 
+                    RowBox[{
+                    RowBox[{"Thread", "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`keys", "\[Rule]", 
+                    RowBox[{"Lookup", "[", 
+                    
+                    RowBox[{"FunctionRepo`MergeByKey`Private`mergeRules", ",",
+                     "FunctionRepo`MergeByKey`Private`keys", ",", 
+                    "FunctionRepo`MergeByKey`Private`default"}], "]"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"_", "\[Rule]", "Identity"}]}], "]"}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{"FunctionRepo`MergeByKey`Private`queryRules", ",", 
+                    RowBox[{"{", "__Rule", "}"}]}], "]"}], ",", 
+                    RowBox[{
+                    
+                    RowBox[{"Query", "[", 
+                    "FunctionRepo`MergeByKey`Private`queryRules", "]"}], "[", 
+                    "FunctionRepo`MergeByKey`Private`assoc", "]"}], ",", 
+                    "FunctionRepo`MergeByKey`Private`assoc"}], "]"}]}]}], 
+                    "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`MergeByKey\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"MergeByKey\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"assoc\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  \
+StyleBox[SubscriptBox[\\\"assoc\\\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\
+\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \
+\\\",\\\",  RowBox[{\\\"{\\\", RowBox[{StyleBox[SubscriptBox[\\\"key\\\", \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\"] , \\\"\[Rule]\\\",  \
+StyleBox[SubscriptBox[\\\"fun\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"TI\\\
+\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"key\\\", StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\"TI\\\"] , \\\"\[Rule]\\\",  StyleBox[SubscriptBox[\\\"fun\\\
+\", StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\",\\\",  StyleBox[\\\"default\
+\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) merges the assocations using different \
+merge functions for different keys.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[<|
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"MergeByKey\", \"[\", RowBox[{RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"assoc\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[SubscriptBox[\"assoc\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\",  RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"key\", StyleBox[\"1\", \"TR\"]], \"TI\"] , \"\
+\[Rule]\",  StyleBox[SubscriptBox[\"fun\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[SubscriptBox[\"key\", StyleBox[\"2\", \"TR\"]], \"TI\"] , \"\
+\[Rule]\",  StyleBox[SubscriptBox[\"fun\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\",  \
+StyleBox[\"default\", \"TI\"]}], \"]\"}]\) merges the assocations using \
+different merge functions for different keys.", "Documentation" -> None, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, FunctionRepo`MergeByKey, {FunctionRepo`MergeByKey[{
+          RepeatedNull[<||>]}, {
+          BlankNullSequence[Rule]}, 
+         Repeated[
+          Blank[], {0, 1}]] :> <||>, FunctionRepo`MergeByKey[
+         Pattern[FunctionRepo`MergeByKey`Private`data, {
+           PatternTest[
+            BlankSequence[], AssociationQ]}], 
+         Pattern[FunctionRepo`MergeByKey`Private`rules, {
+           BlankNullSequence[Rule]}], 
+         Optional[
+          Pattern[FunctionRepo`MergeByKey`Private`default, 
+           Blank[]], Identity]] :> 
+       Module[{FunctionRepo`MergeByKey`Private`missingToken, 
+          FunctionRepo`MergeByKey`Private`assoc, 
+          FunctionRepo`MergeByKey`Private`keys, 
+          FunctionRepo`MergeByKey`Private`queryRules, 
+          FunctionRepo`MergeByKey`Private`mergeRules = Replace[
+            Flatten[
+             Replace[FunctionRepo`MergeByKey`Private`rules, Verbatim[Rule][
+                Pattern[FunctionRepo`MergeByKey`Private`lst, 
+                 Blank[List]], 
+                Pattern[FunctionRepo`MergeByKey`Private`fun, 
+                 Blank[]]] :> 
+              Thread[FunctionRepo`MergeByKey`Private`lst -> 
+                FunctionRepo`MergeByKey`Private`fun], {1}]], Verbatim[Rule][
+              Key[
+               Pattern[FunctionRepo`MergeByKey`Private`k, 
+                Blank[]]], 
+              Pattern[FunctionRepo`MergeByKey`Private`fun, 
+               Blank[]]] :> (FunctionRepo`MergeByKey`Private`k -> 
+             FunctionRepo`MergeByKey`Private`fun), {1}], 
+          FunctionRepo`MergeByKey`Private`keysSameQ = Apply[SameQ, 
+            Keys[FunctionRepo`MergeByKey`Private`data]]}, 
+         If[FunctionRepo`MergeByKey`Private`keysSameQ, 
+           FunctionRepo`MergeByKey`Private`assoc = 
+           FunctionRepo`MergeByKey`Private`data, 
+           FunctionRepo`MergeByKey`Private`assoc = KeyUnion[
+             DeleteCases[FunctionRepo`MergeByKey`Private`data, <||>], 
+             FunctionRepo`MergeByKey`Private`missingToken& ]]; 
+         FunctionRepo`MergeByKey`Private`keys = Keys[
+            First[FunctionRepo`MergeByKey`Private`assoc]]; 
+         FunctionRepo`MergeByKey`Private`assoc = 
+          AssociationThread[FunctionRepo`MergeByKey`Private`keys, 
+            If[FunctionRepo`MergeByKey`Private`keysSameQ, 
+             Transpose[
+              Values[FunctionRepo`MergeByKey`Private`assoc]], 
+             DeleteCases[
+              Transpose[
+               Values[FunctionRepo`MergeByKey`Private`assoc]], 
+              FunctionRepo`MergeByKey`Private`missingToken, {2}]]]; 
+         FunctionRepo`MergeByKey`Private`keys = 
+          Map[Key, FunctionRepo`MergeByKey`Private`keys]; 
+         FunctionRepo`MergeByKey`Private`queryRules = DeleteCases[
+            Thread[
+            FunctionRepo`MergeByKey`Private`keys -> 
+             Lookup[FunctionRepo`MergeByKey`Private`mergeRules, 
+               FunctionRepo`MergeByKey`Private`keys, 
+               FunctionRepo`MergeByKey`Private`default]], Blank[] -> 
+            Identity]; If[
+           MatchQ[FunctionRepo`MergeByKey`Private`queryRules, {
+             BlankSequence[Rule]}], 
+           Query[FunctionRepo`MergeByKey`Private`queryRules][
+           FunctionRepo`MergeByKey`Private`assoc], 
+           FunctionRepo`MergeByKey`Private`assoc]]}], "SubValues" -> 
+    Information`InformationValueForm[
+     SubValues, FunctionRepo`MergeByKey, {FunctionRepo`MergeByKey[
+         Pattern[FunctionRepo`MergeByKey`Private`rules, {
+           BlankNullSequence[Rule]}], 
+         Optional[
+          Pattern[FunctionRepo`MergeByKey`Private`default, 
+           Blank[]], Identity]][
+         Pattern[FunctionRepo`MergeByKey`Private`data, {
+           PatternTest[
+            BlankNullSequence[], AssociationQ]}]] :> 
+       FunctionRepo`MergeByKey[
+        FunctionRepo`MergeByKey`Private`data, 
+         FunctionRepo`MergeByKey`Private`rules, 
+         FunctionRepo`MergeByKey`Private`default]}], "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`MergeByKey"|>, 
+   False]]], "Output",
+ CellLabel->"Out[6]=",ExpressionUUID->"db5d25eb-4eeb-459d-9b39-7bf6a75360d6"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", "}"}], ",", " ", 
+   RowBox[{"{", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"a", "\[Rule]", "1"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"a", "\[Rule]", "1"}], "}"}], ",", "f"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MergeByKey", "[", 
+   RowBox[{"{", "}"}], "]"}], "@", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MergeByKey", "[", 
+   RowBox[{"{", 
+    RowBox[{"a", "\[Rule]", "1"}], "}"}], "]"}], "@", 
+  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MergeByKey", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"a", "\[Rule]", "1"}], "}"}], ",", "f"}], "]"}], "@", 
+  RowBox[{
+  "{", "}"}]}]}], \
+"Input",ExpressionUUID->"852ba8fe-96fb-4d8e-931f-ad1165e2bdb5"],
+
+Cell[BoxData[{
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"a", "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"a", "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}], ",", 
+     RowBox[{"c", "\[Rule]", " ", "foo"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"a", "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
+  "]"}]}], "Input",ExpressionUUID->"11038c2e-13da-4b55-a522-06169e93521a"],
+
+Cell[BoxData[{
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Key", "[", "a", "]"}], "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Key", "[", "a", "]"}], "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
+  "]"}]}], "Input",ExpressionUUID->"42831770-4e21-4aeb-a985-598e51c82155"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"MergeByKey", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"a", "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], "]"}], "@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "1"}], ",", 
+      RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+    RowBox[{"<|", 
+     RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "5"}], ",", 
+      RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MergeByKey", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"a", "\[Rule]", "Total"}], ",", 
+     RowBox[{"b", "\[Rule]", "RootMeanSquare"}], ",", 
+     RowBox[{"c", "\[Rule]", " ", "foo"}]}], "}"}], "]"}], "@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "1"}], ",", 
+      RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+    RowBox[{"<|", 
+     RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "5"}], ",", 
+      RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MergeByKey", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "Total"}], ",", 
+      RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
+   "]"}], "@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "1"}], ",", 
+      RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+    RowBox[{"<|", 
+     RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "5"}], ",", 
+      RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], 
+   "}"}]}]}], "Input",ExpressionUUID->"b2c9f35e-9139-4000-aaf7-9bd51f6ca3b0"],
+
+Cell[BoxData[{
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}], ",", 
+       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], "\[Rule]", " ", "Total"}], ",", " ", 
+     RowBox[{"c", "\[Rule]", " ", "Mean"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}], ",", 
+       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "\[Rule]", " ", "Total"}], "}"}], ",", 
+   "Mean"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}], ",", 
+       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"c", "\[Rule]", " ", "Mean"}], "}"}], ",", "Total"}], 
+  "]"}]}], "Input",ExpressionUUID->"2f350f15-76af-49d0-8af4-e9f395cbf374"],
+
+Cell[BoxData[{
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "a", "}"}], "\[Rule]", " ", "Total"}], "}"}]}], "]"}], "\n", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Key", "[", 
+      RowBox[{"{", "a", "}"}], "]"}], "\[Rule]", " ", "Total"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Key", "[", 
+        RowBox[{"{", "a", "}"}], "]"}], ",", "b"}], "}"}], "\[Rule]", " ", 
+     "Total"}], "}"}]}], 
+  "]"}]}], "Input",ExpressionUUID->"7c35946c-6b5a-4f78-b843-e378238cd37d"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["MergeNested", \
+"Subsection",ExpressionUUID->"b949f01f-e257-49cf-8150-ad9fc676c1ea"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[33]:=",ExpressionUUID->"bfa2c8ee-a1fa-4db5-afd2-a6b804f38a74"],
+
+Cell[BoxData[
+ RowBox[{"?", "MergeNested"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"afa38024-62fd-4849-be85-d4564127c0ca"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MergeNested", "[", 
+  RowBox[{
+   RowBox[{"{", "}"}], ",", " ", "f"}], "]"}]], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"6c4e22fc-dd79-4603-b952-376f251ca378"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[9]=",ExpressionUUID->"201b54b3-7fa4-4b1b-9195-898c7ef3bada"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MergeNested", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{"a", "->", "1"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"a", "->", "2"}], "|>"}]}], "}"}], ",", " ", "f"}], 
+  "]"}]], "Input",
+ CellLabel->"In[10]:=",ExpressionUUID->"da3c0ed1-60cf-4021-9e39-25a3a88f63d1"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"a", "\[Rule]", 
+   RowBox[{"f", "[", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}], "]"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[10]=",ExpressionUUID->"a6f5f0bc-b6e2-41c5-a216-9265c69c48db"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MergeNested", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{"a", "->", 
+       RowBox[{"<|", 
+        RowBox[{"b", "->", "1"}], "|>"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"a", "->", 
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{"b", "->", "2"}], ",", 
+         RowBox[{"c", "->", "3"}]}], "|>"}]}], "|>"}]}], "}"}], ",", " ", 
+   "f"}], "]"}]], "Input",
+ CellLabel->"In[29]:=",ExpressionUUID->"b64ff8e1-4f7a-4ee3-bba6-d330f7ba94d5"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"a", "\[Rule]", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"b", "\[Rule]", 
+      RowBox[{"f", "[", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "2"}], "}"}], "]"}]}], ",", 
+     RowBox[{"c", "\[Rule]", 
+      RowBox[{"f", "[", 
+       RowBox[{"{", "3", "}"}], "]"}]}]}], "\[RightAssociation]"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[29]=",ExpressionUUID->"ad717587-6c1a-41ae-8d64-3dadfe86105f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MergeNested", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{"a", "->", 
+       RowBox[{"<|", 
+        RowBox[{"b", "->", "1"}], "|>"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"a", "->", "3"}], "|>"}]}], "}"}], ",", " ", "f"}], 
+  "]"}]], "Input",
+ CellLabel->"In[34]:=",ExpressionUUID->"0492ba29-969c-44ca-a026-cc92468d4a16"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"a", "\[Rule]", 
+   RowBox[{"f", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{"b", "\[Rule]", "1"}], "\[RightAssociation]"}], ",", "3"}], 
+     "}"}], "]"}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[34]=",ExpressionUUID->"25d36a8c-cba8-4665-bd0a-4296abc28a38"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["MultiNonlinearModelFit", \
 "Subsection",ExpressionUUID->"b0f9ea23-866e-4cac-9997-19632af0abfe"],
 
@@ -3084,343 +4066,6 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["mergeByKey", \
-"Subsection",ExpressionUUID->"19e72039-9f14-44d0-8ab6-a42e0e50ba08"],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[11]:=",ExpressionUUID->"d1a6966c-ae3f-4db4-9de6-9b329bc97617"],
-
-Cell[BoxData[
- RowBox[{"mergeByKey", "::", "usage"}]], "Input",
- CellLabel->"In[7]:=",ExpressionUUID->"0e248d3a-5f2a-466f-baa1-22eb63b85057"],
-
-Cell[BoxData[{
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", "}"}], ",", " ", 
-   RowBox[{"{", "}"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", "}"}], ",", " ", 
-   RowBox[{"{", 
-    RowBox[{"a", "\[Rule]", "1"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", "}"}], ",", " ", 
-   RowBox[{"{", 
-    RowBox[{"a", "\[Rule]", "1"}], "}"}], ",", "f"}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"mergeByKey", "[", 
-   RowBox[{"{", "}"}], "]"}], "@", 
-  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"mergeByKey", "[", 
-   RowBox[{"{", 
-    RowBox[{"a", "\[Rule]", "1"}], "}"}], "]"}], "@", 
-  RowBox[{"{", "}"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"mergeByKey", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"a", "\[Rule]", "1"}], "}"}], ",", "f"}], "]"}], "@", 
-  RowBox[{"{", "}"}]}]}], "Input",
- CellLabel->"In[21]:=",ExpressionUUID->"169a1e74-6838-4014-8181-2ab3e5677890"],
-
-Cell[BoxData[{
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"a", "\[Rule]", "Total"}], ",", 
-     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"a", "\[Rule]", "Total"}], ",", 
-     RowBox[{"b", "\[Rule]", "RootMeanSquare"}], ",", 
-     RowBox[{"c", "\[Rule]", " ", "foo"}]}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"a", "\[Rule]", "Total"}], ",", 
-     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
-  "]"}]}], "Input",
- CellLabel->"In[27]:=",ExpressionUUID->"38892401-1053-4b39-95e9-aea69b75b306"],
-
-Cell[BoxData[{
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"Key", "[", "a", "]"}], "\[Rule]", "Total"}], ",", 
-     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"Key", "[", "a", "]"}], "\[Rule]", "Total"}], ",", 
-     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
-  "]"}]}], "Input",
- CellLabel->"In[30]:=",ExpressionUUID->"67dd6cf9-c4d1-45e4-a74a-e1f3e25f86d7"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"mergeByKey", "[", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"a", "\[Rule]", "Total"}], ",", 
-     RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], "]"}], "@", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"<|", 
-     RowBox[{
-      RowBox[{"a", "\[Rule]", "1"}], ",", 
-      RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-    RowBox[{"<|", 
-     RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-    RowBox[{"<|", 
-     RowBox[{
-      RowBox[{"a", "\[Rule]", "5"}], ",", 
-      RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], 
-   "}"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"mergeByKey", "[", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"a", "\[Rule]", "Total"}], ",", 
-     RowBox[{"b", "\[Rule]", "RootMeanSquare"}], ",", 
-     RowBox[{"c", "\[Rule]", " ", "foo"}]}], "}"}], "]"}], "@", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"<|", 
-     RowBox[{
-      RowBox[{"a", "\[Rule]", "1"}], ",", 
-      RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-    RowBox[{"<|", 
-     RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-    RowBox[{"<|", 
-     RowBox[{
-      RowBox[{"a", "\[Rule]", "5"}], ",", 
-      RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], 
-   "}"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"mergeByKey", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"a", "\[Rule]", "Total"}], ",", 
-      RowBox[{"b", "\[Rule]", "RootMeanSquare"}]}], "}"}], ",", "foo"}], 
-   "]"}], "@", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"<|", 
-     RowBox[{
-      RowBox[{"a", "\[Rule]", "1"}], ",", 
-      RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-    RowBox[{"<|", 
-     RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
-    RowBox[{"<|", 
-     RowBox[{
-      RowBox[{"a", "\[Rule]", "5"}], ",", 
-      RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}]}]}], "Input",
- CellLabel->"In[20]:=",ExpressionUUID->"aab1710b-0d78-4567-9e31-2b0bf6cfcf1e"],
-
-Cell[BoxData[{
- RowBox[{"MergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}], ",", 
-       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"a", ",", "b"}], "}"}], "\[Rule]", " ", "Total"}], ",", " ", 
-     RowBox[{"c", "\[Rule]", " ", "Mean"}]}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"MergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}], ",", 
-       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"a", ",", "b"}], "}"}], "\[Rule]", " ", "Total"}], "}"}], ",", 
-   "Mean"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"MergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"a", "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}], ",", 
-       RowBox[{"c", "\[Rule]", " ", "Pi"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{"c", "\[Rule]", "E"}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"c", "\[Rule]", " ", "Mean"}], "}"}], ",", "Total"}], 
-  "]"}]}], "Input",
- CellLabel->
-  "In[108]:=",ExpressionUUID->"faa91ffe-d8cb-492d-835a-623e58eff6e7"],
-
-Cell[BoxData[{
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", "a", "}"}], "\[Rule]", " ", "Total"}], "}"}]}], "]"}], "\n", 
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"Key", "[", 
-      RowBox[{"{", "a", "}"}], "]"}], "\[Rule]", " ", "Total"}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"mergeByKey", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"{", "a", "}"}], "\[Rule]", "1"}], ",", 
-       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"{", "a", "}"}], "\[Rule]", "5"}], ",", 
-       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"Key", "[", 
-        RowBox[{"{", "a", "}"}], "]"}], ",", "b"}], "}"}], "\[Rule]", " ", 
-     "Total"}], "}"}]}], "]"}]}], "Input",
- CellLabel->"In[102]:=",ExpressionUUID->"bd557d6f-8492-4788-8b7c-7d9ad8340e57"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
 Cell["graphicsToGraph", \
 "Subsection",ExpressionUUID->"80b80d67-3ffa-4b82-b1eb-33ba30c118b4"],
 
@@ -3825,7 +4470,6 @@ all positions exists in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\"\>",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
-            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -4986,8 +5630,7 @@ Cell[BoxData[
                  GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
-             False, 
-             GridBoxItemSize -> {
+             False, GridBoxItemSize -> {
               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
              GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
               BaseStyle -> {
