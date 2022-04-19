@@ -9,6 +9,7 @@ SplitAtPositions[list$, {i$1, i$2, $$}, Before] splits before i$k."
 
 Begin["`Private`"] (* Begin Private Context *)
 
+SplitAtPositions[{}, {}, ___] := {};
 SplitAtPositions[list_List, {}, ___] := {list};
 SplitAtPositions[{}, ___] := $Failed;
 SplitAtPositions[list_, indices_] := SplitAtPositions[list, indices, Before];
