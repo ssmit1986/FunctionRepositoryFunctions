@@ -7,10 +7,12 @@ merged values are associations again."];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
+$rules = KeyValuePattern[{}] | (Rule|RuleDelayed)[_, _];
+
 MergeNested[f_][data_] := MergeNested[data, f];
 
-MergeNested[{}, _] := <||>;
-MergeNested[data : {__?AssociationQ}, f_] := Merge[data, MergeNested[f]];
+MergeNested[{({} | <||>)...}, _] := <||>;
+MergeNested[data : {$rules..}, f_] := Merge[data, MergeNested[f]];
 MergeNested[data_, f_]:= f[data];
 
 End[] (* End Private Context *)

@@ -27,7 +27,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
 
-* MergeNested (submitted).
+* [MergeNested](https://resources.wolframcloud.com/FunctionRepository/resources/MergeNested).
 
 * [MonitorFile](https://resources.wolframcloud.com/FunctionRepository/resources/MonitorFile/)
 
@@ -39,7 +39,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [SplitAt](https://resources.wolframcloud.com/FunctionRepository/resources/SplitAt/)
 
-* SplitAtPositions (submitted)
+* [SplitAtPositions](https://resources.wolframcloud.com/FunctionRepository/resources/SplitAtPositions/)
 
 * [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
 
