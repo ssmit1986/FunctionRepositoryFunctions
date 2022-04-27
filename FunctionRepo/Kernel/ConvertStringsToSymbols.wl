@@ -23,23 +23,35 @@ SetAttributes[ConvertStringsToSymbols, HoldFirst];
 ConvertStringsToSymbols[expr_, {}] := expr;
 ConvertStringsToSymbols[expr_, spec : Except[_List]] := ConvertStringsToSymbols[expr, {spec}];
 
-ConvertStringsToSymbols[expr_, specList_List] := Replace[
-	Flatten[
-		HoldComplete @@ Map[
-			toHeldExpression,
-			Flatten[Thread /@ specList]
-		]
-	],
-	{
-		hold : HoldComplete[__Symbol] /; Length[hold] === Length[specList] :> ReplaceAll[
-			Unevaluated[expr],
-			List @@ Thread[
-				HoldComplete @@ Map[symName, specList] :> hold,
-				HoldComplete
+ConvertStringsToSymbols[expr_, list_List] := With[{
+	specList = Flatten[Thread /@ list]
+},
+	Switch[ specList,
+		{},
+			expr
+		,
+		{(_String | _Rule)..},
+			Replace[
+				Flatten[
+					HoldComplete @@ Map[
+						toHeldExpression,
+						specList
+					]
+				],
+				{
+					hold : HoldComplete[__Symbol] /; Length[hold] === Length[specList] :> ReplaceAll[
+						Unevaluated[expr],
+						List @@ Thread[
+							HoldComplete @@ Map[symName, specList] :> hold,
+							HoldComplete
+						]
+					],
+					_ :> $Failed
+				}
 			]
-		],
-		_ :> $Failed
-	}
+		,
+		_, $Failed
+	]
 ];
 
 End[] (* End Private Context *)
