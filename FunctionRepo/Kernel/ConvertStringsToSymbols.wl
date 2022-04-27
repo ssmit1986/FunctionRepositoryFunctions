@@ -18,6 +18,8 @@ toHeldExpression[_] := $Failed;
 symName[str_String] := str;
 symName[str_String -> _] := str;
 
+SetAttributes[ConvertStringsToSymbols, HoldFirst];
+
 ConvertStringsToSymbols[expr_, {}] := expr;
 ConvertStringsToSymbols[expr_, spec : (_String | Rule[_String, _])] := Replace[
 	toHeldExpression[spec],
