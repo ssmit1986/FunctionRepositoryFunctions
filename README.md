@@ -27,7 +27,7 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
 
-* [MergeNested](https://resources.wolframcloud.com/FunctionRepository/resources/MergeNested).
+* [MergeNested](https://resources.wolframcloud.com/FunctionRepository/resources/MergeNested)
 
 * [MonitorFile](https://resources.wolframcloud.com/FunctionRepository/resources/MonitorFile/)
 
