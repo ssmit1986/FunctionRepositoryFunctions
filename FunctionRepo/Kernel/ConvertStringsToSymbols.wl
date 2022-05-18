@@ -18,37 +18,40 @@ toHeldExpression[_] := $Failed;
 symName[str_String] := str;
 symName[str_String -> _] := str;
 
+SetAttributes[ConvertStringsToSymbols, HoldFirst];
+
 ConvertStringsToSymbols[expr_, {}] := expr;
-ConvertStringsToSymbols[expr_, spec : (_String | Rule[_String, _])] := Replace[
-	toHeldExpression[spec],
-	{
-		HoldComplete[sym_Symbol] :> ReplaceAll[
-			Unevaluated[expr],
-			symName[spec] :> sym
-		],
-		_ :> $Failed
-	}
-];
+ConvertStringsToSymbols[expr_, spec : Except[_List]] := ConvertStringsToSymbols[expr, {spec}];
 
-ConvertStringsToSymbols[expr_, spec : (_List -> _)] := ConvertStringsToSymbols[expr, Thread[spec]];
-
-ConvertStringsToSymbols[expr_, specList_List] := Replace[
-	Flatten[
-		HoldComplete @@ Map[
-			toHeldExpression,
-			specList
-		]
-	],
-	{
-		hold : HoldComplete[__Symbol] /; Length[hold] === Length[specList] :> ReplaceAll[
-			Unevaluated[expr],
-			List @@ Thread[
-				HoldComplete @@ Map[symName, specList] :> hold,
-				HoldComplete
+ConvertStringsToSymbols[expr_, list_List] := With[{
+	specList = Flatten[Thread /@ list]
+},
+	Switch[ specList,
+		{},
+			expr
+		,
+		{(_String | _Rule)..},
+			Replace[
+				Flatten[
+					HoldComplete @@ Map[
+						toHeldExpression,
+						specList
+					]
+				],
+				{
+					hold : HoldComplete[__Symbol] /; Length[hold] === Length[specList] :> ReplaceAll[
+						Unevaluated[expr],
+						List @@ Thread[
+							HoldComplete @@ Map[symName, specList] :> hold,
+							HoldComplete
+						]
+					],
+					_ :> $Failed
+				}
 			]
-		],
-		_ :> $Failed
-	}
+		,
+		_, $Failed
+	]
 ];
 
 End[] (* End Private Context *)

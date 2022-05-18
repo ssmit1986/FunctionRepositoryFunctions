@@ -2,7 +2,7 @@
 
 BeginPackage["FunctionRepo`MergeNested`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[MergeNested, "MergeNested[{assoc$1, assoc$2, $$}, f$] merges the assocations like Merge, but continues merging if the\
+GeneralUtilities`SetUsage[MergeNested, "MergeNested[{assoc$1, assoc$2, $$}, f$] merges the assocations like Merge, but continues merging if the \
 merged values are associations again."];
 
 Begin["`Private`"] (* Begin Private Context *) 
@@ -18,3 +18,4 @@ MergeNested[data_, f_]:= f[data];
 End[] (* End Private Context *)
 
 EndPackage[]
+

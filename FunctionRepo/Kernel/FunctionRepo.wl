@@ -71,6 +71,9 @@ Get["FunctionRepo`maximumSpacingEstimation`"];
 MergeByKey;
 Get["FunctionRepo`MergeByKey`"];
 
+MergeByKeyNested;
+Get["FunctionRepo`MergeByKeyNested`"];
+
 MergeNested;
 Get["FunctionRepo`MergeNested`"];
 
