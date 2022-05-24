@@ -1,10 +1,10 @@
 Unprotect["FunctionRepo`*", "FunctionRepo`*`*"];
 ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
-BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
+BeginPackage["FunctionRepo`"]
 
-argumentCount;
-Get["FunctionRepo`argumentCount`"];
+ArgumentCount;
+Get["FunctionRepo`ArgumentCount`"];
 
 AssociationTemplate;
 Get["FunctionRepo`AssociationTemplate`"];
