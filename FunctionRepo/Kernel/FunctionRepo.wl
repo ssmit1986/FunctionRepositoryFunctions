@@ -3,8 +3,8 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
 
-argumentCount;
-Get["FunctionRepo`argumentCount`"];
+ArgumentCount;
+Get["FunctionRepo`ArgumentCount`"];
 
 AssociationTemplate;
 Get["FunctionRepo`AssociationTemplate`"];
