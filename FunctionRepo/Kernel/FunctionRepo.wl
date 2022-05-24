@@ -1,7 +1,7 @@
 Unprotect["FunctionRepo`*", "FunctionRepo`*`*"];
 ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
-BeginPackage["FunctionRepo`", {"GeneralUtilities`"}]
+BeginPackage["FunctionRepo`"]
 
 ArgumentCount;
 Get["FunctionRepo`ArgumentCount`"];

@@ -1,6 +1,6 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`ArgumentCount`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`ArgumentCount`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[ArgumentCount,
 	"ArgumentCount[Function[$$]] counts how many arguments a function takes."

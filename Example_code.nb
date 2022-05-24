@@ -9,16 +9,16 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[52]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[43]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
-Cell["argumentCount", \
+Cell["ArgumentCount", \
 "Subsection",ExpressionUUID->"1e88dd74-0df8-4aad-ba6e-bf04d42f07e8"],
 
 Cell[BoxData[
  RowBox[{"?", 
-  "argumentCount"}]], \
+  "ArgumentCount"}]], \
 "Input",ExpressionUUID->"4ea3f660-bbe8-4940-9cf8-508eedcfefa1"],
 
 Cell["Find the highest numbered slot in a function:", "Text",
@@ -27,21 +27,21 @@ Cell["Find the highest numbered slot in a function:", "Text",
  CellID->13078159,ExpressionUUID->"69c508c4-4e7c-4193-8f66-55c0fea91cdf"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    SuperscriptBox["#", "2"], "]"}], "]"}]], "Input",
  TaggingRules->{},
  CellID->74746079,ExpressionUUID->"5b8f87aa-da9b-44fe-82f1-2fb29fa7676f"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    RowBox[{"#1", " ", "+", " ", "#2"}], "]"}], "]"}]], "Input",
  TaggingRules->{},
  CellID->189037281,ExpressionUUID->"787bb1d2-5a7f-4982-b817-8daadcc285c7"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    RowBox[{
     RowBox[{"{", 
@@ -61,7 +61,7 @@ In this function, slot 2 goes unused, but it will still be counted:\
  CellID->71023468,ExpressionUUID->"ff7668c4-c1a7-4b87-a996-3553e91e2ea1"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    RowBox[{"#1", " ", "+", " ", "#3"}], "]"}], "]"}]], "Input",
  TaggingRules->{},
@@ -74,7 +74,7 @@ Cell["Slots in inner functions will not be counted:", "Text",
  CellID->753966563,ExpressionUUID->"c2eec89e-6783-4c80-bd31-3bc9ac675552"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", "\[IndentingNewLine]", 
+ RowBox[{"ArgumentCount", "[", "\[IndentingNewLine]", 
   RowBox[{"Function", "[", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Function", "[", 
@@ -111,7 +111,7 @@ Cell[TextData[{
  CellID->1036615,ExpressionUUID->"f2fbbde3-2e84-46d6-8a05-fa68748e1ed5"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    RowBox[{"Plus", "[", "##", "]"}], "]"}], "]"}]], "Input",
  TaggingRules->{},
@@ -126,21 +126,21 @@ String slots will be counted as being part of the first argument:\
  CellID->81038384,ExpressionUUID->"2594f6dd-bcff-4b30-ac72-8f32b888fef9"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    RowBox[{"#a", "  ", "+", " ", "#b"}], "]"}], "]"}]], "Input",
  TaggingRules->{},
  CellID->545733082,ExpressionUUID->"bfea8aa8-e3b3-4b1a-8800-4578dda4e02d"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    RowBox[{"#a", "  ", "+", " ", "#b", "+", "#2"}], "]"}], "]"}]], "Input",
  TaggingRules->{},
  CellID->22340788,ExpressionUUID->"9927bb9c-39d3-491b-9d77-734ffa11b548"],
 
 Cell[TextData[{
- Cell[BoxData["argumentCount"], "InlineFormula",
+ Cell[BoxData["ArgumentCount"], "InlineFormula",
   FontFamily->"Source Sans Pro",ExpressionUUID->
   "79dfe4fd-63aa-43a0-ae07-95dc1393801c"],
  " works with compiled functions:"
@@ -149,7 +149,7 @@ Cell[TextData[{
  CellID->815709460,ExpressionUUID->"ead7b175-1e75-4e26-a3e4-b8acc6955823"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Compile", "[", 
    RowBox[{
     RowBox[{"{", 
@@ -184,7 +184,7 @@ Cell[TextData[{
  CellID->642174889,ExpressionUUID->"ce103be6-026a-478d-bdbe-2f371b7c8bc9"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{"Function", "[", 
    RowBox[{"Plus", "[", 
     RowBox[{"#1", ",", " ", "#2", ",", "##"}], "]"}], "]"}], "]"}]], "Input",
@@ -204,7 +204,7 @@ Cell[TextData[{
  CellID->66160859,ExpressionUUID->"aea6ff97-8aa3-4d6e-b15d-067ed988f555"],
 
 Cell[BoxData[
- RowBox[{"argumentCount", "[", 
+ RowBox[{"ArgumentCount", "[", 
   RowBox[{
    RowBox[{"Function", "[", 
     RowBox[{"Plus", "[", 
@@ -1379,36 +1379,64 @@ Cell["FunctionToExcelFormula", \
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->
-  "In[203]:=",ExpressionUUID->"363b52e5-7961-4ab9-af4c-ea5170d29c91"],
+ CellLabel->"In[51]:=",ExpressionUUID->"363b52e5-7961-4ab9-af4c-ea5170d29c91"],
 
 Cell[BoxData[
  RowBox[{"?", "FunctionToExcelFormula"}]], "Input",
- CellLabel->
-  "In[172]:=",ExpressionUUID->"d9ebd294-e2c2-4d28-8990-d216ba385f72"],
+ CellLabel->"In[45]:=",ExpressionUUID->"d9ebd294-e2c2-4d28-8990-d216ba385f72"],
 
-Cell[BoxData[
- RowBox[{"FunctionToExcelFormula", "[", "RandomReal", "]"}]], "Input",
- CellLabel->
-  "In[206]:=",ExpressionUUID->"8f9bb757-3d27-4f18-bf2e-97fe804399d9"],
+Cell[CellGroupData[{
 
-Cell[BoxData[
+Cell[BoxData[{
+ RowBox[{"FunctionToExcelFormula", "[", 
+  RowBox[{"RandomReal", ",", "\"\<A1\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "CopyToClipboard"}]}], "Input",
+ CellLabel->"In[53]:=",ExpressionUUID->"8f9bb757-3d27-4f18-bf2e-97fe804399d9"],
+
+Cell[BoxData["\<\"=Wolfram(\\\"RandomReal\\\" , A1)\"\>"], "Output",
+ CellLabel->"Out[53]=",ExpressionUUID->"0cbf0f05-a05f-4f84-94fb-5662a54632b3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
  RowBox[{"FunctionToExcelFormula", "[", 
   RowBox[{
-   RowBox[{"ConstantArray", "[", 
-    RowBox[{"#1", ",", "#2"}], "]"}], "&"}], "]"}]], "Input",
- CellLabel->
-  "In[207]:=",ExpressionUUID->"ca796507-fbb5-4801-9673-8ae55bd6191d"],
-
-Cell[BoxData[
- RowBox[{"FunctionToExcelFormula", "[", 
-  RowBox[{"Function", "[", 
    RowBox[{
-    RowBox[{"{", 
-     RowBox[{"n", ",", "m"}], "}"}], ",", 
     RowBox[{"ConstantArray", "[", 
-     RowBox[{"n", ",", "m"}], "]"}]}], "]"}], "]"}]], "Input",
- CellLabel->"In[208]:=",ExpressionUUID->"41eaa1fd-681e-4ff3-8122-90259c48a661"]
+     RowBox[{"#1", ",", "#2"}], "]"}], "&"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<A1\>\"", ",", "\"\<B1\>\""}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "CopyToClipboard"}]}], "Input",
+ CellLabel->"In[58]:=",ExpressionUUID->"ca796507-fbb5-4801-9673-8ae55bd6191d"],
+
+Cell[BoxData["\<\"=Wolfram(\\\"ConstantArray[#1, #2] &\\\" , A1 , B1)\"\>"], \
+"Output",
+ CellLabel->"Out[58]=",ExpressionUUID->"be79b3c2-c39a-449d-8cd5-a9f9d1c36758"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"FunctionToExcelFormula", "[", 
+  RowBox[{
+   RowBox[{"Function", "[", 
+    RowBox[{"nans", ",", 
+     RowBox[{
+      RowBox[{"StringJoin", "[", 
+       RowBox[{"ConstantArray", "[", 
+        RowBox[{"\"\<NA\>\"", ",", "nans"}], "]"}], "]"}], "<>", 
+      "\"\< BATMAN\>\""}]}], "]"}], ",", "\"\<A1\>\""}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "CopyToClipboard"}]}], "Input",
+ CellLabel->"In[62]:=",ExpressionUUID->"177df882-ce3c-4e0c-a469-d27bb519694f"],
+
+Cell[BoxData["\<\"=Wolfram(\\\"Function[nans, \
+StringJoin[StringJoin[ConstantArray[\\\"\\\"NA\\\"\\\", nans]], \\\"\\\" \
+BATMAN\\\"\\\"]]\\\" , A1)\"\>"], "Output",
+ CellLabel->"Out[62]=",ExpressionUUID->"5b16788e-4e65-41de-b0f9-aecc3ff0575e"]
+}, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1949,6 +1977,7 @@ values are associations again.\"\>", "InformationUsageText",
                     RowBox[{"FunctionRepo`MergeByKeyNested`Private`funs", ":", 
                     RowBox[{"{", "___Rule", "}"}]}]}], "]"}], ":=", 
                     RowBox[{"MergeByKeyNested", "[", 
+                    
                     RowBox[{
                     "FunctionRepo`MergeByKeyNested`Private`data", ",", 
                     "FunctionRepo`MergeByKeyNested`Private`funs", ",", 
@@ -3077,7 +3106,8 @@ Cell[BoxData[
       None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
        0.5242395980607011, 0.29813008130081364`}}]}, 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
+      None], 
+      ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
        0.1473577235772361, 0.04406504065040728}}]}, 
      LineBox[{{-0.37093495934959386`, -0.4539024390243904}, {
       0.005081300813008172, -0.07788617886178884}}], 
