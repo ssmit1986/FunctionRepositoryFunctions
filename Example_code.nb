@@ -9,7 +9,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[43]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[2]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1493,6 +1493,51 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["LocatorPaneWithZoom", \
+"Subsection",ExpressionUUID->"0db2dfe2-9fa6-46c9-8910-b7e2ebbb9be3"],
+
+Cell[BoxData[
+ RowBox[{"?", "LocatorPaneWithZoom"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"28c774c7-f69a-45f2-9f6e-d972c36c312d"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[89]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"img", "=", 
+   RowBox[{"ExampleData", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<TestImage\>\"", ",", "\"\<Stall\>\""}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"img", "=", 
+  RowBox[{"ImageResize", "[", 
+   RowBox[{"img", ",", "500"}], "]"}]}]}], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"d2c99118-b128-4c0c-b6aa-e4e055038c74"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "pts", "]"}]], "Input",
+ CellLabel->"In[85]:=",ExpressionUUID->"56b2d9a6-8468-4d56-8fb7-22c5201eeea0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pts", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"LocatorPaneWithZoom", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "pts", "]"}], ",", "img", ",", " ", 
+   RowBox[{"\"\<ZoomLevel\>\"", "->", "2"}], ",", " ", 
+   RowBox[{"LocatorAutoCreate", "->", 
+    RowBox[{"{", 
+     RowBox[{"All", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "3"}], "}"}]}], "}"}]}]}], "]"}]}], "Input",
+ CellLabel->"In[92]:=",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["maximumSpacingEstimation", \
 "Subsection",ExpressionUUID->"e7f25d6e-d412-498b-92a0-f28a46aa5a37"],
 
@@ -1917,7 +1962,6 @@ values are associations again.\"\>", "InformationUsageText",
                     RowBox[{
                     RowBox[{"MergeByKeyNested", "[", 
                     RowBox[{
-                    
                     RowBox[{"FunctionRepo`MergeByKeyNested`Private`rules", 
                     ":", 
                     RowBox[{"{", "___Rule", "}"}]}], ",", 
@@ -2103,7 +2147,6 @@ associationOfAssociationQ"}], "}"}]}], ",",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
-            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
@@ -3106,8 +3149,7 @@ Cell[BoxData[
       None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
        0.5242395980607011, 0.29813008130081364`}}]}, 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], 
-      ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
+      None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
        0.1473577235772361, 0.04406504065040728}}]}, 
      LineBox[{{-0.37093495934959386`, -0.4539024390243904}, {
       0.005081300813008172, -0.07788617886178884}}], 

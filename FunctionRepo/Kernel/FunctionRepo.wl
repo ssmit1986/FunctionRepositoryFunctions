@@ -65,6 +65,9 @@ Get["FunctionRepo`KeyComplete`"];
 kullbackLeiblerDivergence;
 Get["FunctionRepo`kullbackLeiblerDivergence`"];
 
+LocatorPaneWithZoom;
+Get["FunctionRepo`LocatorPaneWithZoom`"];
+
 maximumSpacingEstimation;
 Get["FunctionRepo`maximumSpacingEstimation`"];
 
