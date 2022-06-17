@@ -26,7 +26,6 @@ showDetail[img_,
 		img,
 		Graphics[
 			{
-				(*plotMarkers[pt, Scaled[0.15], Blue],*)
 				plotMarkers[pts, Scaled[0.15], {markerFun, col}]
 			}
 		],
@@ -54,7 +53,7 @@ Options[LocatorPaneWithZoom] = Join[
 ]
 
 LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., opts : OptionsPattern[]] := With[{
-	minDim = Min[ImageDimensions[image]],
+	minDim = Min @ ImageDimensions[image],
 	controlsQ = TrueQ @ OptionValue["ShowZoomControls"]
 },
 	DynamicModule[{
@@ -73,11 +72,11 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 							Grid[
 								MapAt[Item[#, Alignment -> Right]&, {All, 1}] @ {
 									{
-										"Zoom:",
+										"Zoom factor:",
 										Manipulator[Dynamic[zoom], {1, 5}]
 									},
 									{
-										"Zoom size:",
+										"Zoom area size:",
 										Manipulator[Dynamic[size], {0.05, 0.5}]
 									},
 									{
