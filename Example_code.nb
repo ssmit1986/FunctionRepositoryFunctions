@@ -2,6 +2,8 @@ Notebook[{
 Cell[BoxData["Quit"], "Input",
  CellLabel->"In[5]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[{
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
@@ -9,7 +11,23 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[2]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[3]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ArgumentCount", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"ArgumentCount\\\\\\\"\\\"}]\\) \
+appears in multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\", \\\",\\\", \
+\\\"\\\\\\\"GeneralUtilities`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in \
+context \\!\\(\\*RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\"}]\\) may \
+shadow or be shadowed by other definitions.\"", 2, 4, 1, 28292466799068802043,
+    "Local", "FunctionRepo`ArgumentCount"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"b949e0ca-7837-4860-9de4-fe427c046414"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1502,7 +1520,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[89]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
+ CellLabel->"In[19]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1514,7 +1532,7 @@ Cell[BoxData[{
  RowBox[{"img", "=", 
   RowBox[{"ImageResize", "[", 
    RowBox[{"img", ",", "500"}], "]"}]}]}], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"d2c99118-b128-4c0c-b6aa-e4e055038c74"],
+ CellLabel->"In[7]:=",ExpressionUUID->"d2c99118-b128-4c0c-b6aa-e4e055038c74"],
 
 Cell[BoxData[
  RowBox[{"Clear", "[", "pts", "]"}]], "Input",
@@ -1526,14 +1544,20 @@ Cell[BoxData[{
    RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"LocatorPaneWithZoom", "[", 
   RowBox[{
-   RowBox[{"Dynamic", "[", "pts", "]"}], ",", "img", ",", " ", 
-   RowBox[{"\"\<ZoomLevel\>\"", "->", "2"}], ",", " ", 
+   RowBox[{"Dynamic", "[", "pts", "]"}], ",", 
+   RowBox[{"Image", "[", 
+    RowBox[{"img", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", " ", 
+   RowBox[{"\"\<ZoomLevel\>\"", "->", "2"}], ",", "\[IndentingNewLine]", " ", 
    RowBox[{"LocatorAutoCreate", "->", 
     RowBox[{"{", 
      RowBox[{"All", ",", " ", 
       RowBox[{"{", 
-       RowBox[{"0", ",", "3"}], "}"}]}], "}"}]}]}], "]"}]}], "Input",
- CellLabel->"In[92]:=",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
+       RowBox[{"0", ",", "3"}], "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ShowZoomControls\>\"", " ", "->", " ", "True"}]}], 
+  "\[IndentingNewLine]", "]"}]}], "Input",
+ CellLabel->"In[26]:=",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1962,6 +1986,7 @@ values are associations again.\"\>", "InformationUsageText",
                     RowBox[{
                     RowBox[{"MergeByKeyNested", "[", 
                     RowBox[{
+                    
                     RowBox[{"FunctionRepo`MergeByKeyNested`Private`rules", 
                     ":", 
                     RowBox[{"{", "___Rule", "}"}]}], ",", 
@@ -2147,6 +2172,7 @@ associationOfAssociationQ"}], "}"}]}], ",",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
+            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 

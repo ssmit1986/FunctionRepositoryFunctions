@@ -39,13 +39,15 @@ showDetail[___] := {};
 Options[LocatorPaneWithZoom] = Join[
 	Options[LocatorPane],
 	{
+		"ShowZoomControls" -> True,
 		"ZoomLevel" -> 2,
 		"ZoomSize" -> 0.15
 	}
 ]
 
 LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., opts : OptionsPattern[]] := With[{
-	minDim = Min[ImageDimensions[image]]
+	minDim = Min[ImageDimensions[image]],
+	controlsQ = TrueQ @ OptionValue["ShowZoomControls"]
 },
 	DynamicModule[{
 		img = image,
@@ -54,41 +56,48 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 		pixels,
 		calcPixels
 	},
-		DynamicWrapper[
-			Grid[
-				{
-					{
-						Item["Zoom:", Alignment -> Right],
-						Manipulator[Dynamic[zoom], {1, 5}]
-					},
-					{
-						Item["Zoom size:", Alignment -> Right],
-						Manipulator[Dynamic[size], {0.05, 0.5}]
-					},
-					{
-						LocatorPane[
-							Dynamic[pts],
-							Show[
-								Image[img, ImageSize -> Full],
-								Graphics[
-									Dynamic @ {
-										plotMarkers[pts, Scaled[0.02], Red],
-										showDetail[img, MousePosition["Graphics"], pts, pixels, Scaled[size]]
-									}
-								]
-							], 
-							rest,
-							Sequence @@ FilterRules[{opts}, Options[LocatorPane]],
-							Appearance -> None
+		Column[
+			{
+				If[ controlsQ
+					,
+					DynamicWrapper[
+						Grid[
+							{
+								{
+									Item["Zoom:", Alignment -> Right],
+									Manipulator[Dynamic[zoom], {1, 5}]
+								},
+								{
+									Item["Zoom size:", Alignment -> Right],
+									Manipulator[Dynamic[size], {0.05, 0.5}]
+								}
+							},
+							Alignment -> Left,
+							BaseStyle -> "Text"
 						],
-						SpanFromLeft
-					}
-				},
-				Alignment -> Left,
-				BaseStyle -> "Text"
-			],
-			pixels = calcPixels[minDim, size, zoom],
-			TrackedSymbols :> {size, zoom}
+						pixels = calcPixels[minDim, size, zoom],
+						TrackedSymbols :> {size, zoom}
+					]
+					,
+					Nothing
+				],
+				LocatorPane[
+					Dynamic[pts],
+					Show[
+						img,
+						Graphics[
+							Dynamic @ {
+								plotMarkers[pts, Scaled[0.02], Red],
+								showDetail[img, MousePosition["Graphics"], pts, pixels, Scaled[size]]
+							}
+						]
+					], 
+					rest,
+					Sequence @@ FilterRules[{opts}, Options[LocatorPane]],
+					Appearance -> None
+				]
+			},
+			Alignment -> Left
 		]
 		,
 		Initialization :> (
