@@ -50,24 +50,22 @@ Options[LocatorPaneWithZoom] = Join[
 		"MarkerColor" -> Black,
 		"ShowCoordinates" -> True
 	}
-]
+];
 
 LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., opts : OptionsPattern[]] := With[{
-	minDim = Min @ ImageDimensions[image],
-	controlsQ = TrueQ @ OptionValue["ShowZoomControls"]
+	minDim = Min @ ImageDimensions[image]
 },
 	DynamicModule[{
 		img = image,
 		size, zoom, markerFun, color, axesQ,
-		pixels,
+		pixels, controlsQ,
 		calcPixels
 	},
 		Column[
 			{
-				If[ controlsQ
-					,
-					DynamicWrapper[
-						OpenerView[{
+				DynamicWrapper[
+					OpenerView[
+						{
 							"Controls",
 							Grid[
 								MapAt[Item[#, Alignment -> Right]&, {All, 1}] @ {
@@ -91,12 +89,11 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 								Alignment -> Left,
 								BaseStyle -> "Text"
 							]
-						}, True],
-						pixels = calcPixels[minDim, size, zoom],
-						TrackedSymbols :> {size, zoom}
-					]
-					,
-					Nothing
+						},
+						Dynamic[controlsQ]
+					],
+					pixels = calcPixels[minDim, size, zoom],
+					TrackedSymbols :> {size, zoom}
 				],
 				LocatorPane[
 					Dynamic[pts],
@@ -130,6 +127,7 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 			markerFun = Replace[OptionValue["MarkerFunction"], Automatic -> marker];
 			color = OptionValue["MarkerColor"];
 			axesQ = OptionValue["ShowCoordinates"];
+			controlsQ = TrueQ @ OptionValue["ShowZoomControls"];
 			pixels = calcPixels[minDim, size, zoom];
 		),
 		BaseStyle -> "Text"
