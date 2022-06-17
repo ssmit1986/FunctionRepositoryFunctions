@@ -56,7 +56,8 @@ ImageLocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ].
 	minDim = Min @ ImageDimensions[image]
 },
 	DynamicModule[{
-		img = image,
+		(* This is necessary to get the coordinates to work as expected *)
+		img = Image[image, ImageResolution -> Automatic],
 		size, zoom, markerFun, color, axesQ,
 		pixels, controlsQ,
 		calcPixels
