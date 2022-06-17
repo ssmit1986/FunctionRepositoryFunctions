@@ -123,12 +123,15 @@ ImageLocatorPaneWithZoom[
 							Graphics[
 								Dynamic @ {
 									plotMarkers[pts, Scaled[0.02], {markerFun, color}],
-									showDetail[img,
-										{MousePosition["Graphics"], pts},
-										pixels,
-										Scaled[size],
-										{markerFun, color},
-										axesQ
+									If[ TrueQ[zoom > 1] || axesQ,
+										showDetail[img,
+											{MousePosition["Graphics"], pts},
+											pixels,
+											Scaled[size],
+											{markerFun, color},
+											axesQ
+										],
+										{}
 									]
 								}
 							]
