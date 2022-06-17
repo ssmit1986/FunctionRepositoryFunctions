@@ -52,7 +52,7 @@ Options[ImageLocatorPaneWithZoom] = Join[
 	}
 ];
 
-getSize[img_?ImageQ] := Min @ ImageDimensions[img];
+getSize[img_?ImageQ] := getSize @ Show[img];
 getSize[gr_Graphics] := Replace[
 	Lookup[
 		AbsoluteOptions[gr, PlotRange],
@@ -61,9 +61,6 @@ getSize[gr_Graphics] := Replace[
 	mat_?MatrixQ :> Min[Subtract[#2, #1]& @@@ mat]
 ];
 getSize[_] := $Failed;
-
-fixResolution[img_?ImageQ] := Image[img, ImageResolution -> Automatic]
-fixResolution[other_] := other;
 
 validBackgroundQ[expr_] := MatchQ[expr, _?ImageQ | _Graphics];
 
@@ -79,7 +76,7 @@ ImageLocatorPaneWithZoom[
 		,
 		DynamicModule[{
 			(* This is necessary to get the coordinates to work as expected *)
-			img = fixResolution[image],
+			img = image,
 			size, zoom, markerFun, color, axesQ,
 			pixels, controlsQ,
 			calcPixels
