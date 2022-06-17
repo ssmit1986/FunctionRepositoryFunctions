@@ -52,7 +52,9 @@ Options[ImageLocatorPaneWithZoom] = Join[
 	}
 ];
 
-getSize[img_?ImageQ] := getSize @ Show[img];
+toGraphics[expr_] := Show[expr];
+
+getSize[img_?ImageQ] := getSize @ toGraphics[img];
 getSize[gr_Graphics] := Replace[
 	Lookup[
 		AbsoluteOptions[gr, PlotRange],
@@ -75,8 +77,7 @@ ImageLocatorPaneWithZoom[
 	If[ NumericQ[imgSize]
 		,
 		DynamicModule[{
-			(* This is necessary to get the coordinates to work as expected *)
-			img = image,
+			img = toGraphics[image],
 			size, zoom, markerFun, color, axesQ,
 			pixels, controlsQ,
 			calcPixels
