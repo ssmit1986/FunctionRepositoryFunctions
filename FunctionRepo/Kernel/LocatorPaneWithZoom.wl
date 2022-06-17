@@ -12,25 +12,30 @@ marker[col_] := Graphics[
 ];
 
 plotMarkers[pts : {__List}, rest__] := Map[plotMarkers[#, rest] &, pts];
-plotMarkers[pt : {_, _}, size_, col_] := Inset[marker[col], pt, {0, 0}, size];
+plotMarkers[pt : {_, _}, size_, {markerFun_, col_}] := Inset[markerFun[col], pt, {0, 0}, size];
 plotMarkers[___] := {};
 
-showDetail[img_, pt : {x_, y_}, pts_List, range_Integer, insetSize_] := Inset[
-	Framed[
-		Show[
-			img,
-			Graphics[
-				{
-					plotMarkers[pt, Scaled[0.15], Blue],
-					plotMarkers[pts, Scaled[0.15], Red]
-				}
-			],
-			PlotRange -> {x + range * {-1, 1}, y + range * {-1, 1}}
+showDetail[img_,
+	{loc : {x_, y_}, pts_List},
+	range_Integer,
+	insetSize_,
+	{markerFun_, col_},
+	axesQ_
+] := Inset[
+	Show[
+		img,
+		Graphics[
+			{
+				(*plotMarkers[pt, Scaled[0.15], Blue],*)
+				plotMarkers[pts, Scaled[0.15], {markerFun, col}]
+			}
 		],
-		Background -> White,
-		FrameStyle -> Thick
+		PlotRange -> {x + range * {-1, 1}, y + range * {-1, 1}},
+		ImageSize -> Full,
+		Axes -> axesQ, AxesOrigin -> loc,
+		PlotRangePadding -> None, ImagePadding -> None
 	],
-	pt,
+	loc,
 	Automatic,
 	insetSize
 ];
@@ -41,7 +46,10 @@ Options[LocatorPaneWithZoom] = Join[
 	{
 		"ShowZoomControls" -> True,
 		"ZoomLevel" -> 2,
-		"ZoomSize" -> 0.15
+		"ZoomSize" -> 0.15,
+		"MarkerFunction" -> Automatic,
+		"MarkerColor" -> Black,
+		"ShowCoordinates" -> True
 	}
 ]
 
@@ -51,8 +59,7 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 },
 	DynamicModule[{
 		img = image,
-		size,
-		zoom,
+		size, zoom, markerFun, color, axesQ,
 		pixels,
 		calcPixels
 	},
@@ -61,20 +68,31 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 				If[ controlsQ
 					,
 					DynamicWrapper[
-						Grid[
-							{
-								{
-									Item["Zoom:", Alignment -> Right],
-									Manipulator[Dynamic[zoom], {1, 5}]
+						OpenerView[{
+							"Controls",
+							Grid[
+								MapAt[Item[#, Alignment -> Right]&, {All, 1}] @ {
+									{
+										"Zoom:",
+										Manipulator[Dynamic[zoom], {1, 5}]
+									},
+									{
+										"Zoom size:",
+										Manipulator[Dynamic[size], {0.05, 0.5}]
+									},
+									{
+										"Marker color:",
+										ColorSlider[Dynamic[color]]
+									},
+									{
+										"Show coordinates?",
+										Checkbox[Dynamic[axesQ]]
+									}
 								},
-								{
-									Item["Zoom size:", Alignment -> Right],
-									Manipulator[Dynamic[size], {0.05, 0.5}]
-								}
-							},
-							Alignment -> Left,
-							BaseStyle -> "Text"
-						],
+								Alignment -> Left,
+								BaseStyle -> "Text"
+							]
+						}, True],
 						pixels = calcPixels[minDim, size, zoom],
 						TrackedSymbols :> {size, zoom}
 					]
@@ -87,8 +105,14 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 						img,
 						Graphics[
 							Dynamic @ {
-								plotMarkers[pts, Scaled[0.02], Red],
-								showDetail[img, MousePosition["Graphics"], pts, pixels, Scaled[size]]
+								plotMarkers[pts, Scaled[0.02], {markerFun, color}],
+								showDetail[img,
+									{MousePosition["Graphics"], pts},
+									pixels,
+									Scaled[size],
+									{markerFun, color},
+									axesQ
+								]
 							}
 						]
 					], 
@@ -104,8 +128,12 @@ LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., o
 			calcPixels[d_, s_, z_] := Floor @ Divide[s * d, 2 * z];
 			size = OptionValue["ZoomSize"];
 			zoom = OptionValue["ZoomLevel"];
+			markerFun = Replace[OptionValue["MarkerFunction"], Automatic -> marker];
+			color = OptionValue["MarkerColor"];
+			axesQ = OptionValue["ShowCoordinates"];
 			pixels = calcPixels[minDim, size, zoom];
-		)
+		),
+		BaseStyle -> "Text"
 	]
 ];
 

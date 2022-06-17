@@ -2,8 +2,6 @@ Notebook[{
 Cell[BoxData["Quit"], "Input",
  CellLabel->"In[5]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
@@ -11,23 +9,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[3]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ArgumentCount", "shdw", 
-   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"ArgumentCount\\\\\\\"\\\"}]\\) \
-appears in multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\", \\\",\\\", \
-\\\"\\\\\\\"GeneralUtilities`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in \
-context \\!\\(\\*RowBox[{\\\"\\\\\\\"FunctionRepo`\\\\\\\"\\\"}]\\) may \
-shadow or be shadowed by other definitions.\"", 2, 4, 1, 28292466799068802043,
-    "Local", "FunctionRepo`ArgumentCount"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellLabel->
-  "During evaluation of \
-In[3]:=",ExpressionUUID->"b949e0ca-7837-4860-9de4-fe427c046414"]
-}, Open  ]],
+ CellLabel->"In[28]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1520,7 +1502,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[19]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
+ CellLabel->"In[89]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1549,15 +1531,20 @@ Cell[BoxData[{
     RowBox[{"img", ",", 
      RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
    "\[IndentingNewLine]", " ", 
-   RowBox[{"\"\<ZoomLevel\>\"", "->", "2"}], ",", "\[IndentingNewLine]", " ", 
    RowBox[{"LocatorAutoCreate", "->", 
     RowBox[{"{", 
      RowBox[{"All", ",", " ", 
       RowBox[{"{", 
        RowBox[{"0", ",", "3"}], "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
-   RowBox[{"\"\<ShowZoomControls\>\"", " ", "->", " ", "True"}]}], 
-  "\[IndentingNewLine]", "]"}]}], "Input",
- CellLabel->"In[26]:=",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
+   RowBox[{"\"\<ShowZoomControls\>\"", "->", "True"}], ",", 
+   RowBox[{"\"\<ZoomLevel\>\"", "->", "2"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ZoomSize\>\"", "->", "0.15"}], ",", 
+   RowBox[{"\"\<MarkerFunction\>\"", "->", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<MarkerColor\>\"", "->", "Red"}], ",", 
+   RowBox[{"\"\<ShowCoordinates\>\"", "->", "True"}]}], "\[IndentingNewLine]",
+   "]"}]}], "Input",
+ CellLabel->"In[128]:=",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -3172,7 +3159,8 @@ Cell[BoxData[
      LineBox[{{0.10768873888571645`, -0.06993584425640234}, {
       0.4420731707317076, -0.4742276422764235}}], 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
+      None], 
+      ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
        0.5242395980607011, 0.29813008130081364`}}]}, 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
       None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
