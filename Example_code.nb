@@ -9,7 +9,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[28]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[17]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1594,7 +1594,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[20]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
+ CellLabel->"In[3]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1606,49 +1606,7 @@ Cell[BoxData[{
  RowBox[{"img", "=", 
   RowBox[{"ImageResize", "[", 
    RowBox[{"img", ",", "1000"}], "]"}]}]}], "Input",
- CellLabel->"In[11]:=",ExpressionUUID->"d2c99118-b128-4c0c-b6aa-e4e055038c74"],
-
-Cell[BoxData[
- RowBox[{"Clear", "[", "pts", "]"}]], "Input",
- CellLabel->"In[85]:=",ExpressionUUID->"56b2d9a6-8468-4d56-8fb7-22c5201eeea0"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"AbsoluteOptions", "[", 
-  RowBox[{
-   RowBox[{"Graphics", "[", 
-    RowBox[{"Disk", "[", "]"}], "]"}], ",", "PlotRange"}], "]"}]], "Input",
- CellLabel->"In[19]:=",ExpressionUUID->"c6733f79-40ca-44d6-aa8c-59ac5057cbcf"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"PlotRange", "\[Rule]", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"-", "1.`"}], ",", "1.`"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"-", "1.`"}], ",", "1.`"}], "}"}]}], "}"}]}], "}"}]], "Output",
- CellLabel->"Out[19]=",ExpressionUUID->"00f9027b-1a95-4e3a-b249-856c0355113a"]
-}, Open  ]],
-
-Cell[BoxData["DynamicImage"], \
-"Input",ExpressionUUID->"f800a52f-4dec-40c0-a8c1-900786bedb8b"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"ImageDimensions", "[", "img", "]"}]], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"8c73e8ef-009b-46f0-ab21-d5c74c9d37dc"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1000", ",", "750"}], "}"}]], "Output",
- CellLabel->"Out[17]=",ExpressionUUID->"043bf8b7-4a66-40b4-9287-475eadef4ebc"]
-}, Open  ]],
+ CellLabel->"In[19]:=",ExpressionUUID->"d2c99118-b128-4c0c-b6aa-e4e055038c74"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1656,10 +1614,34 @@ Cell[BoxData[{
    RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"ImageLocatorPaneWithZoom", "[", 
   RowBox[{
-   RowBox[{"Dynamic", "[", "pts", "]"}], ",", 
+   RowBox[{"Dynamic", "[", "pts", "]"}], ",", "\[IndentingNewLine]", 
    RowBox[{"Image", "[", 
     RowBox[{"img", ",", 
      RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", " ", 
+   RowBox[{"LocatorAutoCreate", "->", 
+    RowBox[{"{", 
+     RowBox[{"All", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "3"}], "}"}]}], "}"}]}]}], "\[IndentingNewLine]", 
+  "]"}]}], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"63a1895e-5c5e-459f-bca6-20b900eaacce"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pts", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImageLocatorPaneWithZoom", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "pts", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"Image", "[", 
+      RowBox[{"img", ",", 
+       RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"Line", "[", "pts", "]"}]}], "]"}]}], "]"}], ",", 
    "\[IndentingNewLine]", " ", 
    RowBox[{"LocatorAutoCreate", "->", 
     RowBox[{"{", 
@@ -1672,10 +1654,9 @@ Cell[BoxData[{
    RowBox[{"\"\<MarkerFunction\>\"", "->", "Automatic"}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"\"\<MarkerColor\>\"", "->", "Red"}], ",", 
-   RowBox[{"\"\<ShowCoordinates\>\"", "->", "True"}], ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"Appearance", "->", "Automatic"}]}], "\[IndentingNewLine]", 
-  "]"}]}], "Input",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
+   RowBox[{"\"\<ShowCoordinates\>\"", "->", "True"}]}], "\[IndentingNewLine]",
+   "]"}]}], "Input",
+ CellLabel->"In[10]:=",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
 }, Closed]],
 
 Cell[CellGroupData[{

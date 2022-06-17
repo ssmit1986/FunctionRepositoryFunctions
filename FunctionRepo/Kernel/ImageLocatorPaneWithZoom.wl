@@ -52,86 +52,111 @@ Options[ImageLocatorPaneWithZoom] = Join[
 	}
 ];
 
-ImageLocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., opts : OptionsPattern[]] := With[{
-	minDim = Min @ ImageDimensions[image]
+getSize[img_?ImageQ] := Min @ ImageDimensions[img];
+getSize[gr_Graphics] := Replace[
+	Lookup[
+		AbsoluteOptions[gr, PlotRange],
+		PlotRange
+	],
+	mat_?MatrixQ :> Min[Subtract[#2, #1]& @@@ mat]
+];
+getSize[_] := $Failed;
+
+fixResolution[img_?ImageQ] := Image[img, ImageResolution -> Automatic]
+fixResolution[other_] := other;
+
+validBackgroundQ[expr_] := MatchQ[expr, _?ImageQ | _Graphics];
+
+ImageLocatorPaneWithZoom[
+	Dynamic[pts_, rest___],
+	image_?validBackgroundQ,
+	rest : Except[_?OptionQ]...,
+	opts : OptionsPattern[]
+] := With[{
+	imgSize = getSize[image]
 },
-	DynamicModule[{
-		(* This is necessary to get the coordinates to work as expected *)
-		img = Image[image, ImageResolution -> Automatic],
-		size, zoom, markerFun, color, axesQ,
-		pixels, controlsQ,
-		calcPixels
-	},
-		Column[
-			{
-				DynamicWrapper[
-					OpenerView[
-						{
-							"Controls",
-							Grid[
-								MapAt[Item[#, Alignment -> Right]&, {All, 1}] @ {
-									{
-										"Zoom factor:",
-										Manipulator[Dynamic[zoom], {1, 5}]
+	If[ NumericQ[imgSize]
+		,
+		DynamicModule[{
+			(* This is necessary to get the coordinates to work as expected *)
+			img = fixResolution[image],
+			size, zoom, markerFun, color, axesQ,
+			pixels, controlsQ,
+			calcPixels
+		},
+			Column[
+				{
+					DynamicWrapper[
+						OpenerView[
+							{
+								"Controls",
+								Grid[
+									MapAt[Item[#, Alignment -> Right]&, {All, 1}] @ {
+										{
+											"Zoom factor:",
+											Manipulator[Dynamic[zoom], {1, 5}]
+										},
+										{
+											"Zoom area size:",
+											Manipulator[Dynamic[size], {0.05, 0.5}]
+										},
+										{
+											"Marker color:",
+											ColorSlider[Dynamic[color]]
+										},
+										{
+											"Show coordinates?",
+											Checkbox[Dynamic[axesQ]]
+										}
 									},
-									{
-										"Zoom area size:",
-										Manipulator[Dynamic[size], {0.05, 0.5}]
-									},
-									{
-										"Marker color:",
-										ColorSlider[Dynamic[color]]
-									},
-									{
-										"Show coordinates?",
-										Checkbox[Dynamic[axesQ]]
-									}
-								},
-								Alignment -> Left,
-								BaseStyle -> "Text"
-							]
-						},
-						Dynamic[controlsQ]
-					],
-					pixels = calcPixels[minDim, size, zoom],
-					TrackedSymbols :> {size, zoom}
-				],
-				LocatorPane[
-					Dynamic[pts],
-					Show[
-						img,
-						Graphics[
-							Dynamic @ {
-								plotMarkers[pts, Scaled[0.02], {markerFun, color}],
-								showDetail[img,
-									{MousePosition["Graphics"], pts},
-									pixels,
-									Scaled[size],
-									{markerFun, color},
-									axesQ
+									Alignment -> Left,
+									BaseStyle -> "Text"
 								]
-							}
-						]
-					], 
-					rest,
-					Sequence @@ FilterRules[{opts}, Options[LocatorPane]],
-					Appearance -> None
-				]
-			},
-			Alignment -> Left
+							},
+							Dynamic[controlsQ]
+						],
+						pixels = calcPixels[imgSize, size, zoom],
+						TrackedSymbols :> {size, zoom}
+					],
+					LocatorPane[
+						Dynamic[pts, rest],
+						Show[
+							img,
+							Graphics[
+								Dynamic @ {
+									plotMarkers[pts, Scaled[0.02], {markerFun, color}],
+									showDetail[img,
+										{MousePosition["Graphics"], pts},
+										pixels,
+										Scaled[size],
+										{markerFun, color},
+										axesQ
+									]
+								}
+							]
+						], 
+						rest,
+						Sequence @@ FilterRules[{opts}, Options[LocatorPane]],
+						Appearance -> None
+					]
+				},
+				Alignment -> Left
+			]
+			,
+			Initialization :> (
+				calcPixels[d_, s_, z_] := Floor @ Divide[s * d, 2 * z];
+				size = OptionValue["ZoomSize"];
+				zoom = OptionValue["ZoomLevel"];
+				markerFun = Replace[OptionValue["MarkerFunction"], Automatic -> marker];
+				color = OptionValue["MarkerColor"];
+				axesQ = OptionValue["ShowCoordinates"];
+				controlsQ = TrueQ @ OptionValue["ShowZoomControls"];
+				pixels = calcPixels[imgSize, size, zoom];
+			),
+			BaseStyle -> "Text"
 		]
 		,
-		Initialization :> (
-			calcPixels[d_, s_, z_] := Floor @ Divide[s * d, 2 * z];
-			size = OptionValue["ZoomSize"];
-			zoom = OptionValue["ZoomLevel"];
-			markerFun = Replace[OptionValue["MarkerFunction"], Automatic -> marker];
-			color = OptionValue["MarkerColor"];
-			axesQ = OptionValue["ShowCoordinates"];
-			controlsQ = TrueQ @ OptionValue["ShowZoomControls"];
-			pixels = calcPixels[minDim, size, zoom];
-		),
-		BaseStyle -> "Text"
+		Enclose[ConfirmAssert[NumericQ[imgSize], "Unable to infer image dimensions"]]
 	]
 ];
 
