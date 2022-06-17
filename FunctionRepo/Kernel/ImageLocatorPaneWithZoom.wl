@@ -12,21 +12,21 @@ marker[col_] := Graphics[
 ];
 
 plotMarkers[pts : {__List}, rest__] := Map[plotMarkers[#, rest] &, pts];
-plotMarkers[pt : {_, _}, size_, {markerFun_, col_}] := Inset[markerFun[col], pt, {0, 0}, size];
+plotMarkers[pt : {_, _}, markerFun_, {size_, col_}] := Inset[markerFun[col], pt, {0, 0}, size];
 plotMarkers[___] := {};
 
 showDetail[img_,
 	{loc : {x_, y_}, pts_List},
 	range_Integer,
 	insetSize_,
-	{markerFun_, col_},
+	{markerFun_, col_, markerSize_},
 	axesQ_
 ] := Inset[
 	Show[
 		img,
 		Graphics[
 			{
-				plotMarkers[pts, Scaled[0.15], {markerFun, col}]
+				plotMarkers[pts, markerFun, {markerSize, col}]
 			}
 		],
 		PlotRange -> {x + range * {-1, 1}, y + range * {-1, 1}},
@@ -35,22 +35,10 @@ showDetail[img_,
 		PlotRangePadding -> None, ImagePadding -> None
 	],
 	loc,
-	Automatic,
+	loc,
 	insetSize
 ];
 showDetail[___] := {};
-
-Options[ImageLocatorPaneWithZoom] = Join[
-	Options[LocatorPane],
-	{
-		"ShowZoomControls" -> True,
-		"ZoomLevel" -> 2,
-		"ZoomSize" -> 0.15,
-		"MarkerFunction" -> Automatic,
-		"MarkerColor" -> Black,
-		"ShowCoordinates" -> True
-	}
-];
 
 toGraphics[expr_] := Show[expr];
 
@@ -66,6 +54,19 @@ getSize[_] := $Failed;
 
 validBackgroundQ[expr_] := MatchQ[expr, _?ImageQ | _Graphics];
 
+Options[ImageLocatorPaneWithZoom] = Join[
+	Options[LocatorPane],
+	{
+		"ShowZoomControls" -> True,
+		"ZoomLevel" -> 2,
+		"ZoomSize" -> 0.15,
+		"MarkerFunction" -> Automatic,
+		"MarkerColor" -> Black,
+		"MarkerSize" ->  0.02,
+		"ShowCoordinates" -> True
+	}
+];
+
 ImageLocatorPaneWithZoom[
 	Dynamic[pts_, rest___],
 	image_?validBackgroundQ,
@@ -80,7 +81,8 @@ ImageLocatorPaneWithZoom[
 			img = toGraphics[image],
 			size, zoom, markerFun, color, axesQ,
 			pixels, controlsQ,
-			calcPixels
+			calcPixels,
+			locatorSize
 		},
 			Column[
 				{
@@ -97,6 +99,10 @@ ImageLocatorPaneWithZoom[
 										{
 											"Zoom area size:",
 											Manipulator[Dynamic[size], {0.05, 0.5}]
+										},
+										{
+											"Marker size:",
+											Manipulator[Dynamic[locatorSize], {0.01, 0.1}]
 										},
 										{
 											"Marker color:",
@@ -122,13 +128,13 @@ ImageLocatorPaneWithZoom[
 							img,
 							Graphics[
 								Dynamic @ {
-									plotMarkers[pts, Scaled[0.02], {markerFun, color}],
+									plotMarkers[pts, markerFun, {Scaled[locatorSize], color}],
 									If[ TrueQ[zoom > 1] || axesQ,
 										showDetail[img,
 											{MousePosition["Graphics"], pts},
 											pixels,
 											Scaled[size],
-											{markerFun, color},
+											{markerFun, color, Scaled[locatorSize/size]},
 											axesQ
 										],
 										{}
@@ -150,6 +156,7 @@ ImageLocatorPaneWithZoom[
 				zoom = OptionValue["ZoomLevel"];
 				markerFun = Replace[OptionValue["MarkerFunction"], Automatic -> marker];
 				color = OptionValue["MarkerColor"];
+				locatorSize = OptionValue["MarkerSize"];
 				axesQ = OptionValue["ShowCoordinates"];
 				controlsQ = TrueQ @ OptionValue["ShowZoomControls"];
 				pixels = calcPixels[imgSize, size, zoom];
