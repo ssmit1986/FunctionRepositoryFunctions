@@ -56,6 +56,9 @@ Get["FunctionRepo`graphicsToGraph`"];
 GroupCases;
 Get["FunctionRepo`GroupCases`"];
 
+ImageLocatorPaneWithZoom;
+Get["FunctionRepo`ImageLocatorPaneWithZoom`"];
+
 importAGSData;
 Get["FunctionRepo`importAGSData`"];
 
@@ -64,9 +67,6 @@ Get["FunctionRepo`KeyComplete`"];
 
 kullbackLeiblerDivergence;
 Get["FunctionRepo`kullbackLeiblerDivergence`"];
-
-LocatorPaneWithZoom;
-Get["FunctionRepo`LocatorPaneWithZoom`"];
 
 maximumSpacingEstimation;
 Get["FunctionRepo`maximumSpacingEstimation`"];

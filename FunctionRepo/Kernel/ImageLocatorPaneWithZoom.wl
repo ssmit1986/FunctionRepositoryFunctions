@@ -1,8 +1,8 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`LocatorPaneWithZoom`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`ImageLocatorPaneWithZoom`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[LocatorPaneWithZoom, "LocatorPaneWithZoom[$$] works like LocatorPane, but provides a zoom area around your cursor."];
+GeneralUtilities`SetUsage[ImageLocatorPaneWithZoom, "ImageLocatorPaneWithZoom[$$] works like LocatorPane, but provides a zoom area around your cursor."];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -40,7 +40,7 @@ showDetail[img_,
 ];
 showDetail[___] := {};
 
-Options[LocatorPaneWithZoom] = Join[
+Options[ImageLocatorPaneWithZoom] = Join[
 	Options[LocatorPane],
 	{
 		"ShowZoomControls" -> True,
@@ -52,7 +52,7 @@ Options[LocatorPaneWithZoom] = Join[
 	}
 ];
 
-LocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., opts : OptionsPattern[]] := With[{
+ImageLocatorPaneWithZoom[Dynamic[pts_], image_?ImageQ, rest : Except[_?OptionQ]..., opts : OptionsPattern[]] := With[{
 	minDim = Min @ ImageDimensions[image]
 },
 	DynamicModule[{

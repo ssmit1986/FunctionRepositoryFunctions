@@ -1441,6 +1441,245 @@ BATMAN\\\"\\\"]]\\\" , A1)\"\>"], "Output",
 
 Cell[CellGroupData[{
 
+Cell["graphicsToGraph", \
+"Subsection",ExpressionUUID->"80b80d67-3ffa-4b82-b1eb-33ba30c118b4"],
+
+Cell[BoxData[
+ RowBox[{"?", "graphicsToGraph"}]], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"16828f0d-5725-4a82-b304-795a9d8a9b85"],
+
+Cell[BoxData[
+ RowBox[{"graph", "=", 
+  RowBox[{"graphicsToGraph", "[", "\[IndentingNewLine]", 
+   GraphicsBox[{PointBox[{-0.5030487804878048, 0.3997560975609762}], 
+     PointBox[{-0.4217479674796747, -0.4539024390243904}], 
+     PointBox[{0.48272357723577275`, 0.4200813008130089}], 
+     PointBox[{0.48272357723577275`, -0.5250406504065035}], 
+     PointBox[{0.07621951219512213, -0.006747967479674877}], 
+     LineBox[{{-0.4710144927536235, 0.39743321718931535`}, {
+      0.055894308943089846`, -0.027073170731706925`}}], 
+     LineBox[{{0.10768873888571645`, -0.06993584425640234}, {
+      0.4420731707317076, -0.4742276422764235}}], 
+     {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
+      None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
+       0.5242395980607011, 0.29813008130081364`}}]}, 
+     {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
+      None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
+       0.1473577235772361, 0.04406504065040728}}]}, 
+     LineBox[{{-0.37093495934959386`, -0.4539024390243904}, {
+      0.005081300813008172, -0.07788617886178884}}], 
+     {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
+      None], ArrowBox[{{-0.5233739837398377, 
+       0.30829268292682954`}, {-0.43191056910569103`, \
+-0.38276422764227647`}}]}, 
+     LineBox[{{0.5113636363636365, 0.500227272727273}, {0.1609848484848484, 
+      0.6517424242424243}, {-0.33143939393939403`, 
+      0.7464393939393941}, {-0.44507575757575757`, 0.5096969696969698}}]},
+    ImagePadding->{{0., 1.}, {1., 0.}},
+    ImageSize->{221., Automatic},
+    PlotRange->{{-1.0416666666666667`, 1.0416666666666667`}, {-1.04, 1.04}},
+    PlotRangePadding->Automatic], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellLabel->"In[27]:=",ExpressionUUID->"0ffca584-6cee-40ad-8a23-3a03452ab1b8"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["GroupCases", \
+"Subsection",ExpressionUUID->"74d353c8-8caf-44c8-8420-a8b74bf8571f"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"4dc785e5-de18-4033-83d1-6029238d197c"],
+
+Cell[BoxData[
+ RowBox[{"?", "GroupCases"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"af34ae3e-0924-4f36-8960-f10f699c9820"],
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", "_Integer"}], 
+  "]"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"c8f845e9-836b-4173-9fab-f31841ed98b8"],
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
+   RowBox[{"i_Integer", "\[RuleDelayed]", 
+    RowBox[{"i", "/", "2"}]}]}], "]"}]], "Input",
+ CellLabel->
+  "In[122]:=",ExpressionUUID->"ba52c6db-b6bf-480f-9b6f-40b0916ab716"],
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x", ",", "4"}], "}"}], ",", 
+   RowBox[{"i_Integer", "\[RuleDelayed]", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"j", "=", 
+        RowBox[{"i", "/", "2"}]}], "}"}], ",", 
+      RowBox[{"j", "/;", 
+       RowBox[{"EvenQ", "[", "j", "]"}]}]}], "]"}]}]}], "]"}]], "Input",
+ CellLabel->
+  "In[123]:=",ExpressionUUID->"911b2705-764f-4910-b424-d0d2171908be"],
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"_Integer", ",", "_Real"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"b1e26980-2f01-4a7b-b232-f52330529639"],
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<Int\>\"", "\[Rule]", " ", "_Integer"}], ",", 
+     RowBox[{"\"\<Float\>\"", "\[Rule]", " ", "_Real"}], ",", 
+     RowBox[{"\"\<NAN\>\"", "\[Rule]", " ", "_"}]}], "|>"}]}], "]"}]], "Input",
+ CellLabel->"In[55]:=",ExpressionUUID->"4d0334ae-35cc-4a7e-8152-13899ec7be0e"],
+
+Cell[BoxData[
+ RowBox[{"GroupCases", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"_Integer", ",", "_Real", ",", "_Complex"}], "}"}]}], 
+  "]"}]], "Input",
+ CellLabel->
+  "In[125]:=",ExpressionUUID->"1ae48412-a27d-41d6-9741-33b5b1d987f3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"test", "=", 
+   RowBox[{"RandomChoice", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1."}], "}"}], ",", 
+     RowBox[{"10", "^", "3"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GroupBy", "[", 
+    RowBox[{"test", ",", "IntegerQ"}], "]"}], ";"}], "//", 
+  "RepeatedTiming"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GroupCases", "[", 
+    RowBox[{"test", ",", "_Integer"}], "]"}], ";"}], "//", 
+  "RepeatedTiming"}]}], "Input",
+ CellLabel->"In[127]:=",ExpressionUUID->"924a0f49-0c5c-46d4-b64b-5a097066638b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ImageLocatorPaneWithZoom", \
+"Subsection",ExpressionUUID->"0db2dfe2-9fa6-46c9-8910-b7e2ebbb9be3"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "ImageLocatorPaneWithZoom"}]], \
+"Input",ExpressionUUID->"28c774c7-f69a-45f2-9f6e-d972c36c312d"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[20]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"img", "=", 
+   RowBox[{"ExampleData", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<TestImage\>\"", ",", "\"\<Stall\>\""}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"img", "=", 
+  RowBox[{"ImageResize", "[", 
+   RowBox[{"img", ",", "1000"}], "]"}]}]}], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"d2c99118-b128-4c0c-b6aa-e4e055038c74"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "pts", "]"}]], "Input",
+ CellLabel->"In[85]:=",ExpressionUUID->"56b2d9a6-8468-4d56-8fb7-22c5201eeea0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteOptions", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{"Disk", "[", "]"}], "]"}], ",", "PlotRange"}], "]"}]], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"c6733f79-40ca-44d6-aa8c-59ac5057cbcf"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"PlotRange", "\[Rule]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1.`"}], ",", "1.`"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1.`"}], ",", "1.`"}], "}"}]}], "}"}]}], "}"}]], "Output",
+ CellLabel->"Out[19]=",ExpressionUUID->"00f9027b-1a95-4e3a-b249-856c0355113a"]
+}, Open  ]],
+
+Cell[BoxData["DynamicImage"], \
+"Input",ExpressionUUID->"f800a52f-4dec-40c0-a8c1-900786bedb8b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ImageDimensions", "[", "img", "]"}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"8c73e8ef-009b-46f0-ab21-d5c74c9d37dc"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1000", ",", "750"}], "}"}]], "Output",
+ CellLabel->"Out[17]=",ExpressionUUID->"043bf8b7-4a66-40b4-9287-475eadef4ebc"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pts", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImageLocatorPaneWithZoom", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "pts", "]"}], ",", 
+   RowBox[{"Image", "[", 
+    RowBox[{"img", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", " ", 
+   RowBox[{"LocatorAutoCreate", "->", 
+    RowBox[{"{", 
+     RowBox[{"All", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "3"}], "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ShowZoomControls\>\"", "->", "False"}], ",", 
+   RowBox[{"\"\<ZoomLevel\>\"", "->", "2"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ZoomSize\>\"", "->", "0.15"}], ",", 
+   RowBox[{"\"\<MarkerFunction\>\"", "->", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<MarkerColor\>\"", "->", "Red"}], ",", 
+   RowBox[{"\"\<ShowCoordinates\>\"", "->", "True"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Appearance", "->", "Automatic"}]}], "\[IndentingNewLine]", 
+  "]"}]}], "Input",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["KeyComplete", \
 "Subsection",ExpressionUUID->"9fab75b0-8eca-4f65-9683-96a85ee1f214"],
 
@@ -1489,62 +1728,6 @@ Cell[BoxData[
      RowBox[{"0", ",", "0", ",", "1"}], "}"}], "]"}]}], "\[IndentingNewLine]",
    "]"}]], "Input",
  CellLabel->"In[70]:=",ExpressionUUID->"200811e0-9976-442e-8d63-800751e9f445"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["LocatorPaneWithZoom", \
-"Subsection",ExpressionUUID->"0db2dfe2-9fa6-46c9-8910-b7e2ebbb9be3"],
-
-Cell[BoxData[
- RowBox[{"?", "LocatorPaneWithZoom"}]], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"28c774c7-f69a-45f2-9f6e-d972c36c312d"],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[89]:=",ExpressionUUID->"8b7b9f4b-4625-4f31-9afc-da8f4ab0267e"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"img", "=", 
-   RowBox[{"ExampleData", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<TestImage\>\"", ",", "\"\<Stall\>\""}], "}"}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"img", "=", 
-  RowBox[{"ImageResize", "[", 
-   RowBox[{"img", ",", "500"}], "]"}]}]}], "Input",
- CellLabel->"In[7]:=",ExpressionUUID->"d2c99118-b128-4c0c-b6aa-e4e055038c74"],
-
-Cell[BoxData[
- RowBox[{"Clear", "[", "pts", "]"}]], "Input",
- CellLabel->"In[85]:=",ExpressionUUID->"56b2d9a6-8468-4d56-8fb7-22c5201eeea0"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"pts", "=", 
-   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"LocatorPaneWithZoom", "[", 
-  RowBox[{
-   RowBox[{"Dynamic", "[", "pts", "]"}], ",", 
-   RowBox[{"Image", "[", 
-    RowBox[{"img", ",", 
-     RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}], ",", 
-   "\[IndentingNewLine]", " ", 
-   RowBox[{"LocatorAutoCreate", "->", 
-    RowBox[{"{", 
-     RowBox[{"All", ",", " ", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "3"}], "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
-   RowBox[{"\"\<ShowZoomControls\>\"", "->", "True"}], ",", 
-   RowBox[{"\"\<ZoomLevel\>\"", "->", "2"}], ",", "\[IndentingNewLine]", 
-   RowBox[{"\"\<ZoomSize\>\"", "->", "0.15"}], ",", 
-   RowBox[{"\"\<MarkerFunction\>\"", "->", "Automatic"}], ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"\"\<MarkerColor\>\"", "->", "Red"}], ",", 
-   RowBox[{"\"\<ShowCoordinates\>\"", "->", "True"}]}], "\[IndentingNewLine]",
-   "]"}]}], "Input",
- CellLabel->"In[128]:=",ExpressionUUID->"47a0ada5-9cd9-4361-b918-7c3a19b6e6b9"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -3135,150 +3318,6 @@ Cell[BoxData[
          RowBox[{"1", "/", "2"}], "2"}
        }], ")"}], ",", "7"}], "]"}], ",", "5"}], "]"}]], "Input",
  CellLabel->"In[127]:=",ExpressionUUID->"98cb3bdb-adc5-4d93-b479-9db57af39f1d"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["graphicsToGraph", \
-"Subsection",ExpressionUUID->"80b80d67-3ffa-4b82-b1eb-33ba30c118b4"],
-
-Cell[BoxData[
- RowBox[{"?", "graphicsToGraph"}]], "Input",
- CellLabel->"In[9]:=",ExpressionUUID->"16828f0d-5725-4a82-b304-795a9d8a9b85"],
-
-Cell[BoxData[
- RowBox[{"graph", "=", 
-  RowBox[{"graphicsToGraph", "[", "\[IndentingNewLine]", 
-   GraphicsBox[{PointBox[{-0.5030487804878048, 0.3997560975609762}], 
-     PointBox[{-0.4217479674796747, -0.4539024390243904}], 
-     PointBox[{0.48272357723577275`, 0.4200813008130089}], 
-     PointBox[{0.48272357723577275`, -0.5250406504065035}], 
-     PointBox[{0.07621951219512213, -0.006747967479674877}], 
-     LineBox[{{-0.4710144927536235, 0.39743321718931535`}, {
-      0.055894308943089846`, -0.027073170731706925`}}], 
-     LineBox[{{0.10768873888571645`, -0.06993584425640234}, {
-      0.4420731707317076, -0.4742276422764235}}], 
-     {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], 
-      ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
-       0.5242395980607011, 0.29813008130081364`}}]}, 
-     {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
-       0.1473577235772361, 0.04406504065040728}}]}, 
-     LineBox[{{-0.37093495934959386`, -0.4539024390243904}, {
-      0.005081300813008172, -0.07788617886178884}}], 
-     {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], ArrowBox[{{-0.5233739837398377, 
-       0.30829268292682954`}, {-0.43191056910569103`, \
--0.38276422764227647`}}]}, 
-     LineBox[{{0.5113636363636365, 0.500227272727273}, {0.1609848484848484, 
-      0.6517424242424243}, {-0.33143939393939403`, 
-      0.7464393939393941}, {-0.44507575757575757`, 0.5096969696969698}}]},
-    ImagePadding->{{0., 1.}, {1., 0.}},
-    ImageSize->{221., Automatic},
-    PlotRange->{{-1.0416666666666667`, 1.0416666666666667`}, {-1.04, 1.04}},
-    PlotRangePadding->Automatic], "\[IndentingNewLine]", "]"}]}]], "Input",
- CellLabel->"In[27]:=",ExpressionUUID->"0ffca584-6cee-40ad-8a23-3a03452ab1b8"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["GroupCases", \
-"Subsection",ExpressionUUID->"74d353c8-8caf-44c8-8420-a8b74bf8571f"],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"4dc785e5-de18-4033-83d1-6029238d197c"],
-
-Cell[BoxData[
- RowBox[{"?", "GroupCases"}]], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"af34ae3e-0924-4f36-8960-f10f699c9820"],
-
-Cell[BoxData[
- RowBox[{"GroupCases", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", "_Integer"}], 
-  "]"}]], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"c8f845e9-836b-4173-9fab-f31841ed98b8"],
-
-Cell[BoxData[
- RowBox[{"GroupCases", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
-   RowBox[{"i_Integer", "\[RuleDelayed]", 
-    RowBox[{"i", "/", "2"}]}]}], "]"}]], "Input",
- CellLabel->
-  "In[122]:=",ExpressionUUID->"ba52c6db-b6bf-480f-9b6f-40b0916ab716"],
-
-Cell[BoxData[
- RowBox[{"GroupCases", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "2", ",", "3.", ",", "x", ",", "4"}], "}"}], ",", 
-   RowBox[{"i_Integer", "\[RuleDelayed]", 
-    RowBox[{"With", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"j", "=", 
-        RowBox[{"i", "/", "2"}]}], "}"}], ",", 
-      RowBox[{"j", "/;", 
-       RowBox[{"EvenQ", "[", "j", "]"}]}]}], "]"}]}]}], "]"}]], "Input",
- CellLabel->
-  "In[123]:=",ExpressionUUID->"911b2705-764f-4910-b424-d0d2171908be"],
-
-Cell[BoxData[
- RowBox[{"GroupCases", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"_Integer", ",", "_Real"}], "}"}]}], "]"}]], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"b1e26980-2f01-4a7b-b232-f52330529639"],
-
-Cell[BoxData[
- RowBox[{"GroupCases", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
-   RowBox[{"<|", 
-    RowBox[{
-     RowBox[{"\"\<Int\>\"", "\[Rule]", " ", "_Integer"}], ",", 
-     RowBox[{"\"\<Float\>\"", "\[Rule]", " ", "_Real"}], ",", 
-     RowBox[{"\"\<NAN\>\"", "\[Rule]", " ", "_"}]}], "|>"}]}], "]"}]], "Input",
- CellLabel->"In[55]:=",ExpressionUUID->"4d0334ae-35cc-4a7e-8152-13899ec7be0e"],
-
-Cell[BoxData[
- RowBox[{"GroupCases", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "2", ",", "3.", ",", "x"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"_Integer", ",", "_Real", ",", "_Complex"}], "}"}]}], 
-  "]"}]], "Input",
- CellLabel->
-  "In[125]:=",ExpressionUUID->"1ae48412-a27d-41d6-9741-33b5b1d987f3"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"test", "=", 
-   RowBox[{"RandomChoice", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", ",", "1."}], "}"}], ",", 
-     RowBox[{"10", "^", "3"}]}], "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"GroupBy", "[", 
-    RowBox[{"test", ",", "IntegerQ"}], "]"}], ";"}], "//", 
-  "RepeatedTiming"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"GroupCases", "[", 
-    RowBox[{"test", ",", "_Integer"}], "]"}], ";"}], "//", 
-  "RepeatedTiming"}]}], "Input",
- CellLabel->"In[127]:=",ExpressionUUID->"924a0f49-0c5c-46d4-b64b-5a097066638b"]
 }, Closed]],
 
 Cell[CellGroupData[{
