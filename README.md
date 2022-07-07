@@ -23,6 +23,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [GroupCases](https://resources.wolframcloud.com/FunctionRepository/resources/GroupCases)
 
+* [ImageLocatorPaneWithZoom](https://resources.wolframcloud.com/FunctionRepository/resources/ImageLocatorPaneWithZoom)
+
 * [KullbackLeiblerDivergence](https://resources.wolframcloud.com/FunctionRepository/resources/KullbackLeiblerDivergence)
 
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
