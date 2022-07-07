@@ -8,7 +8,7 @@ GeneralUtilities`SetUsage[CopyAsExcelData,
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-CopyAsExcelData[list_?VectorQ] := CopyAsExcelData[{list}];
+CopyAsExcelData[list_List?VectorQ] := CopyAsExcelData[{list}];
 
 CopyAsExcelData[{}] := $Failed;
 
@@ -22,8 +22,18 @@ CopyAsExcelData[data2D : {__List?VectorQ}] := Module[{
 	dataToCopy
 ];
 
+CopyAsExcelData[___] := $Failed;
+
 cleanup[normal : _String | _?NumericQ] := normal;
-cleanup[date_DateObject?DateObjectQ] := DateString[date, "ISODateTime"];
+cleanup[date_DateObject?DateObjectQ] := DateString[date,
+	Switch[date["Granularity"],
+		"Hour" | "Minute" | "Second" | "Instant",
+			"ISODateTime",
+		_,
+			"ISODate"
+	]
+];
+cleanup[time_TimeObject?TimeObjectQ] := DateString[time, "Time"];
 cleanup[other_] := TextString[other];
 
 End[] (* End Private Context *)
