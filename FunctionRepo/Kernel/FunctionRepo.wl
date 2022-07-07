@@ -30,6 +30,9 @@ Get["FunctionRepo`ConvertStringsToSymbols`"];
 ConvertToTemplateNotebook;
 Get["FunctionRepo`ConvertToTemplateNotebook`"];
 
+CopyAsExcelData;
+Get["FunctionRepo`CopyAsExcelData`"];
+
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
 

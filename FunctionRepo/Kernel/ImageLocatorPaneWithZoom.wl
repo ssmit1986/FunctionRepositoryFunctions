@@ -2,6 +2,11 @@
 
 BeginPackage["FunctionRepo`ImageLocatorPaneWithZoom`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
+
+ImageLocatorPaneWithZoom
+
+ImageLocatorPaneWithZoom::usage = "ImageLocatorPaneWithZoom is like LocatorPane but with zoom."
+
 GeneralUtilities`SetUsage[ImageLocatorPaneWithZoom, "ImageLocatorPaneWithZoom[$$] works like LocatorPane, but provides a zoom area around your cursor."];
 
 Begin["`Private`"] (* Begin Private Context *) 
