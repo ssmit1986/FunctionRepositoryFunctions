@@ -9,7 +9,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[17]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[19]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -648,6 +648,34 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"ConvertToTemplateNotebook", "[", "]"}]], "Input",
  CellLabel->"In[9]:=",ExpressionUUID->"28296e7a-243a-447b-ab54-84015e11ca3e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["CopyAsExcelData", \
+"Subsection",ExpressionUUID->"465104ca-adf2-4bca-92e6-e8453a3ef97c"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[37]:=",ExpressionUUID->"bdb4e922-0f41-4bff-bfbc-2cedb2ee3cd7"],
+
+Cell[BoxData[
+ RowBox[{"?", "CopyAsExcelData"}]], "Input",
+ CellLabel->"In[21]:=",ExpressionUUID->"d99daa14-1f7a-472f-bd74-0af0555ab196"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CopyAsExcelData", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "\"\<2\>\"", ",", "Now", ",", "Today", ",", " ", 
+    RowBox[{"TimeObject", "[", "]"}]}], "}"}], "]"}]], "Input",
+ CellLabel->"In[41]:=",ExpressionUUID->"f9a2cde7-b3af-490d-a1df-680b110ea2c7"],
+
+Cell[BoxData["\<\"1\\t2\\t2022-07-07T10:40:10\\t2022-07-07\\t10:40:10\"\>"], \
+"Output",
+ CellLabel->"Out[41]=",ExpressionUUID->"08faa0b4-0c77-4d24-8ce1-5298a1e7bb04"]
+}, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1464,7 +1492,8 @@ Cell[BoxData[
       None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
        0.5242395980607011, 0.29813008130081364`}}]}, 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
+      None], 
+      ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
        0.1473577235772361, 0.04406504065040728}}]}, 
      LineBox[{{-0.37093495934959386`, -0.4539024390243904}, {
       0.005081300813008172, -0.07788617886178884}}], 
@@ -4156,7 +4185,7 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 TrackCellChangeTimes->False,
 Magnification:>1. Inherited,
-FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]
