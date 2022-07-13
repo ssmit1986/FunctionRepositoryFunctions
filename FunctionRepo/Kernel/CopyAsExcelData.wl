@@ -8,9 +8,9 @@ GeneralUtilities`SetUsage[CopyAsExcelData,
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-CopyAsExcelData[list_List?VectorQ] := CopyAsExcelData[{list}];
-
 CopyAsExcelData[{}] := $Failed;
+
+CopyAsExcelData[list_List?VectorQ] := CopyAsExcelData[{list}];
 
 CopyAsExcelData[data2D : {__List?VectorQ}] := Module[{
 	dataToCopy = ExportString[
