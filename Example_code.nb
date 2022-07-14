@@ -1,6 +1,6 @@
 Notebook[{
 Cell[BoxData["Quit"], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
+ CellLabel->"In[70]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
 
 Cell[BoxData[{
  RowBox[{
@@ -9,7 +9,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[19]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -3395,6 +3395,25 @@ Cell[BoxData[
          RowBox[{"Framed", "[", "contentDisplay", "]"}]}], "}"}], "]"}]}], 
      "]"}]}]}], "\[IndentingNewLine]", "]"}]], "Input",
  CellLabel->"In[25]:=",ExpressionUUID->"26406d56-e134-4473-9fb0-317ae0e1c21f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["OpenTestWritingPalette", \
+"Subsection",ExpressionUUID->"b46536b5-1de5-4b21-ad9a-f52b0d6f3a56"],
+
+Cell[BoxData[
+ RowBox[{"<<", 
+  "FunctionRepo`"}]], \
+"Input",ExpressionUUID->"491b8b52-25cb-4033-993e-7831c6369582"],
+
+Cell[BoxData[
+ RowBox[{"?", "OpenTestWritingPalette"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"ea7528bb-6fb9-4b82-86b0-0eb3f71e15d9"],
+
+Cell[BoxData[
+ RowBox[{"OpenTestWritingPalette", "[", 
+  "]"}]], "Input",ExpressionUUID->"7f76c2db-626e-4230-ad10-f7bc074cae22"]
 }, Closed]],
 
 Cell[CellGroupData[{

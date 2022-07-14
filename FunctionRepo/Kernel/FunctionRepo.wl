@@ -92,6 +92,9 @@ Get["FunctionRepo`MultiNonlinearModelFit`"];
 multiSet;
 Get["FunctionRepo`multiSet`"];
 
+OpenTestWritingPalette;
+Get["FunctionRepo`OpenTestWritingPalette`"];
+
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
 
