@@ -3,9 +3,6 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`"]
 
-ArgumentCount;
-Get["FunctionRepo`ArgumentCount`"];
-
 AssociationTemplate;
 Get["FunctionRepo`AssociationTemplate`"];
 
@@ -49,6 +46,9 @@ Get["FunctionRepo`firstMatchingValue`"];
 FormatTestFile;
 ConvertTestNotebooks;
 Get["FunctionRepo`FormatTestFile`"];
+
+FunctionArgumentCount;
+Get["FunctionRepo`FunctionArgumentCount`"];
 
 FunctionToExcelFormula;
 Get["FunctionRepo`FunctionToExcelFormula`"];
