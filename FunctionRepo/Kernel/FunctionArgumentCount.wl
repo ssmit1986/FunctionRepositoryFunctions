@@ -1,18 +1,18 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`ArgumentCount`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`FunctionArgumentCount`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[ArgumentCount,
-	"ArgumentCount[Function[$$]] counts how many arguments a function takes."
+GeneralUtilities`SetUsage[FunctionArgumentCount,
+	"FunctionArgumentCount[Function[$$]] counts how many arguments a function takes."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-Options[ArgumentCount] = {"IgnoreSlotSequence" -> False};
+Options[FunctionArgumentCount] = {"IgnoreSlotSequence" -> False};
 
-ArgumentCount[HoldPattern[Function[sym : {___Symbol}, __]], opts : OptionsPattern[]] := Length[Unevaluated[sym]];
+FunctionArgumentCount[HoldPattern[Function[sym : {___Symbol}, __]], opts : OptionsPattern[]] := Length[Unevaluated[sym]];
 
-ArgumentCount[
+FunctionArgumentCount[
 	HoldPattern[Function[Null, body_, ___] | Function[body_]], 
 	opts : OptionsPattern[]
 ] := With[{
@@ -43,9 +43,9 @@ ArgumentCount[
 	]
 ];
 
-ArgumentCount[cf_CompiledFunction, opts : OptionsPattern[]] := Length[cf[[2]]];
+FunctionArgumentCount[cf_CompiledFunction, opts : OptionsPattern[]] := Length[cf[[2]]];
 
-ArgumentCount[
+FunctionArgumentCount[
 	HoldPattern[CompiledCodeFunction[assoc_?AssociationQ, ___]], 
 	opts : OptionsPattern[]
 ] := Replace [ 

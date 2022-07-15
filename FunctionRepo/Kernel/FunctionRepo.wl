@@ -3,9 +3,6 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`"]
 
-ArgumentCount;
-Get["FunctionRepo`ArgumentCount`"];
-
 AssociationTemplate;
 Get["FunctionRepo`AssociationTemplate`"];
 
@@ -30,6 +27,9 @@ Get["FunctionRepo`ConvertStringsToSymbols`"];
 ConvertToTemplateNotebook;
 Get["FunctionRepo`ConvertToTemplateNotebook`"];
 
+CopyAsExcelData;
+Get["FunctionRepo`CopyAsExcelData`"];
+
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
 
@@ -47,6 +47,9 @@ FormatTestFile;
 ConvertTestNotebooks;
 Get["FunctionRepo`FormatTestFile`"];
 
+FunctionArgumentCount;
+Get["FunctionRepo`FunctionArgumentCount`"];
+
 FunctionToExcelFormula;
 Get["FunctionRepo`FunctionToExcelFormula`"];
 
@@ -55,6 +58,9 @@ Get["FunctionRepo`graphicsToGraph`"];
 
 GroupCases;
 Get["FunctionRepo`GroupCases`"];
+
+ImageLocatorPaneWithZoom;
+Get["FunctionRepo`ImageLocatorPaneWithZoom`"];
 
 importAGSData;
 Get["FunctionRepo`importAGSData`"];
@@ -85,6 +91,9 @@ Get["FunctionRepo`MultiNonlinearModelFit`"];
 
 multiSet;
 Get["FunctionRepo`multiSet`"];
+
+OpenTestWritingPalette;
+Get["FunctionRepo`OpenTestWritingPalette`"];
 
 PositionQ;
 Get["FunctionRepo`PositionQ`"];

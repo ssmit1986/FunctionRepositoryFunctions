@@ -14,7 +14,7 @@ Begin["`Private`"] (* Begin Private Context *)
 FunctionToExcelFormula[fun_] := FunctionToExcelFormula[fun, Automatic];
 FunctionToExcelFormula[fun : HoldPattern[Function[_] | Function[Null, __]], Automatic] := With[{
 	argNum = Replace[
-		FunctionRepo`ArgumentCount[fun],
+		FunctionRepo`FunctionArgumentCount[fun],
 		Except[_Integer?Positive] -> 0
 	]
 },

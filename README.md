@@ -1,7 +1,7 @@
 # FunctionRepositoryFunctions
 A compilation of functions I submitted (or intend to submit) to the Wolfram Function Repository:
 
-* [ArgumentCount](https://resources.wolframcloud.com/FunctionRepository/resources/ArgumentCount) (Note that there's also a built-in function ``GeneralUtilities`ArgumentCount``)
+* [FunctionArgumentCount](https://resources.wolframcloud.com/FunctionRepository/resources/ArgumentCount) (Note that there's also a built-in function ``GeneralUtilities`ArgumentCount`` which is why this function has been renamed.)
 
 * [AssociationTemplate](https://resources.wolframcloud.com/FunctionRepository/resources/AssociationTemplate)
 
@@ -22,6 +22,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
 
 * [GroupCases](https://resources.wolframcloud.com/FunctionRepository/resources/GroupCases)
+
+* [ImageLocatorPaneWithZoom](https://resources.wolframcloud.com/FunctionRepository/resources/ImageLocatorPaneWithZoom)
 
 * [KullbackLeiblerDivergence](https://resources.wolframcloud.com/FunctionRepository/resources/KullbackLeiblerDivergence)
 
