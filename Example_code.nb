@@ -13,210 +13,6 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
-Cell["ArgumentCount", \
-"Subsection",ExpressionUUID->"1e88dd74-0df8-4aad-ba6e-bf04d42f07e8"],
-
-Cell[BoxData[
- RowBox[{"?", 
-  "ArgumentCount"}]], \
-"Input",ExpressionUUID->"4ea3f660-bbe8-4940-9cf8-508eedcfefa1"],
-
-Cell["Find the highest numbered slot in a function:", "Text",
- TaggingRules->{},
- CellChangeTimes->{{3.7664864442746425`*^9, 3.766486512826212*^9}},
- CellID->13078159,ExpressionUUID->"69c508c4-4e7c-4193-8f66-55c0fea91cdf"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   SuperscriptBox["#", "2"], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->74746079,ExpressionUUID->"5b8f87aa-da9b-44fe-82f1-2fb29fa7676f"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   RowBox[{"#1", " ", "+", " ", "#2"}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->189037281,ExpressionUUID->"787bb1d2-5a7f-4982-b817-8daadcc285c7"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
-    RowBox[{"Sin", "[", 
-     RowBox[{"x", " ", "+", " ", 
-      FractionBox["y", "z"]}], "]"}]}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->27682959,ExpressionUUID->"d4a57b61-6b54-4603-913f-255178c0338b"],
-
-Cell["\<\
-In this function, slot 2 goes unused, but it will still be counted:\
-\>", "Text",
- TaggingRules->{},
- CellChangeTimes->{{3.766486472530449*^9, 3.7664864743991776`*^9}, {
-  3.7664865184060535`*^9, 3.7664865769983172`*^9}},
- CellID->71023468,ExpressionUUID->"ff7668c4-c1a7-4b87-a996-3553e91e2ea1"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   RowBox[{"#1", " ", "+", " ", "#3"}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->505599434,ExpressionUUID->"a077af0d-b2a5-49ce-9c51-b31349e1d40d"],
-
-Cell["Slots in inner functions will not be counted:", "Text",
- TaggingRules->{},
- CellChangeTimes->{{3.7664868809995317`*^9, 3.766486889857837*^9}, {
-  3.7664869625456343`*^9, 3.766486972468568*^9}},
- CellID->753966563,ExpressionUUID->"c2eec89e-6783-4c80-bd31-3bc9ac675552"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", "\[IndentingNewLine]", 
-  RowBox[{"Function", "[", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"Function", "[", 
-     RowBox[{"#1", "+", "#2", "+", "#3"}], "]"}], "[", 
-    RowBox[{"#1", ",", 
-     RowBox[{"2", "#1"}], ",", 
-     RowBox[{"3", "#1"}]}], "]"}], "\[IndentingNewLine]", "]"}], 
-  "\[IndentingNewLine]", "]"}]], "Input",
- TaggingRules->{},
- CellID->126375391,ExpressionUUID->"6bd689d3-93f0-40a0-a909-bfcf93916929"],
-
-Cell[TextData[{
- "A function that uses ",
- Cell[BoxData[
-  TagBox[
-   ButtonBox[
-    StyleBox["SlotSequence", "SymbolsRefLink",
-     ShowStringCharacters->True,
-     FontFamily->"Source Sans Pro"],
-    BaseStyle->Dynamic[
-      FEPrivate`If[
-       CurrentValue["MouseOver"], {
-       "Link", FontColor -> RGBColor[0.854902, 0.396078, 0.145098]}, {
-       "Link"}]],
-    ButtonData->"paclet:ref/SlotSequence",
-    ContentPadding->False],
-   MouseAppearanceTag["LinkHand"]]], "InlineFormula",
-  FontFamily->"Source Sans Pro",ExpressionUUID->
-  "cb6df8dc-4be6-4fc2-b89c-e250e5fed57d"],
- " will be counted as having infinite arguments:"
-}], "Text",
- TaggingRules->{},
- CellChangeTimes->{{3.7664870222953234`*^9, 3.766487051436473*^9}},
- CellID->1036615,ExpressionUUID->"f2fbbde3-2e84-46d6-8a05-fa68748e1ed5"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   RowBox[{"Plus", "[", "##", "]"}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->154201311,ExpressionUUID->"fc09712a-7360-4322-b18a-2671a0efe0fd"],
-
-Cell["\<\
-String slots will be counted as being part of the first argument:\
-\>", "Text",
- TaggingRules->{},
- CellChangeTimes->{{3.7664871530455475`*^9, 3.7664871653279037`*^9}, {
-  3.766487195920684*^9, 3.766487232810818*^9}},
- CellID->81038384,ExpressionUUID->"2594f6dd-bcff-4b30-ac72-8f32b888fef9"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   RowBox[{"#a", "  ", "+", " ", "#b"}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->545733082,ExpressionUUID->"bfea8aa8-e3b3-4b1a-8800-4578dda4e02d"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   RowBox[{"#a", "  ", "+", " ", "#b", "+", "#2"}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->22340788,ExpressionUUID->"9927bb9c-39d3-491b-9d77-734ffa11b548"],
-
-Cell[TextData[{
- Cell[BoxData["ArgumentCount"], "InlineFormula",
-  FontFamily->"Source Sans Pro",ExpressionUUID->
-  "79dfe4fd-63aa-43a0-ae07-95dc1393801c"],
- " works with compiled functions:"
-}], "Text",
- TaggingRules->{"AttachedInlineCell" -> CellObject[38993]},
- CellID->815709460,ExpressionUUID->"ead7b175-1e75-4e26-a3e4-b8acc6955823"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Compile", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
-    RowBox[{"Sqrt", "[", 
-     RowBox[{"x", " ", "y", " ", "z"}], "]"}]}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->61337767,ExpressionUUID->"83269d74-1973-46ad-95fe-cfeecc8038a5"],
-
-Cell[TextData[{
- "A function that uses ",
- Cell[BoxData[
-  TagBox[
-   ButtonBox[
-    StyleBox["SlotSequence", "SymbolsRefLink",
-     ShowStringCharacters->True,
-     FontFamily->"Source Sans Pro"],
-    BaseStyle->Dynamic[
-      FEPrivate`If[
-       CurrentValue["MouseOver"], {
-       "Link", FontColor -> RGBColor[0.854902, 0.396078, 0.145098]}, {
-       "Link"}]],
-    ButtonData->"paclet:ref/SlotSequence",
-    ContentPadding->False],
-   MouseAppearanceTag["LinkHand"]]], "InlineFormula",
-  FontFamily->"Source Sans Pro",ExpressionUUID->
-  "2602576a-a84a-4df1-90e7-c75016831930"],
- " will be counted as having infinite arguments:"
-}], "Text",
- TaggingRules->{},
- CellChangeTimes->{{3.7664870222953234`*^9, 3.766487051436473*^9}},
- CellID->642174889,ExpressionUUID->"ce103be6-026a-478d-bdbe-2f371b7c8bc9"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{"Function", "[", 
-   RowBox[{"Plus", "[", 
-    RowBox[{"#1", ",", " ", "#2", ",", "##"}], "]"}], "]"}], "]"}]], "Input",
- TaggingRules->{},
- CellID->945577690,ExpressionUUID->"885d0cf3-8752-465a-98ea-f921fdc30d9c"],
-
-Cell[TextData[{
- "This behavior can be changed with the ",
- Cell[BoxData[
-  FormBox["\"\<IgnoreSlotSequence\>\"", TraditionalForm]],ExpressionUUID->
-  "285f75a5-601e-48f2-9ba8-506633159df7"],
- " option:"
-}], "Text",
- TaggingRules->{},
- CellChangeTimes->{{3.766487074150803*^9, 3.766487093263977*^9}, {
-  3.766487128692261*^9, 3.766487139420993*^9}},
- CellID->66160859,ExpressionUUID->"aea6ff97-8aa3-4d6e-b15d-067ed988f555"],
-
-Cell[BoxData[
- RowBox[{"ArgumentCount", "[", 
-  RowBox[{
-   RowBox[{"Function", "[", 
-    RowBox[{"Plus", "[", 
-     RowBox[{"#1", ",", "#2", ",", " ", "##"}], "]"}], "]"}], ",", " ", 
-   RowBox[{"\"\<IgnoreSlotSequence\>\"", "\[Rule]", " ", "True"}]}], 
-  "]"}]], "Input",
- TaggingRules->{},
- CellID->21575000,ExpressionUUID->"3f45e95d-28dc-4fe0-be83-75f2001a845f"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
 Cell["AssociationTemplate", \
 "Subsection",ExpressionUUID->"12996abd-a209-4947-9aa2-405b85d07452"],
 
@@ -492,6 +288,518 @@ Cell[BoxData[
        RowBox[{"0", ",", "4"}], "}"}]}], "]"}]}], ",", "initQ"}], 
   "]"}]], "Input",
  CellLabel->"In[6]:=",ExpressionUUID->"19a2ea0d-5f2e-4ebd-baf1-0db48cfce5f1"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["checkboxLegended", "Subsection"]], \
+"Subsection",ExpressionUUID->"491c85ee-eb96-489a-9de7-eeb2de507160"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"53be8ef7-771a-4971-9d48-ba3020b02e48"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dataset", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<Dataset1\>\"", "\[Rule]", " ", 
+      RowBox[{"Range", "[", "10", "]"}]}], ",", 
+     RowBox[{"\"\<Dataset2\>\"", "\[Rule]", " ", 
+      RowBox[{"Range", "[", 
+       RowBox[{"10", ",", "1", ",", 
+        RowBox[{"-", "1"}]}], "]"}]}]}], "|>"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"checkboxLegended", "[", "\[IndentingNewLine]", 
+  RowBox[{"ListPlot", "[", "dataset", "]"}], "\[IndentingNewLine]", 
+  "]"}]}], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"68f7efbd-2b69-4440-9bd3-9848271a09cc"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["conditionalProductDistribution", \
+"Subsection",ExpressionUUID->"f93f82ec-dfa4-418c-b6ce-a6d804bc2cd7"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->
+  "In[135]:=",ExpressionUUID->"22cd74e8-ea41-416f-93b7-796c9c571e4e"],
+
+Cell[BoxData[
+ RowBox[{"conditionalProductDistribution", "::", "usage"}]], "Input",
+ CellLabel->
+  "In[105]:=",ExpressionUUID->"ed4f465a-2a3e-4879-a611-628c68f7d3e3"],
+
+Cell[BoxData[
+ RowBox[{"conditionalProductDistribution", "[", 
+  RowBox[{"x", "\[Distributed]", 
+   RowBox[{"NormalDistribution", "[", 
+    RowBox[{"0", ",", "1"}], "]"}]}], "]"}]], "Input",
+ CellLabel->"In[79]:=",ExpressionUUID->"b30c15ff-1412-4b60-83af-b2cc20ea775c"],
+
+Cell[BoxData[{
+ RowBox[{"conditionalProductDistribution", "[", 
+  RowBox[{"k", "\[Distributed]", 
+   RowBox[{"BinomialDistribution", "[", 
+    RowBox[{"n", ",", "p"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"conditionalProductDistribution", "[", 
+  RowBox[{"k", "\[Distributed]", 
+   RowBox[{"BinomialDistribution", "[", 
+    RowBox[{"k", ",", "p"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"conditionalProductDistribution", "[", 
+  RowBox[{
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"conditionalProductDistribution", "[", 
+  RowBox[{
+   RowBox[{"k", "\[Distributed]", 
+    RowBox[{"BinomialDistribution", "[", 
+     RowBox[{"n", ",", "p"}], "]"}]}], ",", " ", 
+   RowBox[{"p", " ", "\[Distributed]", " ", 
+    RowBox[{"BetaDistribution", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}]}], "Input",
+ CellLabel->"In[80]:=",ExpressionUUID->"37e5d386-f5c7-4c7b-97ca-cc148d2a00d3"],
+
+Cell[BoxData[
+ RowBox[{"PDF", "[", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", 
+    RowBox[{
+     RowBox[{"k", "\[Distributed]", 
+      RowBox[{"BinomialDistribution", "[", 
+       RowBox[{"n", ",", "p"}], "]"}]}], ",", 
+     RowBox[{"p", " ", "\[Distributed]", " ", 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"k", ",", "p"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[84]:=",ExpressionUUID->"aeac9368-b8df-47a4-8a4e-53cf07214dcf"],
+
+Cell[BoxData[{
+ RowBox[{"Likelihood", "[", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", 
+    RowBox[{
+     RowBox[{"k", "\[Distributed]", 
+      RowBox[{"BinomialDistribution", "[", 
+       RowBox[{"n", ",", "p"}], "]"}]}], ",", 
+     RowBox[{"p", " ", "\[Distributed]", " ", 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k", ",", "p"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", 
+       RowBox[{"1", "/", "2"}]}], "}"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"LogLikelihood", "[", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", 
+    RowBox[{
+     RowBox[{"k", "\[Distributed]", 
+      RowBox[{"BinomialDistribution", "[", 
+       RowBox[{"n", ",", "p"}], "]"}]}], ",", 
+     RowBox[{"p", " ", "\[Distributed]", " ", 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k", ",", "p"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", 
+       RowBox[{"1", "/", "2"}]}], "}"}]}], "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[85]:=",ExpressionUUID->"574d73e5-f0f3-40c6-b93d-b2464feffb41"],
+
+Cell[BoxData[{
+ RowBox[{"Graph", "@", 
+  RowBox[{"conditionalProductDistribution", "[", 
+   RowBox[{
+    RowBox[{"\[FormalK]", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"n", ",", "\[FormalP]"}], "]"}]}], ",", 
+    RowBox[{"\[FormalP]", " ", "\[Distributed]", " ", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Graph", "@", 
+  RowBox[{"conditionalProductDistribution", "[", 
+   RowBox[{
+    RowBox[{"l", "\[Distributed]", 
+     RowBox[{"GeometricDistribution", "[", 
+      FractionBox["p", 
+       RowBox[{"k", "+", "1"}]], "]"}]}], ",", 
+    RowBox[{"k", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"n", ",", "p"}], "]"}]}], ",", 
+    RowBox[{"p", "\[Distributed]", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
+    RowBox[{"n", "\[Distributed]", 
+     RowBox[{"GeometricDistribution", "[", 
+      RowBox[{"1", "/", "2"}], "]"}]}]}], "]"}]}]}], "Input",
+ CellLabel->"In[89]:=",ExpressionUUID->"09ea3563-f2e2-49b2-a901-9975525e26ed"],
+
+Cell[BoxData[{
+ RowBox[{"dist", "=", 
+  RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"l", "\[Distributed]", 
+     RowBox[{"GeometricDistribution", "[", 
+      FractionBox["p", 
+       RowBox[{"k", "+", "1"}]], "]"}]}], ",", 
+    RowBox[{"k", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"n", ",", "p"}], "]"}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{"p", "\[Distributed]", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{
+       RowBox[{"\[Alpha]", "+", "1"}], ",", 
+       RowBox[{"\[Beta]", "+", "1"}]}], "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "\[Alpha]", ",", "\[Beta]"}], "}"}], "\[Distributed]", 
+     RowBox[{"ProductDistribution", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"GeometricDistribution", "[", 
+         RowBox[{"1", "/", "2"}], "]"}], ",", "3"}], "}"}], "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Graph", "[", "dist", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"rv1", "=", 
+  RowBox[{"RandomVariate", "[", "dist", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"rv2", "=", 
+  RowBox[{"RandomVariate", "[", 
+   RowBox[{"dist", ",", "3"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"LogLikelihood", "[", 
+  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Likelihood", "[", 
+  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Log", "[", "%", "]"}], "==", "%%"}], "\[IndentingNewLine]", 
+ RowBox[{"PDF", "[", 
+  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Times", "@@", "%"}], "\[Equal]", "%%%"}], "\[IndentingNewLine]", 
+ RowBox[{"PDF", "[", 
+  RowBox[{"dist", ",", "rv1"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Likelihood", "[", 
+  RowBox[{"dist", ",", 
+   RowBox[{"{", "rv1", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "\[Equal]", "%%"}]}], "Input",
+ CellLabel->"In[91]:=",ExpressionUUID->"551b65cf-7e3b-45b5-9cf7-ae8617ff23f8"],
+
+Cell[BoxData[{
+ RowBox[{"dist", "=", 
+  RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"l", "\[Distributed]", 
+     RowBox[{"GeometricDistribution", "[", 
+      FractionBox["p", 
+       RowBox[{"k", "+", "1"}]], "]"}]}], ",", 
+    RowBox[{"k", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{
+       TemplateBox[{"v", "1"},
+        "IndexedDefault"], ",", "p"}], "]"}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{"p", "\[Distributed]", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{
+       RowBox[{
+        TemplateBox[{"v", "2"},
+         "IndexedDefault"], "+", "1"}], ",", 
+       RowBox[{
+        TemplateBox[{"v", "3"},
+         "IndexedDefault"], "+", "1"}]}], "]"}]}], ",", 
+    RowBox[{"v", "\[Distributed]", 
+     RowBox[{"ProductDistribution", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"GeometricDistribution", "[", 
+         RowBox[{"1", "/", "2"}], "]"}], ",", "3"}], "}"}], "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Graph", "[", "dist", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"rv1", "=", 
+  RowBox[{"RandomVariate", "[", "dist", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"rv2", "=", 
+  RowBox[{"RandomVariate", "[", 
+   RowBox[{"dist", ",", "3"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"LogLikelihood", "[", 
+  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Likelihood", "[", 
+  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Log", "[", "%", "]"}], "==", "%%"}], "\[IndentingNewLine]", 
+ RowBox[{"PDF", "[", 
+  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Times", "@@", "%"}], "\[Equal]", "%%%"}], "\[IndentingNewLine]", 
+ RowBox[{"PDF", "[", 
+  RowBox[{"dist", ",", "rv1"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Likelihood", "[", 
+  RowBox[{"dist", ",", 
+   RowBox[{"{", "rv1", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "\[Equal]", "%%"}]}], "Input",
+ CellLabel->
+  "In[103]:=",ExpressionUUID->"4eab69f4-f31c-4c3b-a090-125c8686a5d2"],
+
+Cell[BoxData[
+ RowBox[{"Graph", "@", 
+  RowBox[{"conditionalProductDistribution", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
+     RowBox[{"BinormalDistribution", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\[Sigma]1", ",", "\[Sigma]2"}], "}"}], ",", "\[Rho]"}], 
+      "]"}]}], ",", 
+    RowBox[{"\[Rho]", "\[Distributed]", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"1", ",", "2"}], "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Sigma]1", ",", "\[Sigma]2"}], "}"}], "\[Distributed]", 
+     RowBox[{"MultinormalDistribution", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"10", ",", "10"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], "]"}]}]}], 
+   "]"}]}]], "Input",
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"3a0181b0-1786-4c30-a883-3044a4d0c921"],
+
+Cell[BoxData[{
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{"conditionalProductDistribution", "[", 
+   RowBox[{
+    RowBox[{"k", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"10", ",", "p"}], "]"}]}], ",", 
+    RowBox[{"p", " ", "\[Distributed]", " ", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", 
+    RowBox[{
+     RowBox[{"k", "\[Distributed]", 
+      RowBox[{"BinomialDistribution", "[", 
+       RowBox[{"10", ",", "p"}], "]"}]}], ",", 
+     RowBox[{"p", " ", "\[Distributed]", " ", 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], ",", "3"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", 
+    RowBox[{
+     RowBox[{"k", "\[Distributed]", 
+      RowBox[{"BinomialDistribution", "[", 
+       RowBox[{"10", ",", "p"}], "]"}]}], ",", 
+     RowBox[{"p", " ", "\[Distributed]", " ", 
+      RowBox[{"BetaDistribution", "[", 
+       RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "3"}], "}"}]}], "]"}]}], "Input",
+ CellLabel->
+  "In[116]:=",ExpressionUUID->"c84c7dcb-ac67-4802-b768-24300587b27c"],
+
+Cell[BoxData[
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{"conditionalProductDistribution", "[", 
+   RowBox[{
+    RowBox[{"k", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"n", ",", "p"}], "]"}]}], ",", 
+    RowBox[{"p", " ", "\[Distributed]", " ", 
+     RowBox[{"BetaDistribution", "[", 
+      RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], "]"}]], "Input",
+ CellLabel->
+  "In[119]:=",ExpressionUUID->"a2218db6-5faa-4904-8d47-61d69fd7ff91"],
+
+Cell[BoxData[{
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{"conditionalProductDistribution", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
+     RowBox[{"BinormalDistribution", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "2"}], "}"}], ",", "0.3"}], "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], " ", "\[Distributed]", " ", 
+     RowBox[{"BinormalDistribution", "[", "0.5", "]"}]}]}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
+      RowBox[{"BinormalDistribution", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}], ",", "0.3"}], "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], " ", "\[Distributed]", " ", 
+      RowBox[{"BinormalDistribution", "[", "0.5", "]"}]}]}], "]"}], ",", 
+   "3"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
+      RowBox[{"BinormalDistribution", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}], ",", "0.3"}], "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], " ", "\[Distributed]", " ", 
+      RowBox[{"BinormalDistribution", "[", "0.5", "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "3"}], "}"}]}], "]"}]}], "Input",
+ CellLabel->
+  "In[120]:=",ExpressionUUID->"d768b2d6-554c-4ad5-a17c-7639b29bf0a4"],
+
+Cell[BoxData[
+ RowBox[{"RandomVariate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"x", "\[Distributed]", 
+      RowBox[{"MultinormalDistribution", "[", 
+       RowBox[{"\[Mu]", ",", 
+        RowBox[{"\[Nu]", " ", "\[CapitalSigma]"}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\[Nu]", "\[Distributed]", 
+      RowBox[{"InverseGammaDistribution", "[", 
+       RowBox[{"5", ",", "10"}], "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\[Mu]", "\[Distributed]", 
+      RowBox[{"MultinormalDistribution", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}], ",", "\[CapitalSigma]"}], "]"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"\[CapitalSigma]", "\[Distributed]", 
+      RowBox[{"InverseWishartMatrixDistribution", "[", 
+       RowBox[{"10", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"1", ",", 
+            FractionBox["1", "3"]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            FractionBox["1", "3"], ",", "1"}], "}"}]}], "}"}]}], "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", "10"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellLabel->
+  "In[123]:=",ExpressionUUID->"0ecbf867-ac5b-4460-b0b9-3466f86f9337"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"normalInverseWishartDistribution", "[", 
+    RowBox[{
+    "\[Mu]0_", ",", "\[Lambda]_", ",", "\[CapitalPsi]_", ",", "\[Nu]_"}], 
+    "]"}], ":=", " ", 
+   RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\[FormalMu]", "\[Distributed]", 
+      RowBox[{"MultinormalDistribution", "[", 
+       RowBox[{"\[Mu]0", ",", 
+        RowBox[{"\[FormalCapitalSigma]", "/", "\[Lambda]"}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\[FormalCapitalSigma]", "\[Distributed]", 
+      RowBox[{"InverseWishartMatrixDistribution", "[", 
+       RowBox[{"\[Nu]", ",", "\[CapitalPsi]"}], "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellLabel->
+  "In[124]:=",ExpressionUUID->"174f959e-ac23-4ace-aca6-62a7a9ebd237"],
+
+Cell[BoxData[
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"normalInverseWishartDistribution", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", "5", ",", 
+     RowBox[{"(", GridBox[{
+        {"1", 
+         RowBox[{"1", "/", "2"}]},
+        {
+         RowBox[{"1", "/", "2"}], "2"}
+       }], ")"}], ",", "7"}], "]"}], ",", "5"}], "]"}]], "Input",
+ CellLabel->
+  "In[125]:=",ExpressionUUID->"20f15be7-899d-4ee8-b8b7-49a2d295a99a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"posterior", "[", 
+   RowBox[{
+   "\[Mu]0_", ",", "\[Lambda]_", ",", "\[CapitalPsi]_", ",", "\[Nu]_"}], 
+   "]"}], ":=", 
+  RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[FormalCapitalX]", "\[Distributed]", 
+     RowBox[{"MultinormalDistribution", "[", 
+      RowBox[{"\[Mu]", ",", "\[CapitalSigma]"}], "]"}]}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Mu]", ",", "\[CapitalSigma]"}], "}"}], "\[Distributed]", 
+     RowBox[{"normalInverseWishartDistribution", "[", 
+      RowBox[{
+      "\[Mu]0", ",", "\[Lambda]", ",", "\[CapitalPsi]", ",", "\[Nu]"}], 
+      "]"}]}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellLabel->
+  "In[126]:=",ExpressionUUID->"f196eb57-8205-402c-b38f-ad7475201bb0"],
+
+Cell[BoxData[
+ RowBox[{"RandomVariate", "[", 
+  RowBox[{
+   RowBox[{"posterior", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", "5", ",", 
+     RowBox[{"(", GridBox[{
+        {"1", 
+         RowBox[{"1", "/", "2"}]},
+        {
+         RowBox[{"1", "/", "2"}], "2"}
+       }], ")"}], ",", "7"}], "]"}], ",", "5"}], "]"}]], "Input",
+ CellLabel->"In[127]:=",ExpressionUUID->"98cb3bdb-adc5-4d93-b479-9db57af39f1d"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1402,6 +1710,209 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
+Cell["FunctionArgumentCount", \
+"Subsection",ExpressionUUID->"1e88dd74-0df8-4aad-ba6e-bf04d42f07e8"],
+
+Cell[BoxData[
+ RowBox[{"?", "FunctionArgumentCount"}]], "Input",
+ CellLabel->"In[22]:=",ExpressionUUID->"4ea3f660-bbe8-4940-9cf8-508eedcfefa1"],
+
+Cell["Find the highest numbered slot in a function:", "Text",
+ TaggingRules->{},
+ CellChangeTimes->{{3.7664864442746425`*^9, 3.766486512826212*^9}},
+ CellID->13078159,ExpressionUUID->"69c508c4-4e7c-4193-8f66-55c0fea91cdf"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   SuperscriptBox["#", "2"], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->74746079,ExpressionUUID->"5b8f87aa-da9b-44fe-82f1-2fb29fa7676f"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   RowBox[{"#1", " ", "+", " ", "#2"}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->189037281,ExpressionUUID->"787bb1d2-5a7f-4982-b817-8daadcc285c7"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"x", " ", "+", " ", 
+      FractionBox["y", "z"]}], "]"}]}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->27682959,ExpressionUUID->"d4a57b61-6b54-4603-913f-255178c0338b"],
+
+Cell["\<\
+In this function, slot 2 goes unused, but it will still be counted:\
+\>", "Text",
+ TaggingRules->{},
+ CellChangeTimes->{{3.766486472530449*^9, 3.7664864743991776`*^9}, {
+  3.7664865184060535`*^9, 3.7664865769983172`*^9}},
+ CellID->71023468,ExpressionUUID->"ff7668c4-c1a7-4b87-a996-3553e91e2ea1"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   RowBox[{"#1", " ", "+", " ", "#3"}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->505599434,ExpressionUUID->"a077af0d-b2a5-49ce-9c51-b31349e1d40d"],
+
+Cell["Slots in inner functions will not be counted:", "Text",
+ TaggingRules->{},
+ CellChangeTimes->{{3.7664868809995317`*^9, 3.766486889857837*^9}, {
+  3.7664869625456343`*^9, 3.766486972468568*^9}},
+ CellID->753966563,ExpressionUUID->"c2eec89e-6783-4c80-bd31-3bc9ac675552"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", "\[IndentingNewLine]", 
+  RowBox[{"Function", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Function", "[", 
+     RowBox[{"#1", "+", "#2", "+", "#3"}], "]"}], "[", 
+    RowBox[{"#1", ",", 
+     RowBox[{"2", "#1"}], ",", 
+     RowBox[{"3", "#1"}]}], "]"}], "\[IndentingNewLine]", "]"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ TaggingRules->{},
+ CellID->126375391,ExpressionUUID->"6bd689d3-93f0-40a0-a909-bfcf93916929"],
+
+Cell[TextData[{
+ "A function that uses ",
+ Cell[BoxData[
+  TagBox[
+   ButtonBox[
+    StyleBox["SlotSequence", "SymbolsRefLink",
+     ShowStringCharacters->True,
+     FontFamily->"Source Sans Pro"],
+    BaseStyle->Dynamic[
+      FEPrivate`If[
+       CurrentValue["MouseOver"], {
+       "Link", FontColor -> RGBColor[0.854902, 0.396078, 0.145098]}, {
+       "Link"}]],
+    ButtonData->"paclet:ref/SlotSequence",
+    ContentPadding->False],
+   MouseAppearanceTag["LinkHand"]]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "41bd9c4f-b3ab-4563-8822-1b1934c2ac44"],
+ " will be counted as having infinite arguments:"
+}], "Text",
+ TaggingRules->{},
+ CellChangeTimes->{{3.7664870222953234`*^9, 3.766487051436473*^9}},
+ CellID->1036615,ExpressionUUID->"f2fbbde3-2e84-46d6-8a05-fa68748e1ed5"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   RowBox[{"Plus", "[", "##", "]"}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->154201311,ExpressionUUID->"fc09712a-7360-4322-b18a-2671a0efe0fd"],
+
+Cell["\<\
+String slots will be counted as being part of the first argument:\
+\>", "Text",
+ TaggingRules->{},
+ CellChangeTimes->{{3.7664871530455475`*^9, 3.7664871653279037`*^9}, {
+  3.766487195920684*^9, 3.766487232810818*^9}},
+ CellID->81038384,ExpressionUUID->"2594f6dd-bcff-4b30-ac72-8f32b888fef9"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   RowBox[{"#a", "  ", "+", " ", "#b"}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->545733082,ExpressionUUID->"bfea8aa8-e3b3-4b1a-8800-4578dda4e02d"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   RowBox[{"#a", "  ", "+", " ", "#b", "+", "#2"}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->22340788,ExpressionUUID->"9927bb9c-39d3-491b-9d77-734ffa11b548"],
+
+Cell[TextData[{
+ Cell[BoxData["FunctionArgumentCount"], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "1ce79490-70bc-41f8-bcff-162f313126e3"],
+ " works with compiled functions:"
+}], "Text",
+ TaggingRules->{"AttachedInlineCell" -> CellObject[38993]},
+ CellID->815709460,ExpressionUUID->"ead7b175-1e75-4e26-a3e4-b8acc6955823"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Compile", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"x", " ", "y", " ", "z"}], "]"}]}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->61337767,ExpressionUUID->"83269d74-1973-46ad-95fe-cfeecc8038a5"],
+
+Cell[TextData[{
+ "A function that uses ",
+ Cell[BoxData[
+  TagBox[
+   ButtonBox[
+    StyleBox["SlotSequence", "SymbolsRefLink",
+     ShowStringCharacters->True,
+     FontFamily->"Source Sans Pro"],
+    BaseStyle->Dynamic[
+      FEPrivate`If[
+       CurrentValue["MouseOver"], {
+       "Link", FontColor -> RGBColor[0.854902, 0.396078, 0.145098]}, {
+       "Link"}]],
+    ButtonData->"paclet:ref/SlotSequence",
+    ContentPadding->False],
+   MouseAppearanceTag["LinkHand"]]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "dfe2274a-d894-4989-b100-4d8f6d2107de"],
+ " will be counted as having infinite arguments:"
+}], "Text",
+ TaggingRules->{},
+ CellChangeTimes->{{3.7664870222953234`*^9, 3.766487051436473*^9}},
+ CellID->642174889,ExpressionUUID->"ce103be6-026a-478d-bdbe-2f371b7c8bc9"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{"Function", "[", 
+   RowBox[{"Plus", "[", 
+    RowBox[{"#1", ",", " ", "#2", ",", "##"}], "]"}], "]"}], "]"}]], "Input",
+ TaggingRules->{},
+ CellID->945577690,ExpressionUUID->"885d0cf3-8752-465a-98ea-f921fdc30d9c"],
+
+Cell[TextData[{
+ "This behavior can be changed with the ",
+ Cell[BoxData[
+  FormBox["\"\<IgnoreSlotSequence\>\"", TraditionalForm]],ExpressionUUID->
+  "2fa022d7-5040-4726-b190-7529da7788ae"],
+ " option:"
+}], "Text",
+ TaggingRules->{},
+ CellChangeTimes->{{3.766487074150803*^9, 3.766487093263977*^9}, {
+  3.766487128692261*^9, 3.766487139420993*^9}},
+ CellID->66160859,ExpressionUUID->"aea6ff97-8aa3-4d6e-b15d-067ed988f555"],
+
+Cell[BoxData[
+ RowBox[{"FunctionArgumentCount", "[", 
+  RowBox[{
+   RowBox[{"Function", "[", 
+    RowBox[{"Plus", "[", 
+     RowBox[{"#1", ",", "#2", ",", " ", "##"}], "]"}], "]"}], ",", " ", 
+   RowBox[{"\"\<IgnoreSlotSequence\>\"", "\[Rule]", " ", "True"}]}], 
+  "]"}]], "Input",
+ TaggingRules->{},
+ CellID->21575000,ExpressionUUID->"3f45e95d-28dc-4fe0-be83-75f2001a845f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["FunctionToExcelFormula", \
 "Subsection",ExpressionUUID->"ed5aa121-e64f-4e3e-8585-c9be5094c3e6"],
 
@@ -1489,11 +2000,11 @@ Cell[BoxData[
      LineBox[{{0.10768873888571645`, -0.06993584425640234}, {
       0.4420731707317076, -0.4742276422764235}}], 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
+      None], 
+      ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
        0.5242395980607011, 0.29813008130081364`}}]}, 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], 
-      ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
+      None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
        0.1473577235772361, 0.04406504065040728}}]}, 
      LineBox[{{-0.37093495934959386`, -0.4539024390243904}, {
       0.005081300813008172, -0.07788617886178884}}], 
@@ -2816,518 +3327,6 @@ Cell[BoxData[
        RowBox[{"3", "\[Rule]", "1"}]}], "\[RightAssociation]"}], "]"}]}], 
    "]"}]}]], "Input",
  CellLabel->"In[63]:=",ExpressionUUID->"f5a9f0fc-a4b0-470b-91ec-142556d34b9a"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell[TextData[StyleBox["checkboxLegended", "Subsection"]], \
-"Subsection",ExpressionUUID->"491c85ee-eb96-489a-9de7-eeb2de507160"],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"53be8ef7-771a-4971-9d48-ba3020b02e48"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"dataset", "=", 
-   RowBox[{"<|", 
-    RowBox[{
-     RowBox[{"\"\<Dataset1\>\"", "\[Rule]", " ", 
-      RowBox[{"Range", "[", "10", "]"}]}], ",", 
-     RowBox[{"\"\<Dataset2\>\"", "\[Rule]", " ", 
-      RowBox[{"Range", "[", 
-       RowBox[{"10", ",", "1", ",", 
-        RowBox[{"-", "1"}]}], "]"}]}]}], "|>"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"checkboxLegended", "[", "\[IndentingNewLine]", 
-  RowBox[{"ListPlot", "[", "dataset", "]"}], "\[IndentingNewLine]", 
-  "]"}]}], "Input",
- CellLabel->"In[6]:=",ExpressionUUID->"68f7efbd-2b69-4440-9bd3-9848271a09cc"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["conditionalProductDistribution", \
-"Subsection",ExpressionUUID->"f93f82ec-dfa4-418c-b6ce-a6d804bc2cd7"],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->
-  "In[135]:=",ExpressionUUID->"22cd74e8-ea41-416f-93b7-796c9c571e4e"],
-
-Cell[BoxData[
- RowBox[{"conditionalProductDistribution", "::", "usage"}]], "Input",
- CellLabel->
-  "In[105]:=",ExpressionUUID->"ed4f465a-2a3e-4879-a611-628c68f7d3e3"],
-
-Cell[BoxData[
- RowBox[{"conditionalProductDistribution", "[", 
-  RowBox[{"x", "\[Distributed]", 
-   RowBox[{"NormalDistribution", "[", 
-    RowBox[{"0", ",", "1"}], "]"}]}], "]"}]], "Input",
- CellLabel->"In[79]:=",ExpressionUUID->"b30c15ff-1412-4b60-83af-b2cc20ea775c"],
-
-Cell[BoxData[{
- RowBox[{"conditionalProductDistribution", "[", 
-  RowBox[{"k", "\[Distributed]", 
-   RowBox[{"BinomialDistribution", "[", 
-    RowBox[{"n", ",", "p"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"conditionalProductDistribution", "[", 
-  RowBox[{"k", "\[Distributed]", 
-   RowBox[{"BinomialDistribution", "[", 
-    RowBox[{"k", ",", "p"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"conditionalProductDistribution", "[", 
-  RowBox[{
-   RowBox[{"p", " ", "\[Distributed]", " ", 
-    RowBox[{"BetaDistribution", "[", 
-     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", " ", 
-   RowBox[{"k", "\[Distributed]", 
-    RowBox[{"BinomialDistribution", "[", 
-     RowBox[{"n", ",", "p"}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"conditionalProductDistribution", "[", 
-  RowBox[{
-   RowBox[{"k", "\[Distributed]", 
-    RowBox[{"BinomialDistribution", "[", 
-     RowBox[{"n", ",", "p"}], "]"}]}], ",", " ", 
-   RowBox[{"p", " ", "\[Distributed]", " ", 
-    RowBox[{"BetaDistribution", "[", 
-     RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}]}], "Input",
- CellLabel->"In[80]:=",ExpressionUUID->"37e5d386-f5c7-4c7b-97ca-cc148d2a00d3"],
-
-Cell[BoxData[
- RowBox[{"PDF", "[", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", 
-    RowBox[{
-     RowBox[{"k", "\[Distributed]", 
-      RowBox[{"BinomialDistribution", "[", 
-       RowBox[{"n", ",", "p"}], "]"}]}], ",", 
-     RowBox[{"p", " ", "\[Distributed]", " ", 
-      RowBox[{"BetaDistribution", "[", 
-       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"k", ",", "p"}], "}"}]}], "]"}]], "Input",
- CellLabel->"In[84]:=",ExpressionUUID->"aeac9368-b8df-47a4-8a4e-53cf07214dcf"],
-
-Cell[BoxData[{
- RowBox[{"Likelihood", "[", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", 
-    RowBox[{
-     RowBox[{"k", "\[Distributed]", 
-      RowBox[{"BinomialDistribution", "[", 
-       RowBox[{"n", ",", "p"}], "]"}]}], ",", 
-     RowBox[{"p", " ", "\[Distributed]", " ", 
-      RowBox[{"BetaDistribution", "[", 
-       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"k", ",", "p"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"3", ",", 
-       RowBox[{"1", "/", "2"}]}], "}"}]}], "}"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"LogLikelihood", "[", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", 
-    RowBox[{
-     RowBox[{"k", "\[Distributed]", 
-      RowBox[{"BinomialDistribution", "[", 
-       RowBox[{"n", ",", "p"}], "]"}]}], ",", 
-     RowBox[{"p", " ", "\[Distributed]", " ", 
-      RowBox[{"BetaDistribution", "[", 
-       RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"k", ",", "p"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"3", ",", 
-       RowBox[{"1", "/", "2"}]}], "}"}]}], "}"}]}], "]"}]}], "Input",
- CellLabel->"In[85]:=",ExpressionUUID->"574d73e5-f0f3-40c6-b93d-b2464feffb41"],
-
-Cell[BoxData[{
- RowBox[{"Graph", "@", 
-  RowBox[{"conditionalProductDistribution", "[", 
-   RowBox[{
-    RowBox[{"\[FormalK]", "\[Distributed]", 
-     RowBox[{"BinomialDistribution", "[", 
-      RowBox[{"n", ",", "\[FormalP]"}], "]"}]}], ",", 
-    RowBox[{"\[FormalP]", " ", "\[Distributed]", " ", 
-     RowBox[{"BetaDistribution", "[", 
-      RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}]}], 
-   "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"Graph", "@", 
-  RowBox[{"conditionalProductDistribution", "[", 
-   RowBox[{
-    RowBox[{"l", "\[Distributed]", 
-     RowBox[{"GeometricDistribution", "[", 
-      FractionBox["p", 
-       RowBox[{"k", "+", "1"}]], "]"}]}], ",", 
-    RowBox[{"k", "\[Distributed]", 
-     RowBox[{"BinomialDistribution", "[", 
-      RowBox[{"n", ",", "p"}], "]"}]}], ",", 
-    RowBox[{"p", "\[Distributed]", 
-     RowBox[{"BetaDistribution", "[", 
-      RowBox[{"\[Alpha]", ",", "\[Beta]"}], "]"}]}], ",", 
-    RowBox[{"n", "\[Distributed]", 
-     RowBox[{"GeometricDistribution", "[", 
-      RowBox[{"1", "/", "2"}], "]"}]}]}], "]"}]}]}], "Input",
- CellLabel->"In[89]:=",ExpressionUUID->"09ea3563-f2e2-49b2-a901-9975525e26ed"],
-
-Cell[BoxData[{
- RowBox[{"dist", "=", 
-  RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"l", "\[Distributed]", 
-     RowBox[{"GeometricDistribution", "[", 
-      FractionBox["p", 
-       RowBox[{"k", "+", "1"}]], "]"}]}], ",", 
-    RowBox[{"k", "\[Distributed]", 
-     RowBox[{"BinomialDistribution", "[", 
-      RowBox[{"n", ",", "p"}], "]"}]}], ",", "\[IndentingNewLine]", 
-    RowBox[{"p", "\[Distributed]", 
-     RowBox[{"BetaDistribution", "[", 
-      RowBox[{
-       RowBox[{"\[Alpha]", "+", "1"}], ",", 
-       RowBox[{"\[Beta]", "+", "1"}]}], "]"}]}], ",", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"n", ",", "\[Alpha]", ",", "\[Beta]"}], "}"}], "\[Distributed]", 
-     RowBox[{"ProductDistribution", "[", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"GeometricDistribution", "[", 
-         RowBox[{"1", "/", "2"}], "]"}], ",", "3"}], "}"}], "]"}]}]}], 
-   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"Graph", "[", "dist", "]"}], "\[IndentingNewLine]", 
- RowBox[{"rv1", "=", 
-  RowBox[{"RandomVariate", "[", "dist", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"rv2", "=", 
-  RowBox[{"RandomVariate", "[", 
-   RowBox[{"dist", ",", "3"}], "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"LogLikelihood", "[", 
-  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"Likelihood", "[", 
-  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Log", "[", "%", "]"}], "==", "%%"}], "\[IndentingNewLine]", 
- RowBox[{"PDF", "[", 
-  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Times", "@@", "%"}], "\[Equal]", "%%%"}], "\[IndentingNewLine]", 
- RowBox[{"PDF", "[", 
-  RowBox[{"dist", ",", "rv1"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"Likelihood", "[", 
-  RowBox[{"dist", ",", 
-   RowBox[{"{", "rv1", "}"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"%", "\[Equal]", "%%"}]}], "Input",
- CellLabel->"In[91]:=",ExpressionUUID->"551b65cf-7e3b-45b5-9cf7-ae8617ff23f8"],
-
-Cell[BoxData[{
- RowBox[{"dist", "=", 
-  RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"l", "\[Distributed]", 
-     RowBox[{"GeometricDistribution", "[", 
-      FractionBox["p", 
-       RowBox[{"k", "+", "1"}]], "]"}]}], ",", 
-    RowBox[{"k", "\[Distributed]", 
-     RowBox[{"BinomialDistribution", "[", 
-      RowBox[{
-       TemplateBox[{"v", "1"},
-        "IndexedDefault"], ",", "p"}], "]"}]}], ",", "\[IndentingNewLine]", 
-    RowBox[{"p", "\[Distributed]", 
-     RowBox[{"BetaDistribution", "[", 
-      RowBox[{
-       RowBox[{
-        TemplateBox[{"v", "2"},
-         "IndexedDefault"], "+", "1"}], ",", 
-       RowBox[{
-        TemplateBox[{"v", "3"},
-         "IndexedDefault"], "+", "1"}]}], "]"}]}], ",", 
-    RowBox[{"v", "\[Distributed]", 
-     RowBox[{"ProductDistribution", "[", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"GeometricDistribution", "[", 
-         RowBox[{"1", "/", "2"}], "]"}], ",", "3"}], "}"}], "]"}]}]}], 
-   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"Graph", "[", "dist", "]"}], "\[IndentingNewLine]", 
- RowBox[{"rv1", "=", 
-  RowBox[{"RandomVariate", "[", "dist", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"rv2", "=", 
-  RowBox[{"RandomVariate", "[", 
-   RowBox[{"dist", ",", "3"}], "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"LogLikelihood", "[", 
-  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"Likelihood", "[", 
-  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Log", "[", "%", "]"}], "==", "%%"}], "\[IndentingNewLine]", 
- RowBox[{"PDF", "[", 
-  RowBox[{"dist", ",", "rv2"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Times", "@@", "%"}], "\[Equal]", "%%%"}], "\[IndentingNewLine]", 
- RowBox[{"PDF", "[", 
-  RowBox[{"dist", ",", "rv1"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"Likelihood", "[", 
-  RowBox[{"dist", ",", 
-   RowBox[{"{", "rv1", "}"}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"%", "\[Equal]", "%%"}]}], "Input",
- CellLabel->
-  "In[103]:=",ExpressionUUID->"4eab69f4-f31c-4c3b-a090-125c8686a5d2"],
-
-Cell[BoxData[
- RowBox[{"Graph", "@", 
-  RowBox[{"conditionalProductDistribution", "[", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
-     RowBox[{"BinormalDistribution", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"\[Sigma]1", ",", "\[Sigma]2"}], "}"}], ",", "\[Rho]"}], 
-      "]"}]}], ",", 
-    RowBox[{"\[Rho]", "\[Distributed]", 
-     RowBox[{"BetaDistribution", "[", 
-      RowBox[{"1", ",", "2"}], "]"}]}], ",", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"\[Sigma]1", ",", "\[Sigma]2"}], "}"}], "\[Distributed]", 
-     RowBox[{"MultinormalDistribution", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"10", ",", "10"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"1", ",", "0"}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], "]"}]}]}], 
-   "]"}]}]], "Input",
- CellLabel->
-  "In[115]:=",ExpressionUUID->"3a0181b0-1786-4c30-a883-3044a4d0c921"],
-
-Cell[BoxData[{
- RowBox[{"RandomVariate", "[", 
-  RowBox[{"conditionalProductDistribution", "[", 
-   RowBox[{
-    RowBox[{"k", "\[Distributed]", 
-     RowBox[{"BinomialDistribution", "[", 
-      RowBox[{"10", ",", "p"}], "]"}]}], ",", 
-    RowBox[{"p", " ", "\[Distributed]", " ", 
-     RowBox[{"BetaDistribution", "[", 
-      RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"RandomVariate", "[", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", 
-    RowBox[{
-     RowBox[{"k", "\[Distributed]", 
-      RowBox[{"BinomialDistribution", "[", 
-       RowBox[{"10", ",", "p"}], "]"}]}], ",", 
-     RowBox[{"p", " ", "\[Distributed]", " ", 
-      RowBox[{"BetaDistribution", "[", 
-       RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], ",", "3"}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"RandomVariate", "[", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", 
-    RowBox[{
-     RowBox[{"k", "\[Distributed]", 
-      RowBox[{"BinomialDistribution", "[", 
-       RowBox[{"10", ",", "p"}], "]"}]}], ",", 
-     RowBox[{"p", " ", "\[Distributed]", " ", 
-      RowBox[{"BetaDistribution", "[", 
-       RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"5", ",", "3"}], "}"}]}], "]"}]}], "Input",
- CellLabel->
-  "In[116]:=",ExpressionUUID->"c84c7dcb-ac67-4802-b768-24300587b27c"],
-
-Cell[BoxData[
- RowBox[{"RandomVariate", "[", 
-  RowBox[{"conditionalProductDistribution", "[", 
-   RowBox[{
-    RowBox[{"k", "\[Distributed]", 
-     RowBox[{"BinomialDistribution", "[", 
-      RowBox[{"n", ",", "p"}], "]"}]}], ",", 
-    RowBox[{"p", " ", "\[Distributed]", " ", 
-     RowBox[{"BetaDistribution", "[", 
-      RowBox[{"1", ",", "2"}], "]"}]}]}], "]"}], "]"}]], "Input",
- CellLabel->
-  "In[119]:=",ExpressionUUID->"a2218db6-5faa-4904-8d47-61d69fd7ff91"],
-
-Cell[BoxData[{
- RowBox[{"RandomVariate", "[", 
-  RowBox[{"conditionalProductDistribution", "[", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
-     RowBox[{"BinormalDistribution", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"1", ",", "2"}], "}"}], ",", "0.3"}], "]"}]}], ",", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], " ", "\[Distributed]", " ", 
-     RowBox[{"BinormalDistribution", "[", "0.5", "]"}]}]}], "]"}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"RandomVariate", "[", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
-      RowBox[{"BinormalDistribution", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], ",", 
-        RowBox[{"{", 
-         RowBox[{"1", ",", "2"}], "}"}], ",", "0.3"}], "]"}]}], ",", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], " ", "\[Distributed]", " ", 
-      RowBox[{"BinormalDistribution", "[", "0.5", "]"}]}]}], "]"}], ",", 
-   "3"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"RandomVariate", "[", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"a", ",", "b"}], "}"}], "\[Distributed]", 
-      RowBox[{"BinormalDistribution", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], ",", 
-        RowBox[{"{", 
-         RowBox[{"1", ",", "2"}], "}"}], ",", "0.3"}], "]"}]}], ",", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"\[Mu]1", ",", "\[Mu]2"}], "}"}], " ", "\[Distributed]", " ", 
-      RowBox[{"BinormalDistribution", "[", "0.5", "]"}]}]}], "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"5", ",", "3"}], "}"}]}], "]"}]}], "Input",
- CellLabel->
-  "In[120]:=",ExpressionUUID->"d768b2d6-554c-4ad5-a17c-7639b29bf0a4"],
-
-Cell[BoxData[
- RowBox[{"RandomVariate", "[", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"x", "\[Distributed]", 
-      RowBox[{"MultinormalDistribution", "[", 
-       RowBox[{"\[Mu]", ",", 
-        RowBox[{"\[Nu]", " ", "\[CapitalSigma]"}]}], "]"}]}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\[Nu]", "\[Distributed]", 
-      RowBox[{"InverseGammaDistribution", "[", 
-       RowBox[{"5", ",", "10"}], "]"}]}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\[Mu]", "\[Distributed]", 
-      RowBox[{"MultinormalDistribution", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"0", ",", "0"}], "}"}], ",", "\[CapitalSigma]"}], "]"}]}], 
-     ",", "\[IndentingNewLine]", 
-     RowBox[{"\[CapitalSigma]", "\[Distributed]", 
-      RowBox[{"InverseWishartMatrixDistribution", "[", 
-       RowBox[{"10", ",", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"1", ",", 
-            FractionBox["1", "3"]}], "}"}], ",", 
-          RowBox[{"{", 
-           RowBox[{
-            FractionBox["1", "3"], ",", "1"}], "}"}]}], "}"}]}], "]"}]}]}], 
-    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", "10"}], 
-  "\[IndentingNewLine]", "]"}]], "Input",
- CellLabel->
-  "In[123]:=",ExpressionUUID->"0ecbf867-ac5b-4460-b0b9-3466f86f9337"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"normalInverseWishartDistribution", "[", 
-    RowBox[{
-    "\[Mu]0_", ",", "\[Lambda]_", ",", "\[CapitalPsi]_", ",", "\[Nu]_"}], 
-    "]"}], ":=", " ", 
-   RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"\[FormalMu]", "\[Distributed]", 
-      RowBox[{"MultinormalDistribution", "[", 
-       RowBox[{"\[Mu]0", ",", 
-        RowBox[{"\[FormalCapitalSigma]", "/", "\[Lambda]"}]}], "]"}]}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"\[FormalCapitalSigma]", "\[Distributed]", 
-      RowBox[{"InverseWishartMatrixDistribution", "[", 
-       RowBox[{"\[Nu]", ",", "\[CapitalPsi]"}], "]"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
- CellLabel->
-  "In[124]:=",ExpressionUUID->"174f959e-ac23-4ace-aca6-62a7a9ebd237"],
-
-Cell[BoxData[
- RowBox[{"RandomVariate", "[", 
-  RowBox[{
-   RowBox[{"normalInverseWishartDistribution", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", ",", 
-       RowBox[{"-", "3"}]}], "}"}], ",", "5", ",", 
-     RowBox[{"(", GridBox[{
-        {"1", 
-         RowBox[{"1", "/", "2"}]},
-        {
-         RowBox[{"1", "/", "2"}], "2"}
-       }], ")"}], ",", "7"}], "]"}], ",", "5"}], "]"}]], "Input",
- CellLabel->
-  "In[125]:=",ExpressionUUID->"20f15be7-899d-4ee8-b8b7-49a2d295a99a"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"posterior", "[", 
-   RowBox[{
-   "\[Mu]0_", ",", "\[Lambda]_", ",", "\[CapitalPsi]_", ",", "\[Nu]_"}], 
-   "]"}], ":=", 
-  RowBox[{"conditionalProductDistribution", "[", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"\[FormalCapitalX]", "\[Distributed]", 
-     RowBox[{"MultinormalDistribution", "[", 
-      RowBox[{"\[Mu]", ",", "\[CapitalSigma]"}], "]"}]}], ",", 
-    "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"\[Mu]", ",", "\[CapitalSigma]"}], "}"}], "\[Distributed]", 
-     RowBox[{"normalInverseWishartDistribution", "[", 
-      RowBox[{
-      "\[Mu]0", ",", "\[Lambda]", ",", "\[CapitalPsi]", ",", "\[Nu]"}], 
-      "]"}]}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
- CellLabel->
-  "In[126]:=",ExpressionUUID->"f196eb57-8205-402c-b38f-ad7475201bb0"],
-
-Cell[BoxData[
- RowBox[{"RandomVariate", "[", 
-  RowBox[{
-   RowBox[{"posterior", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", ",", 
-       RowBox[{"-", "3"}]}], "}"}], ",", "5", ",", 
-     RowBox[{"(", GridBox[{
-        {"1", 
-         RowBox[{"1", "/", "2"}]},
-        {
-         RowBox[{"1", "/", "2"}], "2"}
-       }], ")"}], ",", "7"}], "]"}], ",", "5"}], "]"}]], "Input",
- CellLabel->"In[127]:=",ExpressionUUID->"98cb3bdb-adc5-4d93-b479-9db57af39f1d"]
 }, Closed]],
 
 Cell[CellGroupData[{
