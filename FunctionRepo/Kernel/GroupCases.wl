@@ -14,29 +14,29 @@ Begin["`Private`"] (* Begin Private Context *)
 GroupCases[spec_][list_List] := GroupCases[list, spec];
 
 GroupCases[{}, spec_] := With[{
-    keys = Replace[patternList[spec], assoc_?AssociationQ :> Keys[assoc]]
+	keys = Replace[patternList[spec], assoc_?AssociationQ :> Keys[assoc]]
 },
-    AssociationThread[keys, ConstantArray[{}, Length[keys]]]
+	AssociationThread[keys, ConstantArray[{}, Length[keys]]]
 ];
 GroupCases[list_List, Verbatim[_]] := <|_ -> list|>;
 GroupCases[list_List, spec_] := Module[{
-    pattSpec = patternList[spec],
-    rules,
-    results,
-    sowTag
+	pattSpec = patternList[spec],
+	rules,
+	results,
+	sowTag
 },
-    rules = MapIndexed[
-        makeRule[#1, sowTag @@ #2]&,
-        Replace[pattSpec, assoc_?AssociationQ :> Values[assoc]]
-    ];
-    results = Last @ Reap[
-        Replace[list, rules, {1}],
-        Array[sowTag, Length[rules]]
-    ];
-    AssociationThread[
-        Replace[pattSpec, assoc_?AssociationQ :> Keys[assoc]],
-        Join @@@ results
-    ]
+	rules = MapIndexed[
+		makeRule[#1, sowTag @@ #2]&,
+		Replace[pattSpec, assoc_?AssociationQ :> Values[assoc]]
+	];
+	results = Last @ Reap[
+		Replace[list, rules, {1}],
+		Array[sowTag, Length[rules]]
+	];
+	AssociationThread[
+		Replace[pattSpec, assoc_?AssociationQ :> Keys[assoc]],
+		Join @@@ results
+	]
 ];
 
 patternList[lst_List] /; !MemberQ[lst, Verbatim[_]] := Append[lst, _];
@@ -46,14 +46,14 @@ patternList[Verbatim[_]] := {_};
 patternList[patt_] := {patt, _};
 
 makeRule[
-    (rule : (Rule | RuleDelayed))[patt_, val_],
-    tag_
+	(rule : (Rule | RuleDelayed))[patt_, val_],
+	tag_
 ] /; FreeQ[Unevaluated[val], Condition | RuleCondition] := match : patt :> Sow[val, tag];
 
 makeRule[(rule : (Rule | RuleDelayed))[patt_, val_], tag_] := match_ :> With[{
-    try = Replace[match, {rule[patt, val], _ :> tag}]
+	try = Replace[match, {rule[patt, val], _ :> tag}]
 },
-    Sow[try, tag] /; try =!= tag
+	Sow[try, tag] /; try =!= tag
 ];
 makeRule[patt_, tag_] := match : patt :> Sow[match, tag];
 
