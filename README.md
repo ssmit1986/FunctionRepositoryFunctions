@@ -13,6 +13,10 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [ConditionedMultinormalDistribution](https://resources.wolframcloud.com/FunctionRepository/resources/ConditionedMultinormalDistribution)
 
+* [ConvertStringsToSymbols](https://resources.wolframcloud.com/FunctionRepository/resources/ConvertStringsToSymbols)
+
+* [CopyAsExcelData](https://resources.wolframcloud.com/FunctionRepository/resources/CopyAsExcelData)
+
 * [CrossValidateModel](https://resources.wolframcloud.com/FunctionRepository/resources/CrossValidateModel)
 
 * [ExpressionToFunction](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunction)
@@ -33,6 +37,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [MonitorFile](https://resources.wolframcloud.com/FunctionRepository/resources/MonitorFile/)
 
+* OpenTestWritingPalette (submitted)
+
 * [PositionQ](https://resources.wolframcloud.com/FunctionRepository/resources/PositionQ/)
 
 * [MultiNonlinearModelFit](https://resources.wolframcloud.com/FunctionRepository/resources/MultiNonlinearModelFit)
@@ -44,6 +50,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * [SplitAtPositions](https://resources.wolframcloud.com/FunctionRepository/resources/SplitAtPositions/)
 
 * [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
+
+* [TimedPaneSelector](https://resources.wolframcloud.com/FunctionRepository/resources/TimedPaneSelector)
 
 * [ToExpressionMatched](https://resources.wolframcloud.com/FunctionRepository/resources/ToExpressionMatched)
 
