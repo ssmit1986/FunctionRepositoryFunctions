@@ -40,8 +40,16 @@ cleanup[date_DateObject?DateObjectQ] := DateString[date,
 cleanup[time_TimeObject?TimeObjectQ] := DateString[time, "Time"];
 cleanup[other_] := TextString[other];
 
+(*
+	TemplateBox has been adapted from
+	CurrentValue[{StyleDefinitions, "ClickToCopy"}]
+	and
+	CurrentValue[{StyleDefinitions, "ClickToCopy2"}]
+*)
 clickToCopyAsPlainText[str_String] := RawBoxes[
-	TemplateBox[{str}, "ClickToCopy",
+	TemplateBox[
+		{MakeBoxes[str, StandardForm]},
+		"ClickToCopy",
 		DisplayFunction -> Function[
 			TagBox[
 				DynamicModuleBox[
@@ -53,7 +61,7 @@ clickToCopyAsPlainText[str_String] := RawBoxes[
 								TagBox[#1, BoxForm`Undeploy, DefaultBaseStyle -> {Deployed -> False}],
 								ButtonFunction :> FrontEndExecute[
 									{
-										CopyToClipboard[#1],
+										CopyToClipboard[MakeExpression[#1, StandardForm]],
 										NotebookDelete[Typeset`cellobj$$],
 										FrontEnd`AttachCell[
 											Typeset`boxobj$$,
@@ -112,7 +120,7 @@ clickToCopyAsPlainText[str_String] := RawBoxes[
 				DefaultBaseStyle -> "Deploy"
 			]
 		],
-		InterpretationFunction -> Function[ToBoxes[#1, StandardForm]]
+		InterpretationFunction -> Function[#]
 	]
 ];
 
