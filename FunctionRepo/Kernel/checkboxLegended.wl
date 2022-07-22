@@ -10,62 +10,62 @@ Begin["`Private`"] (* Begin Private Context *)
 Attributes[checkboxLegended] = {HoldFirst}
  
 checkboxLegended[(supportedGraphType_)[data_, rest___], opts : OptionsPattern[]] := With[{
-    dat = data
+	dat = data
 }, 
-    DynamicModule[{
-        opacity = AssociationThread[Keys[dat], True]
-    }, 
-        checkboxLegended[supportedGraphType[dat, rest], Dynamic[opacity], opts]
-    ] /; AssociationQ[dat]
+	DynamicModule[{
+		opacity = AssociationThread[Keys[dat], True]
+	}, 
+		checkboxLegended[supportedGraphType[dat, rest], Dynamic[opacity], opts]
+	] /; AssociationQ[dat]
 ];
  
 checkboxLegended[(supportedGraphType_)[data_, rest___], Dynamic[opacity_], opts : OptionsPattern[]] := With[{
-    plotData = data, 
-    layoutFun = Replace[OptionValue["LegendLayoutFunction"], 
-        Automatic :> (Row[{##1}, " "] & )
-    ]
+	plotData = data, 
+	layoutFun = Replace[OptionValue["LegendLayoutFunction"], 
+		Automatic :> (Row[{##1}, " "] & )
+	]
 }, 
-    With[{
-        keys = Keys[plotData]
-    }, 
-        If[ !AssociationQ[opacity], opacity = Association[]]; 
-        opacity = Join[
-            AssociationThread[keys, True], 
-            DeleteCases[opacity, Except[True | False]]
-        ]; 
-        supportedGraphType[
-            Evaluate @ KeyValueMap[
-                Legended[
-                    Flatten[
-                        Style[#2, 
-                            Opacity[
-                                Dynamic[
-                                    Boole[TrueQ[Lookup[opacity, #1, True]]], 
-                                    TrackedSymbols :> {opacity}
-                                ]
-                            ]
-                        ],
-                        Infinity,
-                        Style
-                    ], 
-                    layoutFun[Checkbox[Dynamic[opacity[#1]]], #1]
-                ]& , 
-                plotData
-            ], 
-            rest
-        ] /. {legend : _SwatchLegend | _PointLegend | _LineLegend :> Column[{
-            Button[
-                PaneSelector[
-                    {True -> "Select none", False -> "Select all"}, 
-                    Dynamic[TrueQ[And @@ opacity], TrackedSymbols :> {opacity}],
-                    Alignment -> Center
-                ], 
-                opacity = AssociationThread[keys,  ! TrueQ[And @@ opacity]], 
-                ImageSize -> All
-            ],
-            legend
-        }, Alignment -> Left]}
-    ] /; AssociationQ[plotData]
+	With[{
+		keys = Keys[plotData]
+	}, 
+		If[ !AssociationQ[opacity], opacity = Association[]]; 
+		opacity = Join[
+			AssociationThread[keys, True], 
+			DeleteCases[opacity, Except[True | False]]
+		]; 
+		supportedGraphType[
+			Evaluate @ KeyValueMap[
+				Legended[
+					Flatten[
+						Style[#2, 
+							Opacity[
+								Dynamic[
+									Boole[TrueQ[Lookup[opacity, #1, True]]], 
+									TrackedSymbols :> {opacity}
+								]
+							]
+						],
+						Infinity,
+						Style
+					], 
+					layoutFun[Checkbox[Dynamic[opacity[#1]]], #1]
+				]& , 
+				plotData
+			], 
+			rest
+		] /. {legend : _SwatchLegend | _PointLegend | _LineLegend :> Column[{
+			Button[
+				PaneSelector[
+					{True -> "Select none", False -> "Select all"}, 
+					Dynamic[TrueQ[And @@ opacity], TrackedSymbols :> {opacity}],
+					Alignment -> Center
+				], 
+				opacity = AssociationThread[keys,  ! TrueQ[And @@ opacity]], 
+				ImageSize -> All
+			],
+			legend
+		}, Alignment -> Left]}
+	] /; AssociationQ[plotData]
 ];
 
 Options[checkboxLegended] = {"LegendLayoutFunction" -> Automatic}

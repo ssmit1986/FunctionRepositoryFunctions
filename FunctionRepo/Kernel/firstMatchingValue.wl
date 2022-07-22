@@ -13,49 +13,49 @@ firstMatchingValue[expr_, patt_, opt : OptionsPattern[]] := firstMatchingValue[e
 firstMatchingValue[expr_, patt_, default_, opt : OptionsPattern[]] := firstMatchingValue[expr, patt, default, {1}, opt];
 
 firstMatchingValue[
-    expr_,
-    (head : (Rule | RuleDelayed))[patt_, transformation_],
-    default_,
-    lvl_,
-    opts : OptionsPattern[]
+	expr_,
+	(head : (Rule | RuleDelayed))[patt_, transformation_],
+	default_,
+	lvl_,
+	opts : OptionsPattern[]
 ] := Module[{
-    matched
+	matched
 },
-    FirstCase[
-        Unevaluated[expr],
-        possibleMatch_ :> With[{
-            try = Replace[
-                matched = True;
-                possibleMatch
-                ,
-                {
-                    head[patt, transformation],
-                    _ :> (matched = False)
-                }
-            ]
-        },
-            try /; TrueQ[matched]
-        ],
-        default,
-        lvl,
-        opts
-    ]
+	FirstCase[
+		Unevaluated[expr],
+		possibleMatch_ :> With[{
+			try = Replace[
+				matched = True;
+				possibleMatch
+				,
+				{
+					head[patt, transformation],
+					_ :> (matched = False)
+				}
+			]
+		},
+			try /; TrueQ[matched]
+		],
+		default,
+		lvl,
+		opts
+	]
 ];
 
 firstMatchingValue[
-    expr_,
-    otherPattern_,
-    default_,
-    lvl_,
-    opts : OptionsPattern[]
+	expr_,
+	otherPattern_,
+	default_,
+	lvl_,
+	opts : OptionsPattern[]
 ] := FirstCase[
-    Unevaluated[expr],
-    possibleMatch_ :> With[{try = possibleMatch},
-        try /; MatchQ[try, otherPattern]
-    ],
-    default,
-    lvl,
-    opts
+	Unevaluated[expr],
+	possibleMatch_ :> With[{try = possibleMatch},
+		try /; MatchQ[try, otherPattern]
+	],
+	default,
+	lvl,
+	opts
 ];
 
 End[] (* End Private Context *)

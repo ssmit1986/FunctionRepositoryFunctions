@@ -14,29 +14,29 @@ multiSet[list_List] := multiSet[KeySort @ Counts[list]];
 multiSet /: Normal[multiSet[assoc_?AssociationQ]] := Join @@ KeyValueMap[ConstantArray, assoc];
 
 combiners = <|
-    Union -> Max,
-    Intersection -> Min,
-    Plus -> Total,
-    Complement -> Function[First[#] - Total[Rest[#]]]
+	Union -> Max,
+	Intersection -> Min,
+	Plus -> Total,
+	Complement -> Function[First[#] - Total[Rest[#]]]
 |>;
 
 KeyValueMap[
-    Function[{fun, comb},
-        multiSet /: fun[sets : multiSet[_?AssociationQ]..] := multiSet[
-            Merge[
-                KeyUnion[{sets}[[All, 1]], 0&],
-                comb
-            ]
-        ]
-    ],
-    combiners
+	Function[{fun, comb},
+		multiSet /: fun[sets : multiSet[_?AssociationQ]..] := multiSet[
+			Merge[
+				KeyUnion[{sets}[[All, 1]], 0&],
+				comb
+			]
+		]
+	],
+	combiners
 ];
 
 Map[
-    Function[fun,
-        multiSet /: fun[multiSet[assoc_?AssociationQ]] := fun[assoc]
-    ],
-    {Keys, Values, Length, Total}
+	Function[fun,
+		multiSet /: fun[multiSet[assoc_?AssociationQ]] := fun[assoc]
+	],
+	{Keys, Values, Length, Total}
 ];
 
 End[] (* End Private Context *)

@@ -9,12 +9,12 @@ Begin["`Private`"] (* Begin Private Context *)
 Options[deleteContainedStrings] = Options[StringContainsQ];
 deleteContainedStrings[{}, ___] := {};
 deleteContainedStrings[strings : {__String}, opts : OptionsPattern[]] := Module[{
-    sorted = ReverseSortBy[strings, StringLength]
+	sorted = ReverseSortBy[strings, StringLength]
 },
-    SortBy[
-        DeleteDuplicates[sorted, StringContainsQ[##, opts] &],
-        FirstPosition[strings, #, Missing[], {1}, Heads -> False] &
-    ]
+	SortBy[
+		DeleteDuplicates[sorted, StringContainsQ[##, opts] &],
+		FirstPosition[strings, #, Missing[], {1}, Heads -> False] &
+	]
 ];
 
 End[] (* End Private Context *)

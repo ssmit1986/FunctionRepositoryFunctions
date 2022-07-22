@@ -1,6 +1,6 @@
 Notebook[{
 Cell[BoxData["Quit"], "Input",
- CellLabel->"In[70]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
+ CellLabel->"In[57]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
 
 Cell[BoxData[{
  RowBox[{
@@ -9,7 +9,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[24]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -965,25 +965,18 @@ Cell["CopyAsExcelData", \
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[37]:=",ExpressionUUID->"bdb4e922-0f41-4bff-bfbc-2cedb2ee3cd7"],
+ CellLabel->"In[27]:=",ExpressionUUID->"bdb4e922-0f41-4bff-bfbc-2cedb2ee3cd7"],
 
 Cell[BoxData[
  RowBox[{"?", "CopyAsExcelData"}]], "Input",
  CellLabel->"In[21]:=",ExpressionUUID->"d99daa14-1f7a-472f-bd74-0af0555ab196"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"CopyAsExcelData", "[", 
   RowBox[{"{", 
    RowBox[{"1", ",", "\"\<2\>\"", ",", "Now", ",", "Today", ",", " ", 
     RowBox[{"TimeObject", "[", "]"}]}], "}"}], "]"}]], "Input",
- CellLabel->"In[41]:=",ExpressionUUID->"f9a2cde7-b3af-490d-a1df-680b110ea2c7"],
-
-Cell[BoxData["\<\"1\\t2\\t2022-07-07T10:40:10\\t2022-07-07\\t10:40:10\"\>"], \
-"Output",
- CellLabel->"Out[41]=",ExpressionUUID->"08faa0b4-0c77-4d24-8ce1-5298a1e7bb04"]
-}, Open  ]]
+ CellLabel->"In[28]:=",ExpressionUUID->"f9a2cde7-b3af-490d-a1df-680b110ea2c7"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -2000,8 +1993,7 @@ Cell[BoxData[
      LineBox[{{0.10768873888571645`, -0.06993584425640234}, {
       0.4420731707317076, -0.4742276422764235}}], 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-      None], 
-      ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
+      None], ArrowBox[{{0.6135072424448103, -0.44373983739837364`}, {
        0.5242395980607011, 0.29813008130081364`}}]}, 
      {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
       None], ArrowBox[{{0.43191056910569103`, 0.3692682926829276}, {
