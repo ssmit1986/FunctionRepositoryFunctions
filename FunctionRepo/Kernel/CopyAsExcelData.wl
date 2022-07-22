@@ -12,21 +12,30 @@ CopyAsExcelData[{}] := $Failed;
 
 CopyAsExcelData[list_List?VectorQ] := CopyAsExcelData[{list}];
 
-CopyAsExcelData[data2D : {__List?VectorQ}] := Module[{
-	dataToCopy = ExportString[
-		Map[cleanup, data2D, {2}],
-		"TSV"
+CopyAsExcelData[data2D_List] := Module[{
+	dataToCopy = If[ MatchQ[data2D, {__List?VectorQ}],
+		ExportString[
+			Map[cleanup, data2D, {2}],
+			"TSV"
+		],
+		$Failed
 	]
 },
 	If[ StringQ[dataToCopy],
 		CopyToClipboard[dataToCopy];
-		clickToCopyAsPlainText[dataToCopy]
+		CopyAsExcelData[dataToCopy]
 		,
 		$Failed
 	]
 ];
+CopyAsExcelData[str_String, "PlainText"] := (
+	CopyToClipboard[str];
+	CopyAsExcelData[str]
+);
+CopyAsExcelData[Except[_String], ___] := $Failed;
+CopyAsExcelData[] := $Failed;
 
-CopyAsExcelData[___] := $Failed;
+CopyAsExcelData /: MakeBoxes[CopyAsExcelData[dataToCopy_String], StandardForm] := clickToCopyAsPlainText[dataToCopy];
 
 cleanup[normal : _String | _?NumericQ] := normal;
 cleanup[date_DateObject?DateObjectQ] := DateString[date,
@@ -46,82 +55,84 @@ cleanup[other_] := TextString[other];
 	and
 	CurrentValue[{StyleDefinitions, "ClickToCopy2"}]
 *)
-clickToCopyAsPlainText[str_String] := RawBoxes[
-	TemplateBox[
-		{MakeBoxes[str, StandardForm]},
-		"ClickToCopy",
-		DisplayFunction -> Function[
-			TagBox[
-				DynamicModuleBox[
-					{Typeset`boxobj$$, Typeset`cellobj$$}
-					,
+clickToCopyAsPlainText[str_String] := TemplateBox[
+	{str},
+	"ClickToCopy",
+	DisplayFunction -> Function[
+		TagBox[
+			DynamicModuleBox[
+				{Typeset`boxobj$$, Typeset`cellobj$$}
+				,
+				TagBox[
 					TagBox[
-						TagBox[
-							ButtonBox[
-								TagBox[#1, BoxForm`Undeploy, DefaultBaseStyle -> {Deployed -> False}],
-								ButtonFunction :> FrontEndExecute[
-									{
-										CopyToClipboard[MakeExpression[#1, StandardForm]],
-										NotebookDelete[Typeset`cellobj$$],
+						ButtonBox[
+							TagBox[
+								DynamicBox[ToBoxes[#1, StandardForm], SingleEvaluation -> True],
+								BoxForm`Undeploy,
+								DefaultBaseStyle -> {Deployed -> False}
+							],
+							ButtonFunction :> FrontEndExecute[
+								{
+									CopyToClipboard[#1],
+									NotebookDelete[Typeset`cellobj$$],
+									FrontEnd`AttachCell[
+										Typeset`boxobj$$,
+										Cell[BoxData[TemplateBox[{"Copied"}, "ClickToCopyTooltip"]]],
+										{1, {Center, Bottom}},
+										{Center, Top},
+										"ClosingActions" -> {"ParentChanged", "MouseExit"}
+									]
+								}
+							],
+							Evaluator -> None,
+							Appearance -> {
+								"Default" -> None,
+								"Hover" -> FrontEnd`FileName[{"Typeset", "ClickToCopy"}, "Hover.9.png"],
+								"Pressed" -> FrontEnd`FileName[{"Typeset", "ClickToCopy"}, "Pressed.9.png"]
+							},
+							BaseStyle -> {},
+							DefaultBaseStyle -> {},
+							BaselinePosition -> Baseline,
+							FrameMargins -> 2,
+							Method -> "Preemptive"
+						],
+						EventHandlerTag[
+							{
+								"MouseEntered" :> (
+									Typeset`cellobj$$ = MathLink`CallFrontEnd[
 										FrontEnd`AttachCell[
 											Typeset`boxobj$$,
-											Cell[BoxData[TemplateBox[{"Copied"}, "ClickToCopyTooltip"]]],
+											Cell[BoxData[TemplateBox[{"Copy"}, "ClickToCopyTooltip"]]],
 											{1, {Center, Bottom}},
 											{Center, Top},
-											"ClosingActions" -> {"ParentChanged", "MouseExit"}
+											"ClosingActions" -> {"ParentChanged"}
 										]
-									}
-								],
-								Evaluator -> None,
-								Appearance -> {
-									"Default" -> None,
-									"Hover" -> FrontEnd`FileName[{"Typeset", "ClickToCopy"}, "Hover.9.png"],
-									"Pressed" -> FrontEnd`FileName[{"Typeset", "ClickToCopy"}, "Pressed.9.png"]
-								},
-								BaseStyle -> {},
-								DefaultBaseStyle -> {},
-								BaselinePosition -> Baseline,
-								FrameMargins -> 2,
-								Method -> "Preemptive"
-							],
-							EventHandlerTag[
-								{
-									"MouseEntered" :> (
-										Typeset`cellobj$$ = MathLink`CallFrontEnd[
-											FrontEnd`AttachCell[
-												Typeset`boxobj$$,
-												Cell[BoxData[TemplateBox[{"Copy"}, "ClickToCopyTooltip"]]],
-												{1, {Center, Bottom}},
-												{Center, Top},
-												"ClosingActions" -> {"ParentChanged"}
-											]
-										]
-									),
-									"MouseExited" :>
-									NotebookDelete[Typeset`cellobj$$],
-									PassEventsDown -> True,
-									Method -> "Preemptive",
-									PassEventsUp -> True
-								}
-							]
-						],
-						MouseAppearanceTag["LinkHand"]
+									]
+								),
+								"MouseExited" :>
+								NotebookDelete[Typeset`cellobj$$],
+								PassEventsDown -> True,
+								Method -> "Preemptive",
+								PassEventsUp -> True
+							}
+						]
 					],
-					Initialization :> (
-						Typeset`boxobj$$ = EvaluationBox[]
-					),
-					DynamicModuleValues :> {},
-					UnsavedVariables :> {Typeset`boxobj$$, Typeset`cellobj$$},
-					BaseStyle -> {
-						Editable -> False
-					}
+					MouseAppearanceTag["LinkHand"]
 				],
-				Deploy,
-				DefaultBaseStyle -> "Deploy"
-			]
-		],
-		InterpretationFunction -> Function[#]
-	]
+				Initialization :> (
+					Typeset`boxobj$$ = EvaluationBox[]
+				),
+				DynamicModuleValues :> {},
+				UnsavedVariables :> {Typeset`boxobj$$, Typeset`cellobj$$},
+				BaseStyle -> {
+					Editable -> False
+				}
+			],
+			Deploy,
+			DefaultBaseStyle -> "Deploy"
+		]
+	],
+	InterpretationFunction -> Function[RowBox[{"CopyAsExcelData", "[", InterpretationBox["", #], "]"}]]
 ];
 
 End[] (* End Private Context *)
