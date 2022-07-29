@@ -109,8 +109,7 @@ clickToCopyAsPlainText[str_String] := TemplateBox[
 										]
 									]
 								),
-								"MouseExited" :>
-								NotebookDelete[Typeset`cellobj$$],
+								"MouseExited" :> NotebookDelete[Typeset`cellobj$$],
 								PassEventsDown -> True,
 								Method -> "Preemptive",
 								PassEventsUp -> True
