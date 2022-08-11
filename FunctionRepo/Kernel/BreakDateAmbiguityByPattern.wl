@@ -5,7 +5,8 @@ BeginPackage["FunctionRepo`BreakDateAmbiguityByPattern`", {"FunctionRepo`"}]
 GeneralUtilities`SetUsage[BreakDateAmbiguityByPattern,
 	"BreakDateAmbiguityByPattern[string$, \"DayFirst\"] interprets string$ as a date or date-time. In case of ambiguity, a day-first interpretation is used.
 BreakDateAmbiguityByPattern[string$, \"MonthFirst\"] interprets string$ as a date or date-time. In case of ambiguity, a month-first interpretation is used.
-BreakDateAmbiguityByPattern[string$, patt$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$."
+BreakDateAmbiguityByPattern[string$, patt$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$.
+BreakDateAmbiguityByPattern[string$, Function[{dates$, values$}, $$]] applies a function all DateObjects and corresponding \"Value\" elements of the AmbiguityList to pick the correct date."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
@@ -26,6 +27,16 @@ BreakDateAmbiguityByPattern[input_, patt_] := Block[{
 
 ambiguityBreaker["DayFirst"] := ambiguityBreaker[{___, "Day", ___, "Month", ___}];
 ambiguityBreaker["MonthFirst"] := ambiguityBreaker[{___, "Month", ___, "Day", ___}];
+
+ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
+	result = fun[
+		dates,
+		Lookup[assocs, "Value"]
+	]
+},
+	Replace[result, Except[_?DateObjectQ] :> $Failed]
+]
+
 ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
 	pos = FirstPosition[assocs,
 		KeyValuePattern[{"Value" -> patt}],
