@@ -1,6 +1,7 @@
 Notebook[{
 Cell[BoxData["Quit"], "Input",
- CellLabel->"In[57]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
+ CellLabel->
+  "In[144]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
 
 Cell[BoxData[{
  RowBox[{
@@ -9,7 +10,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[24]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[46]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -288,6 +289,219 @@ Cell[BoxData[
        RowBox[{"0", ",", "4"}], "}"}]}], "]"}]}], ",", "initQ"}], 
   "]"}]], "Input",
  CellLabel->"In[6]:=",ExpressionUUID->"19a2ea0d-5f2e-4ebd-baf1-0db48cfce5f1"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["BreakDateAmbiguityByPattern", \
+"Subsection",ExpressionUUID->"39bfc406-9fb8-45ef-982f-583f593e8d1f"],
+
+Cell[BoxData[
+ RowBox[{"?", "BreakDateAmbiguityByPattern"}]], "Input",
+ CellLabel->"In[48]:=",ExpressionUUID->"2f9e4f0e-ed66-41ab-b735-503aa7d3b06f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dates", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<11-02-2022T15:30:24\>\"", ",", "\"\<12-02-2022\>\"", ",", 
+     "\"\<13-02-2022\>\"", ",", "\"\<14-02-2022\>\"", ",", 
+     "\"\<15-02-2022\>\"", ",", "\"\<16-02-2022\>\"", ",", 
+     "\"\<17-02-2022\>\"", ",", " ", "\"\<Feb 2 2020\>\"", ",", " ", 
+     "\"\<3 Feb 2021\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"BreakDateAmbiguityByPattern", "[", 
+  RowBox[{"dates", ",", "\"\<DayFirst\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"BreakDateAmbiguityByPattern", "[", 
+  RowBox[{"dates", ",", "\"\<MonthFirst\>\""}], "]"}]}], "Input",
+ CellLabel->"In[43]:=",ExpressionUUID->"fce07eb9-79fd-4dca-be13-272e0bb77848"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TemplateBox[{
+     RowBox[{"\"Fri 11 Feb 2022 15:30:24\"", 
+       StyleBox[
+        RowBox[{"\"GMT\"", "\[InvisibleSpace]", "+", "\[InvisibleSpace]", 
+          StyleBox["1", NumberMarks -> False, StripOnInput -> False]}], 
+        FontColor -> GrayLevel[0.5]]}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           
+           RowBox[{"2022", ",", "2", ",", "11", ",", "15", ",", "30", ",", 
+             "24"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+         "1.`"}], "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Sat 12 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "12"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Sun 13 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "13"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Mon 14 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "14"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Tue 15 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "15"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Wed 16 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "16"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Thu 17 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "17"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Sun 2 Feb 2020\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2020", ",", "2", ",", "2"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Wed 3 Feb 2021\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2021", ",", "2", ",", "3"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False]}], "}"}]], "Output",
+ CellLabel->"Out[44]=",ExpressionUUID->"bfcd6693-a21e-4ca0-ba90-692ab157df53"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TemplateBox[{
+     RowBox[{"\"Wed 2 Nov 2022 15:30:24\"", 
+       StyleBox[
+        RowBox[{"\"GMT\"", "\[InvisibleSpace]", "+", "\[InvisibleSpace]", 
+          StyleBox["1", NumberMarks -> False, StripOnInput -> False]}], 
+        FontColor -> GrayLevel[0.5]]}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           
+           RowBox[{"2022", ",", "11", ",", "2", ",", "15", ",", "30", ",", 
+             "24"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+         "1.`"}], "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Fri 2 Dec 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "12", ",", "2"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Sun 13 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "13"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Mon 14 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "14"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Tue 15 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "15"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Wed 16 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "16"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Thu 17 Feb 2022\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2022", ",", "2", ",", "17"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Sun 2 Feb 2020\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2020", ",", "2", ",", "2"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False], ",", 
+   TemplateBox[{
+     RowBox[{"\"Wed 3 Feb 2021\""}], 
+     RowBox[{"DateObject", "[", 
+       RowBox[{
+         RowBox[{"{", 
+           RowBox[{"2021", ",", "2", ",", "3"}], "}"}], ",", "\"Day\""}], 
+       "]"}]},
+    "DateObject",
+    Editable->False]}], "}"}]], "Output",
+ CellLabel->"Out[45]=",ExpressionUUID->"22a268eb-2172-42c4-b7d3-958d7b9cdbd7"]
+}, Open  ]]
 }, Closed]],
 
 Cell[CellGroupData[{
