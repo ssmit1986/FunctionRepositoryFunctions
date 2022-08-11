@@ -3,30 +3,36 @@
 BeginPackage["FunctionRepo`BreakDateAmbiguityByPattern`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[BreakDateAmbiguityByPattern,
-	"BreakDateAmbiguityByPattern[string$, \"DayFirst\"] interprets string$ as a date or date-time. In case of ambiguity, a day-before-month interpretation is used.
-BreakDateAmbiguityByPattern[string$, \"MonthFirst\"] interprets string$ as a date or date-time. In case of ambiguity, a month-before-day interpretation is used.
-BreakDateAmbiguityByPattern[string$, patt$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$.
-BreakDateAmbiguityByPattern[string$, Function[{dates$, values$}, $$]] applies a function all DateObjects and corresponding \"Value\" elements of the AmbiguityList to pick the correct date."
+	"BreakDateAmbiguityByPattern[\"DayFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a day-before-month interpretation is used.
+BreakDateAmbiguityByPattern[\"MonthFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a month-before-day interpretation is used.
+BreakDateAmbiguityByPattern[patt$][string$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$.
+BreakDateAmbiguityByPattern[Function[{dates$, values$}, $$]][string$] applies a function all DateObjects and corresponding \"Value\" elements of the AmbiguityList to pick the correct date."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
 
-BreakDateAmbiguityByPattern[input_, patt_] := Block[{
-	dummyWrapper,
-	result
+BreakDateAmbiguityByPattern[patt_] := BreakDateAmbiguityByPattern[Interpreter["Date" | "DateTime"], patt];
+
+BreakDateAmbiguityByPattern[Interpreter[args : Shortest[__], opts : OptionsPattern[]], patt_][input_] := Block[{
+	dummyWrapper
 },
 	Replace[
 		Interpreter[
-			"Date" | "DateTime",
-			AmbiguityFunction -> dummyWrapper (* For some reason, AmbiguityFunction -> All doesn't always work. *)
+			args,
+			AmbiguityFunction -> dummyWrapper, (* For some reason, AmbiguityFunction -> All doesn't always work. *)
+			opts
 		] @ input,
-		dummyWrapper[args___] :> ambiguityBreaker[patt][args],
+		dummyWrapper[res___] :> ambiguityBreaker[patt][res],
 		{0, 1}
 	]
 ];
 
-ambiguityBreaker["DayFirst"] := ambiguityBreaker[{Except["Month"]..., "Day", ___}];
-ambiguityBreaker["MonthFirst"] := ambiguityBreaker[{Except["Day"]..., "Month", ___}];
+BreakDateAmbiguityByPattern[__][_] := $Failed;
+
+isoPattern = {___, "Year", ___, "Month", ___, "Day", ___};
+
+ambiguityBreaker["DayFirst"] := ambiguityBreaker[isoPattern | {Except["Month"]..., "Day", ___}];
+ambiguityBreaker["MonthFirst"] := ambiguityBreaker[isoPattern | {Except["Day"]..., "Month", ___}];
 
 ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
 	result = fun[
@@ -53,9 +59,6 @@ ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]
 	]
 ];
 ambiguityBreaker[_][___] := $Failed;
-
-
-BreakDateAmbiguityByPattern[___] := $Failed
 
 End[] (* End Private Context *)
 
