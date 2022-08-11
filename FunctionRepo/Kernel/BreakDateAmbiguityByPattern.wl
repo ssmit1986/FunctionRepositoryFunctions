@@ -4,7 +4,8 @@ BeginPackage["FunctionRepo`BreakDateAmbiguityByPattern`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[BreakDateAmbiguityByPattern,
 	"BreakDateAmbiguityByPattern[string$, \"DayFirst\"] interprets string$ as a date or date-time. In case of ambiguity, a day-first interpretation is used.
-BreakDateAmbiguityByPattern[string$, \"MonthFirst\"] interprets string$ as a date or date-time. In case of ambiguity, a month-first interpretation is used."
+BreakDateAmbiguityByPattern[string$, \"MonthFirst\"] interprets string$ as a date or date-time. In case of ambiguity, a month-first interpretation is used.
+BreakDateAmbiguityByPattern[string$, patt$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
