@@ -6,7 +6,7 @@ GeneralUtilities`SetUsage[DateAmbiguitBreak,
 	"DateAmbiguitBreak[\"DayFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a day-before-month interpretation is used.
 DateAmbiguitBreak[\"MonthFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a month-before-day interpretation is used.
 DateAmbiguitBreak[patt$][string$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$.
-DateAmbiguitBreak[Function[{dates$, values$}, $$]][string$] applies a function all DateObjects and corresponding \"Value\" elements of the AmbiguityList to pick the correct date."
+DateAmbiguitBreak[Function[dateAssoc$, $$]][string$] applies a function to an association holding all DateObjects and corresponding ambiguity data in the AmbiguityList to pick the correct date."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
@@ -37,13 +37,13 @@ ambiguityBreaker["DayFirst"] := ambiguityBreaker[isoPattern | dayFirstPattern];
 ambiguityBreaker["MonthFirst"] := ambiguityBreaker[isoPattern | monthFirstPattern];
 
 ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
-	result = fun[
+	dateAssoc = AssociationThread[
 		dates,
-		Lookup[assocs, "Value"]
+		assocs
 	]
 },
-	Replace[result, Except[_?DateObjectQ] :> $Failed]
-]
+	fun @ dateAssoc
+];
 
 ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
 	pos = FirstPosition[assocs,
@@ -60,6 +60,7 @@ ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]
 		}
 	]
 ];
+
 ambiguityBreaker[_][___] := $Failed;
 
 End[] (* End Private Context *)
