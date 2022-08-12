@@ -10,7 +10,8 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[54]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->
+  "In[156]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -289,32 +290,6 @@ Cell[BoxData[
        RowBox[{"0", ",", "4"}], "}"}]}], "]"}]}], ",", "initQ"}], 
   "]"}]], "Input",
  CellLabel->"In[6]:=",ExpressionUUID->"19a2ea0d-5f2e-4ebd-baf1-0db48cfce5f1"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["BreakDateAmbiguityByPattern", \
-"Subsection",ExpressionUUID->"39bfc406-9fb8-45ef-982f-583f593e8d1f"],
-
-Cell[BoxData[
- RowBox[{"?", "BreakDateAmbiguityByPattern"}]], "Input",
- CellLabel->"In[48]:=",ExpressionUUID->"2f9e4f0e-ed66-41ab-b735-503aa7d3b06f"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"dates", "=", 
-   RowBox[{"{", 
-    RowBox[{
-    "\"\<11-02-2022T15:30:24\>\"", ",", "\"\<12-02-2022\>\"", ",", 
-     "\"\<13-02-2022\>\"", ",", "\"\<14-02-2022\>\"", ",", 
-     "\"\<15-02-2022\>\"", ",", "\"\<16-02-2022\>\"", ",", 
-     "\"\<17-02-2022\>\"", ",", " ", "\"\<Feb 2 2020\>\"", ",", " ", 
-     "\"\<3 Feb 2021\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"BreakDateAmbiguityByPattern", "[", 
-  RowBox[{"dates", ",", "\"\<DayFirst\>\""}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"BreakDateAmbiguityByPattern", "[", 
-  RowBox[{"dates", ",", "\"\<MonthFirst\>\""}], "]"}]}], "Input",
- CellLabel->"In[56]:=",ExpressionUUID->"fce07eb9-79fd-4dca-be13-272e0bb77848"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -1040,6 +1015,35 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"val", "//", "TableForm"}]}], "Input",
  CellLabel->"In[14]:=",ExpressionUUID->"c7566495-73d8-4323-bcb1-fa905a691565"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["DateAmbiguitBreak", \
+"Subsection",ExpressionUUID->"39bfc406-9fb8-45ef-982f-583f593e8d1f"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "DateAmbiguitBreak"}]], \
+"Input",ExpressionUUID->"2f9e4f0e-ed66-41ab-b735-503aa7d3b06f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dates", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<11-02-2022T15:30:24\>\"", ",", "\"\<12-02-2022\>\"", ",", 
+     "\"\<13-02-2022\>\"", ",", "\"\<14-02-2022\>\"", ",", 
+     "\"\<15-02-2022\>\"", ",", "\"\<16-02-2022\>\"", ",", 
+     "\"\<17-02-2022\>\"", ",", " ", "\"\<Feb 2 2020\>\"", ",", " ", 
+     "\"\<3 Feb 2021\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DateAmbiguitBreak", "[", "\"\<DayFirst\>\"", "]"}], "@", 
+  "dates"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DateAmbiguitBreak", "[", "\"\<MonthFirst\>\"", "]"}], "@", 
+  "dates"}]}], "Input",
+ CellLabel->"In[161]:=",ExpressionUUID->"fce07eb9-79fd-4dca-be13-272e0bb77848"]
 }, Closed]],
 
 Cell[CellGroupData[{

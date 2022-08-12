@@ -1,19 +1,19 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`BreakDateAmbiguityByPattern`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`DateAmbiguitBreak`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[BreakDateAmbiguityByPattern,
-	"BreakDateAmbiguityByPattern[\"DayFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a day-before-month interpretation is used.
-BreakDateAmbiguityByPattern[\"MonthFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a month-before-day interpretation is used.
-BreakDateAmbiguityByPattern[patt$][string$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$.
-BreakDateAmbiguityByPattern[Function[{dates$, values$}, $$]][string$] applies a function all DateObjects and corresponding \"Value\" elements of the AmbiguityList to pick the correct date."
+GeneralUtilities`SetUsage[DateAmbiguitBreak,
+	"DateAmbiguitBreak[\"DayFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a day-before-month interpretation is used.
+DateAmbiguitBreak[\"MonthFirst\"][string$] interprets string$ as a date or date-time. In case of ambiguity, a month-before-day interpretation is used.
+DateAmbiguitBreak[patt$][string$] uses the first interpretation where the \"Value\" key in the returned AmbiguityList object matches patt$.
+DateAmbiguitBreak[Function[{dates$, values$}, $$]][string$] applies a function all DateObjects and corresponding \"Value\" elements of the AmbiguityList to pick the correct date."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
 
-BreakDateAmbiguityByPattern[patt_] := BreakDateAmbiguityByPattern[Interpreter["Date" | "DateTime"], patt];
+DateAmbiguitBreak[patt_] := DateAmbiguitBreak[Interpreter["Date" | "DateTime"], patt];
 
-BreakDateAmbiguityByPattern[Interpreter[args : Shortest[__], opts : OptionsPattern[]], patt_][input_] := Block[{
+DateAmbiguitBreak[Interpreter[args : Shortest[__], opts : OptionsPattern[]], patt_][input_] := Block[{
 	dummyWrapper
 },
 	Replace[
@@ -27,7 +27,7 @@ BreakDateAmbiguityByPattern[Interpreter[args : Shortest[__], opts : OptionsPatte
 	]
 ];
 
-BreakDateAmbiguityByPattern[__][_] := $Failed;
+DateAmbiguitBreak[__][_] := $Failed;
 
 isoPattern = {"Year", "Month", "Day"};
 dayFirstPattern = {"Day", "Month", "Year"};
@@ -47,7 +47,7 @@ ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?Associa
 
 ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
 	pos = FirstPosition[assocs,
-		KeyValuePattern[{"AmbiguityType" -> "DateFormat", "Value" -> patt}],
+		KeyValuePattern[{"AmbiguityType" -> DateFormat, "Value" -> patt}],
 		$Failed,
 		{1},
 		Heads -> False

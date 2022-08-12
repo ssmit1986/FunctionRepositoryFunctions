@@ -9,8 +9,8 @@ Get["FunctionRepo`AssociationTemplate`"];
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
-BreakDateAmbiguityByPattern;
-Get["FunctionRepo`BreakDateAmbiguityByPattern`"];
+DateAmbiguitBreak;
+Get["FunctionRepo`DateAmbiguitBreak`"];
 
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
