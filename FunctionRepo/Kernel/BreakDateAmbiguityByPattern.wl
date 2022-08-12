@@ -29,10 +29,12 @@ BreakDateAmbiguityByPattern[Interpreter[args : Shortest[__], opts : OptionsPatte
 
 BreakDateAmbiguityByPattern[__][_] := $Failed;
 
-isoPattern = {___, "Year", ___, "Month", ___, "Day", ___};
+isoPattern = {"Year", "Month", "Day"};
+dayFirstPattern = {"Day", "Month", "Year"};
+monthFirstPattern = {"Month", "Day", "Year"};
 
-ambiguityBreaker["DayFirst"] := ambiguityBreaker[isoPattern | {Except["Month"]..., "Day", ___}];
-ambiguityBreaker["MonthFirst"] := ambiguityBreaker[isoPattern | {Except["Day"]..., "Month", ___}];
+ambiguityBreaker["DayFirst"] := ambiguityBreaker[isoPattern | dayFirstPattern];
+ambiguityBreaker["MonthFirst"] := ambiguityBreaker[isoPattern | monthFirstPattern];
 
 ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
 	result = fun[
@@ -45,7 +47,7 @@ ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?Associa
 
 ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
 	pos = FirstPosition[assocs,
-		KeyValuePattern[{"Value" -> patt}],
+		KeyValuePattern[{"AmbiguityType" -> "DateFormat", "Value" -> patt}],
 		$Failed,
 		{1},
 		Heads -> False
