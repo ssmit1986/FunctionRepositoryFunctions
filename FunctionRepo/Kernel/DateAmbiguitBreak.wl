@@ -45,8 +45,16 @@ ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?Associa
 	fun @ dateAssoc
 ];
 
+$elementRanking = <|"Day" -> 1, "Month" -> 2, "Year" -> 3|>;
+rankValue[l : {_, _, _}] := Lookup[$elementRanking, l, 10];
+rankValue[other_] := {10, 10, 10}; 
+
 ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
-	pos = FirstPosition[assocs,
+	pos = FirstPosition[
+		SortBy[ (* This makes sure that dd-mm-yy and mm-dd-yy win out against yy-mm-dd*)
+			AssociationThread[dates, assocs],
+			rankValue[#Value]&
+		],
 		KeyValuePattern[{"AmbiguityType" -> DateFormat, "Value" -> patt}],
 		$Failed,
 		{1},
@@ -55,7 +63,7 @@ ambiguityBreaker[patt_][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]
 },
 	Replace[pos,
 		{
-			{i_Integer} :> dates[[i]],
+			{Key[d_DateObject]} :> d,
 			_ :> $Failed
 		}
 	]
