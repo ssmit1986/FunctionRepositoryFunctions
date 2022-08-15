@@ -1019,12 +1019,12 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
-Cell["DateAmbiguitBreak", \
+Cell["DateAmbiguityBreak", \
 "Subsection",ExpressionUUID->"39bfc406-9fb8-45ef-982f-583f593e8d1f"],
 
 Cell[BoxData[
  RowBox[{"?", 
-  "DateAmbiguitBreak"}]], \
+  "DateAmbiguityBreak"}]], \
 "Input",ExpressionUUID->"2f9e4f0e-ed66-41ab-b735-503aa7d3b06f"],
 
 Cell[BoxData[{
@@ -1038,10 +1038,10 @@ Cell[BoxData[{
      "\"\<17-02-2022\>\"", ",", " ", "\"\<Feb 2 2020\>\"", ",", " ", 
      "\"\<3 Feb 2021\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"DateAmbiguitBreak", "[", "\"\<DayFirst\>\"", "]"}], "@", 
+  RowBox[{"DateAmbiguityBreak", "[", "\"\<DayFirst\>\"", "]"}], "@", 
   "dates"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"DateAmbiguitBreak", "[", "\"\<MonthFirst\>\"", "]"}], "@", 
+  RowBox[{"DateAmbiguityBreak", "[", "\"\<MonthFirst\>\"", "]"}], "@", 
   "dates"}]}], "Input",
  CellLabel->"In[161]:=",ExpressionUUID->"fce07eb9-79fd-4dca-be13-272e0bb77848"]
 }, Closed]],

@@ -9,9 +9,6 @@ Get["FunctionRepo`AssociationTemplate`"];
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
-DateAmbiguitBreak;
-Get["FunctionRepo`DateAmbiguitBreak`"];
-
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
 
@@ -35,6 +32,9 @@ Get["FunctionRepo`CopyAsExcelData`"];
 
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
+
+DateAmbiguityBreak;
+Get["FunctionRepo`DateAmbiguityBreak`"];
 
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
