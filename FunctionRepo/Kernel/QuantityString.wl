@@ -75,6 +75,19 @@ canonicalToString[boxes_] := ToExpression[
 	Function[expr, StringDelete[toInputString[Unevaluated[expr]], "\""], HoldAllComplete]
 ];
 
+stringReduce[str_String] := ReplaceRepeated[str,
+	s_String :> StringReplace[s,
+		{
+			WhitespaceCharacter... ~~ "\[InvisibleSpace]" ~~ WhitespaceCharacter... -> "",
+			WhitespaceCharacter.. ~~ ")" :> ")",
+			"(" ~~ WhitespaceCharacter.. :> "(",
+			WhitespaceCharacter.. -> " ",
+			"\"" -> "",
+			n : NumberString ~~ "`" -> n
+		}
+	]
+]
+
 boxesToString[str_String] := StringDelete["\""] @ str;
 
 boxesToString[boxes_] := Replace[
@@ -90,17 +103,7 @@ boxesToString[boxes_] := Replace[
 		}
 	],
 	{
-		s_String :> StringTrim @ StringReplace[s,
-			{
-				" \[InvisibleSpace] " -> "",
-				"\[InvisibleSpace]" -> "",
-				WhitespaceCharacter.. ~~ ")" :> ")",
-				"(" ~~ WhitespaceCharacter.. :> "(",
-				WhitespaceCharacter.. -> " ",
-				"\"" -> "",
-				n : NumberString ~~ "`" -> n
-			}
-		],
+		s_String :> StringTrim @ stringReduce[s],
 		_ -> $Failed
 	}
 ];
