@@ -10,8 +10,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->
-  "In[156]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[79]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -3509,6 +3508,45 @@ Cell[BoxData[{
     RowBox[{"1", "+", "1"}], "]"}], ",", 
    RowBox[{"{", "1", "}"}]}], "]"}]}], "Input",
  CellLabel->"In[38]:=",ExpressionUUID->"584a5202-8e73-400a-9f71-457d29e6bfb1"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["QuantityString", \
+"Subsection",ExpressionUUID->"1c6a0433-61fd-4828-82fa-66569477a38c"],
+
+Cell[BoxData[
+ RowBox[{"?", "QuantityString"}]], "Input",
+ CellLabel->"In[81]:=",ExpressionUUID->"129de09a-1998-4288-9da8-43c97bb1e44e"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->
+  "In[131]:=",ExpressionUUID->"ffe72d8d-0184-41fb-a3d5-5f819f108d48"],
+
+Cell[BoxData[
+ RowBox[{"QuantityString", "[", 
+  RowBox[{"Quantity", "[", 
+   RowBox[{"1.4", ",", 
+    RowBox[{
+     RowBox[{"(", "\"\<Meters\>\"", ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"\"\<Kilograms\>\"", " ", 
+       RowBox[{
+        RowBox[{"(", "\"\<Seconds\>\"", ")"}], "^", "2"}]}], ")"}]}]}], "]"}],
+   "]"}]], "Input",ExpressionUUID->"8213ccff-0d67-4952-b482-f66462466845"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "#"}], "]"}], "&"}], "/@", 
+  RowBox[{"{", 
+   RowBox[{
+   "\"\<Yen\>\"", ",", "\"\<Euros\>\"", ",", "\"\<USDollars\>\"", ",", 
+    "\"\<Rubles\>\""}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"QuantityString", "/@", "%"}]}], "Input",
+ CellLabel->"In[134]:=",ExpressionUUID->"3ef0c199-643d-4a32-a959-00d8f26fc96e"]
 }, Closed]],
 
 Cell[CellGroupData[{

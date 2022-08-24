@@ -101,6 +101,9 @@ Get["FunctionRepo`OpenTestWritingPalette`"];
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
 
+QuantityString;
+Get["FunctionRepo`QuantityString`"];
+
 ScalableContentWindow;
 Get["FunctionRepo`ScalableContentWindow`"];
 
