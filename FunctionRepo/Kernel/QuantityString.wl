@@ -18,7 +18,7 @@ QuantityString[q_?QuantityQ] := With[{
 			box : TemplateBox[l_List, tag_String, ___] :> Replace[
 				UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]],
 				{
-					f_Function :> boxesToString[f @@ l],
+					f_Function :> boxesToString[f @@ MapAt[" " <> # <> " "&, l, {1}]],
 					_ -> $Failed
 				}
 			],
@@ -89,8 +89,14 @@ stringReduce[str_String] := ReplaceRepeated[str,
 	]
 ];
 
-addParentheses[s_String /; StringMatchQ[s, WhitespaceCharacter... | LetterCharacter.. | NumberString]] := s;
-addParentheses[s_String] := "(" <> StringTrim[s] <> ")";
+addParentheses[s_String] := With[{
+	trimmed = StringTrim[s, ("\"" | WhitespaceCharacter)..]
+},
+	If[ StringMatchQ[trimmed, "" | LetterCharacter.. | NumberString],
+		trimmed,
+		"(" <> trimmed <> ")"
+	]
+];
 
 boxesToString[str_String] := StringDelete["\""] @ str;
 
@@ -101,9 +107,9 @@ boxesToString[boxes_] := Replace[
 			(StyleBox | TagBox | FormBox | InterpretationBox | TooltipBox | PanelBox)[b_, ___] :> b,
 			SqrtBox[n_String] :> SuperscriptBox[n, "(1/2)"],
 			RadicalBox[a_String, b_String] :> SuperscriptBox[a, addParentheses["1/" <> addParentheses[b]]],
-			SuperscriptBox[s_String, n_String] :> s <> "^" <> n <> " ",
+			SuperscriptBox[s_String, n_String] :> addParentheses[s] <> "^" <> addParentheses[n],
 			FractionBox[p_String, q_String] :> addParentheses[addParentheses[p] <> "/" <> addParentheses[q]],
-			RowBox[strings : {___String}] :> StringDelete[StringRiffle[strings], "\""]
+			RowBox[strings : {___String}] :> StringDelete[StringJoin[strings], "\""]
 		}
 	],
 	{
