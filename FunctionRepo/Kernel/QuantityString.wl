@@ -83,7 +83,7 @@ stringReduce[str_String] := ReplaceRepeated[str,
 			"(" ~~ WhitespaceCharacter.. :> "(",
 			WhitespaceCharacter.. -> " ",
 			"\"" -> "",
-			n : NumberString ~~ "`" -> n
+			n : NumberString ~~ "`" :> n
 		}
 	]
 ]
