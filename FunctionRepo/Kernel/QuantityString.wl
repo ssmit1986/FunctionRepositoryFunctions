@@ -15,10 +15,13 @@ QuantityString[q_?QuantityQ] := With[{
 	Replace[
 		boxes,
 		{
-			box : TemplateBox[l_List, tag_String, ___] :> Replace[
+			box : TemplateBox[list : {__}, tag_String, ___] :> Replace[
 				UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]],
 				{
-					f_Function :> boxesToString[f @@ MapAt[" " <> # <> " "&, l, {1}]],
+					f_Function :> boxesToString[
+						(* Add space between the magnitude and the units *)
+						f @@ MapAt[RowBox[{# , " "}]&, list, {1}]
+					],
 					_ -> $Failed
 				}
 			],
@@ -89,23 +92,75 @@ stringReduce[str_String] := ReplaceRepeated[str,
 	]
 ];
 
+$parenthesesExceptions = Alternatives[
+	"",
+	LetterCharacter..,
+	NumberString,
+	"(" ~~ ___ ~~ ")"
+];
+
 addParentheses[s_String] := With[{
-	trimmed = StringTrim[s, ("\"" | WhitespaceCharacter)..]
+	trimmed = StringTrim[StringDelete[s, "\""]]
 },
-	If[ StringMatchQ[trimmed, "" | LetterCharacter.. | NumberString],
+	If[ StringMatchQ[trimmed, $parenthesesExceptions],
 		trimmed,
 		"(" <> trimmed <> ")"
 	]
 ];
 
+cleanupBoxes[boxes_] := boxes //. {
+	(StyleBox | TagBox | FormBox | InterpretationBox | TooltipBox | PanelBox)[b_, ___] :> b,
+	SqrtBox[b_] :> RadicalBox[b, "2"],
+	RadicalBox[b_, n_] :> SuperscriptBox[b, FractionBox["1", n]],
+	SuperscriptBox["\[Null]", s_String /; StringMatchQ[s, "\[Prime]"..]] :> StringRepeat["'", StringLength[s]]
+};
+
+deleteQuotes[expr_] := expr /. s_String :> StringDelete[s, "\""];
+
+$ignorableSpaceCharacter = Alternatives[
+	"\[NegativeVeryThinSpace]", "\[NegativeThinSpace]",
+	"\[NegativeMediumSpace]", "\[NegativeThickSpace]",
+	"\[VeryThinSpace]"
+];
+
+replaceWhitespace[expr_] := expr /. s_String :> StringReplace[
+	s,
+	{
+		$ignorableSpaceCharacter -> "\[InvisibleSpace]",
+		Except["\[InvisibleSpace]", WhitespaceCharacter] :> " "
+	}
+];
+
+exportBoxes[boxes_] := Replace[
+	UsingFrontEnd[
+		FrontEndExecute[
+			FrontEnd`ExportPacket[BoxData[boxes], "PlainText"]
+		]
+	],
+	{
+		{s_String, __} :> s,
+		_ -> $Failed
+	}
+];
+
+boxesToString[boxes_] := StringReplace[
+	StringTrim @ exportBoxes[
+		replaceWhitespace @ deleteQuotes @ cleanupBoxes[boxes]
+	],
+	{
+		WhitespaceCharacter.. ~~ "'" :> "'",
+		WhitespaceCharacter.. :> " "
+	}
+];
+
+(*
 boxesToString[str_String] := StringDelete["\""] @ str;
 
 boxesToString[boxes_] := Replace[
 	ReplaceRepeated[
-		boxes,
+		stripMetaBoxes[boxes],
 		{
-			(StyleBox | TagBox | FormBox | InterpretationBox | TooltipBox | PanelBox)[b_, ___] :> b,
-			SqrtBox[n_String] :> SuperscriptBox[n, "(1/2)"],
+			SqrtBox[n_String] :> SuperscriptBox[n, "1/2"],
 			RadicalBox[a_String, b_String] :> SuperscriptBox[a, addParentheses["1/" <> addParentheses[b]]],
 			SuperscriptBox[s_String, n_String] :> addParentheses[s] <> "^" <> addParentheses[n],
 			FractionBox[p_String, q_String] :> addParentheses[addParentheses[p] <> "/" <> addParentheses[q]],
@@ -117,6 +172,7 @@ boxesToString[boxes_] := Replace[
 		_ -> $Failed
 	}
 ];
+*)
 
 End[] (* End Private Context *)
 
