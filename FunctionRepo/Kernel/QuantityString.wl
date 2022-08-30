@@ -4,6 +4,7 @@ BeginPackage["FunctionRepo`QuantityString`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[QuantityString,
 	"QuantityString[q$] creates a linear string that resembles the way that q$ is typeset in the FrontEnd.
+QuantityString[q$, \"Canonical\"] attempts to create an abbreviated form of the canonical representation of the unit of q$.
 QuantityString[q$, template$] uses a template to typeset the output."
 ];
 
@@ -27,6 +28,29 @@ QuantityString[q_?QuantityQ] := With[{
 			],
 			_ -> $Failed
 		}
+	]
+];
+
+QuantityString[q_?QuantityQ, "Canonical"] := With[{
+	mag = QuantityMagnitude[q],
+	unit = QuantityUnit[q]
+},
+	If[ And[
+			Head[mag] === MixedMagnitude,
+			Head[unit] === MixedUnit,
+			Length[First[unit]] === Length[First[mag]]
+		],
+		StringRiffle @ MapThread[
+			QuantityString @ Quantity[#1, #2]&,
+			{
+				First[mag],
+				First[unit]
+			}
+		],
+		StringTemplate["`1` `2`"][
+			mag,
+			canonicalUnitShort[unit]
+		]
 	]
 ];
 
@@ -55,11 +79,16 @@ quantityElementStrings[q_] := With[{
 				{_, args__, canonical_},
 				_String?(StringStartsQ["Quantity"]),
 				___
-			] :> {
-				toInputString[QuantityMagnitude[q]],
-				Sequence @@ Map[boxesToString, {args}],
-				canonicalToString[canonical]
+			] :> With[{
+				unit = QuantityUnit[q]
 			},
+				{
+					toInputString[QuantityMagnitude[q]],
+					Sequence @@ Map[boxesToString, {args}],
+					canonicalUnitToString[unit],
+					canonicalUnitShort[unit]
+				}
+			],
 			_ -> $Failed
 		}
 	]
@@ -70,12 +99,25 @@ quantityElementStrings[q_] := With[{
 	]
 ];
 
-toInputString[expr_] := ToString[Unevaluated @ expr, InputForm];
+deleteQuotes[expr_] := expr /. s_String :> StringDelete[s, "\""];
 
-canonicalToString[boxes_] := ToExpression[
-	boxes,
-	StandardForm,
-	Function[expr, StringDelete[toInputString[Unevaluated[expr]], "\""], HoldAllComplete]
+toInputString[expr_] := deleteQuotes @ ToString[Unevaluated @ expr, InputForm];
+
+replaceMultiplicationSigns[expr_] := expr /. s_String :> StringReplace[s, "*" -> " "];
+
+canonicalUnitToString[unit_] := replaceMultiplicationSigns @ toInputString[
+	Replace[unit, MixedUnit[l_List] :> l]
+];
+
+canonicalUnitShort[MixedUnit[l_List]] := replaceMultiplicationSigns @ toInputString[canonicalUnitShort /@ l];
+
+canonicalUnitShort[unit_] := replaceMultiplicationSigns @ toInputString[
+	ReplaceAll[
+		unit,
+		s_String :> StringTrim[
+			StringReplace[ToString @ QuantityForm[s, "Abbreviation"], WhitespaceCharacter.. -> " "]
+		]
+	]
 ];
 
 stringReduce[str_String] := ReplaceRepeated[str,
@@ -100,7 +142,7 @@ $parenthesesExceptions = Alternatives[
 ];
 
 addParentheses[s_String] := With[{
-	trimmed = StringTrim[StringDelete[s, "\""]]
+	trimmed = StringTrim @ deleteQuotes[s]
 },
 	If[ StringMatchQ[trimmed, $parenthesesExceptions],
 		trimmed,
@@ -114,8 +156,6 @@ cleanupBoxes[boxes_] := boxes //. {
 	RadicalBox[b_, n_] :> SuperscriptBox[b, FractionBox["1", n]],
 	SuperscriptBox["\[Null]", s_String /; StringMatchQ[s, "\[Prime]"..]] :> StringRepeat["'", StringLength[s]]
 };
-
-deleteQuotes[expr_] := expr /. s_String :> StringDelete[s, "\""];
 
 $ignorableSpaceCharacter = Alternatives[
 	"\[NegativeVeryThinSpace]", "\[NegativeThinSpace]",
@@ -152,27 +192,6 @@ boxesToString[boxes_] := StringReplace[
 		WhitespaceCharacter.. :> " "
 	}
 ];
-
-(*
-boxesToString[str_String] := StringDelete["\""] @ str;
-
-boxesToString[boxes_] := Replace[
-	ReplaceRepeated[
-		stripMetaBoxes[boxes],
-		{
-			SqrtBox[n_String] :> SuperscriptBox[n, "1/2"],
-			RadicalBox[a_String, b_String] :> SuperscriptBox[a, addParentheses["1/" <> addParentheses[b]]],
-			SuperscriptBox[s_String, n_String] :> addParentheses[s] <> "^" <> addParentheses[n],
-			FractionBox[p_String, q_String] :> addParentheses[addParentheses[p] <> "/" <> addParentheses[q]],
-			RowBox[strings : {___String}] :> StringDelete[StringJoin[strings], "\""]
-		}
-	],
-	{
-		s_String :> StringTrim @ stringReduce[s],
-		_ -> $Failed
-	}
-];
-*)
 
 End[] (* End Private Context *)
 

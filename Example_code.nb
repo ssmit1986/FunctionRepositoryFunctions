@@ -10,7 +10,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[79]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[3]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -3521,24 +3521,30 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->
-  "In[157]:=",ExpressionUUID->"ffe72d8d-0184-41fb-a3d5-5f819f108d48"],
+ CellLabel->"In[59]:=",ExpressionUUID->"ffe72d8d-0184-41fb-a3d5-5f819f108d48"],
 
-Cell[BoxData[
- RowBox[{"QuantityString", "[", 
-  RowBox[{
-   RowBox[{"Quantity", "[", 
-    RowBox[{"1.4", ",", 
-     RowBox[{
-      RowBox[{"(", "\"\<Meters\>\"", ")"}], "/", 
-      RowBox[{"(", 
-       RowBox[{"\"\<Kilograms\>\"", " ", 
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"q", "=", 
+   TagBox[
+    StyleBox[
+     RowBox[{"Quantity", "[", 
+      RowBox[{"1.24", ",", 
+       FractionBox[
         RowBox[{
-         RowBox[{"(", "\"\<Seconds\>\"", ")"}], "^", "2"}]}], ")"}]}]}], 
-    "]"}], ",", "\"\<`Magnitude` `Abbreviation` (`LongForm`)\>\""}], 
-  "]"}]], "Input",
- CellLabel->
-  "In[158]:=",ExpressionUUID->"8213ccff-0d67-4952-b482-f66462466845"],
+         SuperscriptBox["\"\<Millimeters\>\"", "3"], "\"\<Kelvins\>\""}], 
+        RowBox[{"\"\<Kilograms\>\"", " ", 
+         SuperscriptBox["\"\<Seconds\>\"", "2"]}]]}], "]"}],
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    FullForm]}], ";"}], "\n", 
+ RowBox[{"QuantityString", "[", "q", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"QuantityString", "[", 
+  RowBox[{"q", ",", "\"\<Canonical\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"QuantityString", "[", 
+  RowBox[{"q", ",", "\"\<`1` `2` (`3`)\>\""}], "]"}]}], "Input",
+ CellLabel->"In[62]:=",ExpressionUUID->"ececcdea-0105-465a-bc60-34a99ec9f4f8"],
 
 Cell[BoxData[{
  RowBox[{
@@ -3550,7 +3556,7 @@ Cell[BoxData[{
    "\"\<Yen\>\"", ",", "\"\<Euros\>\"", ",", "\"\<USDollars\>\"", ",", 
     "\"\<Rubles\>\""}], "}"}]}], "\[IndentingNewLine]", 
  RowBox[{"QuantityString", "/@", "%"}]}], "Input",
- CellLabel->"In[163]:=",ExpressionUUID->"3ef0c199-643d-4a32-a959-00d8f26fc96e"]
+ CellLabel->"In[66]:=",ExpressionUUID->"3ef0c199-643d-4a32-a959-00d8f26fc96e"]
 }, Closed]],
 
 Cell[CellGroupData[{
