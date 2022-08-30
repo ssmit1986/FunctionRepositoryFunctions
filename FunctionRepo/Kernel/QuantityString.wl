@@ -3,33 +3,14 @@
 BeginPackage["FunctionRepo`QuantityString`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[QuantityString,
-	"QuantityString[q$] creates a linear string that resembles the way that q$ is typeset in the FrontEnd.
-QuantityString[q$, \"Canonical\"] attempts to create an abbreviated form of the canonical representation of the unit of q$.
+	"QuantityString[q$] attempts to create an abbreviated form of the canonical representation of the unit of q$.
+QuantityString[q$, \"BoxForm\"] creates a linear string that resembles the way that q$ is typeset in the FrontEnd.
 QuantityString[q$, template$] uses a template to typeset the output."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
 
-QuantityString[q_?QuantityQ] := With[{
-	boxes = ToBoxes[q, StandardForm]
-},
-	Replace[
-		boxes,
-		{
-			box : TemplateBox[list : {__}, tag_String, ___] :> Replace[
-				UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]],
-				{
-					f_Function :> boxesToString[
-						(* Add space between the magnitude and the units *)
-						f @@ MapAt[RowBox[{# , " "}]&, list, {1}]
-					],
-					_ -> $Failed
-				}
-			],
-			_ -> $Failed
-		}
-	]
-];
+QuantityString[q_] := QuantityString[q, "Canonical"];
 
 QuantityString[q_?QuantityQ, "Canonical"] := With[{
 	mag = QuantityMagnitude[q],
@@ -51,6 +32,27 @@ QuantityString[q_?QuantityQ, "Canonical"] := With[{
 			mag,
 			canonicalUnitShort[unit]
 		]
+	]
+];
+
+QuantityString[q_?QuantityQ, "BoxForm"] := With[{
+	boxes = ToBoxes[q, StandardForm]
+},
+	Replace[
+		boxes,
+		{
+			box : TemplateBox[list : {__}, tag_String, ___] :> Replace[
+				UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]],
+				{
+					f_Function :> boxesToString[
+						(* Add space between the magnitude and the units *)
+						f @@ MapAt[RowBox[{# , " "}]&, list, {1}]
+					],
+					_ -> $Failed
+				}
+			],
+			_ -> $Failed
+		}
 	]
 ];
 
