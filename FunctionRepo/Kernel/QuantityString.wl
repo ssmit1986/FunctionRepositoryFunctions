@@ -103,7 +103,15 @@ quantityElementStrings[q_] := With[{
 
 deleteQuotes[expr_] := expr /. s_String :> StringDelete[s, "\""];
 
-toInputString[expr_] := deleteQuotes @ ToString[Unevaluated @ expr, InputForm];
+toInputString[expr_] := deleteQuotes @ ToString[
+	ReplaceAll[expr,
+		{
+			Power[x_, 1/2] :> Power[x, SequenceForm[1] / 2], (* Make sure you get x^(1/2) instead of Sqrt[x] *)
+			Power[x_, -1/2] :> Power[x, -SequenceForm[1] / 2]
+		}
+	],
+	InputForm
+];
 
 replaceMultiplicationSigns[expr_] := expr /. s_String :> StringReplace[s, "*" -> " "];
 
