@@ -38,21 +38,21 @@ QuantityString[q_?QuantityQ, "Canonical"] := With[{
 QuantityString[q_?QuantityQ, "BoxForm"] := With[{
 	boxes = ToBoxes[q, StandardForm]
 },
-	Replace[
-		boxes,
-		{
-			box : TemplateBox[list : {__}, tag_String, ___] :> Replace[
-				UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]],
-				{
-					f_Function :> boxesToString[
+	Catch[
+		boxesToString @ ReplaceAll[
+			boxes,
+			{
+				box : TemplateBox[list : {__}, tag_String /; StringContainsQ[tag, "Quantity"], ___] :> Replace[
+					UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]],
+					{
 						(* Add space between the magnitude and the units *)
-						f @@ MapAt[RowBox[{# , " "}]&, list, {1}]
-					],
-					_ -> $Failed
-				}
-			],
-			_ -> $Failed
-		}
+						f_Function :> f @@ MapAt[RowBox[{# , " "}]&, list, {1}],
+						_ :> Throw[$Failed, $quantityTemplateBoxTag]
+					}
+				]
+			}
+		],
+		$quantityTemplateBoxTag
 	]
 ];
 
@@ -120,6 +120,12 @@ canonicalUnitToString[unit_] := replaceMultiplicationSigns @ toInputString[
 ];
 
 canonicalUnitShort[MixedUnit[l_List]] := replaceMultiplicationSigns @ toInputString[canonicalUnitShort /@ l];
+
+canonicalUnitShort[DatedUnit[unit_, date_]] := StringTemplate["`1` (`2` `3`)"][
+	canonicalUnitShort[unit],
+	canonicalUnitToString[unit],
+	DateString[DateObject[date], "ISODate"]
+];
 
 canonicalUnitShort[unit_] := replaceMultiplicationSigns @ toInputString[
 	ReplaceAll[
