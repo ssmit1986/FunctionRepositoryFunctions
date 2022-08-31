@@ -74,6 +74,9 @@ Get["FunctionRepo`KeyComplete`"];
 kullbackLeiblerDivergence;
 Get["FunctionRepo`kullbackLeiblerDivergence`"];
 
+LogSumExpLayer;
+Get["FunctionRepo`LogSumExpLayer`"];
+
 maximumSpacingEstimation;
 Get["FunctionRepo`maximumSpacingEstimation`"];
 

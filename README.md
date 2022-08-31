@@ -19,6 +19,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [CrossValidateModel](https://resources.wolframcloud.com/FunctionRepository/resources/CrossValidateModel)
 
+* [DateAmbiguityBreak](https://resources.wolframcloud.com/FunctionRepository/resources/DateAmbiguityBreak)
+
 * [ExpressionToFunction](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunction)
 
 * [ExpressionToFunctionOperator](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunctionOperator)
@@ -31,13 +33,15 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [KullbackLeiblerDivergence](https://resources.wolframcloud.com/FunctionRepository/resources/KullbackLeiblerDivergence)
 
+* [LogSumExpLayer](https://resources.wolframcloud.com/FunctionRepository/resources/LogSumExpLayer)
+
 * [MergeByKey](https://resources.wolframcloud.com/FunctionRepository/resources/MergeByKey)
 
 * [MergeNested](https://resources.wolframcloud.com/FunctionRepository/resources/MergeNested)
 
 * [MonitorFile](https://resources.wolframcloud.com/FunctionRepository/resources/MonitorFile/)
 
-* OpenTestWritingPalette (submitted)
+* [OpenTestWritingPalette](https://resources.wolframcloud.com/FunctionRepository/resources/OpenTestWritingPalette)
 
 * [PositionQ](https://resources.wolframcloud.com/FunctionRepository/resources/PositionQ/)
 

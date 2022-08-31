@@ -2275,6 +2275,48 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["LogSumExpLayer", \
+"Subsection",ExpressionUUID->"322fb123-703e-46bd-b4a0-2816c8b1f4ca"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"08b33074-8f30-4cf9-8810-2a8e06a1a702"],
+
+Cell[BoxData[
+ RowBox[{"?", "LogSumExpLayer"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"06311631-3588-483f-8c10-fb245014c5b8"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"matrix", "=", 
+   RowBox[{"RandomReal", "[", 
+    RowBox[{"1", ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "3", ",", "4", ",", "5"}], "}"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"LogSumExpLayer", "[", "]"}], "@", 
+  "matrix"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "[", "%", "]"}]}], "Input",
+ CellLabel->"In[14]:=",ExpressionUUID->"0df036c9-ea2d-4d12-9931-23496aa86ab0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"LogSumExpLayer", "[", 
+   RowBox[{"{", "2", "}"}], "]"}], "@", "matrix"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "[", "%", "]"}]}], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"7b8b1f3b-f951-4da9-b7e9-cbf0de3ba681"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"LogSumExpLayer", "[", "All", "]"}], "@", 
+  "matrix"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "[", "%", "]"}]}], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"54b6f324-d744-43b2-9a6c-60b1d1f980a2"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["maximumSpacingEstimation", \
 "Subsection",ExpressionUUID->"e7f25d6e-d412-498b-92a0-f28a46aa5a37"],
 
@@ -2885,6 +2927,7 @@ associationOfAssociationQ"}], "}"}]}], ",",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
+            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
