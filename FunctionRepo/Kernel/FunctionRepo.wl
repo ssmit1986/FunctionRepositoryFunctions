@@ -33,6 +33,9 @@ Get["FunctionRepo`CopyAsExcelData`"];
 CrossValidateModel;
 Get["FunctionRepo`CrossValidateModel`"];
 
+DateAmbiguityBreak;
+Get["FunctionRepo`DateAmbiguityBreak`"];
+
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
 
@@ -71,6 +74,9 @@ Get["FunctionRepo`KeyComplete`"];
 kullbackLeiblerDivergence;
 Get["FunctionRepo`kullbackLeiblerDivergence`"];
 
+LogSumExpLayer;
+Get["FunctionRepo`LogSumExpLayer`"];
+
 maximumSpacingEstimation;
 Get["FunctionRepo`maximumSpacingEstimation`"];
 
@@ -97,6 +103,9 @@ Get["FunctionRepo`OpenTestWritingPalette`"];
 
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
+
+QuantityString;
+Get["FunctionRepo`QuantityString`"];
 
 ScalableContentWindow;
 Get["FunctionRepo`ScalableContentWindow`"];

@@ -1,6 +1,7 @@
 Notebook[{
 Cell[BoxData["Quit"], "Input",
- CellLabel->"In[57]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
+ CellLabel->
+  "In[144]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
 
 Cell[BoxData[{
  RowBox[{
@@ -9,7 +10,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[24]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[3]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1013,6 +1014,35 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"val", "//", "TableForm"}]}], "Input",
  CellLabel->"In[14]:=",ExpressionUUID->"c7566495-73d8-4323-bcb1-fa905a691565"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["DateAmbiguityBreak", \
+"Subsection",ExpressionUUID->"39bfc406-9fb8-45ef-982f-583f593e8d1f"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "DateAmbiguityBreak"}]], \
+"Input",ExpressionUUID->"2f9e4f0e-ed66-41ab-b735-503aa7d3b06f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dates", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<11-02-2022T15:30:24\>\"", ",", "\"\<12-02-2022\>\"", ",", 
+     "\"\<13-02-2022\>\"", ",", "\"\<14-02-2022\>\"", ",", 
+     "\"\<15-02-2022\>\"", ",", "\"\<16-02-2022\>\"", ",", 
+     "\"\<17-02-2022\>\"", ",", " ", "\"\<Feb 2 2020\>\"", ",", " ", 
+     "\"\<3 Feb 2021\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DateAmbiguityBreak", "[", "\"\<DayFirst\>\"", "]"}], "@", 
+  "dates"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DateAmbiguityBreak", "[", "\"\<MonthFirst\>\"", "]"}], "@", 
+  "dates"}]}], "Input",
+ CellLabel->"In[161]:=",ExpressionUUID->"fce07eb9-79fd-4dca-be13-272e0bb77848"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -2241,6 +2271,48 @@ Cell[BoxData[
      RowBox[{"0", ",", "0", ",", "1"}], "}"}], "]"}]}], "\[IndentingNewLine]",
    "]"}]], "Input",
  CellLabel->"In[70]:=",ExpressionUUID->"200811e0-9976-442e-8d63-800751e9f445"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["LogSumExpLayer", \
+"Subsection",ExpressionUUID->"322fb123-703e-46bd-b4a0-2816c8b1f4ca"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"08b33074-8f30-4cf9-8810-2a8e06a1a702"],
+
+Cell[BoxData[
+ RowBox[{"?", "LogSumExpLayer"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"06311631-3588-483f-8c10-fb245014c5b8"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"matrix", "=", 
+   RowBox[{"RandomReal", "[", 
+    RowBox[{"1", ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "3", ",", "4", ",", "5"}], "}"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"LogSumExpLayer", "[", "]"}], "@", 
+  "matrix"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "[", "%", "]"}]}], "Input",
+ CellLabel->"In[14]:=",ExpressionUUID->"0df036c9-ea2d-4d12-9931-23496aa86ab0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"LogSumExpLayer", "[", 
+   RowBox[{"{", "2", "}"}], "]"}], "@", "matrix"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "[", "%", "]"}]}], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"7b8b1f3b-f951-4da9-b7e9-cbf0de3ba681"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"LogSumExpLayer", "[", "All", "]"}], "@", 
+  "matrix"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "[", "%", "]"}]}], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"54b6f324-d744-43b2-9a6c-60b1d1f980a2"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -3479,6 +3551,55 @@ Cell[BoxData[{
     RowBox[{"1", "+", "1"}], "]"}], ",", 
    RowBox[{"{", "1", "}"}]}], "]"}]}], "Input",
  CellLabel->"In[38]:=",ExpressionUUID->"584a5202-8e73-400a-9f71-457d29e6bfb1"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["QuantityString", \
+"Subsection",ExpressionUUID->"1c6a0433-61fd-4828-82fa-66569477a38c"],
+
+Cell[BoxData[
+ RowBox[{"?", "QuantityString"}]], "Input",
+ CellLabel->"In[81]:=",ExpressionUUID->"129de09a-1998-4288-9da8-43c97bb1e44e"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[59]:=",ExpressionUUID->"ffe72d8d-0184-41fb-a3d5-5f819f108d48"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"q", "=", 
+   TagBox[
+    StyleBox[
+     RowBox[{"Quantity", "[", 
+      RowBox[{"1.24", ",", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["\"\<Millimeters\>\"", "3"], "\"\<Kelvins\>\""}], 
+        RowBox[{"\"\<Kilograms\>\"", " ", 
+         SuperscriptBox["\"\<Seconds\>\"", "2"]}]]}], "]"}],
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    FullForm]}], ";"}], "\n", 
+ RowBox[{"QuantityString", "[", "q", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"QuantityString", "[", 
+  RowBox[{"q", ",", "\"\<Canonical\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"QuantityString", "[", 
+  RowBox[{"q", ",", "\"\<`1` `2` (`3`)\>\""}], "]"}]}], "Input",
+ CellLabel->"In[62]:=",ExpressionUUID->"ececcdea-0105-465a-bc60-34a99ec9f4f8"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"2.5", ",", "#"}], "]"}], "&"}], "/@", 
+  RowBox[{"{", 
+   RowBox[{
+   "\"\<Yen\>\"", ",", "\"\<Euros\>\"", ",", "\"\<USDollars\>\"", ",", 
+    "\"\<Rubles\>\""}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"QuantityString", "/@", "%"}]}], "Input",
+ CellLabel->"In[66]:=",ExpressionUUID->"3ef0c199-643d-4a32-a959-00d8f26fc96e"]
 }, Closed]],
 
 Cell[CellGroupData[{
