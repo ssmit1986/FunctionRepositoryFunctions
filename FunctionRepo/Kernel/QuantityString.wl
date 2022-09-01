@@ -14,7 +14,7 @@ QuantityString[q_] := QuantityString[q, "Canonical"];
 
 QuantityString[q_?QuantityQ, "Canonical"] := With[{
 	mag = QuantityMagnitude[q],
-	unit = QuantityUnit[q]
+	unit = PowerExpand @ QuantityUnit[q]
 },
 	If[ And[
 			Head[mag] === MixedMagnitude,
@@ -82,7 +82,7 @@ quantityElementStrings[q_] := With[{
 				_String?(StringStartsQ["Quantity"]),
 				___
 			] :> With[{
-				unit = QuantityUnit[q]
+				unit = PowerExpand @ QuantityUnit[q]
 			},
 				{
 					toInputString[QuantityMagnitude[q]],
@@ -104,22 +104,22 @@ quantityElementStrings[q_] := With[{
 deleteQuotes[expr_] := expr /. s_String :> StringDelete[s, "\""];
 
 toInputString[expr_] := deleteQuotes @ ToString[
-	ReplaceAll[expr,
-		{
-			Power[x_, 1/2] :> Power[x, SequenceForm[1] / 2], (* Make sure you get x^(1/2) instead of Sqrt[x] *)
-			Power[x_, -1/2] :> Power[x, -SequenceForm[1] / 2]
-		}
-	],
+	expr,
 	InputForm
 ];
 
-replaceMultiplicationSigns[expr_] := expr /. s_String :> StringReplace[s, "*" -> " "];
+cleanupInputStrings[expr_] := expr //. s_String :> StringReplace[s,
+	{
+		"*" -> " ",
+		"Sqrt[" ~~ root : Shortest[__] ~~ "]" :> root <> "^(1/2)"
+	}
+];
 
-canonicalUnitToString[unit_] := replaceMultiplicationSigns @ toInputString[
+canonicalUnitToString[unit_] := cleanupInputStrings @ toInputString[
 	Replace[unit, MixedUnit[l_List] :> l]
 ];
 
-canonicalUnitShort[MixedUnit[l_List]] := replaceMultiplicationSigns @ toInputString[canonicalUnitShort /@ l];
+canonicalUnitShort[MixedUnit[l_List]] := toInputString[canonicalUnitShort /@ l];
 
 canonicalUnitShort[DatedUnit[unit_, date_]] := StringTemplate["`1` (`2` `3`)"][
 	canonicalUnitShort[unit],
@@ -127,42 +127,12 @@ canonicalUnitShort[DatedUnit[unit_, date_]] := StringTemplate["`1` (`2` `3`)"][
 	DateString[DateObject[date], "ISODate"]
 ];
 
-canonicalUnitShort[unit_] := replaceMultiplicationSigns @ toInputString[
+canonicalUnitShort[unit_] := cleanupInputStrings @ toInputString[
 	ReplaceAll[
 		unit,
 		s_String :> StringTrim[
 			StringReplace[ToString @ QuantityForm[s, "Abbreviation"], WhitespaceCharacter.. -> " "]
 		]
-	]
-];
-
-stringReduce[str_String] := ReplaceRepeated[str,
-	s_String :> StringReplace[s,
-		{
-			WhitespaceCharacter... ~~ "\[InvisibleSpace]" ~~ WhitespaceCharacter... -> "",
-			WhitespaceCharacter.. ~~ ")" :> ")",
-			"(" ~~ WhitespaceCharacter.. :> "(",
-			WhitespaceCharacter.. -> " ",
-			"\"" -> "",
-			n : NumberString ~~ "`" :> n,
-			"^" ~~ primes : "\[Prime]".. :> StringRepeat["'", StringLength[primes]]
-		}
-	]
-];
-
-$parenthesesExceptions = Alternatives[
-	"",
-	LetterCharacter..,
-	NumberString,
-	"(" ~~ ___ ~~ ")"
-];
-
-addParentheses[s_String] := With[{
-	trimmed = StringTrim @ deleteQuotes[s]
-},
-	If[ StringMatchQ[trimmed, $parenthesesExceptions],
-		trimmed,
-		"(" <> trimmed <> ")"
 	]
 ];
 
