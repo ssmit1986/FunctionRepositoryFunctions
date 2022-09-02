@@ -43,6 +43,9 @@ ExpressionToFunction;
 ExpressionToFunctionOperator;
 Get["FunctionRepo`ExpressionToFunction`"];
 
+FileTreePicker;
+Get["FunctionRepo`FileTreePicker`"];
+
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
 
