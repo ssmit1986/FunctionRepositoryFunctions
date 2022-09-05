@@ -13,12 +13,17 @@ FileTreePicker[files_] := FileTreePicker[files, SystemDialogInput["Directory"]];
 FileTreePicker[files_, dir_] := FileTreePicker[files, dir, Infinity];
 
 FileTreePicker[Dynamic[files_], dir_?DirectoryQ, depth_] := Enclose[
-	If[ !ListQ[files], files = {}];
-	viewer[
-		ConfirmBy[
-			FileSystemMap[
-				Function[file,
-					Checkbox[
+	Module[{
+		fileAssoc
+	},
+		fileAssoc = ConfirmBy[FileSystemMap[#&, dir, depth], AssociationQ];
+		If[ !ListQ[files], files = {}];
+		files = Intersection[files, Cases[fileAssoc, _String, {-1}]];
+		viewer[
+			fileAssoc //. {
+				a_Association :> Normal[a], 
+				Verbatim[Rule][s_String, file_String] :> With[{
+					checkbox = Checkbox[
 						Dynamic[
 							MemberQ[files, file],
 							Function[
@@ -29,15 +34,11 @@ FileTreePicker[Dynamic[files_], dir_?DirectoryQ, depth_] := Enclose[
 							]
 						]
 					]
-				],
-				dir,
-				depth
-			],
-			AssociationQ
-		] //. {
-			a_Association :> Normal[a], 
-			Verbatim[Rule][s_String, el_Checkbox] :> Row[{s, " ", el}]
-		}
+				},
+					Row[{checkbox, " ", s}]
+				]
+			}
+		]
 	]
 ];
 
@@ -46,7 +47,7 @@ FileTreePicker[___] := $Failed;
 viewer[list_List] := Column[
 	Replace[
 		list,
-		r_Rule :> OpenerView[{First[r], viewer[Last[r]]}],
+		r_Rule :> OpenerView[{First[r], viewer[Last[r]]}, Method -> "Active"],
 		{1}
 	]
 ];
