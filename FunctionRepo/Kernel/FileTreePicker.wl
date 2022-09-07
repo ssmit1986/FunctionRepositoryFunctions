@@ -23,19 +23,10 @@ FileTreePicker[Dynamic[files_], dir_?DirectoryQ, depth_] := Enclose[
 		viewer[
 			fileAssoc //. {
 				a_Association :> Normal[a],
-				Verbatim[Rule][s_String, File[file_String]] :> CheckboxBar[
-					Dynamic[
-						If[ MemberQ[files, file], {file}, {}],
-						Function[
-							files = If[ MemberQ[files, file],
-								DeleteCases[files, file],
-								Append[files, file]
-							]
-						]
-					],
-					{file -> FileNameTake[file]},
-					Method -> "Active"
-				]
+				Verbatim[Rule][
+					s_String,
+					File[file_String]
+				] :> fileToggler[Dynamic[files], file]
 			}
 		]
 	]
@@ -43,12 +34,30 @@ FileTreePicker[Dynamic[files_], dir_?DirectoryQ, depth_] := Enclose[
 
 FileTreePicker[___] := $Failed;
 
+fileToggler[Dynamic[files_], file_] := CheckboxBar[
+	Dynamic[
+		If[ MemberQ[files, file], {file}, {}],
+		Function[
+			files = If[ MemberQ[files, file],
+				DeleteCases[files, file],
+				Append[files, file]
+			]
+		]
+	],
+	{file -> FileNameTake[file]},
+	Method -> "Active"
+];
+
 viewer[{}] := "No files to show";
 
 viewer[list_List] := Column[
 	Replace[
 		list,
-		r_Rule :> OpenerView[{First[r], viewer[Last[r]]}, Method -> "Active"],
+		Verbatim[Rule][dir_, dirContents_] :> OpenerView[
+			{dir, viewer[dirContents]},
+			False,
+			Method -> "Active"
+		],
 		{1}
 	]
 ];
