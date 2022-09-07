@@ -43,7 +43,7 @@ QuantityString[q_?QuantityQ, "BoxForm"] := With[{
 			boxes,
 			{
 				box : TemplateBox[list : {__}, tag_String /; StringContainsQ[tag, "Quantity"], ___] :> Replace[
-					UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]],
+					displayFunction[tag],
 					{
 						(* Add space between the magnitude and the units *)
 						f_Function :> f @@ MapAt[RowBox[{# , " "}]&, list, {1}],
@@ -72,6 +72,15 @@ QuantityString[q_?QuantityQ, template_] := With[{
 ];
 
 QuantityString[___] := $Failed;
+
+displayFunction[tag_String] := With[{
+	try = UsingFrontEnd[CurrentValue[{StyleDefinitions, tag, TemplateBoxOptions, DisplayFunction}]]
+},
+	If[ Head[try] === Function,
+		displayFunction[tag] = try,
+		$Failed
+	]
+];
 
 quantityElementStrings[q_] := With[{
 	strings = Replace[
