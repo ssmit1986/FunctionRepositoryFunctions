@@ -16,26 +16,25 @@ FileTreePicker[Dynamic[files_], dir_?DirectoryQ, depth_] := Enclose[
 	Module[{
 		fileAssoc
 	},
-		fileAssoc = ConfirmBy[FileSystemMap[#&, dir, depth], AssociationQ];
+		fileAssoc = ConfirmBy[FileSystemMap[File, dir, depth], AssociationQ];
+		fileAssoc = FixedPoint[DeleteCases[#, <||>, Infinity]&, fileAssoc];
 		If[ !ListQ[files], files = {}];
 		files = Intersection[files, Cases[fileAssoc, _String, {-1}]];
 		viewer[
 			fileAssoc //. {
-				a_Association :> Normal[a], 
-				Verbatim[Rule][s_String, file_String] :> With[{
-					checkbox = Checkbox[
-						Dynamic[
-							MemberQ[files, file],
-							Function[
-								files = If[ MemberQ[files, file],
-									DeleteCases[files, file],
-									Append[files, file]
-								]
+				a_Association :> Normal[a],
+				Verbatim[Rule][s_String, File[file_String]] :> CheckboxBar[
+					Dynamic[
+						If[ MemberQ[files, file], {file}, {}],
+						Function[
+							files = If[ MemberQ[files, file],
+								DeleteCases[files, file],
+								Append[files, file]
 							]
 						]
-					]
-				},
-					Row[{checkbox, " ", s}]
+					],
+					{file -> FileNameTake[file]},
+					Method -> "Active"
 				]
 			}
 		]
@@ -43,6 +42,8 @@ FileTreePicker[Dynamic[files_], dir_?DirectoryQ, depth_] := Enclose[
 ];
 
 FileTreePicker[___] := $Failed;
+
+viewer[{}] := "No files to show";
 
 viewer[list_List] := Column[
 	Replace[
