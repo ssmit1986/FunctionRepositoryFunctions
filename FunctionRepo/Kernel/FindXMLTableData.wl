@@ -41,15 +41,19 @@ FindXMLTableData[xml_, patt_] := Cases[
 blankPattern = Verbatim[_] | Verbatim[Pattern][_, Verbatim[_]];
 
 xmlTablePattern[blankPattern] := ReleaseHold @ Hold[
-	XMLElement[_, _, list : {Repeated[_XMLElement, {2, Infinity}]}] /; With[{
-		template = patternTemplate[First[list]]
-	},
-		MatchQ[Rest[list], {template ..}]
+	XMLElement[_, _, list : {Repeated[_XMLElement, {2, Infinity}]}] /; And[
+		SameQ @@ list[[All, 1]],
+		With[{
+			template = patternTemplate[First[list]]
+		},
+			MatchQ[Rest[list], {template ..}]
+		]
 	]
 ];
 
 xmlTablePattern[patt_] := ReleaseHold @ Hold[
 	XMLElement[_, _, list : {Repeated[_XMLElement, {2, Infinity}]}] /; And[
+		SameQ @@ list[[All, 1]],
 		AllTrue[list, MatchQ[patt]],
 		With[{template = patternTemplate[First[list]]},
 			MatchQ[Rest[list], {template ..}]
