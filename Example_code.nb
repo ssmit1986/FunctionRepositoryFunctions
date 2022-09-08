@@ -10,7 +10,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[29]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[36]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -1709,6 +1709,16 @@ Cell[BoxData[
  RowBox[{"FileTreePicker", "[", 
   RowBox[{"Dynamic", "[", "files", "]"}], 
   "]"}]], "Input",ExpressionUUID->"a3efc583-a4f5-4473-8ce7-847edff0eebb"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["FindXMLTableData", \
+"Subsection",ExpressionUUID->"65885fb4-2e04-4641-8983-2014dd6a5b2a"],
+
+Cell[BoxData[
+ RowBox[{"?", "FindXMLTableData"}]], "Input",
+ CellLabel->"In[38]:=",ExpressionUUID->"f1c61ac3-f61e-4a97-ba39-95341693eabc"]
 }, Closed]],
 
 Cell[CellGroupData[{

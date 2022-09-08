@@ -46,6 +46,9 @@ Get["FunctionRepo`ExpressionToFunction`"];
 FileTreePicker;
 Get["FunctionRepo`FileTreePicker`"];
 
+FindXMLTableData;
+Get["FunctionRepo`FindXMLTableData`"];
+
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
 
