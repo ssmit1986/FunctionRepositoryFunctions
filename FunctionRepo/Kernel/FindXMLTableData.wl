@@ -6,6 +6,10 @@ GeneralUtilities`SetUsage[FindXMLTableData,
 	"FindXMLTableData[xmlData$] finds tabular data in XML files."
 ];
 
+GeneralUtilities`SetUsage[FunctionRepo`XMLToData,
+	"XMLToData[xml$] tries to convert XML data to WL data automatically."
+];
+
 Begin["`Private`"] (* Begin Private Context *)
 
 FindXMLTableData[file_?FileExistsQ, rest___] := With[{
@@ -75,6 +79,22 @@ patternTemplate[XMLElement[tag_, tags_, elements_]] := XMLElement[
 	tag,
 	patternTemplate[tags],
 	patternTemplate[elements]
+];
+
+XMLToData[list : {__XMLElement}] := With[{
+	data = XMLToData /@ list
+},
+	If[ SameQ @@ list[[All, 1]],
+		data,
+		Join @@ data
+	]
+];
+
+XMLToData[{el_}] := el;
+
+XMLToData[XMLElement[tag_, keyVal : {___Rule}, rest_]] := Append[
+	Association[keyVal],
+	tag -> XMLToData[rest]
 ];
 
 End[] (* End Private Context *)
