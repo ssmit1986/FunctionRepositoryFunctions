@@ -28,13 +28,36 @@ FileTreePicker[Dynamic[fileList_], dirName_?DirectoryQ, depth_, opts : OptionsPa
 		fileAssoc = FixedPoint[DeleteCases[#, <||>, Infinity]&, fileAssoc];
 		If[ !ListQ[fileList], fileList = {}];
 		fileList = Intersection[fileList, Cases[fileAssoc, _String, {-1}]];
-		DynamicModule[{},
-			With[{
-				viewerContent = fileAssoc //. {
-					a_Association :> Normal[a]
-				}
-			},
-				viewer[Dynamic[fileList], viewerContent]
+		DynamicModule[{
+			viewerContent = fileAssoc //. {
+				a_Association :> Normal[a]
+			}
+		},
+			Grid[
+				{
+					{
+						Button[
+							"Select all",
+							fileList = allFiles[viewerContent],
+							Method -> "Queued",
+							ImageSize -> Automatic
+						],
+						Button[
+							"Clear",
+							fileList = {},
+							Method -> "Queued",
+							ImageSize -> Automatic
+						],
+						Button[
+							"Invert selection",
+							fileList = Complement[allFiles[viewerContent], fileList],
+							Method -> "Queued",
+							ImageSize -> Automatic
+						]
+					},
+					{viewer[Dynamic[fileList], viewerContent], SpanFromLeft}
+				},
+				Alignment -> Left
 			],
 			SaveDefinitions -> True,
 			Initialization :> (
@@ -45,6 +68,8 @@ FileTreePicker[Dynamic[fileList_], dirName_?DirectoryQ, depth_, opts : OptionsPa
 ];
 
 FileTreePicker[___] := $Failed;
+
+allFiles[content_] := Cases[content, File[name_] :> name, Infinity];
 
 fileToggler[Dynamic[files_], file_] := CheckboxBar[
 	Dynamic[
