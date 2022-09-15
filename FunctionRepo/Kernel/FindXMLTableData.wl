@@ -81,18 +81,20 @@ patternTemplate[XMLElement[tag_, tags_, elements_]] := XMLElement[
 	patternTemplate[elements]
 ];
 
-XMLToData[list : {__XMLElement}] := With[{
-	data = XMLToData /@ list
+XMLToData[{}] := Missing[];
+
+XMLToData[list_List] := With[{
+	data = Replace[list, el_XMLElement :> XMLToData[el], {1}]
 },
-	If[ SameQ @@ list[[All, 1]],
-		data,
-		Join @@ data
+	If[ MatchQ[list, {__XMLElement}] && Not[SameQ @@ list[[All, 1]]],
+		Join @@ data,
+		data
 	]
 ];
 
-XMLToData[{el_}] := el;
+XMLToData[XMLElement[tag_, keyVal : {___Rule}, {}]] := Association[keyVal];
 
-XMLToData[XMLElement[tag_, keyVal : {___Rule}, rest_]] := Append[
+XMLToData[XMLElement[tag_, keyVal : {___Rule}, rest_]] := Prepend[
 	Association[keyVal],
 	tag -> XMLToData[rest]
 ];
