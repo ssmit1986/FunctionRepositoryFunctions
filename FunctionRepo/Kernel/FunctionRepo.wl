@@ -68,6 +68,9 @@ Get["FunctionRepo`graphicsToGraph`"];
 GroupCases;
 Get["FunctionRepo`GroupCases`"];
 
+GroupTotalBy;
+Get["FunctionRepo`GroupTotalBy`"];
+
 ImageLocatorPaneWithZoom;
 Get["FunctionRepo`ImageLocatorPaneWithZoom`"];
 
