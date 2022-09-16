@@ -87,22 +87,18 @@ groupTotalBySelector[s_String -> lst_List] := With[{
 	]
 ];
 
-groupTotalBySelector[s_String -> patt_] := Function[data,
-	categorizeSelectionValue[patt] -> Cases[
-		data,
-		KeyValuePattern[{s -> patt}]
+groupTotalBySelector[s_String -> patt_] := With[{
+	key = categorizeSelectionValue[patt]
+},
+	Function[data,
+		key -> Cases[data, KeyValuePattern[{s -> patt}]]
 	]
 ];
 
 groupTotalByAggregator[aggKey_, agg_][dat_?AssociationQ] := groupTotalByAggregator[aggKey, agg] /@ dat;
 
-groupTotalByAggregator[aggKey_, agg_][dat_List] := Replace[
-	Cases[dat, KeyValuePattern[{aggKey -> n_?NumericQ}] :> n],
-	{
-		{} -> 0,
-		other_ :> agg[other]
-	}
-];
+groupTotalByAggregator[aggKey_, agg_][dat_List] := Query[agg] @ Lookup[dat, aggKey];
+
 groupTotalByAggregator[__][_] := $Failed;
 
 End[] (* End Private Context *)
