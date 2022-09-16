@@ -25,51 +25,44 @@ GroupTotalBy[dat_, splitSpec_, selectionSpec_, totalKey_String] :=
 GroupTotalBy[splitSpec_, selectionSpec_, aggSpec_][data_] :=
 	GroupTotalBy[data, splitSpec, selectionSpec, aggSpec];
 
+GroupTotalBy[{<||>...}, Repeated[_, {3}]] := {};
+
 GroupTotalBy[
 	dat : {__?AssociationQ},
 	splitKey_String,
 	selectionKey_String -> selectionPatt_,
 	aggKey_String -> agg_
 ] := Module[{
-	data = dat,
-	selectionFun,
-	aggFun
+	data = KeyUnion[DeleteCases[dat, <||>]],
+	keys,
+	selectionFun
 },
 	Enclose[
+		keys = Keys @ data[[1]];
 		selectionFun = groupTotalBySelector[selectionKey -> selectionPatt];
 		data = ConfirmBy[
 			GroupBy[
 				data,
 				Key[splitKey],
-				Association[selectionFun[#]]&
+				selectionFun
 			],
 			AssociationQ,
 			"Grouping failed"
 		];
 		data = Flatten @ KeyValueMap[
-			Function[{splitKeyVal, selectionAssoc},
-				With[{
-					aggData = ConfirmBy[
-						groupTotalByAggregator[aggKey, agg][selectionAssoc],
-						Function[AssociationQ[#] && FreeQ[#, _?FailureQ]],
-						"Aggregation failed"
-					]
-				},
-					KeyValueMap[
-						Function[{selectionVal, aggVal},
-							<|
-								splitKey -> splitKeyVal,
-								selectionKey -> selectionVal,
-								aggKey -> aggVal
-							|>
-						],
-						aggData
-					]
+			Function[
+				Append[
+					groupTotalByAggregator[aggKey, agg][#2],
+					splitKey -> #1
 				]
 			],
 			data
 		];
-		ConfirmMatch[data, {__?AssociationQ}]
+		Rest @ KeyUnion[
+			Prepend[AssociationThread[keys, 1]][
+				ConfirmMatch[data, {__?AssociationQ}]
+			]
+		]
 	]
 ];
 
@@ -91,13 +84,24 @@ groupTotalBySelector[s_String -> patt_] := With[{
 	key = categorizeSelectionValue[patt]
 },
 	Function[data,
-		key -> Cases[data, KeyValuePattern[{s -> patt}]]
+		Cases[data, KeyValuePattern[{s -> patt}]]
 	]
 ];
 
-groupTotalByAggregator[aggKey_, agg_][dat_?AssociationQ] := groupTotalByAggregator[aggKey, agg] /@ dat;
+groupTotalByAggregator[aggKey_, agg_][dat : {__List}] := groupTotalByAggregator[aggKey, agg] /@ dat;
 
-groupTotalByAggregator[aggKey_, agg_][dat_List] := Query[agg] @ Lookup[dat, aggKey];
+groupTotalByAggregator[aggKey_, agg_][dat : {___Association}] := With[{
+	aggVal = Query[agg] @ If[ dat === {}, {}, Lookup[dat, aggKey]],
+	rest = Merge[
+		KeyDrop[dat, aggKey],
+		If[ SameQ @@ #,
+			First[#],
+			Missing["Undefined"]
+		]&
+	]
+},
+	Append[rest, aggKey -> aggVal]
+];
 
 groupTotalByAggregator[__][_] := $Failed;
 
