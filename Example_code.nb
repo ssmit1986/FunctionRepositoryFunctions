@@ -10,7 +10,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[36]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
 
 Cell[CellGroupData[{
 
@@ -2167,6 +2167,106 @@ Cell[BoxData[{
     RowBox[{"test", ",", "_Integer"}], "]"}], ";"}], "//", 
   "RepeatedTiming"}]}], "Input",
  CellLabel->"In[127]:=",ExpressionUUID->"924a0f49-0c5c-46d4-b64b-5a097066638b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["GroupTotalBy", \
+"Subsection",ExpressionUUID->"74770765-922a-4acf-8785-f0eea2f02727"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"9b07b1f5-26de-475a-b1e1-5f991d37f19f"],
+
+Cell[BoxData[
+ RowBox[{"?", "GroupTotalBy"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"9fce762b-da85-4ab1-9252-cf1c3e2e6b43"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"ExampleData", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}]}], 
+  ";"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"01da3863-e9dd-429a-a269-53810684cbf3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Group", " ", "by", " ", "survived"}], ",", 
+    RowBox[{"select", " ", "1", "st", " ", "class"}], ",", 
+    RowBox[{"compute", " ", "median", " ", "age"}]}], "*)"}], "\n", 
+  RowBox[{
+   RowBox[{"GroupTotalBy", "[", 
+    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
+     RowBox[{"\"\<class\>\"", "->", "\"\<1st\>\""}], ",", 
+     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Do", " ", "the", " ", "previous", " ", "for", " ", "all", " ", "classes",
+      " ", "separately", " ", "and", " ", "combine", " ", "the", " ", 
+     "results", " ", "into", " ", "one", " ", "dataset"}], "*)"}], "\n", 
+   RowBox[{"GroupTotalBy", "[", 
+    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
+     RowBox[{"\"\<class\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"\"\<1st\>\"", ",", "\"\<2nd\>\"", ",", "\"\<3rd\>\""}], 
+       "}"}]}], ",", 
+     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Group", " ", "1", "st", " ", "and", " ", "2", "nd", " ", "class", " ", 
+     "together"}], "*)"}], "\n", 
+   RowBox[{"GroupTotalBy", "[", 
+    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
+     RowBox[{"\"\<class\>\"", "->", 
+      RowBox[{"\"\<1st\>\"", "|", "\"\<2nd\>\""}]}], ",", 
+     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
+   "\n", 
+   RowBox[{"GroupTotalBy", "[", 
+    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
+     RowBox[{"\"\<class\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<1st\>\"", "|", "\"\<2nd\>\""}], ",", "\"\<3rd\>\""}], 
+       "}"}]}], ",", 
+     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "If", " ", "no", " ", "aggregation", " ", "function", " ", "is", " ", 
+      "given"}], ",", 
+     RowBox[{"Total", " ", "will", " ", "be", " ", "used"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"GroupTotalBy", "[", 
+    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
+     RowBox[{"\"\<class\>\"", "->", "\"\<1st\>\""}], ",", "\"\<age\>\""}], 
+    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Group", " ", "by", " ", "tuples", " ", "of", " ", "multiple", " ", 
+     "keys"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"GroupTotalBy", "[", 
+    RowBox[{"data", ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<survived\>\"", ",", "\"\<sex\>\""}], "}"}], ",", 
+     RowBox[{"\"\<class\>\"", "->", 
+      RowBox[{"Except", "[", "\"\<1st\>\"", "]"}]}], ",", 
+     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"GroupTotalBy", "[", 
+    RowBox[{"data", ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<survived\>\"", ",", "\"\<sex\>\""}], "}"}], ",", 
+     RowBox[{"\"\<class\>\"", "->", 
+      RowBox[{"Except", "[", 
+       RowBox[{"\"\<1st\>\"", "|", "\"\<3rd\>\""}], "]"}]}], ",", 
+     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}]}]}]], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"b5dda42d-2b66-46f3-b223-73036b4ef661"]
 }, Closed]],
 
 Cell[CellGroupData[{

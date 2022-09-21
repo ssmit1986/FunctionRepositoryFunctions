@@ -5,6 +5,7 @@ BeginPackage["FunctionRepo`GroupTotalBy`", {"FunctionRepo`"}]
 GeneralUtilities`SetUsage[GroupTotalBy,
 	"GroupTotalBy[data$, groupKey$, selectionKey$ -> selectionValue$, aggKey$ -> aggFun$] computes the aggregation of aggKey$ in data$ using aggFun$,\
 grouped by groupKey$ and after having applied selection criteria. The returned data is a list of Associations.
+GroupTotalBy[data$, {key$1, key$2, $$}, $$] groups by tuples of multiple keys.
 GroupTotalBy[$$, totalKey$] uses Total as the default aggregation function.
 GroupTotalBy[$$, selectionKey$ -> {val$1, val$2, $$}, $$] performs the operation over several different selection criteria.
 GroupTotalBy[$$][data$] uses GroupTotalBy in operator form."
@@ -29,11 +30,12 @@ GroupTotalBy[{<||>...}, Repeated[_, {3}]] := {};
 
 GroupTotalBy[
 	dat : {__?AssociationQ},
-	splitKey_String,
+	splitKeys : (_String | {__String}),
 	selectionKey_String -> selectionPatt_,
 	aggKey_String -> agg_
 ] := Module[{
 	data = KeyUnion[DeleteCases[dat, <||>]],
+	splitSpec = Replace[splitKeys, s : Except[_List] :> {s}],
 	keys,
 	selectionFun
 },
@@ -43,7 +45,7 @@ GroupTotalBy[
 		data = ConfirmBy[
 			GroupBy[
 				data,
-				Key[splitKey],
+				#[[splitSpec]]&,
 				selectionFun
 			],
 			AssociationQ,
@@ -51,9 +53,14 @@ GroupTotalBy[
 		];
 		data = Flatten @ KeyValueMap[
 			Function[
-				Append[
-					groupTotalByAggregator[aggKey, agg][#2],
-					splitKey -> #1
+				Map[
+					Function[assoc,
+						Join[#1, assoc]
+					],
+					Replace[
+						groupTotalByAggregator[aggKey, agg][#2],
+						e : Except[_List] :> {e}
+					]
 				]
 			],
 			data
@@ -80,12 +87,8 @@ groupTotalBySelector[s_String -> lst_List] := With[{
 	]
 ];
 
-groupTotalBySelector[s_String -> patt_] := With[{
-	key = categorizeSelectionValue[patt]
-},
-	Function[data,
-		Cases[data, KeyValuePattern[{s -> patt}]]
-	]
+groupTotalBySelector[s_String -> patt_] := Function[data,
+	Cases[data, KeyValuePattern[{s -> patt}]]
 ];
 
 groupTotalByAggregator[aggKey_, agg_][dat : {__List}] := groupTotalByAggregator[aggKey, agg] /@ dat;
@@ -95,7 +98,7 @@ groupTotalByAggregator[aggKey_, agg_][dat : {___Association}] := With[{
 	rest = Merge[
 		KeyDrop[dat, aggKey],
 		If[ SameQ @@ #,
-			First[#],
+			First[#, Missing["Undefined"]],
 			Missing["Undefined"]
 		]&
 	]
