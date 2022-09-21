@@ -3,6 +3,9 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`"]
 
+AggregateRowsByKey;
+Get["FunctionRepo`AggregateRowsByKey`"];
+
 AssociationTemplate;
 Get["FunctionRepo`AssociationTemplate`"];
 
@@ -67,9 +70,6 @@ Get["FunctionRepo`graphicsToGraph`"];
 
 GroupCases;
 Get["FunctionRepo`GroupCases`"];
-
-GroupTotalBy;
-Get["FunctionRepo`GroupTotalBy`"];
 
 ImageLocatorPaneWithZoom;
 Get["FunctionRepo`ImageLocatorPaneWithZoom`"];

@@ -1,7 +1,6 @@
 Notebook[{
 Cell[BoxData["Quit"], "Input",
- CellLabel->
-  "In[144]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
+ CellLabel->"In[18]:=",ExpressionUUID->"a2f62d55-3363-4016-8130-aef70757c7fd"],
 
 Cell[BoxData[{
  RowBox[{
@@ -11,6 +10,75 @@ Cell[BoxData[{
  RowBox[{"<<", "FunctionRepo`"}]}], "Input",
  InitializationCell->True,
  CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"],
+
+Cell[CellGroupData[{
+
+Cell["AggregateRowsByKey", \
+"Subsection",ExpressionUUID->"7b6dc0d6-18a0-4b1c-82ae-d46a873a9fb1"],
+
+Cell[BoxData[
+ RowBox[{"<<", "FunctionRepo`"}]], "Input",
+ CellLabel->"In[23]:=",ExpressionUUID->"7c7bb2bc-3d48-4b7b-9fb6-fd53634d3ac6"],
+
+Cell[BoxData[
+ RowBox[{"?", "AggregateRowsByKey"}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"54cdbb2a-1f42-42e8-b377-9491e8e665ce"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"ExampleData", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}]}], 
+  ";"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"969406bc-2285-4b5d-ba2f-b1c2c47a1fa6"],
+
+Cell[BoxData[
+ RowBox[{"AggregateRowsByKey", "[", 
+  RowBox[{"data", ",", 
+   RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}]], "Input",
+ CellLabel->"In[24]:=",ExpressionUUID->"42612d61-3b2b-4ce9-97c4-594137a5127a"],
+
+Cell[BoxData[
+ RowBox[{"Values", "@", 
+  RowBox[{"GroupBy", "[", 
+   RowBox[{"data", ",", " ", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Lookup", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<sex\>\"", ",", "\"\<survived\>\""}], "}"}]}], "]"}], 
+       ",", " ", 
+       RowBox[{"#class", "===", "\"\<3rd\>\""}]}], "}"}], "&"}], ",", 
+    RowBox[{"AggregateRowsByKey", "[", 
+     RowBox[{"\"\<age\>\"", "->", 
+      RowBox[{"N", "@*", "Median"}]}], "]"}]}], "]"}]}]], "Input",
+ CellLabel->"In[35]:=",ExpressionUUID->"c988cc0d-acdf-4eb5-b17c-eb20d27c4bb1"],
+
+Cell[BoxData[
+ RowBox[{"Values", "@", 
+  RowBox[{"GroupBy", "[", 
+   RowBox[{"data", ",", " ", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Lookup", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<sex\>\"", ",", "\"\<survived\>\""}], "}"}]}], "]"}], 
+       ",", " ", 
+       RowBox[{"#class", "===", "\"\<3rd\>\""}]}], "}"}], "&"}], ",", 
+    RowBox[{"AggregateRowsByKey", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<age\>\"", "->", 
+        RowBox[{"N", "@*", "Median"}]}], ",", 
+       RowBox[{"\"\<class\>\"", "->", "Counts"}]}], "}"}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellLabel->"In[36]:=",ExpressionUUID->"0014266b-9483-4d58-b503-742e65c5e3cf"]
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -2171,106 +2239,6 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
-Cell["GroupTotalBy", \
-"Subsection",ExpressionUUID->"74770765-922a-4acf-8785-f0eea2f02727"],
-
-Cell[BoxData[
- RowBox[{"<<", "FunctionRepo`"}]], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"9b07b1f5-26de-475a-b1e1-5f991d37f19f"],
-
-Cell[BoxData[
- RowBox[{"?", "GroupTotalBy"}]], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"9fce762b-da85-4ab1-9252-cf1c3e2e6b43"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"data", "=", 
-   RowBox[{"ExampleData", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}]}], 
-  ";"}]], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"01da3863-e9dd-429a-a269-53810684cbf3"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"Group", " ", "by", " ", "survived"}], ",", 
-    RowBox[{"select", " ", "1", "st", " ", "class"}], ",", 
-    RowBox[{"compute", " ", "median", " ", "age"}]}], "*)"}], "\n", 
-  RowBox[{
-   RowBox[{"GroupTotalBy", "[", 
-    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
-     RowBox[{"\"\<class\>\"", "->", "\"\<1st\>\""}], ",", 
-     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
-   RowBox[{"(*", 
-    RowBox[{
-    "Do", " ", "the", " ", "previous", " ", "for", " ", "all", " ", "classes",
-      " ", "separately", " ", "and", " ", "combine", " ", "the", " ", 
-     "results", " ", "into", " ", "one", " ", "dataset"}], "*)"}], "\n", 
-   RowBox[{"GroupTotalBy", "[", 
-    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
-     RowBox[{"\"\<class\>\"", "->", 
-      RowBox[{"{", 
-       RowBox[{"\"\<1st\>\"", ",", "\"\<2nd\>\"", ",", "\"\<3rd\>\""}], 
-       "}"}]}], ",", 
-     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
-   RowBox[{"(*", 
-    RowBox[{
-    "Group", " ", "1", "st", " ", "and", " ", "2", "nd", " ", "class", " ", 
-     "together"}], "*)"}], "\n", 
-   RowBox[{"GroupTotalBy", "[", 
-    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
-     RowBox[{"\"\<class\>\"", "->", 
-      RowBox[{"\"\<1st\>\"", "|", "\"\<2nd\>\""}]}], ",", 
-     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
-   "\n", 
-   RowBox[{"GroupTotalBy", "[", 
-    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
-     RowBox[{"\"\<class\>\"", "->", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"\"\<1st\>\"", "|", "\"\<2nd\>\""}], ",", "\"\<3rd\>\""}], 
-       "}"}]}], ",", 
-     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\n", 
-   "\[IndentingNewLine]", 
-   RowBox[{"(*", 
-    RowBox[{
-     RowBox[{
-     "If", " ", "no", " ", "aggregation", " ", "function", " ", "is", " ", 
-      "given"}], ",", 
-     RowBox[{"Total", " ", "will", " ", "be", " ", "used"}]}], "*)"}], 
-   "\[IndentingNewLine]", 
-   RowBox[{"GroupTotalBy", "[", 
-    RowBox[{"data", ",", "\"\<survived\>\"", ",", 
-     RowBox[{"\"\<class\>\"", "->", "\"\<1st\>\""}], ",", "\"\<age\>\""}], 
-    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{"(*", " ", 
-    RowBox[{
-    "Group", " ", "by", " ", "tuples", " ", "of", " ", "multiple", " ", 
-     "keys"}], " ", "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"GroupTotalBy", "[", 
-    RowBox[{"data", ",", 
-     RowBox[{"{", 
-      RowBox[{"\"\<survived\>\"", ",", "\"\<sex\>\""}], "}"}], ",", 
-     RowBox[{"\"\<class\>\"", "->", 
-      RowBox[{"Except", "[", "\"\<1st\>\"", "]"}]}], ",", 
-     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}], "\[IndentingNewLine]", 
-   RowBox[{"GroupTotalBy", "[", 
-    RowBox[{"data", ",", 
-     RowBox[{"{", 
-      RowBox[{"\"\<survived\>\"", ",", "\"\<sex\>\""}], "}"}], ",", 
-     RowBox[{"\"\<class\>\"", "->", 
-      RowBox[{"Except", "[", 
-       RowBox[{"\"\<1st\>\"", "|", "\"\<3rd\>\""}], "]"}]}], ",", 
-     RowBox[{"\"\<age\>\"", "->", "Median"}]}], "]"}]}]}]], "Input",
- CellLabel->"In[30]:=",ExpressionUUID->"b5dda42d-2b66-46f3-b223-73036b4ef661"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
 Cell["ImageLocatorPaneWithZoom", \
 "Subsection",ExpressionUUID->"0db2dfe2-9fa6-46c9-8910-b7e2ebbb9be3"],
 
@@ -2463,6 +2431,46 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"?", "MergeByKey"}], "\[IndentingNewLine]"}]], "Input",
  CellLabel->"In[6]:=",ExpressionUUID->"deaa79eb-4b45-47ce-bf43-09b036158c7f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{"c", "\[Rule]", " ", "Pi"}], "|>"}], ",", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "|>"}]}], "}"}], ",", 
+   RowBox[{"a", "\[Rule]", "Total"}]}], "]"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"f6ac9548-6050-4ffd-8f4a-d48391455850"],
+
+Cell[BoxData[
+ RowBox[{"MergeByKey", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "1"}], ",", 
+       RowBox[{"b", "\[Rule]", "2"}]}], "\[RightAssociation]"}], ",", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{"c", "\[Rule]", "\[Pi]"}], "\[RightAssociation]"}], ",", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "5"}], ",", 
+       RowBox[{"b", "\[Rule]", "10"}]}], "\[RightAssociation]"}]}], "}"}], 
+   ",", 
+   RowBox[{"a", "\[Rule]", "Total"}]}], "]"}]], "Output",
+ CellLabel->"Out[6]=",ExpressionUUID->"b7ee485c-4a96-4355-8d76-acd7954a379c"]
+}, Open  ]],
 
 Cell[BoxData[{
  RowBox[{"MergeByKey", "[", 
