@@ -107,6 +107,9 @@ Get["FunctionRepo`MultiNonlinearModelFit`"];
 multiSet;
 Get["FunctionRepo`multiSet`"];
 
+NetParallelOperator;
+Get["FunctionRepo`NetParallelOperator`"];
+
 OpenTestWritingPalette;
 Get["FunctionRepo`OpenTestWritingPalette`"];
 
