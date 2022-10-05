@@ -6,6 +6,9 @@ BeginPackage["FunctionRepo`"]
 AggregateRowsByKey;
 Get["FunctionRepo`AggregateRowsByKey`"];
 
+AssociationSet; 
+Get["FunctionRepo`AssociationSet`"];
+
 AssociationTemplate;
 Get["FunctionRepo`AssociationTemplate`"];
 
