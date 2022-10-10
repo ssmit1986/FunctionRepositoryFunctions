@@ -49,7 +49,7 @@ MultiNonlinearModelFit[
 	]; 
 	grad = Replace[
 		OptionValue[Gradient],
-		Automatic :> D[fitfun, {Replace[fitParams, {v_, ___} :> v , {1}]}]
+		Automatic /; ListQ[expressions] :> D[fitfun, {Replace[fitParams, {v_, ___} :> v , {1}]}]
 	];
 	weights = Replace[
 		OptionValue[Weights],
