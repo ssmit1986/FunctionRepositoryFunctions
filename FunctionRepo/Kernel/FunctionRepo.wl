@@ -15,6 +15,9 @@ Get["FunctionRepo`AssociationTemplate`"];
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
+CatchEnclose;
+Get["FunctionRepo`CatchEnclose`"];
+
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
 
