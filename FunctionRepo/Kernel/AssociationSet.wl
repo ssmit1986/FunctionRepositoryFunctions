@@ -13,6 +13,16 @@ SetAttributes[AssociationSet, HoldFirst];
 AssociationSet[expr_][val_] := AssociationSet[expr, val];
 AssociationSet[expr_][seq_, val_] := AssociationSet[expr, seq, val];
 
+(* 
+AssociationSet[expr_, rest__] /; MatchQ[expr, _Hold | Hold[_][__]] := Replace[
+	expr,
+	{
+		Hold[sym_] :> AssociationSet[sym, rest],
+		Hold[sym_][keys__] :> AssociationSet[sym[keys], rest]
+	}
+];
+*)
+
 AssociationSet[sym_Symbol[keySeq__], value_] := (
 	setSymbol[sym];
 	iAssociationSet[sym, {keySeq}, value]
@@ -27,11 +37,6 @@ AssociationSet[sym_Symbol[seq1__], {seq2__}, value_] := (
 	setSymbol[sym];
 	iAssociationSet[sym, {seq1, seq2}, value]
 );
-
-AssociationSet[expr_, rest__] /; Head[expr] === Hold := Replace[
-	expr,
-	Hold[arg_] :> AssociationSet[arg, rest]
-];
 
 AssociationSet[_, __] := $Failed;
 
