@@ -1,14 +1,14 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`PasteExcelData`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`ExcelClipboardData`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[PasteString, 
-	"PasteExcelData[] returns tabular data corresponding to the current Excel data on the clipboard."
+GeneralUtilities`SetUsage[ExcelClipboardData, 
+	"ExcelClipboardData[] returns tabular data corresponding to the current Excel data on the clipboard."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-PasteExcelData[] := Module[{nb, get},
+ExcelClipboardData[] := Module[{nb, get},
 	PreemptProtect[
 		nb = NotebookPut[
 			Notebook[{Cell[BoxData[""], "Code"]}],

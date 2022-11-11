@@ -48,6 +48,9 @@ Get["FunctionRepo`DateAmbiguityBreak`"];
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
 
+ExcelClipboardData;
+Get["FunctionRepo`ExcelClipboardData`"];
+
 ExpressionToFunction;
 ExpressionToFunctionOperator;
 Get["FunctionRepo`ExpressionToFunction`"];
@@ -118,9 +121,6 @@ Get["FunctionRepo`NetParallelOperator`"];
 
 OpenTestWritingPalette;
 Get["FunctionRepo`OpenTestWritingPalette`"];
-
-PasteExcelData;
-Get["FunctionRepo`PasteExcelData`"];
 
 PositionQ;
 Get["FunctionRepo`PositionQ`"];

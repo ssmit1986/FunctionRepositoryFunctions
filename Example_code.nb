@@ -1537,6 +1537,30 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["ExcelClipboardData", \
+"Subsection",ExpressionUUID->"c4158405-ee84-441b-bc2f-7d4a80ce054f"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "ExcelClipboardData"}]], \
+"Input",ExpressionUUID->"b6d3a765-90da-4ba6-aed9-d9cc55af9638"],
+
+Cell[BoxData[
+ RowBox[{"<<", 
+  "FunctionRepo`"}]], \
+"Input",ExpressionUUID->"e476c3ab-cf4f-4cdc-83e9-e66019f1563a"],
+
+Cell[BoxData[
+ RowBox[{"CopyToClipboard", "[", "\"\<1\\t2\\n3\>\"", 
+  "]"}]], "Input",ExpressionUUID->"e7598489-b774-4fe7-b6ab-747d4b13cbc8"],
+
+Cell[BoxData[
+ RowBox[{"ExcelClipboardData", "[", 
+  "]"}]], "Input",ExpressionUUID->"447884ea-4f6d-4c91-91dd-c9b4343129e1"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["ExpressionToFunction", \
 "Subsection",ExpressionUUID->"9c0361be-7505-4c6d-a6aa-e2f352cf4b3e"],
 
@@ -3478,30 +3502,6 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"OpenTestWritingPalette", "[", 
   "]"}]], "Input",ExpressionUUID->"7f76c2db-626e-4230-ad10-f7bc074cae22"]
-}, Closed]],
-
-Cell[CellGroupData[{
-
-Cell["PasteExcelData", \
-"Subsection",ExpressionUUID->"c4158405-ee84-441b-bc2f-7d4a80ce054f"],
-
-Cell[BoxData[
- RowBox[{"?", 
-  "PasteExcelData"}]], \
-"Input",ExpressionUUID->"b6d3a765-90da-4ba6-aed9-d9cc55af9638"],
-
-Cell[BoxData[
- RowBox[{"<<", 
-  "FunctionRepo`"}]], \
-"Input",ExpressionUUID->"e476c3ab-cf4f-4cdc-83e9-e66019f1563a"],
-
-Cell[BoxData[
- RowBox[{"CopyToClipboard", "[", "\"\<1\\t2\\n3\>\"", 
-  "]"}]], "Input",ExpressionUUID->"e7598489-b774-4fe7-b6ab-747d4b13cbc8"],
-
-Cell[BoxData[
- RowBox[{"PasteExcelData", "[", 
-  "]"}]], "Input",ExpressionUUID->"447884ea-4f6d-4c91-91dd-c9b4343129e1"]
 }, Closed]],
 
 Cell[CellGroupData[{
