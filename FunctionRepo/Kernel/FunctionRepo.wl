@@ -119,6 +119,9 @@ Get["FunctionRepo`NetParallelOperator`"];
 OpenTestWritingPalette;
 Get["FunctionRepo`OpenTestWritingPalette`"];
 
+PasteExcelData;
+Get["FunctionRepo`PasteExcelData`"];
+
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
 
