@@ -8,20 +8,29 @@ GeneralUtilities`SetUsage[ExcelClipboardData,
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-ExcelClipboardData[] := Module[{nb, get},
-	PreemptProtect[
-		nb = NotebookPut[
-			Notebook[{Cell[BoxData[""], "Code"]}],
-			Visible -> True (* Unfortunately, pasting doesn't work otherwise *)
-		];
-		SelectionMove[nb, Before, CellContents];
-		FrontEndTokenExecute["Paste"];
-		get = NotebookGet[nb];
-		NotebookClose[nb]
+ExcelClipboardData[] := ExcelClipboardData["TSV"];
+
+ExcelClipboardData[elem_, rest___] := Module[{nb, get},
+	UsingFrontEnd @ PreemptProtect[
+		WithCleanup[
+			nb = NotebookPut[
+				Notebook[{Cell[BoxData[""], "Code"]}],
+				Visible -> True (* Unfortunately, pasting doesn't work otherwise *)
+			]
+			,
+			SelectionMove[nb, Before, CellContents];
+			FrontEndTokenExecute["Paste"];
+			get = NotebookGet[nb]
+			,
+			NotebookClose[nb]
+		]
 	];
 	Replace[
 		FirstCase[get, Cell[cont_, ___] :> processContent[cont], $Failed, Infinity],
-		s_String :> ImportString[s, "TSV"]
+		s_String :> If[ elem === None,
+			s,
+			ImportString[s, elem, rest]
+		]
 	]
 ];
 
