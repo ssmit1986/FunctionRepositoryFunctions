@@ -146,6 +146,9 @@ Get["FunctionRepo`SplitAtPositions`"];
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 
+ThroughOperator;
+Get["FunctionRepo`ThroughOperator`"];
+
 TimedPaneSelector;
 Get["FunctionRepo`TimedPaneSelector`"];
 

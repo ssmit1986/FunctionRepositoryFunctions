@@ -4043,6 +4043,494 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["ThroughOperator", \
+"Subsection",ExpressionUUID->"7792bbe0-1b60-44c4-8987-f768a9e178c6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "ThroughOperator"}]], \
+"Input",ExpressionUUID->"ede8728c-bd91-4d96-82ee-ff6fc0f90307"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ThroughOperator\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
+\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\
+\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) is an operator form for Through that can \
+be applied to arguments.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" SubValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"SubValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "SubValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ThroughOperator", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ThroughOperator`Private`assoc_", "?", 
+                    "AssociationQ"}], "]"}], "[", 
+                    "FunctionRepo`ThroughOperator`Private`args___", "]"}], 
+                    ":=", 
+                    RowBox[{"AssociationThread", "[", 
+                    RowBox[{
+                    
+                    RowBox[{
+                    "Keys", "[", "FunctionRepo`ThroughOperator`Private`assoc",
+                     "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"ThroughOperator", "[", 
+                    
+                    RowBox[{"Values", "[", 
+                    "FunctionRepo`ThroughOperator`Private`assoc", "]"}], 
+                    "]"}], "[", "FunctionRepo`ThroughOperator`Private`args", 
+                    "]"}]}], "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"ThroughOperator", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"{", 
+                    "FunctionRepo`ThroughOperator`Private`elements___", "}"}],
+                     ",", "FunctionRepo`ThroughOperator`Private`f_"}], "]"}], 
+                    "[", "FunctionRepo`ThroughOperator`Private`args___", 
+                    "]"}], ":=", 
+                    RowBox[{"Through", "[", 
+                    RowBox[{"Unevaluated", "[", 
+                    RowBox[{
+                    
+                    RowBox[{"FunctionRepo`ThroughOperator`Private`f", "[", 
+                    "FunctionRepo`ThroughOperator`Private`elements", "]"}], 
+                    "[", "FunctionRepo`ThroughOperator`Private`args", "]"}], 
+                    "]"}], "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{
+                    "ThroughOperator", "[", 
+                    "FunctionRepo`ThroughOperator`Private`expr_List", "]"}], 
+                    "[", "FunctionRepo`ThroughOperator`Private`args___", 
+                    "]"}], ":=", 
+                    RowBox[{"Through", "[", 
+                    RowBox[{"Unevaluated", "[", 
+                    
+                    RowBox[{
+                    "FunctionRepo`ThroughOperator`Private`expr", "[", 
+                    "FunctionRepo`ThroughOperator`Private`args", "]"}], "]"}],
+                     "]"}]}]}, {" "}, {
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{
+                    "ThroughOperator", "[", 
+                    "FunctionRepo`ThroughOperator`Private`op__", "]"}], "[", 
+                    "___", "]"}], ":=", "$Failed"}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"FunctionRepo`ThroughOperator\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ThroughOperator\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
+\"TI\\\"], \\\",\\\",  StyleBox[SubscriptBox[\\\"f\\\", StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\
+\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) is an operator form for Through that can \
+be applied to arguments.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[<|
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"ThroughOperator\", \"[\", RowBox[{RowBox[{\"{\", \
+RowBox[{StyleBox[SubscriptBox[\"f\", StyleBox[\"1\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[SubscriptBox[\"f\", StyleBox[\"2\", \"TR\"]], \"TI\"], \
+\",\",  StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) is an \
+operator form for Through that can be applied to arguments.", "Documentation" -> 
+    None, "OwnValues" -> None, "UpValues" -> None, "DownValues" -> None, 
+    "SubValues" -> 
+    Information`InformationValueForm[
+     SubValues, FunctionRepo`ThroughOperator, {FunctionRepo`ThroughOperator[
+         PatternTest[
+          Pattern[FunctionRepo`ThroughOperator`Private`assoc, 
+           Blank[]], AssociationQ]][
+         Pattern[FunctionRepo`ThroughOperator`Private`args, 
+          BlankNullSequence[]]] :> AssociationThread[
+         Keys[FunctionRepo`ThroughOperator`Private`assoc], 
+         FunctionRepo`ThroughOperator[
+          Values[FunctionRepo`ThroughOperator`Private`assoc]][
+         FunctionRepo`ThroughOperator`Private`args]], 
+       FunctionRepo`ThroughOperator[{
+          Pattern[FunctionRepo`ThroughOperator`Private`elements, 
+           BlankNullSequence[]]}, 
+         Pattern[FunctionRepo`ThroughOperator`Private`f, 
+          Blank[]]][
+         Pattern[FunctionRepo`ThroughOperator`Private`args, 
+          BlankNullSequence[]]] :> Through[
+         Unevaluated[
+          FunctionRepo`ThroughOperator`Private`f[
+          FunctionRepo`ThroughOperator`Private`elements][
+          FunctionRepo`ThroughOperator`Private`args]]], 
+       FunctionRepo`ThroughOperator[
+         Pattern[FunctionRepo`ThroughOperator`Private`expr, 
+          Blank[List]]][
+         Pattern[FunctionRepo`ThroughOperator`Private`args, 
+          BlankNullSequence[]]] :> Through[
+         Unevaluated[
+          FunctionRepo`ThroughOperator`Private`expr[
+          FunctionRepo`ThroughOperator`Private`args]]], 
+       FunctionRepo`ThroughOperator[
+         Pattern[FunctionRepo`ThroughOperator`Private`op, 
+          BlankSequence[]]][
+         BlankNullSequence[]] :> $Failed}], "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> "FunctionRepo`ThroughOperator"|>, 
+   False]]], "Output",ExpressionUUID->"df80f8a3-58bb-4259-9d1a-9d3d3425e3f2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ThroughOperator", "[", 
+   RowBox[{"{", 
+    RowBox[{"Sin", ",", "Cos", ",", "Tan"}], "}"}], "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{"Pi", "/", "3"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ThroughOperator", "[", 
+   RowBox[{"{", 
+    RowBox[{"Sin", ",", "Cos", ",", "Tan"}], "}"}], "]"}], "/@", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ThroughOperator", "[", 
+   RowBox[{"{", 
+    RowBox[{"f", ",", "g"}], "}"}], "]"}], "@@@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", " ", "4"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"5", ",", "6"}], "}"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ThroughOperator", "[", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<Sin\>\"", "->", "Sin"}], ",", 
+     RowBox[{"\"\<Cos\>\"", "->", "Cos"}]}], "|>"}], "]"}], "/@", 
+  RowBox[{"Range", "[", "3", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ThroughOperator", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"IntegerQ", ",", "OddQ", ",", "PrimeQ"}], "}"}], ",", "And"}], 
+   "]"}], "/@", 
+  RowBox[{"{", 
+   RowBox[{"0.5", ",", "2", ",", "3", ",", "4"}], 
+   "}"}]}]}], "Input",ExpressionUUID->"0b714a42-8947-497c-b6c7-7474c1944eb5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.8660254037844386`", ",", "0.5000000000000001`", ",", 
+   "1.7320508075688767`"}], 
+  "}"}]], "Output",ExpressionUUID->"f73b5940-a17e-4348-8aab-4972e52e6063"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Sin", "[", "1", "]"}], ",", 
+     RowBox[{"Cos", "[", "1", "]"}], ",", 
+     RowBox[{"Tan", "[", "1", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Sin", "[", "2", "]"}], ",", 
+     RowBox[{"Cos", "[", "2", "]"}], ",", 
+     RowBox[{"Tan", "[", "2", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Sin", "[", "3", "]"}], ",", 
+     RowBox[{"Cos", "[", "3", "]"}], ",", 
+     RowBox[{"Tan", "[", "3", "]"}]}], "}"}]}], 
+  "}"}]], "Output",ExpressionUUID->"cc2e501d-432e-4f26-a702-34902e4763f3"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"1", ",", "2"}], "]"}], ",", 
+     RowBox[{"g", "[", 
+      RowBox[{"1", ",", "2"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"3", ",", "4"}], "]"}], ",", 
+     RowBox[{"g", "[", 
+      RowBox[{"3", ",", "4"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"5", ",", "6"}], "]"}], ",", 
+     RowBox[{"g", "[", 
+      RowBox[{"5", ",", "6"}], "]"}]}], "}"}]}], 
+  "}"}]], "Output",ExpressionUUID->"ee6f8d77-d5d6-4a95-8dd9-1ebd56e24faf"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\<\"Sin\"\>", "\[Rule]", 
+      RowBox[{"Sin", "[", "1", "]"}]}], ",", 
+     RowBox[{"\<\"Cos\"\>", "\[Rule]", 
+      RowBox[{"Cos", "[", "1", "]"}]}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\<\"Sin\"\>", "\[Rule]", 
+      RowBox[{"Sin", "[", "2", "]"}]}], ",", 
+     RowBox[{"\<\"Cos\"\>", "\[Rule]", 
+      RowBox[{"Cos", "[", "2", "]"}]}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\<\"Sin\"\>", "\[Rule]", 
+      RowBox[{"Sin", "[", "3", "]"}]}], ",", 
+     RowBox[{"\<\"Cos\"\>", "\[Rule]", 
+      RowBox[{"Cos", "[", "3", "]"}]}]}], "\[RightAssociation]"}]}], 
+  "}"}]], "Output",ExpressionUUID->"c01f14ba-76a3-44f7-a649-117f78241401"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"False", ",", "False", ",", "True", ",", "False"}], 
+  "}"}]], "Output",ExpressionUUID->"44fa6364-bb7f-49f3-865d-3f0b580a281b"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["TimedPaneSelector", \
 "Subsection",ExpressionUUID->"56a99f88-57d9-4b9a-90d5-129caad37cf9"],
 
