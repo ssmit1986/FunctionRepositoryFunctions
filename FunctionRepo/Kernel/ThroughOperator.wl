@@ -8,7 +8,7 @@ GeneralUtilities`SetUsage[ThroughOperator,
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-ThroughOperator[assoc_?AssociationQ][args___] := AssociationThread[
+ThroughOperator[assoc_Association?AssociationQ][args___] := AssociationThread[
 	Keys[assoc],
 	ThroughOperator[Values[assoc]][args]
 ];
