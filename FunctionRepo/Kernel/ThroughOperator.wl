@@ -12,9 +12,9 @@ ThroughOperator[assoc_?AssociationQ][args___] := AssociationThread[
 	Keys[assoc],
 	ThroughOperator[Values[assoc]][args]
 ];
-ThroughOperator[{elements___}, f_][args___] := Through @ Unevaluated[f[elements][args]];
-ThroughOperator[expr_List][args___] := Through @ Unevaluated[expr[args]];
-ThroughOperator[op__][___] := $Failed;
+ThroughOperator[_[elements___], f_][args___] := Through @ Unevaluated[f[elements][args]];
+ThroughOperator[expr : _[___]][args___] := Through @ Unevaluated[expr[args]];
+ThroughOperator[__][___] := $Failed;
 
 End[] (* End Private Context *)
 
