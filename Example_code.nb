@@ -150,15 +150,15 @@ Cell[BoxData[
  RowBox[{"AssociationTemplate", "[", "\[IndentingNewLine]", 
   RowBox[{"<|", "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"\"\<a\>\"", "\[Rule]", 
+    RowBox[{"\"\<a\>\"", ":>", 
      RowBox[{"TemplateExpression", "[", 
       RowBox[{"TemplateSlot", "[", "\"\<b\>\"", "]"}], "]"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<b\>\"", "\[Rule]", " ", 
+    RowBox[{"\"\<b\>\"", ":>", " ", 
      RowBox[{"TemplateExpression", "[", 
       RowBox[{"TemplateSlot", "[", "\"\<a\>\"", "]"}], "]"}]}], " ", ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<c\>\"", "\[Rule]", " ", 
+    RowBox[{"\"\<c\>\"", ":>", 
      RowBox[{"StringTemplate", "[", "\"\<`a` + `b`\>\"", "]"}]}]}], 
    "\[IndentingNewLine]", "|>"}], "\[IndentingNewLine]", 
   "]"}]], "Input",ExpressionUUID->"2719bca1-7802-4426-9eca-f77f7f812d58"],
@@ -169,7 +169,7 @@ Cell[BoxData[
    RowBox[{"<|", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"\"\<a\>\"", "\[Rule]", " ", "3"}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<b\>\"", "\[Rule]", " ", 
+     RowBox[{"\"\<b\>\"", ":>", " ", 
       RowBox[{"TemplateExpression", "[", 
        RowBox[{"NIntegrate", "[", 
         RowBox[{
@@ -181,7 +181,7 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{"x", ",", "0", ",", "10"}], "}"}]}], "]"}], "]"}]}], " ", 
      ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<c\>\"", "\[Rule]", " ", 
+     RowBox[{"\"\<c\>\"", ":>", " ", 
       RowBox[{
       "StringTemplate", "[", 
        "\"\<The integral of |Sin[`a` x]| on 0 <= x <= 10 is `b`\>\"", 
@@ -194,7 +194,7 @@ Cell[BoxData[
    RowBox[{"<|", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"\"\<a\>\"", "\[Rule]", " ", "3"}], ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<b\>\"", "\[Rule]", " ", 
+     RowBox[{"\"\<b\>\"", ":>", " ", 
       RowBox[{"Function", "[", 
        RowBox[{"NIntegrate", "[", 
         RowBox[{
@@ -205,7 +205,7 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{"x", ",", "0", ",", "10"}], "}"}]}], "]"}], "]"}]}], " ", 
      ",", "\[IndentingNewLine]", 
-     RowBox[{"\"\<c\>\"", "\[Rule]", " ", 
+     RowBox[{"\"\<c\>\"", ":>", " ", 
       RowBox[{
       "StringTemplate", "[", 
        "\"\<The integral of |Sin[`a` x]| on 0 <= x <= 10 is `b`\>\"", 
@@ -4838,7 +4838,7 @@ TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 CellLabelAutoDelete->True,
 TrackCellChangeTimes->False,
 Magnification:>1. Inherited,
-FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (November 18, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]
