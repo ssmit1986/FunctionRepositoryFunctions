@@ -158,6 +158,9 @@ Get["FunctionRepo`ToExpressionMatched`"];
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
 
+TwoSidedLogTransform;
+Get["FunctionRepo`TwoSidedLogTransform`"];
+
 WithCachedValues;
 Get["FunctionRepo`WithCachedValues`"];
 
