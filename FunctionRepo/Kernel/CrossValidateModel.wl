@@ -211,6 +211,39 @@ defaultValidationFunction[][net : (_NetGraph | _NetChain | _NetTrainResultsObjec
 	]
 ];
 
+defaultValidationFunction[args___][spEst_SpatialEstimatorFunction, rules : {__Rule}] := 
+	defaultValidationFunction[args][spEst, rules[[All, 1]] -> rules[[All, 2]]];
+defaultValidationFunction[][spEst_SpatialEstimatorFunction, rules_] := 
+	defaultValidationFunction[
+		Function[{vals, means, stdevs},
+			(* Negative LogLikelihood of NormalDistribution *)
+			Length[vals] * Log[2 * Pi] / 2 + Total[
+				Plus[
+					Divide[
+						Subtract[vals, means],
+						2 * stdevs
+					]^2,
+					Log[stdevs]
+				]
+			]
+		]
+	][
+		spEst,
+		rules
+	];
+defaultValidationFunction[fun_][spEst_SpatialEstimatorFunction, locs_ -> vals_] := With[{
+	estimate = spEst[
+		Replace[locs, posList : {__GeoPosition} :> GeoPosition[posList]],
+		"Around"
+	]
+},
+	fun[
+		vals,
+		#["Value"]& /@ estimate,
+		#["Uncertainty"]& /@ estimate
+	]
+];
+
 defaultValidationFunction[___][_, val_] := val;
 
 extractIndices[data_List, indices_List] := Developer`ToPackedArray @ data[[indices]];
