@@ -217,14 +217,17 @@ defaultValidationFunction[][spEst_SpatialEstimatorFunction, rules_] :=
 	defaultValidationFunction[
 		Function[{vals, means, stdevs},
 			(* Negative LogLikelihood of NormalDistribution *)
-			Length[vals] * Log[2 * Pi] / 2 + Total[
-				Plus[
-					Divide[
-						Subtract[vals, means],
-						2 * stdevs
-					]^2,
-					Log[stdevs]
-				]
+			Divide[
+				Length[vals] * Log[2 * Pi] + Total[
+					Plus[
+						Divide[
+							Subtract[vals, means],
+							stdevs
+						]^2,
+						2 * Log[stdevs]
+					]
+				],
+				2
 			]
 		]
 	][
