@@ -234,6 +234,18 @@ defaultValidationFunction[][spEst_SpatialEstimatorFunction, rules_] :=
 		spEst,
 		rules
 	];
+defaultValidationFunction["RMS"][spEst_SpatialEstimatorFunction, rules_] := 
+	defaultValidationFunction[
+		Function[{vals, means, stdevs},
+			RootMeanSquare @ Subtract[vals, means]
+		]
+	][spEst, rules];
+defaultValidationFunction["WeightedRMS"][spEst_SpatialEstimatorFunction, rules_] := 
+	defaultValidationFunction[
+		Function[{vals, means, stdevs},
+			RootMeanSquare @ Divide[Subtract[vals, means], stdevs]
+		]
+	][spEst, rules];
 defaultValidationFunction[fun_][spEst_SpatialEstimatorFunction, locs_ -> vals_] := With[{
 	estimate = spEst[
 		Replace[locs, posList : {__GeoPosition} :> GeoPosition[posList]],
