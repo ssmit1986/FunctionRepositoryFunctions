@@ -152,11 +152,11 @@ defaultValidationFunction[
 	matrix = dataPreProcessor[val] (* this should return a matrix in the same format as accepted by, e.g., LinearModelFit *)
 },
 	Replace[aggregationFunction, Automatic :> defaultFitLossFunction][
+		matrix[[All, -1]], (* True values*)
 		Map[ (* Turn the function into a form that can be efficiently mapped over a matrix *)
 			multiArgToVectorArgFunction[fit],
 			matrix[[All, 1 ;; -2 ;; 1]]
-		], (* fitted values *)
-		matrix[[All, -1]] (* True values*)
+		] (* fitted values *)
 	] /; MatrixQ[matrix] && Dimensions[matrix][[2]] > 1
 ];
 
@@ -169,14 +169,14 @@ defaultValidationFunction[
 	matrix = dataPreProcessor[val] (* this should return a matrix in the same format as accepted by, e.g., LinearModelFit *)
 },
 	Replace[aggregationFunction, Automatic :> defaultFitLossFunction][
+		matrix[[All, -1]], (* True values*)
 		ReplaceAll[ (* fitted values *)
 			fitExpr,
 			Map[ (* create a list of replacement lists {{__Rule}.. } to calculate the value of fitExpr for all input values *)
 				Join[fitParamRules, Thread[independents -> #]]&,
 				matrix[[All, 1 ;; -2 ;; 1]]
 			]
-		],
-		matrix[[All, -1]] (* True values*)
+		]
 	] /; MatrixQ[matrix] && Dimensions[matrix][[2]] === Length[independents] + 1
 ];
 
