@@ -21,8 +21,8 @@ Get["FunctionRepo`CatchEnclose`"];
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
 
-conditionalProductDistribution;
-Get["FunctionRepo`conditionalProductDistribution`"];
+ConditionalProductDistribution;
+Get["FunctionRepo`ConditionalProductDistribution`"];
 
 conditionedMultinormalDistribution;
 Get["FunctionRepo`conditionedMultinormalDistribution`"];

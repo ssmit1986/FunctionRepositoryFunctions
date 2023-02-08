@@ -1,8 +1,8 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`conditionalProductDistribution`", {"FunctionRepo`", "GeneralUtilities`"}]
+BeginPackage["FunctionRepo`ConditionalProductDistribution`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[conditionalProductDistribution, "conditionalProductDistribution[Distributed[var$1, dist$1], Distributed[var$2, dist$2], $$] represents a vector distribution where each dist$i can dependend on var$j for all i$ < j$"];
+GeneralUtilities`SetUsage[ConditionalProductDistribution, "ConditionalProductDistribution[Distributed[var$1, dist$1], Distributed[var$2, dist$2], $$] represents a vector distribution where each dist$i can dependend on var$j for all i$ < j$"];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -41,7 +41,7 @@ dependencyOrderedQ[dists : Distributed[_, _]..] := With[{
 	Which[
 		!DuplicateFreeQ[vars],
 			Message[
-				conditionalProductDistribution::duplicates,
+				ConditionalProductDistribution::duplicates,
 				Keys @ Select[Counts[vars], GreaterThan[1]]
 			];
 			False,
@@ -54,17 +54,17 @@ dependencyOrderedQ[dists : Distributed[_, _]..] := With[{
 				Range[1, ndists]
 			]
 		],
-			Message[conditionalProductDistribution::depend];
+			Message[ConditionalProductDistribution::depend];
 			False,
 		True, True
 	]
 ];
 dependencyOrderedQ[___] := False;
 
-conditionalProductDistribution::depend = "Dependency of distributions is circular or not ordered correctly.";
-conditionalProductDistribution::duplicates = "Duplicate variables `1` found.";
+ConditionalProductDistribution::depend = "Dependency of distributions is circular or not ordered correctly.";
+ConditionalProductDistribution::duplicates = "Duplicate variables `1` found.";
 
-conditionalProductDistribution /: Graph[conditionalProductDistribution[dists__Distributed], rest___] := Module[{
+ConditionalProductDistribution /: Graph[ConditionalProductDistribution[dists__Distributed], rest___] := Module[{
 	vars = randomVariables[dists],
 	edges
 },
@@ -95,8 +95,8 @@ conditionalMap[___] := $Failed
 
 MapThread[
 	Function[{fun, wrapper, aggregator},
-		conditionalProductDistribution /: fun[
-			conditionalProductDistribution[dists__Distributed],
+		ConditionalProductDistribution /: fun[
+			ConditionalProductDistribution[dists__Distributed],
 			coords_List
 		] := Module[{
 			vars = randomVariables[dists],
@@ -127,8 +127,8 @@ MapThread[
 	}
 ];
 
-conditionalProductDistribution /: RandomVariate[
-	conditionalProductDistribution[dists__Distributed],
+ConditionalProductDistribution /: RandomVariate[
+	ConditionalProductDistribution[dists__Distributed],
 	opts : OptionsPattern[]
 ] := Catch[
 	Values @ Fold[
@@ -150,31 +150,51 @@ conditionalProductDistribution /: RandomVariate[
 	rvNoNum
 ];
 
-conditionalProductDistribution /: RandomVariate[
-	pdist_conditionalProductDistribution,
+ConditionalProductDistribution /: RandomVariate[
+	pdist_ConditionalProductDistribution,
 	n_Integer,
 	opts : OptionsPattern[]
 ] := Table[RandomVariate[pdist, opts], n];
 
-conditionalProductDistribution /: RandomVariate[
-	pdist_conditionalProductDistribution,
+ConditionalProductDistribution /: RandomVariate[
+	pdist_ConditionalProductDistribution,
 	spec : {__Integer},
 	opts : OptionsPattern[]
 ] := Table[RandomVariate[pdist, opts], Evaluate[Sequence @@ Map[List, spec]]];
 
-conditionalProductDistribution[dists : Distributed[_, _]..] /; !dependencyOrderedQ[dists] := $Failed;
-conditionalProductDistribution[___, Except[Distributed[_, _]] | Distributed[{}, _], ___] := $Failed;
-conditionalProductDistribution[dists__Distributed] /; !AllTrue[{dists}, canonicalQ] := Module[{
+ConditionalProductDistribution[dists : Distributed[_, _]..] /; !dependencyOrderedQ[dists] := $Failed;
+ConditionalProductDistribution[___, Except[Distributed[_, _]] | Distributed[{}, _], ___] := $Failed;
+ConditionalProductDistribution[dists__Distributed] /; !AllTrue[{dists}, canonicalQ] := Module[{
 	rules = canonicalReplacementRules[randomVariables[dists]],
 	newDists
 },
 	newDists = ReplaceAll[{dists}, rules];
 	If[ AllTrue[newDists, canonicalQ],
-		conditionalProductDistribution @@ newDists,
+		ConditionalProductDistribution @@ newDists,
 		$Failed
 	]
 ];
 
+ConditionalProductDistribution /: HoldPattern @ DistributionParameterQ[
+	ConditionalProductDistribution[dists__Distributed]
+] := TrueQ @ AllTrue[
+	{dists}[[All, 2]],
+	DistributionParameterQ
+];
+
+ConditionalProductDistribution /: HoldPattern @ Mean[
+	ConditionalProductDistribution[dists__Distributed]?DistributionParameterQ
+] := With[{
+	symbols = {dists}[[All, 1]]
+},
+	Fold[
+		Function[
+			Expectation[#1, #2]
+		],
+		symbols,
+		{dists}
+	]
+];
 
 End[] (* End Private Context *)
 
