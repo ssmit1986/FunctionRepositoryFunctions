@@ -152,11 +152,11 @@ defaultValidationFunction[
 	matrix = dataPreProcessor[val] (* this should return a matrix in the same format as accepted by, e.g., LinearModelFit *)
 },
 	Replace[aggregationFunction, Automatic :> defaultFitLossFunction][
+		matrix[[All, -1]], (* True values*)
 		Map[ (* Turn the function into a form that can be efficiently mapped over a matrix *)
 			multiArgToVectorArgFunction[fit],
 			matrix[[All, 1 ;; -2 ;; 1]]
-		], (* fitted values *)
-		matrix[[All, -1]] (* True values*)
+		] (* fitted values *)
 	] /; MatrixQ[matrix] && Dimensions[matrix][[2]] > 1
 ];
 
@@ -169,14 +169,14 @@ defaultValidationFunction[
 	matrix = dataPreProcessor[val] (* this should return a matrix in the same format as accepted by, e.g., LinearModelFit *)
 },
 	Replace[aggregationFunction, Automatic :> defaultFitLossFunction][
+		matrix[[All, -1]], (* True values*)
 		ReplaceAll[ (* fitted values *)
 			fitExpr,
 			Map[ (* create a list of replacement lists {{__Rule}.. } to calculate the value of fitExpr for all input values *)
 				Join[fitParamRules, Thread[independents -> #]]&,
 				matrix[[All, 1 ;; -2 ;; 1]]
 			]
-		],
-		matrix[[All, -1]] (* True values*)
+		]
 	] /; MatrixQ[matrix] && Dimensions[matrix][[2]] === Length[independents] + 1
 ];
 
@@ -208,6 +208,54 @@ defaultValidationFunction[][net : (_NetGraph | _NetChain | _NetTrainResultsObjec
 		MaxTrainingRounds -> 1,
 		Sequence @@ args,
 		TrainingProgressReporting -> None
+	]
+];
+
+defaultValidationFunction[args___][spEst_SpatialEstimatorFunction, rules : {__Rule}] := 
+	defaultValidationFunction[args][spEst, rules[[All, 1]] -> rules[[All, 2]]];
+defaultValidationFunction[][spEst_SpatialEstimatorFunction, rules_] := 
+	defaultValidationFunction[
+		Function[{vals, means, stdevs},
+			(* Negative LogLikelihood of NormalDistribution *)
+			Divide[
+				Length[vals] * Log[2 * Pi] + Total[
+					Plus[
+						Divide[
+							Subtract[vals, means],
+							stdevs
+						]^2,
+						2 * Log[stdevs]
+					]
+				],
+				2
+			]
+		]
+	][
+		spEst,
+		rules
+	];
+defaultValidationFunction["RMS"][spEst_SpatialEstimatorFunction, rules_] := 
+	defaultValidationFunction[
+		Function[{vals, means, stdevs},
+			RootMeanSquare @ Subtract[vals, means]
+		]
+	][spEst, rules];
+defaultValidationFunction["WeightedRMS"][spEst_SpatialEstimatorFunction, rules_] := 
+	defaultValidationFunction[
+		Function[{vals, means, stdevs},
+			RootMeanSquare @ Divide[Subtract[vals, means], stdevs]
+		]
+	][spEst, rules];
+defaultValidationFunction[fun_][spEst_SpatialEstimatorFunction, locs_ -> vals_] := With[{
+	estimate = spEst[
+		Replace[locs, posList : {__GeoPosition} :> GeoPosition[posList]],
+		"Around"
+	]
+},
+	fun[
+		vals,
+		#["Value"]& /@ estimate,
+		#["Uncertainty"]& /@ estimate
 	]
 ];
 

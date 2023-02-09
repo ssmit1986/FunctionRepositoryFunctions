@@ -3,17 +3,26 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`"]
 
+AggregateRowsByKey;
+Get["FunctionRepo`AggregateRowsByKey`"];
+
+AssociationSet; 
+Get["FunctionRepo`AssociationSet`"];
+
 AssociationTemplate;
 Get["FunctionRepo`AssociationTemplate`"];
 
 AsynchronousDynamicModule;
 Get["FunctionRepo`AsynchronousDynamicModule`"];
 
+CatchEnclose;
+Get["FunctionRepo`CatchEnclose`"];
+
 checkboxLegended;
 Get["FunctionRepo`checkboxLegended`"];
 
-conditionalProductDistribution;
-Get["FunctionRepo`conditionalProductDistribution`"];
+ConditionalProductDistribution;
+Get["FunctionRepo`ConditionalProductDistribution`"];
 
 conditionedMultinormalDistribution;
 Get["FunctionRepo`conditionedMultinormalDistribution`"];
@@ -39,9 +48,18 @@ Get["FunctionRepo`DateAmbiguityBreak`"];
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
 
+ExcelClipboardData;
+Get["FunctionRepo`ExcelClipboardData`"];
+
 ExpressionToFunction;
 ExpressionToFunctionOperator;
 Get["FunctionRepo`ExpressionToFunction`"];
+
+FileTreePicker;
+Get["FunctionRepo`FileTreePicker`"];
+
+FindXMLTableData;
+Get["FunctionRepo`FindXMLTableData`"];
 
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
@@ -98,6 +116,9 @@ Get["FunctionRepo`MultiNonlinearModelFit`"];
 multiSet;
 Get["FunctionRepo`multiSet`"];
 
+NetParallelOperator;
+Get["FunctionRepo`NetParallelOperator`"];
+
 OpenTestWritingPalette;
 Get["FunctionRepo`OpenTestWritingPalette`"];
 
@@ -125,6 +146,9 @@ Get["FunctionRepo`SplitAtPositions`"];
 SymbolicSort;
 Get["FunctionRepo`SymbolicSort`"];
 
+ThroughOperator;
+Get["FunctionRepo`ThroughOperator`"];
+
 TimedPaneSelector;
 Get["FunctionRepo`TimedPaneSelector`"];
 
@@ -133,6 +157,9 @@ Get["FunctionRepo`ToExpressionMatched`"];
 
 tukeyMedianPolish;
 Get["FunctionRepo`tukeyMedianPolish`"];
+
+TwoSidedLogTransform;
+Get["FunctionRepo`TwoSidedLogTransform`"];
 
 WithCachedValues;
 Get["FunctionRepo`WithCachedValues`"];

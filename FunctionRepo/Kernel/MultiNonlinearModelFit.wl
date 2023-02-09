@@ -29,7 +29,7 @@ MultiNonlinearModelFit[
 	independents_List,
 	opts : OptionsPattern[]
 ] := Module[{
-	fitfun, weights,
+	fitfun, weights, grad,
 	numSets = Length[datasets],
 	precision = Precision @ datasets,
 	augmentedData,
@@ -40,13 +40,17 @@ MultiNonlinearModelFit[
 		datasets
 	];
 	fitfun = With[{
-		conditions = Map[
+		conditions = Flatten @ Map[
 			{#, Indexed[expressions, #]}&, 
 			Range[numSets]
 		]
 	}, 
 		Switch @@ Prepend[conditions, Round[indexSymbol]]
 	]; 
+	grad = Replace[
+		OptionValue[Gradient],
+		Automatic /; ListQ[expressions] :> D[fitfun, {Replace[fitParams, {v_, ___} :> v , {1}]}]
+	];
 	weights = Replace[
 		OptionValue[Weights],
 		{
@@ -65,7 +69,8 @@ MultiNonlinearModelFit[
 		If[TrueQ[constraints], fitfun, {fitfun, constraints}], 
 		fitParams,
 		Flatten[{indexSymbol, independents}],
-		Weights -> weights, 
+		Weights -> weights,
+		Gradient -> grad,
 		Sequence @@ FilterRules[{opts}, Options[NonlinearModelFit]]
 	]
 ];
