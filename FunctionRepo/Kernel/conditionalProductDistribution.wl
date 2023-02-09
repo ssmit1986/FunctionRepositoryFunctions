@@ -185,7 +185,7 @@ ConditionalProductDistribution /: HoldPattern @ DistributionParameterQ[
 ConditionalProductDistribution /: HoldPattern @ Mean[
 	ConditionalProductDistribution[dists__Distributed]?DistributionParameterQ
 ] := With[{
-	symbols = {dists}[[All, 1]]
+	symbols = Flatten @ {dists}[[All, 1]]
 },
 	Fold[
 		Function[
