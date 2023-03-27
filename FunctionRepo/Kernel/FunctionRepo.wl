@@ -80,6 +80,9 @@ Get["FunctionRepo`graphicsToGraph`"];
 GroupCases;
 Get["FunctionRepo`GroupCases`"];
 
+GroupMerge;
+Get["FunctionRepo`GroupMerge`"];
+
 ImageLocatorPaneWithZoom;
 Get["FunctionRepo`ImageLocatorPaneWithZoom`"];
 

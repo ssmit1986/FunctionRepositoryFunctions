@@ -2632,6 +2632,84 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
+Cell["GroupMerge", \
+"Subsection",ExpressionUUID->"aa795373-90d8-46d2-a93a-2178bfff7c65"],
+
+Cell[BoxData[
+ RowBox[{"<<", 
+  "FunctionRepo`"}]], \
+"Input",ExpressionUUID->"6f71fea3-fc7d-4f60-b11a-761d95fb8ede"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "GroupMerge"}]], \
+"Input",ExpressionUUID->"d2f7bc4b-9d59-43d3-be9f-b67cd4b12732"],
+
+Cell[BoxData[
+ RowBox[{"GroupMerge", "[", " ", 
+  RowBox[{
+   RowBox[{"ExampleData", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"\"\<sex\>\"", ",", "\"\<survived\>\""}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<count\>\"", "->", "Length"}], ",", 
+     RowBox[{"\"\<average_age\>\"", "->", 
+      RowBox[{"Query", "[", 
+       RowBox[{
+        RowBox[{"Lookup", "[", "\"\<age\>\"", "]"}], "/*", "Mean", "/*", 
+        "N"}], "]"}]}]}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"5835aa09-a7ce-4aae-a030-87b2edd2ebbd"],
+
+Cell[BoxData[
+ RowBox[{"GroupMerge", "[", " ", 
+  RowBox[{
+   RowBox[{"ExampleData", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}], ",", 
+   " ", 
+   RowBox[{"{", 
+    RowBox[{"\"\<sex\>\"", ",", "\"\<survived\>\"", ",", " ", 
+     RowBox[{"\"\<under 30?\>\"", "->", 
+      RowBox[{"Function", "[", 
+       RowBox[{"TrueQ", "[", 
+        RowBox[{"#age", "<", "30"}], "]"}], "]"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<count\>\"", "->", "Length"}], ",", 
+     RowBox[{"\"\<average_age\>\"", "->", 
+      RowBox[{"Query", "[", 
+       RowBox[{
+        RowBox[{"Lookup", "[", "\"\<age\>\"", "]"}], "/*", "Mean", "/*", 
+        "N"}], "]"}]}]}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"7b4638ff-de00-4fe8-bd89-eab021c7218a"],
+
+Cell[BoxData[
+ RowBox[{"GroupMerge", "[", " ", 
+  RowBox[{
+   RowBox[{"Normal", "@", 
+    RowBox[{"ExampleData", "[", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}]}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"\"\<sex\>\"", ",", "\"\<survived\>\""}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<count\>\"", "->", "Length"}], ",", 
+     RowBox[{"\"\<average_age\>\"", "->", 
+      RowBox[{"Query", "[", 
+       RowBox[{
+        RowBox[{"Lookup", "[", "\"\<age\>\"", "]"}], "/*", "Mean", "/*", 
+        "N"}], "]"}]}]}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"373a15a3-314f-4741-95c5-20104a8e562e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["ImageLocatorPaneWithZoom", \
 "Subsection",ExpressionUUID->"0db2dfe2-9fa6-46c9-8910-b7e2ebbb9be3"],
 
