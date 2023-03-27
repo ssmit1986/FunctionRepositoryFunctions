@@ -17,8 +17,7 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 	data = dat,
 	groupKeys = groupSpec,
 	groupFun,
-	mergeAssoc = mergeSpec,
-	mergeFun
+	mergeFun = mergeSpec
 },
 	Enclose[
 		datasetQ = Head[data] === Dataset;
@@ -32,7 +31,6 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 			groupKeys,
 			{($partPatt | Rule[$partPatt, _])..}
 		];
-		mergeAssoc = ConfirmBy[Association[mergeAssoc], AssociationQ];
 		
 		groupFun = Replace[groupKeys,
 			{
@@ -46,9 +44,13 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 			Key[k_] :> k,
 			{1}
 		];
-		mergeFun = Function[list, Function[# @ list] /@ mergeAssoc];
+		mergeFun = mergeData[Flatten @ {mergeFun}];
 		
-		data = GroupBy[data, groupFun, mergeFun];
+		data = GroupBy[
+			data,
+			groupFun,
+			ConfirmBy[mergeFun @ KeyDrop[#, groupKeys], AssociationQ]&
+		];
 		data = ConfirmMatch[
 			Flatten @ Last @ Reap[
 				MapIndexed[
@@ -72,7 +74,17 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 
 		data
 	]
-]
+];
+
+mergeData[mergeSpec_List][data_] := Association @ Map[
+	Replace[
+		{
+			r_Rule :> (First[r] -> Last[r] @ data),
+			fun_ :> fun @ data
+		}
+	],
+	mergeSpec
+];
 
 End[] (* End Private Context *)
 

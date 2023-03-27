@@ -2653,6 +2653,22 @@ Cell[BoxData[
      RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}], ",", 
    " ", 
    RowBox[{"{", 
+    RowBox[{"\"\<sex\>\"", ",", "\"\<survived\>\"", ",", "\"\<class\>\""}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<count\>\"", "->", "Length"}], ",", 
+     RowBox[{"Merge", "[", "Histogram", "]"}]}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"4b4b1ec8-5b92-454e-828f-b63b58ab9ce5"],
+
+Cell[BoxData[
+ RowBox[{"GroupMerge", "[", " ", 
+  RowBox[{
+   RowBox[{"ExampleData", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Dataset\>\"", ",", "\"\<Titanic\>\""}], "}"}], "]"}], ",", 
+   " ", 
+   RowBox[{"{", 
     RowBox[{"\"\<sex\>\"", ",", "\"\<survived\>\""}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
@@ -2706,7 +2722,7 @@ Cell[BoxData[
         RowBox[{"Lookup", "[", "\"\<age\>\"", "]"}], "/*", "Mean", "/*", 
         "N"}], "]"}]}]}], "}"}]}], 
   "]"}]], "Input",ExpressionUUID->"373a15a3-314f-4741-95c5-20104a8e562e"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
