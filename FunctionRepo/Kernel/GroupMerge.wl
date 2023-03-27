@@ -76,7 +76,7 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 	]
 ];
 
-mergeData[mergeSpec_List][data_] := Association @ Map[
+mergeData[mergeSpec_][data_] := Association @ Map[
 	Replace[
 		{
 			r_Rule :> (First[r] -> Last[r] @ data),

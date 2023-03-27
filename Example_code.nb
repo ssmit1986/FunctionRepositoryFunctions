@@ -2722,7 +2722,7 @@ Cell[BoxData[
         RowBox[{"Lookup", "[", "\"\<age\>\"", "]"}], "/*", "Mean", "/*", 
         "N"}], "]"}]}]}], "}"}]}], 
   "]"}]], "Input",ExpressionUUID->"373a15a3-314f-4741-95c5-20104a8e562e"]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
