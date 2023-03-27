@@ -79,7 +79,7 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 mergeData[mergeSpec_][data_] := Association @ Map[
 	Replace[
 		{
-			r_Rule :> (First[r] -> Last[r] @ data),
+			Verbatim[Rule][key_, fun_] :> Rule[key, fun @ data],
 			fun_ :> fun @ data
 		}
 	],
