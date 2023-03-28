@@ -32,12 +32,16 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 			{($partPatt | Rule[$partPatt, _])..}
 		];
 		
-		groupFun = Replace[groupKeys,
-			{
-				r_Rule :> r[[2]],
-				p_ :> Function[Part[#, p]]
-			},
-			{1}
+		groupFun = With[{
+			list = Replace[groupKeys,
+				{
+					r_Rule :> r[[2]],
+					p_ :> Function[Part[#, p]]
+				},
+				{1}
+			]
+		},
+			Function[Through[list[#]]]
 		];
 		groupKeys = Replace[
 			Replace[groupKeys, r_Rule :> r[[1]], {1}],
@@ -48,25 +52,13 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 		
 		data = GroupBy[
 			data,
-			groupFun,
-			ConfirmBy[mergeFun @ KeyDrop[#, groupKeys], AssociationQ]&
+			groupFun -> KeyDrop[groupKeys],
+			ConfirmBy[mergeFun[#], AssociationQ]&
 		];
 		data = ConfirmMatch[
-			Flatten @ Last @ Reap[
-				MapIndexed[
-					Function[{assoc, pos},
-						Sow[
-							Join[
-								AssociationThread[groupKeys, pos[[All, 1]]],
-								assoc
-							],
-							sowGroupMerge
-						]
-					],
-					data,
-					{Length[groupFun]}
-				],
-				sowGroupMerge
+			KeyValueMap[
+				Join[AssociationThread[groupKeys, #1], #2]&,
+				data
 			],
 			{__Association?AssociationQ}
 		];
