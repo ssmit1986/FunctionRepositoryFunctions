@@ -7,10 +7,12 @@ GeneralUtilities`SetUsage[GroupMerge, "GroupMerge[{assoc$1, assoc$2, $$}, {key$1
 
 Begin["`Private`"] (* Begin Private Context *) 
 
+$partPatt = _Key | _String | Integer;
+$assocPatt = _Association?AssociationQ;
+$assocListPatt = {__Association?AssociationQ};
+
 GroupMerge[{}, _, _] := {};
 GroupMerge[groupSpec_, mergeSpec_][data_] := GroupMerge[data, groupSpec, mergeSpec];
-
-$partPatt = _Key | _String | Integer;
 
 GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 	datasetQ,
@@ -24,7 +26,7 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 		If[ datasetQ, data = Normal[data]];
 		ConfirmMatch[
 			data,
-			 {__Association?AssociationQ}
+			$assocListPatt
 		];
 		groupKeys = DeleteDuplicates @ Flatten[{groupSpec}];
 		ConfirmMatch[
@@ -53,14 +55,14 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 		data = GroupBy[
 			data,
 			groupFun -> KeyDrop[groupKeys],
-			ConfirmBy[mergeFun[#], AssociationQ]&
+			ConfirmMatch[mergeFun[#], $assocPatt]&
 		];
 		data = ConfirmMatch[
 			KeyValueMap[
 				Join[AssociationThread[groupKeys, #1], #2]&,
 				data
 			],
-			{__Association?AssociationQ}
+			$assocListPatt
 		];
 		If[ datasetQ, data = Dataset[data]];
 
