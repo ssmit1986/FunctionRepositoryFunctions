@@ -50,7 +50,13 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 			Key[k_] :> k,
 			{1}
 		];
-		mergeFun = mergeData[Flatten @ {mergeFun}];
+		mergeFun = mergeData[
+			Replace[
+				Flatten @ {mergeFun},
+				Automatic :> Merge[automaticMergeFun],
+				{1}
+			]
+		];
 		
 		data = GroupBy[
 			data,
@@ -68,6 +74,14 @@ GroupMerge[dat_, groupSpec_, mergeSpec_] := Module[{
 
 		data
 	]
+];
+
+automaticMergeFun = Replace[
+	{
+		{el_} :> el,
+		list : {__} /; SameQ @@ list :> First[list],
+		_ :> Missing["NotAvailable"]
+	}
 ];
 
 mergeData[mergeSpec_][data_] := Association @ Map[
