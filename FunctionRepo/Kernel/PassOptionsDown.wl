@@ -8,6 +8,7 @@ GeneralUtilities`SetUsage[PassOptionsDown,
 
 Begin["`Private`"] (* Begin Private Context *)
 
+PassOptionsDown[f_ -> g_, assoc_Association?AssociationQ] := PassOptionsDown[f -> g, Normal[assoc]];
 PassOptionsDown[headFun_Symbol -> subFun_Symbol, opts : OptionsPattern[]] := With[{
 	headOpts = Options[headFun],
 	subOpts = Options[subFun]
@@ -20,7 +21,6 @@ PassOptionsDown[headFun_Symbol -> subFun_Symbol, opts : OptionsPattern[]] := Wit
 		subOpts
 	]
 ];
-
 
 End[] (* End Private Context *)
 
