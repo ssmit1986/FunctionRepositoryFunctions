@@ -126,8 +126,11 @@ SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : Except[{{__
 SparseAssociation[rules : {__Rule}, keys : Except[{{__}..}], rest___] :=
 	SparseAssociation[rules, ConstantArray[keys, Length[rules[[1, 1]]]], rest]
 
-SparseAssociation[assoc_?AssociationQ, keys : Except[{{__}..}], rest___] :=
-	SparseAssociation[assoc, ConstantArray[keys, associationDepth[assoc]], rest]
+SparseAssociation[assoc_?AssociationQ, keys : Except[{{__}..}], rest___] := With[{
+	depth = associationDepth[assoc]
+},
+	SparseAssociation[assoc, ConstantArray[keys, depth], rest] /; IntegerQ[depth]
+];
 
 SparseAssociation[{}, keys : Except[{{__}..}], rest___] := SparseAssociation[{}, {keys}, rest];
 
