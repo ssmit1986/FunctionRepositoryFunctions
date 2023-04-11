@@ -125,8 +125,8 @@ Get["FunctionRepo`NetParallelOperator`"];
 OpenTestWritingPalette;
 Get["FunctionRepo`OpenTestWritingPalette`"];
 
-PassOptionsDown;
-Get["FunctionRepo`PassOptionsDown`"];
+InheritOptions;
+Get["FunctionRepo`InheritOptions`"];
 
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
