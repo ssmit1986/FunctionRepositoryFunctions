@@ -56,15 +56,20 @@ verifyDataStructure[assoc_?AssociationQ] := Append[assoc, "ValidatedQ" -> False]
 verifyDataStructure[_] := $Failed;
 
 associationDepth[assoc_?AssociationQ] := Module[{
-	vals = Values[assoc],
 	i = 1
 },
-	While[ MatchQ[vals, {(_?AssociationQ | _Missing) ..}]
+	While[
+		And[
+			TrueQ @ AnyTrue[assoc, AssociationQ, i],
+			TrueQ @ AllTrue[assoc, AssociationQ[#] || MissingQ[#]&, i]
+		]
 		,
-		vals = Flatten @ Values[DeleteCases[vals, _Missing]];
 		i++
 	];
-	i
+	If[ NoneTrue[assoc, AssociationQ, i],
+		i,
+		Enclose @ Confirm[$Failed, "AssociationDepth: association is not regularly shaped"]
+	]
 ];
 
 keyRange[l_List] := AssociationThread[l, Range[Length[l]]];
@@ -106,6 +111,7 @@ SparseAssociation[assoc_?AssociationQ, Automatic, default : _ : Automatic] := Mo
 			elements = Flatten @ Values[elements]
 		]
 	][[2, 1]];
+	allKeys = Replace[allKeys, {fst___, {}} :> {fst}];
 	SparseAssociation[
 		assoc,
 		allKeys,
@@ -120,8 +126,11 @@ SparseAssociation[array : Except[_Rule | {__Rule}, _?ArrayQ], keys : Except[{{__
 SparseAssociation[rules : {__Rule}, keys : Except[{{__}..}], rest___] :=
 	SparseAssociation[rules, ConstantArray[keys, Length[rules[[1, 1]]]], rest]
 
-SparseAssociation[assoc_?AssociationQ, keys : Except[{{__}..}], rest___] :=
-	SparseAssociation[assoc, ConstantArray[keys, associationDepth[assoc]], rest]
+SparseAssociation[assoc_?AssociationQ, keys : Except[{{__}..}], rest___] := With[{
+	depth = associationDepth[assoc]
+},
+	SparseAssociation[assoc, ConstantArray[keys, depth], rest] /; IntegerQ[depth]
+];
 
 SparseAssociation[{}, keys : Except[{{__}..}], rest___] := SparseAssociation[{}, {keys}, rest];
 
@@ -190,17 +199,17 @@ SparseAssociation[
 	default : _ : Automatic
 ] /; AllTrue[keys, DuplicateFreeQ] := Module[{
 	depth = Length[keys],
-	ruleSym = Rule, (* Avoid localization issues associated with Rule *)
 	rules
 },
-	rules = Flatten @ Last @ Reap[
-		MapIndexed[
-			Sow[ruleSym[Replace[#2, Key[s_] :> s, {1}], #1]]&,
-			DeleteMissing[assoc, depth],
-			{depth}
-		];
+	rules = Position[assoc, Except[_Missing], {depth}, Heads -> False];
+	rules = MapThread[
+		Rule,
+		{
+			Replace[rules, Key[k_] :> k, {2}],
+			Extract[assoc, rules]
+		}
 	];
-	SparseAssociation[rules, keys, default] /; MatchQ[rules, {(_List -> _)..}]
+	SparseAssociation[rules, keys, default] /; MatchQ[rules, {(_List -> _)...}]
 ];
 
 (* accessors *)

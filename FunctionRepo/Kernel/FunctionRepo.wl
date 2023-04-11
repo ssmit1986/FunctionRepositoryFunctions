@@ -80,6 +80,9 @@ Get["FunctionRepo`graphicsToGraph`"];
 GroupCases;
 Get["FunctionRepo`GroupCases`"];
 
+GroupMerge;
+Get["FunctionRepo`GroupMerge`"];
+
 ImageLocatorPaneWithZoom;
 Get["FunctionRepo`ImageLocatorPaneWithZoom`"];
 
@@ -121,6 +124,9 @@ Get["FunctionRepo`NetParallelOperator`"];
 
 OpenTestWritingPalette;
 Get["FunctionRepo`OpenTestWritingPalette`"];
+
+PassOptionsDown;
+Get["FunctionRepo`PassOptionsDown`"];
 
 PositionQ;
 Get["FunctionRepo`PositionQ`"];
