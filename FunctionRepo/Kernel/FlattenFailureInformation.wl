@@ -9,7 +9,7 @@ GeneralUtilities`SetUsage[FlattenFailureInformation,
 Begin["`Private`"] (* Begin Private Context *)
 
 FlattenFailureInformation[fail_Failure?FailureQ] := With[{
-	allInfo = Apply[Join] @ Last @ Reap[
+	allInfo = deleteDuplicatesFromEnd @ Flatten @ Last @ Reap[
 		ReplaceRepeated[
 			fail,
 			f_Failure :> (
@@ -23,6 +23,8 @@ FlattenFailureInformation[fail_Failure?FailureQ] := With[{
 	appendToFailure[fail, <|"Information" -> allInfo|>]
 ];
 FlattenFailureInformation[other_] := other;
+
+deleteDuplicatesFromEnd[list_] := Reverse @ DeleteDuplicates[Reverse[list]];
 
 appendToFailure[Failure[tag_, assoc_?AssociationQ, rest___], append_] := Failure[tag, Append[assoc, append], rest];
 
