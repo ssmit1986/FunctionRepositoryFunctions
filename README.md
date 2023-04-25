@@ -25,6 +25,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [ExpressionToFunctionOperator](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunctionOperator)
 
+* [FileTreePicker](https://resources.wolframcloud.com/FunctionRepository/resources/FileTreePicker)
+
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
 
 * [GroupCases](https://resources.wolframcloud.com/FunctionRepository/resources/GroupCases)
