@@ -48,6 +48,9 @@ Get["FunctionRepo`DateAmbiguityBreak`"];
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
 
+DiscreteHausdorffDistance;
+Get["FunctionRepo`DiscreteHausdorffDistance`"];
+
 ExcelClipboardData;
 Get["FunctionRepo`ExcelClipboardData`"];
 

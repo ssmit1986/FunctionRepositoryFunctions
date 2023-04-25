@@ -1225,6 +1225,35 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["DiscreteHausdorffDistance", \
+"Subsection",ExpressionUUID->"84a1beff-3eda-4822-8506-f54a918d70ed"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "DiscreteHausdorffDistance"}]], \
+"Input",ExpressionUUID->"bf3763da-6fd6-481b-9c8a-c2926cf138fb"],
+
+Cell[BoxData[
+ RowBox[{"DiscreteHausdorffDistance", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "5", ",", "7"}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"bd3ababf-3836-49f9-bd26-c27e6151bfed"],
+
+Cell[BoxData[
+ RowBox[{"DiscreteHausdorffDistance", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\""}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<ab\>\"", ",", "\"\<bc\>\"", ",", "\"\<aaab\>\""}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"dd2c197f-11e8-435e-b2fd-6f241cebeddc"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["ExcelClipboardData", \
 "Subsection",ExpressionUUID->"c4158405-ee84-441b-bc2f-7d4a80ce054f"],
 
