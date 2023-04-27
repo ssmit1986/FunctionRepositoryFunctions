@@ -67,8 +67,8 @@ Get["FunctionRepo`FindXMLTableData`"];
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
 
-FlattenFailureInformation;
-Get["FunctionRepo`FlattenFailureInformation`"];
+FlattenFailure;
+Get["FunctionRepo`FlattenFailure`"];
 
 FormatTestFile;
 ConvertTestNotebooks;

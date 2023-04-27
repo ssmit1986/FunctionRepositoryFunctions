@@ -1953,12 +1953,12 @@ Cell[BoxData[{
 
 Cell[CellGroupData[{
 
-Cell["FlattenFailureInformation", \
+Cell["FlattenFailure", \
 "Subsection",ExpressionUUID->"c9ba7f47-d760-4466-896b-6f9d2a6b610d"],
 
 Cell[BoxData[
  RowBox[{"?", 
-  "FlattenFailureInformation"}]], \
+  "FlattenFailure"}]], \
 "Input",ExpressionUUID->"0a7ef0b9-f2f0-42c1-91e6-eefa3a0b4c80"],
 
 Cell[BoxData[{
@@ -1997,8 +1997,7 @@ Cell[BoxData[{
   RowBox[{"f3", "[", "1", "]"}]}], "\[IndentingNewLine]", 
  RowBox[{"err", "[", "\"\<Information\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"FlattenFailureInformation", "[", "err", "]"}], "[", 
-  "\"\<Information\>\"", 
+  RowBox[{"FlattenFailure", "[", "err", "]"}], "[", "\"\<Information\>\"", 
   "]"}]}], "Input",ExpressionUUID->"234c067c-2355-4207-a310-0efbd7ec83aa"]
 }, Closed]],
 

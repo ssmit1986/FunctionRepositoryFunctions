@@ -1,32 +1,72 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`FlattenFailureInformation`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`FlattenFailure`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[FlattenFailureInformation,
-	"FlattenFailureInformation[fail$] extracts information from nested failures and puts all the info in the outer failure object."
+GeneralUtilities`SetUsage[FlattenFailure,
+	"FlattenFailure[fail$] extracts information from nested failures and puts all the info in the outer failure object."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
 
-FlattenFailureInformation[fail_Failure?FailureQ] := With[{
-	allInfo = deleteDuplicatesFromEnd @ Flatten @ Last @ Reap[
-		ReplaceRepeated[
-			fail,
-			f_Failure :> (
-				Sow[f["Information"], failureInfo];
-				f["Expression"]
-			)
-		],
-		failureInfo
-	]
+FlattenFailure[failIn_Failure?FailureQ, h : _ : "Information"] := With[{
+	fail = makeMessagesReadable @ failIn,
+	handler = Replace[h, s_String :> (#[s]&)]
 },
-	appendToFailure[fail, <|"Information" -> allInfo|>]
+	With[{
+		allInfo = deleteDuplicatesFromEnd @ Flatten @ Last @ Reap[
+			ReplaceRepeated[
+				fail,
+				f_Failure :> (
+					Sow[handler[f], failureInfo];
+					f["Expression"]
+				)
+			],
+			failureInfo
+		]
+	},
+		appendToFailure[fail, <|"Information" -> allInfo|>]
+	]
 ];
-FlattenFailureInformation[other_] := other;
+FlattenFailure[other_] := other;
 
 deleteDuplicatesFromEnd[list_] := Reverse @ DeleteDuplicates[Reverse[list]];
 
 appendToFailure[Failure[tag_, assoc_?AssociationQ, rest___], append_] := Failure[tag, Append[assoc, append], rest];
+
+makeMessagesReadable[expr_] := ReplaceRepeated[
+	expr,
+	Failure[tag_,
+		Association[
+			fst2___,
+			"MessageParameters" :> {
+				fst3___,
+				Failure[tag_, a_Association, ___],
+				rest3___
+			},
+			rest2___
+		],
+		rest1___
+	] :> With[{
+		newfail = With[{
+			inactiveFail = StringForm["Failure[`1`, \[Ellipsis]]", tag]
+		},
+			Failure[tag,
+				Association[
+					fst2,
+					"MessageParameters" :> {
+						fst3,
+						inactiveFail,
+						rest3
+					},
+					rest2
+				],
+				rest1
+			]
+		]
+	},
+		newfail /; True
+	]
+];
 
 End[] (* End Private Context *)
 
