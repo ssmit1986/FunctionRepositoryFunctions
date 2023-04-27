@@ -33,38 +33,34 @@ deleteDuplicatesFromEnd[list_] := Reverse @ DeleteDuplicates[Reverse[list]];
 
 appendToFailure[Failure[tag_, assoc_?AssociationQ, rest___], append_] := Failure[tag, Append[assoc, append], rest];
 
+elidedFailure[f_] := StringForm["Failure[`1`, \[Ellipsis]]", f["Tag"]];
+
+SetAttributes[hasFailureQ, HoldAllComplete];
+hasFailureQ[expr_] := !FreeQ[Unevaluated[expr], _Failure];
+
 makeMessagesReadable[expr_] := ReplaceRepeated[
 	expr,
 	Failure[tag_,
 		Association[
 			fst2___,
-			"MessageParameters" :> {
-				fst3___,
-				Failure[tag_, a_Association, ___],
-				rest3___
-			},
+			"MessageParameters" :> list_?hasFailureQ,
 			rest2___
 		],
 		rest1___
 	] :> With[{
-		newfail = With[{
-			inactiveFail = StringForm["Failure[`1`, \[Ellipsis]]", tag]
-		},
-			Failure[tag,
-				Association[
-					fst2,
-					"MessageParameters" :> {
-						fst3,
-						inactiveFail,
-						rest3
-					},
-					rest2
-				],
-				rest1
-			]
+		newRule = Replace[
+			HoldComplete[list] //. f_Failure :> With[{el = elidedFailure[f]}, el /; True],
+			HoldComplete[l_] :> ("MessageParameters" :> l)
 		]
 	},
-		newfail /; True
+		Failure[tag,
+			Association[
+				fst2,
+				newRule,
+				rest2
+			],
+			rest1
+		] /; True
 	]
 ];
 
