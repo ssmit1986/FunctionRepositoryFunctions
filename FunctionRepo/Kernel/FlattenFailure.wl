@@ -33,7 +33,7 @@ deleteDuplicatesFromEnd[list_] := Reverse @ DeleteDuplicates[Reverse[list]];
 
 appendToFailure[Failure[tag_, assoc_?AssociationQ, rest___], append_] := Failure[tag, Append[assoc, append], rest];
 
-elidedFailure[f_] := StringForm["Failure[`1`, \[Ellipsis]]", f["Tag"]];
+elidedFailure[f_] := StringForm["Failure[`1`, `2`]", f["Tag"], Skeleton[1]];
 
 SetAttributes[hasFailureQ, HoldAllComplete];
 hasFailureQ[expr_] := !FreeQ[Unevaluated[expr], _Failure];
