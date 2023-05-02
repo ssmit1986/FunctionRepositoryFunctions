@@ -21,6 +21,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [DateAmbiguityBreak](https://resources.wolframcloud.com/FunctionRepository/resources/DateAmbiguityBreak)
 
+* [DiscreteHausdorffDistance](https://resources.wolframcloud.com/FunctionRepository/resources/DiscreteHausdorffDistance/)
+
 * [ExpressionToFunction](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunction)
 
 * [ExpressionToFunctionOperator](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunctionOperator)
@@ -28,6 +30,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * [FileTreePicker](https://resources.wolframcloud.com/FunctionRepository/resources/FileTreePicker)
 
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
+
+* [FlattenFailure](https://resources.wolframcloud.com/FunctionRepository/resources/FlattenFailure/)
 
 * [GroupCases](https://resources.wolframcloud.com/FunctionRepository/resources/GroupCases)
 
