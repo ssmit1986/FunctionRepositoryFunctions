@@ -218,13 +218,13 @@ AssociationTemplate /: MakeBoxes[
 	AssociationTemplate[data, expr],
 	"\[LeftAssociation]\[Ellipsis]\[RightAssociation]",
 	{
-		BoxForm`SummaryItem[{"Number of data keys ", Length[Keys[data]]}],
-		BoxForm`SummaryItem[{"Number of templated keys ", Length[Keys[expr]]}],
-		BoxForm`SummaryItem[{"Total keys ", Length[keys]}]
+		BoxForm`SummaryItem[{"Number of data keys: ", Length[Keys[data]]}],
+		BoxForm`SummaryItem[{"Number of templated keys: ", Length[Keys[expr]]}],
+		BoxForm`SummaryItem[{"Total keys: ", Length[keys]}]
 	},
 	{
-		BoxForm`SummaryItem[{"Data keys ", Short[Keys[data], 3]}],
-		BoxForm`SummaryItem[{"Templated keys ", Short[Keys[expr], 3]}]
+		BoxForm`SummaryItem[{"Data keys: ", Short[Keys[data], 3]}],
+		BoxForm`SummaryItem[{"Templated keys: ", Short[Keys[expr], 3]}]
 	},
 	form
 ];
