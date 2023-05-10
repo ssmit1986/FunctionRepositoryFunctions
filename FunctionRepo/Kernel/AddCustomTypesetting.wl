@@ -9,15 +9,24 @@ AddCustomTypesetting[sym$, fun$, size$] will use size$ as the ByteCount limit fo
 
 Begin["`Private`"] (* Begin Private Context *) 
 
-AddCustomTypesetting[sym_Symbol, fun_] := (
-	sym /: MakeBoxes[obj_sym, fmt_] := boxesWithDelayedCache[fun, obj, fmt]
+$typesettingQ = False;
+
+AddCustomTypesetting[sym_Symbol, rest___] := AddCustomTypesetting[_sym, rest];
+
+AddCustomTypesetting[patt_, fun_] := (
+	MakeBoxes[obj : patt, fmt_] := Block[{
+		$typesettingQ = True
+	},
+		boxesWithDelayedCache[fun, obj, fmt]
+	] /; !TrueQ[$typesettingQ]
 );
-AddCustomTypesetting[sym_Symbol, fun_, limit_] := (
-	sym /: MakeBoxes[obj_sym, fmt_] := Block[{
-		$NotebookInlineStorageLimit = limit
+AddCustomTypesetting[patt_, fun_, limit_] := (
+	MakeBoxes[obj : patt, fmt_] := Block[{
+		$NotebookInlineStorageLimit = limit,
+		$typesettingQ = True
 	}, 
 		boxesWithDelayedCache[fun, obj, fmt]
-	]
+	] /; !TrueQ[$typesettingQ]
 );
 
 boxesWithDelayedCache[displayFun_, expr_, fmt_] := Module[{
@@ -28,7 +37,7 @@ boxesWithDelayedCache[displayFun_, expr_, fmt_] := Module[{
 	With[{
 		boxes =  ToBoxes[
 			DynamicModule[{Typeset`embedState = If[MissingQ[exprkey], "Failed", "Ready"]}, 
-				ElisionsDump`makeOuterGrid[displayFun[expr], Head[expr], exprkey, byteCount, Dynamic[Typeset`embedState], fmt]
+				ElisionsDump`makeOuterGrid[displayFun[expr, fmt], Head[expr], exprkey, byteCount, Dynamic[Typeset`embedState], fmt]
 			], 
 			fmt
 		]
