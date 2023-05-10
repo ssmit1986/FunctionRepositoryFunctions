@@ -48,6 +48,9 @@ Get["FunctionRepo`DateAmbiguityBreak`"];
 deleteContainedStrings;
 Get["FunctionRepo`deleteContainedStrings`"];
 
+DiscreteHausdorffDistance;
+Get["FunctionRepo`DiscreteHausdorffDistance`"];
+
 ExcelClipboardData;
 Get["FunctionRepo`ExcelClipboardData`"];
 
@@ -63,6 +66,9 @@ Get["FunctionRepo`FindXMLTableData`"];
 
 firstMatchingValue;
 Get["FunctionRepo`firstMatchingValue`"];
+
+FlattenFailure;
+Get["FunctionRepo`FlattenFailure`"];
 
 FormatTestFile;
 ConvertTestNotebooks;

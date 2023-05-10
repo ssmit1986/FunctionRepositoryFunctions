@@ -1225,6 +1225,35 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["DiscreteHausdorffDistance", \
+"Subsection",ExpressionUUID->"84a1beff-3eda-4822-8506-f54a918d70ed"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "DiscreteHausdorffDistance"}]], \
+"Input",ExpressionUUID->"bf3763da-6fd6-481b-9c8a-c2926cf138fb"],
+
+Cell[BoxData[
+ RowBox[{"DiscreteHausdorffDistance", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "5", ",", "7"}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"bd3ababf-3836-49f9-bd26-c27e6151bfed"],
+
+Cell[BoxData[
+ RowBox[{"DiscreteHausdorffDistance", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\"\<a\>\"", ",", "\"\<b\>\"", ",", "\"\<c\>\""}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<ab\>\"", ",", "\"\<bc\>\"", ",", "\"\<aaab\>\""}], "}"}]}], 
+  "]"}]], "Input",ExpressionUUID->"dd2c197f-11e8-435e-b2fd-6f241cebeddc"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["ExcelClipboardData", \
 "Subsection",ExpressionUUID->"c4158405-ee84-441b-bc2f-7d4a80ce054f"],
 
@@ -1920,6 +1949,56 @@ Cell[BoxData[{
      RowBox[{"_Integer", "?", "OddQ"}]}], "]"}], ",", "\[IndentingNewLine]", 
    "x"}], "}"}]}], \
 "Input",ExpressionUUID->"29421cbc-f709-476c-b19c-f1a36aa67e57"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["FlattenFailure", \
+"Subsection",ExpressionUUID->"c9ba7f47-d760-4466-896b-6f9d2a6b610d"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "FlattenFailure"}]], \
+"Input",ExpressionUUID->"0a7ef0b9-f2f0-42c1-91e6-eefa3a0b4c80"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   RowBox[{"f1", ",", "f2", ",", "f3"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f1", "[", "x_", "]"}], ":=", 
+   RowBox[{"Enclose", "[", 
+    RowBox[{"ConfirmBy", "[", 
+     RowBox[{
+     "x", ",", "EvenQ", ",", "\"\<f1 only works with even numbers\>\""}], 
+     "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f2", "[", "x_", "]"}], ":=", 
+   RowBox[{"Enclose", "[", 
+    RowBox[{"1", "+", 
+     RowBox[{"ConfirmBy", "[", 
+      RowBox[{
+       RowBox[{"f1", "[", "x", "]"}], ",", "IntegerQ", ",", 
+       "\"\<Something went wrong in f2\>\""}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f3", "[", "x_", "]"}], ":=", 
+   RowBox[{"Enclose", "[", 
+    RowBox[{
+     RowBox[{"ConfirmBy", "[", 
+      RowBox[{
+       RowBox[{"f2", "[", "x", "]"}], ",", "NumericQ", ",", 
+       "\"\<Something went wrong in f3\>\""}], "]"}], "^", "2"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"err", "=", 
+  RowBox[{"f3", "[", "1", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"err", "[", "\"\<Information\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FlattenFailure", "[", "err", "]"}], "[", "\"\<Information\>\"", 
+  "]"}]}], "Input",ExpressionUUID->"234c067c-2355-4207-a310-0efbd7ec83aa"]
 }, Closed]],
 
 Cell[CellGroupData[{
