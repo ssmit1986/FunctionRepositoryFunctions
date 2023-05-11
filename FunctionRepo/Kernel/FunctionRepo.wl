@@ -3,6 +3,9 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`"]
 
+AddCustomTypesetting;
+Get["FunctionRepo`AddCustomTypesetting`"];
+
 AggregateRowsByKey;
 Get["FunctionRepo`AggregateRowsByKey`"];
 
