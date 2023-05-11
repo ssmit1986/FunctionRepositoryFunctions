@@ -3,6 +3,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [FunctionArgumentCount](https://resources.wolframcloud.com/FunctionRepository/resources/ArgumentCount) (Note that there's also a built-in function ``GeneralUtilities`ArgumentCount`` which is why this function has been renamed.)
 
+* [AddCustomTypesetting](https://resources.wolframcloud.com/FunctionRepository/resources/AddCustomTypesetting)
+
 * [AssociationTemplate](https://resources.wolframcloud.com/FunctionRepository/resources/AssociationTemplate)
 
 * [AsynchronousDynamicModule](https://resources.wolframcloud.com/FunctionRepository/resources/AsynchronousDynamicModule)
