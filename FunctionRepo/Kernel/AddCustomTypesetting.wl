@@ -13,6 +13,8 @@ $typesettingQ = False;
 
 AddCustomTypesetting[sym_Symbol, rest___] := AddCustomTypesetting[_sym, rest];
 
+AddCustomTypesetting[patt_, None, ___] := Unset[MakeBoxes[obj : patt, fmt_]];
+
 AddCustomTypesetting[patt_, fun_] := (
 	MakeBoxes[obj : patt, fmt_] := Block[{
 		$typesettingQ = True
