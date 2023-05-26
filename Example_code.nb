@@ -3161,6 +3161,153 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
+Cell["MissingDataLogLikelihood", \
+"Subsection",ExpressionUUID->"ae00cb01-f929-407f-b784-27fa30661958"],
+
+Cell[BoxData[
+ RowBox[{"<<", 
+  "FunctionRepo`"}]], \
+"Input",ExpressionUUID->"d07e214b-30af-4ef5-93b7-941f7249278e"],
+
+Cell[BoxData[
+ RowBox[{"?", 
+  "MissingDataLogLikelihood"}]], \
+"Input",ExpressionUUID->"e24b9192-056b-4171-967c-3bcfc762342d"],
+
+Cell[BoxData[{
+ RowBox[{"n", "=", "3"}], "\[IndentingNewLine]", 
+ RowBox[{"dist", "=", 
+  RowBox[{"MultinormalDistribution", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"RandomVariate", "[", 
+     RowBox[{
+      RowBox[{"NormalDistribution", "[", "]"}], ",", "n"}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"RandomVariate", "[", 
+     RowBox[{"InverseWishartMatrixDistribution", "[", 
+      RowBox[{
+       RowBox[{"n", "+", "3"}], ",", 
+       RowBox[{"IdentityMatrix", "[", "n", "]"}]}], "]"}], "]"}]}], 
+   "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",ExpressionUUID->"47cba06d-ef8e-414e-98df-638615a93651"],
+
+Cell[BoxData[
+ RowBox[{"data", "=", 
+  RowBox[{"RandomVariate", "[", "\[IndentingNewLine]", 
+   RowBox[{"dist", ",", "\[IndentingNewLine]", "20"}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",ExpressionUUID->"f75b612a-7b3e-4412-9038-dd2a00dceaff"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"addHoles", "[", 
+   RowBox[{"data_", ",", "p_"}], "]"}], ":=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"RandomChoice", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"p", ",", 
+        RowBox[{"1", "-", "p"}]}], "}"}], "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Missing", "[", "]"}], ",", "j"}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "data"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"j", ",", "i"}], "}"}]}], 
+   "]"}]}]], "Input",ExpressionUUID->"1e7a9763-49b4-4ec2-90b1-f3a3cb8cf2fc"],
+
+Cell[BoxData[
+ RowBox[{"dataWithMissing", "=", 
+  RowBox[{"addHoles", "[", 
+   RowBox[{"data", ",", 
+    RowBox[{"2", "/", "5"}]}], 
+   "]"}]}]], "Input",ExpressionUUID->"3b4d7023-10b7-4fb2-8cf3-ecc3b1be0874"],
+
+Cell[BoxData[
+ RowBox[{"EstimatedDistribution", "[", 
+  RowBox[{"dataWithMissing", ",", 
+   RowBox[{"MultinormalDistribution", "[", 
+    RowBox[{
+     RowBox[{"Array", "[", 
+      RowBox[{"mu", ",", "n"}], "]"}], ",", 
+     RowBox[{"Array", "[", 
+      RowBox[{"sigma", ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "n"}], "}"}]}], "]"}]}], "]"}]}], 
+  "]"}]], "Input",ExpressionUUID->"2bf6d3ca-13e7-4426-a2de-5d7d1254716c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetAttributes", "[", 
+   RowBox[{"sigma", ",", "Orderless"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"multiNorm", "=", 
+   RowBox[{"MultinormalDistribution", "[", 
+    RowBox[{
+     RowBox[{"Array", "[", 
+      RowBox[{"mu", ",", "n"}], "]"}], ",", 
+     RowBox[{"Array", "[", 
+      RowBox[{"sigma", ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "n"}], "}"}]}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vars", "=", 
+   RowBox[{"DeleteDuplicates", "@", 
+    RowBox[{"Flatten", " ", "[", 
+     RowBox[{"List", "@@", "multiNorm"}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"assum", "=", 
+   RowBox[{"DistributionParameterAssumptions", "[", "multiNorm", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"logLike", "=", 
+   RowBox[{"MissingDataLogLikelihood", "[", 
+    RowBox[{"multiNorm", ",", "data"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"logLikeMissing", "=", 
+   RowBox[{"MissingDataLogLikelihood", "[", 
+    RowBox[{"multiNorm", ",", "dataWithMissing"}], "]"}]}], 
+  ";"}]}], "Input",ExpressionUUID->"0d6bb313-b90b-4696-8373-cbd37b641801"],
+
+Cell[BoxData[
+ RowBox[{"EstimatedDistribution", "[", 
+  RowBox[{"data", ",", "multiNorm"}], 
+  "]"}]], "Input",ExpressionUUID->"77cd5f66-dfc4-40a9-a146-00fa1d8971ae"],
+
+Cell[BoxData[
+ RowBox[{"NMaximize", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"logLike", ",", "assum"}], "}"}], ",", "vars", ",", 
+   RowBox[{"Method", "->", "\"\<RandomSearch\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"43b6530c-799b-4dda-ac65-122f1cb15cd9"],
+
+Cell[BoxData[
+ RowBox[{"NMaximize", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"logLikeMissing", ",", "assum"}], "}"}], ",", "vars", ",", 
+   RowBox[{"Method", "->", "\"\<RandomSearch\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"7d03c182-b5a8-4680-b424-0e41f79dba33"],
+
+Cell[BoxData[
+ RowBox[{"NMaximize", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Inactive", "[", "MissingDataLogLikelihood", "]"}], "[", 
+      RowBox[{"multiNorm", ",", "dataWithMissing"}], "]"}], ",", "assum"}], 
+    "}"}], ",", "vars", ",", 
+   RowBox[{"Method", "->", "\"\<RandomSearch\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"c7877374-fe26-4b19-97f4-3f1327f12d99"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
 Cell["MultiNonlinearModelFit", \
 "Subsection",ExpressionUUID->"b0f9ea23-866e-4cac-9997-19632af0abfe"],
 

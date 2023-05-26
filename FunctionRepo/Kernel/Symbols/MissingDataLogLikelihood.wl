@@ -13,28 +13,25 @@ MissingDataLogLikelihood[dist_, vec_?VectorQ] := LogLikelihood[dist, DeleteMissi
 
 MissingDataLogLikelihood[dist_, mat_?MatrixQ] := Module[{
 	groupedData = GroupBy[
-		Select[mat, AnyTrue[!MissingQ[#]&]],
+		DeleteCases[mat, {__Missing}],
 		Map[MissingQ] -> DeleteMissing
 	],
 	marginals, rng
 },
-	Enclose[
-		ConfirmAssert[Length[groupedData] > 0];
-		rng = Range[Length @ First @ Keys[groupedData]];
-		marginals = Map[
-			MarginalDistribution[
-				dist,
-				Pick[rng, #, False]
-			]&,
-			Keys[groupedData]
-		];
-		Total @ MapThread[
-			LogLikelihood,
-			{
-				marginals,
-				Values[groupedData]
-			}
-		]
+	rng = Range[Length @ First[Keys[groupedData], {}]];
+	marginals = Map[
+		MarginalDistribution[
+			dist,
+			Pick[rng, #, False]
+		]&,
+		Keys[groupedData]
+	];
+	Total @ MapThread[
+		LogLikelihood,
+		{
+			marginals,
+			Values[groupedData]
+		}
 	]
 ];
 
