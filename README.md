@@ -59,6 +59,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [MultiNonlinearModelFit](https://resources.wolframcloud.com/FunctionRepository/resources/MultiNonlinearModelFit)
 
+* [QuietCheck](https://resources.wolframcloud.com/FunctionRepository/resources/QuietCheck)
+
 * [SparseAssociation](https://resources.wolframcloud.com/FunctionRepository/resources/SparseAssociation)
 
 * [SplitAt](https://resources.wolframcloud.com/FunctionRepository/resources/SplitAt/)
