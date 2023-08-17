@@ -8,6 +8,7 @@ GeneralUtilities`SetUsage[SplitAt,
 
 Begin["`Private`"] (* Begin Private Context *)
 
+SplitByIndexed[f_][l_] := SplitByIndexed[l, f];
 SplitByIndexed[l_, {}] := l;
 SplitByIndexed[l_, {f_}] := SplitByIndexed[l, f];
 
@@ -15,7 +16,7 @@ SplitByIndexed[l_, fList_List] := With[{
 	res = SplitByIndexed[l, First @ fList]
 },
 	If[ !MatchQ[res, _?FailureQ | _Split | _SplitByIndexed],
-		Map[SplitByIndexed[#, Rest[fList]] &, res],
+		Map[SplitByIndexed[Rest[fList]], res],
 		$Failed
 	]
 ];
