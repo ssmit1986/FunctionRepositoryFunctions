@@ -135,7 +135,11 @@ cachedQuery[
 		templateVals = With[{
 			keys = keyList[[refs[key]]]
 		},
-			AssociationThread[keys, Map[cachedQuery[sAssoc, #, rest]&, keys]]
+			Join[
+				data,
+				AssociationThread[keys, Map[cachedQuery[sAssoc, #, rest]&, keys]],
+				rest
+			]
 		],
 		template = exprs[key]
 	},
