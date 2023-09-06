@@ -54,6 +54,8 @@ processTemplate[s_String] := StringTemplate[s];
 processTemplate[expr : Except[_TemplateExpression| _TemplateObject | Function[_] | Function[Null, __]]] := TemplateExpression[expr];
 processTemplate[other_] := other;
 
+evaluateAssoc[assoc_] := AssociationThread[Keys[assoc], Values[assoc]];
+
 AssociationTemplate[rules : {__Rule}] := AssociationTemplate[Association @ rules];
 
 AssociationTemplate[] := AssociationTemplate[<||>];
@@ -73,12 +75,12 @@ AssociationTemplate[assoc_?AssociationQ] /; AllTrue[Keys[assoc], StringQ] := Mod
 		Keys[splitAssoc[[2]]] :> Evaluate @ Values[splitAssoc[[2]], processTemplate]
 	];
 	(* Find all dependent template slots that need to be extracted to calculate the templated one *)
-	refs = findRefs /@ splitAssoc[[2]];
+	refs = evaluateAssoc[findRefs /@ splitAssoc[[2]]];
 	If[ acyclicDependencyQ[refs]
 		,
 		AssociationTemplate[
 			Sequence @@ splitAssoc,
-			Map[packIfSmaller @ Lookup[posIndex, #]&, refs],
+			evaluateAssoc @ Map[packIfSmaller @ Lookup[posIndex, #]&, refs],
 			Keys[assoc] (* Store the original keys to be able to re-assemble the Association in the correct order *),
 			CreateUUID[]
 		]
