@@ -14,7 +14,8 @@ errors[data_] := Uncertainty`AroundValue[data, "Uncertainty"];
 SetAttributes[FitWithErrors, HoldFirst];
 
 FitWithErrors[
-	(model : LinearModelFit | NonlinearModelFit)[dat_, args__, opts___?OptionQ]
+	(model : LinearModelFit | NonlinearModelFit)[dat_, args__, opts___?OptionQ],
+	niter : _ : 20
 ] /; MemberQ[dat, _Around, 2] := Module[{
 	data = dat,
 	rest = Splice[{args}, model],
@@ -25,7 +26,7 @@ FitWithErrors[
 },
 	Enclose[
 		n = Length[data];
-		If[ VectorQ[data], 
+		If[ VectorQ[data] && !MemberQ[data, _Rule],
 			data = Transpose[{Range[n], data}]
 		];
 		ConfirmAssert[MatrixQ[data] && !MemberQ[data, Around[_, _List], {2}]];
@@ -52,13 +53,13 @@ FitWithErrors[
 				SetPrecision[weights, wp - 3]
 			],
 			Lookup[options, Weights],
-			20
+			niter
 		];
 		currentFit
 	]
 ];
 
-FitWithErrors[expr_] := expr;
+FitWithErrors[expr_, ___] := expr;
 
 propagateXErrors[fit_, xdat_, vars_] := With[{
 	rules = Map[
