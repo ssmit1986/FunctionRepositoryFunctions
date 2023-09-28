@@ -20,7 +20,7 @@ FitWithErrors[
 	data = dat,
 	rest = Splice[{args}, model],
 	options = Flatten @ {opts},
-	xdat, weights, dataVals, wp,
+	xdat, dataVals, wp, testWP, weights,
 	n, dimIn, dummyVars, currentFit,
 	yerrors
 },
@@ -42,17 +42,19 @@ FitWithErrors[
 		currentFit = ConfirmMatch[model[dataVals, rest, options], _FittedModel];
 		options = FilterRules[options, Except[Weights]];
 		yerrors = SetPrecision[errors[data[[All, -1]]]^2, wp];
+		weights = ConfirmQuiet[
+			Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]]
+		];
+		testWP = Max[5, wp - 3];
 		FixedPoint[
 			Function[
-				weights = Plus[
-					yerrors,
-					SetPrecision[errors[propagateXErrors[currentFit, xdat, dummyVars]]^2, wp]
-				];
-				weights = ConfirmQuiet[Divide[1, weights]];
 				currentFit = ConfirmMatch[model[dataVals, rest, Weights -> weights, options], _FittedModel];
-				SetPrecision[weights, wp - 3]
+				weights = ConfirmQuiet[
+					Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]]
+				];
+				SetPrecision[weights, testWP] (* Return lower precision weights for testsing convergence *)
 			],
-			Lookup[options, Weights],
+			SetPrecision[weights, testWP],
 			niter
 		];
 		currentFit
@@ -61,7 +63,12 @@ FitWithErrors[
 
 FitWithErrors[expr_, ___] := expr;
 
-propagateXErrors[fit_, xdat_, vars_] := With[{
+totalVariance[yVar_, xdat_, currentFit_, dummyVars_, wp_] := Plus[
+	yVar,
+	SetPrecision[errors[propagateXErrors[xdat, currentFit, dummyVars]]^2, wp]
+];
+
+propagateXErrors[xdat_, fit_, vars_] := With[{
 	rules = Map[
 		Thread[vars -> #]&,
 		xdat
