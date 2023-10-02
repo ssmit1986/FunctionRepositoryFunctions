@@ -18,11 +18,11 @@ FitWithErrors[
 	niter : _ : 20
 ] /; MemberQ[dat, _Around, 2] := Module[{
 	data = dat,
-	rest = Splice[{args}, model],
+	rest = {args},
 	options = Flatten @ {opts},
 	xdat, dataVals, wp, testWP, weights,
 	n, dimIn, dummyVars, currentFit,
-	yerrors
+	yerrors, fitFun
 },
 	Enclose[
 		n = Length[data];
@@ -39,16 +39,32 @@ FitWithErrors[
 
 		dataVals = SetPrecision[values[data], wp];
 		xdat = Take[data, All, dimIn];
-		currentFit = ConfirmMatch[model[dataVals, rest, options], _FittedModel];
+		currentFit = ConfirmMatch[model[dataVals, Splice[rest, model], options], _FittedModel];
 		options = FilterRules[options, Except[Weights]];
 		yerrors = SetPrecision[errors[data[[All, -1]]]^2, wp];
 		weights = ConfirmQuiet[
 			Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]]
 		];
 		testWP = Max[5, wp - 3];
+		fitFun = If[ model === NonlinearModelFit,
+			Function[{w, fm},
+				model[
+					dataVals,
+					rest[[1]],
+					List @@@ fm["BestFitParameters"], (* Continue from the last best fit *)
+					Splice[rest[[3 ;;]], model],
+					Weights -> w,
+					options,
+					Method -> "Newton"
+				]
+			],
+			Function[{w, fm},
+				model[dataVals, Splice[rest, model], Weights -> w, options]
+			]
+		];
 		FixedPoint[
 			Function[
-				currentFit = ConfirmMatch[model[dataVals, rest, Weights -> weights, options], _FittedModel];
+				currentFit = ConfirmMatch[fitFun[weights, currentFit], _FittedModel];
 				weights = ConfirmQuiet[
 					Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]]
 				];
