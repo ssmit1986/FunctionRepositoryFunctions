@@ -22,14 +22,15 @@ FitWithErrors[
 	options = Flatten @ {opts},
 	xdat, dataVals, wp, testWP, weights,
 	n, dimIn, dummyVars, currentFit,
-	yerrors, fitFun
+	yerrors, fitFun, divZeroMsg
 },
 	Enclose[
 		n = Length[data];
 		If[ VectorQ[data] && !MemberQ[data, _Rule],
 			data = Transpose[{Range[n], data}]
 		];
-		ConfirmAssert[MatrixQ[data] && !MemberQ[data, Around[_, _List], {2}]];
+		ConfirmAssert[MatrixQ[data], "Only vector and matrix inputs are supported"];
+		ConfirmAssert[!MemberQ[data, Around[_, _List], {2}], "Only symmetric Around values are supported"];
 		dimIn = ConfirmBy[Dimensions[data][[2]] - 1, Positive];
 		dummyVars = Array[\[FormalX], dimIn];
 		wp = Lookup[options, WorkingPrecision, Automatic];
@@ -42,8 +43,11 @@ FitWithErrors[
 		currentFit = ConfirmMatch[model[dataVals, Splice[rest, model], options], _FittedModel];
 		options = FilterRules[options, Except[Weights]];
 		yerrors = SetPrecision[errors[data[[All, -1]]]^2, wp];
+		divZeroMsg = "Weight computation failed: divide by 0";
 		weights = ConfirmQuiet[
-			Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]]
+			Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]],
+			All,
+			divZeroMsg
 		];
 		testWP = Max[5, wp - 3];
 		fitFun = If[ model === NonlinearModelFit,
@@ -51,11 +55,11 @@ FitWithErrors[
 				model[
 					dataVals,
 					rest[[1]],
-					List @@@ fm["BestFitParameters"], (* Continue from the last best fit *)
+					N[List @@@ fm["BestFitParameters"], 5], (* Continue from the last best fit *)
 					Splice[rest[[3 ;;]], model],
 					Weights -> w,
 					options,
-					Method -> "Newton"
+					Method -> "Newton" (* use Newton method since we're already close to the solution *)
 				]
 			],
 			Function[{w, fm},
@@ -66,7 +70,9 @@ FitWithErrors[
 			Function[
 				currentFit = ConfirmMatch[fitFun[weights, currentFit], _FittedModel];
 				weights = ConfirmQuiet[
-					Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]]
+					Divide[1, totalVariance[yerrors, xdat, currentFit, dummyVars, wp]],
+					All,
+					"Weight computation failed: division by 0"
 				];
 				SetPrecision[weights, testWP] (* Return lower precision weights for testsing convergence *)
 			],
