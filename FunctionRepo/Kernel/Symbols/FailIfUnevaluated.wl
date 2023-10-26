@@ -12,15 +12,6 @@ SetAttributes[FailIfUnevaluated, HoldAllComplete];
 
 FailIfUnevaluated[expr_] := FailIfUnevaluated[expr, $Failed];
 
-FailIfUnevaluated[sym_Symbol, failExp_] := With[{
-	eval = sym
-},
-	If[	eval === Unevaluated[sym],
-		failExp,
-		eval
-	]
-];
-
 FailIfUnevaluated[head_[args___], failExp_] := With[{
 	evalHead = head
 },
@@ -44,8 +35,16 @@ FailIfUnevaluated[head_[args___], failExp_] := With[{
 		]
 	]
 ];
-FailIfUnevaluated[_, failExp_] := failExp;
 
+(* Fallback for symbols and other expressions not of the form head_[args___] *)
+FailIfUnevaluated[expr_, failExp_] := With[{
+	eval = expr
+},
+	If[	eval === Unevaluated[expr],
+		failExp,
+		eval
+	]
+];
 
 attributes[head_Symbol] := DeleteCases[Attributes[head],
 	Protected | ReadProtected | Locked | Constant | Stub | Temporary | OneIdentity | NumericFunction
