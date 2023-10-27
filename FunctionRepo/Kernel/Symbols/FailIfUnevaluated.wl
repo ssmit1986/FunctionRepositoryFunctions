@@ -47,7 +47,7 @@ FailIfUnevaluated[expr_, failExp_] := With[{
 ];
 
 attributes[head_Symbol] := DeleteCases[Attributes[head],
-	Protected | ReadProtected | Locked | Constant | Stub | Temporary | OneIdentity | NumericFunction
+	Protected | ReadProtected | Locked | Constant | Stub | Temporary | OneIdentity | NumericFunction | Listable
 ];
 attributes[HoldPattern @ Function[_, _, attr_]] := attr;
 attributes[_] := {};
