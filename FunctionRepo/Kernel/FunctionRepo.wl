@@ -3,6 +3,8 @@ ClearAll["FunctionRepo`*", "FunctionRepo`*`*"];
 
 BeginPackage["FunctionRepo`"]
 
+Begin["`Private`"]
+
 With[{
 	files = FileNames["*.wl", FileNameJoin[{DirectoryName[$InputFileName], "Symbols"}]]
 },
@@ -14,5 +16,7 @@ With[{
 		files
 	]
 ];
+
+End[]
 
 EndPackage[]
