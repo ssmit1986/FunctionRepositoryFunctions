@@ -9,6 +9,14 @@ SplitAt[list$, f$, After] splits the list after each element that satisfies f$."
 
 Begin["`Private`"] (* Begin Private Context *)
 
+(* Version of SplitBy that evaluates only once for each element *)
+splitBy[l_, f_] := Module[{
+	eval = If[ Length[l] > 0, f @ First[l], Null]
+},
+	Split[l, Function[SameQ[eval, eval = f @ #2]]]
+];
+
+
 SplitAt[list_, f_] := SplitAt[list, f, Before];
 
 SplitAt[list_List, f_, pos : Before | After] := With[{
@@ -20,7 +28,7 @@ SplitAt[list_List, f_, pos : Before | After] := With[{
 		}
 	]
 },
-	SplitBy[list,
+	splitBy[list,
 		Function[
 			If[ TrueQ[f[#]],
 				i[operation],
