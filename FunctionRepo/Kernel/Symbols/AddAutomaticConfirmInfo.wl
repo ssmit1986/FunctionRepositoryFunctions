@@ -12,6 +12,7 @@ SetAttributes[stringifyCode, HoldAllComplete];
 stringifyCode[expr_] := Block[{
 	$ContextPath = Union @ Cases[HoldComplete[expr], s_Symbol :> Context[s], {0, Infinity}, Heads -> True]
 },
+	(* Create an InputForm string of the code, but without any of the explicit contexts to make the code more readable *)
 	ToString[Unevaluated[expr], InputForm]
 ];
 
@@ -23,7 +24,6 @@ fullSymbolName[str_String] := Context[str] <> str;
 defaultHandler[data_Association] := OpenerView[
 	{
 		"Error in function: " <> StringDelete[data["Name"], StartOfString ~~ Longest[___] ~~ "`"],
-		(* Create an InputForm string of the code, but without any of the explicit contexts to make the code more readable *)
 		ClickToCopy @ <|
 			"FullSymbolName" -> data["Name"],
 			"Code" -> data["CodeString"]
