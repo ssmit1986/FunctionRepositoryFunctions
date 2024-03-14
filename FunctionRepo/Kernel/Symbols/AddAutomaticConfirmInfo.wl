@@ -55,7 +55,7 @@ AddAutomaticConfirmInfo[name_String?NameQ, handler : _ : Automatic] := With[{
 	def = Language`ExtendedDefinition[name],
 	hFun = Replace[handler, Automatic -> defaultHandler]
 },
-	If[ FreeQ[def, Confirm | ConfirmAssert | ConfirmQuiet | ConfirmBy | ConfirmMatch]
+	If[ Internal`LiterallyAbsentQ[def, {Confirm, ConfirmAssert, ConfirmQuiet, ConfirmBy, ConfirmMatch}]
 		,
 		def
 		,
