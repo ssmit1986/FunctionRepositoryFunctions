@@ -3,6 +3,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [FunctionArgumentCount](https://resources.wolframcloud.com/FunctionRepository/resources/ArgumentCount) (Note that there's also a built-in function ``GeneralUtilities`ArgumentCount`` which is why this function has been renamed.)
 
+* [AddAutomaticConfirmInfo](https://resources.wolframcloud.com/FunctionRepository/resources/AddAutomaticConfirmInfo)
+
 * [AddCustomTypesetting](https://resources.wolframcloud.com/FunctionRepository/resources/AddCustomTypesetting)
 
 * [AssociationTemplate](https://resources.wolframcloud.com/FunctionRepository/resources/AssociationTemplate)
@@ -29,9 +31,13 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 
 * [ExpressionToFunctionOperator](https://resources.wolframcloud.com/FunctionRepository/resources/ExpressionToFunctionOperator)
 
+* [FailIfUnevaluated](https://resources.wolframcloud.com/FunctionRepository/resources/FailIfUnevaluated)
+
 * [FileTreePicker](https://resources.wolframcloud.com/FunctionRepository/resources/FileTreePicker)
 
 * [FirstMatchingValue](https://resources.wolframcloud.com/FunctionRepository/resources/FirstMatchingValue)
+
+* [FitWithErrors](https://resources.wolframcloud.com/FunctionRepository/resources/FitWithErrors)
 
 * [FlattenFailure](https://resources.wolframcloud.com/FunctionRepository/resources/FlattenFailure/)
 
@@ -66,6 +72,8 @@ A compilation of functions I submitted (or intend to submit) to the Wolfram Func
 * [SplitAt](https://resources.wolframcloud.com/FunctionRepository/resources/SplitAt/)
 
 * [SplitAtPositions](https://resources.wolframcloud.com/FunctionRepository/resources/SplitAtPositions/)
+
+* [SplitByIndexed](https://resources.wolframcloud.com/FunctionRepository/resources/SplitByIndexed/)
 
 * [SymbolicSort](https://resources.wolframcloud.com/FunctionRepository/resources/SymbolicSort)
 
