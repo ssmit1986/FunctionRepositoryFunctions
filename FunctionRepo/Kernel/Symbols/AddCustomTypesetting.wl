@@ -3,7 +3,7 @@
 BeginPackage["FunctionRepo`AggregateRowsByKey`", {"FunctionRepo`"}]
 
 GeneralUtilities`SetUsage[AddCustomTypesetting,
-	"AddCustomTypesetting[sym$, fun$] creates a MakeBoxes rule for head sym$ so that objects with that head are displayed as fun$[sym$] but still copy-pastable.
+	"AddCustomTypesetting[sym$, fun$] creates a MakeBoxes rule for head sym$ so that objects with that head are displayed as fun$[sym$[$$]] but still copy-pastable.
 AddCustomTypesetting[sym$, fun$, size$] will use size$ as the ByteCount limit for directly inlining the contents."
 ];
 
