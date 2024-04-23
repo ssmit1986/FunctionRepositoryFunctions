@@ -10,15 +10,18 @@ ConfirmedMapping[map$][f$] is the operator form corresponding to map$[f$]. Confi
 
 Begin["`Private`"] (* Begin Private Context *)
 
-ConfirmedMapping[mapper_, f_, dat_, rest___] := Module[{
+ConfirmedMapping[mapper_, f_ -> test_, dat_, rest___] := Module[{
 	data = dat
 },
 	Enclose[
-		mapper[
-			Function[Null, Confirm @ f[##], HoldAll],
-			data,
-			rest
-		]
+		mapper[Function[Null, ConfirmBy[f[##], test], HoldAll], data, rest]
+	]
+];
+ConfirmedMapping[mapper_, f : Except[_Rule], dat_, rest___] := Module[{
+	data = dat
+},
+	Enclose[
+		mapper[Function[Null, Confirm @ f[##], HoldAll], data, rest]
 	]
 ];
 ConfirmedMapping[mapper_[f_]][args__] := ConfirmedMapping[mapper, f, args];
