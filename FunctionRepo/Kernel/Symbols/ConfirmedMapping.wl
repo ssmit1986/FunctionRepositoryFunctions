@@ -37,17 +37,22 @@ ConfirmedMapping[mapper_, f_, data_, rest___] := With[{
 	]
 ];
 
-(* Special case for maps that have an operator form like MapAt[f, pos] *)
-positionMaps = MapAt | SubsetMap;
-ConfirmedMapping[map : positionMaps][f_, pos_][data_] := ConfirmedMapping[map, f, data, pos];
-
-(* Generic operator forms *)
-ConfirmedMapping[mapper_[f_, rest___]][data_] := ConfirmedMapping[mapper, f, data, rest];
-ConfirmedMapping[mapper_][f_][data_] := ConfirmedMapping[mapper, f, data];
-
-(* Operator form of ConfirmedMapping itself *)
-ConfirmedMapping[mapper_][f_, args__] := ConfirmedMapping[mapper, f, args];
-
+(* Operator forms of ConfirmedMapping *)
+With[{
+	positionMaps = MapAt | SubsetMap
+},
+	(* Special case for maps that have an operator form like MapAt[f, pos] *)
+	HoldPattern[ConfirmedMapping[(mapper : positionMaps)][f_, pos_][data_]] := ConfirmedMapping[mapper, f, data, pos];
+	HoldPattern[ConfirmedMapping[(mapper : positionMaps)][f_, data_, args__]] := ConfirmedMapping[mapper, f, data, args];
+	HoldPattern[ConfirmedMapping[(mapper : positionMaps)[f_, pos_]][data_]] := ConfirmedMapping[mapper, f, data, pos];
+	With[{
+		otherMaps = Except[positionMaps, _Symbol]
+	},
+		HoldPattern[ConfirmedMapping[(mapper : otherMaps)][f_, args__]] := ConfirmedMapping[mapper, f, args];
+		HoldPattern[ConfirmedMapping[(mapper : otherMaps)[f_]][data_, rest___]] := ConfirmedMapping[mapper, f, data, rest];
+		HoldPattern[ConfirmedMapping[(mapper : otherMaps)][f_][data_, rest___]] := ConfirmedMapping[mapper, f, data, rest];
+	]
+];
 
 End[] (* End Private Context *)
 
