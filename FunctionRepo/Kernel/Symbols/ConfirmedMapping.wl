@@ -10,24 +10,44 @@ ConfirmedMapping[map$][f$] is the operator form corresponding to map$[f$]. Confi
 
 Begin["`Private`"] (* Begin Private Context *)
 
-ConfirmedMapping[mapper_, f_ -> test_, dat_, rest___] := Module[{
-	data = dat
+ConfirmedMapping[mapper_, f_ -> test_, data_, rest___] := With[{
+	tag = CreateUUID[] (* Use the tagged version of Enclose/Confirm because it's faster, especially for big inputs *)
 },
 	Enclose[
-		mapper[Function[Null, ConfirmBy[f[##], test], HoldAll], data, rest]
+		mapper[
+			Function[Null, ConfirmBy[f[##], test, Null, tag], HoldAll],
+			data,
+			rest
+		],
+		Identity,
+		tag
 	]
 ];
-ConfirmedMapping[mapper_, f : Except[_Rule], dat_, rest___] := Module[{
-	data = dat
+ConfirmedMapping[mapper_, f_, data_, rest___] := With[{
+	tag = CreateUUID[] (* Use the tagged version of Enclose/Confirm because it's faster, especially for big inputs *)
 },
 	Enclose[
-		mapper[Function[Null, Confirm @ f[##], HoldAll], data, rest]
+		mapper[
+			Function[Null, Confirm[f[##], Null, tag], HoldAll],
+			data,
+			rest
+		],
+		Identity,
+		tag
 	]
 ];
-ConfirmedMapping[mapper_[f_]][args__] := ConfirmedMapping[mapper, f, args];
+
+(* Special case for maps that have an operator form like MapAt[f, pos] *)
+positionMaps = MapAt | SubsetMap;
+ConfirmedMapping[map : positionMaps][f_, pos_][data_] := ConfirmedMapping[map, f, data, pos];
+
+(* Generic operator forms *)
+ConfirmedMapping[mapper_[f_, rest___]][data_] := ConfirmedMapping[mapper, f, data, rest];
+ConfirmedMapping[mapper_][f_][data_] := ConfirmedMapping[mapper, f, data];
+
+(* Operator form of ConfirmedMapping itself *)
 ConfirmedMapping[mapper_][f_, args__] := ConfirmedMapping[mapper, f, args];
-ConfirmedMapping[mapper_][f_][args__] := ConfirmedMapping[mapper, f, args];
-ConfirmedMapping[mapper_, f_][args__] := ConfirmedMapping[mapper, f, args];
+
 
 End[] (* End Private Context *)
 
