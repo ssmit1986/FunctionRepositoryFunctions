@@ -40,7 +40,7 @@ nA = Length @ alphabet;
 letterToNumber = AssociationThread[alphabet, Range @ nA];
 
 columnToNumber[s_String] := columnToNumber[s] = With[{
-	list = Map[letterToNumber, Characters @ ToUpperCase[s]]
+	list = Lookup[letterToNumber, Characters @ ToUpperCase[s]]
 },
 	list . Power[26, Range[Length[list] - 1, 0, -1]]
 ];
