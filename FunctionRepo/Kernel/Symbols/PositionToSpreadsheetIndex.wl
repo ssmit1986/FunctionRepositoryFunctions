@@ -10,23 +10,28 @@ Begin["`Private`"] (* Begin Private Context *)
 
 PositionToSpreadsheetIndex[p_] := Module[{
 	pos = p,
-	row, col
+	row, col,
+	tag
 },
 	Enclose[
 		If[ IntegerQ[pos]
 			,
-			ConfirmAssert[Positive @ pos];
-			ConfirmBy[numberToColumn[pos], StringQ]
+			ConfirmAssert[Positive @ pos, Null, tag];
+			ConfirmBy[numberToColumn[pos], StringQ, Null, tag]
 			,
-			{row, col} = ConfirmMatch[pos, {_Integer?Positive, _Integer?Positive}];
+			{row, col} = ConfirmMatch[pos, {_Integer?Positive, _Integer?Positive}, Null, tag];
 			ConfirmBy[
 				StringJoin[
 					numberToColumn[col],
 					IntegerString[row]
 				],
-				StringQ
+				StringQ,
+				Null,
+				tag
 			]
-		]
+		],
+		Identity,
+		tag
 	]
 ];
 

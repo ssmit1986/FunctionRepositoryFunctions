@@ -8,11 +8,15 @@ GeneralUtilities`SetUsage[SpreadsheetIndexToPosition,
 
 Begin["`Private`"] (* Begin Private Context *)
 
-SpreadsheetIndexToPosition[s_] := Module[{str = s},
+SpreadsheetIndexToPosition[s_] := Module[{str = s, tag},
 	Enclose[
-		ConfirmAssert @ And[
-			StringQ[str],
-			StringMatchQ[str, LetterCharacter.. ~~ DigitCharacter...]
+		ConfirmAssert[
+			And[
+				StringQ[str],
+				StringMatchQ[str, LetterCharacter.. ~~ DigitCharacter...]
+			],
+			Null,
+			tag
 		];
 		If[ StringContainsQ[str, DigitCharacter]
 			,
@@ -27,11 +31,15 @@ SpreadsheetIndexToPosition[s_] := Module[{str = s},
 						columnToNumber[col]
 					}
 				],
-				{_Integer, _Integer}
+				{_Integer, _Integer},
+				Null,
+				tag
 			]
 			,
-			ConfirmBy[columnToNumber[str], IntegerQ]
-		]
+			ConfirmBy[columnToNumber[str], IntegerQ, Null, tag]
+		],
+		Identity,
+		tag
 	]
 ];
 
