@@ -44,13 +44,16 @@ qm[m_, n_, d_] := {
 
 numberToColumn[n_] := numberToColumn[n] = StringJoin @ Part[
 	alphabet,
-	Flatten @ Replace[
+	Replace[
 		FixedPoint[
 			Replace[
-				#,
-				i_Integer?(GreaterThan[nA]) :> qm[i, nA, 1],
-				{-1}
-			]&,
+				{
+					fst___,
+					j : _Integer : 0,
+					i_Integer?(GreaterThan[nA]),
+					rest___
+				 } :> Flatten @ {fst, {j, 0} + qm[i, nA, 1], rest}
+			],
 			{n}
 		],
 		{Repeated[0], rest___} :> rest
