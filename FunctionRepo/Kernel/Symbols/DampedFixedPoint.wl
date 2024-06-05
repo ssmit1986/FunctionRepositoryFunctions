@@ -10,7 +10,7 @@ Begin["`Private`"] (* Begin Private Context *)
 
 Options[DampedFixedPoint] = Options[FixedPoint];
 
-DampedFixedPoint[f_, expr_, alpha_?Positive, rest___] := FixedPoint[
+DampedFixedPoint[f_, expr_, alpha_, rest___] := FixedPoint[
 	alphaUpdate[f, alpha],
 	expr,
 	rest
