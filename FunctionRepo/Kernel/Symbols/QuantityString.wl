@@ -13,8 +13,8 @@ Begin["`Private`"] (* Begin Private Context *)
 QuantityString[q_] := QuantityString[q, "Canonical"];
 
 QuantityString[q_?QuantityQ, "Canonical"] := With[{
-	mag = QuantityMagnitude[q],
-	unit = PowerExpand @ QuantityUnit[q]
+	mag = QuantityMagnitude[Unevaluated @ q],
+	unit = PowerExpand @ QuantityUnit[Unevaluated @ q]
 },
 	If[ And[
 			Head[mag] === MixedMagnitude,
@@ -36,7 +36,7 @@ QuantityString[q_?QuantityQ, "Canonical"] := With[{
 ];
 
 QuantityString[q_?QuantityQ, "BoxForm"] := With[{
-	boxes = ToBoxes[q, StandardForm]
+	boxes = MakeBoxes[q, StandardForm]
 },
 	Catch[
 		boxesToString @ ReplaceAll[
