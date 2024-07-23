@@ -13,7 +13,7 @@ logSumExpVec[v_] := With[{
 	m = Max[v]
 },
 	Plus[
-		Log @ Total[Exp @ Subtract[v, m]],
+		Log @ Total[Quiet[Exp @ Subtract[v, m], General::munfl]],
 		m
 	]
 ];
