@@ -19,7 +19,7 @@ HighestDensityInterval[dist_?DistributionParameterQ, p_] := With[{
 },
 	try /; MatchQ[try, _Interval | _?FailureQ]
 ];
-HighestDensityInterval[dist_?VectorQ, p_] := With[{
+HighestDensityInterval[dist_?(VectorQ[#, NumericQ]&), p_?NumericQ] := With[{
 	try = iNHDF[dist, p]
 },
 	try /; MatchQ[try, _Interval | _?FailureQ]
@@ -53,6 +53,24 @@ iHDF[dist_, p_] := Assuming[
 		]
 	]
 ];
+
+iNHDF[vec_, p_] := Module[{
+	n = Length[vec],
+	sort = Sort[vec],
+	nElim, nTake,
+	assoc, k
+},
+	nElim = Ceiling[n * Subtract[1, p]];
+	nTake = Subtract[n, nElim];
+	assoc = AssociationMap[
+		Function[
+			Subtract @@ Part[sort, {# + nTake, # + 1}]
+		],
+		Range[0, nElim]
+	];
+	k = First @ Keys @ assoc[[PositionSmallest[assoc]]];
+	Interval @ Part[sort, {k + 1, k + nTake}]
+]
 
 End[] (* End Private Context *)
 
