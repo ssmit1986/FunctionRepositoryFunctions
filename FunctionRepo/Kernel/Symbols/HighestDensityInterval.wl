@@ -14,7 +14,7 @@ HighestDensityInterval[_, p_?(Function[TrueQ @ Or[# <= 0, 1 < #]])] := (
 	Message[HighestDensityInterval::invalidp, p];
 	$Failed
 );
-HighestDensityInterval[dist_?DistributionParameterQ, p_] := With[{
+HighestDensityInterval[dist_?DistributionParameterQ, p_?NumericQ] := With[{
 	try = iHDF[dist, p]
 },
 	try /; MatchQ[try, _Interval | _?FailureQ]
@@ -32,7 +32,10 @@ iHDF[_, p_?(Function[TrueQ @ Or[# < 0, 1 < #]])] := (
 iHDF[dist_, _?(EqualTo[1])] := DistributionDomain[dist];
 
 iHDF[dist_, p_] := Assuming[
-	And[0 < p < 1, 0 <= \[FormalX] <= 1 - p],
+	And[
+		DistributionParameterAssumptions[dist],
+		0 <= \[FormalX] <= 1 - p
+	],
 	With[{
 		invCDF = InverseCDF[dist] 
 	},
