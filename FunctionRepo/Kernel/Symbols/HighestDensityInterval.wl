@@ -14,7 +14,7 @@ HighestDensityInterval[_, p_?(Function[TrueQ @ Or[# <= 0, 1 < #]])] := (
 	Message[HighestDensityInterval::invalidp, p];
 	$Failed
 );
-HighestDensityInterval[dist_?DistributionParameterQ, p_?NumericQ] := With[{
+HighestDensityInterval[dist_?DistributionParameterQ /; NumericQ[RandomVariate[dist]], p_?NumericQ] := With[{
 	try = iHDF[dist, p]
 },
 	try /; MatchQ[try, _Interval | _?FailureQ]
@@ -32,24 +32,26 @@ iHDF[_, p_?(Function[TrueQ @ Or[# < 0, 1 < #]])] := (
 iHDF[dist_, _?(EqualTo[1])] := DistributionDomain[dist];
 
 iHDF[dist_, p_] := Assuming[
-	And[
-		DistributionParameterAssumptions[dist],
-		0 <= \[FormalX] <= 1 - p
-	],
+	0 <= \[FormalX] <= 1 - p,
 	With[{
+		prec = Precision[{dist, p}],
 		invCDF = InverseCDF[dist] 
 	},
 		Replace[
-			Minimize[
-				{Simplify[invCDF[p + \[FormalX]] - invCDF[\[FormalX]]], $Assumptions},
-				\[FormalX]
+			NMinimize[
+				SetPrecision[{invCDF[p + \[FormalX]] - invCDF[\[FormalX]], $Assumptions}, Infinity],
+				\[FormalX],
+				WorkingPrecision -> prec
 			],
 			{
-				{_, sol : {__Rule}} :> Interval @ Map[
-					invCDF,
-					With[{x = Simplify @ Replace[\[FormalX], sol]},
-						{x, p + x}
-					]
+				{_, sol : {__Rule}} :> Chop @ N[
+					Interval @ Map[
+						invCDF,
+						With[{x = Replace[\[FormalX], sol]},
+							{x, p + x}
+						]
+					],
+					prec
 				],
 				_ :> Missing[]
 			}
