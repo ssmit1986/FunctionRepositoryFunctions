@@ -8,7 +8,7 @@ GeneralUtilities`SetUsage[HighestDensityInterval,
 
 Begin["`Private`"] (* Begin Private Context *)
 
-HighestDensityInterval::invalidp = "Numeric fraction `1` must be between 0 and 1."
+HighestDensityInterval::invalidp = "Numeric fraction `1` must be between 0 and 1.";
 
 HighestDensityInterval[_, p_?(Function[TrueQ @ Or[# <= 0, 1 < #]])] := (
 	Message[HighestDensityInterval::invalidp, p];
@@ -59,6 +59,8 @@ iHDF[dist_, p_] := Assuming[
 	]
 ];
 
+iNHDF[vec_, _?(EqualTo[1])] := Interval @ MinMax[vec];
+
 iNHDF[vec_, p_] := Module[{
 	n = Length[vec],
 	sort = Sort[vec],
@@ -75,7 +77,7 @@ iNHDF[vec_, p_] := Module[{
 	];
 	k = First @ Keys @ assoc[[PositionSmallest[assoc]]];
 	Interval @ Part[sort, {k + 1, k + nTake}]
-]
+];
 
 End[] (* End Private Context *)
 
