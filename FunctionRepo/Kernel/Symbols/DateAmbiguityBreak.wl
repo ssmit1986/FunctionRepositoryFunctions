@@ -14,17 +14,19 @@ Begin["`Private`"] (* Begin Private Context *)
 DateAmbiguityBreak[patt_] := DateAmbiguityBreak[Interpreter["Date" | "DateTime"], patt];
 
 DateAmbiguityBreak[Interpreter[args : Shortest[__], opts : OptionsPattern[]], patt_][input_] := Block[{
-	dummyWrapper
+	dummyWrapper,
+	interpretation,
+	breaker = ambiguityBreaker[patt]
 },
-	Replace[
-		Interpreter[
-			args,
-			AmbiguityFunction -> dummyWrapper, (* For some reason, AmbiguityFunction -> All doesn't always work. *)
-			opts
-		] @ input,
-		dummyWrapper[res___] :> ambiguityBreaker[patt][res],
-		{0, 1}
-	]
+	interpretation = Interpreter[
+		args,
+		AmbiguityFunction -> dummyWrapper, (* For some reason, AmbiguityFunction -> All doesn't always work. *)
+		opts
+	] @ input;
+	dummyWrapper = Identity;
+	interpretation /. {
+		a_AmbiguityList :> breaker[a]
+	}
 ];
 
 DateAmbiguityBreak[__][_] := $Failed;
@@ -36,6 +38,8 @@ monthFirstPattern = {"Month", "Day", "Year"};
 ambiguityBreaker["DayFirst"] := ambiguityBreaker[isoPattern | dayFirstPattern];
 ambiguityBreaker["MonthFirst"] := ambiguityBreaker[isoPattern | monthFirstPattern];
 
+ambiguityBreaker[fun_][AmbiguityList[{a_AmbiguityList}, ___]] := ambiguityBreaker[fun][a];
+ambiguityBreaker[_][AmbiguityList[{d_DateObject}, ___]] := d;
 ambiguityBreaker[fun_Function][AmbiguityList[dates_List, _, assocs : {__?AssociationQ}]] := With[{
 	dateAssoc = AssociationThread[
 		dates,
