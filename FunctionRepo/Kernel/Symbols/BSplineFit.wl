@@ -6,46 +6,43 @@ GeneralUtilities`SetUsage[BSplineFit,
 	"BSplineFit[data$, n$] finds a BSpline function that approximates the data."
 ];
 
+FunctionRepo`LocalSupportFit;
+
 Begin["`Private`"] (* Begin Private Context *)
 
-BSplineFit[dat_List, n_Integer] := Module[{
-	data = dat
+LocalSupportFit[dat_List, fun_, d_?Positive] := Module[{
+	data = dat,
+	nodes,
+	basis
 },
 	Enclose[
 		ConfirmAssert[MatchQ[Dimensions[data], {_, 2}] && MatrixQ[data, NumericQ]];
-		ConfirmAssert[n > 3];
-		iBSplineFit[data, n, 3]
+		nodes = ConfirmBy[findNodes[MinMax[data[[All, 1]]], d], ListQ];
+		basis = Prepend[1] @ Map[
+			Function[
+				fun @ Divide[Subtract[\[FormalX], #], d]
+			],
+			nodes
+		];
+		Fit[data, basis, \[FormalX], "Function"]
 	]
-]
+];
+LocalSupportFit[___] := $Failed;
 
-subDiv[{min_, max_}, n_] := Block[{
-	sub = Subdivide[min, max, n - 2],
-	d
+boxed[f_, x_] := Quiet[UnitBox[Divide[x, 8]] * f[x], General::munfl];
+
+findNodes[{min_, max_}, d_] := Block[{
+	halfd = Divide[d, 2],
+	nodes,
+	offset
 },
-	d = Subtract @@ sub[[{2, 1}]];
-	Flatten[{First[sub] - d, sub, Last[sub] + d}]
+	nodes = Range[Subtract[min, halfd], max + d, halfd];
+	offset = Subtract[Subtract[max, Last[nodes]], Subtract[First[nodes], min]];
+	nodes = Subtract[nodes, Divide[offset, 2]];
+	nodes
 ];
 
-
-iBSplineFit[dat_, n_, d_] := Module[{
-	data = dat,
-	minMax = MinMax[dat[[All, 1]]],
-	knots,
-	bSplineBasis,
-	x
-},
-	knots = subDiv[minMax, n - d + 2];
-	knots = Join[
-		ConstantArray[First @ knots, d],
-		knots,
-		ConstantArray[Last @ knots, d]
-	];
-	bSplineBasis = Prepend[1] @ Map[
-		BSplineBasis[{3, knots}, #, x]&,
-		Range[1, n]
-	];
-	Fit[data, bSplineBasis, x, "Function"]
-]
+BSplineFit[dat_List, d_] := LocalSupportFit[dat, BSplineBasis[3, (#/2 + 1/2)]&, d];
 
 End[] (* End Private Context *)
 
