@@ -10,15 +10,15 @@ FunctionRepo`LocalSupportFit;
 
 Begin["`Private`"] (* Begin Private Context *)
 
-LocalSupportFit[dat_List, fun_, d_?Positive] := Module[{
+LocalSupportFit[dat_List, fun_, spec_] := Module[{
 	data = dat,
-	nodes,
+	n, d, nodes,
 	basis,
 	funs = Flatten[{fun}]
 },
 	Enclose[
 		ConfirmAssert[MatchQ[Dimensions[data], {_, 2}] && MatrixQ[data, NumericQ]];
-		nodes = ConfirmBy[findNodes[MinMax[data[[All, 1]]], d], ListQ];
+		{nodes, n, d} = ConfirmBy[resolveSpec[MinMax[data[[All, 1]]], spec], ListQ];
 		basis = Prepend[1] @ Flatten @ Map[
 			Function[
 				Comap[funs] @ Divide[Subtract[\[FormalX], #], d]
@@ -30,9 +30,23 @@ LocalSupportFit[dat_List, fun_, d_?Positive] := Module[{
 ];
 LocalSupportFit[___] := $Failed;
 
-boxed[f_, x_] := Quiet[UnitBox[Divide[x, 8]] * f[x], General::munfl];
+dataRange[{min_, max_}] := Subtract[max, min];
 
-findNodes[{min_, max_}, d_] := Block[{
+resolveSpec[minMax_, Into[n_Integer?Positive]] := resolveSpec[minMax, {n, Divide[dataRange @ minMax, n - 2]}];
+resolveSpec[minMax_, d_?Positive] := resolveSpec[minMax, 
+	{
+		Ceiling @ Divide[dataRange[minMax], d] + 2,
+		d
+	}
+];
+resolveSpec[{min_, max_}, {n_, d_}] := {
+	Subdivide[min, max, n - 1],
+	n,
+	d
+};
+resolveSpec[___] := $Failed;
+
+findNodes[{min_, max_}, n_] := Block[{
 	halfd = Divide[d, 2],
 	nodes,
 	offset
@@ -43,7 +57,7 @@ findNodes[{min_, max_}, d_] := Block[{
 	nodes
 ];
 
-BSplineFit[dat_List, d_] := LocalSupportFit[dat, BSplineBasis[3, (#/2 + 1/2)]&, d];
+BSplineFit[dat_List, spec_] := LocalSupportFit[dat, BSplineBasis[3, (#/4 + 1/2)]&, spec];
 
 End[] (* End Private Context *)
 
