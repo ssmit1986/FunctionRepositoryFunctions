@@ -13,14 +13,15 @@ Begin["`Private`"] (* Begin Private Context *)
 LocalSupportFit[dat_List, fun_, d_?Positive] := Module[{
 	data = dat,
 	nodes,
-	basis
+	basis,
+	funs = Flatten[{fun}]
 },
 	Enclose[
 		ConfirmAssert[MatchQ[Dimensions[data], {_, 2}] && MatrixQ[data, NumericQ]];
 		nodes = ConfirmBy[findNodes[MinMax[data[[All, 1]]], d], ListQ];
-		basis = Prepend[1] @ Map[
+		basis = Prepend[1] @ Flatten @ Map[
 			Function[
-				fun @ Divide[Subtract[\[FormalX], #], d]
+				Comap[funs] @ Divide[Subtract[\[FormalX], #], d]
 			],
 			nodes
 		];
