@@ -32,30 +32,19 @@ LocalSupportFit[___] := $Failed;
 
 dataRange[{min_, max_}] := Subtract[max, min];
 
-resolveSpec[minMax_, Into[n_Integer?Positive]] := resolveSpec[minMax, {n, Divide[dataRange @ minMax, n - 2]}];
+resolveSpec[minMax_, Into[n_Integer?Positive]] := resolveSpec[minMax, {n, 2 * Divide[dataRange @ minMax, n - 2]}];
 resolveSpec[minMax_, d_?Positive] := resolveSpec[minMax, 
 	{
-		Ceiling @ Divide[dataRange[minMax], d] + 2,
+		2 * Ceiling @ Divide[dataRange[minMax], d] + 4,
 		d
 	}
 ];
-resolveSpec[{min_, max_}, {n_, d_}] := {
+resolveSpec[{min_, max_}, {n_Integer, d_?Positive}] := {
 	Subdivide[min, max, n - 1],
 	n,
 	d
 };
 resolveSpec[___] := $Failed;
-
-findNodes[{min_, max_}, n_] := Block[{
-	halfd = Divide[d, 2],
-	nodes,
-	offset
-},
-	nodes = Range[Subtract[min, halfd], max + d, halfd];
-	offset = Subtract[Subtract[max, Last[nodes]], Subtract[First[nodes], min]];
-	nodes = Subtract[nodes, Divide[offset, 2]];
-	nodes
-];
 
 BSplineFit[dat_List, spec_] := LocalSupportFit[dat, BSplineBasis[3, (#/4 + 1/2)]&, spec];
 
