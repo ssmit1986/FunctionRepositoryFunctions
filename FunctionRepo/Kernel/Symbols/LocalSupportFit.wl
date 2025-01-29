@@ -13,6 +13,7 @@ Options[LocalSupportFit] = {
 	IncludeConstantBasis -> True
 };
 
+
 LocalSupportFit[dat_List, fun_, spec_, opts : OptionsPattern[]] := Module[{
 	data = dat,
 	n, d, nodes,
