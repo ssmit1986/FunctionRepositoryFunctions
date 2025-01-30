@@ -9,31 +9,67 @@ GeneralUtilities`SetUsage[DataPipeline,
 Begin["`Private`"] (* Begin Private Context *)
 
 dataPattern = _List | _Dataset | _Association?AssociationQ | _Tabular?TabularQ;
+dataQ[data_] := MatchQ[data, dataPattern];
+
+(* Data pipeline *)
 
 (* Linear pipeline *)
 DataPipeline[{}][anything_] := anything;
 DataPipeline[{el_}][data : dataPattern] := el[data];
 DataPipeline[{el_, rest__}][data : dataPattern] := DataPipeline[{rest}][el[data]];
 DataPipeline[op : Except[_List]][_] := Failure["InvalidOperator", <|"Head" -> Head[op]|>];
-DataPipeline[_][fail_?FailureQ] := fail;
-DataPipeline[_][other : Except[dataPattern]] := Failure["InvalidData", <|"Head" -> Head[other]|>];
-
-vertexKeyValPattern = {(_String -> _)...} | _Association?(AssociationQ[#] && AllTrue[Keys[#], StringQ]&);
-edgeKeyValPattern = {((_String -> _) | ({__String} -> _))...};
 
 
 (* Network pipeline *)
-DataPipeLine[{} | <||>, _List][anything_] := anything;
-DataPipeLine[vertList : vertexKeyValPattern, edges : edgeKeyValPattern][data : dataPattern] := iDataPipeLine[vertList, edges][data];
 
-iDataPipeLine[verts_, {keyIn_String -> keyOut_, rest___}][data_Association] := iDataPipeLine[verts, {rest}] @ Append[
-	data,
-	keyOut -> Lookup[verts, keyIn][data[keyIn]]
+vertexKeyValPattern = {(_String -> _)...} | _Association?(AssociationQ[#] && AllTrue[Keys[#], StringQ]&);
+edgeKeyValPattern = {((_String -> _String) | ({__String} -> _String))...};
+
+DataPipeline[_, {}][anything_] := anything;
+DataPipeline[vertList : vertexKeyValPattern, edges : edgeKeyValPattern][data : dataPattern] := If[
+	AssociationQ[data],
+	Replace[
+		iDataPipeline[vertList, edges][data],
+		a_Association :> KeyTake[a, Keys[vertList]] (* Only keep the computed keys *)
+	],
+	Replace[
+		iDataPipeline[vertList, edges][<|"Input" -> data|>],
+		a_Association :> a["Output"]
+	]
 ];
-iDataPipeLine[verts_, {keysIn_List -> keyOut_, rest___}][data_Association] := iDataPipeLine[verts, {rest}] @ Append[
-	data,
-	keyOut -> KeyTake[data, keysIn]
+
+iDataPipeline[_, {}][data_] := data;
+iDataPipeline[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}][data_] := With[{
+	input = If[ ListQ[keyIn],
+		Replace[
+			Lookup[data, keyIn],
+			l_List /; AnyTrue[l, MissingQ] :> Missing["MissingInput"]
+		],
+		data[keyIn]
+	],
+	op = Lookup[vertices, keyOut]
+},{
+	newData = Which[
+		MissingQ[input],
+			Failure["MissingInput", <|"Key" -> keyIn|>],
+		MissingQ[op],
+			Failure["MissingOperator", <|"Key" -> keyOut|>],
+		True,
+			op[input]
+	]
+},
+	If[ !FailureQ[newData],
+		iDataPipeline[vertices, {rest}] @ Append[
+			data,
+			keyOut -> newData
+		],
+		newData
+	]
 ];
+
+(* Failure handling *)
+DataPipeline[__][fail_?FailureQ] := fail;
+DataPipeline[__][other : Except[dataPattern]] := Failure["InvalidData", <|"Head" -> Head[other]|>];
 
 End[] (* End Private Context *)
 
