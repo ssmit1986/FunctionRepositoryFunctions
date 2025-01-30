@@ -27,16 +27,21 @@ DataPipeline[op : Except[_List]][_] := Failure["InvalidOperator", <|"Head" -> He
 vertexKeyValPattern = {(_String -> _)...} | _Association?(AssociationQ[#] && AllTrue[Keys[#], StringQ]&);
 edgeKeyValPattern = {((_String -> _String) | ({__String} -> _String))...};
 
+trimAssoc[edges_][dataOut_] := Replace[
+	KeyDrop[Flatten @ Keys[edges]] @ dataOut,
+	a_Association /; Length[a] === 1 :> First[a]
+];
+
 DataPipeline[_, {}][anything_] := anything;
 DataPipeline[vertList : vertexKeyValPattern, edges : edgeKeyValPattern][data : dataPattern] := If[
 	AssociationQ[data],
 	Replace[
 		iDataPipeline[vertList, edges][data],
-		a_Association :> KeyTake[a, Keys[vertList]] (* Only keep the computed keys *)
+		a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
 	],
 	Replace[
 		iDataPipeline[vertList, edges][<|"Input" -> data|>],
-		a_Association :> a["Output"]
+		a_Association :> trimAssoc[edges] @ KeyDrop[a, "Input"] (* Only keep the computed vertices that do not feed other computations *)
 	]
 ];
 
