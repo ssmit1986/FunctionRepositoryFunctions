@@ -3,7 +3,8 @@
 BeginPackage["FunctionRepo`DataPipeline`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[DataPipeline,
-	"DataPipeline[{operator1$, operator2$, ...}][data$] applies a sequence of operators to data$. If an operator fails or does not return valid intermediary data, the pipeline stops and returns a failure."
+	"DataPipeline[{op1$, op2$, ...}][data$] applies a sequence of operators op$i to data$. If an operator fails or does not return valid intermediary data, the pipeline stops and returns a failure.
+DataPipeline[{key$1 -> operator1$, ...}, {key$i1 -> key$j1, $$}][data$] applies a computational network to the data. The keys are used to extract and store intermediary data, and the edges define the flow of data between operators. A rule {key$i1, $$} -> key$j can be used in the second argument to send multiple pieces of data in List form to a single operator."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
@@ -70,6 +71,26 @@ iDataPipeline[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}][d
 (* Failure handling *)
 DataPipeline[__][fail_?FailureQ] := fail;
 DataPipeline[__][other : Except[dataPattern]] := Failure["InvalidData", <|"Head" -> Head[other]|>];
+
+DataPipeline /: Information[
+	HoldPattern @ DataPipeline[chain_List],
+	"Graph"
+] := PathGraph[chain, VertexLabels -> Automatic];
+
+DataPipeline /: Information[
+	HoldPattern @ DataPipeline[vertices_List, edges_List],
+	"Graph"
+] := With[{
+	vlist = Labeled @@@ Normal[vertices],
+	elist = DirectedEdge @@@ Flatten @ Replace[
+		edges,
+		r : Verbatim[Rule][_List, _String] :> Thread[r],
+		{1}
+	]
+},
+	Graph[vlist, elist, GraphLayout -> "LayeredDigraphEmbedding", VertexLabels -> Automatic]
+];
+
 
 End[] (* End Private Context *)
 
