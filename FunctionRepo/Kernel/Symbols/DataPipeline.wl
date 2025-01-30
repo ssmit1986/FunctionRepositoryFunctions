@@ -4,7 +4,8 @@ BeginPackage["FunctionRepo`DataPipeline`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[DataPipeline,
 	"DataPipeline[{op1$, op2$, ...}][data$] applies a sequence of operators op$i to data$. If an operator fails or does not return valid intermediary data, the pipeline stops and returns a failure.
-DataPipeline[{key$1 -> operator1$, ...}, {key$i1 -> key$j1, $$}][data$] applies a computational network to the data. The keys are used to extract and store intermediary data, and the edges define the flow of data between operators. A rule {key$i1, $$} -> key$j can be used in the second argument to send multiple pieces of data in List form to a single operator."
+DataPipeline[{key$1 -> operator1$, ...}, {key$i1 -> key$j1, $$}][data$] applies a computational network to the data. The keys are used to extract and store intermediary data, and the edges define the flow of data between operators. A rule {key$i1, $$} -> key$j can be used in the second argument to send multiple pieces of data in List form to a single operator.
+Information[DataPipeline[...], \"Graph\"] returns a graph representation of the pipeline or network."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
