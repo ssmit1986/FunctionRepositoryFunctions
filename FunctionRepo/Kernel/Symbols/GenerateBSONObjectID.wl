@@ -41,8 +41,12 @@ $machineID := $machineID = hexStringFromExpression[$MachineID, 6];
 $processID := $processID = hexStringFromExpression[$ProcessID, 4];
 
 incrementHexString[counter_, inc_Integer, ndigits_Integer] := With[{
-	i = counter["AddTo", inc]
+	i = counter["Get"],
+	newVal = counter["AddTo", inc]
 },
+	If[ TrueQ @ Negative[newVal],
+		counter["Set", 0] (* Counter has rolled over; set it to 0 to prevent the string counting backwards *)
+	];
 	IntegerString[i, 16, ndigits]
 ];
 
