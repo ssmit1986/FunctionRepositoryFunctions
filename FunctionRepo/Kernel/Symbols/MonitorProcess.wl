@@ -51,6 +51,29 @@ MonitorProcess[proc_ProcessObject, post_, opts : OptionsPattern[]] := DynamicMod
 	]
 ];
 
+
+
+(*
+
+obj = With[{proc = proc},
+	SessionSubmit[
+		ScheduledTask[
+			Replace[
+				ReadString[proc, EndOfBuffer], 
+				{
+					"" :> Null,
+					EndOfFile :> TaskRemove[$CurrentTask],
+					s_String :> Print[s]
+				}
+			],
+			Quantity[5, "Seconds"]
+		]
+	]
+]
+
+*)
+
+
 End[] (* End Private Context *)
 
 EndPackage[]
