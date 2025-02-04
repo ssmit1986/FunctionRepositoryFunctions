@@ -1,0 +1,56 @@
+(* Wolfram Language Package *)
+
+BeginPackage["FunctionRepo`MonitorFile`", {"FunctionRepo`", "GeneralUtilities`"}]
+(* Exported symbols added here with SymbolName::usage *)
+GeneralUtilities`SetUsage[MonitorProcess, 
+	"MonitorProcess[proc$] creates a dynamic that shows the output of a process proc$."
+];
+
+Begin["`Private`"] (* Begin Private Context *) 
+
+Options[MonitorProcess] = {
+	UpdateInterval -> 1.,
+	"KillProcessQ" -> True
+};
+
+pane[expr_] := Pane[expr, {800, 200} , ImageSize -> {Full, 250}, ImageSizeAction -> "Scrollable", Scrollbars -> Automatic];
+
+MonitorProcess[proc_, opts : OptionsPattern[]] := MonitorProcess[proc, Function[Null], opts];
+MonitorProcess[proc_ProcessObject, post_, opts : OptionsPattern[]] := DynamicModule[{
+	killProcQ = OptionValue["KillProcessQ"],
+	updateInterval = OptionValue[UpdateInterval],
+	progress = "", done = False,
+	read
+},
+	PaneSelector[
+		{
+			False -> DynamicWrapper[
+				Framed[pane @ Dynamic[progress], FrameStyle -> Red]
+				,
+				If[ TrueQ[! done],
+					read = ReadString[proc, EndOfBuffer];
+					Which[
+						read === EndOfFile, 
+							done = True;
+							post[proc];
+							If[TrueQ @ killProcQ, KillProcess[proc]]
+						,
+						StringQ[read],
+							progress = progress <> read,
+						True,
+							Null
+					]
+				],
+				TrackedSymbols :> {},
+				UpdateInterval -> updateInterval
+			]
+		},
+		Dynamic[done],
+		Framed[pane @ Dynamic[progress, TrackedSymbols :> {progress}], FrameStyle -> Darker[Green, 0.1]],
+		ImageSize -> Automatic
+	]
+];
+
+End[] (* End Private Context *)
+
+EndPackage[]
