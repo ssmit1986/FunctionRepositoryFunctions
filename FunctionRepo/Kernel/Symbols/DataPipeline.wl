@@ -124,7 +124,7 @@ dataGraph[vertList_, edges_, test_][data_] := With[{
 	edgeRules = standardizeEdges[edges]
 },
 	If[
-		AssociationQ[data],
+		AssociationQ[data] && !MemberQ[Flatten @ Keys[edges], "Input"],
 		Replace[
 			iDataGraph[vertList, edgeRules, test][data],
 			a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
