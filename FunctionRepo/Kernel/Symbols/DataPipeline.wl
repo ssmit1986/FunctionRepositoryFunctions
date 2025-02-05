@@ -4,7 +4,7 @@ BeginPackage["FunctionRepo`DataPipeline`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[DataPipeline,
 	"DataPipeline[{op1$, op2$, ...}][data$] applies a sequence of operators op$i to data$. If an operator fails or does not return valid intermediary data, the pipeline stops and returns a failure.
-DataPipeline[{key$1 -> operator1$, ...}, {key$i1 -> key$j1, $$}][data$] applies a computational network to the data. The keys are used to extract and store intermediary data, and the edges define the flow of data between operators. A rule {key$i1, $$} -> key$j can be used in the second argument to send multiple pieces of data in List form to a single operator.
+DataPipeline[{key$1 -> operator$1, ...}, {key$i1 -> key$j1, $$}][data$] applies a computational network to the data. The keys are used to extract and store intermediary data, and the edges define the flow of data between operators. A rule {key$i1, $$} -> key$j can be used in the second argument to send multiple pieces of data in List form to a single operator.
 Information[DataPipeline[...], \"Graph\"] returns a graph representation of the pipeline or network."
 ];
 
@@ -98,6 +98,20 @@ dataChain[{op_, rest__}, lst : {failTest_, boole_}][data_] := dataChain[{rest}, 
 vertexKeyValPattern = {(_String -> _)...} | _Association?(AssociationQ[#] && AllTrue[Keys[#], StringQ]&);
 edgeKeyValPattern = {((_String -> _String) | ({__String} -> _String))...};
 
+standardizeEdges[edgeRules_] := Reverse[
+	Normal @ GroupBy[
+		edgeRules,
+		Last -> First,
+		Replace[
+			{
+				{el_} :> el,
+				other_ :> Flatten[other]
+			}
+		]
+	],
+	{2}
+];
+
 trimAssoc[edges_][dataOut_] := Replace[
 	KeyDrop[Flatten @ Keys[edges]] @ dataOut,
 	a_Association /; Length[a] === 1 :> First[a]
@@ -106,15 +120,19 @@ trimAssoc[edges_][dataOut_] := Replace[
 dataGraph[_, {}, _][anything_] := anything;
 dataGraph[_, _, _][fail_?FailureQ] := fail;
 dataGraph[_, _, {failTest_, boole_}][data_] /; failTest[data] := createFailure[data];
-dataGraph[vertList_, edges_, test_][data_] := If[
-	AssociationQ[data],
-	Replace[
-		iDataGraph[vertList, edges, test][data],
-		a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
-	],
-	Replace[
-		iDataGraph[vertList, edges, test][<|"Input" -> data|>],
-		a_Association :> trimAssoc[edges] @ KeyDrop[a, "Input"] (* Only keep the computed vertices that do not feed other computations *)
+dataGraph[vertList_, edges_, test_][data_] := With[{
+	edgeRules = standardizeEdges[edges]
+},
+	If[
+		AssociationQ[data],
+		Replace[
+			iDataGraph[vertList, edgeRules, test][data],
+			a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
+		],
+		Replace[
+			iDataGraph[vertList, edgeRules, test][<|"Input" -> data|>],
+			a_Association :> trimAssoc[edges] @ KeyDrop[a, "Input"] (* Only keep the computed vertices that do not feed other computations *)
+		]
 	]
 ];
 
@@ -153,7 +171,7 @@ DataPipeline /: Information[
 ] := With[{
 	vlist = Labeled[#1, Row[{#1, ": ", #2}]]& @@@ Normal[vertices],
 	elist = DirectedEdge @@@ Flatten @ Replace[
-		edges,
+		standardizeEdges @ edges,
 		r : Verbatim[Rule][_List, _String] :> Thread[r],
 		{1}
 	]
