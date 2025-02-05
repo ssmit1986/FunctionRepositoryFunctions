@@ -151,7 +151,7 @@ DataPipeline /: Information[
 	HoldPattern @ DataPipeline[vertices : {__Rule}, edges : {__Rule}, OptionsPattern[]],
 	"Graph"
 ] := With[{
-	vlist = Labeled @@@ Normal[vertices],
+	vlist = Labeled[#1, Row[{#1, ": ", #2}]]& @@@ Normal[vertices],
 	elist = DirectedEdge @@@ Flatten @ Replace[
 		edges,
 		r : Verbatim[Rule][_List, _String] :> Thread[r],
