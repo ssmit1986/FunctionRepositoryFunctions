@@ -11,7 +11,8 @@ Information[DataPipeline[...], \"Graph\"] returns a graph representation of the 
 Begin["`Private`"] (* Begin Private Context *)
 
 Options[DataPipeline] = {
-	"FailureDetection" -> Automatic
+	"FailureDetection" -> Automatic,
+	"CatchMessages" -> True
 };
 
 failPattern = _Missing | Indeterminate | Undefined | ComplexInfinity | _DirectedInfinity;
@@ -33,6 +34,17 @@ createFailure[other_] := With[{head = Head[other]},
 	]
 ];
 
+checkedOperator[False, op_][data_] := op[data];
+checkedOperator[True, op_][data_] := With[{
+	tag = CreateUUID[]
+},
+	Enclose[
+		ConfirmQuiet[op[data], All, Null, tag],
+		Identity,
+		tag
+	]
+];
+
 postFailSafe[failTest_][op_] := postFailSafe[op, failTest];
 
 postFailSafe[op_, failTest_][data_] := Replace[
@@ -44,6 +56,10 @@ postFailSafe[op_, failTest_][data_] := Replace[
 ];
 
 (* Data pipeline *)
+parseOpts[list_List] := {
+	parseFailureDetection @ OptionValue[DataPipeline, list, "FailureDetection"],
+	TrueQ @ OptionValue[DataPipeline, list, "CatchMessages"]
+};
 
 (pipe_DataPipeline)[data_] := With[{
 	parse = System`Private`ArgumentsWithRules[
@@ -56,14 +72,14 @@ postFailSafe[op_, failTest_][data_] := Replace[
 	Switch[parse,
 		{{_List}, _},
 			dataChain[
-				parse[[1]],
-				parseFailureDetection @ OptionValue[DataPipeline, Last[parse], "FailureDetection"]
+				parse[[1, 1]],
+				parseOpts[Last[parse]]
 			][data],
 		{{vertexKeyValPattern, edgeKeyValPattern}, _},
 			dataGraph[
 				parse[[1, 1]],
 				parse[[1, 2]],
-				parseFailureDetection @ OptionValue[DataPipeline, Last[parse], "FailureDetection"]
+				parseOpts[Last[parse]]
 			][data],
 		_,
 			Failure["InvalidPipeline", <|"Pipeline" -> pipe|>]
@@ -72,10 +88,10 @@ postFailSafe[op_, failTest_][data_] := Replace[
 
 (* Linear pipeline *)
 dataChain[_, _][fail_?FailureQ] := fail;
-dataChain[_, failTest_][data_] /; failTest[data] := createFailure[data];
+dataChain[_, {failTest_, _}][data_] /; failTest[data] := createFailure[data];
 dataChain[{}, _][anything_] := anything;
-dataChain[{el_}, failTest_][data_] := postFailSafe[el, failTest][data]; (* final validation before returning the result *)
-dataChain[{el_, rest__}, failTest_][data_] := dataChain[{rest}, failTest][el[data]];
+dataChain[{op_}, {failTest_, boole_}][data_] := postFailSafe[checkedOperator[boole, op], failTest][data]; (* final validation before returning the result *)
+dataChain[{op_, rest__}, lst : {failTest_, boole_}][data_] := dataChain[{rest}, lst][checkedOperator[boole, op][data]];
 
 
 (* Network pipeline *)
@@ -89,7 +105,7 @@ trimAssoc[edges_][dataOut_] := Replace[
 
 dataGraph[_, {}, _][anything_] := anything;
 dataGraph[_, _, _][fail_?FailureQ] := fail;
-dataGraph[_, _, failTest_][data_] /; failTest[data] := createFailure[data];
+dataGraph[_, _, {failTest_, boole_}][data_] /; failTest[data] := createFailure[data];
 dataGraph[vertList_, edges_, test_][data_] := If[
 	AssociationQ[data],
 	Replace[
@@ -103,7 +119,7 @@ dataGraph[vertList_, edges_, test_][data_] := If[
 ];
 
 iDataGraph[_, {}, _][data_] := data;
-iDataGraph[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}, failTest_][data_] := With[{
+iDataGraph[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}, lst : {failTest_, boole_}][data_] := With[{
 	input = If[ ListQ[keyIn],
 		Replace[
 			Lookup[data, keyIn],
@@ -119,12 +135,12 @@ iDataGraph[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}, fail
 		MissingQ[op],
 			Failure["MissingOperator", <|"Key" -> keyOut|>],
 		True,
-			op[input]
+			checkedOperator[boole, op][input]
 	]
 },
 	If[ FailureQ[newData] || failTest[newData],
 		createFailure[newData],
-		iDataGraph[vertices, {rest}] @ Append[
+		iDataGraph[vertices, {rest}, lst] @ Append[
 			data,
 			keyOut -> newData
 		]
