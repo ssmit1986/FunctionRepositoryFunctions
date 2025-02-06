@@ -121,23 +121,43 @@ trimAssoc[edges_][dataOut_] := Replace[
 	a_Association /; Length[a] === 1 :> First[a]
 ];
 
-dataGraph[vertList_, edges_, test : {failTest_, boole_}][] := Module[{
-	inputKeys = Complement[
-		Keys[vertList],
-		Values[edges]
-	],
-	initialInput
+inputKeys[vertList_, edges_] := Complement[
+	Flatten[{Keys[vertList], Keys[edges]}],
+	Values[edges]
+];
+
+dataGraph[vertList_, edges_, test_][] := dataGraph[vertList, edges, test][<||>];
+dataGraph[vertList_, edges_, test : {failTest_, boole_}][arg : Except[_Association]] := With[{
+	keysIn = inputKeys[vertList, edges]
 },
-	(* Evaluate the generator functions *)
-	initialInput = Map[
-		Function[checkedOperator[boole, #][]],
-		KeyTake[vertList, inputKeys]
-	];
-	dataGraph[
-		Normal @ KeyDrop[vertList, inputKeys],
-		edges,
-		test
-	][initialInput]
+	Condition[
+		(* Generate other inputs automatically *)
+		dataGraph[vertList, edges, test][<|"Input" -> arg|>]
+		,
+		And[
+			Length[keysIn] > 1,
+			MemberQ[keysIn, "Input"]
+		]
+	]
+]
+dataGraph[vertList_, edges_, test : {failTest_, boole_}][assoc_Association] := Module[{
+	keysIn = Complement[inputKeys[vertList, edges], Keys[assoc]],
+	generatedInput
+},
+	Condition[
+		(* Evaluate the generator functions *)
+		generatedInput = Map[
+			Function[checkedOperator[boole, #][]],
+			KeyTake[vertList, keysIn]
+		];
+		dataGraph[
+			Normal @ KeyDrop[vertList, keysIn],
+			edges,
+			test
+		][Join[assoc, generatedInput]]
+		,
+		keysIn =!= {} && ContainsAll[Keys[vertList], keysIn]
+	]
 ];
 
 dataGraph[_, {}, _][anything_] := anything;
@@ -146,7 +166,7 @@ dataGraph[vertList_, edges_, test : {failTest_, boole_}][data_] := With[{
 	edgeRules = standardizeEdges[edges]
 },
 	If[
-		AssociationQ[data] && !MemberQ[Flatten @ Keys[edges], "Input"],
+		AssociationQ[data] && Or[!MemberQ[Flatten @ Keys[edges], "Input"], KeyExistsQ[data, "Input"]],
 		With[{
 			failArgs = Select[data, Comap[FailureQ || failTest]]
 		},
