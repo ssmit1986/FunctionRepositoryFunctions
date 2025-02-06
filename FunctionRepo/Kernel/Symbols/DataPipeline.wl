@@ -34,8 +34,8 @@ createFailure[other_] := With[{head = Head[other]},
 	]
 ];
 
-checkedOperator[False, op_][data_] := op[data];
-checkedOperator[True, op_][data_] := With[{
+checkedOperator[False, op_][data___] := op[data];
+checkedOperator[True, op_][data___] := With[{
 	tag = CreateUUID[]
 },
 	Enclose[
@@ -61,7 +61,7 @@ parseOpts[list_List] := {
 	TrueQ @ OptionValue[DataPipeline, list, "CatchMessages"]
 };
 
-(pipe_DataPipeline)[data_] := With[{
+(pipe_DataPipeline)[args___] /; Length[HoldComplete[args]] <= 1 := With[{
 	parse = System`Private`ArgumentsWithRules[
 		pipe,
 		{1, 2},
@@ -74,13 +74,13 @@ parseOpts[list_List] := {
 			dataChain[
 				parse[[1, 1]],
 				parseOpts[Last[parse]]
-			][data],
+			][args],
 		{{vertexKeyValPattern, edgeKeyValPattern}, _},
 			dataGraph[
 				parse[[1, 1]],
 				parse[[1, 2]],
 				parseOpts[Last[parse]]
-			][data],
+			][args],
 		_,
 			Failure["InvalidPipeline", <|"Pipeline" -> pipe|>]
 	]
@@ -93,6 +93,9 @@ dataChain[_, {failTest_, _}][data_] /; failTest[data] := createFailure[data];
 dataChain[{}, _][anything_] := anything;
 dataChain[{op_}, {failTest_, boole_}][data_] := postFailSafe[checkedOperator[boole, op], failTest][data]; (* final validation before returning the result *)
 dataChain[{op_, rest__}, lst : {failTest_, boole_}][data_] := dataChain[{rest}, lst][checkedOperator[boole, op][data]];
+
+(* Special case for start of the chain *)
+dataChain[{op_, rest___}, lst : {_, boole_}][] := dataChain[{rest}, lst][checkedOperator[boole, op][]];
 
 
 (* Network pipeline *)
@@ -118,21 +121,49 @@ trimAssoc[edges_][dataOut_] := Replace[
 	a_Association /; Length[a] === 1 :> First[a]
 ];
 
+dataGraph[vertList_, edges_, test : {failTest_, boole_}][] := Module[{
+	inputKeys = Complement[
+		Keys[vertList],
+		Values[edges]
+	],
+	initialInput
+},
+	(* Evaluate the generator functions *)
+	initialInput = Map[
+		Function[checkedOperator[boole, #][]],
+		KeyTake[vertList, inputKeys]
+	];
+	dataGraph[
+		Normal @ KeyDrop[vertList, inputKeys],
+		edges,
+		test
+	][initialInput]
+];
+
 dataGraph[_, {}, _][anything_] := anything;
 dataGraph[_, _, _][fail_?FailureQ] := fail;
-dataGraph[_, _, {failTest_, boole_}][data_] /; failTest[data] := createFailure[data];
-dataGraph[vertList_, edges_, test_][data_] := With[{
+dataGraph[vertList_, edges_, test : {failTest_, boole_}][data_] := With[{
 	edgeRules = standardizeEdges[edges]
 },
 	If[
 		AssociationQ[data] && !MemberQ[Flatten @ Keys[edges], "Input"],
-		Replace[
-			iDataGraph[vertList, edgeRules, test][data],
-			a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
+		With[{
+			failArgs = Select[data, Comap[FailureQ || failTest]]
+		},
+			If[ Length[failArgs] > 0,
+				createFailure[failArgs],
+				Replace[
+					iDataGraph[vertList, edgeRules, test][data],
+					a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
+				]
+			]
 		],
-		Replace[
-			iDataGraph[vertList, edgeRules, test][<|"Input" -> data|>],
-			a_Association :> trimAssoc[edges] @ KeyDrop[a, "Input"] (* Only keep the computed vertices that do not feed other computations *)
+		If[ failTest[data],
+			createFailure[data],
+			Replace[
+				iDataGraph[vertList, edgeRules, test][<|"Input" -> data|>],
+				a_Association :> trimAssoc[edges] @ KeyDrop[a, "Input"] (* Only keep the computed vertices that do not feed other computations *)
+			]
 		]
 	]
 ];
@@ -194,6 +225,7 @@ DataPipeline /: Information[
 			chain
 		]
 	],
+	GraphLayout -> {"LayeredDigraphEmbedding", "Orientation" -> Left},
 	DirectedEdges -> True,
 	VertexLabels -> Automatic
 ];
