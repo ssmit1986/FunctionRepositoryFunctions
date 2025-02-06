@@ -169,7 +169,7 @@ DataPipeline /: Information[
 	HoldPattern @ DataPipeline[vertices : {__Rule}, edges : {__Rule}, OptionsPattern[]],
 	"Graph"
 ] := With[{
-	vlist = Labeled[#1, Row[{#1, ": ", #2}]]& @@@ Normal[vertices],
+	vlist = Labeled[#1, Row[{#1, ": ", Short[#2]}]]& @@@ Normal[vertices],
 	elist = DirectedEdge @@@ Flatten @ Replace[
 		standardizeEdges @ edges,
 		r : Verbatim[Rule][_List, _String] :> Thread[r],
@@ -182,7 +182,11 @@ DataPipeline /: Information[
 DataPipeline /: Information[
 	HoldPattern @ DataPipeline[chain_List, OptionsPattern[]],
 	"Graph"
-] := PathGraph[chain, DirectedEdges -> True, VertexLabels -> Automatic];
+] := PathGraph[
+	MapIndexed[Labeled[First @ #2, Short[#1]]&, chain],
+	DirectedEdges -> True,
+	VertexLabels -> Automatic
+];
 
 
 End[] (* End Private Context *)
