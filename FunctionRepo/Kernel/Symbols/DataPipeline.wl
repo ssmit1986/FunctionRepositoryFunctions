@@ -177,7 +177,10 @@ DataPipeline /: Information[
 		{1}
 	]
 },
-	Graph[vlist, elist, GraphLayout -> "LayeredDigraphEmbedding", VertexLabels -> Automatic]
+	Graph[vlist, elist,
+		GraphLayout -> {"LayeredDigraphEmbedding", "Orientation" -> Left},
+		VertexLabels -> Automatic
+	]
 ];
 
 DataPipeline /: Information[
