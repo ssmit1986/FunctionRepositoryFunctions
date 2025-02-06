@@ -87,6 +87,7 @@ parseOpts[list_List] := {
 ];
 
 (* Linear pipeline *)
+dataChain[rules : {__Rule}, test_] := dataChain[Values @ rules, test];
 dataChain[_, _][fail_?FailureQ] := fail;
 dataChain[_, {failTest_, _}][data_] /; failTest[data] := createFailure[data];
 dataChain[{}, _][anything_] := anything;
@@ -95,7 +96,7 @@ dataChain[{op_, rest__}, lst : {failTest_, boole_}][data_] := dataChain[{rest}, 
 
 
 (* Network pipeline *)
-vertexKeyValPattern = {(_String -> _)...} | _Association?(AssociationQ[#] && AllTrue[Keys[#], StringQ]&);
+vertexKeyValPattern = {(_String -> _)...};
 edgeKeyValPattern = {((_String -> _String) | ({__String} -> _String))...};
 
 standardizeEdges[edgeRules_] := Reverse[
@@ -169,7 +170,7 @@ DataPipeline /: Information[
 	HoldPattern @ DataPipeline[vertices : {__Rule}, edges : {__Rule}, OptionsPattern[]],
 	"Graph"
 ] := With[{
-	vlist = Labeled[#1, Row[{#1, ": ", Short[#2]}]]& @@@ Normal[vertices],
+	vlist = Labeled[#1, Row[{#1, ": ", Short[#2]}]]& @@@ vertices,
 	elist = DirectedEdge @@@ Flatten @ Replace[
 		standardizeEdges @ edges,
 		r : Verbatim[Rule][_List, _String] :> Thread[r],
@@ -183,7 +184,13 @@ DataPipeline /: Information[
 	HoldPattern @ DataPipeline[chain_List, OptionsPattern[]],
 	"Graph"
 ] := PathGraph[
-	MapIndexed[Labeled[First @ #2, Short[#1]]&, chain],
+	If[ MatchQ[chain, {__Rule}],
+		Labeled[#1, Row[{#1, ": ", Short[#2]}]]& @@@ chain,
+		MapIndexed[
+			Labeled[First @ #2, Short[#1]]&,
+			chain
+		]
+	],
 	DirectedEdges -> True,
 	VertexLabels -> Automatic
 ];
