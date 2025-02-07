@@ -45,9 +45,9 @@ checkedOperator[True, op_][data___] := With[{
 	]
 ];
 
-postFailSafe[failTest_][op_] := postFailSafe[op, failTest];
+postFailsafe[failTest_][op_] := postFailsafe[op, failTest];
 
-postFailSafe[op_, failTest_][data_] := Replace[
+postFailsafe[op_, failTest_][data_] := Replace[
 	op[data],
 	{
 		fail_?FailureQ :> fail,
@@ -91,11 +91,14 @@ dataChain[rules : {__Rule}, test_] := dataChain[Values @ rules, test];
 dataChain[_, _][fail_?FailureQ] := fail;
 dataChain[_, {failTest_, _}][data_] /; failTest[data] := createFailure[data];
 dataChain[{}, _][anything_] := anything;
-dataChain[{op_}, {failTest_, boole_}][data_] := postFailSafe[checkedOperator[boole, op], failTest][data]; (* final validation before returning the result *)
+dataChain[{op_}, {failTest_, boole_}][data_] := postFailsafe[checkedOperator[boole, op], failTest][data]; (* final validation before returning the result *)
 dataChain[{op_, rest__}, lst : {failTest_, boole_}][data_] := dataChain[{rest}, lst][checkedOperator[boole, op][data]];
 
 (* Special case for start of the chain *)
 dataChain[{op_, rest___}, lst : {_, boole_}][] := dataChain[{rest}, lst][checkedOperator[boole, op][]];
+
+(* Shouldn't ever be reached *)
+dataChain[pipe___][___] := Failure["InvalidPipeline", <|"Pipeline" -> HoldComplete[pipe]|>];
 
 
 (* Network pipeline *)
@@ -121,11 +124,23 @@ trimAssoc[edges_][dataOut_] := Replace[
 	a_Association /; Length[a] === 1 :> First[a]
 ];
 
+allKeys[vertList_, edges_] := Flatten[{Keys[vertList], Keys[edges], Values[edges]}];
+
 inputKeys[vertList_, edges_] := Complement[
 	Flatten[{Keys[vertList], Keys[edges]}],
 	Values[edges]
 ];
 
+outputKeys[vertList_, edges_] := Complement[
+	Values[edges],
+	Flatten @ Keys[edges]
+];
+
+(* Short circuit evaluations *)
+dataGraph[_, {},  {failTest_, boole_}][anything_] := postFailsafe[Identity, failTest] @ anything;
+dataGraph[_, _, _][fail_?FailureQ] := fail;
+
+(* Automatic generation of missing inputs *)
 dataGraph[vertList_, edges_, test_][] := dataGraph[vertList, edges, test][<||>];
 dataGraph[vertList_, edges_, test : {failTest_, boole_}][arg : Except[_Association]] := With[{
 	keysIn = inputKeys[vertList, edges]
@@ -139,7 +154,7 @@ dataGraph[vertList_, edges_, test : {failTest_, boole_}][arg : Except[_Associati
 			MemberQ[keysIn, "Input"]
 		]
 	]
-]
+];
 dataGraph[vertList_, edges_, test : {failTest_, boole_}][assoc_Association] := Module[{
 	keysIn = Complement[inputKeys[vertList, edges], Keys[assoc]],
 	generatedInput
@@ -160,13 +175,13 @@ dataGraph[vertList_, edges_, test : {failTest_, boole_}][assoc_Association] := M
 	]
 ];
 
-dataGraph[_, {}, _][anything_] := anything;
-dataGraph[_, _, _][fail_?FailureQ] := fail;
+(* Main evaluation *)
 dataGraph[vertList_, edges_, test : {failTest_, boole_}][data_] := With[{
 	edgeRules = standardizeEdges[edges]
 },
 	If[
-		AssociationQ[data] && Or[!MemberQ[Flatten @ Keys[edges], "Input"], KeyExistsQ[data, "Input"]],
+		AssociationQ[data] && Or[!MemberQ[Flatten @ Keys[edges], "Input"], KeyExistsQ[data, "Input"]]
+		,
 		With[{
 			failArgs = Select[data, Comap[FailureQ || failTest]]
 		},
@@ -177,7 +192,8 @@ dataGraph[vertList_, edges_, test : {failTest_, boole_}][data_] := With[{
 					a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
 				]
 			]
-		],
+		]
+		,
 		If[ failTest[data],
 			createFailure[data],
 			Replace[
@@ -188,6 +204,7 @@ dataGraph[vertList_, edges_, test : {failTest_, boole_}][data_] := With[{
 	]
 ];
 
+iDataGraph[___][expr : Except[_Association]] := createFailure[expr];
 iDataGraph[_, {}, _][data_] := data;
 iDataGraph[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}, lst : {failTest_, boole_}][data_] := With[{
 	input = If[ ListQ[keyIn],
@@ -205,16 +222,26 @@ iDataGraph[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}, lst 
 		MissingQ[op],
 			Failure["MissingOperator", <|"Key" -> keyOut|>],
 		True,
-			checkedOperator[boole, op][input]
+			postFailsafe[checkedOperator[boole, op], failTest] @ input
 	]
 },
-	If[ FailureQ[newData] || failTest[newData],
+	If[ FailureQ[newData],
 		createFailure[newData],
 		iDataGraph[vertices, {rest}, lst] @ Append[
 			data,
 			keyOut -> newData
 		]
 	]
+];
+
+(* Shouldn't ever be reached *)
+Scan[
+	Function[sym,
+		sym[pipe___][___] := Failure["InvalidPipeline", <|"Pipeline" -> HoldComplete[pipe]|>],
+		HoldFirst
+	]
+	,
+	Hold[dataChain, dataGraph, iDataGraph]
 ];
 
 DataPipeline /: Information[
