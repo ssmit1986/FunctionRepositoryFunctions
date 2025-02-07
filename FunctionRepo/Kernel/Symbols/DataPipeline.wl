@@ -15,7 +15,7 @@ Options[DataPipeline] = {
 	"CatchMessages" -> True
 };
 
-failPattern = _Missing | Indeterminate | Undefined | ComplexInfinity | _DirectedInfinity;
+failPattern = _Missing | Indeterminate | Undefined | ComplexInfinity | $Canceled | $Aborted | _DirectedInfinity;
 failQ[data_] := MatchQ[data, failPattern];
 
 parseFailureDetection[Automatic] := failQ;
