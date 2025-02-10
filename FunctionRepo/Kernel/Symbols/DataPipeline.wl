@@ -132,7 +132,7 @@ trimAssoc[edges_][dataOut_] := Replace[
 
 allKeys[vertList_, edges_] := Flatten[{Keys[vertList], Keys[edges], Values[edges]}];
 
-allInputs[edges_] := Flatten @ stripEdgeOperators @ Keys[edges]
+allInputs[edges_] := Flatten @ stripEdgeOperators @ Keys[edges];
 
 inputKeys[vertList_, edges_] := Complement[
 	Flatten[{Keys[vertList], allInputs[edges]}],
@@ -461,6 +461,282 @@ FunctionRepo`DataPipeline`Private`dataPipelineTests = {
 		True
 		,
 		TestID->"Test-c45f75bb-9fce-4fe6-b194-d4675f3ffec0"
+	],
+
+	TestCreate[
+		pipeline = DataPipeline[{Select[PrimeQ],  Map[#1^2 & ], Total}]
+		,
+		DataPipeline[{Select[PrimeQ],  Map[#1^2 & ], Total}]
+		,
+		TestID->"Test-d3ce65fc-d25e-45c4-b00e-6c81b155e1ae"
+	],
+
+	TestCreate[
+		pipeline[Range[10]]
+		,
+		87
+		,
+		TestID->"Test-3e3c8e1b-e809-4079-974c-b79380eff1f5"
+	],
+
+	TestCreate[
+		GraphQ[Information[pipeline,  "Graph"]]
+		,
+		True
+		,
+		TestID->"Test-0c63d1bf-2ec2-4243-acc5-0185b73d2ba3"
+	],
+
+	TestCreate[
+		DataPipeline[{Flatten,  pipeline, Framed}][{{1},  {2,  3}, {4,  5, 6}}]
+		,
+		Framed[38]
+		,
+		TestID->"Test-908659a4-7277-432d-8cd2-fc003db5db0d"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{Select[EvenQ],  Total, 1/#1 & , Sqrt}][Range[-6,  6]]]
+		,
+		True
+		,
+		TestID->"Test-3160ae9f-9f92-417c-b26c-6bed9fda47a0"
+	],
+
+	TestCreate[
+		GraphQ[Information[DataPipeline[{"a" -> Select[PrimeQ],  "b" -> Map[#1^2 & ], "c" -> Total}],  "Graph"]]
+		,
+		True
+		,
+		TestID->"Test-1270b689-8da6-46f7-9939-c0990476daa7"
+	],
+
+	TestCreate[
+		pipeline1 = DataPipeline[
+	{"a"->Select[EvenQ], "b"->Select[PrimeQ], "c"->Catenate, "d"->Total}, {"Input"->"a", "Input"->"b", {"a", "b"}->"c", "c"->"d"}
+	];
+	GraphQ[Information[pipeline1, "Graph"]]
+		,
+		True
+		,
+		TestID->"Test-c80b582a-da62-4568-a9d7-574697df607c"
+	],
+
+	TestCreate[
+		pipeline1[Range[10]]
+		,
+		47
+		,
+		TestID->"Test-8fb3cb21-eac4-4da0-9000-6135d3710d77"
+	],
+
+	TestCreate[
+		Information[
+	DataPipeline[{"a"->Select[EvenQ], "b"->Select[PrimeQ], "c"->Catenate, "d"->Total}, {"Input"->"a", "Input"->"b", "a"->"c", "b"->"c",  "c"->"d"}
+	], "Graph"]//GraphQ
+		,
+		True
+		,
+		TestID->"Test-e9e11e2c-4277-406b-964c-2126b9371cd1"
+	],
+
+	TestCreate[
+		pipeline2 = DataPipeline[
+	{"a"->Select[EvenQ], "b"->Select[PrimeQ], "c"->Catenate, "d"->Total},
+	{"x"->"a", "y"->"b", {"a", "b"}->"c",  "c"->"d"}
+	];
+	pipeline2@<|
+	"x"->{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+	"y"->{37, 60, 80, 18, 61}
+	|>
+		,
+		128
+		,
+		TestID->"Test-a98d9194-6fe7-41c4-b65d-777552067cd9"
+	],
+
+	TestCreate[
+		GraphQ[Information[pipeline2,  "Graph"]]
+		,
+		True
+		,
+		TestID->"Test-8b66f873-da8a-4b04-97cc-42896d9b7002"
+	],
+
+	TestCreate[
+		pipeline3 =DataPipeline[
+	{"a"->Select[EvenQ], "b"->Select[PrimeQ], "c"->Catenate, "d"->Total,  "e"->Mean},
+	{"x"->"a", "y"->"b", {"a", "b"}->"c",  "c"->"d","c"->"e"}
+	];
+	pipeline3@<|
+	"x"->{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+	"y"->{37, 60, 80, 18, 61}
+	|>
+		,
+		Association["d" -> 128,  "e" -> 128/7]
+		,
+		TestID->"Test-95cf2382-7642-44ec-9449-6b60898188a4"
+	],
+
+	TestCreate[
+		GraphQ[Information[pipeline3,  "Graph"]]
+		,
+		True
+		,
+		TestID->"Test-bd403b0b-8044-40f4-a0a5-f551dd4529c5"
+	],
+
+	TestCreate[
+		pipeline1 = DataPipeline[
+	{"a"->Select[EvenQ], "b"->Select[PrimeQ], "c"->Catenate, "d"->Total},
+	{"x"->"a", "y"->"b", {"a", "b"}->"c",  "c"->"d"}
+	]
+		,
+		DataPipeline[{"a" -> Select[EvenQ],  "b" -> Select[PrimeQ], "c" -> Catenate, "d" -> Total},
+	{"x" -> "a",  "y" -> "b", {"a",  "b"} -> "c", "c" -> "d"}]
+		,
+		TestID->"Test-cbbd799d-477a-4be0-a8a1-128686e0675f"
+	],
+
+	TestCreate[
+		pipeLine2=DataPipeline[
+	{
+	"x" -> Function[Range[#]],
+	"y"->Function[Range[#^3]],
+	"pipe" -> pipeline1,
+	"out"->Framed
+	},
+	{"Input"->"x", "Input"->"y", KeyTake[{"x", "y"}]->"pipe", "pipe"->"out"}
+	]
+		,
+		DataPipeline[{"x" -> (Range[#1] & ),  "y" -> (Range[#1^3] & ),
+	"pipe" -> DataPipeline[{"a" -> Select[EvenQ],  "b" -> Select[PrimeQ], "c" -> Catenate, "d" -> Total},
+	{"x" -> "a",  "y" -> "b", {"a",  "b"} -> "c", "c" -> "d"}], "out" -> Framed},
+	{"Input" -> "x",  "Input" -> "y", KeyTake[{"x",  "y"}] -> "pipe", "pipe" -> "out"}]
+		,
+		TestID->"Test-8a29e4c9-4f07-46a8-bd4c-c0454e9b4e67"
+	],
+
+	TestCreate[
+		pipeLine2[5]
+		,
+		Framed[1599]
+		,
+		TestID->"Test-5cd1ad0b-88d8-42a4-9713-79ea0e6f0792"
+	],
+
+	TestCreate[
+		randomPipeline = DataPipeline[{RandomReal[] & , Exp}]
+		,
+		DataPipeline[{RandomReal[] & , Exp}]
+		,
+		TestID->"Test-506a415b-e236-49e6-b9af-e32048771c19"
+	],
+
+	TestCreate[
+		MatchQ[{__?NumericQ}][Table[randomPipeline[],  5]]
+		,
+		True
+		,
+		TestID->"Test-9149e448-df56-41ec-a44e-346d9ca1f74c"
+	],
+
+	TestCreate[
+		randomNetwork=DataPipeline[
+	{"rand1"->(RandomReal[]&), "rand2"->(RandomChoice[{"x", "y"}]&),
+	"a"->Exp,
+	"b"->Function[# <> #],
+	"c"->Identity
+	},
+	{"rand1"->"a", "rand2"->"b", {"a", "b"}->"c"}
+	]
+		,
+		DataPipeline[{"rand1" -> (RandomReal[] & ),  "rand2" -> (RandomChoice[{"x",  "y"}] & ), "a" -> Exp,
+	"b" -> (StringJoin[#1,  #1] & ), "c" -> Identity},  {"rand1" -> "a",  "rand2" -> "b", {"a",  "b"} -> "c"}]
+		,
+		TestID->"Test-63c88370-cd26-4889-bd30-c0c377e60849"
+	],
+
+	TestCreate[
+		MatchQ[{_?NumericQ,  _String}][randomNetwork[]]
+		,
+		True
+		,
+		TestID->"Test-9415afc6-b413-47b1-8e5a-7b00815d5dfb"
+	],
+
+	TestCreate[
+		randomNetwork[Association["rand1" -> -1,  "rand2" -> "z"]]
+		,
+		{1/E,  "zz"}
+		,
+		TestID->"Test-29f02505-0894-43df-bf64-c23e00ae2271"
+	],
+
+	TestCreate[
+		MatchQ[{_?NumericQ,  "zz"}][randomNetwork[Association["rand2" -> "z"]]]
+		,
+		True
+		,
+		TestID->"Test-a9684fb4-9b6c-4ad6-8cbc-4337a9e05ede"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{Lookup["a"],  Total}][Association["b" -> 1]]]
+		,
+		True
+		,
+		TestID->"Test-4d59ff87-b4ef-421a-ba82-c4ca4679e8f3"
+	],
+
+	TestCreate[
+		MissingQ[DataPipeline[{Lookup["a"],  Query[Total]},  "FailureDetection" -> None][Association["b" -> 1]]]
+		,
+		True
+		,
+		TestID->"Test-cb0c7481-e328-4d3b-9d9b-696a17dd20cd"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{Lookup["a"],  Failsafe[Total,  ListQ]},  "FailureDetection" -> None][Association["b" -> 1]]]
+		,
+		True
+		,
+		TestID->"Test-5a2830a8-4f86-49d5-a4a0-aa0aeb2da8c3"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{Lookup["a"],  Log}][Association["a" -> 0]]]
+		,
+		True
+		,
+		TestID->"Test-4e0238cc-9a37-49ec-be3b-19c8d45b0525"
+	],
+
+	TestCreate[
+		DataPipeline[{Lookup["a"],  Log},  "FailureDetection" -> MissingQ][Association["a" -> 0]]
+		,
+		-Infinity
+		,
+		TestID->"Test-543ee22e-889f-46e6-9233-2ab1403fa36a"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{Extract[3],  Sqrt}][{1,  2}]]
+		,
+		True
+		,
+		TestID->"Test-33433996-f342-4e21-8729-3ad672c1dd14"
+	],
+
+	TestCreate[
+		DataPipeline[{Extract[3],  Sqrt},  "CatchMessages" -> False][{1,  2}]
+		,
+		Quiet @ Sqrt[Extract[3][{1,  2}]]
+		,
+		{Extract::partw}
+		,
+		TestID->"Test-e8483e72-33c8-4fd7-b09c-b67cdf5cc9f8"
 	]
 }
 
