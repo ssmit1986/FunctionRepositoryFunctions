@@ -277,6 +277,45 @@ DataPipeline /: Information[
 	VertexLabels -> Automatic
 ];
 
+DataPipeline /: MakeBoxes[
+	expr : DataPipeline[vertices : {__Rule}, edges : {__Rule}, OptionsPattern[]], 
+	form_
+] := With[{
+	gr = Information[expr, "Graph"]
+},
+	BoxForm`ArrangeSummaryBox["DataPipeline",
+		expr,
+		"Network",
+		{
+			BoxForm`SummaryItem[{"Number of data vertices: ", VertexCount[gr]}],
+			BoxForm`SummaryItem[{"Number edges: ", EdgeCount[gr]}]
+		},
+		{
+			BoxForm`SummaryItem[{"Graph: ", Show[gr, ImageSize -> 300]}]
+		},
+		form
+	] /; GraphQ[gr]
+];
+
+DataPipeline /: MakeBoxes[
+	expr : DataPipeline[chain_List, OptionsPattern[]], 
+	form_
+] := With[{
+	gr = Information[expr, "Graph"]
+},
+	BoxForm`ArrangeSummaryBox["DataPipeline",
+		expr,
+		"Chain",
+		{
+			BoxForm`SummaryItem[{"Number of data vertices: ", VertexCount[gr]}],
+			BoxForm`SummaryItem[{"Number edges: ", EdgeCount[gr]}]
+		},
+		{
+			BoxForm`SummaryItem[{"Graph: ", Show[gr, ImageSize -> 300]}]
+		},
+		form
+	] /; GraphQ[gr]
+];
 
 End[] (* End Private Context *)
 
