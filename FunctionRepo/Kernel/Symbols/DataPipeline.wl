@@ -317,6 +317,129 @@ DataPipeline /: MakeBoxes[
 	] /; GraphQ[gr]
 ];
 
+FunctionRepo`DataPipeline`Private`dataPipelineTests = {
+	TestCreate[
+		FailureQ[DataPipeline[{Lookup["a"]}][Association[]]]
+		,
+		True
+		,
+		TestID->"Test-7c84cae5-863d-4e1b-a0c7-d2bc4c854efd"
+	],
+
+	TestCreate[
+		DataPipeline[{"a" -> Lookup["x"]},  {"Input" -> "a"}][Association["x" -> 1]]
+		,
+		1
+		,
+		TestID->"Test-6d1093ea-1613-4dc4-9c5e-eb6a882af0dd"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{"a" -> Lookup["x"]},  {"Input" -> "a"}][Association["y" -> 1]]]
+		,
+		True
+		,
+		TestID->"Test-2e6ea717-1b6a-48f8-8d51-2c0afdff2497"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{"a" -> Lookup["a"]},  {"x" -> "a"}][Association["x" -> 1]]]
+		,
+		True
+		,
+		TestID->"Test-d9be00d4-b31b-4ddd-997a-1e79be8efc1b"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{"a" -> Lookup["a"]},  {"x" -> "a"}][Association["y" -> 1]]]
+		,
+		True
+		,
+		TestID->"Test-f3b91dcb-f148-4b7f-b839-857bf88326d7"
+	],
+
+	TestCreate[
+		DataPipeline[{1 & }][]
+		,
+		1
+		,
+		TestID->"Test-4dfa7bcb-c0fc-4e7a-ba52-6da201a3cbc2"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{Missing[] & }][]]
+		,
+		True
+		,
+		TestID->"Test-0638ac79-6a85-43ff-bb53-1ac183537a75"
+	],
+
+	TestCreate[
+		DataPipeline[
+	{"rand1"->(1&), "rand2"->("y"&), "c"->Identity},
+	{{"rand1", "rand2", "Input"}->"c"}
+	][5]
+		,
+		{1,  "y", 5}
+		,
+		TestID->"Test-121a3d22-fe25-4781-bfd9-57ece3c0e4a0"
+	],
+
+	TestCreate[
+		DataPipeline[
+	{"rand1"->(Missing[]&), "rand2"->("y"&), "c"->Identity},
+	{{"rand1", "rand2", "Input"}->"c"}
+	][5]//FailureQ
+		,
+		True
+		,
+		TestID->"Test-990633f1-aa3b-410c-bcf2-350be9e93910"
+	],
+
+	TestCreate[
+		DataPipeline[
+	{"rand1"->(Missing[]&), "rand2"->("y"&), "c"->Identity},
+	{{"rand1", "rand2"}->"c"}
+	][]//FailureQ
+		,
+		True
+		,
+		TestID->"Test-7ef9dd9c-f5cf-48ae-9219-630e980ae1f3"
+	],
+
+	TestCreate[
+		DataPipeline[{}]["something"]
+		,
+		"something"
+		,
+		TestID->"Test-1c4b5f4f-4eba-401d-acc8-1b983b8dc77f"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{}][Missing[]]]
+		,
+		True
+		,
+		TestID->"Test-ddece7e4-2390-45a2-b37a-6cba0d9d204e"
+	],
+
+	TestCreate[
+		DataPipeline[{"a" -> Select[EvenQ]},  {}]["something"]
+		,
+		"something"
+		,
+		TestID->"Test-01c882bb-0a4c-4b42-b993-d18ab88f9a30"
+	],
+
+	TestCreate[
+		FailureQ[DataPipeline[{"a" -> Select[EvenQ]},  {}][Missing[]]]
+		,
+		True
+		,
+		TestID->"Test-c45f75bb-9fce-4fe6-b194-d4675f3ffec0"
+	]
+}
+
 End[] (* End Private Context *)
 
 EndPackage[]
