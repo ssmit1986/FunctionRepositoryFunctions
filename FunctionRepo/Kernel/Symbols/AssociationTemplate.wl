@@ -218,10 +218,10 @@ AssociationTemplate /: Prepend[sAssoc_AssociationTemplate, new_] :=
 	AssociationTemplate[Prepend[Normal @ sAssoc, new]];
 
 AssociationTemplate /: MakeBoxes[
-	AssociationTemplate[data_?AssociationQ, expr_?AssociationQ, refs_, keys_, _], 
+	expr : AssociationTemplate[data_?AssociationQ, expr_?AssociationQ, refs_, keys_, _], 
 	form_
 ] := BoxForm`ArrangeSummaryBox["AssociationTemplate",
-	AssociationTemplate[data, expr],
+	expr,
 	"\[LeftAssociation]\[Ellipsis]\[RightAssociation]",
 	{
 		BoxForm`SummaryItem[{"Number of data keys: ", Length[Keys[data]]}],
