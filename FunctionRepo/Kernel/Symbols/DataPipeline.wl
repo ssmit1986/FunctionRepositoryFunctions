@@ -103,7 +103,12 @@ dataChain[pipe___][___] := Failure["InvalidPipeline", <|"Pipeline" -> HoldComple
 
 (* Network pipeline *)
 vertexKeyValPattern = {(_String -> _)...};
-edgeKeyValPattern = {((_String -> _String) | ({__String} -> _String))...};
+vertexInputPattern = With[{patt = _String | {__String}},
+	patt | KeyTake[patt] | Lookup[patt]
+];
+edgeKeyValPattern = {(vertexInputPattern -> _String)...};
+
+stripEdgeOperators[list_] := ReplaceAll[list, KeyTake | Lookup -> Identity];
 
 standardizeEdges[edgeRules_] := Reverse[
 	Normal @ GroupBy[
@@ -112,7 +117,8 @@ standardizeEdges[edgeRules_] := Reverse[
 		Replace[
 			{
 				{el_} :> el,
-				other_ :> Flatten[other]
+				other_ :> With[{flat = Flatten[{other}]}, flat /; MatchQ[flat, {__String}]],
+				_ :> $Failed
 			}
 		]
 	],
@@ -120,20 +126,22 @@ standardizeEdges[edgeRules_] := Reverse[
 ];
 
 trimAssoc[edges_][dataOut_] := Replace[
-	KeyDrop[Flatten @ Keys[edges]] @ dataOut,
+	KeyDrop[allInputs[edges]] @ dataOut,
 	a_Association /; Length[a] === 1 :> First[a]
 ];
 
 allKeys[vertList_, edges_] := Flatten[{Keys[vertList], Keys[edges], Values[edges]}];
 
+allInputs[edges_] := Flatten @ stripEdgeOperators @ Keys[edges]
+
 inputKeys[vertList_, edges_] := Complement[
-	Flatten[{Keys[vertList], Keys[edges]}],
+	Flatten[{Keys[vertList], allInputs[edges]}],
 	Values[edges]
 ];
 
 outputKeys[vertList_, edges_] := Complement[
 	Values[edges],
-	Flatten @ Keys[edges]
+	allInputs[edges]
 ];
 
 (* Short circuit evaluations *)
@@ -179,46 +187,61 @@ dataGraph[vertList_, edges_, test : {failTest_, boole_}][assoc_Association] := M
 dataGraph[vertList_, edges_, test : {failTest_, boole_}][data_] := With[{
 	edgeRules = standardizeEdges[edges]
 },
-	If[
-		AssociationQ[data] && Or[!MemberQ[Flatten @ Keys[edges], "Input"], KeyExistsQ[data, "Input"]]
-		,
-		With[{
-			failArgs = Select[data, Comap[FailureQ || failTest]]
-		},
-			If[ Length[failArgs] > 0,
-				createFailure[failArgs],
-				Replace[
-					iDataGraph[vertList, edgeRules, test][data],
-					a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
+	If[ FailureQ[edgeRules],
+		Failure["InvalidEdges", <|"Edges" -> HoldComplete[edges]|>],
+		If[
+			AssociationQ[data] && Or[!MemberQ[allInputs[edges], "Input"], KeyExistsQ[data, "Input"]]
+			,
+			With[{
+				failArgs = Select[data, Comap[FailureQ || failTest]]
+			},
+				If[ Length[failArgs] > 0,
+					createFailure[failArgs],
+					Replace[
+						iDataGraph[vertList, edgeRules, test][data],
+						a_Association :> trimAssoc[edges] @ KeyDrop[a, Keys[data]] (* Only keep the computed vertices that do not feed other computations *)
+					]
 				]
 			]
-		]
-		,
-		If[ failTest[data],
-			createFailure[data],
-			Replace[
-				iDataGraph[vertList, edgeRules, test][<|"Input" -> data|>],
-				a_Association :> trimAssoc[edges] @ KeyDrop[a, "Input"] (* Only keep the computed vertices that do not feed other computations *)
+			,
+			If[ failTest[data],
+				createFailure[data],
+				Replace[
+					iDataGraph[vertList, edgeRules, test][<|"Input" -> data|>],
+					a_Association :> trimAssoc[edges] @ KeyDrop[a, "Input"] (* Only keep the computed vertices that do not feed other computations *)
+				]
 			]
 		]
 	]
 ];
 
+propagateMissing[data_] := With[{
+	miss = Select[data, MissingQ]
+},
+	If[ Length[miss] === 0,
+		data,
+		Missing["MissingInput",  Keys[miss]]
+	]
+];
+
+(* Intermediate data graph evaluation *)
+
 iDataGraph[___][expr : Except[_Association]] := createFailure[expr];
 iDataGraph[_, {}, _][data_] := data;
-iDataGraph[vertices_, {(keyIn : _String | {__String}) -> keyOut_, rest___}, lst : {failTest_, boole_}][data_] := With[{
-	input = If[ ListQ[keyIn],
-		Replace[
-			Lookup[data, keyIn],
-			l_List /; AnyTrue[l, MissingQ] :> Missing["MissingInput"]
-		],
-		data[keyIn]
+iDataGraph[vertices_, {inputSpec_ -> keyOut_, rest___}, lst : {failTest_, boole_}][data_] := With[{
+	input = Switch[inputSpec,
+		{__String},
+			propagateMissing @ Lookup[data, inputSpec],
+		_String,
+			data[inputSpec],
+		_Lookup | _KeyTake,
+			propagateMissing @ inputSpec @ data
 	],
-	op = Lookup[vertices, keyOut]
+	op = Lookup[vertices, keyOut, Identity]
 },{
 	newData = Which[
 		MissingQ[input],
-			Failure["MissingInput", <|"Key" -> keyIn|>],
+			Failure["MissingInput", <|"Missing" -> input|>],
 		MissingQ[op],
 			Failure["MissingOperator", <|"Key" -> keyOut|>],
 		True,
@@ -250,7 +273,7 @@ DataPipeline /: Information[
 ] := With[{
 	vlist = Labeled[#1, Row[{#1, ": ", Short[#2]}]]& @@@ vertices,
 	elist = DirectedEdge @@@ Flatten @ Replace[
-		standardizeEdges @ edges,
+		stripEdgeOperators @ standardizeEdges @ edges,
 		r : Verbatim[Rule][_List, _String] :> Thread[r],
 		{1}
 	]
@@ -281,14 +304,16 @@ DataPipeline /: MakeBoxes[
 	expr : DataPipeline[vertices : {__Rule}, edges : {__Rule}, OptionsPattern[]], 
 	form_
 ] := With[{
-	gr = Information[expr, "Graph"]
+	gr = Information[expr, "Graph"],
+	stEdges = standardizeEdges[edges]
 },
 	BoxForm`ArrangeSummaryBox["DataPipeline",
 		expr,
 		"Network",
 		{
-			BoxForm`SummaryItem[{"Number of data vertices: ", VertexCount[gr]}],
-			BoxForm`SummaryItem[{"Number edges: ", EdgeCount[gr]}]
+			BoxForm`SummaryItem[{"Inputs: ", inputKeys[vertices, stEdges]}],
+			BoxForm`SummaryItem[{"Outputs: ", outputKeys[vertices, stEdges]}],
+			BoxForm`SummaryItem[{"Number of operations: ", VertexCount[gr]}]
 		},
 		{
 			BoxForm`SummaryItem[{"Graph: ", Show[gr, ImageSize -> 300]}]
@@ -307,8 +332,7 @@ DataPipeline /: MakeBoxes[
 		expr,
 		"Chain",
 		{
-			BoxForm`SummaryItem[{"Number of data vertices: ", VertexCount[gr]}],
-			BoxForm`SummaryItem[{"Number edges: ", EdgeCount[gr]}]
+			BoxForm`SummaryItem[{"Number of operations: ", VertexCount[gr]}]
 		},
 		{
 			BoxForm`SummaryItem[{"Graph: ", Show[gr, ImageSize -> 300]}]
