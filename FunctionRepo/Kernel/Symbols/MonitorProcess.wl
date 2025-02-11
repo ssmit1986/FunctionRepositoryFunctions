@@ -8,12 +8,12 @@ GeneralUtilities`SetUsage[MonitorProcess,
 
 Begin["`Private`"] (* Begin Private Context *) 
 
+pane[expr_] := Pane[expr, {800, 200} , ImageSize -> {Full, 250}, ImageSizeAction -> "Scrollable", Scrollbars -> Automatic];
+
 Options[MonitorProcess] = {
 	UpdateInterval -> 1.,
 	"KillProcessQ" -> True
 };
-
-pane[expr_] := Pane[expr, {800, 200} , ImageSize -> {Full, 250}, ImageSizeAction -> "Scrollable", Scrollbars -> Automatic];
 
 MonitorProcess[proc_, opts : OptionsPattern[]] := MonitorProcess[proc, Function[Null], opts];
 MonitorProcess[proc_ProcessObject, post_, opts : OptionsPattern[]] := DynamicModule[{
@@ -42,7 +42,8 @@ MonitorProcess[proc_ProcessObject, post_, opts : OptionsPattern[]] := DynamicMod
 					]
 				],
 				TrackedSymbols :> {},
-				UpdateInterval -> updateInterval
+				UpdateInterval -> updateInterval,
+				SynchronousUpdating -> False
 			]
 		},
 		Dynamic[done],
