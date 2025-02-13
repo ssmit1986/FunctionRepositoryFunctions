@@ -61,12 +61,29 @@ parseOpts[list_List] := {
 	TrueQ @ OptionValue[DataPipeline, list, "CatchMessages"]
 };
 
+flattenRules[rules_] := FixedPoint[
+	Function[el,
+		Replace[
+			el,
+			{
+				Verbatim[Rule][key1_, key2_ -> val_] :> Splice[{key1 -> key2, key2 -> val}],
+				Verbatim[Rule][key1_, list_List] :> Splice @ Map[Rule[key1, #]&, list]
+			},
+			{1}
+		]
+	],
+	rules
+];
+
 (pipe_DataPipeline)[args___] /; Length[HoldComplete[args]] <= 1 := With[{
-	parse = System`Private`ArgumentsWithRules[
-		pipe,
-		{1, 2},
-		List,
-		Options[DataPipeline]
+	parse = Replace[
+		System`Private`ArgumentsWithRules[
+			pipe,
+			{1, 2},
+			List,
+			Options[DataPipeline]
+		],
+		{{vertices_, edges_List}, opts_} :> {{vertices, flattenRules[edges]}, opts}
 	]
 },
 	Switch[parse,
@@ -112,7 +129,7 @@ stripEdgeOperators[list_] := ReplaceAll[list, KeyTake | Lookup -> Identity];
 
 standardizeEdges[edgeRules_] := Reverse[
 	Normal @ GroupBy[
-		edgeRules,
+		flattenRules @ edgeRules,
 		Last -> First,
 		Replace[
 			{
@@ -139,10 +156,17 @@ inputKeys[vertList_, edges_] := Complement[
 	Values[edges]
 ];
 
+inputKeys[gr_Graph] := Complement @@ Transpose[List @@@ EdgeList[gr]];
+
+
 outputKeys[vertList_, edges_] := Complement[
 	Values[edges],
 	allInputs[edges]
 ];
+
+outputKeys[gr_Graph] := Complement @@ Reverse[Transpose[List @@@ EdgeList[gr]]];
+
+(* Data graph *)
 
 (* Short circuit evaluations *)
 dataGraph[_, {},  {failTest_, boole_}][anything_] := postFailsafe[Identity, failTest] @ anything;
@@ -267,11 +291,16 @@ Scan[
 	Hold[dataChain, dataGraph, iDataGraph]
 ];
 
+makeVertex[name_, content_] := Labeled[
+	name,
+	Row[{name, ": ", Short[content]}]
+];
+
 DataPipeline /: Information[
 	HoldPattern @ DataPipeline[vertices : {__Rule}, edges : {__Rule}, OptionsPattern[]],
 	"Graph"
 ] := With[{
-	vlist = Labeled[#1, Row[{#1, ": ", Short[#2]}]]& @@@ vertices,
+	vlist = makeVertex @@@ vertices,
 	elist = DirectedEdge @@@ Flatten @ Replace[
 		stripEdgeOperators @ standardizeEdges @ edges,
 		r : Verbatim[Rule][_List, _String] :> Thread[r],
@@ -289,9 +318,9 @@ DataPipeline /: Information[
 	"Graph"
 ] := PathGraph[
 	If[ MatchQ[chain, {__Rule}],
-		Labeled[#1, Row[{#1, ": ", Short[#2]}]]& @@@ chain,
+		makeVertex @@@ chain,
 		MapIndexed[
-			Labeled[First @ #2, Short[#1]]&,
+			makeVertex[First @ #2, #1]&,
 			chain
 		]
 	],
@@ -304,16 +333,17 @@ DataPipeline /: MakeBoxes[
 	expr : DataPipeline[vertices : {__Rule}, edges : {__Rule}, OptionsPattern[]], 
 	form_
 ] := With[{
-	gr = Information[expr, "Graph"],
-	stEdges = standardizeEdges[edges]
+	gr = Information[expr, "Graph"]
+},{
+	inputs = inputKeys[gr]
 },
 	BoxForm`ArrangeSummaryBox["DataPipeline",
 		expr,
 		"Network",
 		{
-			BoxForm`SummaryItem[{"Inputs: ", inputKeys[vertices, stEdges]}],
-			BoxForm`SummaryItem[{"Outputs: ", outputKeys[vertices, stEdges]}],
-			BoxForm`SummaryItem[{"Number of operations: ", VertexCount[gr]}]
+			BoxForm`SummaryItem[{"Inputs: ", inputs}],
+			BoxForm`SummaryItem[{"Outputs: ", outputKeys[gr]}],
+			BoxForm`SummaryItem[{"Number of operations: ", Length @ Complement[VertexList[gr], inputs]}]
 		},
 		{
 			BoxForm`SummaryItem[{"Graph: ", Show[gr, ImageSize -> 300]}]
