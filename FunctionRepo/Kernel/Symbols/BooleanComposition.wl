@@ -2,7 +2,7 @@
 
 BeginPackage["FunctionRepo`BooleanComposition`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[BooleanFunction,
+GeneralUtilities`SetUsage[BooleanComposition,
 	"BooleanComposition[fun$1 && ! fun$2 || $$] converts a boolean combination of functions into a function that can be directly applied to arguments."
 ];
 
