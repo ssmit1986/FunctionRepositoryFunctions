@@ -291,9 +291,25 @@ Scan[
 	Hold[dataChain, dataGraph, iDataGraph]
 ];
 
+makeVertex[name_, pipeLine_DataPipeline] := With[{
+	tooltip = Show[Information[pipeLine, "Graph"], ImageSize -> 200]
+},
+	Annotation[
+		Labeled[name, Row[{name, ": ", Mouseover["<Datapipeline>", tooltip]}]],
+		VertexShapeFunction -> "Square"
+	]
+];
+
 makeVertex[name_, content_] := Labeled[
 	name,
-	Row[{name, ": ", Short[content]}]
+	Row[{
+		name, ": ", Mouseover[
+			Replace[content,
+				expr : Except[_Symbol] :> StringForm["`1`[`2`]", Head[expr], Skeleton[Length[expr]]]
+			],
+			content
+		]
+	}]
 ];
 
 DataPipeline /: Information[

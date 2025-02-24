@@ -12,7 +12,7 @@ GeneralUtilities`SetUsage[FunctionRepo`LatinHyperCubeSampleDiscrete,
 Begin["`Private`"] (* Begin Private Context *) 
 
 LatinHyperCubeSampleUniform[dim_Integer, n_Integer] := With[{
-	leftbounds = Divide[Range[0, n - 1], N[n]],
+	leftbounds = Divide[Range[0, n - 1, 1.], n],
 	step = Divide[1., n]
 },
 	Transpose[
