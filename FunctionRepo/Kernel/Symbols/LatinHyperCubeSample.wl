@@ -12,8 +12,8 @@ GeneralUtilities`SetUsage[FunctionRepo`LatinHyperCubeSampleDiscrete,
 Begin["`Private`"] (* Begin Private Context *) 
 
 LatinHyperCubeSampleUniform[dim_Integer, n_Integer] := With[{
-	leftbounds = N[Range[0, n - 1]/n],
-	step = 1./n
+	leftbounds = Divide[Range[0, n - 1], N[n]],
+	step = Divide[1., n]
 },
 	Transpose[
 		Table[
@@ -23,9 +23,9 @@ LatinHyperCubeSampleUniform[dim_Integer, n_Integer] := With[{
 	] + RandomReal[{0, step}, {n, dim}]
 ];
 LatinHyperCubeSampleUniform[dists : {__?DistributionParameterQ}, n_Integer, rest___] := Inner[
-	Construct,
+	#2[#1]&,
+	LatinHyperCubeSampleUniform[Length[dists], n, rest],
 	InverseCDF /@ dists,
-	Transpose @ LatinHyperCubeSampleUniform[Length[dists], n, rest],
 	List
 ];
 LatinHyperCubeSampleUniform[dim_, n_, nSamples_Integer] := Join @@ Table[
