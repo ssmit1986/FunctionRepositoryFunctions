@@ -1,24 +1,24 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`kullbackLeiblerDivergence`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`KullbackLeiblerDivergence`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-kullbackLeiblerDivergence::usage = "kullbackLeiblerDivergence[P, Q] computes the Kullback-Leibler divergence from distribution Q to P";
+KullbackLeiblerDivergence::usage = "KullbackLeiblerDivergence[P, Q] computes the Kullback-Leibler divergence from distribution Q to P";
 
 Begin["`Private`"] (* Begin Private Context *)
 
-Options[kullbackLeiblerDivergence] = {
+Options[KullbackLeiblerDivergence] = {
 	Method -> Expectation,
 	Assumptions :> $Assumptions
 };
-kullbackLeiblerDivergence::method =  "Method `1` is not Expectation or NExpectation.";
-kullbackLeiblerDivergence::randomSample = "Unable to sample from `1` and `2`. Cannot use Method NExpectation.";
-kullbackLeiblerDivergence::supportPQ =  "The support of `1` is not a subset of the support of `2`.";
-kullbackLeiblerDivergence::supportValidationFail  = "Failed to verify that the support of `1` is a subset of the support of `2`. Calculation will still be attempted.";
+KullbackLeiblerDivergence::method =  "Method `1` is not Expectation or NExpectation.";
+KullbackLeiblerDivergence::randomSample = "Unable to sample from `1` and `2`. Cannot use Method NExpectation.";
+KullbackLeiblerDivergence::supportPQ =  "The support of `1` is not a subset of the support of `2`.";
+KullbackLeiblerDivergence::supportValidationFail  = "Failed to verify that the support of `1` is a subset of the support of `2`. Calculation will still be attempted.";
 
 (* The divergence from a distribution to itself is 0 *)
-kullbackLeiblerDivergence[p_, p_, OptionsPattern[]] := 0;
+KullbackLeiblerDivergence[p_, p_, OptionsPattern[]] := 0;
 
-kullbackLeiblerDivergence[p_?DistributionParameterQ, q_?DistributionParameterQ, opts : OptionsPattern[]] := Block[{
+KullbackLeiblerDivergence[p_?DistributionParameterQ, q_?DistributionParameterQ, opts : OptionsPattern[]] := Block[{
 	$Assumptions = OptionValue[Assumptions]
 },
 	Module[{
@@ -44,11 +44,11 @@ kullbackLeiblerDivergence[p_?DistributionParameterQ, q_?DistributionParameterQ, 
 				With[{rand = Quiet[RandomVariate[#, 5] & /@ {p, q}]}, (* 
 					Test if p and q can be sampled from *)
 					If[! AllTrue[rand, ArrayQ],
-						Message[kullbackLeiblerDivergence::randomSample, p, q];
+						Message[KullbackLeiblerDivergence::randomSample, p, q];
 						Return[$Failed, Module]
 					]
 				],
-			_,  (Message[kullbackLeiblerDivergence::method, method]; Return[$Failed, Module])
+			_,  (Message[KullbackLeiblerDivergence::method, method]; Return[$Failed, Module])
 		];
 		domainp = DistributionDomain[p];
 		domainq = DistributionDomain[q];
@@ -58,10 +58,10 @@ kullbackLeiblerDivergence[p_?DistributionParameterQ, q_?DistributionParameterQ, 
 			True, Null,
 			False,
 			(
-				Message[kullbackLeiblerDivergence::supportPQ, p, q];
+				Message[KullbackLeiblerDivergence::supportPQ, p, q];
 				Return[Undefined, Module]
 			),
-			_, Message[kullbackLeiblerDivergence::supportValidationFail, p, q]
+			_, Message[KullbackLeiblerDivergence::supportValidationFail, p, q]
 		];
 		rv = Replace[domainp, (* initialize dummy variable used in Expectation or NExpectation *)
 			{
