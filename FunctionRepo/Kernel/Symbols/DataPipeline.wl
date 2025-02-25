@@ -34,6 +34,7 @@ createFailure[other_] := With[{head = Head[other]},
 	]
 ];
 
+checkedOperator[_, op_?FailureQ][data___] := op;
 checkedOperator[False, op_][data___] := op[data];
 checkedOperator[True, op_][data___] := With[{
 	tag = CreateUUID[]
