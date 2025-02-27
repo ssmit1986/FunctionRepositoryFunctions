@@ -22,11 +22,12 @@ LatinHyperCubeSampleUniform[dim_Integer, n_Integer] := With[{
 		]
 	] + RandomReal[{0, step}, {n, dim}]
 ];
-LatinHyperCubeSampleUniform[dists : {__?DistributionParameterQ}, n_Integer, rest___] := Inner[
-	#2[#1]&,
-	LatinHyperCubeSampleUniform[Length[dists], n, rest],
-	InverseCDF /@ dists,
-	List
+LatinHyperCubeSampleUniform[dists : {__?DistributionParameterQ}, n_Integer, rest___] := Transpose @ MapThread[
+	Construct,
+	{
+		CurryApplied[InverseCDF, 2] /@ dists,
+		Transpose @ LatinHyperCubeSampleUniform[Length[dists], n, rest]
+	}
 ];
 LatinHyperCubeSampleUniform[dim_, n_, nSamples_Integer] := Join @@ Table[
 	LatinHyperCubeSampleUniform[dim, n],
