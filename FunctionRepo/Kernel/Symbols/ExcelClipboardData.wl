@@ -34,6 +34,17 @@ ExcelClipboardData[elem_, rest___] := Module[{nb, get},
 	]
 ];
 
+processContent[content_] := With[{
+	tableViewBoxContent = FirstCase[
+		content,
+		tb_TableViewBox :> Setting @ ReleaseHold @ MakeExpression[tb, StandardForm],
+		Missing[],
+		{0, Infinity}
+	]
+},
+	tableViewBoxContent /; ListQ[tableViewBoxContent]
+];
+
 processContent[content_] := Replace[
 	Flatten[{
 		content //. (RowBox | BoxData)[arg_] :> arg
