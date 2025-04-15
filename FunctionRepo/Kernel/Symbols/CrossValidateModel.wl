@@ -261,7 +261,12 @@ defaultValidationFunction[fun_][spEst_SpatialEstimatorFunction, locs_ -> vals_] 
 
 defaultValidationFunction[___][_, val_] := val;
 
+extractIndices[d_Dataset, indices_] := extractIndices[Normal[d], indices];
 extractIndices[data_List, indices_List] := Developer`ToPackedArray @ data[[indices]];
+extractIndices[in_Dataset -> out_, indices_] := extractIndices[Normal[in] -> out, indices];
+extractIndices[in_ -> out_Dataset, indices_] := extractIndices[in -> Normal[out], indices];
+extractIndices[in_List -> out_, indices_List] /; Length[in] =!= Length[out] := extractIndices[in, indices] -> out;
+extractIndices[in_?AssociationQ -> out : Except[_?AssociationQ], indices_List] := extractIndices[in, indices] -> out;
 extractIndices[data : _Rule | _?AssociationQ, indices_List] := Developer`ToPackedArray /@ data[[All, indices]];
 
 kFoldIndices[n_Integer, k_Integer] := Replace[
