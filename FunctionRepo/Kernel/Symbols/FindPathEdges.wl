@@ -4,7 +4,10 @@ BeginPackage["FunctionRepo`FindPathEdges`", {"FunctionRepo`"}]
 
 
 GeneralUtilities`SetUsage[FindPathEdges,
-	"FindPathEdges[gr$, s$, t$, $$] works like FindPath[$$] but returns a list of edges instead of vertices."
+	"FindPathEdges[gr$, s$, t$, $$] works like FindPath[$$] but returns a list of edges instead of vertices.
+FindPathEdges[gr$, {v$1, v$2, $$}] converts a vertex path v$i to an edge path.
+FindPathEdges[gr$, {p$1, p$2, $$}] converts multiple paths p$i.
+"
 ];
 
 
@@ -27,8 +30,20 @@ FindPathEdges[gr_?GraphQ, s_, t_, rest___] := Module[{
 		paths = Join[paths, selfPaths];
 		paths
 		,
-		Failure["FindPathEdges", <|"MessageTemplate" -> "No valid paths found."|>]
+		Failure["FindPathEdges", <|"MessageTemplate" -> "No valid paths found"|>]
 	]
+];
+
+FindPathEdges[gr_?GraphQ, paths : {__List}] := With[{
+	vertices = VertexList[gr]
+},
+	Map[convertToEdges[gr], paths] /; AllTrue[paths, ContainsOnly[vertices]]
+];
+
+FindPathEdges[gr_?GraphQ, path_List] := If[
+	ContainsOnly[path, VertexList[gr]],
+	convertToEdges[gr] @ path,
+	Failure["FindPathEdges", <|"MessageTemplate" -> "Paths provided should only contain valid vertices"|>]
 ];
 
 
@@ -43,7 +58,6 @@ convertToEdges[gr_][path_] := With[{
 },
 	Tuples[findEdges[gr] /@ pairs]
 ];
-
 
 
 
