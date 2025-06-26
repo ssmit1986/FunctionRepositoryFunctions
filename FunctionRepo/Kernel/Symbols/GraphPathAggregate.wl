@@ -58,14 +58,40 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 ];
 
 
-vertexValues[gr_, prop_][{}] := {};
-vertexValues[gr_, prop_][path_] := Replace[
-	AnnotationValue[
-		{gr, Append[path[[All, 1]], path[[-1, 2]]]},
-		prop
-	],
-	$Failed -> Missing["NotDefined", prop],
-	{1}
+pathSort[{}] := {};
+pathSort[path_List] := FixedPoint[
+	SequenceReplace[{
+		{de : DirectedEdge[x_, y_, ___], UndirectedEdge[z_, y_, r___]} :>
+			Splice @ {de, UndirectedEdge[y, z, r]},
+		{UndirectedEdge[x_, y_, r___], de : DirectedEdge[x_, z_, ___]} :>
+			Splice @ {UndirectedEdge[y, x, r], de},
+		{UndirectedEdge[x_, y_, r1___], UndirectedEdge[z_, y_, r2___]} :>
+			Splice @ {UndirectedEdge[x, y, r1], UndirectedEdge[y, z, r2]},
+		{UndirectedEdge[y_, x_, r1___], UndirectedEdge[y_, z_, r2___]} :>
+			Splice @ {UndirectedEdge[x, y, r1], UndirectedEdge[y, z, r2]},
+		{UndirectedEdge[y_, x_, r1___], UndirectedEdge[z_, y_, r2___]} :>
+			Splice @ {UndirectedEdge[x, y, r1], UndirectedEdge[y, z, r2]}
+	}],
+	path
+];
+
+pathVertices[{}] := {};
+pathVertices[path_] := With[{sorted = pathSort[path]},
+	Append[sorted[[All, 1]], sorted[[-1, 2]]]
+];
+
+vertexValues[_, _][{}] := {};
+vertexValues[gr_, prop_][path_] := With[{
+	verts = pathVertices[path]
+},
+	Replace[
+		AnnotationValue[
+			{gr, verts},
+			prop
+		],
+		$Failed -> Missing["NotDefined", prop],
+		{1}
+	]
 ];
 
 
