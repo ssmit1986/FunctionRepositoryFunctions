@@ -21,9 +21,11 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 	path = l,
 	fun = f,
 	allEdges = EdgeList[gr],
+	allVertices = VertexList[gr],
 	edgePropName = OptionValue["EdgeProperty"],
 	vertexPropName = OptionValue["VertexProperty"],
 	listResultQ = True,
+	verticesOnPath = Missing[],
 	pathEdges, edgePropValues, vertexPropValues,
 	allValues
 },
@@ -36,8 +38,16 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 			AllTrue[path, Comap[ListQ && ContainsOnly[allEdges]]],
 				pathEdges = path
 				,
+			ContainsOnly[path, allVertices],
+				pathEdges = ConfirmBy[FunctionRepo`FindPathEdges[graph, path], ListQ];
+				verticesOnPath = path,
 			True,
-				pathEdges = ConfirmBy[FunctionRepo`FindPathEdges[graph, path], ListQ]
+				Confirm @ Failure["NotAPath",
+					<|
+						"MessageTemplate" -> "The provided argument `1` does not specify a valid path",
+						"MessageParameters" -> {path}
+					|>
+				]
 		];
 		edgePropValues = Replace[
 			Map[AnnotationValue[{graph, #}, edgePropName]&, pathEdges],
@@ -45,7 +55,17 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 			{2}
 		];
 		If[ vertexPropName =!= None,
-			vertexPropValues = vertexValues[graph, vertexPropName] /@ pathEdges;
+			vertexPropValues = If[ ListQ[verticesOnPath],
+				ConstantArray[
+					Replace[
+						AnnotationValue[{gr, verticesOnPath}, vertexPropName],
+						$Failed -> Missing["NotDefined", vertexPropName],
+						{1}
+					],
+					Length[pathEdges]
+				],
+				Confirm @* vertexValues[graph, vertexPropName] /@ pathEdges
+			];
 			allValues = MapThread[Riffle, {vertexPropValues, edgePropValues}]
 			,
 			allValues = edgePropValues
@@ -58,39 +78,41 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 ];
 
 
-pathSort[{}] := {};
-pathSort[path_List] := FixedPoint[
-	SequenceReplace[{
-		{de : DirectedEdge[x_, y_, ___], UndirectedEdge[z_, y_, r___]} :>
-			Splice @ {de, UndirectedEdge[y, z, r]},
-		{UndirectedEdge[x_, y_, r___], de : DirectedEdge[x_, z_, ___]} :>
-			Splice @ {UndirectedEdge[y, x, r], de},
-		{UndirectedEdge[x_, y_, r1___], UndirectedEdge[z_, y_, r2___]} :>
-			Splice @ {UndirectedEdge[x, y, r1], UndirectedEdge[y, z, r2]},
-		{UndirectedEdge[y_, x_, r1___], UndirectedEdge[y_, z_, r2___]} :>
-			Splice @ {UndirectedEdge[x, y, r1], UndirectedEdge[y, z, r2]},
-		{UndirectedEdge[y_, x_, r1___], UndirectedEdge[z_, y_, r2___]} :>
-			Splice @ {UndirectedEdge[x, y, r1], UndirectedEdge[y, z, r2]}
-	}],
-	path
+pathVertices[{}] := {};
+pathVertices[path_List] := With[{
+	gr = PathGraph[UndirectedEdge[#1, #2]& @@@ path]
+},
+	If[ PathGraphQ[gr],
+		With[{list = FindHamiltonianPath[gr]},
+			If[ MemberQ[path[[1, {1, 2}]], First[list]],
+				list,
+				Reverse[list]
+			]
+		],
+		Failure["NotAPath",
+			<|
+				"MessageTemplate" -> "The provided edges `1` do not form a valid path",
+				"MessageParameters" -> {path}
+			|>
+		]
+	]
 ];
 
-pathVertices[{}] := {};
-pathVertices[path_] := With[{sorted = pathSort[path]},
-	Append[sorted[[All, 1]], sorted[[-1, 2]]]
-];
 
 vertexValues[_, _][{}] := {};
 vertexValues[gr_, prop_][path_] := With[{
 	verts = pathVertices[path]
 },
-	Replace[
-		AnnotationValue[
-			{gr, verts},
-			prop
-		],
-		$Failed -> Missing["NotDefined", prop],
-		{1}
+	If[ FailureQ[verts],
+		verts,
+		Replace[
+			AnnotationValue[
+				{gr, verts},
+				prop
+			],
+			$Failed -> Missing["NotDefined", prop],
+			{1}
+		]
 	]
 ];
 
