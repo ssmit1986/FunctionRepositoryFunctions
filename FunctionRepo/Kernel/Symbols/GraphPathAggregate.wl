@@ -89,8 +89,20 @@ extractProperties[gr_, prop_][el_] := Replace[
 	{0, 1}
 ];
 
+pathError[path_] := Failure["NotAPath",
+	<|
+		"MessageTemplate" -> "The provided edges `1` do not form a valid path",
+		"MessageParameters" -> {path}
+	|>
+];
 
 pathVertices[{}] := {};
+pathVertices[{(DirectedEdge | UndirectedEdge)[a_, b_, ___]}] := {a, b}; (* Note: in the undirected case there's ambiguity *)
+pathVertices[path : {__DirectedEdge}] := If[
+	path[[1 ;; -2, 2]] === path[[2 ;; All, 1]],
+	Append[path[[All, 1]], path[[-1, 2]]],
+	pathError[path]
+];
 pathVertices[path_List] := With[{
 	gr = PathGraph[UndirectedEdge[#1, #2]& @@@ path]
 },
@@ -101,12 +113,7 @@ pathVertices[path_List] := With[{
 				Reverse[list]
 			]
 		],
-		Failure["NotAPath",
-			<|
-				"MessageTemplate" -> "The provided edges `1` do not form a valid path",
-				"MessageParameters" -> {path}
-			|>
-		]
+		pathError[path]
 	]
 ];
 
