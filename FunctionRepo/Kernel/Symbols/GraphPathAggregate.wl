@@ -30,6 +30,10 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 	allValues
 },
 	Enclose[
+		ConfirmAssert[
+			!MatchQ[{edgePropName, vertexPropName}, {None, None}],
+			"EdgeProperty and VertexProperty can't both be None"
+		];
 		Which[
 			ContainsOnly[path, allEdges],
 				pathEdges = {path};
@@ -49,24 +53,22 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 					|>
 				]
 		];
-		edgePropValues = Replace[
-			Map[AnnotationValue[{graph, #}, edgePropName]&, pathEdges],
-			$Failed -> Missing["NotDefined", edgePropName],
-			{2}
+		edgePropValues = If[ edgePropName =!= None,
+			extractProperties[graph, edgePropName] /@ pathEdges,
+			{}
 		];
 		If[ vertexPropName =!= None,
 			vertexPropValues = If[ ListQ[verticesOnPath],
 				ConstantArray[
-					Replace[
-						AnnotationValue[{gr, verticesOnPath}, vertexPropName],
-						$Failed -> Missing["NotDefined", vertexPropName],
-						{1}
-					],
+					extractProperties[graph, vertexPropName] @ verticesOnPath,
 					Length[pathEdges]
 				],
 				Confirm @* vertexValues[graph, vertexPropName] /@ pathEdges
 			];
-			allValues = MapThread[Riffle, {vertexPropValues, edgePropValues}]
+			allValues = If[ edgePropName =!= None,
+				MapThread[Riffle, {vertexPropValues, edgePropValues}],
+				vertexPropValues
+			]
 			,
 			allValues = edgePropValues
 		];
@@ -75,6 +77,16 @@ GraphPathAggregate[gr_?GraphQ, f_, l_List, opts : OptionsPattern[]] := Module[{
 			fun @@ First[allValues, {}]
 		]
 	]
+];
+
+
+extractProperties[gr_, prop_][el_] := Replace[
+	AnnotationValue[
+		{gr, el},
+		prop
+	],
+	$Failed -> Missing["NotDefined", prop],
+	{0, 1}
 ];
 
 
@@ -105,14 +117,7 @@ vertexValues[gr_, prop_][path_] := With[{
 },
 	If[ FailureQ[verts],
 		verts,
-		Replace[
-			AnnotationValue[
-				{gr, verts},
-				prop
-			],
-			$Failed -> Missing["NotDefined", prop],
-			{1}
-		]
+		extractProperties[gr, prop] @ verts
 	]
 ];
 
