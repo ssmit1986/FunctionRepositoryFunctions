@@ -3,7 +3,7 @@
 BeginPackage["FunctionRepo`EvaluateAt`", {"FunctionRepo`", "GeneralUtilities`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[EvaluateAt,
-	"EvaluateAt[expr$, pos$] returns the Hausdorff distance between two sets."
+	"EvaluateAt[expr$, pos$] evaluates a sub-part of a held expression."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
