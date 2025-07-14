@@ -33,9 +33,8 @@ mInlineResourceFunctions[body_] := Module[{
 		AssociationMap[ResourceFunction[#, "Function"]&, funNames],
 		MatchQ[_Symbol]
 	];
-	funNames = Keys @ funSymbols;
 
-	If[ funNames =!= {},
+	If[ funSymbols =!= <||>,
 		newqbody //= ReplaceAll[{
 			HoldPattern[ResourceFunction[s_String]] :> With[{
 				fun = funSymbols[s]
