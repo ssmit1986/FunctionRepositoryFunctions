@@ -15,17 +15,21 @@ Begin["`Private`"] (* Begin Private Context *)
 
 $indexKey = "Index";
 $valuesKey = "XMLValues";
+$groupTag = "Grouping";
+$groupTagCounter = 1;
 
 addIndices[list_] := Module[{newList = list},
 	newList[[All, $indexKey]] = Range @ Length[newList];
 	newList
-]
+];
+
+addGroupTag[tag_][assoc_] := Prepend[assoc, $groupTag -> tag <> "-" <> IntegerString[$groupTagCounter++]];
 
 XMLElementToAssociation[{}] := <||>;
 XMLElementToAssociation[XMLObject["Document"][_, xml_XMLElement, _]] := XMLElementToAssociation[xml];
 
 XMLElementToAssociation[XMLElement[tag_, rules_, body_]] := With[{
-	base = KeyMap[ExtendedKey[tag, #]&] @ Association[rules],
+	base = addGroupTag[tag] @ KeyMap[ExtendedKey[tag, #]&] @ Association[rules],
 	bodyData = XMLElementToAssociation[body]
 },
 	If[ ListQ[bodyData],
@@ -73,20 +77,28 @@ sortFun[o1_, o2_] := Order[o1, o2]
 sortColumns[tab_] := KeyTake[tab, Sort[ColumnKeys[tab], sortFun]];
 
 SetAttributes[blockKeys, HoldRest];
-blockKeys[{indKey_, valKey_}, expr_] := Block[{$indexKey = indKey, $valuesKey = valKey}, expr];
+blockKeys[{indKey_, valKey_, groupTag_}, expr_] := Block[{
+	$indexKey = indKey,
+	$valuesKey = valKey,
+	$groupTag = groupTag,
+	$groupTagCounter = 1
+},
+	expr
+];
 
 Options[XMLToTabular] = {
 	"IndexKey" -> "Index",
-	"ValuesKey" -> "XMLValues"
+	"ValuesKey" -> "XMLValues",
+	"GroupTag" -> "Grouping"
 };
 
 XMLToTabular[xml_List, opts : OptionsPattern[]] := blockKeys[
-	{OptionValue["IndexKey"], OptionValue["ValuesKey"]},
+	{OptionValue["IndexKey"], OptionValue["ValuesKey"], OptionValue["GroupTag"]},
 	sortColumns @ Tabular[addIndices @ Flatten @ Map[XMLElementToAssociation, xml]]
 ];
 
 XMLToTabular[xml_, opts : OptionsPattern[]] := blockKeys[
-	{OptionValue["IndexKey"], OptionValue["ValuesKey"]},
+	{OptionValue["IndexKey"], OptionValue["ValuesKey"], OptionValue["GroupTag"]},
 	sortColumns @ Tabular[Flatten @ XMLElementToAssociation[xml]]
 ];
 
