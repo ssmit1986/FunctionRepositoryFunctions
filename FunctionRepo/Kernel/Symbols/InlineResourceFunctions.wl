@@ -28,7 +28,9 @@ mInlineResourceFunctions[body_] := Module[{
 	funSymbols
 },
 	newqbody = qbody;
-	funNames = Cases[qbody, HoldPattern[ResourceFunction[s_String]] :> s, Infinity, Heads -> True];
+	funNames = DeleteDuplicates[
+		Cases[qbody, HoldPattern[ResourceFunction[s_String]] :> s, Infinity, Heads -> True]
+	];
 	funSymbols = Select[
 		AssociationMap[ResourceFunction[#, "Function"]&, funNames],
 		MatchQ[_Symbol]
