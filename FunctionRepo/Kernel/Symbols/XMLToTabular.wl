@@ -16,29 +16,47 @@ Begin["`Private`"] (* Begin Private Context *)
 $indexKey = "Index";
 $valuesKey = "XMLValues";
 $groupTag = "Grouping";
-$groupTagCounter = 1;
+$tagPath = {};
+
+tagIndex[] := Replace[
+	$groupTagCounter[$tagPath],
+	{
+		_Integer :> (++$groupTagCounter[$tagPath]),
+		_ :> ($groupTagCounter[$tagPath] = 1)
+	}
+]
 
 addIndices[list_] := Module[{newList = list},
 	newList[[All, $indexKey]] = Range @ Length[newList];
 	newList
 ];
 
-addGroupTag[tag_][assoc_] := Prepend[assoc, $groupTag -> tag <> "-" <> IntegerString[$groupTagCounter++]];
+addGroupTag[tag_][assoc_] := Prepend[assoc, $groupTag -> tag <> "-" <> IntegerString[tagIndex[]]];
 
 XMLElementToAssociation[{}] := <||>;
 XMLElementToAssociation[XMLObject["Document"][_, xml_XMLElement, _]] := XMLElementToAssociation[xml];
 
-XMLElementToAssociation[XMLElement[tag_, rules_, body_]] := With[{
-	base = addGroupTag[tag] @ KeyMap[ExtendedKey[tag, #]&] @ Association[rules],
-	bodyData = XMLElementToAssociation[body]
+XMLElementToAssociation[XMLElement[tag_, rules_, body_]] := Block[{
+	$tagPath = {$tagPath, tag}
 },
-	If[ ListQ[bodyData],
-		Join[
-			ConstantArray[base, Length[bodyData]],
-			KeyMap[ExtendedKey[tag, #]&] /@ bodyData,
-			2
-		],
-		Join[base, bodyData]
+	With[{
+		base = Association[rules],
+		bodyData = XMLElementToAssociation[body]
+	},
+		If[ ListQ[bodyData],
+			Join[
+				ConstantArray[
+					KeyMap[ExtendedKey[tag, #]&] @ addGroupTag[tag] @ base,
+					Length[bodyData]
+				],
+				KeyMap[ExtendedKey[tag, #]&] /@ bodyData,
+				2
+			],
+			Join[
+				KeyMap[ExtendedKey[tag, #]&] @ base,
+				bodyData
+			]
+		]
 	]
 ];
 
@@ -56,8 +74,8 @@ XMLElementToAssociation[list_List] := addIndices @ Flatten @ Replace[
 XMLElementToAssociation[_] := <||>;
 
 sortFun[e1_ExtendedKey, e2_ExtendedKey] /; e1 === e2 := 0;
-sortFun[e1 : ExtendedKey[fst__, "Index"], e2 : ExtendedKey[fst__, _]] := 1;
-sortFun[e1 : ExtendedKey[fst__, _], e2 : ExtendedKey[fst__, "Index"]] := -1;
+sortFun[e1 : ExtendedKey[fst__, "Index" | "Grouping"], e2 : ExtendedKey[fst__, _]] := 1;
+sortFun[e1 : ExtendedKey[fst__, _], e2 : ExtendedKey[fst__, "Index" | "Grouping"]] := -1;
 sortFun[e1_ExtendedKey, e2_ExtendedKey] := With[{
 	n1 = Length[e1],
 	n2 = Length[e2]
@@ -81,7 +99,8 @@ blockKeys[{indKey_, valKey_, groupTag_}, expr_] := Block[{
 	$indexKey = indKey,
 	$valuesKey = valKey,
 	$groupTag = groupTag,
-	$groupTagCounter = 1
+	$tagPath = {},
+	$groupTagCounter
 },
 	expr
 ];
