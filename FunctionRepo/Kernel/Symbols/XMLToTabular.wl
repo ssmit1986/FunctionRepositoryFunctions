@@ -52,6 +52,8 @@ XMLElementToAssociation[list_List] := addIndices @ Flatten @ Replace[
 XMLElementToAssociation[_] := <||>;
 
 sortFun[e1_ExtendedKey, e2_ExtendedKey] /; e1 === e2 := 0;
+sortFun[e1 : ExtendedKey[fst__, "Index"], e2 : ExtendedKey[fst__, _]] := 1;
+sortFun[e1 : ExtendedKey[fst__, _], e2 : ExtendedKey[fst__, "Index"]] := -1;
 sortFun[e1_ExtendedKey, e2_ExtendedKey] := With[{
 	n1 = Length[e1],
 	n2 = Length[e2]
@@ -80,7 +82,7 @@ Options[XMLToTabular] = {
 
 XMLToTabular[xml_List, opts : OptionsPattern[]] := blockKeys[
 	{OptionValue["IndexKey"], OptionValue["ValuesKey"]},
-	sortColumns @ Tabular[Flatten @ Map[XMLElementToAssociation, xml]]
+	sortColumns @ Tabular[addIndices @ Flatten @ Map[XMLElementToAssociation, xml]]
 ];
 
 XMLToTabular[xml_, opts : OptionsPattern[]] := blockKeys[
