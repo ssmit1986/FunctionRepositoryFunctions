@@ -52,7 +52,7 @@ rewriteFunction[fun : HoldPattern[Function[sym_Symbol, __]], key_] := Replace[
 ];
 rewriteFunction[HoldPattern[Function[{sym_Symbol, ___}, body__]], key_] := rewriteFunction[Function[sym, body], key];
 
-rewriteFunction[fun_, key_] := Lookup[key] /* fun;
+rewriteFunction[fun_, key_] := fun[#[key]]&;
 
 
 End[] (* End Private Context *)
