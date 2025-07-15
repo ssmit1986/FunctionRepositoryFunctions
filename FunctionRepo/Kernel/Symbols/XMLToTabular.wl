@@ -40,7 +40,7 @@ combineAssociations[assocs_List] := If[
 addGroupTag[tag_][assoc_] := Prepend[assoc, $groupTag -> tag <> "-" <> IntegerString[tagIndex[]]];
 
 XMLElementToAssociation[{}] := <||>;
-XMLElementToAssociation[XMLObject["Document"][_, xml_XMLElement, _]] := XMLElementToAssociation[xml];
+XMLElementToAssociation[XMLObject[_][_, xml_XMLElement, __]] := XMLElementToAssociation[xml];
 
 XMLElementToAssociation[XMLElement[tag_, {}, {body : Except[_XMLElement]}]] := <|tag -> body|>
 XMLElementToAssociation[XMLElement[tag_, rules_, body_]] := Block[{
@@ -127,7 +127,7 @@ XMLToTabular[xml_List, opts : OptionsPattern[]] := blockKeys[
 
 XMLToTabular[xml_, opts : OptionsPattern[]] := blockKeys[
 	{OptionValue["IndexKey"], OptionValue["ValuesKey"], OptionValue["GroupTag"]},
-	sortColumns @ Tabular[Flatten @ XMLElementToAssociation[xml]]
+	sortColumns @ Tabular[Flatten @ {XMLElementToAssociation[xml]}]
 ];
 
 
