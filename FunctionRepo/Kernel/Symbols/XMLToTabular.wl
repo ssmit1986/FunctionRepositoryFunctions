@@ -13,6 +13,7 @@ GU`SetUsage[XMLToTabular,
 
 Begin["`Private`"] (* Begin Private Context *)
 
+$indexKey = "Index";
 
 XMLElementToAssociation[{}] := <||>;
 XMLElementToAssociation[XMLObject["Document"][_, xml_XMLElement, _]] := XMLElementToAssociation[xml];
@@ -35,7 +36,7 @@ XMLElementToAssociation[{el_XMLElement}] := XMLElementToAssociation[el];
 XMLElementToAssociation[l : {__XMLElement}] := Module[{
 	assocs = Flatten @ Map[XMLElementToAssociation, l]
 },
-	assocs[[All, "Index"]] = Range @ Length[assocs];
+	assocs[[All, $indexKey]] = Range @ Length[assocs];
 	assocs
 ];
 XMLElementToAssociation[{el_}] := <|"XMLValues" -> el|>;
@@ -45,9 +46,22 @@ XMLElementToAssociation[_] := <||>;
 
 sortColumns[tab_] := KeyTake[tab, Sort @ ColumnKeys[tab]];
 
+SetAttributes[blockIndexKey, HoldRest];
+blockIndexKey[val_, expr_] := Block[{$indexKey = val}, expr];
 
-XMLToTabular[xml_List] := sortColumns @ Tabular[Flatten @ Map[XMLElementToAssociation, xml]]
-XMLToTabular[xml_] := sortColumns @ Tabular[Flatten @ XMLElementToAssociation[xml]];
+Options[XMLToTabular] = {
+	"IndexKey" -> "Index"
+};
+
+XMLToTabular[xml_List, opts : OptionsPattern[]] := blockIndexKey[
+	OptionValue["IndexKey"],
+	sortColumns @ Tabular[Flatten @ Map[XMLElementToAssociation, xml]]
+];
+
+XMLToTabular[xml_, opts : OptionsPattern[]] := blockIndexKey[
+	OptionValue["IndexKey"],
+	sortColumns @ Tabular[Flatten @ XMLElementToAssociation[xml]]
+];
 
 
 End[] (* End Private Context *)
