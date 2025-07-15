@@ -31,11 +31,18 @@ addIndices[list_] := Module[{newList = list},
 	newList
 ];
 
+combineAssociations[assocs_List] := If[
+	DuplicateFreeQ[Join @@ Keys[assocs]],
+	Join @@ assocs,
+	addIndices @ assocs
+];
+
 addGroupTag[tag_][assoc_] := Prepend[assoc, $groupTag -> tag <> "-" <> IntegerString[tagIndex[]]];
 
 XMLElementToAssociation[{}] := <||>;
 XMLElementToAssociation[XMLObject["Document"][_, xml_XMLElement, _]] := XMLElementToAssociation[xml];
 
+XMLElementToAssociation[XMLElement[tag_, {}, {body : Except[_XMLElement]}]] := <|tag -> body|>
 XMLElementToAssociation[XMLElement[tag_, rules_, body_]] := Block[{
 	$tagPath = {$tagPath, tag}
 },
@@ -52,8 +59,8 @@ XMLElementToAssociation[XMLElement[tag_, rules_, body_]] := Block[{
 				KeyMap[ExtendedKey[tag, #]&] /@ bodyData,
 				2
 			],
-			Join[
-				KeyMap[ExtendedKey[tag, #]&] @ base,
+			KeyMap[ExtendedKey[tag, #]&] @ Join[
+				base,
 				bodyData
 			]
 		]
@@ -61,9 +68,9 @@ XMLElementToAssociation[XMLElement[tag_, rules_, body_]] := Block[{
 ];
 
 XMLElementToAssociation[{el_XMLElement}] := XMLElementToAssociation[el];
-XMLElementToAssociation[l : {__XMLElement}] := addIndices @ Flatten @ Map[XMLElementToAssociation, l];
+XMLElementToAssociation[l : {__XMLElement}] := combineAssociations @ Flatten @ Map[XMLElementToAssociation, l];
 XMLElementToAssociation[{el_}] := <|$valuesKey -> el|>;
-XMLElementToAssociation[list_List] := addIndices @ Flatten @ Replace[
+XMLElementToAssociation[list_List] := combineAssociations @ Flatten @ Replace[
 	list,
 	{
 		xml_XMLElement :> XMLElementToAssociation[xml],
@@ -72,6 +79,8 @@ XMLElementToAssociation[list_List] := addIndices @ Flatten @ Replace[
 	{1}
 ];
 XMLElementToAssociation[_] := <||>;
+
+
 
 sortFun[e1_ExtendedKey, e2_ExtendedKey] /; e1 === e2 := 0;
 sortFun[e1 : ExtendedKey[fst__, "Index" | "Grouping"], e2 : ExtendedKey[fst__, _]] := 1;
