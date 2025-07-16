@@ -26,10 +26,11 @@ tagIndex[] := Replace[
 	}
 ]
 
-addIndices[list_] := Module[{newList = list},
+addIndices[list_] /; $indexKey =!= None := Module[{newList = list},
 	newList[[All, $indexKey]] = Range @ Length[newList];
 	newList
 ];
+addIndices[list_] := list;
 
 combineAssociations[assocs_List] := If[
 	DuplicateFreeQ[Join @@ Keys[assocs]],
@@ -37,7 +38,8 @@ combineAssociations[assocs_List] := If[
 	addIndices @ assocs
 ];
 
-addGroupTag[tag_][assoc_] := Prepend[assoc, $groupTag -> tag <> "-" <> IntegerString[tagIndex[]]];
+addGroupTag[tag_][assoc_] /; $groupTag =!= None := Prepend[assoc, $groupTag -> tag <> "-" <> IntegerString[tagIndex[]]];
+addGroupTag[tag_][assoc_] := assoc;
 
 XMLElementToAssociation[{}] := <||>;
 XMLElementToAssociation[XMLObject[_][_, xml_XMLElement, __]] := XMLElementToAssociation[xml];
