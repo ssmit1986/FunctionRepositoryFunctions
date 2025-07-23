@@ -91,15 +91,17 @@ checkedOperator[op_, failTest_, False][data___] := With[{
 
 ];
 
-checkedOperator[op_, failTest_, True][data___] := Enclose[
-	ConfirmQuiet[checkedOperator[op, failTest, False][data], All, Null, checkedOperator],
-	Function[
-		If[ TrueQ @ $Debug,
-			ReleaseHold[#["HeldMessageCall"]]
-		];
-		#
-	],
-	checkedOperator
+checkedOperator[op_, failTest_, True][data___] := With[{tag = CreateUUID[]},
+	Enclose[
+		ConfirmQuiet[checkedOperator[op, failTest, False][data], All, Null, tag],
+		Function[
+			If[ TrueQ @ $Debug,
+				ReleaseHold[#["HeldMessageCall"]]
+			];
+			#
+		],
+		tag
+	]
 ];
 
 failTestOperator[failTest_] := checkedOperator[Identity, failTest, False];
@@ -281,16 +283,21 @@ dataGraph[v_, e_, test : {failTest_, boole_}][a_Association] := Module[{
 	edges = e,
 	assoc = a,
 	keysIn = Complement[inputKeys[v, e], Keys[a]],
-	generatedInput
+	generatedInput,
+	tag
 },
 	Condition[
 		(* Evaluate the generator functions *)
 		Enclose[
 			generatedInput = Association @ KeyValueMap[
 				Function[
-					#1 -> Confirm @ addPos[
-						checkedOperator[#2, failTest, boole][],
-						#1 -> #2
+					#1 -> Confirm[
+						addPos[
+							checkedOperator[#2, failTest, boole][],
+							#1 -> #2
+						],
+						Null,
+						tag
 					]
 				],
 				KeyTake[vertList, keysIn]
@@ -300,11 +307,15 @@ dataGraph[v_, e_, test : {failTest_, boole_}][a_Association] := Module[{
 				edges,
 				test
 			][Join[assoc, generatedInput]]
+			,
+			Identity,
+			tag
 		]
 		,
 		keysIn =!= {} && ContainsAll[Keys[vertList], keysIn]
 	]
 ];
+
 
 (* Main evaluation *)
 dataGraph[vertList_, edges_, test : {failTest_, boole_}][data_] := With[{
