@@ -3,15 +3,15 @@
 BeginPackage["FunctionRepo`MapAtColumns`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[MapAtColumns,
-	"MapAtColumns[tab$, col$ -> fun$] applies a function to column values."
+	"MapAtColumns[col$ -> fun$, tab$] applies a function to column values."
 ];
 
 Begin["`Private`"] (* Begin Private Context *)
 
-MapAtColumns[rules_][tab_] := MapAtColumns[tab, rules];
-MapAtColumns[tab_, rule_Rule] := MapAtColumns[tab, {rule}];
-MapAtColumns[tab_, {}] := tab;
-MapAtColumns[tab_, rules : {__Rule}] := Module[{
+MapAtColumns[rules_][tab_] := MapAtColumns[rules, tab];
+MapAtColumns[rule_Rule, tab_] := MapAtColumns[{rule}, tab];
+MapAtColumns[{}, tab_] := tab;
+MapAtColumns[rules : {__Rule}, tab_] := Module[{
 	keys = ColumnKeys[tab],
 	newRules
 },
@@ -27,7 +27,12 @@ MapAtColumns[tab_, rules : {__Rule}] := Module[{
 		TrueQ[ListQ[keys] && ContainsOnly[Keys[rules], keys]]
 	]
 ];
-MapAtColumns[_, _] := Failure["MapAtColumns", <||>];
+MapAtColumns[f_, tab_] := With[{
+	keys = Quiet @ ColumnKeys[tab]
+},
+	MapAtColumns[Thread[keys -> f], tab] /; ListQ[keys]
+];
+MapAtColumns[_, _] := Failure["MapAtColumns", <|"MessageParameters" -> "InvalidArguments"|>];
 
 
 rewriteFunction[fun : HoldPattern[Function[_] | Function[Null, __]], key_] := Activate[
