@@ -122,12 +122,25 @@ Options[XMLToTabular] = {
 	"GroupTag" -> "Grouping"
 };
 
+XMLToTabular[file_?FileExistsQ, opts : OptionsPattern[]] := Enclose[
+	XMLToTabular[
+		Confirm @ Import[file, "XML"],
+		opts
+	]
+];
+XMLToTabular[string_String, opts : OptionsPattern[]] := Enclose[
+	XMLToTabular[
+		Confirm @ ImportString[string, "XML"],
+		opts
+	]
+];
+
 XMLToTabular[xml_List, opts : OptionsPattern[]] := blockKeys[
 	{OptionValue["IndexKey"], OptionValue["ValuesKey"], OptionValue["GroupTag"]},
 	sortColumns @ Tabular[addIndices @ Flatten @ Map[XMLElementToAssociation, xml]]
 ];
 
-XMLToTabular[xml_, opts : OptionsPattern[]] := blockKeys[
+XMLToTabular[xml_, opts : OptionsPattern[]] /; MatchQ[Head[xml], XMLObject["Document"] | XMLElement] := blockKeys[
 	{OptionValue["IndexKey"], OptionValue["ValuesKey"], OptionValue["GroupTag"]},
 	sortColumns @ Tabular[Flatten @ {XMLElementToAssociation[xml]}]
 ];
