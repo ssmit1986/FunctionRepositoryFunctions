@@ -22,32 +22,16 @@ InlineResourceFunctions[body_] := GU`MacroEvaluate[InlineResourceFunctions[body]
 
 SetAttributes[mInlineResourceFunctions, HoldAllComplete];
 mInlineResourceFunctions[body_] := Module[{
-	qbody = GU`Quoted[body],
-	newqbody,
-	funNames,
-	funSymbols
+	qbody = GU`Quoted[body]
 },
-	newqbody = qbody;
-	funNames = DeleteDuplicates[
-		Cases[qbody, HoldPattern[ResourceFunction[s_String, o : OptionsPattern[]]] :> {s, o}, Infinity, Heads -> True]
-	];
-	funSymbols = Select[
-		AssociationMap[Apply[ResourceFunction[#1, "Function", ##2]&], funNames],
-		MatchQ[_Symbol]
-	];
-
-	If[ funSymbols =!= <||>,
-		newqbody //= ReplaceAll[{
-			HoldPattern[ResourceFunction[s_String, o : OptionsPattern[]]] :> With[{
-				fun = funSymbols[{s, o}]
-			},
-				fun /; MatchQ[fun, _Symbol]
-			]
-		}];
-		newqbody
-		,
-		qbody
-	]
+	qbody //= ReplaceAll[{
+		HoldPattern[ResourceFunction[s_String, o : OptionsPattern[]]] :> With[{
+			fun = ResourceFunction[s, "Function", o]
+		},
+			fun /; MatchQ[fun, _Symbol]
+		]
+	}];
+	qbody
 ];
 
 End[] (* End Private Context *)
