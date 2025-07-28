@@ -25,8 +25,8 @@ mInlineResourceFunctions[body_] := Module[{
 	qbody = GU`Quoted[body]
 },
 	qbody //= ReplaceAll[{
-		HoldPattern[ResourceFunction[s_String, o : OptionsPattern[]]] :> With[{
-			fun = ResourceFunction[s, "Function", o]
+		HoldPattern[ResourceFunction[resource_, o : OptionsPattern[]]] :> With[{
+			fun = ResourceFunction[resource, "Function", o]
 		},
 			fun /; MatchQ[fun, _Symbol]
 		]
