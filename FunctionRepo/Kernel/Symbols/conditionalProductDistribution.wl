@@ -97,6 +97,20 @@ conditionalMap[f_, agg_, dists : {{__Distributed}..}, rest___] := Map[
 ];
 conditionalMap[___] := $Failed
 
+
+ConditionalProductDistribution /: Normal[expr : ConditionalProductDistribution[__Distributed]] := expr;
+
+ConditionalProductDistribution /: Normal[ConditionalProductDistribution[spec : $patt]] := With[{
+	dists = Cases[{spec}, _Distributed],
+	rules = Flatten @ Cases[{spec}, e_Equal :> Thread[Rule @@ e]]
+},
+	If[ MatchQ[rules, {___Rule}],
+		ConditionalProductDistribution @@ (dists /. rules),
+		$Failed
+	]
+];
+
+
 MapApply[
 	Function[{fun, wrapper, aggregator},
 		ConditionalProductDistribution /: fun[
@@ -122,6 +136,14 @@ MapApply[
 					_ :> Identity
 				}
 			] @ conditionalMap[fun, aggregator, {dists} /. assoc, Replace[wrapper, None :> Sequence[]]]
+		];
+		ConditionalProductDistribution /: fun[
+			dist : ConditionalProductDistribution[dists : $patt],
+			coords_List
+		] := With[{
+			normal = Normal[dist]
+		},
+			fun[normal, coords] /; !FailureQ[normal]
 		]
 	],
 	{
@@ -200,24 +222,27 @@ ConditionalProductDistribution[dists : $patt] /; !AllTrue[{dists}, canonicalQ] :
 ];
 
 ConditionalProductDistribution /: HoldPattern @ DistributionParameterQ[
-	ConditionalProductDistribution[dists : (Distributed | Equal)[_, _]..]
-] := TrueQ @ AllTrue[
-	Cases[{dists}, _Distributed][[All, 2]],
-	DistributionParameterQ
+	ConditionalProductDistribution[dists__]
+] := TrueQ @ And[
+	MatchQ[{dists}, {$patt..}],
+	AllTrue[
+		Cases[{dists}, _Distributed][[All, 2]],
+		DistributionParameterQ
+	]
 ];
 
 ConditionalProductDistribution /: HoldPattern @ Mean[
-	ConditionalProductDistribution[dists__Distributed]?DistributionParameterQ
+	expr : ConditionalProductDistribution[__]?DistributionParameterQ
 ] := With[{
-	symbols = Flatten @ {dists}[[All, 1]]
+	normal = Normal[expr]
 },
 	Fold[
 		Function[
 			Expectation[#1, #2]
 		],
-		symbols,
-		{dists}
-	]
+		Flatten[(List @@ normal)[[All, 1]]],
+		List @@ normal
+	] /; !FailureQ[normal]
 ];
 
 End[] (* End Private Context *)
