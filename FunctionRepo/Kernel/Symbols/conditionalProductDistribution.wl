@@ -135,7 +135,12 @@ MapApply[
 					Likelihood | LogLikelihood :> aggregator,
 					_ :> Identity
 				}
-			] @ conditionalMap[fun, aggregator, {dists} /. assoc, Replace[wrapper, None :> Sequence[]]]
+			] @ conditionalMap[
+				fun,
+				aggregator,
+				{dists} /. assoc,
+				Replace[wrapper, None :> Sequence[]]
+			]
 		];
 		ConditionalProductDistribution /: fun[
 			dist : ConditionalProductDistribution[dists : $patt],
