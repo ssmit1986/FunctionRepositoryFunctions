@@ -1,18 +1,18 @@
 (* Wolfram Language Package *)
 
-BeginPackage["FunctionRepo`firstMatchingValue`", {"FunctionRepo`"}]
+BeginPackage["FunctionRepo`FirstMatchingValue`", {"FunctionRepo`"}]
 (* Exported symbols added here with SymbolName::usage *)
-firstMatchingValue::usage = "firstMatchingValue[{expr_1, expr_2, ...}, pattern] evalutates held expr_i in turn, returning the value of the first expression that evaluates to a result matching the pattern.";
+FirstMatchingValue::usage = "FirstMatchingValue[{expr_1, expr_2, ...}, pattern] evalutates held expr_i in turn, returning the value of the first expression that evaluates to a result matching the pattern.";
 
 Begin["`Private`"] (* Begin Private Context *)
 
-SetAttributes[firstMatchingValue, HoldAll];
-Options[firstMatchingValue] = Options[FirstCase];
+SetAttributes[FirstMatchingValue, HoldAll];
+Options[FirstMatchingValue] = Options[FirstCase];
 
-firstMatchingValue[expr_, patt_, opt : OptionsPattern[]] := firstMatchingValue[expr, patt, Missing["NotFound"], {1}, opt];
-firstMatchingValue[expr_, patt_, default_, opt : OptionsPattern[]] := firstMatchingValue[expr, patt, default, {1}, opt];
+FirstMatchingValue[expr_, patt_, opt : OptionsPattern[]] := FirstMatchingValue[expr, patt, Missing["NotFound"], {1}, opt];
+FirstMatchingValue[expr_, patt_, default_, opt : OptionsPattern[]] := FirstMatchingValue[expr, patt, default, {1}, opt];
 
-firstMatchingValue[
+FirstMatchingValue[
 	expr_,
 	(head : (Rule | RuleDelayed))[patt_, transformation_],
 	default_,
@@ -42,7 +42,7 @@ firstMatchingValue[
 	]
 ];
 
-firstMatchingValue[
+FirstMatchingValue[
 	expr_,
 	otherPattern_,
 	default_,
