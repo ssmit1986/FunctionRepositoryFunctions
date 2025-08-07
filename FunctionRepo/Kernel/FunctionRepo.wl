@@ -10,7 +10,10 @@ With[{
 },
 	Scan[
 		Function[file,
-			Symbol["FunctionRepo`" <> FileBaseName[file]];
+			Symbol @ StringJoin[
+				"FunctionRepo`",
+				StringReplace[FileBaseName[file], StartOfString ~~ u_ ~~ rest__ :> ToUpperCase[u] <> rest]
+			];
 			Get[file]
 		],
 		files
