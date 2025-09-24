@@ -27,7 +27,10 @@ SelectByColumnValues[tab : tabularPatt, col_ -> val_] := If[
 		},
 			If[ keyColQ && Length[vals] === 1,
 				selectByRowKey[tab, vals], (* Currently this is only worthwhile for single lookups *)
-				selectByValue[tab, col, vals]
+				If[ Length[vals] < 100,
+					selectByValue[tab, col, vals],
+					selectByValue2[tab, col, vals]
+				]
 			]
 		]
 	]
@@ -82,18 +85,6 @@ selectByRowKey[tab_, vals_] := Quiet[
 
 selectByValue[tab_, _, {}] := tab[{}];
 selectByValue[tab_, col_, vals_] := With[{
-	pos = Position[
-		Normal @ tab[All, col],
-		Alternatives @@ vals,
-		{1},
-		Heads -> False
-	][[All, 1]]
-},
-	tab[pos]
-];
-
-selectByValue2[tab_, _, {}] := tab[{}];
-selectByValue2[tab_, col_, vals_] := With[{
 	fun = Activate[
 		Function[
 			Evaluate[
@@ -104,6 +95,18 @@ selectByValue2[tab_, col_, vals_] := With[{
 	]
 },
 	Select[tab, fun]
+];
+
+selectByValue2[tab_, _, {}] := tab[{}];
+selectByValue2[tab_, col_, vals_] := With[{
+	pos = Position[
+		Normal @ tab[All, col],
+		Alternatives @@ vals,
+		{1},
+		Heads -> False
+	][[All, 1]]
+},
+	tab[pos]
 ];
 
 
