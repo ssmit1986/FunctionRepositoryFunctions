@@ -11,8 +11,6 @@ SelectByColumnValues[spec$] is an operator form of SelectByColumnValues that can
 Begin["`Private`"] (* Begin Private Context *)
 
 
-toList = Developer`ToList;
-
 tabularPatt = _Tabular?TabularQ;
 
 
@@ -24,11 +22,11 @@ SelectByColumnValues[tab : tabularPatt, col_ -> val_] := If[
 	If[ Length[tab] === 0,
 		tab,
 		With[{
-			vals = toList[val],
+			vals = Developer`ToList[val],
 			keyColQ = TabularSchema[tab]["KeyColumns"] === {col}
 		},
-			If[ keyColQ,
-				selectByRowKey[tab, vals],
+			If[ keyColQ && Length[vals] === 1,
+				selectByRowKey[tab, vals], (* Currently this is only worthwhile for single lookups *)
 				selectByValue[tab, col, vals]
 			]
 		]
@@ -56,7 +54,7 @@ SelectByColumnValues[expr_, rest__] := Failure["NotTabular",
 	|>
 ];
 
-
+selectByRowKey[tab_, {}] := tab[{}];
 selectByRowKey[tab_, vals_] := Quiet[
 	With[{
 		try = tab[RowKey[{#}]& /@ vals]
@@ -82,7 +80,20 @@ selectByRowKey[tab_, vals_] := Quiet[
 	{Tabular::rkmiss}
 ];
 
+selectByValue[tab_, _, {}] := tab[{}];
 selectByValue[tab_, col_, vals_] := With[{
+	pos = Position[
+		Normal @ tab[All, col],
+		Alternatives @@ vals,
+		{1},
+		Heads -> False
+	][[All, 1]]
+},
+	tab[pos]
+];
+
+selectByValue2[tab_, _, {}] := tab[{}];
+selectByValue2[tab_, col_, vals_] := With[{
 	fun = Activate[
 		Function[
 			Evaluate[
