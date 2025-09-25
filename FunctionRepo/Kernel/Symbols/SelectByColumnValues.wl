@@ -23,7 +23,7 @@ SelectByColumnValues[tab : tabularPatt, col_ -> val_] := If[
 		tab,
 		With[{
 			vals = Developer`ToList[val],
-			keyColQ = TabularSchema[tab]["KeyColumns"] === {col}
+			keyColQ = False (*TabularSchema[tab]["KeyColumns"] === {col}*)
 		},
 			If[ keyColQ && Length[vals] === 1,
 				selectByRowKey[tab, vals], (* Currently this is only worthwhile for single lookups *)
