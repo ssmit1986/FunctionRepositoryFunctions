@@ -9,6 +9,10 @@ function has been invoked.
 CumulativeTiming[expr$] is effectively equivalent to CumulativeTiming[expr$, HoldForm @ Head[expr$]], but easier to use."
 ];
 
+GU`SetUsage[FunctionRepo`TagForTiming,
+	"TagForTiming[expr$, tag$] can be used internally in code to collect timing information for CumulativeTiming. It returns expr$."
+];
+
 Begin["`Private`"] (* Begin Private Context *)
 
 GU`DefineMacro[MacroCumulativeTiming,
@@ -17,10 +21,10 @@ GU`DefineMacro[MacroCumulativeTiming,
 
 $CumulativeTimings = <||>;
 $EvaluationCounts = <||>
-$currentTag = Null;
 $time = Null;
 
 SetAttributes[CumulativeTiming, HoldAllComplete];
+SetAttributes[TagForTiming, HoldAllComplete];
 
 SetAttributes[heldHead, HoldAllComplete];
 heldHead[s_Symbol] := HoldForm[s];
@@ -32,33 +36,40 @@ initTag[tag_] /; !KeyExistsQ[$CumulativeTimings, tag] := (
 );
 initTag[tag_] := $CumulativeTimings[tag];
 
-CumulativeTiming[body_] := With[{
-	tag = heldHead[body]
+
+Scan[
+	Function[sym,
+		sym[body_] := With[{
+			tag = heldHead[body]
+		},
+			sym[body, tag]
+		]
+	],
+	{CumulativeTiming, TagForTiming}
+];
+
+
+CumulativeTiming[body_, tag_] := Block[{
+	$CumulativeTimingStartedQ = True,
+	$currentTag,
+	$time,
+	$CumulativeTimings = <||>,
+	$EvaluationCounts = <||>,
+	output
 },
-	CumulativeTiming[body, tag]
-];
-
-CumulativeTiming[body_, tag_] := If[
-	$currentTag =!= Null
-	,
-	iCumulativeTiming[body, tag]
-	,
-	Block[{
-		$CumulativeTimings = <||>,
+	output = TagForTiming[body, tag];
+	{
+		<|
+			"Timings" -> $CumulativeTimings,
+			"EvaluationCounts" -> $EvaluationCounts
+		|>,
 		output
-	},
-		output = iCumulativeTiming[body, tag];
-		{
-			<|
-				"Timings" -> $CumulativeTimings,
-				"EvaluationCounts" -> $EvaluationCounts
-			|>,
-			output
-		}
-	]
+	}
 ];
 
-iCumulativeTiming[body_, tag_] /; $currentTag === Null := Block[{
+TagForTiming[expr_, _] /; !TrueQ[$CumulativeTimingStartedQ] := expr;
+
+TagForTiming[body_, tag_] /; !ValueQ[$currentTag, Method -> "OwnValuesPresent"] := Block[{
 	$currentTag = tag,
 	$time = SessionTime[],
 	evalResult
@@ -70,12 +81,12 @@ iCumulativeTiming[body_, tag_] /; $currentTag === Null := Block[{
 	evalResult
 ]
 
-iCumulativeTiming[body_, tag_] /; $currentTag === tag := (
+TagForTiming[body_, tag_] /; $currentTag === tag := (
 	$EvaluationCounts[tag]++;
 	body
 );
 
-iCumulativeTiming[body_, tag_] /; $currentTag =!= Null := Block[{
+TagForTiming[body_, tag_] /; $currentTag =!= Null := Block[{
 	prevTag = $currentTag,
 	$currentTag = tag,
 	$time = SessionTime[],
