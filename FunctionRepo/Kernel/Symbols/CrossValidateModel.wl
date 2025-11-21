@@ -283,7 +283,7 @@ kFoldIndices[n_Integer, k_Integer] := Replace[
 ];
 
 parseParallelOptions[data_, True] := parseParallelOptions[data, {True}];
-parseParallelOptions[Hold[vars_], {True, args___Rule}] := Function[Null,
+parseParallelOptions[Hold[vars__], {True, args___Rule}] := Function[Null,
 	WithCleanup[
 		SetSharedVariable[vars]
 		,
