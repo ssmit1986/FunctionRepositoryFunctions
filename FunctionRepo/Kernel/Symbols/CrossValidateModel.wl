@@ -312,14 +312,17 @@ kFoldValidation[dat_, nData_, estimator_, tester_, opts : OptionsPattern[]] := B
 	nFolds = Clip[Round @ OptionValue["Folds"], {1, nData}];
 	partitions = Table[kFoldIndices[nData, nFolds], nRuns];
 	Flatten @ parseParallelOptions[Hold[data, partitions], OptionValue["ParallelQ"]][
-		With[{
-			partition = partitions[[p]]
-		},{
-			estimate = estimator[extractIndices[data, Join @@ Delete[partition, fold]]]
+		Module[{
+			f = fold,
+			partition = partitions[[p]],
+			trainData, testData, estimate
 		},
+			trainData = extractIndices[data, Join @@ Delete[partition, f]];
+			testData = extractIndices[data, partition[[f]]];
+			estimate = estimator[trainData];
 			<|
 				"FittedModel" -> estimate,
-				"ValidationResult" -> tester[estimate, extractIndices[data, partition[[fold]]]]
+				"ValidationResult" -> tester[estimate, testData]
 			|>
 		],
 		{fold, nFolds},
