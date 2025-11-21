@@ -261,6 +261,8 @@ defaultValidationFunction[fun_][spEst_SpatialEstimatorFunction, locs_ -> vals_] 
 
 defaultValidationFunction[___][_, val_] := val;
 
+extractIndices[t_Tabular, indices_] := t[[indices]];
+extractIndices[t_Tabular -> col_, indices_] /; IntegerQ[col] || ColumnKeyExistsQ[t, col] := t[[indices]] -> col;
 extractIndices[d_Dataset, indices_] := extractIndices[Normal[d], indices];
 extractIndices[data_List, indices_List] := Developer`ToPackedArray @ data[[indices]];
 extractIndices[in_Dataset -> out_, indices_] := extractIndices[Normal[in] -> out, indices];
@@ -280,11 +282,17 @@ kFoldIndices[n_Integer, k_Integer] := Replace[
 	array : Except[_?Developer`PackedArrayQ] :> Developer`ToPackedArray /@ array
 ];
 
-parseParallelOptions[True] := parseParallelOptions[{True}];
-parseParallelOptions[{True, args___Rule}] := Function[Null, 
-	ParallelTable[##, args,
-		DistributedContexts -> Automatic,
-		Method -> "CoarsestGrained"
+parseParallelOptions[data_, True] := parseParallelOptions[data, {True}];
+parseParallelOptions[Hold[vars_], {True, args___Rule}] := Function[Null,
+	WithCleanup[
+		SetSharedVariable[vars]
+		,
+		ParallelTable[##, args,
+			DistributedContexts -> Automatic,
+			Method -> "CoarsestGrained"
+		]
+		,
+		UnsetShared[vars]
 	],
 	HoldAll
 ];
@@ -295,15 +303,18 @@ Options[kFoldValidation] = {
 	"Folds" -> 5,
 	"ParallelQ" -> False
 };
-kFoldValidation[data_, nData_, estimator_, tester_, opts : OptionsPattern[]] := Module[{
+kFoldValidation[dat_, nData_, estimator_, tester_, opts : OptionsPattern[]] := Block[{
+	data = dat,
 	nRuns = OptionValue["Runs"],
 	nFolds,
 	partitions
 },
 	nFolds = Clip[Round @ OptionValue["Folds"], {1, nData}];
 	partitions = Table[kFoldIndices[nData, nFolds], nRuns];
-	Flatten @ parseParallelOptions[OptionValue["ParallelQ"]][
+	Flatten @ parseParallelOptions[Hold[data, partitions], OptionValue["ParallelQ"]][
 		With[{
+			partition = partitions[[p]]
+		},{
 			estimate = estimator[extractIndices[data, Join @@ Delete[partition, fold]]]
 		},
 			<|
@@ -312,7 +323,7 @@ kFoldValidation[data_, nData_, estimator_, tester_, opts : OptionsPattern[]] := 
 			|>
 		],
 		{fold, nFolds},
-		{partition, partitions}
+		{p, nRuns}
 	]
 ];
 
