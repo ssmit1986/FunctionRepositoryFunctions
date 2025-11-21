@@ -282,17 +282,17 @@ kFoldIndices[n_Integer, k_Integer] := Replace[
 	array : Except[_?Developer`PackedArrayQ] :> Developer`ToPackedArray /@ array
 ];
 
-parseParallelOptions[data_, True] := parseParallelOptions[data, {True}];
-parseParallelOptions[Hold[vars__], {True, args___Rule}] := Function[Null,
+parseParallelOptions[vars_, True] := parseParallelOptions[vars, {True}];
+parseParallelOptions[Hold[vars___], {True, args___Rule}] := Function[Null,
 	WithCleanup[
-		SetSharedVariable[vars]
+		DistributeDefinitions[vars]
 		,
 		ParallelTable[##, args,
 			DistributedContexts -> Automatic,
 			Method -> "CoarsestGrained"
 		]
 		,
-		UnsetShared[vars]
+		ClearDistributedDefinitions[vars]
 	],
 	HoldAll
 ];
