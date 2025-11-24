@@ -283,16 +283,18 @@ kFoldIndices[n_Integer, k_Integer] := Replace[
 ];
 
 parseParallelOptions[vars_, True] := parseParallelOptions[vars, {True}];
-parseParallelOptions[Hold[vars___], {True, args___Rule}] := Function[Null,
+parseParallelOptions[Hold[vars___], {True, opts___Rule}] := Function[Null,
 	WithCleanup[
 		DistributeDefinitions[vars]
 		,
-		ParallelTable[##, args,
+		ParallelTable[##, 
+			opts,
 			DistributedContexts -> Automatic,
 			Method -> "CoarsestGrained"
 		]
 		,
-		ClearDistributedDefinitions[vars]
+		ClearDistributedDefinitions[vars];
+		ParallelEvaluate[Remove[vars], DistributedContexts -> None]
 	],
 	HoldAll
 ];
