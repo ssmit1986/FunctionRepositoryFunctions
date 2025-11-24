@@ -303,7 +303,7 @@ Options[kFoldValidation] = {
 	"Folds" -> 5,
 	"ParallelQ" -> False
 };
-kFoldValidation[dat_, nData_, estimator_, tester_, opts : OptionsPattern[]] := Block[{
+kFoldValidation[dat_, nData_, estimator_, tester_, opts : OptionsPattern[]] := Module[{
 	data = dat,
 	nRuns = OptionValue["Runs"],
 	nFolds,
