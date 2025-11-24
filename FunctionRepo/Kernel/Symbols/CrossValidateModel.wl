@@ -343,7 +343,8 @@ Options[subSamplingValidation] = {
 	"ParallelQ" -> False,
 	"SamplingFunction" -> Automatic
 };
-subSamplingValidation[data_, nData_, estimator_, tester_, opts : OptionsPattern[]] := Module[{
+subSamplingValidation[dat_, nData_, estimator_, tester_, opts : OptionsPattern[]] := Module[{
+	data = dat,
 	nRuns = OptionValue["Runs"],
 	nVal,
 	samplingFunction
@@ -367,7 +368,7 @@ subSamplingValidation[data_, nData_, estimator_, tester_, opts : OptionsPattern[
 			other_ :> Function[other[nData, nVal]]
 		}
 	];
-	parseParallelOptions[OptionValue["ParallelQ"]][
+	parseParallelOptions[Hold[data], OptionValue["ParallelQ"]][
 		With[{
 			partitionedData = Replace[
 				samplingFunction[],
