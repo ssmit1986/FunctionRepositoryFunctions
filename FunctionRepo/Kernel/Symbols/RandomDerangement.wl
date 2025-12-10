@@ -9,13 +9,15 @@ RandomDerangement[list$] gives a random derangement of the elements in list$. Ea
 
 Begin["`Private`"] (* Begin Private Context *)
 
+partitions[n_] := partitions[n] = IntegerPartitions[n, All, Range[2, n]];
+
 RandomDerangement[n_Integer /; n > 1] := With[{
 	ints = Range[n],
-	partitions = RandomChoice[IntegerPartitions[n, All, Range[2, n]]]
+	part = RandomChoice[partitions[n]]
 },
 	PermutationReplace[
 		ints,
-		Cycles @ TakeList[RandomSample[ints], partitions]
+		Cycles @ TakeList[RandomSample[ints], part]
 	]
 ];
 
