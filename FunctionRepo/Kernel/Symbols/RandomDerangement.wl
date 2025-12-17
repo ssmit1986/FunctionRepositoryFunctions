@@ -11,9 +11,19 @@ Begin["`Private`"] (* Begin Private Context *)
 
 partitions[n_] := partitions[n] = IntegerPartitions[n, All, Range[2, n]];
 
+RandomPartition[1] := {1};
+RandomPartition[n_Integer?Positive] := With[{
+	rand = Accumulate[Sort @ RandomReal[1, n]]
+},
+	DeleteCases[
+		Differences[Prepend[0] @ ReplacePart[Floor[5 * rand / Max[rand]], n -> n]],
+		0
+	]
+];
+
 RandomDerangement[n_Integer /; n > 1] := With[{
 	ints = Range[n],
-	part = RandomChoice[partitions[n]]
+	part = RandomPartition[n]
 },
 	PermutationReplace[
 		ints,
