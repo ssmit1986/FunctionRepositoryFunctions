@@ -32,60 +32,66 @@ CrossValidateModel[data_,
 	opts
 ];
 
-CrossValidateModel[data : (_List | _Rule | _?AssociationQ), trainingFun : Except[_List], opts : OptionsPattern[]] := Module[{
-	method,
-	nDat = dataSize[data],
-	rules,
-	methodFun,
-	validationFunction
-},
-	method = Replace[
-		Flatten @ {OptionValue[Method]},
-		{
-			{"LeaveOneOut", rest___} :> {"KFold", "Folds" -> nDat, Sequence @@ FilterRules[{rest}, Except["Folds"]]},
-			{"BootStrap", rest___} :> {"RandomSubSampling",
-				"SamplingFunction" -> {"BootStrap", Lookup[{rest}, "BootStrapSize", nDat]},
-				Sequence @@ FilterRules[{rest}, {"Runs", "ParallelQ"}]
+CrossValidateModel[data : (_?TabularQ | _Dataset | _List | _Rule | _?AssociationQ), trainingFun : Except[_List], opts : OptionsPattern[]] := Catch[
+	Module[{
+		method,
+		nDat = dataSize[data],
+		rules,
+		methodFun,
+		validationFunction
+	},
+		If[ !TrueQ[nDat > 0],
+			Throw[Failure["NoData", <||>], cvm]
+		];
+		method = Replace[
+			Flatten @ {OptionValue[Method]},
+			{
+				{"LeaveOneOut", rest___} :> {"KFold", "Folds" -> nDat, Sequence @@ FilterRules[{rest}, Except["Folds"]]},
+				{"BootStrap", rest___} :> {"RandomSubSampling",
+					"SamplingFunction" -> {"BootStrap", Lookup[{rest}, "BootStrapSize", nDat]},
+					Sequence @@ FilterRules[{rest}, {"Runs", "ParallelQ"}]
+				}
 			}
-		}
-	];
-	rules = Join[Rest[method], FilterRules[{opts}, {"ParallelQ"}]];
-	methodFun = Replace[
-		First[method],
-		{
-			"KFold" :> kFoldValidation,
-			"RandomSubSampling" :> subSamplingValidation,
-			other_ :> (
-				Message[CrossValidateModel::unknownMethod, other];
-				Return[$Failed, Module]
-			)
-		}
-	];
-	validationFunction = Replace[
-		OptionValue["ValidationFunction"],
-		{
-			assoc_?AssociationQ :> parseValidationOption /@ assoc,
-			other_ :> parseValidationOption[other]
-		}
-	];
-	If[ AssociationQ[trainingFun],
-		If[ !AssociationQ[validationFunction],
-			validationFunction = Function[validationFunction] /@ trainingFun
-			,
-			(* Make sure the keys are sorted in the same order so that MapThread will work without issue *)
-			validationFunction = AssociationThread[
-				Keys[trainingFun],
-				Lookup[validationFunction, Keys[trainingFun], defaultValidationFunction[]]
+		];
+		rules = Join[Rest[method], FilterRules[{opts}, {"ParallelQ"}]];
+		methodFun = Replace[
+			First[method],
+			{
+				"KFold" :> kFoldValidation,
+				"RandomSubSampling" :> subSamplingValidation,
+				other_ :> (
+					Message[CrossValidateModel::unknownMethod, other];
+					Return[$Failed, Module]
+				)
+			}
+		];
+		validationFunction = Replace[
+			OptionValue["ValidationFunction"],
+			{
+				assoc_?AssociationQ :> parseValidationOption /@ assoc,
+				other_ :> parseValidationOption[other]
+			}
+		];
+		If[ AssociationQ[trainingFun],
+			If[ !AssociationQ[validationFunction],
+				validationFunction = Function[validationFunction] /@ trainingFun
+				,
+				(* Make sure the keys are sorted in the same order so that MapThread will work without issue *)
+				validationFunction = AssociationThread[
+					Keys[trainingFun],
+					Lookup[validationFunction, Keys[trainingFun], defaultValidationFunction[]]
+				]
 			]
+		];
+		
+		methodFun[
+			data, nDat,
+			quietReporting @ listOperator1[trainingFun],
+			listOperator2[validationFunction],
+			Sequence @@ FilterRules[rules, Options[methodFun]]
 		]
-	];
-	
-	methodFun[
-		data, nDat,
-		quietReporting @ listOperator1[trainingFun],
-		listOperator2[validationFunction],
-		Sequence @@ FilterRules[rules, Options[methodFun]]
-	]
+	],
+	cvm
 ];
 
 parseValidationOption = Replace[{
@@ -100,8 +106,10 @@ listOperator1[f : Except[_?AssociationQ]][args___] := f[args];
 listOperator2[funs_?AssociationQ][results_?AssociationQ, args___] := MapThread[#1[#2, args]&, {funs, results}];
 listOperator2[f : Except[_?AssociationQ]][args___] := f[args];
 
-dataSize[data_List] := Length[data];
-dataSize[data_] := Length[First[data]];
+dataSize[ds_Dataset] := dataSize[Normal @ ds];
+dataSize[data_Rule] := dataSize[First[data, {}]];
+dataSize[data_Association] := Length[First[data, {}]];
+dataSize[data_] := Length[data];
 
 quietReporting = ReplaceAll[
 	{
@@ -268,7 +276,7 @@ extractIndices[data_List, indices_List] := Developer`ToPackedArray @ data[[indic
 extractIndices[in_Dataset -> out_, indices_] := extractIndices[Normal[in] -> out, indices];
 extractIndices[in_ -> out_Dataset, indices_] := extractIndices[in -> Normal[out], indices];
 extractIndices[in_List -> out_, indices_List] /; Length[in] =!= Length[out] := extractIndices[in, indices] -> out;
-extractIndices[in_?AssociationQ -> out : Except[_?AssociationQ], indices_List] := extractIndices[in, indices] -> out;
+extractIndices[in_?AssociationQ -> out : Except[_List | _?AssociationQ], indices_List] := extractIndices[in, indices] -> out;
 extractIndices[data : _Rule | _?AssociationQ, indices_List] := Developer`ToPackedArray /@ data[[All, indices]];
 
 kFoldIndices[n_Integer, k_Integer] := Replace[
