@@ -40,8 +40,8 @@ CrossValidateModel[data : (_?TabularQ | _Dataset | _List | _Rule | _?Association
 		methodFun,
 		validationFunction
 	},
-		If[ !TrueQ[nDat > 0],
-			Throw[Failure["NoData", <||>], cvm]
+		If[ !TrueQ[nDat > 1],
+			Throw[Failure["NotEnoughData", <||>], cvm]
 		];
 		method = Replace[
 			Flatten @ {OptionValue[Method]},
