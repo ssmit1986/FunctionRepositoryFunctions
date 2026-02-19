@@ -30,7 +30,8 @@ handleOutput[failure_, ___] := failure;
 iToExpressionMatched[input_String?StringQ, patt_, Automatic] := iToExpressionMatched[input, patt, InputForm];
 iToExpressionMatched[input_, patt_, Automatic] := iToExpressionMatched[input, patt, StandardForm];
 iToExpressionMatched[input_, patt_, form_] := With[{
-	try = ToExpression[input, form, HoldComplete]
+	try = ToExpression[input, form, HoldComplete],
+	msg = ToString[patt]
 },
 	Replace[try,
 		{
@@ -43,7 +44,7 @@ iToExpressionMatched[input_, patt_, form_] := With[{
 			Except[HoldComplete[patt]] :> Failure["MatchFailure",
 				<|
 					"MessageTemplate" -> "Interpreted expression did not match `Pattern`",
-					"MessageParameters" -> <|"Pattern" -> patt|>
+					"MessageParameters" -> <|"Pattern" -> msg|>
 				|>
 			]
 		}
