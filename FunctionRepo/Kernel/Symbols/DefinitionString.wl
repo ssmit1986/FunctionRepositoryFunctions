@@ -39,7 +39,6 @@ DefinitionString[sym_Symbol] := Block[
 		$ContextAliases = <||>;
 		$ContextPath = contextPath;
 		str = ToString[Definition[sym], InputForm];
-		str //= CodeFormatter`CodeFormat;
 		defs = GeneralUtilities`Definitions[sym];
 		
 		aliases = MapIndexed[
@@ -49,11 +48,12 @@ DefinitionString[sym_Symbol] := Block[
 				Alternatives @@ Append[$ContextPath, $Context]
 			]
 		];
+		str //= StringReplace[aliases] /* StringTrim /* CodeFormatter`CodeFormat;
 		StringJoin[
 			"ContextPath: ", StringRiffle[contextPath, ", "],
 			"\nContext: ", $Context,
 			"\n\nAliases:\n", If[aliases === {}, "None", StringRiffle[aliases, "\n"]],
-			"\n\nDefinition:\n", StringTrim @ StringReplace[str, aliases],
+			"\n\nDefinition:\n", str,
 			If[ FreeQ[defs, GeneralUtilities`PackageScope`$KernelFunctionPlaceholder],
 				"",
 				"\n\n<<Hidden kernel definitions>>"
