@@ -7,6 +7,14 @@ FunctionRepo`Inactivate2;
 FunctionRepo`Inactive2;
 
 
+GU`SetUsage[Inactivate2,
+	"Inactivate2[expr$, patt$] is an updated version of Inactivate that respects attributes of the symbols that get inactivated."
+];
+
+GU`SetUsage[Inactive2,
+	"Inactive2[head$] is the inactivation wrapper that goes along with Inactivate2."
+];
+
 Begin["`Private`"] (* Begin Private Context *)
 
 SetAttributes[Inactivate2, HoldFirst];
@@ -43,6 +51,12 @@ evaluateArgs[expr : hold[fun_][args___], att_] := With[{
 		$Failed,
 		try
 	]
+];
+
+MakeBoxes[expr : Inactive2[f_][args___], form_] := With[{
+	boxes = MakeBoxes[Inactive[f][args], form]
+},
+	InterpretationBox[boxes, expr]
 ];
 
 
