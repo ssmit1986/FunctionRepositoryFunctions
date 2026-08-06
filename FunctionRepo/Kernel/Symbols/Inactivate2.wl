@@ -30,24 +30,24 @@ Inactivate2[expr_, rest___] := Internal`InheritedBlock[{Inactive},
 	]
 ];
 
-$handleAttributes = {HoldAll, HoldFirst, HoldRest, HoldAllComplete, Listable, Flat, Orderless};
+$holdAttributes = {HoldFirst, HoldRest};
 
-SetAttributes[hold, {HoldAll, SubValuesHoldAll}];
 
+(* Make sure that Inactive2[fun] mimics HoldFirst and HoldRest if fun has one of these attributes *)
 Inactive2[fun_Symbol][args___] := With[{
-	expr = evaluateArgs[hold[fun][args], Intersection[Attributes[fun], $handleAttributes]]
+	expr = evaluateArgs[Hold[args], Intersection[Attributes[fun], $holdAttributes]]
 },
-	(expr /. hold -> Inactive2) /; !FailureQ[expr]
+	(expr /. Hold -> Inactive2[fun]) /; !FailureQ[expr]
 ];
 
 evaluateArgs[_, {}] := $Failed;
-evaluateArgs[expr : hold[fun_][args___], att_] := With[{
-	try = Function[Null,
-		hold[fun][##],
-		att
-	][args]
+evaluateArgs[expr : Hold[args___], att_] := With[{
+	try = Block[{hold},
+		SetAttributes[hold, att];
+		Hold @@ hold[args]
+	]
 },
-	If[ try === Unevaluated[expr],
+	If[ try === expr,
 		$Failed,
 		try
 	]
