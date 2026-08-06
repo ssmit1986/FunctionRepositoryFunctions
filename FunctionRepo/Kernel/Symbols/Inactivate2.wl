@@ -22,11 +22,10 @@ SetAttributes[Inactive2, {HoldFirst, SubValuesHoldAll}];
 
 Inactivate2[expr_, rest___] := Internal`InheritedBlock[{Inactive},
 	SetAttributes[Inactive, SubValuesHoldAll];
-	Module[{
-		expr2 = Inactivate[expr, rest]
-	},
-		expr2 //= ReplaceAll[Inactive -> Inactive2];
-		expr2
+	
+	ReplaceAll[
+		Inactivate[expr, rest],
+		Inactive -> Inactive2
 	]
 ];
 
