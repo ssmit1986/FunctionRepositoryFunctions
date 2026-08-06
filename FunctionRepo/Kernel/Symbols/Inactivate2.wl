@@ -19,14 +19,39 @@ Begin["`Private`"] (* Begin Private Context *)
 
 SetAttributes[Inactivate2, HoldFirst];
 SetAttributes[Inactive2, {HoldFirst, SubValuesHoldAll}];
+SetAttributes[iInactive2, {HoldAll, SubValuesHoldAll}];
 
 Inactivate2[expr_, rest___] := Internal`InheritedBlock[{Inactive},
 	SetAttributes[Inactive, SubValuesHoldAll];
 	
-	ReplaceAll[
-		Inactivate[expr, rest],
-		Inactive -> Inactive2
+	Module[{newExpr},
+		newExpr = ReplaceAll[Inactivate[expr, rest], Inactive -> iInactive2];
+		newExpr //= evaluateSubValues;
+		newExpr //= unwrapInactive2;
+		newExpr
 	]
+];
+
+notSubValHoldAll[f_Symbol] := !Internal`LiterallyOccurringQ[Attributes[f], SubValuesHoldAll];
+
+evaluateSubValues[expr_] := ReplaceRepeated[
+	expr,
+	iInactive2[f_?notSubValHoldAll, args_, subvals__] :> Apply[
+		iInactive2[f, args, ##]&,
+		{subvals}
+	]
+]
+
+iInactive2[args1___][args2___] := iInactive2[args1, {args2}];
+
+unwrapInactive2[expr_] := Block[{
+	iInactive2
+},
+	SetAttributes[iInactive2, {HoldAll, SubValuesHoldAll}];
+	ReplaceRepeated[
+		expr,
+		iInactive2[args1___, {args2___}] :> iInactive2[args1][args2]
+	] /. iInactive2 -> Inactive2
 ];
 
 $holdAttributes = {HoldFirst, HoldRest, HoldAll, HoldAllComplete};
@@ -43,7 +68,7 @@ Inactive2[fun_Symbol][args___] := With[{
 	TODO: this takes care of 1 level of subvalues, but in expressions like Inactive[h][args1___][args2___][args3___], args3 will still 
 	remain held. Not a huge deal for now. 
 *)
-Inactive2[fun_Symbol][args1___][args2___] /; !Internal`LiterallyOccurringQ[Attributes[fun], SubValuesHoldAll] := With[{
+Inactive2[fun_Symbol][args1___][args2___] /; notSubValHoldAll[fun] := With[{
 	expr = evaluateArgs[Hold[args2], {}]
 },
 	Apply[Inactive2[fun][args1], expr] /; !FailureQ[expr]
