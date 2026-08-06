@@ -32,6 +32,7 @@ Inactivate2[expr_, rest___] := Internal`InheritedBlock[{Inactive},
 	]
 ];
 
+SetAttributes[notSubValHoldAll, HoldFirst];
 notSubValHoldAll[f_Symbol] := !Internal`LiterallyOccurringQ[Attributes[f], SubValuesHoldAll];
 notSubValHoldAll[_] := False;
 
@@ -64,7 +65,7 @@ Inactive2[fun_Symbol][args___] := With[{
 
 (* 
 	TODO: this takes care of 1 level of subvalues, but in expressions like Inactive[h][args1___][args2___][args3___], args3 will still 
-	remain held. Not a huge deal for now. 
+	remain held. Not a huge deal for now because Inactivate2 already deals with this.
 *)
 Inactive2[fun_Symbol][args1___][args2___] /; notSubValHoldAll[fun] := With[{
 	expr = evaluateArgs[Hold[args2], {}]
