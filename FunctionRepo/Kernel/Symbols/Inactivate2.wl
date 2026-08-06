@@ -29,14 +29,20 @@ Inactivate2[expr_, rest___] := Internal`InheritedBlock[{Inactive},
 	]
 ];
 
-$holdAttributes = {HoldFirst, HoldRest};
+$holdAttributes = {HoldFirst, HoldRest, HoldAll, HoldAllComplete};
 
 
-(* Make sure that Inactive2[fun] mimics HoldFirst and HoldRest if fun has one of these attributes *)
+(* Make sure that Inactive2[fun] mimics Hold attributes if fun has one of them *)
 Inactive2[fun_Symbol][args___] := With[{
 	expr = evaluateArgs[Hold[args], Intersection[Attributes[fun], $holdAttributes]]
 },
 	(expr /. Hold -> Inactive2[fun]) /; !FailureQ[expr]
+];
+
+Inactive2[fun_Symbol][args1___][args2___] /; !Internal`LiterallyOccurringQ[Attributes[fun], SubValuesHoldAll] := With[{
+	expr = evaluateArgs[Hold[args2], {}]
+},
+	(expr /. Hold -> Inactive2[fun][args1]) /; !FailureQ[expr]
 ];
 
 evaluateArgs[expr : Hold[args___], att_] := With[{
