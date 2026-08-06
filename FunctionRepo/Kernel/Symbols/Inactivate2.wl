@@ -39,7 +39,6 @@ Inactive2[fun_Symbol][args___] := With[{
 	(expr /. Hold -> Inactive2[fun]) /; !FailureQ[expr]
 ];
 
-evaluateArgs[_, {}] := $Failed;
 evaluateArgs[expr : Hold[args___], att_] := With[{
 	try = Block[{hold},
 		SetAttributes[hold, att];
