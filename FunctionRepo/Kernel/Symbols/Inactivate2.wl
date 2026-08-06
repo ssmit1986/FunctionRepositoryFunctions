@@ -36,13 +36,17 @@ $holdAttributes = {HoldFirst, HoldRest, HoldAll, HoldAllComplete};
 Inactive2[fun_Symbol][args___] := With[{
 	expr = evaluateArgs[Hold[args], Intersection[Attributes[fun], $holdAttributes]]
 },
-	(expr /. Hold -> Inactive2[fun]) /; !FailureQ[expr]
+	Apply[Inactive2[fun], expr] /; !FailureQ[expr]
 ];
 
+(* 
+	TODO: this takes care of 1 level of subvalues, but in expressions like Inactive[h][args1___][args2___][args3___], args3 will still 
+	remain held. Not a huge deal for now. 
+*)
 Inactive2[fun_Symbol][args1___][args2___] /; !Internal`LiterallyOccurringQ[Attributes[fun], SubValuesHoldAll] := With[{
 	expr = evaluateArgs[Hold[args2], {}]
 },
-	(expr /. Hold -> Inactive2[fun][args1]) /; !FailureQ[expr]
+	Apply[Inactive2[fun][args1], expr] /; !FailureQ[expr]
 ];
 
 evaluateArgs[expr : Hold[args___], att_] := With[{
