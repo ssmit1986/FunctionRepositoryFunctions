@@ -26,8 +26,8 @@ Inactivate2[expr_, rest___] := Internal`InheritedBlock[{Inactive},
 	
 	Module[{newExpr},
 		newExpr = ReplaceAll[Inactivate[expr, rest], Inactive -> iInactive2];
-		newExpr //= evaluateSubValues;
-		newExpr //= unwrapInactive2;
+		newExpr //= wrapInactive2 /* evaluateSubValues /* unwrapInactive2;
+		newExpr //= ReplaceAll[iInactive2 -> Inactive2];
 		newExpr
 	]
 ];
@@ -42,17 +42,14 @@ evaluateSubValues[expr_] := ReplaceRepeated[
 	]
 ]
 
-iInactive2[args1___][args2___] := iInactive2[args1, {args2}];
-
-unwrapInactive2[expr_] := Block[{
-	iInactive2
-},
-	SetAttributes[iInactive2, {HoldAll, SubValuesHoldAll}];
-	ReplaceRepeated[
-		expr,
-		iInactive2[args1___, {args2___}] :> iInactive2[args1][args2]
-	] /. iInactive2 -> Inactive2
+wrapInactive2[expr_] := ReplaceRepeated[expr,
+	iInactive2[args1___][args2___] :> iInactive2[args1, {args2}]
 ];
+
+unwrapInactive2[expr_] := ReplaceRepeated[
+	expr,
+	iInactive2[args1___, {args2___}] :> iInactive2[args1][args2]
+]
 
 $holdAttributes = {HoldFirst, HoldRest, HoldAll, HoldAllComplete};
 
