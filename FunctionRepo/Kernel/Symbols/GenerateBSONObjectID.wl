@@ -9,8 +9,6 @@ GenerateBSONObjectID[n$] generates n$ unique IDs."
 
 Begin["`Private`"] (* Begin Private Context *)
 
-Needs["MongoLink`" -> None];
-
 randomHexValue[n_] := RandomInteger[{0, 16^n - 1}];
 
 hexStringFromExpression[None | Null | "", n_] := randomHexValue[n];
@@ -50,14 +48,22 @@ incrementHexString[counter_, inc_Integer, ndigits_Integer] := With[{
 	IntegerString[i, 16, ndigits]
 ];
 
-GenerateBSONObjectID[] := MongoLink`BSONObjectID @ StringJoin[
+$mongoLinkLoadedQ = False;
+
+GenerateBSONObjectID[args___] /; !TrueQ[$mongoLinkLoadedQ] := (
+	Needs["MongoLink`" -> None];
+	$mongoLinkLoadedQ = True;
+	GenerateBSONObjectID[args]
+);
+
+GenerateBSONObjectID[] /; $mongoLinkLoadedQ := MongoLink`BSONObjectID @ StringJoin[
 	IntegerString[UnixTime[], 16, 8], (* Timestamp *)
 	$machineID, (* Machine identifier *)
 	$processID, (* Process identifier *)
 	incrementHexString[$counter, 1, 6] (* auto-incrementing 6-digit hex counter *)
 ];
 
-GenerateBSONObjectID[n_Integer] := Table[GenerateBSONObjectID[], n];
+GenerateBSONObjectID[n_Integer] /; $mongoLinkLoadedQ := Table[GenerateBSONObjectID[], n];
 
 
 End[] (* End Private Context *)
