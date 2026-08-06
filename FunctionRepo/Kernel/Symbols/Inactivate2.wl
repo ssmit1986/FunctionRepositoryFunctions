@@ -33,6 +33,7 @@ Inactivate2[expr_, rest___] := Internal`InheritedBlock[{Inactive},
 ];
 
 notSubValHoldAll[f_Symbol] := !Internal`LiterallyOccurringQ[Attributes[f], SubValuesHoldAll];
+notSubValHoldAll[_] := False;
 
 evaluateSubValues[expr_] := ReplaceRepeated[
 	expr,
