@@ -8,6 +8,8 @@ GeneralUtilities`SetUsage[FailIfUnevaluated,
 
 Begin["`Private`"] (* Begin Private Context *)
 
+(* TODO: handle SubValuesHoldAll correctly *)
+
 SetAttributes[FailIfUnevaluated, HoldAllComplete];
 
 FailIfUnevaluated[expr_] := FailIfUnevaluated[expr, $Failed];
