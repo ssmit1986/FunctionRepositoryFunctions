@@ -5,18 +5,23 @@ BeginPackage["FunctionRepo`PacletObjectLoad`", {"FunctionRepo`"}]
 GeneralUtilities`SetUsage[PacletObjectLoad, "
 PacletObjectLoad[obj$] loads the paclet object obj$ with Get, even if other versions of the same paclet are installed.
 PacletObjectLoad[spec$, opts$$] finds paclets with PacletFind[spec$, opts$$] and loads the result if it is a single paclet.
-* All other enabled paclets with the same name are disabled temporarily while the first context of obj$ is loaded. \
+* All other enabled paclets with the same name or the same context are disabled temporarily while the first context of obj$ is loaded. \
 They are enabled again afterwards, also when loading fails or is aborted.
 * obj$ must be enabled and installed, or PacletObjectLoad fails.
+* Before loading, FindFile must resolve the context to a file inside the location of obj$, or PacletObjectLoad fails.
 * The return value is the PacletObject that was loaded, or a Failure."
 ];
 
-PacletObjectLoad::notfound = "Paclet `1` version `2` at `3` is not among the enabled paclets found by PacletFind.";
-PacletObjectLoad::noctx = "Paclet `1` does not define a valid context to load.";
-PacletObjectLoad::getfail = "Get failed to load context `1`.";
-PacletObjectLoad::notunique = "PacletFind found `1` paclets instead of exactly one.";
 
 Begin["`Private`"] (* Begin Private Context *)
+
+
+PacletObjectLoad::notfound = "Paclet `1` version `2` at `3` is not among the enabled paclets found by PacletFind.";
+PacletObjectLoad::noctx = "Paclet `1` does not define a valid context to load.";
+PacletObjectLoad::nofile = "FindFile could not find a file for context `1`.";
+PacletObjectLoad::wrongfile = "Context `1` resolves to `2`, which is not inside the paclet location `3`.";
+PacletObjectLoad::getfail ="Get failed to load context `1`.";
+PacletObjectLoad::notunique = "PacletFind found `1` paclets instead of exactly one.";
 
 PacletObjectLoad[obj_PacletObject] := Enclose[
 	Module[{
@@ -25,24 +30,38 @@ PacletObjectLoad[obj_PacletObject] := Enclose[
 		context,
 		found,
 		others,
+		file,
 		disabled = {}
 	},
-		found = ConfirmMatch[PacletFind[name], {___PacletObject}];
-		ConfirmAssert[
-			MemberQ[Comap[found, "Location"], location],
-			failure["notfound", {name, obj["Version"], location}]
-		];
 		context = ConfirmBy[
 			First[Flatten[{obj["Context"]}], Missing["NoContext"]],
 			contextQ,
 			failure["noctx", {name}]
 		];
-		others = Select[found, #["Location"] =!= location &];
+		found = Join[
+			ConfirmMatch[PacletFind[name], {___PacletObject}],
+			(* Paclets with other names that provide the same context are included to prevent context clashes *)
+			ConfirmMatch[PacletFind["*", <|"Context" -> context|>], {___PacletObject}]
+		];
+		ConfirmAssert[
+			MemberQ[Comap[found, "Location"], location],
+			failure["notfound", {name, obj["Version"], location}]
+		];
+		others = DeleteDuplicatesBy[
+			Select[found, #["Location"] =!= location &],
+			#["Location"] &
+		];
 		WithCleanup[
 			(* PacletDisable returns only the paclets it actually disabled *)
 			disabled = Flatten[PacletDisable /@ others]
 			,
-			Confirm[Get[context], failure["getfail", {context}]]
+			(* Make sure Get loads from obj and not from another paclet or $Path entry that provides the same context *)
+			file = ConfirmBy[FindFile[context], StringQ, failure["nofile", {context}]];
+			ConfirmAssert[
+				fileInDirectoryQ[file, location],
+				failure["wrongfile", {context, file, location}]
+			];
+			Confirm[Get[file], failure["getfail", {context}]]
 			,
 			(* Enable the exact objects from PacletFind: a name could resolve to a different version *)
 			Scan[PacletEnable, disabled]
@@ -71,6 +90,21 @@ PacletObjectLoad[args___] := Failure["InvalidArguments", <|
 
 contextQ[context_String] := StringEndsQ[context, "`"];
 contextQ[_] := False;
+
+fileInDirectoryQ[file_String, dir_String] := With[{
+	dirParts = FileNameSplit[ExpandFileName[dir]],
+	fileParts = FileNameSplit[ExpandFileName[file]]
+},
+	And[
+		Length[fileParts] > Length[dirParts],
+		(* Windows paths are case-insensitive *)
+		If[$OperatingSystem === "Windows",
+			ToLowerCase[Take[fileParts, Length[dirParts]]] === ToLowerCase[dirParts],
+			Take[fileParts, Length[dirParts]] === dirParts
+		]
+	]
+];
+fileInDirectoryQ[_, _] := False;
 
 (* Return the specific Failure passed as information to Confirm, instead of the generic ConfirmationFailed wrapper *)
 unwrapFailure[fail_Failure] := Replace[fail["Information"], Except[_Failure] :> fail];
